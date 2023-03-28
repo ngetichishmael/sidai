@@ -20,12 +20,10 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
-                        {{-- <th width="5%">Image</th> --}}
                         <th>Name</th>
-                        <th width="10%">Price</th>
-                        <th width="13%">SKU</th>
-                        <th width="13%">Brand</th>
-                        {{-- <th width="16%">Created at</th>    --}}
+                        <th width="10%">Retail Price</th>
+                        <th width="13%">Wholesale Price</th>
+                        <th width="13%">Distributor's Price</th>
                         <th width="12%">Actions</th>
                     </tr>
                 </thead>
@@ -36,24 +34,21 @@
                             <td>{!! $product->product_name !!}</td>
                             <td>
                                 ksh:
+                                {{ number_format((float) $product->ProductPrice()->pluck('buying_price')->implode('')) }}
+                            </td>
+                            <td>
+                                ksh:
                                 {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                             </td>
-                            <td>{!! $product->sku_code !!}</td>
+                            <td>
+                                ksh:
+                                {{ number_format((float) $product->ProductPrice()->pluck('default_price')->implode('')) }}
+                            </td>
 
                             <td>
-                                {!! $product->brand !!}
-                            </td>
-                            {{-- <td>{!! date('F d, Y', strtotime($product->date)) !!}</td> --}}
-                            <td>
-                                {{-- <a href="{{ route('products.details', $product->proID) }}" class="btn btn-warning btn-sm"><i class="fas fa-eye"></i></a> --}}
-                                <div class="d-flex" style="gap: 20px">
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
-                                        <span>Edit</span>
-                                    </a>
-                                    <a href="{!! route('products.destroy', $product->id) !!}" class="btn btn-danger delete btn-sm">
-                                        <span>DELETE</span>
-                                    </a>
-                                </div>
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
+                                    <span>Edit</span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

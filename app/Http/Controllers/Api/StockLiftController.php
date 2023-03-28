@@ -85,8 +85,6 @@ class StockLiftController extends Controller
          "created_by" => $user_code,
 
       ]);
-      info("checkeddd");
-      info($checkeddd);
       return response()->json([
          "success" => true,
          "message" => "All Available Product Information",
