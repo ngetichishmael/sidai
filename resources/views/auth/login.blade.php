@@ -9,25 +9,25 @@
 <body>
     <div class="dashboard-landing">
         <div class="left-side">
-            <nav>
+            {{-- <nav>
                 <img src={{ asset('app-assets/images/logo.jpg') }} class="logo" alt="Total Energies" />
-            </nav>
+            </nav> --}}
             <img src="{{ asset('app-assets/images/loginpage.svg') }}" alt="" class="img-fluid">
-            <h1 class="title">Total Energies</h1>
+            <h1 class="title">Sidai</h1>
         </div>
         <div class="right-side">
             <div class="login-fields">
                 <!-- Login v1 -->
                 <div>
                     <div class="card-body">
-                        <h4 class="mb-1 card-title">Welcome to Total Energies! 👋</h4>
+                        <h4 class="mb-1 card-title">Welcome to Sidai! 👋</h4>
                         <p class="mb-2 card-text">Please sign-in to your account</p>
                         <form class="mt-2 auth-login-form" action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="mb-1">
                                 <label for="login-email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="login-email" name="email"
-                                    placeholder="john@example.com" aria-describedby="login-email" tabindex="1"
+                                    placeholder="sidai@sokoflow.com" aria-describedby="login-email" tabindex="1"
                                     autofocus />
                                 @if ($errors->has('email'))
                                     <span class="help-block">
