@@ -105,6 +105,9 @@ class StockLiftController extends Controller
         `product_information`.`created_at` as `date`,
         `product_information`.`product_name` as `product_name`,
         `product_price`.`selling_price` as `price`,
+        `product_price`.`selling_price` as `wholesale_price`,
+        `product_price`.`buying_price` as `retail_price`,
+        `product_price`.`default_price` as `distributor_price`,
         `product_inventory`.`current_stock` AS `current stock`
             FROM
                 `product_information`
