@@ -114,6 +114,15 @@ Route::group(['middleware' => ['verified']], function () {
       'create' => 'user-import.create',
       'store' => 'user-import.store',
    ]);
+   Route::resource('customer-import', importController::class)->names([
+      'index' => 'user-import',
+      'show' => 'user-import.show',
+      'edit' => 'user-import.edit',
+      'update' => 'user-import.update',
+      'destroy' => 'user-import.destroy',
+      'create' => 'user-import.create',
+      'store' => 'user-import.store',
+   ]);
    Route::get('supplier/import', ['uses' => 'app\supplier\ImportController@index', 'as' => 'supplier.import.index']);
    Route::post('supplier/post/import', ['uses' => 'app\supplier\ImportController@import', 'as' => 'supplier.import']);
    //customer category

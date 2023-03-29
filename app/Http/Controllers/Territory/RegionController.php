@@ -6,7 +6,6 @@ use App\Models\Region;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\RegionalBreakdown;
 use App\Models\Relationship;
 
 class RegionController extends Controller

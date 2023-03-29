@@ -44,6 +44,6 @@ class customers extends Model
     */
    public function Area(): BelongsTo
    {
-      return $this->belongsTo(Area::class, 'route_code', 'id');
+      return $this->belongsTo(Area::class, 'zone_id', 'id');
    }
 }
