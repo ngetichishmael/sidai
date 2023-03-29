@@ -43,12 +43,14 @@ class customersController extends Controller
    {
       $user = $request->user();
 
-      $route_code = $request->user()->route_code;
-      $region = Region::whereId($route_code)->first();
-      $subregion = Subregion::where('region_id', $region->id)->pluck('id');
-      $areas = Area::whereIn('subregion_id', $subregion)->pluck('id');
+      // $route_code = $request->user()->route_code;
+      // $region = Region::whereId($route_code)->first();
+      // $subregion = Subregion::where('region_id', $region->id)->pluck('id');
+      // $areas = Area::whereIn('subregion_id', $subregion)->pluck('id');
 
-      $query = customers::whereIn('route_code', $areas)->get();
+      // $query = customers::whereIn('route_code', $areas)->get();
+      $perPage = $request->page_size ?? 20;
+      $query = customers::paginate($perPage);
 
       return response()->json([
          "user" => $user,
