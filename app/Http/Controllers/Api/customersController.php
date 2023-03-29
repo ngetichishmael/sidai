@@ -50,7 +50,7 @@ class customersController extends Controller
 
       // $query = customers::whereIn('route_code', $areas)->get();
       $perPage = $request->page_size ?? 20;
-      $query = customers::paginate($perPage);
+      $query = customers::whereNotNull('latitude')->whereNotNull('longitude')->limit(50)->get();
 
       return response()->json([
          "user" => $user,
