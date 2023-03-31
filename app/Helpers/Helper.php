@@ -133,7 +133,7 @@ class Helper
       $activity->action     = $action;
       $activity->userID   =  Auth::user()->id;
       $activity->activityID = $activityID;
-      $activity->businessID = $businessID;
+      $activity->business_code = $businessID;
       $activity->ip_address = $ipaddress;;
       $activity->save();
    }
