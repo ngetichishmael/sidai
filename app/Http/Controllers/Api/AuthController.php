@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
 use App\Models\UserCode;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\DB;
@@ -33,14 +33,30 @@ class AuthController extends Controller
     **/
    public function userLogin(Request $request)
    {
-
-      //(!Auth::attempt(['email' => $request->email, 'password' => $request->password], true))
-      if (!FacadesAuth::attempt(['phone_number' => $request->email, 'password' => $request->password], true)) {
-         return response()
-            ->json(['message' => 'Unauthorized'], 401);
+      $status = false;
+      if (is_numeric($request->email)) {
+         $status = FacadesAuth::attempt(['phone_number' => $request->email, 'password' => $request->password], true);
+      } else {
+         $status = FacadesAuth::attempt(['email' => $request->email, 'password' => $request->password], true);
+      }
+      if ($status == false) {
+         return response()->json(['message' => 'Unauthorized'], 401);
       }
 
-      $user = User::where('phone_number', $request['email'])->firstOrFail();
+      $user = User::where(function ($query) use ($request) {
+         $query->where('email', $request->email)
+            ->orWhere('phone_number', $request->email);
+      })
+         ->first();
+      if ($user == null) {
+         return response()->json(
+            [
+               'message' => 'Unauthorized',
+            ],
+            401
+         );
+      }
+      // $user = User::where('phone_number', $request['email'])->firstOrFail();
 
       $token = $user->createToken('auth_token')->plainTextToken;
 

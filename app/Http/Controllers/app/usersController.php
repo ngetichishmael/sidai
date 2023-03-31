@@ -94,7 +94,7 @@ class usersController extends Controller
             "email_verified_at" => now(),
             "route_code" => $request->route,
             "status" => 'Active',
-            "password" => Hash::make($request->email),
+            "password" => Hash::make("password"),
             "business_code" => FacadesAuth::user()->business_code,
 
          ]
