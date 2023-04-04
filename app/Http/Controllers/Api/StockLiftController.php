@@ -93,8 +93,6 @@ class StockLiftController extends Controller
    }
    public function show(Request $request)
    {
-      $businessCode = $request->user()->business_code;
-      $supplierID = $request->supplierID;
       $query = DB::select('SELECT
         `product_information`.`supplierID` as `SupplierID`,
         `product_information`.`business_code` as `business_code`,
@@ -113,9 +111,7 @@ class StockLiftController extends Controller
                 `product_information`
             INNER JOIN `product_inventory` ON `product_inventory`.`business_code` = `product_information`.`business_code`
             INNER JOIN `product_price` ON `product_price`.`productID` = `product_information`.`id`
-            WHERE
-                `product_information`.`business_code` = ? AND `product_information`.`supplierID` = ?
-            GROUP BY `productID`', [$businessCode, $supplierID]);
+            GROUP BY `productID`');
 
       return response()->json([
          "success" => true,
