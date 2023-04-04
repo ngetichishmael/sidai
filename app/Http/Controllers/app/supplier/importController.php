@@ -41,7 +41,7 @@ class importController extends Controller
 
       Session()->flash('success', 'Warehouse imported Successfully.');
 
-      return redirect()->route('warehousing.index');
+      return redirect()->route('supplier');
    }
 
 
