@@ -168,7 +168,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('supplier/category/{id}/delete', ['uses' => 'app\supplier\groupsController@delete', 'as' => 'supplier.category.delete']);
 
    //import
-   Route::get('supplier/import', ['uses' => 'app\supplier\ImportController@index', 'as' => 'supplier.import.index']);
+   Route::get('supplier/import', ['uses' => 'ImportController@index', 'as' => 'supplier.import.index']);
    Route::post('supplier/post/import', ['uses' => 'app\supplier\ImportController@import', 'as' => 'supplier.import']);
 
    //export
