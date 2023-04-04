@@ -168,11 +168,12 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('supplier/category/{id}/delete', ['uses' => 'app\supplier\groupsController@delete', 'as' => 'supplier.category.delete']);
 
    //import
-   Route::get('supplier/import', ['uses' => 'ImportController@index', 'as' => 'supplier.import.index']);
-   Route::post('supplier/post/import', ['uses' => 'app\supplier\ImportController@import', 'as' => 'supplier.import']);
+   Route::get('supplier/import', ['uses' => 'app\supplier\importController@index', 'as' => 'supplier.import.index']);
+   // Route::get('supplier/import', [app\supplier\importController::class, 'index'])->name('supplier.import.index');
+   Route::post('supplier/post/import', ['uses' => 'app\supplier\importController@import', 'as' => 'supplier.import']);
 
    //export
-   Route::get('supplier/export/{type}', ['uses' => 'app\supplier\ImportController@export', 'as' => 'supplier.export']);
+   Route::get('supplier/export/{type}', ['uses' => 'app\supplier\importController@export', 'as' => 'supplier.export']);
 
    /* === product === */
    Route::get('products', ['uses' => 'app\products\productController@index', 'as' => 'product.index']);
