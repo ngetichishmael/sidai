@@ -138,7 +138,7 @@ Route::group(['middleware' => ['verified']], function () {
 
 
    /* === supplier === */
-   Route::resource('supplier', supplierController::class)->names([
+   Route::resource('supplier', app\supplier\supplierController::class)->names([
       'index' => 'supplier',
       'show' => 'supplier.show',
       'edit' => 'supplier.edit',
