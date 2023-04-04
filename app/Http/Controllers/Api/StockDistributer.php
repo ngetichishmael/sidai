@@ -3,25 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use App\Models\suppliers\suppliers;
 
 class StockDistributer extends Controller
 {
    public function index()
    {
-      $query = DB::select('SELECT
-            `id`,
-            `name`,
-            `email`,
-            `phone_number`,
-            `telephone`,
-            `business_code`
-        FROM
-            `suppliers`');
       return response()->json([
          "success" => true,
          "message" => "All Suppliers",
-         "Data" => $query
+         "Data" => suppliers::all(),
       ]);
    }
 }

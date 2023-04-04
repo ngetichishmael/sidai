@@ -4,78 +4,67 @@ namespace App\Http\Controllers\app\supplier;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\suppliers\category;
-use App\Imports\suppliers as import;
-use App\Exports\suppliers as export;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use App\Imports\suppliers;
 use Maatwebsite\Excel\Facades\Excel;
 use SebastianBergmann\Exporter\Exporter;
 
 class importController extends Controller
 {
-   public function __construct(){
-		$this->middleware('auth');
-	}
+   public function __construct()
+   {
+      $this->middleware('auth');
+   }
 
    /**
     * import csv
-   *
-   * @return \Illuminate\Http\Response
-   */
-   public function index(){
-      //check if user is linked to a business and allow access
-      $groups = category::OrderBy('id','DESC')->where('businessID',Auth::user()->businessID)->pluck('name','id')->prepend('Choose category','');
-      return view('app.finance.suppliers.import', compact('groups'));
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function index()
+   {
+      return view('app.suppliers.import');
    }
 
    /**
     * store uploaded file
-   *
-   * @return \Illuminate\Http\Response
-   */
-   public function import(Request $request){
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function import(Request $request)
+   {
       $this->validate($request, [
          'upload_import' => 'required'
       ]);
+      $file = request()->file('upload_import');
 
-      if($request->hasFile('upload_import')){
-         
-         $file = request()->file('upload_import');
+      Excel::import(new suppliers, $file);
 
-         Excel::import(new import, $file);
-   
-         Session::flash('success', 'File imported Successfully.');   
+      Session()->flash('success', 'Warehouse imported Successfully.');
 
-         return redirect()->route('finance.supplier.index');
-      }else{
-
-         Session::flash('warning','There is no file to import');
-
-         return redirect()->back();
-      }
+      return redirect()->route('warehousing.index');
    }
 
 
    /**
     * download contacts to excel
-   *
-   * @return \Illuminate\Http\Response
-   */
-   public function export(){
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function export()
+   {
       return Excel::download(new Exporter, 'suppliers.xlsx');
    }
 
    /**
     * download sample csv
-   *
-   * @return \Illuminate\Http\Response
-   */
-   public function download_import_sample(){
+    *
+    * @return \Illuminate\Http\Response
+    */
+   public function download_import_sample()
+   {
 
-      $file= public_path(). "/samples/supplier_import_sample_file.csv";
+      $file = public_path() . "/samples/supplier_import_sample_file.csv";
 
       return response()->download($file);
    }
-
 }

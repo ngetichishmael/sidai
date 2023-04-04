@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class suppliers extends Model
 {
-   Protected $table = 'suppliers';
+   protected $table = 'suppliers';
+   protected $guarded = [""];
 }

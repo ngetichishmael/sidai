@@ -5,21 +5,9 @@ namespace App\Http\Controllers\app\supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\suppliers\suppliers;
-use App\Models\expense\expense;
-use App\Models\suppliers\contact_persons;
-use App\Models\products\product_information;
-use App\Models\suppliers\comments;
-use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\category;
-use App\Models\suppliers\suppliers_categories;
 use App\Models\country;
-use App\Models\lpo\lpo;
-use App\Models\invoice\invoices;
-use File;
-use Helper;
-use Session;
-use Wingu;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class supplierController extends Controller
 {
@@ -41,7 +29,7 @@ class supplierController extends Controller
    public function create()
    {
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id')->prepend('Choose Country', '');
-      $groups = category::where('business_code', Auth::user()->business_code)->OrderBy('id', 'DESC')->pluck('name', 'id');
+      $groups = category::OrderBy('id', 'DESC')->pluck('name', 'id');
       return view('app.suppliers.create', compact('country', 'groups'));
    }
 
@@ -61,7 +49,7 @@ class supplierController extends Controller
       $primary->business_code = Auth::user()->business_code;
       $primary->save();
 
-      Session::flash('success', 'Supplier has been successfully Added');
+      Session()->flash('success', 'Supplier has been successfully Added');
 
       return redirect()->route('supplier.index');
    }
@@ -69,8 +57,7 @@ class supplierController extends Controller
    public function edit($id)
    {
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id')->prepend('Choose Country', '');
-      $suppliers = suppliers::where('business_code', Auth::user()->business_code)
-         ->where('suppliers.id', $id)
+      $suppliers = suppliers::where('suppliers.id', $id)
          ->first();
       //category
       $category = category::where('business_code', Auth::user()->business_code)->get();
@@ -85,7 +72,7 @@ class supplierController extends Controller
          'phone_number' => 'required',
       ]);
 
-      $edit = suppliers::where('id', $id)->where('business_code', Auth::user()->business_code)->first();
+      $edit = suppliers::where('id', $id)->first();
       $edit->email = $request->email;
       $edit->name = $request->name;
       $edit->phone_number = $request->phone_number;
@@ -94,7 +81,7 @@ class supplierController extends Controller
       $edit->business_code = Auth::user()->business_code;
       $edit->save();
 
-      Session::flash('success', 'Supplier has been successfully updated');
+      Session()->flash('success', 'Supplier has been successfully updated');
 
       return redirect()->back();
    }

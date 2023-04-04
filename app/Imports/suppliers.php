@@ -5,11 +5,9 @@ namespace App\Imports;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Models\finance\suppliers\suppliers as supplier;
-use App\Models\finance\suppliers\supplier_address;
 use App\Models\suppliers\supplier_address as SuppliersSupplier_address;
-use Helper;
-use Auth;
+use App\Models\suppliers\suppliers as SuppliersSuppliers;
+use Illuminate\Support\Facades\Auth;
 
 class suppliers implements ToCollection, WithHeadingRow
 {
@@ -19,30 +17,36 @@ class suppliers implements ToCollection, WithHeadingRow
    public function collection(Collection $rows)
    {
       foreach ($rows as $row) {
-         $primary = new supplier;
-         $code = Helper::generateRandomString(10);
-         $primary->supplierName = $row['name'];
-         $primary->referenceNumber = Helper::generateRandomString(10);
-         $primary->email = $row['email'];
-         $primary->primaryPhoneNumber = $row['phonenumber'];
-         $primary->supplierCode = $code;
-         $primary->website = $row['website'];
-         $primary->created_by = Auth::user()->id;
-         $primary->updated_by = Auth::user()->id;
-         $primary->businessID = Auth::user()->businessID;
-         $primary->save();
+         SuppliersSuppliers::updateOrCreate(
+            [
+               'name' => $row['customer'],
+               'business_code' => Auth::user()->business_code,
+            ],
+            [
+               "category" => "Non-Inclusive",
+               'email' => $row['email'] ?? "sidai@sokoflow.com",
+               'phone_number' => $row['contact'] ?? "sidai@sokoflow.com",
+               'telephone' => $row['contact'],
+               'created_by' => Auth::user()->id,
+               'updated_by' => Auth::user()->id,
+            ]
+         );
 
-         //address
-         $address = new SuppliersSupplier_address();
-         $address->supplierID = $primary->id;
-         $address->bill_attention = $row['name'];
-         $address->bill_street = $row['street'];
-         $address->bill_state = $row['state'];
-         $address->bill_city = $row['city'];
-         $address->bill_zip_code = $row['zipcode'];
-         $address->bill_country = 110;
-         $address->bill_postal_address = $row['postaladdress'];
-         $address->save();
+
+         // SuppliersSupplier_address::updateOrCreate(
+         //    [
+         //       'supplierID' => $supplier->id,
+         //    ],
+         //    [
+         //       'bill_attention' => $row['customer'],
+         //       'bill_street' => $row['region'],
+         //       'bill_state' => $row['location'],
+         //       'bill_city' => $row['region'],
+         //       'bill_zip_code' => "+254",
+         //       'bill_country' => 110,
+         //       'bill_postal_address' => $row['email'],
+         //    ]
+         // );
       }
    }
 }
