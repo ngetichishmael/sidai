@@ -39,7 +39,7 @@ class importController extends Controller
 
       Excel::import(new suppliers, $file);
 
-      Session()->flash('success', 'Warehouse imported Successfully.');
+      Session()->flash('success', 'Suppliers imported Successfully.');
 
       return redirect()->route('supplier');
    }
