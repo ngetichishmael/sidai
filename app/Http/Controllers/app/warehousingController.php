@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\app;
 
 use App\Helpers\Helper;
-use Session;
 use App\Models\country;
 use App\Models\warehousing;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Session\Session as SessionSession;
+use App\Imports\WarehouseImport;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class warehousingController extends Controller
 {
@@ -24,6 +24,24 @@ class warehousingController extends Controller
       return view('app.warehousing.index');
    }
 
+   public function import()
+   {
+      return view('app.warehousing.import');
+   }
+   public function storeWarehouse(Request $request)
+   {
+      $this->validate($request, [
+         'upload_import' => 'required'
+      ]);
+
+      $file = request()->file('upload_import');
+
+      Excel::import(new WarehouseImport, $file);
+
+      Session()->flash('success', 'Warehouse imported Successfully.');
+
+      return redirect()->route('warehousing.index');
+   }
    /**
     * Show the form for creating a new resource.
     *

@@ -2,20 +2,9 @@
 
 namespace App\Http\Controllers\app\customer;
 
-use Auth;
-use Excel;
-use Wingu;
-use Helper;
-use Session;
 use Illuminate\Http\Request;
-use App\Models\customer\groups;
-use App\Models\customer\address;
-use App\Models\customer\customers;
 use App\Exports\customers as export;
 use App\Http\Controllers\Controller;
-use App\Imports\customers as import;
-use App\Models\customer\customer_group;
-use Maatwebsite\Excel\Excel as DataExcel;
 use Maatwebsite\Excel\Facades\Excel as ExcelData;
 
 class importController extends Controller

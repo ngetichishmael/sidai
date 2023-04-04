@@ -5,28 +5,24 @@ namespace App\Http\Livewire\Warehousing;
 use Livewire\Component;
 use App\Models\warehousing;
 use Livewire\WithPagination;
-use Auth;
+
 class Index extends Component
 {
    use WithPagination;
-   public $perPage = 40;
-   public $search = '';
+   protected $paginationTheme = 'bootstrap';
+   public $perPage = 10;
    public $orderBy = 'id';
    public $orderAsc = true;
-
-   public function updatingSearch()
-   {
-      $this->resetPage();
-   }
-
+   public ?string $search = null;
    public function render()
    {
-      $warehouses = warehousing::where('business_code', Auth::user()->business_code)
-                              ->orderBy($this->orderBy,$this->orderAsc ? 'asc' : 'desc')
-                              ->simplePaginate($this->perPage);
+      $searchTerm = '%' . $this->search . '%';
+      $warehouses = warehousing::search($searchTerm)
+         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+         ->paginate($this->perPage);
 
-      return view('livewire.warehousing.index', compact('warehouses'));
+      return view('livewire.warehousing.index', [
+         'warehouses' => $warehouses
+      ]);
    }
 }
-
-
