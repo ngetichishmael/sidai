@@ -6,7 +6,9 @@ use App\Models\Region;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Imports\RegionalImport;
 use App\Models\Relationship;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RegionController extends Controller
 {
@@ -87,7 +89,16 @@ class RegionController extends Controller
     */
    public function update(Request $request, $id)
    {
-      //
+      $this->validate($request, [
+         'upload_import' => 'required'
+      ]);
+      $file = request()->file('upload_import');
+
+      Excel::import(new RegionalImport, $file);
+
+      Session()->flash('success', 'Regional imported Successfully.');
+
+      return redirect()->route('regions');
    }
 
    /**
