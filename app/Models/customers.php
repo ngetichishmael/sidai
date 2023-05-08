@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\customer\checkin;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

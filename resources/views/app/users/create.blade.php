@@ -73,8 +73,8 @@
                                                     <select class="form-control select2" id="select-country"
                                                         name="account_type" required>
                                                         <option value="">Select Category</option>
-                                                        <option value="Lube Sales Executive">Lube Sales Executive</option>
-                                                        <option value="Lube Merchandizers">Lube Merchandizers</option>
+                                                        <option value="Admin">Admin</option>
+                                                        <option value="Sales">Sales</option>
                                                     </select>
                                                 </div>
                                             </div>

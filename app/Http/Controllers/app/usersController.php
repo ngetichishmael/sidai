@@ -161,10 +161,13 @@ class usersController extends Controller
          ->first();
       $permissions = AppPermission::where('user_code', $user_code)->firstOrFail();
 
+      $routes = Region::all();
+
       return view('app.users.edit', [
          'edit' => $edit,
          'user_code' => $user_code,
-         'permissions' => $permissions
+         'permissions' => $permissions,
+         'routes' => $routes,
       ]);
    }
 
@@ -189,6 +192,7 @@ class usersController extends Controller
             "name" => $request->name,
             "account_type" => $request->account_type,
             "status" => 'Active',
+            "route_code" => $request->route,
 
          ]
       );
@@ -212,7 +216,7 @@ class usersController extends Controller
 
       Session()->flash('success', 'User updated Successfully');
 
-      return redirect()->back();
+      return redirect()->route('users.index');
    }
    public function destroy($id)
    {

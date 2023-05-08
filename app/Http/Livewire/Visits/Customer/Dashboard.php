@@ -11,18 +11,13 @@ class Dashboard extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 10;
+   public $perPage = 20;
    public ?string $search = null;
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $visits = checkin::with('User', 'Customer')->whereLike(
-         [
-            'User.name',
-            'Customer.customer_name'
-         ],
-         $searchTerm
-      )
+      $visits = checkin::with('User', 'Customer')
+         ->search($searchTerm)
          ->orderBy('id', 'desc')
          ->paginate($this->perPage);
       return view('livewire.visits.customer.dashboard', [

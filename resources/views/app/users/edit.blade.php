@@ -28,9 +28,11 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update',[
-                     'id' =>$user_code
-                    ]) }}" style="gap: 20px;">
+                    <form method="POST"
+                        action="{{ route('user.update', [
+                            'id' => $user_code,
+                        ]) }}"
+                        style="gap: 20px;">
                         @csrf
                         <div class="row">
                             <div class="col-12">
@@ -77,11 +79,24 @@
                                                 <div class="form-group">
                                                     <label for="select-country">Current Status:
                                                         {{ $edit->status }}</label>
-                                                    <select class="form-control select2" id="select-action"
-                                                        name="status" required>
+                                                    <select class="form-control select2" id="select-action" name="status"
+                                                        required>
                                                         <option value="">Select Action</option>
                                                         <option value="Active">Active</option>
                                                         <option value="Suspend">Suspend</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-12">
+                                                <div class="form-group">
+                                                    <label for="select-country">Zone</label>
+                                                    <select class="form-control select2" id="select-country" name="route"
+                                                        required>
+                                                        <option value="">Zone</option>
+                                                        @foreach ($routes as $value)
+                                                            <option value="{{ $value->id }}">{{ $value->name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -138,7 +153,8 @@
                                                             <td>
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" class="custom-control-input"
-                                                                        id="author-read" name="deliveries"  @if ($permissions->deliveries === 'YES') checked @endif />
+                                                                        id="author-read" name="deliveries"
+                                                                        @if ($permissions->deliveries === 'YES') checked @endif />
                                                                     <label class="custom-control-label"
                                                                         for="author-read"></label>
                                                                 </div>
@@ -162,7 +178,7 @@
                                                                 <div class="custom-control custom-checkbox">
                                                                     <input type="checkbox" class="custom-control-input"
                                                                         id="user-read" name="merchanizing"
-                                                                         @if ($permissions->merchanizing === 'YES') checked @endif />
+                                                                        @if ($permissions->merchanizing === 'YES') checked @endif />
                                                                     <label class="custom-control-label"
                                                                         for="user-read"></label>
                                                                 </div>
@@ -173,7 +189,8 @@
                                             </div>
                                         </div>
                                         <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
-                                            <button type="submit" class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Update</button>
+                                            <button type="submit"
+                                                class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Update</button>
                                             <a href="{{ route('users.index') }}" type="reset"
                                                 class="btn btn-outline-secondary">Cancel</a>
                                         </div>

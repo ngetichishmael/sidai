@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Visits\Users;
 
 use App\Models\customer\checkin;
+use App\Models\customers;
 use Livewire\Component;
 use Livewire\WithPagination;
 

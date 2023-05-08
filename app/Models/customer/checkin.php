@@ -15,7 +15,8 @@ class checkin extends Model
 
    protected $searchable = [
       'User.name',
-      'User.Region.name'
+      'User.Region.name',
+      'Customer.customer_name'
    ];
    /**
     * Get the user that owns the checkin
