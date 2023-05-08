@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Api'], function () {
    //customers
    Route::get('customers/{businessCode}', 'customersController@index')->middleware('auth:sanctum');
    Route::post('customers/add-customer', 'customersController@add_customer')->middleware('auth:sanctum');
+   Route::post('customer/edit-customer', 'customersController@editCustomer')->middleware('auth:sanctum');
    Route::get('customers/{code}/details', 'customersController@details');
    Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries');
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details');
