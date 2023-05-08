@@ -52,7 +52,6 @@ class customersController extends Controller
       $perPage = $request->page_size ?? 20;
       $query = customers::whereNotNull('latitude')
          ->whereNotNull('longitude')
-         ->limit(50)
          ->orderBy('id', 'DESC')
          ->get();
 
