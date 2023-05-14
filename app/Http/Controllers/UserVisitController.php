@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserVisitController extends Controller
 {
@@ -43,9 +44,14 @@ class UserVisitController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-   public function show($id)
+   public function show($user_code)
    {
-      //
+      $name = DB::table('users')->where('users.user_code', $user_code)->pluck('name')->implode('');
+
+      return view('livewire.visits.users.show', [
+         'name' => $name,
+         'user_code' => $user_code
+      ]);
    }
 
    /**

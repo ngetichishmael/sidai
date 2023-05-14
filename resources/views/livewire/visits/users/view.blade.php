@@ -2,7 +2,7 @@
     <div class="mb-1 row">
         <div class="col-md-10">
             <label for="">Search</label>
-            <input type="text" wire:model="search" class="form-control" placeholder="Search by User or Region">
+            <input type="text" wire:model="search" class="form-control" placeholder="Search by Customer Name">
         </div>
         <div class="col-md-2">
             <label for="">Items Per</label>
@@ -21,24 +21,22 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Sales Associate</th>
-                        <th>Visit Count</th>
-                        <th>Total Time Spent</th>
-                        <th>Total Trading Time</th>
-                        <th>View</th>
+                        <th>Customer Name</th>
+                        <th>Start Time</th>
+                        <th>Stop Time</th>
+                        <th>Duration</th>
+                        <th>Date</th>
                     </thead>
                     <tbody>
                         @foreach ($visits as $count => $visit)
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $visit->name !!}</td>
-                            <td>{!! $visit->visit_count !!} </td>
-                            <td> {{ $visit->average_time }}</td>
-                            <td>{{ $visit->total_time_spent }}</td>
-                            <td>
-                                <a href="{{ route('UsersVisits.show', ['user' => $visit->user_code]) }}"
-                                    class="btn btn-primary btn-sm">View</a>
-                            </td>
-
-
+                            <td>{!! $visit->customer_name !!} </td>
+                            <td> {{ $visit->start_time }}</td>
+                            <td>{{ $visit->stop_time }}</td>
+                            <td>{{ $visit->duration }}</td>
+                            <td>{{ $visit->formatted_date }}</td>
+                        
                             </tr>
                         @endforeach
                     </tbody>

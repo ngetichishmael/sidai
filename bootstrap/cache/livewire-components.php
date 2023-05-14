@@ -49,5 +49,6 @@
   'visits.customer.dashboard' => 'App\\Http\\Livewire\\Visits\\Customer\\Dashboard',
   'visits.targets' => 'App\\Http\\Livewire\\Visits\\Targets',
   'visits.users.dashboard' => 'App\\Http\\Livewire\\Visits\\Users\\Dashboard',
+  'visits.users.view' => 'App\\Http\\Livewire\\Visits\\Users\\View',
   'warehousing.index' => 'App\\Http\\Livewire\\Warehousing\\Index',
 );
