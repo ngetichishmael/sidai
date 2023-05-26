@@ -69,6 +69,15 @@ Route::middleware(['auth'])->group(function () {
       'create' => 'SurveryResponses.create',
       'store' => 'SurveryResponses.store',
    ]);
+   Route::resource('customer/pricing', PriceGroupController::class)->names([
+      'index' => 'pricing',
+      'show' => 'pricing.show',
+      'edit' => 'pricing.edit',
+      'update' => 'pricing.update',
+      'destroy' => 'pricing.destroy',
+      'create' => 'pricing.create',
+      'store' => 'pricing.store',
+   ]);
    Route::resource('customer/outlets', OutletTypesController::class)->names([
       'index' => 'outlets',
       'show' => 'outlets.show',

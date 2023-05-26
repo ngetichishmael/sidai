@@ -185,13 +185,24 @@ class productController extends Controller
     */
    public function update(Request $request, $id)
    {
+      $information = product_information::whereId($id)->first();
+      if ($information->image == null) {
+         $this->validate($request, [
+            'product_name' => 'required',
+            'buying_price' => 'required',
+            'selling_price' => 'required',
+            'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
+         ]);
+      }
       $this->validate($request, [
          'product_name' => 'required',
          'buying_price' => 'required',
          'selling_price' => 'required',
-         'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
+         'image' => 'sometimes|mimes:png,jpg,bmp,gif,jpeg|max:5048',
       ]);
-      $image_path = $request->file('image')->store('image', 'public');
+      if ($request->has('image')) {
+         $image_path = $request->file('image')->store('image', 'public');
+      }
       product_information::updateOrCreate([
          'id' => $id,
          "business_code" => Auth::user()->business_code,
@@ -202,7 +213,7 @@ class productController extends Controller
          "brand" => $request->brandID,
          "supplierID" => $request->supplierID,
          "category" => $request->category,
-         "image" => $image_path,
+         "image" => $image_path ?? $information->image,
          "active" => $request->status,
          "track_inventory" => 'Yes',
          "business_code" => Auth::user()->business_code,

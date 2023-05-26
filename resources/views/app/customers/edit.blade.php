@@ -145,39 +145,34 @@
                                             value="{{ $customer->telephone }}" />
                                     </div>
                                 </div>
+                                {{-- @dd($customer) --}}
                                 <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Customer Group</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Customer Group" name="customer_group"
-                                            value="{{ $customer->customer_group }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Customer Secondary Group</label>
-                                        <input type="text" id="country-floating" class="form-control"
-                                            name="customer_secondary_group" placeholder="Customer Secondary Group"
-                                            value="{{ $customer->customer_secondary_group }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Price Group</label>
-                                        <input type="text" id="company-column" class="form-control"
-                                            name="price_group" placeholder="Price Group"
-                                            value="{{ $customer->price_group }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Route</label>
-                                        <input type="text" id="email-id-column" class="form-control" name="route"
-                                            placeholder="Route" value="{{ $customer->route }}" />
-                                    </div>
-                                </div>
+                                    <label>Customer Group</label>
+                                    <select wire:model='region' class="form-control" name="customer_group">
+                                        <option value="">Customer Group</option>
 
+                                        @foreach ($groups as $group)
+                                            <option value="{{ $group->outlet_name }}"
+                                                @if ($group->outlet_name == $customer->customer_group) selected @endif>
+                                                {{ $group->outlet_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label>Pricing Group</label>
+                                    <select wire:model='region' class="form-control" name="price_group">
+                                        <option value="">Pricing Group</option>
+                                        @foreach ($pricing as $group)
+                                            <option value="{{ $group->name }}"
+                                                @if ($group->name == $customer->price_group) selected @endif>
+                                                {{ $group->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -201,7 +196,43 @@
                                             value="{{ $customer->phone_number }}" />
                                     </div>
                                 </div>
-                                @livewire('customers.region')
+                                <div class="col-md-6 col-12">
+                                    <label>Zone</label>
+                                    <select wire:model='region' class="form-control" name="zone">
+                                        <option value="">Zone</option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{ $region->id }}"
+                                                @if ($region->id == $customer->region_id) selected @endif>
+                                                {{ $region->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label>Region</label>
+                                    <select wire:model='regions'class="form-control" name="region">
+                                        <option value="">Region</option>
+                                        @foreach ($subregions as $subregion)
+                                            <option value="{{ $subregion->id }}"
+                                                @if ($subregion->id == $customer->subregion_id) selected @endif>{{ $subregion->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label>Route</label>
+                                    <select class="form-control" name="territory">
+                                        <option value="">Route</option>
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area->id }}"
+                                                @if ($area->id == $customer->zone_id) selected @endif>
+                                                {{ $area->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                {{-- @livewire('customers.region') --}}
                             </div>
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn btn-primary">Update</button>

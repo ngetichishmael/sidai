@@ -21,9 +21,9 @@
                     <tr>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th width="10%">Retail Price</th>
                         <th width="13%">Wholesale Price</th>
-                        <th width="13%">Distributor's Price</th>
+                        <th width="10%">Retail Price</th>
+                        <th width="13%">Current Stock</th>
                         <th width="12%">Actions</th>
                     </tr>
                 </thead>
@@ -41,8 +41,8 @@
                                 {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                             </td>
                             <td>
-                                ksh:
-                                {{ number_format((float) $product->ProductPrice()->pluck('default_price')->implode('')) }}
+
+                                {{ $product->Inventory()->pluck('current_stock')->implode('') }}
                             </td>
 
                             <td>

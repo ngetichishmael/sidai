@@ -134,34 +134,27 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Customer Group</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Customer Group" name="customer_group" />
-                                    </div>
+                                    <label>Customer Group</label>
+                                    <select class="select select2" wire:model='region' class="form-control"
+                                        name="customer_group">
+                                        <option value="">Customer Group</option>
+                                        @foreach ($groups as $group)
+                                            <option value="{{ $group->outlet_name }}">{{ $group->outlet_name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Customer Secondary Group</label>
-                                        <input type="text" id="country-floating" class="form-control"
-                                            name="customer_secondary_group" placeholder="Customer Secondary Group" />
-                                    </div>
+                                    <label>Pricing Group</label>
+                                    <select class="select select2" wire:model='region' class="form-control"
+                                        name="customer_group">
+                                        <option value="">Pricing Group</option>
+                                        @foreach ($pricing as $group)
+                                            <option value="{{ $group->name }}">{{ $group->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Price Group</label>
-                                        <input type="text" id="company-column" class="form-control"
-                                            name="price_group" placeholder="Price Group" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Route</label>
-                                        <input type="text" id="email-id-column" class="form-control" name="route"
-                                            placeholder="Route" />
-                                    </div>
-                                </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-12">

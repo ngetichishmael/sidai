@@ -39,8 +39,6 @@
                     </li>
                     <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate">Brands</span></a></li>
-                    {{-- <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate">Outlets</span></a></li> --}}
                 </ul>
             </li>
             <li class="nav-item {!! Nav::isResource('notification') !!}">
@@ -95,13 +93,14 @@
                             data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Customer
-                            OutLets</span></a>
+                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets</span></a>
+                </li>
+                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
+                            data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                         href="{{ route('CustomerComment') }}"><i data-feather="circle"></i><span
-                            class="menu-item text-truncate">Customer
-                            Comments</span></a>
+                            class="menu-item text-truncate">Comments</span></a>
                 </li>
             </ul>
         </li>

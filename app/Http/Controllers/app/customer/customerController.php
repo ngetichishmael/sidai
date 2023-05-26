@@ -5,9 +5,13 @@ namespace App\Http\Controllers\app\customer;
 use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use App\Models\customer\customers;
 use App\Models\country;
 use App\Models\customer\groups;
+use App\Models\PriceGroup;
+use App\Models\Region;
+use App\Models\Subregion;
 use App\Models\suppliers\supplier_address;
 use File;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -33,8 +37,9 @@ class customerController extends Controller
    public function create()
    {
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
-      $groups = groups::where('businessID', FacadesAuth::user()->business_code)->OrderBy('id', 'DESC')->pluck('name', 'id');
-      return view('app.customers.create', compact('country', 'groups'));
+      $groups = groups::get();
+      $pricing = PriceGroup::get();
+      return view('app.customers.create', compact('country', 'groups', 'pricing'));
    }
 
    public function store(Request $request)
@@ -64,11 +69,12 @@ class customerController extends Controller
       $customer->price_group = $request->price_group;
       $customer->route = $request->route;
       $customer->route_code = $request->territory;
+      $customer->zone_id = $request->territory;
       $customer->branch = $request->branch;
       $customer->email = $request->email;
       $customer->phone_number = $request->phone_number;
       $customer->business_code = FacadesAuth::user()->business_code;
-      $customer->created_by = FacadesAuth::user()->id;
+      $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
 
       Session::flash('success', 'Customer successfully Added');
@@ -78,11 +84,25 @@ class customerController extends Controller
 
    public function edit($id)
    {
+
+      $regions = Region::all();
+      $subregions = Subregion::all();
+      $areas = Area::all();
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-      return view('app.customers.edit', compact('customer', 'country'));
+      $subregion_id = Area::whereId($customer->zone_id)->pluck('subregion_id')->implode('');
+      $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
+      $customer->update([
+         'subregion_id' => $subregion_id,
+         'region_id' => $region_id,
+      ]);
+      $groups = groups::get();
+      $pricing = PriceGroup::get();
+      return view('app.customers.edit',
+         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing')
+      );
    }
 
    public function update(Request $request, $id)
@@ -92,29 +112,31 @@ class customerController extends Controller
       ]);
 
       $customer = customers::where('id', $id)->first();
-      $customer->customer_name = $request->customer_name;
-      $customer->account = $request->account;
-      $customer->manufacturer_number = $request->manufacturer_number;
-      $customer->vat_number = $request->vat_number;
-      $customer->delivery_time = $request->delivery_time;
-      $customer->address = $request->address;
-      $customer->city = $request->city;
-      $customer->province = $request->province;
-      $customer->postal_code = $request->postal_code;
-      $customer->country = $request->country;
-      $customer->latitude = $request->latitude;
-      $customer->longitude = $request->longitude;
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
-      $customer->customer_group = $request->customer_group;
-      $customer->customer_secondary_group = $request->customer_secondary_group;
-      $customer->price_group = $request->price_group;
-      $customer->route = $request->route;
-      $customer->branch = $request->branch;
-      $customer->email = $request->email;
-      $customer->phone_number = $request->phone_number;
-      //$customer->businessID = Auth::user()->business_code;
-      $customer->updated_by = FacadesAuth::user()->id;
+      $customer->customer_name = $request->customer_name ?? $customer->customer_name;
+      $customer->account = $request->account ?? $customer->account;
+      $customer->manufacturer_number = $request->manufacturer_number ?? $customer->manufacturer_number;
+      $customer->vat_number = $request->vat_number ?? $customer->vat_number;
+      $customer->delivery_time = $request->delivery_time ?? $customer->delivery_time;
+      $customer->address = $request->address ?? $customer->address;
+      $customer->city = $request->city ?? $customer->city;
+      $customer->province = $request->province ?? $customer->province;
+      $customer->postal_code = $request->postal_code ?? $customer->postal_code;
+      $customer->country = $request->country ?? $customer->country;
+      $customer->latitude = $request->latitude ?? $customer->latitude;
+      $customer->longitude = $request->longitude ?? $customer->longitude;
+      $customer->contact_person = $request->contact_person ?? $customer->contact_person;
+      $customer->telephone = $request->telephone ?? $customer->telephone;
+      $customer->customer_group = $request->customer_group ?? $customer->customer_group;
+      $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
+      $customer->price_group = $request->price_group ?? $customer->price_group;
+      $customer->route = $request->route ?? $customer->route;
+      $customer->route_code = $request->territory ?? $customer->territory;
+      $customer->zone_id = $request->territory ?? $customer->territory;
+      $customer->branch = $request->branch ?? $customer->branch;
+      $customer->email = $request->email ?? $customer->email;
+      $customer->phone_number = $request->phone_number ?? $customer->phone_number;
+      $customer->business_code = FacadesAuth::user()->business_code;
+      $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
 
 
@@ -124,70 +146,8 @@ class customerController extends Controller
    }
 
 
-
-   //delete permanently
    public function delete($id)
    {
-
-      //check if user is linked to any module
-      //invoice
-      // $invoice = invoices::where('businessID', FacadesAuth::user()->business_code)->where('customerID', $id)->count();
-
-      // //credit note
-      // $creditnote = creditnote::where('businessID', Auth::user()->business_code)->where('customerID', $id)->count();
-
-      // //quotes
-      // $quotes = quotes::where('businessID', Auth::user()->business_code)->where('customerID', $id)->count();
-
-      // //project
-      // $project = project::where('businessID', Auth::user()->business_code)->where('customerID', $id)->count();
-
-      // if ($invoice == 0 && $creditnote == 0 && $quotes == 0 && $project == 0) {
-
-      //    //client info
-      //    $check = customers::where('id', '=', $id)->where('image', '!=', "")->count();
-      //    if ($check > 0) {
-      //       $deleteinfo = customers::where('id', '=', $id)->select('image', 'customer_code')->first();
-
-      //       $path = base_path() . '/public/businesses/' . Wingu::business(FacadesAuth::user()->business_code)->businessID . '/customer/' . $deleteinfo->customer_code . '/images/';
-
-
-      //       $delete = $path . $deleteinfo->image;
-      //       if (File::exists($delete)) {
-      //          unlink($delete);
-      //       }
-      //    }
-
-      //    //delete contact person
-      //    $persons = contact::where('customerID', $id)->get();
-      //    foreach ($persons as $person) {
-      //       $person->delete();
-      //    }
-
-      //    //delete contact
-      //    customers::where('id', '=', $id)->delete();
-
-      //    //delete address
-      //    address::where('customerID', $id)->delete();
-
-      //    //delete company group
-      //    $check_group = customer_group::where('customerID', $id)->count();
-      //    if ($check_group > 0) {
-      //       $groups = customer_group::where('customerID', $id)->get();
-      //       foreach ($groups as $group) {
-      //          $deleteGroup = customer_group::find($group->id);
-      //          $deleteGroup->delete();
-      //       }
-      //    }
-
-      //    Session::flash('success', 'Contact was successfully deleted');
-
-      //    return redirect()->route('finance.contact.index');
-      // } else {
-      //    Session::flash('error', 'You have recorded transactions for this contact. Hence, this contact cannot be deleted.');
-
-      //    return redirect()->back();
-      // }
    }
 
 

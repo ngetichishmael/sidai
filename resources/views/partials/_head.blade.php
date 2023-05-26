@@ -39,8 +39,10 @@
     <link rel="stylesheet" type="text/css" href="{!! asset('app-assets/vendors/css/forms/select/select2.min.css') !!}">
     <link rel="stylesheet" type="text/css" href="{!! asset('app-assets/fonts/fontawesome/css/all.min.css') !!}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+    {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+    {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
+    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @yield('stylesheets')
-
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{!! asset('assets/css/style.css') !!}">
     <!-- END: Custom CSS-->

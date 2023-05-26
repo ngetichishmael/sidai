@@ -42,7 +42,6 @@
 *::before,
 *::after {
    box-sizing: border-box;
-   color: #ee1b22 !important;
 }
 
 html {

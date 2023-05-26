@@ -12,11 +12,11 @@
         <div class="mb-2 content-header-left col-md-12 col-12">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="mb-0 content-header-title float-start">Outlets</h2>
+                    <h2 class="mb-0 content-header-title float-start">Price Group</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Outlet Name</a></li>
+                            <li class="breadcrumb-item"><a href="#">Price Group</a></li>
                             <li class="breadcrumb-item active"><a href="#">All</a></li>
                         </ol>
                     </div>
@@ -26,27 +26,21 @@
     </div>
     <!-- begin card -->
     <div class="row">
-        @livewire('outlet.dashboard')
+        @livewire('price-group.dashboard')
         <div class="col-md-6">
             <div class="card card-default">
                 <div class="card-body">
                     <div class="card-body">
-                        <h4 class="card-title">Add Outlet</h4>
+                        <h4 class="card-title">Add Group</h4>
 
-                        <form class="form" method="POST" action="{{ route('outlets.store') }}">
+                        <form class="form" method="POST" action="{{ route('pricing.store') }}">
                             @method('POST')
                             @csrf
                             <div class="col-md-12 col-12">
                                 <div class="form-group">
-                                    <label for="outlet_code">Outlet Name</label>
-                                    <input type="text" id="outlet_name" class="form-control" placeholder="Outlet Name"
-                                        name="outlet_name" required />
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-12">
-                                <div class="form-group">
-                                    <input type="text" id="outlet_code" class="form-control"
-                                        value="{{ str::random(20) }}" name="outlet_code" hidden readonly />
+                                    <label for="outlet_code">Price Name</label>
+                                    <input type="text" id="outlet_name" class="form-control" placeholder="Pricing Name"
+                                        name="name" required />
                                 </div>
                             </div>
                             <div class="col-md-12 col-12">

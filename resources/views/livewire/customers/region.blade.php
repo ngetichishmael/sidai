@@ -20,7 +20,7 @@
 </div>
 <div class="col-md-6 col-12">
     <label>Route</label>
-    <select class="form-control" name="territory">
+    <select class="form-control select select2" name="territory">
         <option value="">Route</option>
         @forelse ($areas as $area)
             <option value="{{ $area->id }}">{{ $area->name }}</option>

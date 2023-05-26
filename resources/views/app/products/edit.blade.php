@@ -147,8 +147,7 @@
                     <div class="col-md-6 col-lg-4">
                         <div class="card match-height">
                             <img id="output" class="card-img-top"
-                                src="{{ Storage::url('public/' . $product_information->image) ?? asset('/app-assets/images/slider/04.jpg') }}"
-                                alt="Card image cap" />
+                                src="{{ asset(Storage::url($product_information->image)) }}" alt="Card image cap" />
                             <div class="card-body">
                                 <h4 class="card-title">Upload Product Image</h4>
                                 <label class="mb-0 btn btn-primary mr-75" for="change-picture">

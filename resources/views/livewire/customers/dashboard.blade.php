@@ -23,11 +23,11 @@
                         <th width="1%">#</th>
                         <th>Name</th>
                         <th>number</th>
-                        <th>Address</th>
                         <th>Zone</th>
                         <th>Region</th>
                         <th>Route</th>
                         <th>Created By</th>
+                        <th>Created Date</th>
                         <th>Order</th>
                         <th width="15%">Edit</th>
                         <th width="15%">Action</th>
@@ -40,9 +40,6 @@
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
                             <td>
-                                {{ $contact->address }}
-                            </td>
-                            <td>
                                 {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
                             </td>
                             <td>
@@ -53,6 +50,9 @@
                             </td>
                             <td>
                                 {!! $contact->Creator->name ?? '' !!}
+                            </td>
+                            <td>
+                                {!! $contact->created_at ?? '' !!}
                             </td>
                             <td>
                                 <a href="{{ route('make.orders', ['id' => $contact->id]) }}"

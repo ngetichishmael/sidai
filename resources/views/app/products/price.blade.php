@@ -38,25 +38,6 @@
                         {!! Form::label('title', 'Selling Price Per Unit', array('class'=>'control-label')) !!}
                         {!! Form::number('selling_price', null, array('class' => 'form-control', 'step' => '0.01','placeholder' => 'Selling Price','required' => '')) !!}
                      </div>
-                     {{-- <div class="form-group form-group-default">
-                        {!! Form::label('title', 'Offer Price Per Unit', array('class'=>'control-label')) !!}
-                        {!! Form::number('offer_price', null, array('class' => 'form-control', 'placeholder' => 'Offer Price','step' => '0.01')) !!}
-                     </div> --}}
-                     {{-- <div class="form-group form-group-default">
-                        {!! Form::label('title', 'Tax rule:', array('class'=>'control-label')) !!}
-                        <select name="taxID" id="" class="form-control multiselect">
-                           @if($price->taxID != "")
-                              <option value="{!! $price->taxID !!}">
-                                 {!! Finance::tax($price->taxID)->name !!}-{!! Finance::tax($price->taxID)->rate !!}%
-                              </option>
-                           @else
-                              <option value=""> Choose tax</option>
-                           @endif
-                           @foreach($taxes as $tax)
-                              <option value="{!! $tax->id !!}">{!! $tax->name !!}-{!! $tax->rate !!}%</option>
-                           @endforeach
-                        </select>
-                     </div> --}}
                      <div class="form-group">
                         <center>
                            <button type="submit" class="btn btn-success submit mt-4"><i class="fas fa-save"></i> Update Price</button>

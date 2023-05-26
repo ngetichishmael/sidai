@@ -12,11 +12,6 @@ use App\Models\Delivery_items;
 use App\Models\Order_items;
 use App\Models\order_payments;
 use App\Models\Orders;
-use App\Models\OutletType;
-use App\Models\Region;
-
-use App\Models\Subregion;
-use App\Models\zone;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,14 +37,6 @@ class customersController extends Controller
    public function index(Request $request, $businessCode)
    {
       $user = $request->user();
-
-      // $route_code = $request->user()->route_code;
-      // $region = Region::whereId($route_code)->first();
-      // $subregion = Subregion::where('region_id', $region->id)->pluck('id');
-      // $areas = Area::whereIn('subregion_id', $subregion)->pluck('id');
-
-      // $query = customers::whereIn('route_code', $areas)->get();
-      $perPage = $request->page_size ?? 20;
       $query = customers::whereNotNull('latitude')
          ->whereNotNull('longitude')
          ->orderBy('id', 'DESC')

@@ -20,4 +20,13 @@ class product_information extends Model
    {
       return $this->hasOne(product_price::class, 'productID', 'id');
    }
+   /**
+    * Get the Inventory associated with the product_information
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasOne
+    */
+   public function Inventory(): HasOne
+   {
+      return $this->hasOne(product_inventory::class, 'productID', 'id');
+   }
 }
