@@ -623,11 +623,11 @@ footer.footer-border {
 
 .main-menu.menu-light {
    color: #6e6b7b;
-   background: #007ec4;
+   background: rgb(43, 42, 42);
 }
 
 .main-menu.menu-light .navigation {
-   background: #007ec4;
+   background: rgb(43, 42, 42);
 }
 
 .main-menu.menu-light .navigation .navigation-header {
@@ -723,7 +723,7 @@ footer.footer-border {
 
 .main-menu.menu-light .navigation>li.active>a {
    /* background: linear-gradient(118deg, #007ec4, #007ec4); */
-   background: linear-gradient(118deg, #ee1b22, #ee1b22);
+   background: linear-gradient(118deg, orangered, orangered);
    box-shadow: 0 0 10px 1px rgb(241 132 33);
    color: #fff;
    font-weight: 400;
@@ -735,7 +735,7 @@ footer.footer-border {
 }
 
 .main-menu.menu-light .navigation>li .active>a {
-   color: #007ec4;
+   color: rgb(82, 80, 80);
    margin-bottom: 0;
 }
 
@@ -794,8 +794,8 @@ footer.footer-border {
 }
 
 .main-menu.menu-light .navigation>li ul .active {
-   background: linear-gradient(118deg, #1e5179, rgb(41 86 121));
-   box-shadow: 0 0 10px 1px #1e5179;
+   background: linear-gradient(118deg, #1e5179, green);
+   box-shadow: 0 0 10px 1px green;
    7);
    */ border-radius: 4px;
    z-index: 1;
@@ -807,7 +807,7 @@ footer.footer-border {
 
 .main-menu.menu-dark {
    color: #dcdcdc;
-   background: #10163a;
+   background: #3a1510;
 }
 
 .main-menu.menu-dark .navigation {

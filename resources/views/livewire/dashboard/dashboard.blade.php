@@ -129,15 +129,19 @@
                 <div class="col-md-12">
                     <div class="col-12">
                         <div class="row">
-                            <div class="col-6 border border-secondary">
+                            <div class="col-8">
+                                <div class="card">
                                 @livewire('dashboard.brand-chart')
+                                </div>
                             </div>
-                            <div class="col-6 border border-secondary">
+                            <div class="col-4">
+                                <div class="card">
                                 @livewire('dashboard.catergory-chart')
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
+                    {{-- <div class="col-12">
                         <section>
                             <div class="row">
                                 <div class=" col-6 border border-primary">
@@ -148,7 +152,7 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
