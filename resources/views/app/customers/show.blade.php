@@ -29,135 +29,94 @@
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="first-name-column">Customer Names</label>
-                                        <p>{{ $customers->customer_name }}</p>
+                                        <h4>Customers Name:</h4>
+                                        <p style="color:black">{{ $customer->customer_name }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Account</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" />
+                                        <h4>Account:</h4>
+                                        <p style="color:black">{{ $customer->account }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="city-column">Manufacturer Number</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City"
-                                            name="manufacturer_number" />
+                                        <h4>Manufacturer Number:</h4>
+                                        <p style="color:black">{{ $customer->manufacturer_number ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="country-floating">VAT number</label>
-                                        <input type="text" id="country-floating" class="form-control" name="vat_number"
-                                            placeholder="VAT number" />
+                                        <h4>VAT Number:</h4>
+                                        <p style="color:black">{{ $customer->vat_number ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="company-column">Delivery Time</label>
-                                        <input type="text" id="company-column" class="form-control" name="delivery_time"
-                                            placeholder="Delivery Time" />
+                                        <h4>Approved</h4>
+                                        <p style="color:black">{{ $customer->approval ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="email-id-column">Address</label>
-                                        <input type="text" id="email-id-column" class="form-control" name="address"
-                                            placeholder="address" />
+                                        <h4>Address:</h4>
+                                        <p style="color:black">{{ $customer->address ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>City:</h4>
+                                        <p style="color:black">{{ $customer->city ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Postal Code:</h4>
+                                        <p style="color:black">{{ $customer->postal_code ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Customer Group:</h4>
+                                        <p style="color:black">{{ $customer->customer_group ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Secondary Group:</h4>
+                                        <p style="color:black">{{ $customer->customer_secondary_group ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Starus:</h4>
+                                        <p style="color:black">{{ $customer->status ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Email:</h4>
+                                        <p style="color:black">{{ $customer->email ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Phone:</h4>
+                                        <p style="color:black">{{ $customer->phone ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <h4>Created At:</h4>
+                                        <p style="color:black">{{ $customer->created_at->format('jS F Y') ?? 'N/A' }}</p>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">City</label>
-                                        <input type="text" id="first-name-column" class="form-control" placeholder="City"
-                                            name="city" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Province</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Province" name="province" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Postal Code</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Postal Code" name="postal_code" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input type="text" id="country-floating" class="form-control" name="country"
-                                            placeholder="Country" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Latitude</label>
-                                        <input type="text" id="company-column" class="form-control" name="latitude"
-                                            placeholder="Latitude" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Longitude</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="longitude"
-                                            placeholder="Longitude" />
-                                    </div>
-                                </div>
 
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Contact Person</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Contact Person" name="contact_person" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Telephone</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Telephone" name="telephone" />
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Branch</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Email</label>
-                                        <input type="email" id="last-name-column" class="form-control"
-                                            placeholder="Email" name="email" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Phone Number</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Phone Number" name="phone_number" />
-                                    </div>
-                                </div>
-                            </div>
+                            
                             <div class="my-1 col-sm-9 offset-sm-3">
-                                <button type="submit" class="mr-1 btn btn-primary">Submit</button>
-                                <a href="{{ route('customer') }}" class="btn btn-outline-secondary">Cancel</a>
+                                <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-success">Approve To Creditor</a>
                             </div>
                     </div>
                 </div>

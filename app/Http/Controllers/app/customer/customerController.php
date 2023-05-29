@@ -56,8 +56,19 @@ class customerController extends Controller
 
    public function details($id)
    {
-      $customers = Customers::find($id)->first();
-      return view('app.customers.show',['customers' => $customers]);
+      $customer = Customers::find($id);
+      return view('app.customers.show',['customer' => $customer]);
+   }
+
+   public function approvecreditor($id)
+   {
+      $approve = Customers::find($id);
+      $approve->creditor_approved = 1;
+      $approve->save();
+      Session::flash('success', 'Customer successfully Approved');
+
+      return redirect()->route('creditors');
+      
    }
 
    public function store(Request $request)

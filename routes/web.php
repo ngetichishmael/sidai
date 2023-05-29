@@ -101,6 +101,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
    Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
    Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
+   Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
    /* === customer checkin === */
    Route::get('customer/checkins', ['uses' => 'app\customer\checkinController@index', 'as' => 'customer.checkin.index']);
 
