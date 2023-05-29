@@ -3,6 +3,7 @@
   'brands.index' => 'App\\Http\\Livewire\\Brands\\Index',
   'checkin.index' => 'App\\Http\\Livewire\\Checkin\\index',
   'comment.dashboard' => 'App\\Http\\Livewire\\Comment\\Dashboard',
+  'creditors.dashboard' => 'App\\Http\\Livewire\\Creditors\\Dashboard',
   'customers.dashboard' => 'App\\Http\\Livewire\\Customers\\Dashboard',
   'customers.index' => 'App\\Http\\Livewire\\Customers\\Index',
   'customers.order' => 'App\\Http\\Livewire\\Customers\\Order',

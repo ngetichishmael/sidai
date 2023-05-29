@@ -92,8 +92,11 @@
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('customer') }}"><i
                             data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
                 </li>
+                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
+                    data-feather="users"></i><span class="menu-item text-truncate">Creditors</span></a>
+                </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets</span></a>
+                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>

@@ -59,22 +59,19 @@
                                     class="btn btn-sm btn-secondary">Order</a>
                             </td>
                             <td>
-                                <a href="{{ route('customer.edit', $contact->id) }}"
+                                <a href="{{ route('creditor.edit', $contact->id) }}"
                                     class="btn btn-sm btn-primary">Edit</a>
                             </td>
                             <td>
-                                <div class="d-flex" style="gap: 1px">
                                 @if ($contact->approval === 'Approved')
                                     <button wire:click.prevent="deactivate({{ $contact->id }})"
                                         onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-success btn-sm" style="padding-left: 0px">Approved</button>
+                                        type="button" class="btn btn-success btn-sm">Approved</button>
                                 @else
                                     <button wire:click.prevent="activate({{ $contact->id }})"
                                         onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-danger btn-sm" style="padding-left: 0px;">Pending</button>
+                                        type="button" class="btn btn-danger btn-sm">Pending</button>
                                 @endif
-                                <a href="{{ route('creditor.details', $contact->id) }}" class="btn btn-primary btn-sm">View</a>
-                                </div>
                             </td>
                             </tr>
                         @endforeach

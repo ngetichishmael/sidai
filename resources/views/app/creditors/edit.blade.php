@@ -9,11 +9,11 @@
         <div class="mb-2 content-header-left col-md-12 col-12">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="mb-0 content-header-title float-start">Customer | Edit</h2>
+                    <h2 class="mb-0 content-header-title float-start">Creditor | Edit</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Customer</a></li>
+                            <li class="breadcrumb-item"><a href="#">Creditor</a></li>
                             <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
@@ -26,7 +26,7 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-8">
-                 <div class="card">
+                c <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Customers</h4>
                     </div>

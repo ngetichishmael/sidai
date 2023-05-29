@@ -95,6 +95,12 @@ Route::group(['middleware' => ['verified']], function () {
       'create' => 'customer.create',
       'store' => 'customer.store',
    ]);
+   Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
+   Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
+   Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
+   Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
+   Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
+   Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
    /* === customer checkin === */
    Route::get('customer/checkins', ['uses' => 'app\customer\checkinController@index', 'as' => 'customer.checkin.index']);
 
