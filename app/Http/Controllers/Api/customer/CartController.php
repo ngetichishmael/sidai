@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\customer\customers;
 use App\Models\CustomerCart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -74,5 +75,20 @@ class CartController extends Controller
          "status" => CustomerCart::where("user_code", $request->user()->user_code)->delete(),
 
       ]);
+   }
+   public function isCreditor(Request $request){
+      $customer = customers::find($request->customer_id);
+      if (!empty($customer)){
+         customers::whereId($request->id)->update([ 'is_creditor'=>$request->is_creditor]);
+         return response()->json([
+            "success" => true,
+            "message" => "Customer Creditor status updated successfully",
+         ], 200);
+      }
+
+      return response()->json([
+         "success" => false,
+         "message" => "Customer Not found"
+      ], 409);
    }
 }
