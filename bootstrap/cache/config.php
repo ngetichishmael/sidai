@@ -1,7 +1,11 @@
 <?php return array (
   'api-postman' => 
   array (
+<<<<<<< HEAD
     'base_url' => 'http://127.0.0.1:8000',
+=======
+    'base_url' => 'https://sidai.sokoflow.com',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     'filename' => '{timestamp}_{app}_collection.json',
     'structured' => false,
     'crud_folders' => true,
@@ -38,13 +42,21 @@
     'name' => 'Laravel',
     'env' => 'local',
     'debug' => true,
+<<<<<<< HEAD
     'url' => 'http://127.0.0.1:8000',
+=======
+    'url' => 'https://sidai.sokoflow.com',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
+<<<<<<< HEAD
     'key' => 'base64:3oeqy8b6OLrhzHkJuqm1+uEOn9gALdRyXgTHUr780aM=',
+=======
+    'key' => 'base64:JBoEdiTlaM5rl62P38Gj22ZpIB8luDOOsuLH6E4b75I=',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -226,7 +238,11 @@
       'file' => 
       array (
         'driver' => 'file',
+<<<<<<< HEAD
         'path' => 'C:\\Deveint\\sidai\\storage\\framework/cache/data',
+=======
+        'path' => '/var/www/html/sidai/storage/framework/cache/data',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
       ),
       'memcached' => 
       array (
@@ -325,7 +341,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'secretpassword',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -345,7 +361,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'secretpassword',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -360,7 +376,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'secretpassword',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -497,7 +513,11 @@
     ),
     'temporary_files' => 
     array (
+<<<<<<< HEAD
       'local_path' => 'C:\\Deveint\\sidai\\storage\\framework/laravel-excel',
+=======
+      'local_path' => '/var/www/html/sidai/storage/framework/laravel-excel',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,
@@ -511,13 +531,22 @@
       'local' => 
       array (
         'driver' => 'local',
+<<<<<<< HEAD
         'root' => 'C:\\Deveint\\sidai\\storage\\app',
+=======
+        'root' => '/var/www/html/sidai/storage/app',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
       ),
       'public' => 
       array (
         'driver' => 'local',
+<<<<<<< HEAD
         'root' => 'C:\\Deveint\\sidai\\storage\\app/public',
         'url' => 'http://127.0.0.1:8000/storage',
+=======
+        'root' => '/var/www/html/sidai/storage/app/public',
+        'url' => 'https://sidai.sokoflow.com/storage',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
         'visibility' => 'public',
       ),
       's3' => 
@@ -534,7 +563,11 @@
     ),
     'links' => 
     array (
+<<<<<<< HEAD
       'C:\\Deveint\\sidai\\public\\storage' => 'C:\\Deveint\\sidai\\storage\\app/public',
+=======
+      '/var/www/html/sidai/public/storage' => '/var/www/html/sidai/storage/app/public',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     ),
   ),
   'hashing' => 
@@ -712,10 +745,17 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
+<<<<<<< HEAD
     'view_path' => 'C:\\Deveint\\sidai\\resources\\views/livewire',
     'layout' => 'layouts.app',
     'asset_url' => 'http://127.0.0.1:8000',
     'app_url' => 'http://127.0.0.1:8000',
+=======
+    'view_path' => '/var/www/html/sidai/resources/views/livewire',
+    'layout' => 'layouts.app',
+    'asset_url' => 'https://sidai.sokoflow.com',
+    'app_url' => 'https://sidai.sokoflow.com',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     'middleware_group' => 'web',
     'temporary_file_upload' => 
     array (
@@ -765,13 +805,21 @@
       'single' => 
       array (
         'driver' => 'single',
+<<<<<<< HEAD
         'path' => 'C:\\Deveint\\sidai\\storage\\logs/laravel.log',
+=======
+        'path' => '/var/www/html/sidai/storage/logs/laravel.log',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
+<<<<<<< HEAD
         'path' => 'C:\\Deveint\\sidai\\storage\\logs/laravel.log',
+=======
+        'path' => '/var/www/html/sidai/storage/logs/laravel.log',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
         'level' => 'debug',
         'days' => 14,
       ),
@@ -822,7 +870,11 @@
       ),
       'emergency' => 
       array (
+<<<<<<< HEAD
         'path' => 'C:\\Deveint\\sidai\\storage\\logs/laravel.log',
+=======
+        'path' => '/var/www/html/sidai/storage/logs/laravel.log',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
       ),
     ),
   ),
@@ -879,7 +931,11 @@
       'theme' => 'default',
       'paths' => 
       array (
+<<<<<<< HEAD
         0 => 'C:\\Deveint\\sidai\\resources\\views/vendor/mail',
+=======
+        0 => '/var/www/html/sidai/resources/views/vendor/mail',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
       ),
     ),
   ),
@@ -946,7 +1002,11 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
+<<<<<<< HEAD
       5 => '127.0.0.1:8000',
+=======
+      5 => 'sidai.sokoflow.com',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     ),
     'guard' => 
     array (
@@ -1156,7 +1216,11 @@ You can switch the language used with the tabs at the top right (or from the nav
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
+<<<<<<< HEAD
     'files' => 'C:\\Deveint\\sidai\\storage\\framework/sessions',
+=======
+    'files' => '/var/www/html/sidai/storage/framework/sessions',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1176,9 +1240,15 @@ You can switch the language used with the tabs at the top right (or from the nav
   array (
     'paths' => 
     array (
+<<<<<<< HEAD
       0 => 'C:\\Deveint\\sidai\\resources\\views',
     ),
     'compiled' => 'C:\\Deveint\\sidai\\storage\\framework\\views',
+=======
+      0 => '/var/www/html/sidai/resources/views',
+    ),
+    'compiled' => '/var/www/html/sidai/storage/framework/views',
+>>>>>>> 9d6cf6b (git config pull.rebase true command)
   ),
   'flare' => 
   array (
