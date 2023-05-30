@@ -43,4 +43,10 @@ class StockRequisitionController extends Controller
       $stockRequisition->delete();
       return response()->json(null, 204);
    }
+   public function cancel(StockRequisition $stockRequisition)
+   {
+      $stockRequisition->update(['status' => 'Cancelled']);
+      return response()->json(null, 204);
+   }
+
 }

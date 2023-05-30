@@ -3,7 +3,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto">
                 <a class="" href="#">
-                    <center><img src="{!! asset('app-assets/images/logo.png') !!}" alt="soko flow" class="img" width="80%"></center>
+                    <center><img src="{!! asset('app-assets/images/logo.png') !!}" alt="sidai" class="img" width="80%"></center>
                 </a>
             </li>
             {{-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> --}}
@@ -116,7 +116,7 @@
             <li class="nav-item {!! Nav::isResource('deliver') !!}">
                 <a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">
                     <i data-feather='truck'></i><span class="menu-title text-truncate" data-i18n="Todo">
-                        Deliveries</span>
+                        Delivery History</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -89,8 +89,8 @@
             </li>
             <li class="nav-item {!! Nav::isResource('deliver') !!}">
                 <a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">
-                    <i data-feather='truck'></i><span class="menu-title text-truncate" data-i18n="Todo">
-                        Deliveries</span>
+                    <i data-feather='truck'></i>
+                   <span class="menu-title text-truncate" data-i18n="Todo">Delivery History</span>
                 </a>
             </li>
             <li class="nav-item">
