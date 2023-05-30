@@ -1,7 +1,7 @@
 <?php return array (
   'api-postman' => 
   array (
-    'base_url' => 'http://localhost',
+    'base_url' => 'http://127.0.0.1',
     'filename' => '{timestamp}_{app}_collection.json',
     'structured' => false,
     'crud_folders' => true,
@@ -35,16 +35,16 @@
   ),
   'app' => 
   array (
-    'name' => 'Laravel',
+    'name' => 'Sidai',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://localhost',
+    'url' => 'http://127.0.0.1',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:wqBNJ8cfEJKy5+EDmVUofEn3V9x/Nqxg549fHj4snN4=',
+    'key' => 'base64:Acjc26XLVys+VFWsG8hyvwACMQrrclOgnhURbnsdBuY=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -226,7 +226,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\sidai\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -270,7 +270,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'laravel_cache',
+    'prefix' => 'sidai_cache',
   ),
   'charts' => 
   array (
@@ -325,7 +325,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root@26',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -345,7 +345,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root@26',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -360,7 +360,7 @@
         'port' => '3306',
         'database' => 'sidai',
         'username' => 'root',
-        'password' => '',
+        'password' => 'root@26',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -373,7 +373,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'laravel_database_',
+        'prefix' => 'sidai_database_',
       ),
       'default' => 
       array (
@@ -497,7 +497,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\xampp\\htdocs\\sidai\\storage\\framework/laravel-excel',
+      'local_path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\framework/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,
@@ -511,13 +511,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\sidai\\storage\\app',
+        'root' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\sidai\\storage\\app/public',
-        'url' => 'http://localhost/storage',
+        'root' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\app/public',
+        'url' => 'http://127.0.0.1/storage',
         'visibility' => 'public',
       ),
       's3' => 
@@ -534,7 +534,7 @@
     ),
     'links' => 
     array (
-      'C:\\xampp\\htdocs\\sidai\\public\\storage' => 'C:\\xampp\\htdocs\\sidai\\storage\\app/public',
+      'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\public\\storage' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -712,10 +712,10 @@
   'livewire' => 
   array (
     'class_namespace' => 'App\\Http\\Livewire',
-    'view_path' => 'C:\\xampp\\htdocs\\sidai\\resources\\views/livewire',
+    'view_path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\resources\\views/livewire',
     'layout' => 'layouts.app',
-    'asset_url' => 'http://localhost',
-    'app_url' => 'http://localhost',
+    'asset_url' => NULL,
+    'app_url' => NULL,
     'middleware_group' => 'web',
     'temporary_file_upload' => 
     array (
@@ -765,13 +765,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\xampp\\htdocs\\sidai\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\xampp\\htdocs\\sidai\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -822,7 +822,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\sidai\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -872,14 +872,14 @@
     'from' => 
     array (
       'address' => NULL,
-      'name' => 'Laravel',
+      'name' => 'Sidai',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\sidai\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -946,7 +946,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => 'localhost',
+      5 => '127.0.0.1',
     ),
     'guard' => 
     array (
@@ -1156,7 +1156,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\sidai\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -1165,7 +1165,7 @@ You can switch the language used with the tabs at the top right (or from the nav
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'laravel_session',
+    'cookie' => 'sidai_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -1176,9 +1176,9 @@ You can switch the language used with the tabs at the top right (or from the nav
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\sidai\\resources\\views',
+      0 => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\resources\\views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\sidai\\storage\\framework\\views',
+    'compiled' => 'C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\storage\\framework\\views',
   ),
   'flare' => 
   array (
