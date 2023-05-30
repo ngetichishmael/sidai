@@ -222,6 +222,8 @@
                             Warehouse</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
+                            <li><a class="d-flex align-items-center" href=""><i
+                                data-feather="package"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
                         data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>
                     </li>
