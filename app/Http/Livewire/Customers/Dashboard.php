@@ -20,7 +20,7 @@ class Dashboard extends Component
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
          ->where('customer_type','normal')
-         ->where('creditor_approved', '0')
+         ->where('is_creditor', '0')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
       return view('livewire.customers.dashboard', [
