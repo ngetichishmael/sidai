@@ -92,8 +92,11 @@
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('customer') }}"><i
                             data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
                 </li>
+                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
+                    data-feather="users"></i><span class="menu-item text-truncate">Creditors</span></a>
+                </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets</span></a>
+                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>
@@ -116,7 +119,7 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('supplier') !!}">
+        {{-- <li class="nav-item {!! Nav::isResource('supplier') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='refresh-ccw'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Suppliers</span></a>
             <ul class="menu-content">
@@ -127,7 +130,7 @@
                             data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
         <li class="nav-item {!! Nav::isResource('target') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
@@ -217,6 +220,19 @@
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.create') !!}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">Add
                             Warehouse</span></a></li>
+                            <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
+                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
+                            <li><a class="d-flex align-items-center" href=""><i
+                                data-feather="package"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
+                    <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
+                        data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{!! route('product.category') !!}"><i
+                        data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate">Brands</span></a>
+                    </li>
             </ul>
         </li>
         <li class="nav-item {!! Nav::isResource('users') !!}">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Customers;
+namespace App\Http\Livewire\Creditors;
 
 use App\Exports\customers as ExportsCustomers;
 use App\Models\customers;
@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Dashboard extends Component
 {
-   use WithPagination;
+    use WithPagination;
    protected $paginationTheme = 'bootstrap';
    public $perPage = 10;
    public ?string $search = null;
@@ -19,11 +19,11 @@ class Dashboard extends Component
       $searchTerm = '%' . $this->search . '%';
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
-         ->where('customer_type','normal')
-         ->where('is_creditor', '0')
+         ->where('customer_type','creditor')
+         ->where('is_creditor', '1')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
-      return view('livewire.customers.dashboard', [
+         return view('livewire.creditors.dashboard', [
          'contacts' => $contacts
       ]);
    }
@@ -46,4 +46,5 @@ class Dashboard extends Component
 
       return redirect()->to('/customer');
    }
+    
 }

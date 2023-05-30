@@ -46,6 +46,7 @@
                     </thead>
                     <tbody>
                         @foreach ($orders as $count => $order)
+                        
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>

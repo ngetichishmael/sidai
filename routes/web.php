@@ -95,6 +95,13 @@ Route::group(['middleware' => ['verified']], function () {
       'create' => 'customer.create',
       'store' => 'customer.store',
    ]);
+   Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
+   Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
+   Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
+   Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
+   Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
+   Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
+   Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
    /* === customer checkin === */
    Route::get('customer/checkins', ['uses' => 'app\customer\checkinController@index', 'as' => 'customer.checkin.index']);
 
@@ -138,11 +145,10 @@ Route::group(['middleware' => ['verified']], function () {
 
 
    /* === supplier === */
-   Route::resource('supplier', app\supplier\supplierController::class)->names([
+   Route::resource('warehousing/supplier', app\supplier\supplierController::class)->names([
       'index' => 'supplier',
       'show' => 'supplier.show',
       'edit' => 'supplier.edit',
-      'update' => 'supplier.update',
       'destroy' => 'supplier.destroy',
       'create' => 'supplier.create',
       'store' => 'supplier.store',
@@ -150,7 +156,7 @@ Route::group(['middleware' => ['verified']], function () {
 
    // Route::get('supplier', ['uses' => 'app\supplier\supplierController@index', 'as' => 'supplier.index']);
    // Route::get('supplier/create', ['uses' => 'app\supplier\supplierController@create', 'as' => 'supplier.create']);
-   // Route::post('post-supplier', ['uses' => 'app\supplier\supplierController@store', 'as' => 'supplier.store']);
+   Route::post('warehousing/update/{id}', ['uses' => 'app\supplier\supplierController@update', 'as' => 'supplier.update']);
    // Route::get('supplier/{id}/edit', ['uses' => 'app\supplier\supplierController@edit', 'as' => 'supplier.edit']);
    // Route::post('supplier/{id}/update', ['uses' => 'app\supplier\supplierController@update', 'as' => 'supplier.update']);
    // Route::get('supplier/{id}/show', ['uses' => 'app\supplier\supplierController@show', 'as' => 'supplier.show']);
