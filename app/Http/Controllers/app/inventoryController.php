@@ -43,5 +43,6 @@ class inventoryController extends Controller
    public function approve($code){
       return view('app.inventory.approve_items', compact('code'));
    }
+   
 
 }
