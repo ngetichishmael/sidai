@@ -1,4 +1,5 @@
 <?php return array (
+  'activity.dashboard' => 'App\\Http\\Livewire\\Activity\\Dashboard',
   'brands.edit' => 'App\\Http\\Livewire\\Brands\\Edit',
   'brands.index' => 'App\\Http\\Livewire\\Brands\\Index',
   'checkin.index' => 'App\\Http\\Livewire\\Checkin\\index',
