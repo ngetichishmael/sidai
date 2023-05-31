@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'primarykey' =>"pSz3ggPWHAnO3Swv5T2E",
+
             'name' => 'Fall Back',
             'email' => 'admin@admin.com',
             'role_id' => 1,
@@ -26,7 +26,7 @@ class AdminSeeder extends Seeder
             'updated_at' => now(),
         ]);
         DB::table('users')->insert([
-            'primarykey' =>"i0Td1JVozJbLe3nDxAjb",
+
             'name' => 'steven',
             'email' => 'stevenmaina3131@gmail.com',
             'role_id' => 1,
