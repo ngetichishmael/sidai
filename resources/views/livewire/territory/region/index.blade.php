@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Zones')
+@section('title', 'Regions')
 {{-- page styles --}}
 
 {{-- content section --}}
@@ -51,7 +51,7 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="card-body">
-                        <h4 class="card-title">Add Zone</h4>
+                        <h4 class="card-title">Add Region</h4>
                         {!! Form::open(['route' => 'regions.store']) !!}
                         @csrf
                         <div class="form-group form-group-default required">
@@ -65,7 +65,7 @@
                         <div class="mt-4 form-group">
                             <center>
                                 <button type="submit" class="btn btn-success submit"><i class="fas fa-save"></i> Add
-                                    Zone</button>
+                                    Region</button>
                             </center>
                         </div>
                         {!! Form::close() !!}

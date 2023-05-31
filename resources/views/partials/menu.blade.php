@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item {!! Nav::isResource('product') !!}">
+            {{-- <li class="nav-item {!! Nav::isResource('product') !!}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Products</span></a>
                 <ul class="menu-content">
@@ -40,7 +40,7 @@
                     <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate">Brands</span></a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="nav-item {!! Nav::isResource('notification') !!}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="bell"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
@@ -62,10 +62,10 @@
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
                             href="{{ route('regions') }}"><i data-feather="map-pin"></i><span
-                                class="menu-item text-truncate">Zone</span></a></li>
+                                class="menu-item text-truncate">Regions</span></a></li>
                     <li><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
                             href="{{ route('subregions') }}"><i data-feather="map-pin"></i><span
-                                class="menu-item text-truncate">Region</span></a>
+                                class="menu-item text-truncate">Sub Regions</span></a>
                     </li>
                     <li><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}"><i
                                 data-feather="map-pin"></i><span class="menu-item text-truncate">Routes</span></a>
@@ -233,12 +233,9 @@
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">All
                             Warehouses</span></a></li>
-                <li><a class="d-flex align-items-center" href="{!! route('warehousing.create') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Add
-                            Warehouse</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
-                            <li><a class="d-flex align-items-center" href=""><i
+                            <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
                         data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>
