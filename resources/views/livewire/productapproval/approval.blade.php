@@ -9,7 +9,7 @@
                 <table class="table table-bordered table-striped">
                    <thead>
                       <th>#</th>
-                      <th>User Name</th>
+                      <th>Product Name</th>
                       {{-- <th>Total Items</th> --}}
                       <th>Quantity</th>
                       <th>Type</th>
@@ -22,9 +22,6 @@
                          <tr>
                             <td>{!! $count+1 !!}</td>
                             <td>{!! $product->product_name !!}</td>
-                            {{-- <td>{!! Sales::total_allocated_items($allocation->allocation_code)->sum('current_qty') !!}</td> --}}
-                            
-                            {{-- <td>{!! Sales::user($product->created_by)->name !!}</td> --}}
                             <td></td>
                             <td></td>
                             <td>@if ($product->is_approved == "No")

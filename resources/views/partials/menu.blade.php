@@ -74,7 +74,7 @@
             </li>
         </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('inventory') !!}">
+        {{-- <li class="nav-item {!! Nav::isResource('inventory') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>
             <ul class="menu-content">
@@ -82,7 +82,7 @@
                             data-feather="circle"></i><span class="menu-item text-truncate">Allocated
                             Stock</span></a></li>
             </ul>
-        </li>
+        </li> --}}
         <li class="nav-item {!! Nav::isRoute('customer') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -155,9 +155,9 @@
                     Orders</span>
             </a>
            <ul class="menu-content">
-              <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
+              {{-- <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
                        data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>
-              </li>
+              </li> --}}
               <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
                        data-feather="clipboard"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
               </li>
@@ -185,7 +185,7 @@
         </li> --}}
         <li class="nav-item {!! Nav::isRoute('payment') !!}">
             <a class="d-flex align-items-center" href="#">
-                <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
+                <i data-feather="dollar-sign"></i><span class="menu-title text-truncate" data-i18n="Todo">
                     Payment Management</span>
             </a>
             <ul class="menu-content">
@@ -231,20 +231,20 @@
                     class="menu-title text-truncate" data-i18n="Invoice"> Warehousing</span></a>
             <ul class="menu-content">
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">All
+                            data-feather="archive"></i><span class="menu-item text-truncate">All
                             Warehouses</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
-                                data-feather="package"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
+                                data-feather="layers"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
-                        data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>
+                        data-feather="gift"></i><span class="menu-item text-truncate">Suppliers</span></a>
                     </li>
                     <li><a class="d-flex align-items-center" href="{!! route('product.category') !!}"><i
-                        data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>
+                        data-feather="check-circle"></i><span class="menu-item text-truncate">Categories</span></a>
                     </li>
                     <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate">Brands</span></a>
+                                data-feather="award"></i><span class="menu-item text-truncate">Brands</span></a>
                     </li>
             </ul>
         </li>
