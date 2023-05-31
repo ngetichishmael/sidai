@@ -22,13 +22,11 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th>number</th>
-                        <th>Zone</th>
+                        <th>Route</th>
                         <th>Payment Deadline</th>
                         <th>Total Amount</th>
                         <th>Paid Amount</th>
-                        <th>Date</th>
-                        <th>Order</th>
+{{--                        <th>Order</th>--}}
                         <th width="15%">Action</th>
 {{--                    <th>Status</th>--}}
                     </thead>
@@ -38,13 +36,13 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->phone_number !!}</td>
-                            <td>
-                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
-                            </td>
-                            <td>
-                                {!! $contact->Area->Subregion->name ?? '' !!}
-                            </td>
+{{--                            <td>{!! $contact->phone_number !!}</td>--}}
+{{--                            <td>--}}
+{{--                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}--}}
+{{--                            </td>--}}
+{{--                            <td>--}}
+{{--                                {!! $contact->Area->Subregion->name ?? '' !!}--}}
+{{--                            </td>--}}
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
@@ -56,9 +54,9 @@
                             </td>
                             <td>
                                 <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
-                                    class="btn btn-sm btn-secondary">Order</a>
+                                    class="btn btn-sm btn-secondary">View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
+                                    class="btn btn-sm btn-primary">Clear</a>
                             </td>
 {{--                            <td>--}}
 {{--                                @if ($contact->approval === 'Approved')--}}
