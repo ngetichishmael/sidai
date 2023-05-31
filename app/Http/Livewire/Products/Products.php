@@ -21,7 +21,7 @@ class Products extends Component
    {
 
       $searchTerm = '%' . $this->search . '%';
-      $products =  product_information::with('ProductPrice')->whereLike(
+      $products =  product_information::with('ProductPrice')->where('is_approved', 'Yes')->whereLike(
          [
             "parentID",
             "product_name",
