@@ -119,18 +119,18 @@
                 </li>
             </ul>
         </li>
-         <li class="nav-item {!! Nav::isResource('supplier') !!}">
-            <a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice">Suppliers</span></a>
-            <ul class="menu-content">
-                <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>
-                </li>
-                <li><a class="d-flex align-items-center" href="{!! route('supplier.category.index') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>
-                </li>
-            </ul>
-        </li>
+{{--         <li class="nav-item {!! Nav::isResource('supplier') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span--}}
+{{--                    class="menu-title text-truncate" data-i18n="Invoice">Suppliers</span></a>--}}
+{{--            <ul class="menu-content">--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i--}}
+{{--                            data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>--}}
+{{--                </li>--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('supplier.category.index') !!}"><i--}}
+{{--                            data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
         <li class="nav-item {!! Nav::isResource('target') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
