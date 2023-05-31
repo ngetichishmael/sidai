@@ -262,6 +262,16 @@ class productController extends Controller
       return redirect()->route('product.index');
    }
 
+   public function approvestock($id){
+      $approveproduct = product_information::whereId($id)->first();
+      $approveproduct->is_approved = "Yes";
+      $approveproduct->save();
+      session()->flash('success', 'Product successfully Approved !');
+
+      return redirect()->route('inventory.approval');
+
+   }
+
 
    /**
     * product description

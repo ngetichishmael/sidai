@@ -31,6 +31,8 @@
   'payment.pending.dashboard' => 'App\\Http\\Livewire\\Payment\\Pending\\Dashboard',
   'price-group.dashboard' => 'App\\Http\\Livewire\\PriceGroup\\Dashboard',
   'price-group.index' => 'App\\Http\\Livewire\\PriceGroup\\Index',
+  'productapproval.approval' => 'App\\Http\\Livewire\\Productapproval\\Approval',
+  'productapproval.approve_item' => 'App\\Http\\Livewire\\Productapproval\\approve_item',
   'products.products' => 'App\\Http\\Livewire\\Products\\Products',
   'routes.index' => 'App\\Http\\Livewire\\Routes\\index',
   'sales.targets' => 'App\\Http\\Livewire\\Sales\\Targets',
