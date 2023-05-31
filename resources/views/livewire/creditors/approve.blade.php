@@ -24,13 +24,13 @@
                         <th>Name</th>
                         <th>number</th>
                         <th>Zone</th>
-                        <th>Payment Deadline</th>
-                        <th>Total Amount</th>
-                        <th>Paid Amount</th>
-                        <th>Date</th>
+                        <th>Region</th>
+                        <th>Route</th>
+                        <th>Created By</th>
+                        <th>Created Date</th>
                         <th>Order</th>
-                        <th width="15%">Action</th>
-{{--                    <th>Status</th>--}}
+{{--                        <th width="15%">Action</th>--}}
+                    <th>Status</th>
                     </thead>
                     <tbody>
                         @foreach ($contacts as $count => $contact)
@@ -54,23 +54,23 @@
                             <td>
                                 {!! $contact->created_at ?? '' !!}
                             </td>
-                            <td>
-                                <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
-                                    class="btn btn-sm btn-secondary">Order</a>
-                                <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
-                            </td>
 {{--                            <td>--}}
-{{--                                @if ($contact->approval === 'Approved')--}}
-{{--                                    <button wire:click.prevent="deactivate({{ $contact->id }})"--}}
-{{--                                        onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"--}}
-{{--                                        type="button" class="btn btn-success btn-sm">Approved</button>--}}
-{{--                                @else--}}
-{{--                                    <button wire:click.prevent="activate({{ $contact->id }})"--}}
-{{--                                        onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"--}}
-{{--                                        type="button" class="btn btn-danger btn-sm">Pending</button>--}}
-{{--                                @endif--}}
+{{--                                <a href="{{ route('make.orders', ['id' => $contact->id]) }}"--}}
+{{--                                    class="btn btn-sm btn-secondary">Order</a>--}}
+{{--                                <a href="{{ route('creditor.edit', $contact->id) }}"--}}
+{{--                                    class="btn btn-sm btn-primary">Edit</a>--}}
 {{--                            </td>--}}
+                            <td>
+                                @if ($contact->approval === 'Approved')
+                                    <button wire:click.prevent="deactivate({{ $contact->id }})"
+                                        onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                        type="button" class="btn btn-success btn-sm">Approved</button>
+                                @else
+                                    <button wire:click.prevent="activate({{ $contact->id }})"
+                                        onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                        type="button" class="btn btn-danger btn-sm">Pending</button>
+                                @endif
+                            </td>
                             </tr>
                         @endforeach
                     </tbody>

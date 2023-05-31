@@ -70,8 +70,6 @@
                     <li><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}"><i
                                 data-feather="map-pin"></i><span class="menu-item text-truncate">Routes</span></a>
                     </li>
-
-            </li>
         </ul>
         </li>
         <li class="nav-item {!! Nav::isResource('inventory') !!}">
@@ -93,23 +91,23 @@
                             data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
-                    data-feather="users"></i><span class="menu-item text-truncate">Creditors</span></a>
+                    data-feather="credit-card"></i><span class="menu-item text-truncate">Creditors</span></a>
                 </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>
+               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
+                    data-feather="check-circle"></i><span class="menu-item text-truncate">Approve Creditors</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>
+                            data-feather="dollar-sign"></i><span class="menu-item text-truncate">Pricing</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
-                        href="{{ route('CustomerComment') }}"><i data-feather="circle"></i><span
+                        href="{{ route('CustomerComment') }}"><i data-feather="message-square"></i><span
                             class="menu-item text-truncate">Comments</span></a>
                 </li>
             </ul>
         </li>
         <li class="nav-item {!! Nav::isResource('visits') !!}">
-            <a class="d-flex align-items-center" href="#"><i data-feather='truck'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice">Visits</span></a>
+            <a class="d-flex align-items-center" href="#"><i data-feather='calendar'></i><span
+                    class="menu-title text-truncate" data-i18n="Invoice">Scheduled Visits</span></a>
             <ul class="menu-content">
                 <li><a class="d-flex align-items-center" href="{!! route('UsersVisits') !!}"><i
                             data-feather="user"></i><span class="menu-item text-truncate">Users</span></a>
@@ -117,6 +115,9 @@
                 <li><a class="d-flex align-items-center" href="{!! route('CustomerVisits') !!}"><i
                             data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
                 </li>
+               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
+                        data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>
+               </li>
             </ul>
         </li>
 {{--         <li class="nav-item {!! Nav::isResource('supplier') !!}">--}}
