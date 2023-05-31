@@ -92,7 +92,6 @@ Route::group(['middleware' => ['verified']], function () {
       'edit' => 'customer.edit',
       'update' => 'customer.update',
       'destroy' => 'customer.destroy',
-      'create' => 'customer.create',
       'store' => 'customer.store',
    ]);
    Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
