@@ -92,7 +92,6 @@ Route::group(['middleware' => ['verified']], function () {
       'edit' => 'customer.edit',
       'update' => 'customer.update',
       'destroy' => 'customer.destroy',
-      'create' => 'customer.create',
       'store' => 'customer.store',
    ]);
    Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
@@ -349,4 +348,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('survey/{code}/questions/{questionID}/edit', 'app\survey\questionsController@edit')->name('survey.questions.edit');
    Route::post('survey/{code}/questions/{questionID}/update', 'app\survey\questionsController@update')->name('survey.questions.update');
    Route::get('survey/{code}/questions/{id}/delete', 'app\survey\questionsController@delete')->name('survey.questions.delete');
+
+   //activity logs
+   Route::get('activity', ['uses' => 'ActivityController@index', 'as' => 'activity.index']);
+   Route::get('activity/show/{id}', ['uses' => 'ActivityController@show', 'as' => 'activity.show']);
 });

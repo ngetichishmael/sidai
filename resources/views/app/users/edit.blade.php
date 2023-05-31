@@ -70,8 +70,10 @@
                                                     <select class="form-control select2" id="select-country"
                                                         name="account_type" required>
                                                         <option value="">Select Type</option>
-                                                        <option value="Sales">Sales Agent</option>
-                                                        <option value="Admin">Administrator</option>
+                                                       <option value="Admin">Administrator</option>
+                                                       <option value="Manager">Manager</option>
+                                                       <option value="Sale-Manager">Sales Manager</option>
+                                                       <option value="Technical-Sales-Agent">Technical Sales Agent</option>
                                                     </select>
                                                 </div>
                                             </div>
