@@ -4,6 +4,9 @@ namespace App\Http\Controllers\app;
 
 use App\Helpers\Helper;
 use App\Models\country;
+use App\Models\User;
+use App\Models\Subregion;
+use App\Models\Region;
 use App\Models\warehousing;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -11,9 +14,16 @@ use App\Http\Controllers\Controller;
 use App\Imports\WarehouseImport;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\products\product_information;
+use Livewire\WithPagination;
 
 class warehousingController extends Controller
 {
+   use WithPagination;
+   protected $paginationTheme = 'bootstrap';
+   public $perPage = 10;
+   public $search = '';
+   public $orderAsc = true;
    /**
     * Display a listing of the resource.
     *
@@ -50,8 +60,12 @@ class warehousingController extends Controller
    public function create()
    {
       $country = country::pluck('name', 'name')->prepend('choose country');
+      $regions = Region::all();
+      $allsubregions = Subregion::all()->whereNotNull('id')->pluck('id');
 
-      return view('app.warehousing.create', compact('country'));
+      $managers =User::where('account_type', 'manager')->get();
+
+      return view('app.warehousing.create', compact('country','managers','allsubregions','regions'));
    }
 
    /**
@@ -80,12 +94,11 @@ class warehousingController extends Controller
       $warehouse->warehouse_code = Str::random(20);
       $warehouse->name = $request->name;
       $warehouse->country = $request->country;
-      $warehouse->city = $request->city;
-      $warehouse->location = $request->location;
+      $warehouse->region_id = $request->region_id;
+      $warehouse->subregion_id = $request->subregion_id;
       $warehouse->phone_number = $request->phone_number;
       $warehouse->email = $request->email;
-      $warehouse->longitude = $request->longitude;
-      $warehouse->latitude = $request->latitude;
+      $warehouse->manager = $request->manager;
       $warehouse->status = $request->status;
       $warehouse->is_main = $request->is_main;
       $warehouse->created_by = Auth::user()->user_code;
@@ -103,6 +116,12 @@ class warehousingController extends Controller
       Session()->flash('success', 'Warehouse added successfully');
 
       return redirect()->route('warehousing.index');
+   }
+   public function products($code)
+   {
+      $warehouse= warehousing::where('warehouse_code',$code)->first();
+      $products = product_information::where('warehouse_code', $code)->paginate($this->perPage);
+      return view('app.warehousing.products', compact('products','warehouse'));
    }
 
    /**

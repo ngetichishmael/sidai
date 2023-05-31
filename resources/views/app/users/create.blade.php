@@ -86,7 +86,7 @@
                                                     <label for="select-country">Zone</label>
                                                     <select class="form-control select2" id="select-country" name="route"
                                                         required>
-                                                        <option value="">Zone</option>
+                                                        <option value="">Route</option>
                                                         @foreach ($routes as $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }}
                                                             </option>

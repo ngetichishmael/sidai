@@ -229,11 +229,10 @@
         </li>
         <li class="nav-item {!! Nav::isResource('warehousing') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='archive'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice"> Warehousing</span></a>
+                    class="menu-title text-truncate" data-i18n="Invoice"> Warehousing Management</span></a>
             <ul class="menu-content">
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
-                            data-feather="archive"></i><span class="menu-item text-truncate">All
-                            Warehouses</span></a></li>
+                            data-feather="archive"></i><span class="menu-item text-truncate">Warehouses</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i

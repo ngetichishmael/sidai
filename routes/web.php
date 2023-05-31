@@ -299,6 +299,8 @@ Route::group(['middleware' => ['verified']], function () {
 //stock approval
    Route::get('warehousing/all/products', ['uses' => 'app\inventoryController@approval', 'as' => 'inventory.approval']);
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
+   //products
+   Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
 
 
    /* === settings === */
