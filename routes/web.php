@@ -293,7 +293,7 @@ Route::group(['middleware' => ['verified']], function () {
 
    //stock allocation
    Route::get('warehousing/approve/{code}', ['uses' => 'app\inventoryController@approve', 'as' => 'inventory.approve']);
-   Route::get('inventory/allocated', ['uses' => 'app\inventoryController@allocated', 'as' => 'inventory.allocated']);
+   Route::get('warehousing/inventory/allocated', ['uses' => 'app\inventoryController@allocated', 'as' => 'inventory.allocated']);
    Route::post('inventory/allocate/user', ['uses' => 'app\inventoryController@allocate_user', 'as' => 'inventory.allocate.user']);
    Route::get('inventory/allocate/{code}/items', ['uses' => 'app\inventoryController@allocate_items', 'as' => 'inventory.allocate.items']);
 //stock approval

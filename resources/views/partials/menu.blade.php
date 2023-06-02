@@ -72,7 +72,7 @@
                     </li>
         </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('inventory') !!}">
+        {{-- <li class="nav-item {!! Nav::isResource('inventory') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>
             <ul class="menu-content">
@@ -80,7 +80,7 @@
                             data-feather="circle"></i><span class="menu-item text-truncate">Allocated
                             Stock</span></a></li>
             </ul>
-        </li>
+        </li> --}}
         <li class="nav-item {!! Nav::isRoute('customer') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -238,7 +238,7 @@
                 @endif
                             {{-- <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li> --}}
-                            <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
+                            <li><a class="d-flex align-items-center" href="{!! route('inventory.allocated') !!}"><i
                                 data-feather="layers"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
                         data-feather="gift"></i><span class="menu-item text-truncate">Suppliers</span></a>
