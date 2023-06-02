@@ -252,10 +252,9 @@
                @if(Auth::check() && Auth::user()->account_type == "Admin")
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
 
-                            data-feather="circle"></i><span class="menu-item text-truncate">All
+                            data-feather="archive"></i><span class="menu-item text-truncate">All
                             Warehouses</span></a></li>
                @endif
-                            data-feather="archive"></i><span class="menu-item text-truncate">Warehouses</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
