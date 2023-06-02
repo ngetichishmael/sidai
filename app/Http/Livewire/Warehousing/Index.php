@@ -17,12 +17,12 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $warehouses = warehousing::search($searchTerm)
-         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
-         ->paginate($this->perPage);
+      $warehouses = warehousing::with('manager')->withCount('productInformation')
+         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
 
       return view('livewire.warehousing.index', [
-         'warehouses' => $warehouses
+         'warehouses' => $warehouses,
+         'searchTerm' => $searchTerm
       ]);
    }
 }

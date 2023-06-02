@@ -28,42 +28,27 @@
                <form action="{!! route('warehousing.store') !!}" method="POST">
                   @csrf
                   <div class="form-group mb-1">
-                     <label for="">Name</label>
+                     <label for="">Warehouse Name</label>
                      {!! Form::text('name',null,['class'=>'form-control','required'=>'']) !!}
                   </div>
                   <div class="form-group mb-1">
-                     <label for="">Email</label>
+                     <label for="">Choose Manager</label>
+                     <select class="form-control select2" id="clerks" name="manager" required>
+                             @foreach ($managers as $data)
+                            <option value="{{ $data->user_code }}">{{ $data->name  }}</option>
+                               @endforeach
+                             </select>
+                  </div>
+                  <div class="form-group mb-1">
+                     <label for="">Managers Email</label>
                      {!! Form::email('email',null,['class'=>'form-control']) !!}
                   </div>
                   <div class="form-group mb-1">
                      <label for="">Phone number</label>
                      {!! Form::text('phone_number',null,['class'=>'form-control']) !!}
                   </div>
-                  <div class="form-group mb-1">
-                     <label for="">Country</label>
-                     {!! Form::select('country',$country,null,['class'=>'form-control']) !!}
-                  </div>
-                  <div class="form-group mb-1">
-                     <label for="">City</label>
-                     {!! Form::text('city',null,['class'=>'form-control']) !!}
-                  </div>
-                  <div class="form-group mb-1">
-                     <label for="">Location</label>
-                     {!! Form::text('location',null,['class'=>'form-control']) !!}
-                  </div>
-                  <div class="row">
-                     <div class="col-md-6">
-                        <div class="form-group mb-1">
-                           <label for="">Longitude</label>
-                           {!! Form::text('longitude',null,['class'=>'form-control']) !!}
-                        </div>
-                     </div>
-                     <div class="col-md-6">
-                        <div class="form-group mb-1">
-                           <label for="">Latitude</label>
-                           {!! Form::text('latitude',null,['class'=>'form-control']) !!}
-                        </div>
-                     </div>
+                  <div>
+                     @livewire('regionselect.dynamicselect')
                   </div>
                   <div class="row">
                      <div class="col-md-6">
