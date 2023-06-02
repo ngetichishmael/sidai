@@ -266,6 +266,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
    Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
+   Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list'])->middleware('UATtoken.validation');
 
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
