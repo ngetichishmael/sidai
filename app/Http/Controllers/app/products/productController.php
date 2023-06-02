@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\app\products;
 
+use App\Models\activity_log;
 use App\Models\tax;
 use App\Models\Branches;
 use Illuminate\Support\Str;
@@ -117,6 +118,16 @@ class productController extends Controller
 
       );
       session()->flash('success', 'Product successfully added.');
+         $random=rand(9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Creating Product';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Add customer';
+      $activityLog->action = 'Product '.$product->product_name .' successfully added.';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('product.index');
    }
@@ -258,6 +269,16 @@ class productController extends Controller
       );
 
       session()->flash('success', 'Product successfully updated !');
+      $random=rand(9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Product update ';
+      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('product.index');
    }
