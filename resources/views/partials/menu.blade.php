@@ -72,15 +72,15 @@
                     </li>
         </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('inventory') !!}">
-            <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>
-            <ul class="menu-content">
-                <li><a class="d-flex align-items-center" href="{!! route('inventory.allocated') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Allocated
-                            Stock</span></a></li>
-            </ul>
-        </li>
+{{--        <li class="nav-item {!! Nav::isResource('inventory') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span--}}
+{{--                    class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>--}}
+{{--            <ul class="menu-content">--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('inventory.allocated') !!}"><i--}}
+{{--                            data-feather="circle"></i><span class="menu-item text-truncate">Allocated--}}
+{{--                            Stock</span></a></li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
         <li class="nav-item {!! Nav::isRoute('customer') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -156,9 +156,9 @@
                     Orders</span>
             </a>
            <ul class="menu-content">
-              <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
-                       data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>
-              </li>
+{{--              <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i--}}
+{{--                       data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>--}}
+{{--              </li>--}}
               <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
                        data-feather="clipboard"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
               </li>
@@ -231,9 +231,11 @@
             <a class="d-flex align-items-center" href="#"><i data-feather='archive'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Warehousing</span></a>
             <ul class="menu-content">
+               @if(Auth::check() && Auth::user()->account_type == "Admin")
                 <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">All
                             Warehouses</span></a></li>
+               @endif
                             <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i
                                 data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>
                             <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
@@ -254,6 +256,7 @@
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
             </a>
         </li>
+           @if(Auth::check() && Auth::user()->account_type == "Admin")
         <li class="nav-item {!! Nav::isResource('settings') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Settings</span></a>
@@ -263,6 +266,7 @@
                 </li>
             </ul>
         </li>
+           @endif
            <li class="nav-item {!! Nav::isResource('activity')!!}">
               <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
                  <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
