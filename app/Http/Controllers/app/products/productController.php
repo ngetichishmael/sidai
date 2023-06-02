@@ -277,7 +277,7 @@ class productController extends Controller
       $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address = $request->ip();
       $activityLog->save();
 
       return redirect()->route('product.index');

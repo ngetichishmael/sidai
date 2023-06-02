@@ -21,4 +21,8 @@ class Region extends Model
    {
       return $this->hasMany(Subregion::class);
    }
+   public function parent()
+    {
+        return $this->belongsTo(Region::class, 'primary_key');
+    }
 }

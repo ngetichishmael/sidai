@@ -26,7 +26,6 @@
                         <th>Payment Deadline</th>
                         <th>Total Amount</th>
                         <th>Paid Amount</th>
-{{--                        <th>Order</th>--}}
                         <th width="15%">Action</th>
 {{--                    <th>Status</th>--}}
                     </thead>
@@ -49,9 +48,7 @@
                             <td>
                                 {!! $contact->Creator->name ?? '' !!}
                             </td>
-                            <td>
-                                {!! $contact->created_at ?? '' !!}
-                            </td>
+                            
                             <td>
                                 <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
                                     class="btn btn-sm btn-secondary">View</a>
