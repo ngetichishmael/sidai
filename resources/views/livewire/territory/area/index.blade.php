@@ -46,7 +46,7 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <div class="form-group">
-                                                        <label for="select-country">Region</label>
+                                                        <label for="select-country">Sub Region</label>
                                                         <select class="form-control select2" id="select-country"
                                                             name="subregion" required>
                                                             <option value="">Select Regions</option>

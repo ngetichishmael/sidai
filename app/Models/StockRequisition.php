@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StockRequisition extends Model
 {
     use HasFactory;
+    protected $table = "stock_requisitions";
    protected $fillable = ['sales_person', 'requisition_date', 'status'];
    public function requisitionProducts()
    {

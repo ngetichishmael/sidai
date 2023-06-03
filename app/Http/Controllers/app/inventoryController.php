@@ -40,8 +40,8 @@ class inventoryController extends Controller
    public function allocate_items($code){
       return view('app.inventory.allocate_items', compact('code'));
    }
-   public function approve($code){
-      return view('app.inventory.approve_items', compact('code'));
+   public function approve($id){
+      return view('app.inventory.approve_items', compact('id'));
    }
    
 

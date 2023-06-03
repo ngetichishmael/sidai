@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Productapproval;
 
 use App\Models\inventory\allocations;
-use App\Models\products\product_information;
+use App\Models\StockRequisition;
 use Livewire\Component;
 use App\Models\User;
 use Auth;
@@ -22,7 +22,7 @@ class Approval extends Component
       //                         ->where('inventory_allocations.business_code',FacadesAuth::user()->business_code)
       //                         ->select('*','inventory_allocations.created_at as created_at','inventory_allocations.status as status')
       //                         ->paginate($this->perPage);
-      $products = product_information::where('is_approved','No')->get();
+      $products = StockRequisition::where('status','waiting approval')->get();
 
       return view('livewire.productapproval.approval', compact('products'));
    }

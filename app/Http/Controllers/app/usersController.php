@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\AppPermission;
 use App\Models\Region;
+use App\Models\area;
 use Exception;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
@@ -27,7 +28,7 @@ class usersController extends Controller
    public function create()
    {
       // $routes = array_merge($regions, $subregions, $zones);
-      $routes = Region::all();
+      $routes = area::all();
       return view('app.users.create', [
          "routes" => $routes
       ]);
