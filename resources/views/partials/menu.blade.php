@@ -105,21 +105,23 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('visits') !!}">
-            <a class="d-flex align-items-center" href="#"><i data-feather='calendar'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice">Scheduled Visits</span></a>
-            <ul class="menu-content">
-                <li><a class="d-flex align-items-center" href="{!! route('UsersVisits') !!}"><i
-                            data-feather="user"></i><span class="menu-item text-truncate">Users</span></a>
-                </li>
-                <li><a class="d-flex align-items-center" href="{!! route('CustomerVisits') !!}"><i
-                            data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>
-                </li>
-               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i
-                        data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>
-               </li>
-            </ul>
-        </li>
+{{--        <li class="nav-item {!! Nav::isResource('visits') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="#"><i data-feather='calendar'></i><span--}}
+{{--                    class="menu-title text-truncate" data-i18n="Invoice">Scheduled Visits</span></a>--}}
+{{--            <ul class="menu-content">--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('UsersVisits') !!}"><i--}}
+{{--                            data-feather="user"></i><span class="menu-item text-truncate">Users</span></a>--}}
+{{--                </li>--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('CustomerVisits') !!}"><i--}}
+{{--                            data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a>--}}
+{{--                </li>--}}
+{{--               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('outlets') }}"><i--}}
+{{--                        data-feather="circle"></i><span class="menu-item text-truncate">Outlets Types</span></a>--}}
+{{--               </li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
+
+
 {{--         <li class="nav-item {!! Nav::isResource('supplier') !!}">--}}
 {{--            <a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span--}}
 {{--                    class="menu-title text-truncate" data-i18n="Invoice">Suppliers</span></a>--}}

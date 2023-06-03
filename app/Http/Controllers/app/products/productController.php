@@ -122,7 +122,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating Product';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Add customer';
+      $activityLog->section = 'Add Product';
       $activityLog->action = 'Product '.$product->product_name .' successfully added.';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
