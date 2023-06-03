@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Imports\products;
+use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class StockRequisitionController extends Controller
 {
@@ -22,8 +26,28 @@ class StockRequisitionController extends Controller
 
    public function store(Request $request)
    {
-      $stockRequisition = StockRequisition::create($request->all());
-      return response()->json($stockRequisition, 201);
+      $requisitionData = $request->validate([
+         'requisition_products' => 'required|array',
+         'requisition_products.*.product_id' => 'required|integer',
+         'requisition_products.*.quantity' => 'required|integer',
+      ]);
+
+      $stockRequisition = StockRequisition::create(
+         [
+            "sales_person"=>$request->user()->user_code,
+            "requisition_date"=>Carbon::now(),
+            "status"=>"Waiting Approval",
+
+         ]
+      );
+      foreach ($requisitionData['requisition_products'] as $productData) {
+         RequisitionProduct::create([
+            'requisition_id' => $stockRequisition->id,
+            'product_id' => $productData['product_id'],
+            'quantity' => $productData['quantity'],
+         ]);
+      }
+      return response()->json("Stock requisition request successful", 201);
    }
 
    public function show(StockRequisition $stockRequisition)

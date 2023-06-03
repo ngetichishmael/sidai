@@ -8,26 +8,26 @@
                         Dashboards</span>
                 </a>
             </li>
-            <li class="nav-item {!! Nav::isResource('maps') !!}">
-                <a class="d-flex align-items-center" href="#"><i data-feather="globe"></i><span
-                        class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
-                <ul class="menu-content">
-                    <li class="nav-item {!! Nav::isResource('maps') !!}">
-                        <a class="d-flex align-items-center" href="{!! route('maps') !!}">
-                            <i data-feather='globe'></i>
-                            <span class="menu-title text-truncate" data-i18n="Todo">
-                                Maps</span>
-                        </a>
-                    </li>
-                    <li class="nav-item {!! Nav::isResource('current-information') !!}">
-                        <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
-                            <i data-feather='globe'></i>
-                            <span class="menu-title text-truncate" data-i18n="Todo">
-                                Sales Agents</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+{{--            <li class="nav-item {!! Nav::isResource('maps') !!}">--}}
+{{--                <a class="d-flex align-items-center" href="#"><i data-feather="globe"></i><span--}}
+{{--                        class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>--}}
+{{--                <ul class="menu-content">--}}
+{{--                    <li class="nav-item {!! Nav::isResource('maps') !!}">--}}
+{{--                        <a class="d-flex align-items-center" href="{!! route('maps') !!}">--}}
+{{--                            <i data-feather='globe'></i>--}}
+{{--                            <span class="menu-title text-truncate" data-i18n="Todo">--}}
+{{--                                Maps</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li class="nav-item {!! Nav::isResource('current-information') !!}">--}}
+{{--                        <a class="d-flex align-items-center" href="{!! route('current-information') !!}">--}}
+{{--                            <i data-feather='globe'></i>--}}
+{{--                            <span class="menu-title text-truncate" data-i18n="Todo">--}}
+{{--                                Sales Agents</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </li>--}}
             {{-- <li class="nav-item {!! Nav::isResource('product') !!}">
                 <a class="d-flex align-items-center" href="#"><i data-feather="list"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Products</span></a>
@@ -42,7 +42,7 @@
                 </ul>
             </li> --}}
             <li class="nav-item {!! Nav::isResource('notification') !!}">
-                <a class="d-flex align-items-center" href="#"><i data-feather="bell"></i><span
+                <a class="d-flex align-items-center" href="#"><i data-feather="message-circle"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{ route('CustomerNotification') }}"><i
@@ -60,7 +60,8 @@
                 <a class="d-flex align-items-center" href="#"><i data-feather="map-pin"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
+                    <li>
+                       <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
                             href="{{ route('regions') }}"><i data-feather="map-pin"></i><span
                                 class="menu-item text-truncate">Regions</span></a></li>
                     <li><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
@@ -70,6 +71,27 @@
                     <li><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}"><i
                                 data-feather="map-pin"></i><span class="menu-item text-truncate">Routes</span></a>
                     </li>
+
+                   <li class="nav-item {!! Nav::isResource('maps') !!}">
+                      <a class="d-flex align-items-center" href="#"><i data-feather="globe"></i><span
+                            class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
+                      <ul class="menu-content">
+                         <li class="nav-item {!! Nav::isResource('maps') !!}">
+                            <a class="d-flex align-items-center" href="{!! route('maps') !!}">
+                               <i data-feather='globe'></i>
+                               <span class="menu-title text-truncate" data-i18n="Todo">
+                                Maps</span>
+                            </a>
+                         </li>
+                         <li class="nav-item {!! Nav::isResource('current-information') !!}">
+                            <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
+                               <i data-feather='globe'></i>
+                               <span class="menu-title text-truncate" data-i18n="Todo">
+                                Sales Agents</span>
+                            </a>
+                         </li>
+                      </ul>
+                   </li>
         </ul>
         </li>
 {{--        <li class="nav-item {!! Nav::isResource('inventory') !!}">--}}
@@ -199,6 +221,10 @@
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
                         href="{{ route('PendingPayment') }}"><i data-feather="circle"></i><span
                             class="menu-item text-truncate">Pending</span></a>
+                </li>
+               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
+                        href="{{ route('PendingPayment') }}"><i data-feather="circle-user"></i><span
+                            class="menu-item text-truncate">Pending Creditors</span></a>
                 </li>
             </ul>
         </li>
