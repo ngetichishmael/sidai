@@ -33,7 +33,7 @@
                       <td>{!! $count+1 !!}</td>
                       <td>{!! $warehouse->name !!}</td>
                       <td>{!! $warehouse->Region->Subregion->name ?? '' !!}</td>
-                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>
+                     <td>{!! $warehouse->manager ?? 'NA' !!}</td>
                       <td>{!! $warehouse->product_information_count !!}</td>
                       <td>
  {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
@@ -46,7 +46,7 @@
                          <td>{!! $warehouse->name !!}</td>
                          <td>{!! $warehouse->Region->name??''!!}</td>
                          <td>{!! $warehouse->Region->Subregion->name ?? '' !!}</td>
-                         <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>
+                         <td>{!! $warehouse->manager ?? 'NA' !!}</td>
                          <td>{!! $warehouse->product_information_count !!}</td>
                          <td>
                            <div class="d-flex">
