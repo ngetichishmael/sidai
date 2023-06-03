@@ -83,7 +83,7 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">Zone</label>
+                                                    <label for="select-country">Route</label>
                                                     <select class="form-control select2" id="select-country" name="route"
                                                         required>
                                                         <option value="">Route</option>

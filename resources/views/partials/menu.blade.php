@@ -72,7 +72,6 @@
                     </li>
         </ul>
         </li>
-<<<<<<< HEAD
 {{--        <li class="nav-item {!! Nav::isResource('inventory') !!}">--}}
 {{--            <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span--}}
 {{--                    class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>--}}
@@ -82,17 +81,6 @@
 {{--                            Stock</span></a></li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-=======
-        {{-- <li class="nav-item {!! Nav::isResource('inventory') !!}">
-            <a class="d-flex align-items-center" href="#"><i data-feather='package'></i><span
-                    class="menu-title text-truncate" data-i18n="Invoice"> Inventory</span></a>
-            <ul class="menu-content">
-                <li><a class="d-flex align-items-center" href="{!! route('inventory.allocated') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Allocated
-                            Stock</span></a></li>
-            </ul>
-        </li> --}}
->>>>>>> 8d62764e94b76e7d44ca30f3b852ba307e403963
         <li class="nav-item {!! Nav::isRoute('customer') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -168,15 +156,9 @@
                     Orders</span>
             </a>
            <ul class="menu-content">
-<<<<<<< HEAD
-{{--              <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i--}}
-{{--                       data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>--}}
-{{--              </li>--}}
-=======
               {{-- <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
                        data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>
               </li> --}}
->>>>>>> 8d62764e94b76e7d44ca30f3b852ba307e403963
               <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
                        data-feather="clipboard"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
               </li>
