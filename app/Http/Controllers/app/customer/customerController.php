@@ -245,7 +245,7 @@ class customerController extends Controller
 
 
       Session::flash('success', 'Customer updated successfully');
-      $random=rand(9999);
+      $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Updating customer details';
       $activityLog->user_code = auth()->user()->user_code;

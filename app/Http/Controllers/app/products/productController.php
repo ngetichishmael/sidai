@@ -118,7 +118,7 @@ class productController extends Controller
 
       );
       session()->flash('success', 'Product successfully added.');
-         $random=rand(9999);
+         $random=rand(0,9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating Product';
       $activityLog->user_code = auth()->user()->user_code;
@@ -269,7 +269,7 @@ class productController extends Controller
       );
 
       session()->flash('success', 'Product successfully updated !');
-      $random=rand(9999);
+      $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product updating';
       $activityLog->user_code = auth()->user()->user_code;
@@ -288,7 +288,7 @@ class productController extends Controller
       $approveproduct->is_approved = "Yes";
       $approveproduct->save();
       session()->flash('success', 'Product successfully Approved !');
-      $random=rand(9999);
+      $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Stock Approval';
       $activityLog->user_code = auth()->user()->user_code;
