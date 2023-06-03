@@ -13,7 +13,7 @@ class pendingdeliveries extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 5;
+   public $perPage = 10;
    public ?string $search = null;
    public $orderBy = 'orders.id';
    public $orderAsc = false;
