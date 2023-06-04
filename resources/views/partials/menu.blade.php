@@ -216,15 +216,11 @@
             <ul class="menu-content">
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                         href="{{ route('PaidPayment') }}"><i data-feather="users"></i><span
-                            class="menu-item text-truncate">Paid</span></a>
+                            class="menu-item text-truncate">Payments</span></a>
                 </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
                         href="{{ route('PendingPayment') }}"><i data-feather="circle"></i><span
-                            class="menu-item text-truncate">Pending</span></a>
-                </li>
-               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
-                        href="{{ route('PendingPayment') }}"><i data-feather="circle-user"></i><span
-                            class="menu-item text-truncate">Pending Creditors</span></a>
+                            class="menu-item text-truncate">Creditors Payment</span></a>
                 </li>
             </ul>
         </li>
