@@ -18,7 +18,7 @@
                       @foreach($products as $count=>$product)
                          <tr>
                             <td>{!! $count+1 !!}</td>
-                            <td>{!! $product->sales_person !!}</td>
+                            <td>{!! $product->User->name !!}</td>
                             <td>{!! $product->status !!}</td>
                             <td>{!! date('F jS, Y', strtotime($product->created_at)) !!}</td>
                             <td>

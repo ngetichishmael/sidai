@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StockRequisition extends Model
@@ -19,5 +20,14 @@ class StockRequisition extends Model
    public function RequisitionProducts(): HasMany
    {
        return $this->hasMany(RequisitionProduct::class);
+   }
+   /**
+    * Get the user that owns the StockRequisition
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function user(): BelongsTo
+   {
+       return $this->belongsTo(User::class);
    }
 }

@@ -13,21 +13,32 @@ class RequisitionProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        $requisitionProducts = [];
+         // Get product IDs from the 'products' table
+         $productIds = DB::table('product_information')->pluck('id');
 
-        for ($i = 1; $i <= 10; $i++) {
-            $requisitionProducts[] = [
-                'product_id' => $i,
-                'requisition_id' => $i,
-                'quantity' => rand(1, 10),
-                'stock_requisition_id' => $i,
-                'product_information_id' => $i,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ];
-        }
-
-        // Insert seed data
-        DB::table('requisition_products')->insert($requisitionProducts);
+         // Get stock requisition IDs from the 'stock_requisitions' table
+         $stockRequisitionIds = DB::table('stock_requisitions')->pluck('id');
+         DB::table('requisition_products')->truncate();
+         // Create sample requisition products
+         $requisitionProducts = [];
+ 
+         foreach ($stockRequisitionIds as $requisitionId) {
+             for ($i = 0; $i < 3; $i++) { // Generate 3 requisition products per stock requisition
+                 $productId = $productIds->random();
+ 
+                 $requisitionProducts[] = [
+                     'product_id' => $productId,
+                     'requisition_id' => $requisitionId,
+                     'quantity' => rand(1, 10),
+                     'stock_requisition_id' => $requisitionId,
+                     'product_information_id' => $productId, // Assuming product_information_id is the same as product_id
+                     'created_at' => Carbon::now(),
+                     'updated_at' => Carbon::now(),
+                 ];
+             }
+         }
+ 
+         // Insert seed data
+         DB::table('requisition_products')->insert($requisitionProducts);
     }
 }

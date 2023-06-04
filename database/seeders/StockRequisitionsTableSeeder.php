@@ -13,13 +13,16 @@ class StockRequisitionsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Create sample stock requisitions
+             // Get random user IDs from the 'users' table
+        $numberOfRequisitions = 10; // Number of stock requisitions to generate
+        $userIds = DB::table('users')->where('account_type','Sales')->inRandomOrder()->limit($numberOfRequisitions)->pluck('id');
+        DB::table('stock_requisitions')->truncate();
         // Create sample stock requisitions
         $stockRequisitions = [];
 
-        for ($i = 1; $i <= 10; $i++) {
+        foreach ($userIds as $userId) {
             $stockRequisitions[] = [
-                'sales_person' => 'Sales Person ' . $i,
+                'user_id' => $userId,
                 'status' => 'Waiting Approval',
                 'requisition_date' => Carbon::now(),
                 'created_at' => Carbon::now(),
