@@ -9,11 +9,9 @@
                    <thead>
                       <th>#</th>
                       <th>Product Name</th>
-                      <th>Brand</th>
-                      <th>Details</th>
+                      <th>Quantity</th>
                       <th>Category</th>
                       <th>Units</th>
-                      <th>Batch Code</th>
                       <th>Action</th>
                    </thead>
                    <tbody>
@@ -21,11 +19,8 @@
                          <tr>
                             <td>{!! $count+1 !!}</td>
                             <td>{!! $product->product_name !!}</td>
-                            <td>{!! $product->brand !!}</td>
-                            <td>{!! $product->description !!}</td>
                             <td>{!! $product->category !!}</td>
                             <td>{!! $product->units !!}</td>
-                            <td>{!! $product->batch_code !!}</td>
                             <td>@if ($product->is_approved == "No")
                                 <a href="{{ route('product.approvestock',$product->id) }}" class="btn btn-primary">Approve</a>
                                 @elseif ($product->is_approved == "Yes")

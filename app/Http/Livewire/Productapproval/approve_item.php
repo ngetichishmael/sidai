@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Productapproval;
 use App\Models\inventory\items as InventoryItems;
 use App\Models\products\product_information;
 use Illuminate\Support\Facades\Auth;
+use App\Models\StockRequisition;
 use Livewire\Component;
 
 class approve_item extends Component
@@ -15,8 +16,10 @@ class approve_item extends Component
    public function render()
    {
       $allocationCode = $this->code;
-      $products = product_information::where('business_code', Auth::user()->business_code)
-      ->where('sku_code', $allocationCode)->get();
+      $products = StockRequisition::where('status','waiting approval')
+      ->where('sales_person', $allocationCode )->get();
+      // $products = product_information::where('business_code', Auth::user()->business_code)
+      // ->where('sku_code', $allocationCode)->get();
       $allocatedItems = InventoryItems::join('product_information', 'product_information.id', '=', 'inventory_allocated_items.product_code')
          ->where('inventory_allocated_items.business_code', Auth::user()->business_code)
          ->where('allocation_code', $allocationCode)
