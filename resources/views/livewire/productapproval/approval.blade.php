@@ -30,7 +30,7 @@
                 </table>
              </div>
              <div class="mt-1">
-                {{-- {{ $products->links() }} --}}
+                {{ $products->links() }}
              </div>
           </div>
        </div>

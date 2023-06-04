@@ -14,10 +14,10 @@ class CreateStockRequisitionsTable extends Migration
     public function up()
     {
         Schema::create('stock_requisitions', function (Blueprint $table) {
-           $table->increments('id');
+           $table->id();
            $table->string('sales_person');
-           $table->date('requisition_date');
-           $table->string('status');
+           $table->string('status')->default('Waiting Approval');
+           $table->timestamp('requisition_date');
            $table->timestamps();
         });
     }

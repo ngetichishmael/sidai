@@ -19,7 +19,7 @@
          </div>
       </div>
    </div>
-   @livewire('productapproval.approve_item',['id'=>$id])
+   @livewire('productapproval.approve_item',['product_id'=>$id])
 @endsection
 {{-- page scripts --}}
 @section('scripts')
