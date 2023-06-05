@@ -75,8 +75,8 @@
                                                         <option value="">Select Category</option>
                                                        <option value="Admin">Administrator</option>
                                                        <option value="Manager">Manager</option>
-                                                       <option value="Sale-Manager">Sales Manager</option>
-                                                       <option value="Technical-Sales-Agent">Technical Sales Agent</option>
+                                                       <option value="Sales">Sales Manager</option>
+                                                       <option value="Technical-sales-agent">Technical Sales Agent</option>
 
                                                     </select>
                                                 </div>
