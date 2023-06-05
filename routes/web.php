@@ -273,6 +273,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('sale-manager', ['uses' => 'app\usersController@salemanager', 'as' => 'sale-manager']);
    Route::get('manager', ['uses' => 'app\usersController@manager', 'as' => 'manager']);
    Route::get('technical-sales-agent', ['uses' => 'app\usersController@technical', 'as' => 'technical-sales-agent']);
+   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
 
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);

@@ -283,9 +283,29 @@
 {{--        </li>--}}
 
            <li class="nav-item {!! Nav::isResource('users') !!}">
-              <a class="d-flex align-items-center" href="{!! route('users.list') !!}">
+              <a class="d-flex align-items-center" href="#">
                  <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
               </a>
+              <ul class="menu-content">
+                 <li><a class="d-flex align-items-center" href="{!! route('users.admin') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">Admins</span></a>
+                 </li>
+
+                 <li><a class="d-flex align-items-center" href="{!! route('technical-sales-agent') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">Technicians</span></a>
+                 </li>
+                 <li><a class="d-flex align-items-center" href="{!! route('manager') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">Managers</span></a>
+                 </li>
+
+                 <li><a class="d-flex align-items-center" href="{!! route('sale-manager') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">Sales Agent</span></a>
+                 </li>
+                 <li><a class="d-flex align-items-center" href="{!! route('rider') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">Rider</span></a>
+                 </li>
+              </ul>
+
            </li>
 
            @if(Auth::check() && Auth::user()->account_type == "Admin")
