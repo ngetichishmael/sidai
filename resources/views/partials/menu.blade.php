@@ -1,6 +1,21 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="shadow-bottom"></div>
-    <div class="main-menu-content">
+   <div class="navbar-header mb-0 mt-1">
+      <ul class="nav navbar-nav flex-row" >
+         <li class="nav-item me-auto">
+{{--            <a class="" href="#" >--}}
+{{--               <center><img src="{!! asset('app-assets/images/img_3.png') !!}" alt="Sidai Africa Limited" class="img" width="80%">--}}
+{{--               </center>--}}
+{{--            </a>--}}
+            <span style="font-weight: bolder; color: #FF4500; align-content: center; font-size: larger">Sidai Africa Limited</span>
+         </li>
+         {{-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> --}}
+      </ul>
+   </div>
+   <div class="shadow-bottom"></div>
+   <div class="main-menu-content" >
+
+{{--   <div class="shadow-bottom"></div>--}}
+{{--    <div class="main-menu-content">--}}
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item {!! Nav::isRoute('app.dashboard') !!}">
                 <a class="d-flex align-items-center" href="{!! route('app.dashboard') !!}">
