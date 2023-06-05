@@ -42,7 +42,7 @@
                 </ul>
             </li> --}}
             <li class="nav-item {!! Nav::isResource('notification') !!}">
-                <a class="d-flex align-items-center" href="{{ route('chat') }}"><i data-feather="message-circle"></i><span
+                <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
 {{--                <ul class="menu-content">--}}
 {{--                    <li><a class="d-flex align-items-center" href="{{ route('CustomerNotification') }}"><i--}}
