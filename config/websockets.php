@@ -59,7 +59,8 @@ return [
     /*
      * This path will be used to register the necessary routes for the package.
      */
-    'path' => 'laravel-websockets',
+//    'path' => 'laravel-websockets',
+   'path' => '/websocket',
 
     /*
      * Dashboard Routes Middleware
@@ -72,64 +73,79 @@ return [
         'web',
         Authorize::class,
     ],
+//   'middleware' => [
+//      \BeyondCode\LaravelWebSockets\WebSockets\Http\Middleware\CheckOrigin::class,
+//      \BeyondCode\LaravelWebSockets\WebSockets\Http\Middleware\WebSocketHandler::class,
+//   ],
+//    'statistics' => [
+//        /*
+//         * This model will be used to store the statistics of the WebSocketsServer.
+//         * The only requirement is that the model should extend
+//         * `WebSocketsStatisticsEntry` provided by this package.
+//         */
+//        'model' => \BeyondCode\LaravelWebSockets\Statistics\Models\WebSocketsStatisticsEntry::class,
+//
+//        /**
+//         * The Statistics Logger will, by default, handle the incoming statistics, store them
+//         * and then release them into the database on each interval defined below.
+//         */
+//        'logger' => BeyondCode\LaravelWebSockets\Statistics\Logger\HttpStatisticsLogger::class,
+//
+//        /*
+//         * Here you can specify the interval in seconds at which statistics should be logged.
+//         */
+//        'interval_in_seconds' => 60,
+//
+//        /*
+//         * When the clean-command is executed, all recorded statistics older than
+//         * the number of days specified here will be deleted.
+//         */
+//        'delete_statistics_older_than_days' => 60,
+//
+//        /*
+//         * Use an DNS resolver to make the requests to the statistics logger
+//         * default is to resolve everything to 127.0.0.1.
+//         */
+//        'perform_dns_lookup' => false,
+//    ],
+   'statistics' => [
+      'model' => \BeyondCode\LaravelWebSockets\Statistics\Models\WebSocketsStatisticsEntry::class,
 
-    'statistics' => [
-        /*
-         * This model will be used to store the statistics of the WebSocketsServer.
-         * The only requirement is that the model should extend
-         * `WebSocketsStatisticsEntry` provided by this package.
-         */
-        'model' => \BeyondCode\LaravelWebSockets\Statistics\Models\WebSocketsStatisticsEntry::class,
+      'interval_in_seconds' => 60,
 
-        /**
-         * The Statistics Logger will, by default, handle the incoming statistics, store them
-         * and then release them into the database on each interval defined below.
-         */
-        'logger' => BeyondCode\LaravelWebSockets\Statistics\Logger\HttpStatisticsLogger::class,
+      'delete_statistics_older_than_days' => 60,
 
-        /*
-         * Here you can specify the interval in seconds at which statistics should be logged.
-         */
-        'interval_in_seconds' => 60,
-
-        /*
-         * When the clean-command is executed, all recorded statistics older than
-         * the number of days specified here will be deleted.
-         */
-        'delete_statistics_older_than_days' => 60,
-
-        /*
-         * Use an DNS resolver to make the requests to the statistics logger
-         * default is to resolve everything to 127.0.0.1.
-         */
-        'perform_dns_lookup' => false,
-    ],
-
+      'perform_dns_lookup' => false,
+   ],
     /*
      * Define the optional SSL context for your WebSocket connections.
      * You can see all available options at: http://php.net/manual/en/context.ssl.php
      */
-    'ssl' => [
-        /*
-         * Path to local certificate file on filesystem. It must be a PEM encoded file which
-         * contains your certificate and private key. It can optionally contain the
-         * certificate chain of issuers. The private key also may be contained
-         * in a separate file specified by local_pk.
-         */
-        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
-
-        /*
-         * Path to local private key file on filesystem in case of separate files for
-         * certificate (local_cert) and private key.
-         */
-        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
-
-        /*
-         * Passphrase for your local_cert file.
-         */
-        'passphrase' => env('LARAVEL_WEBSOCKETS_SSL_PASSPHRASE', null),
-    ],
-
+//    'ssl' => [
+//        /*
+//         * Path to local certificate file on filesystem. It must be a PEM encoded file which
+//         * contains your certificate and private key. It can optionally contain the
+//         * certificate chain of issuers. The private key also may be contained
+//         * in a separate file specified by local_pk.
+//         */
+//        'local_cert' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_CERT', null),
+//
+//        /*
+//         * Path to local private key file on filesystem in case of separate files for
+//         * certificate (local_cert) and private key.
+//         */
+//        'local_pk' => env('LARAVEL_WEBSOCKETS_SSL_LOCAL_PK', null),
+//
+//        /*
+//         * Passphrase for your local_cert file.
+//         */
+//        'passphrase' => env('LARAVEL_WEBSOCKETS_SSL_PASSPHRASE', null),
+//    ],
+   'ssl' => [
+      'local_cert' => env('PUSHER_APP_SSL_CERT'),
+      'local_pk' => env('PUSHER_APP_SSL_KEY'),
+      'passphrase' => env('PUSHER_APP_SSL_PASSPHRASE'),
+   ],
     /*
      * Channel Manager
      * This class handles how channel persistence is handled.
