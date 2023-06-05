@@ -53,7 +53,7 @@ class StockRequisitionController extends Controller
    public function show(Request  $request)
    {
       $requisitionProducts= StockRequisition::where('sales_person', $request->user()->user_code );
-      return response()->json(["data" =>$requisitionProducts], 200);
+      return response()->json(["requisitionProducts" =>$requisitionProducts], 200);
    }
 
    public function update(Request $request, StockRequisition $stockRequisition)
