@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -196,6 +197,16 @@ class AuthController extends Controller
          // ->where('id', $user->id)
          // ->update(['status' => 'activated']);
          //  Log::info('Valid OTP entered');
+         $random=rand(0,9999);
+         $activityLog = new activity_log();
+         $activityLog->activity = 'Login';
+         $activityLog->user_code = auth()->user()->user_code;
+         $activityLog->section = 'Mobile Login';
+         $activityLog->action = 'Logged in successful';
+         $activityLog->userID = auth()->user()->id;
+         $activityLog->activityID = $random;
+         $activityLog->ip_address ="";
+         $activityLog->save();
          return response()->json(['message' => 'Valid OTP entered']);
       }
       // Log::error('Invalid OTP entered');
