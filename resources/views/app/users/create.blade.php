@@ -38,13 +38,13 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-2 col-md-6 col-12">
-                                                <div class="form-group">
-                                                    <label for="first-name-column">Employee Code</label>
-                                                    <input type="text" id="first-name-column" class="form-control"
-                                                        placeholder="Employee Code" name="employee_code" required />
-                                                </div>
-                                            </div>
+{{--                                            <div class="mb-2 col-md-6 col-12">--}}
+{{--                                                <div class="form-group">--}}
+{{--                                                    <label for="first-name-column">Employee Code</label>--}}
+{{--                                                    <input type="text" id="first-name-column" class="form-control"--}}
+{{--                                                        placeholder="Employee Code" name="employee_code" required />--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             <div class="mb-2 col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="first-name-column">Name</label>
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">Sales Team Category</label>
+                                                    <label for="select-country">User Type</label>
                                                     <select class="form-control select2" id="select-country"
                                                         name="account_type" required>
                                                         <option value="">Select Category</option>

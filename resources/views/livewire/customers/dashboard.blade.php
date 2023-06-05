@@ -28,7 +28,6 @@
                         <th>Created By</th>
                         <th>Created Date</th>
                         <th>Order</th>
-                        <th width="15%">Edit</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
@@ -38,7 +37,7 @@
                                 {!! $contact->customer_name !!}
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
-                            
+
                             <td>
                                 {!! $contact->Area->Subregion->name ?? '' !!}
                             </td>
@@ -56,22 +55,27 @@
                                     class="btn btn-sm btn-secondary">Order</a>
                             </td>
                             <td>
-                                <a href="{{ route('customer.edit', $contact->id) }}"
-                                    class="btn btn-sm btn-primary">Edit</a>
-                            </td>
-                            <td>
-                                <div class="d-flex" style="gap: 1px">
-                                @if ($contact->approval === 'Approved')
-                                    <button wire:click.prevent="deactivate({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-success btn-sm" style="padding-left: 0px">Approved</button>
-                                @else
-                                    <button wire:click.prevent="activate({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-danger btn-sm" style="padding-left: 0px;">Pending</button>
-                                @endif
-                                <a href="{{ route('creditor.details', $contact->id) }}" class="btn btn-primary btn-sm">View</a>
-                                </div>
+                               <div class="dropdown" >
+                                  <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                     <i data-feather="settings"></i>
+                                  </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                     <a href="{{ route('customer.edit', $contact->id) }}" type="button" class="dropdown-item btn btn-sm" style="color:#7cc7e0 ;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit</a>
+                                     <a href="{{ route('creditor.details', $contact->id) }}" type="button" class="dropdown-item btn btn-sm" style="color:#6df16d ; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
+                                     {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>--}}
+
+                                     @if ($contact->approval === 'Approved')
+                                        <a wire:click.prevent="deactivate({{ $contact->id }})"
+                                                onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                                type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold"><i data-feather="check"></i>&nbsp;>Approved</a>
+                                     @else
+                                        <a wire:click.prevent="activate({{ $contact->id }})"
+                                                onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                                type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" ><i data-feather="pause"></i>&nbsp;Pending</a>
+                                     @endif
+                                  </div>
+                               </div>
+
                             </td>
                             </tr>
                         @endforeach
