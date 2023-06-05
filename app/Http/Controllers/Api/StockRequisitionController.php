@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Imports\products;
+use App\Models\products\product_information;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Carbon\Carbon;
@@ -57,8 +58,29 @@ class StockRequisitionController extends Controller
 //   }
    public function show(Request $request)
    {
-      $stockRequisition=StockRequisition::with('RequisitionProducts')->get();
-      return response()->json(["requisitionProducts"=>$stockRequisition], 200);
+//      $stockRequisition=StockRequisition::with('RequisitionProducts')
+//         ->where('sales_person', $request->user()->user_code)
+//         ->get();
+//      return response()->json(["data"=>$stockRequisition], 200);
+
+      $stockRequisition = StockRequisition::with('RequisitionProducts')
+         ->where('sales_person', $request->user()->user_code)
+         ->get();
+
+      $statusAndData = $stockRequisition->map(function ($requisition) {
+         $products = $requisition->RequisitionProducts->map(function ($product) {
+            $productInformation = product_information::where('id', $product->product_id)->first();
+            $product->product_name = $productInformation->product_name;
+            return $product;
+         });
+
+         return [
+            'status' => $requisition->status,
+            'data' => $products
+         ];
+      });
+
+      return response()->json($statusAndData, 200);
    }
 
    public function update(Request $request, StockRequisition $stockRequisition)
