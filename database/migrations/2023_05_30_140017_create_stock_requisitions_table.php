@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +15,10 @@ class CreateStockRequisitionsTable extends Migration
     public function up()
     {
         Schema::create('stock_requisitions', function (Blueprint $table) {
-           $table->increments('id');
-           $table->string('sales_person');
-           $table->date('requisition_date');
-           $table->string('status');
+           $table->id();
+           $table->foreignIdFor(User::class);
+           $table->string('status')->default('Waiting Approval');
+           $table->timestamp('requisition_date');
            $table->timestamps();
         });
     }
