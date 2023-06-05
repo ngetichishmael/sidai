@@ -1,5 +1,26 @@
     <div>
-        <div class="col-xl-12 col-md-6 col-12">
+        <div class="col-xl-12 col-md-12 col-12">
+            <div class="card">
+            <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="validationTooltip01">Start Date</label>
+                        <input wire:model="start" name="startDate" type="date" class="form-control"
+                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="validationTooltip01">End Date</label>
+                        <input wire:model="end" name="startDate" type="date" class="form-control"
+                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+        <div class="col-xl-12 col-md-12 col-12">
             <div class="card card-statistics">
                 <div class="card-header">
                     <h4 class="card-title">Statistics</h4>
@@ -8,22 +29,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="validationTooltip01">Start Date</label>
-                                <input wire:model="start" name="startDate" type="date" class="form-control"
-                                    id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="validationTooltip01">End Date</label>
-                                <input wire:model="end" name="startDate" type="date" class="form-control"
-                                    id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="card-body statistics-body">
                         <div class="row">
                             <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">

@@ -18,8 +18,8 @@
             <center>
                 <a href="{!! route('customer.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Add a
                     Customer</a>
-                    <a href="{!! route('creditor.create') !!}" class="btn btn-success btn-sm"><i class="fa fa-user-plus"></i> Add a
-                        Creditor</a>
+{{--                    <a href="{!! route('creditor.create') !!}" class="btn btn-success btn-sm"><i class="fa fa-user-plus"></i> Add a--}}
+{{--                        Creditor</a>--}}
                 <a href="{{ route('user-import') }}" class="btn btn-info btn-sm"><i class="fa fa-file-upload"></i> Import
                     Customer</a>
                 {{-- <a href="{!! route('customer.export','csv') !!}" class="btn btn-warning btn-sm"><i class="fal fa-file-download"></i> Export Customer</a> --}}

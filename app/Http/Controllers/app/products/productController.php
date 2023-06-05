@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\app\products;
 
+use App\Models\activity_log;
 use App\Models\tax;
 use App\Models\Branches;
 use Illuminate\Support\Str;
@@ -117,6 +118,16 @@ class productController extends Controller
 
       );
       session()->flash('success', 'Product successfully added.');
+         $random=rand(0,9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Creating Product';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Add Product';
+      $activityLog->action = 'Product '.$product->product_name .' successfully added.';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('product.index');
    }
@@ -258,8 +269,38 @@ class productController extends Controller
       );
 
       session()->flash('success', 'Product successfully updated !');
+      $random=rand(0, 9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Product update ';
+      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = $request->ip();
+      $activityLog->save();
 
       return redirect()->route('product.index');
+   }
+
+   public function approvestock($id){
+      $approveproduct = product_information::whereId($id)->first();
+      $approveproduct->is_approved = "Yes";
+      $approveproduct->save();
+      session()->flash('success', 'Product successfully Approved !');
+      $random=rand(0, 9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Stock Approval';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Stock Approved ';
+      $activityLog->action = 'Product '.$approveproduct->product_name .' ssuccessfully Approved  ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = '';
+      $activityLog->save();
+
+      return redirect()->route('inventory.approval');
+
    }
 
 

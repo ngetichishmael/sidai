@@ -15,7 +15,7 @@
                                 <th>Type</th>
                                 <th>Status</th>
                                 <th>Date CreateD</th>
-                                <th width="16%">Actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,18 +32,17 @@
                                     <td>{!! $survery->status !!}</td>
                                     <td>{{ date('j M Y', strtotime($survery->updated_at)) }}</td>
                                     <td>
-                                        <div class="d-flex" style="gap:20px">
-                                            <a href="{!! route('survey.show', $survery->code) !!}" class="btn btn-sm btn-warning">
-                                                <span>view</span>
-                                            </a>
-                                            <a href="{!! route('survey.edit', $survery->code) !!}" class="btn btn-sm btn-info">
-                                                <span>Edit</span>
 
-                                            </a>
-                                            <a href="{!! route('survey.delete', $survery->code) !!}" class="btn btn-sm btn-danger delete">
-                                                <span>Delete</span>
-                                            </a>
-                                        </div>
+                                       <div class="dropdown" >
+                                          <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                             <i data-feather="settings"></i>
+                                          </button>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                             <a href="{!! route('survey.show', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #86f686;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit</a>
+                                             <a href="{!! route('survey.edit', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #a1e1f6; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
+                                             <a href="{!! route('survey.delete', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>
+                                          </div>
+                                       </div>
                                     </td>
                                 </tr>
                             @endforeach

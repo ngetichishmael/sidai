@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Zones')
+@section('title', 'Regions')
 {{-- page styles --}}
 
 {{-- content section --}}
@@ -10,11 +10,11 @@
         <div class="mb-2 content-header-left col-md-12 col-12">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="mb-0 content-header-title float-start">Zones</h2>
+                    <h2 class="mb-0 content-header-title float-start">Regions</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Zones</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('regions')}}">Regions</a></li>
                             <li class="breadcrumb-item active"><a href="#">All</a></li>
                         </ol>
                     </div>
@@ -51,7 +51,7 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="card-body">
-                        <h4 class="card-title">Add Zone</h4>
+                        <h4 class="card-title">Add Region</h4>
                         {!! Form::open(['route' => 'regions.store']) !!}
                         @csrf
                         <div class="form-group form-group-default required">
@@ -65,7 +65,7 @@
                         <div class="mt-4 form-group">
                             <center>
                                 <button type="submit" class="btn btn-success submit"><i class="fas fa-save"></i> Add
-                                    Zone</button>
+                                    Region</button>
                             </center>
                         </div>
                         {!! Form::close() !!}

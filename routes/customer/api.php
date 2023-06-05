@@ -48,5 +48,6 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/customer/deleteFromCart',  [CartController::class, 'deleteFromCart']);
       Route::post('/customer/clearCart',  [CartController::class, 'clearCart']);
       Route::post('customer/creditor',  [CartController::class, 'isCreditor']);
+
    });
 });

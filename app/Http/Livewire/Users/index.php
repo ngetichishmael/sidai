@@ -22,13 +22,13 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $users =  User::whereLike([
+      $admin =  User::where('account_type', ['Admin'])->whereLike([
          'Region.name', 'name', 'email', 'phone_number',
       ], $searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
          ->paginate($this->perPage);
 
-      return view('livewire.users.index', compact('users'));
+      return view('livewire.users.index', compact('admin'));
    }
    public function deactivate($id)
    {

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\DeliveriesController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\OutletTypesController;
 use App\Http\Controllers\Api\productCategoriesController;
+use App\Http\Controllers\Api\StockRequisitionController;
 use App\Http\Controllers\Api\surveyController;
 use App\Http\Controllers\Api\SurveryAnswersController;
 use App\Http\Controllers\Api\ReconcilationController;
@@ -40,6 +41,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries');
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details');
    Route::get('customers/{customerID}/orders', 'customersController@orders');
+
+   Route::post('/messages', 'ChatController@sendMessage');
+
 
    Route::get('customers/order/{orderCode}/details', 'customersController@order_details');
    Route::get('customers/{customerID}/new-order/', 'customersController@new_order');
@@ -215,4 +219,10 @@ Route::group(['namespace' => 'Api'], function () {
     * Get Company Routes
     */
    Route::get('/get/company/routes', [CompanyRouteController::class, "getCompanyRoutes"])->middleware('auth:sanctum');
+
+  //stock requisition
+   Route::get('stock/requisitions', [StockRequisitionController::class, "show"])->middleware('auth:sanctum');
+   Route::post('/stock/create/request', [StockRequisitionController::class, "store"])->middleware('auth:sanctum');
+   Route::post('/stock/cancel', [StockRequisitionController::class, "cancel"])->middleware('auth:sanctum');
+   Route::post('/stock/update', [StockRequisitionController::class, "update"])->middleware('auth:sanctum');
 });
