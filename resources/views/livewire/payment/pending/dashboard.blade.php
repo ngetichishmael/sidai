@@ -23,8 +23,8 @@
                     <th>OrderID</th>
                     <th>Customer</th>
                     <th>Sales Agents</th>
-                    <th>Total Paid</th>
-                    <th>Pending Paid</th>
+                    <th>Total Amount</th>
+                    <th>Pending Balance</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Action</th>

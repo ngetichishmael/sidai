@@ -25,7 +25,7 @@
                     <th>Sales Agents</th>
                     <th>Total Paid</th>
                     <th>Date</th>
-                    <th>Approved ?</th>
+{{--                    <th>Approved ?</th>--}}
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -39,15 +39,15 @@
                         <td>{!! number_format(($deliver->Order->price_total ?? 0) - ($deliver->Order->balance ?? 0)) !!}</td>
                         <td>{!! $deliver->updated_at !!}</td>
 
-                        <td>
-                            @if ($deliver->approval == 0)
-                                <button wire:click.prevent="approve({{ $deliver->id }})"
-                                    onclick="confirm('Are you sure you want to APPROVE this order?')||event.stopImmediatePropagation()"
-                                    type="button" class="btn btn-danger btn-sm">NO</button>
-                            @else
-                                <button type="button" class="btn btn-success btn-sm">YES</button>
-                            @endif
-                        </td>
+{{--                        <td>--}}
+{{--                            @if ($deliver->approval == 0)--}}
+{{--                                <button wire:click.prevent="approve({{ $deliver->id }})"--}}
+{{--                                    onclick="confirm('Are you sure you want to APPROVE this order?')||event.stopImmediatePropagation()"--}}
+{{--                                    type="button" class="btn btn-danger btn-sm">NO</button>--}}
+{{--                            @else--}}
+{{--                                <button type="button" class="btn btn-success btn-sm">YES</button>--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
                         <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->name) !!}" class="btn btn-sm btn-success">View</a></td>
                     </tr>
                     @endforeach
