@@ -276,11 +276,18 @@
                     </li>
             </ul>
         </li>
-        <li class="nav-item {!! Nav::isResource('users') !!}">
-            <a class="d-flex align-items-center" href="{!! route('users.index') !!}">
-                <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
-            </a>
-        </li>
+{{--        <li class="nav-item {!! Nav::isResource('users') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="{!! route('users.index') !!}">--}}
+{{--                <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+
+           <li class="nav-item {!! Nav::isResource('users') !!}">
+              <a class="d-flex align-items-center" href="{!! route('users.list') !!}">
+                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
+              </a>
+           </li>
+
            @if(Auth::check() && Auth::user()->account_type == "Admin")
         <li class="nav-item {!! Nav::isResource('settings') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span

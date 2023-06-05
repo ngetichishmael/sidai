@@ -39,13 +39,13 @@
                        <td>
                           <div class="d-flex" style="gap:20px">
                              @if($list == 'Admin')
-                                <a href="{{ route('users.admin') }}" class="btn btn-info btn-sm">View</a>
-                            @elseif($list == 'Rider')
-                                <a href="{{ route('users.riders') }}" class="btn btn-info btn-sm">View</a>
-                                @elseif($list == 'Technician')
-                                <a href="{{ route('users.technicians') }}" class="btn btn-info btn-sm">View </a>
-                                @elseif($list == 'Clerk')
-                                <a href="{{ route('users.clerk') }}" class="btn btn-info btn-sm">View</a>
+                                <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View</a>
+                            @elseif($list == 'Technical-Sales-Agent')
+                                <a href="{{ route('technical-sales-agent') }}" class="btn btn-info btn-sm">View</a>
+                                @elseif($list == 'Sale-Manager')
+                                <a href="{{ route('sale-manager') }}" class="btn btn-info btn-sm">View </a>
+                                @elseif($list == 'Manager')
+                                <a href="{{ route('manager') }}" class="btn btn-info btn-sm">View</a>
                             @endif
                           </div>
                        </td>

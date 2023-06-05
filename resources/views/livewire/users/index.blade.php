@@ -28,13 +28,12 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Account Type</th>
                             <th>Status</th>
                             <th width="12%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $key => $user)
+                        @foreach ($admin as $key => $user)
                             <tr>
                                 <td>{!! $key + 1 !!}</td>
                                 <td>{!! $user->Region->name ?? ' ' !!}</td>
@@ -43,7 +42,6 @@
                                     {!! $user->email !!}
                                 </td>
                                 <td>{!! $user->phone_number !!}</td>
-                                <td>{!! $user->account_type !!}</td>
                                 <td>{!! $user->status !!}</td>
                                 <td>
                                    <div class="dropdown" >
@@ -73,7 +71,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-1">{!! $users->links() !!}</div>
+            <div class="mt-1">{!! $admin->links() !!}</div>
         </div>
     </div>
 </div>
