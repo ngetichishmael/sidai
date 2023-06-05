@@ -28,7 +28,6 @@
                         <th>Route</th>
                         <th>Sales Agents</th>
                         <th>Date</th>
-                        <th>Status</th>
                         <th>Action</th>
                     </thead>
                     <tbody>
@@ -48,8 +47,8 @@
                                 {{ Str::limit($deliver->Customer->Area->name ?? null, 20) }}</td>
                             <td>{!! $deliver->User->name !!}</td>
                             <td>{!! $deliver->updated_at !!}</td>
-                            <td><a href="" class="badge {!! $deliver->delivery_status !!}"
-                                    style="color: rgb(2, 66, 100);">{!! $deliver->delivery_status !!}</a></td>
+{{--                            <td><a href="" class="badge {!! $deliver->delivery_status !!}"--}}
+{{--                                    style="color: rgb(2, 66, 100);">{!! $deliver->delivery_status !!}</a></td>--}}
                             <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->User->name) !!}" class="btn btn-sm btn-success">View</a></td>
                         </tr>
                         @endforeach
