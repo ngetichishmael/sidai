@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -57,9 +58,11 @@ class usersController extends Controller
    public function create()
    {
       // $routes = array_merge($regions, $subregions, $zones);
-      $routes = Region::all();
+      $regions = Region::all();
+      $routes = Area::all();
       return view('app.users.create', [
-         "routes" => $routes
+         "routes" => $routes,
+         "regions" => $regions
       ]);
    }
    public function sendOTP($number, $code)
@@ -105,10 +108,9 @@ class usersController extends Controller
          'name' => 'required',
          'phone_number' => 'required',
          'account_type' => 'required',
-         'employee_code' => 'required',
          'route' => 'required',
       ]);
-      $user_code = $request->employee_code;
+      $user_code = rand(100000, 999999);
       //save user
       $code = rand(100000, 999999);
       User::updateOrCreate(

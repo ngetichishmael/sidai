@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    
+
                     <div class="card-body statistics-body">
                         <div class="row">
                             <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
