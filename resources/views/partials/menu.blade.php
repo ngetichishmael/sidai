@@ -50,10 +50,10 @@
                     <li><a class="d-flex align-items-center" href="{{ route('UserNotification') }}"><i
                                 data-feather="user-check"></i><span class="menu-item text-truncate">Users</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{{ route('AllNotification') }}"><i
+                    {{-- <li><a class="d-flex align-items-center" href="{{ route('AllNotification') }}"><i
                                 data-feather="user-check"></i><span class="menu-item text-truncate">All
                                 Notifications</span></a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             <li class="nav-item {!! Nav::isResource('regions') !!}">

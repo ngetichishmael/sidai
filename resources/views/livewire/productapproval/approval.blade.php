@@ -9,10 +9,7 @@
                 <table class="table table-bordered table-striped">
                    <thead>
                       <th>#</th>
-                      <th>Product Name</th>
-                      {{-- <th>Total Items</th> --}}
-                      <th>Quantity</th>
-                      <th>Type</th>
+                      <th>Sales Name</th>
                       <th>Status</th>
                       <th>Created On</th>
                       <th>Action</th>
@@ -21,16 +18,11 @@
                       @foreach($products as $count=>$product)
                          <tr>
                             <td>{!! $count+1 !!}</td>
-                            <td>{!! $product->product_name !!}</td>
-                            <td></td>
-                            <td></td>
-                            <td>@if ($product->is_approved == "No")
-                              Pending approval
-                               
-                            @endif</td>
+                            <td>{!! $product->User->name !!}</td>
+                            <td>{!! $product->status !!}</td>
                             <td>{!! date('F jS, Y', strtotime($product->created_at)) !!}</td>
                             <td>
-                               <a href="{!! route('inventory.approve',$product->sku_code) !!}" class="btn btn-sm btn-success">view</a>
+                               <a href="{!! route('inventory.approve',$product->id) !!}" class="btn btn-sm btn-success">view</a>
                             </td>
                          </tr>
                       @endforeach
@@ -38,7 +30,7 @@
                 </table>
              </div>
              <div class="mt-1">
-                {{-- {{ $products->links() }} --}}
+                {{ $products->links() }}
              </div>
           </div>
        </div>

@@ -42,6 +42,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details');
    Route::get('customers/{customerID}/orders', 'customersController@orders');
 
+   Route::post('/messages', 'ChatController@sendMessage');
+
+
    Route::get('customers/order/{orderCode}/details', 'customersController@order_details');
    Route::get('customers/{customerID}/new-order/', 'customersController@new_order');
 
