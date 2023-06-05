@@ -50,10 +50,15 @@ class StockRequisitionController extends Controller
       return response()->json("Stock requisition request successful", 201);
    }
 
-   public function show(StockRequisition $stockRequisition)
+//   public function show(StockRequisition $stockRequisition)
+//   {
+//      $stockRequisition->load('requisitionProducts');
+//      return response()->json([$stockRequisition], 200);
+//   }
+   public function show(Request $request)
    {
-      $stockRequisition->load('requisitionProducts')->where('sales_person', Auth::user()->user_code );
-      return response()->json([$stockRequisition], 200);
+      $stockRequisition=StockRequisition::with('RequisitionProducts')->get();
+      return response()->json(["requisitionProducts"=>$stockRequisition], 200);
    }
 
    public function update(Request $request, StockRequisition $stockRequisition)
