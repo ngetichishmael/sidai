@@ -1,4 +1,4 @@
-c@extends('layouts.app')
+@extends('layouts.app')
 {{-- page header --}}
 @section('title', 'Regions')
 {{-- page styles --}}
@@ -14,11 +14,7 @@ c@extends('layouts.app')
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-<<<<<<< HEAD
-                            <li class="breadcrumb-item"><a href="#">regions</a></li>
-=======
                             <li class="breadcrumb-item"><a href="#">Regions</a></li>
->>>>>>> d837972c81c322f66ae8ad7fd482e0ed403c6e17
                             <li class="breadcrumb-item active"><a href="#">All</a></li>
                         </ol>
                     </div>
