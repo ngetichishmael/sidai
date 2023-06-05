@@ -45,6 +45,6 @@ class customers extends Model
     */
    public function Area(): BelongsTo
    {
-      return $this->belongsTo(Area::class, 'zone_id', 'id');
+      return $this->belongsTo(Area::class, 'unit_id', 'id');
    }
 }

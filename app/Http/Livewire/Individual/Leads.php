@@ -12,6 +12,7 @@ class Leads extends Component
    public $arraySLabel = [];
    public $arraySTargets = [];
    public $arraySAchieved = [];
+   public $label;
    public function render()
    {
       $salestargetEx = SalesTarget::with('User')->get();
