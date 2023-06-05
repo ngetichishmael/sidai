@@ -1,4 +1,4 @@
-c@extends('layouts.app')
+@extends('layouts.app')
 {{-- page header --}}
 @section('title', 'Regions')
 {{-- page styles --}}
