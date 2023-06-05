@@ -230,7 +230,7 @@
         </li>
         <li class="nav-item {!! Nav::isResource('survey') !!}">
             <a class="d-flex align-items-center" href="#">
-                <i data-feather='clipboard'></i><span class="menu-title text-truncate">Survey</span>
+                <i data-feather="dollar-sign"></i><span class="menu-title text-truncate">Survey</span>
             </a>
             <ul class="menu-content">
                 <li>
