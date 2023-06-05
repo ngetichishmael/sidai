@@ -24,6 +24,16 @@ class usersController extends Controller
       return view('app.users.import');
    }
 
+   public function reports()
+   {
+      $reports = User::whereIn('account_type',['Admin','Sales','Manager','Technical-sales-agent'])
+      ->distinct('account_type')
+      ->groupBy('account_type')
+      ->pluck('account_type');
+      $count = 1;
+      return view('app.users.reports', compact('reports','count'));
+   }
+
    //create
    public function create()
    {

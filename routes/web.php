@@ -268,6 +268,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list'])->middleware('UATtoken.validation');
 
+   Route::get('Reports', ['uses' => 'app\usersController@reports', 'as' => 'users.reports']);
+
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);

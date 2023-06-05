@@ -285,6 +285,15 @@
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
             </a>
         </li>
+        <li class="nav-item {!! Nav::isResource('reports') !!}">
+            <a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span
+                    class="menu-title text-truncate" data-i18n="Invoice"> Reports</span></a>
+            <ul class="menu-content">
+                <li><a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
+                            data-feather="circle"></i><span class="menu-item text-truncate">All Reports</span></a>
+                </li>
+            </ul>
+        </li>
            @if(Auth::check() && Auth::user()->account_type == "Admin")
         <li class="nav-item {!! Nav::isResource('settings') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span
