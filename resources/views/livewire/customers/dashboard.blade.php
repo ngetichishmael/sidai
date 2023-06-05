@@ -70,7 +70,7 @@
                                                 type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold"><i data-feather="check"></i>&nbsp;>Approved</a>
                                      @else
                                         <a wire:click.prevent="activate({{ $contact->id }})"
-                                                onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                            onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
                                                 type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" ><i data-feather="pause"></i>&nbsp;Pending</a>
                                      @endif
                                   </div>

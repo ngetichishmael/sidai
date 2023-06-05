@@ -8,12 +8,12 @@ use Livewire\Component;
 
 class CatergoryChart extends Component
 {
-    public function render()
-    {
+   public function render()
+   {
 
       $createdTimeLine = DB::select('SELECT
       DATE_FORMAT(created_at,\'%M:%Y\') AS creation,
-                     SUM(total_amount) AS total
+                     SUM(total_amount) /1000000 AS total
                   FROM
                      `order_items`
                   GROUP BY
@@ -29,19 +29,29 @@ class CatergoryChart extends Component
       }
       $createdTimeLine = new ChartsCatergoryChart();
       $createdTimeLine->labels($arrayTLabel);
-      $createdTimeLine->dataset('Monthly Performance', 'line', $arrayTData)->options([
+      $createdTimeLine->dataset('Monthly Performance in M', 'line', $arrayTData)->options([
          "responsive" => true,
          'color' => "#94DB9D",
          'backgroundColor' => '#07ed6f',
          "borderWidth" => 2,
          "borderRadius" => 5,
          "borderSkipped" => true,
-         "beginAtZero"=>true,
+         "beginAtZero" => true,
+         "scales" => [
+            "y" => [
+                  "callback" => "function(value, index, values) {
+                        if (value >= 1000000) {
+                            return (value / 1000000) + 'M';
+                        }
+                        return value;"
+            ]
+         ]
       ]);
 
-        return view('livewire.dashboard.catergory-chart',[
+
+      return view('livewire.dashboard.catergory-chart', [
 
          'catergories' => $createdTimeLine,
-        ]);
-    }
+      ]);
+   }
 }
