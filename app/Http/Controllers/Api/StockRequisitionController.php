@@ -76,6 +76,7 @@ class StockRequisitionController extends Controller
 
          return [
             'status' => $requisition->status,
+            'date'=>$requisition->created_at,
             'data' => $products
          ];
       });
