@@ -183,11 +183,11 @@
               {{-- <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
                        data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>
               </li> --}}
-              <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
-                       data-feather="clipboard"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
-              </li>
               <li><a class="d-flex align-items-center" href="{{ route('orders.pendingorders') }}"><i
                        data-feather="pause-circle"></i><span class="menu-item text-truncate">Pending Orders</span></a>
+              </li>
+              <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
+                       data-feather="clipboard"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
               </li>
               <li><a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">
                     <i data-feather='archive'></i><span class="menu-title text-truncate" data-i18n="Todo">
