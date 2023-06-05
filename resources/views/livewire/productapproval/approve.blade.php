@@ -21,14 +21,14 @@
                                         <td>{!! $product->quantity !!}</td>
                                         <td>{!! $product->ProductInformation->sku_code !!}</td>
                                         <td>
-                                           @if($product->status =="Approved")
+                                           @if($product->status =="Waiting Approval")
                                               <a wire:click.prevent="approve()"
                                                  onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
-                                                 type="button" class="btn btn-success btn-sm">Approved</a>
+                                                 type="button" class="btn btn-info btn-sm">Require Approval</a>
                                            @else
                                               <a wire:click.prevent="approve()"
                                                  onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
-                                                 type="button" class="btn btn-success btn-sm">Require Approval</a>
+                                                 type="button" class="btn btn-success btn-sm">Approved</a>
                                            @endif
 
                                         </td>
