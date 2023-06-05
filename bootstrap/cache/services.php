@@ -47,9 +47,10 @@
     43 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     44 => 'App\\Providers\\AppServiceProvider',
     45 => 'App\\Providers\\AuthServiceProvider',
-    46 => 'App\\Providers\\EventServiceProvider',
-    47 => 'App\\Providers\\RouteServiceProvider',
-    48 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
+    46 => 'App\\Providers\\BroadcastServiceProvider',
+    47 => 'App\\Providers\\EventServiceProvider',
+    48 => 'App\\Providers\\RouteServiceProvider',
+    49 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
   ),
   'eager' => 
   array (
@@ -84,9 +85,10 @@
     28 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     29 => 'App\\Providers\\AppServiceProvider',
     30 => 'App\\Providers\\AuthServiceProvider',
-    31 => 'App\\Providers\\EventServiceProvider',
-    32 => 'App\\Providers\\RouteServiceProvider',
-    33 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
+    31 => 'App\\Providers\\BroadcastServiceProvider',
+    32 => 'App\\Providers\\EventServiceProvider',
+    33 => 'App\\Providers\\RouteServiceProvider',
+    34 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
   ),
   'deferred' => 
   array (
