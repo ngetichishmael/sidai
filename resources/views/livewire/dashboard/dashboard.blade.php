@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="media-body my-auto">
                                             <h4 class="font-weight-bolder mb-0">{{ number_format($vansales) }}</h4>
-                                            <p class="card-text font-small-3 mb-0">Van Sales</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Van Sales</p>
                                         </div>
                                     </div>
                                 </a>
@@ -58,7 +58,7 @@
                                         </div>
                                         <div class="media-body my-auto">
                                             <h4 class="font-weight-bolder mb-0">{{ number_format($preorder) }}</h4>
-                                            <p class="card-text font-small-3 mb-0">Pre Order</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Pre Order</p>
                                         </div>
                                     </div>
                                 </a>
@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="media-body my-auto">
                                             <h4 class="font-weight-bolder mb-0">{{ number_format($orderfullment) }}</h4>
-                                            <p class="card-text font-small-3 mb-0">Order Fulfillment</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Order Fulfillment</p>
                                         </div>
                                     </div>
                                 </a>
@@ -90,7 +90,7 @@
                                             <h4 class="font-weight-bolder mb-0">
                                                 {{ number_format($activeUser) }} / {{ number_format($activeAll) }}
                                             </h4>
-                                            <p class="card-text font-small-3 mb-0">Active Users</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Active Users</p>
                                         </div>
                                     </div>
                                 </a>
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="media-body my-auto">
                                             <h4 class="font-weight-bolder mb-0">{{ number_format($strike) }}</h4>
-                                            <p class="card-text font-small-3 mb-0">Visits</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Visits</p>
                                         </div>
                                     </div>
                                 </a>
@@ -121,7 +121,7 @@
                                         <div class="media-body my-auto">
                                             <h4 class="font-weight-bolder mb-0">{{ number_format($customersCount) }}
                                             </h4>
-                                            <p class="card-text font-small-3 mb-0">Buying Customer</p>
+                                            <p class="card-text font-small-3 mb-0" style="color: black">Buying Customer</p>
                                         </div>
                                     </div>
                                 </a>
