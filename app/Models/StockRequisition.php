@@ -19,7 +19,7 @@ class StockRequisition extends Model
     */
    public function RequisitionProducts(): HasMany
    {
-       return $this->hasMany(RequisitionProduct::class);
+       return $this->hasMany(RequisitionProduct::class, 'requisition_id');
    }
    /**
     * Get the user that owns the StockRequisition
@@ -28,6 +28,6 @@ class StockRequisition extends Model
     */
    public function user(): BelongsTo
    {
-       return $this->belongsTo(User::class);
+       return $this->belongsTo(User::class, 'user_code');
    }
 }
