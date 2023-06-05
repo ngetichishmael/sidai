@@ -50,8 +50,8 @@
                                     <td>{{ $activity->user->name ?? 'NA'}}</td>
                                    <td>{{ Str::limit($activity->activity, 20) }}</td>
                                     <td>{!! $activity->created_at ?? now() !!}</td>
-                                    <td> <a href="{{ route('activity.show', $activity->id) }}">
-                                            <i data-feather="eye" style="color:#629be7"></i>View </a>
+                                    <td > <a href="{{ route('activity.show', $activity->id) }}" style="color:#629be7">
+                                            <i data-feather="eye" ></i>View </a>
                                     </td>
                                 </tr>
                             @empty
