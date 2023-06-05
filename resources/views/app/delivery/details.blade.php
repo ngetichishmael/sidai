@@ -147,7 +147,7 @@
                 <div class="mt-0 d-flex justify-content-between flex-md-row flex-column invoice-spacing">
                     <div>
                         <div class="logo-wrapper">
-                            <img style="height:50px;" src={{ asset('app-assets/images/bglogo.png') }} alt="Soko Flow" />
+                            <img style="height:50px;" src={{ asset('app-assets/images/bglogo.png') }} alt="Sidai" />
                         </div>
                         <p class="card-text mb-25">23 Olenguruone Avenue, Kileleshwa</p>
                         <p class="card-text mb-25">P.O. Box 15478-00100 City Square, Nairobi</p>

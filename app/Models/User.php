@@ -43,6 +43,17 @@ class User extends Authenticatable implements MustVerifyEmail
    protected $casts = [
       'email_verified_at' => 'datetime',
    ];
+
+
+   public function sentChats()
+   {
+      return $this->hasMany(Chat::class, 'sender_id');
+   }
+
+   public function receivedChats()
+   {
+      return $this->hasMany(Chat::class, 'receiver_id');
+   }
    /**
     * Get all of the Targets for the User
     *

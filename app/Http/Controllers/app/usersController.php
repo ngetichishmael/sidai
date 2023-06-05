@@ -3,18 +3,48 @@
 namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\AppPermission;
 use App\Models\Region;
-use App\Models\area;
 use Exception;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class usersController extends Controller
 {
    //list
+   public function list()
+   {
+      $lists = User::whereIn('account_type',['Technical-Sales-Agent','Sale-Manager','Manager','Admin'])
+         ->distinct('account_type')
+         ->whereNotIn('account_type', ['Customer'])
+         ->groupBy('account_type')
+         ->pluck('account_type');
+      $count = 1;
+      return view('app.users.list', compact('lists','count'));
+   }
+   public function admin()
+   {
+      $admin = User::where('account_type', 'Admin');
+      return view('app.users.index', compact('admin'));
+   }
+   public function salemanager()
+   {
+      $salemanager = User::where('account_type', 'Sale-Manager');
+      return view('app.users.salemanager', compact('salemanager'));
+   }
+   public function manager()
+   {
+      $manager = User::where('account_type', 'Manager');
+      return view('app.users.manager', compact('manager'));
+   }
+   public function technical()
+   {
+      $technical = User::where('account_type', 'Technical-Sales-Agent');
+      return view('app.users.technical', compact('technical'));
+   }
    public function index()
    {
       return view('app.users.index');
@@ -38,9 +68,11 @@ class usersController extends Controller
    public function create()
    {
       // $routes = array_merge($regions, $subregions, $zones);
-      $routes = area::all();
+      $regions = Region::all();
+      $routes = Area::all();
       return view('app.users.create', [
-         "routes" => $routes
+         "routes" => $routes,
+         "regions" => $regions
       ]);
    }
    public function sendOTP($number, $code)
@@ -86,10 +118,9 @@ class usersController extends Controller
          'name' => 'required',
          'phone_number' => 'required',
          'account_type' => 'required',
-         'employee_code' => 'required',
          'route' => 'required',
       ]);
-      $user_code = $request->employee_code;
+      $user_code = rand(100000, 999999);
       //save user
       $code = rand(100000, 999999);
       User::updateOrCreate(

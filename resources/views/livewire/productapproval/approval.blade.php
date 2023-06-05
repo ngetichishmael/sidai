@@ -1,7 +1,7 @@
 <div>
     <div class="row">
        <div class="col-md-12 mb-1">
- 
+
        </div>
        <div class="col-md-12">
           <div class="card">
@@ -18,7 +18,7 @@
                       @foreach($products as $count=>$product)
                          <tr>
                             <td>{!! $count+1 !!}</td>
-                            <td>{!! $product->User->name !!}</td>
+                            <td>{!! $product->User->name ?? '' !!}</td>
                             <td>{!! $product->status !!}</td>
                             <td>{!! date('F jS, Y', strtotime($product->created_at)) !!}</td>
                             <td>
@@ -34,9 +34,8 @@
              </div>
           </div>
        </div>
- 
+
        <!-- Modal -->
-       
+
     </div>
  </div>
- 

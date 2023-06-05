@@ -1,13 +1,13 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Users')
+@section('title', 'Admins')
 
 {{-- content section --}}
 @section('content')
     <!-- begin breadcrumb -->
     <div class="mb-2 row">
         <div class="col-md-9">
-            <h2 class="page-header"> Users </h2>
+            <h2 class="page-header"> Admins </h2>
         </div>
         <div class="col-md-3">
             <center>

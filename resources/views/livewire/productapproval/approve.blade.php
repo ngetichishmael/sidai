@@ -3,7 +3,7 @@
         <div class="col-md-12">
             <div class="pt-0 card-datatable table-responsive">
                 <div class="card">
-                    <div class="card-header"> Allocated Items</div>
+                    <div class="card-header"> Stock Requisition Items</div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
@@ -21,9 +21,16 @@
                                         <td>{!! $product->quantity !!}</td>
                                         <td>{!! $product->ProductInformation->sku_code !!}</td>
                                         <td>
-                                                <button wire:click.prevent="approve()"
-                                                    onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
-                                                    type="button" class="btn btn-success btn-sm">Approved</button>
+                                           @if($product->status =="Waiting Approval")
+                                              <a wire:click.prevent="approve()"
+                                                 onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
+                                                 type="button" class="btn btn-info btn-sm">{{$product->status}}</a>
+                                           @else
+                                              <a wire:click.prevent="approve()"
+                                                 onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
+                                                 type="button" class="btn btn-success btn-sm">{{$product->status}}</a>
+                                           @endif
+
                                         </td>
                                     </tr>
                                 @endforeach
