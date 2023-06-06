@@ -56,10 +56,22 @@ class usersController extends Controller
 
    public function reports()
    {
-      $reports = User::whereIn('account_type',['Admin','Sales','Manager','Technical-sales-agent'])
-      ->distinct('account_type')
-      ->groupBy('account_type')
-      ->pluck('account_type');
+      // $reports1 = User::whereIn('account_type',['Admin','Sales','Manager','Technical-sales-agent'])
+      // ->distinct('account_type')
+      // ->groupBy('account_type')
+      // ->pluck('account_type');
+      $reports = [
+            "WAREHOUSE REPORT",
+            "SIDAI USERS REPORT",
+            "DELIVERY REPORT",
+            "VANSALE REPORT",
+            "PREORDER REPORT",
+            "PAYMENT REPORT",
+            "REGIONAL REPORT",
+            "DISTRIBUTOR REPORT",
+            "SUPPLIERS REPORT",
+            "INVENTORY REPORT"
+      ];
       $count = 1;
       return view('app.users.reports', compact('reports','count'));
    }

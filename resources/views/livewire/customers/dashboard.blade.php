@@ -27,7 +27,6 @@
                         <th>Route</th>
                         <th>Created By</th>
                         <th>Created Date</th>
-                        <th>Order</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
@@ -48,15 +47,11 @@
                                 {!! $contact->Creator->name ?? '' !!}
                             </td>
                             <td>
-                                {!! $contact->created_at ?? '' !!}
-                            </td>
-                            <td>
-                                <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
-                                    class="btn btn-sm btn-secondary">Order</a>
+                                {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
                             <td>
                                <div class="dropdown" >
-                                  <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                  <button style="background-color: #B6121B;color:white" class="btn btn-md  dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                      <i data-feather="settings"></i>
                                   </button>
                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

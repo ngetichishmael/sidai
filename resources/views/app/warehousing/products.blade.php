@@ -47,12 +47,13 @@
                 <tr>
                     <th width="1%">#</th>
                     <th>Name</th>
-                    <th width="13%">Wholesale Price</th>
+                    <th>Wholesale Price</th>
                     <th width="10%">Retail Price</th>
                     <th width="13%">Current Stock</th>
-                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "manager")
+                    <th>Created On</th>
+                    {{-- @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "manager")
                      <th width="12%">Actions</th>
-                  @endif
+                  @endif --}}
                 </tr>
                </thead>
                <tbody>
@@ -75,12 +76,13 @@
 
                             {{ $product->Inventory()->pluck('current_stock')->implode('') }}
                         </td>
+                        <td>{{ $product->ProductPrice->created_at->format('d/m/Y') }}</td>
 
-                        <td>
+                        {{-- <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
                                 <span>Edit</span>
                             </a>
-                        </td>
+                        </td> --}}
                     </tr>
                   @endif
                @endforeach

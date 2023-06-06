@@ -62,7 +62,7 @@
                         {!! Form::select('sales_persons[]', $salesPeople, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
                     </div>
                     <div class="form-group mb-1">
-                        <button class="btn btn-success" type="submit">Save Information</button>
+                        <button class="btn" style="background-color: #B6121B;color:white" type="submit">Save Information</button>
                     </div>
                     {!! Form::close() !!}
                 </div>

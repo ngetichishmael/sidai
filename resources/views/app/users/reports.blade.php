@@ -56,14 +56,26 @@
                        <td>{!! $report !!}</td>
                        <td>
                           <div class="d-flex" style="gap:20px">
-                             @if($report == 'Admin')
+                             @if($report == 'PAYMENT REPORT')
                                 <a href="" class="btn btn-info btn-sm">View</a>
-                            @elseif($report == 'Sales')
+                            @elseif($report == 'REGIONAL REPORT')
                                 <a href="" class="btn btn-info btn-sm">View</a>
-                                @elseif($report == 'Manager')
+                                @elseif($report == 'DISTRIBUTOR REPORT')
                                 <a href="" class="btn btn-info btn-sm">View </a>
-                                @elseif($report == 'Technical-sales-agent')
+                                @elseif($report == 'SUPPLIERS REPORT')
                                 <a href="" class="btn btn-info btn-sm">View</a>
+                                @elseif($report == 'INVENTORY REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
+                                @elseif($report == 'PREORDER REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
+                                @elseif($report == 'VANSALE REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
+                                @elseif($report == 'DELIVERY REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
+                                @elseif($report == 'SIDAI USERS REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
+                                @elseif($report == 'WAREHOUSE REPORT')
+                                <a href="" class="btn btn-info btn-sm">View </a>
                             @endif
                           </div>
                        </td>
