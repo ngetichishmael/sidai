@@ -22,7 +22,8 @@
                 <th>Name</th>
                 <th>Region</th>
                 <th>Sub Region</th>
-                @if(Auth::user()->account_type == 'Admin') <th>Manager's Name</th>@endif
+                @if(Auth::user()->account_type == 'Admin')
+                   <th>Manager's Name</th>@endif
                 <th>Products Counts</th>
                 <th>Action</th>
              </thead>
@@ -49,10 +50,15 @@
                          <td>{!! $warehouse->manager ?? 'NA' !!}</td>
                          <td>{!! $warehouse->product_information_count !!}</td>
                          <td>
-                           <div class="d-flex">
-                            <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" class="btn btn-success btn-sm">Inventory</a>
-                           </div>
+                            <div class="dropdown" >
+                               <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                  <i data-feather="settings"></i>
+                               </button>
+                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit Details</a>
+                                  <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Inventory</a>
+                               </div>
+                            </div>
                          </td>
                       </tr>
                    @endif
@@ -64,6 +70,5 @@
     </div>
  </div>
  @section('scripts')
- 
+
  @endsection
- 

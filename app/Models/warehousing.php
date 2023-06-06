@@ -21,7 +21,7 @@ class warehousing extends Model
    ];
    public function manager()
    {
-      return $this->belongsTo(User::class ,'manager', 'user_code');
+      return $this->belongsTo(User::class ,'shop_attendee', 'user_code');
    }
 
    public function productInformation()

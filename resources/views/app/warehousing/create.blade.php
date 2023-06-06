@@ -39,14 +39,14 @@
                                @endforeach
                              </select>
                   </div>
-                  <div class="form-group mb-1">
-                     <label for="">Managers Email</label>
-                     {!! Form::email('email',null,['class'=>'form-control']) !!}
-                  </div>
-                  <div class="form-group mb-1">
-                     <label for="">Phone number</label>
-                     {!! Form::text('phone_number',null,['class'=>'form-control']) !!}
-                  </div>
+{{--                  <div class="form-group mb-1">--}}
+{{--                     <label for="">Managers Email</label>--}}
+{{--                     {!! Form::email('email',null,['class'=>'form-control']) !!}--}}
+{{--                  </div>--}}
+{{--                  <div class="form-group mb-1">--}}
+{{--                     <label for="">Phone number</label>--}}
+{{--                     {!! Form::text('phone_number',null,['class'=>'form-control']) !!}--}}
+{{--                  </div>--}}
                   <div>
                      @livewire('regionselect.dynamicselect')
                   </div>
