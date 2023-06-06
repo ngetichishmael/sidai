@@ -24,7 +24,7 @@
                     <thead>
                         <tr>
                             <th width="1%">#</th>
-                            <th>Region</th>
+{{--                            <th>Region</th>--}}
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -33,10 +33,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($admin as $key => $user)
+                        @foreach ($nsm as $key => $user)
                             <tr>
                                 <td>{!! $key + 1 !!}</td>
-                                <td>{!! $user->Region->name ?? ' ' !!}</td>
+{{--                                <td>{!! $user->Region->name ?? ' ' !!}</td>--}}
                                 <td>{!! $user->name !!}</td>
                                 <td>
                                     {!! $user->email !!}
@@ -71,7 +71,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-1">{!! $admin->links() !!}</div>
+            <div class="mt-1">{!! $nsm->links() !!}</div>
         </div>
     </div>
 </div>
