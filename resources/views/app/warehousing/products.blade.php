@@ -1,13 +1,13 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','Products')
+@section('title','Inventory')
 
 {{-- content section --}}
 @section('content')
    <!-- begin breadcrumb -->
    <div class="row mb-2">
       <div class="col-md-8">
-         <h2 class="page-header"><i data-feather="list"></i> All Products for {!! $warehouse->name !!} </h2>
+         <h2 class="page-header"><i data-feather="list"></i> Inventory for {!! $warehouse->name !!} </h2>
       </div>
       @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "Super Admin")
          <div class="col-md-4">
@@ -47,11 +47,12 @@
                 <tr>
                     <th width="1%">#</th>
                     <th>Name</th>
-                    <th width="13%">Wholesale Price</th>
-                    <th width="10%">Retail Price</th>
-                    <th width="13%">Current Stock</th>
-                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "manager")
-                     <th width="12%">Actions</th>
+                    <th>Wholesale Price ksh:</th>
+                    <th>Distributor Price ksh:</th>
+                    <th>Retail Price ksh:</th>
+                    <th>Current Stock</th>
+                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "nsm")
+                     <th>Actions</th>
                   @endif
                 </tr>
                </thead>
@@ -59,16 +60,17 @@
                @endif
                @foreach($products as $key => $product)
                   @if(Auth::check() && Auth::user()->account_type == "Admin" ||
-                    (Auth::check() && Auth::user()->account_type == "manager" && \App\Models\warehousing::where("warehouse_code",$product->warehouse_code)))
+                    (Auth::check() && Auth::user()->account_type == "nsm" && \App\Models\warehousing::where("warehouse_code",$product->warehouse_code)))
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
                         <td>
-                            ksh:
                             {{ number_format((float) $product->ProductPrice()->pluck('buying_price')->implode('')) }}
                         </td>
                         <td>
-                            ksh:
+                            {{ number_format((float) $product->ProductPrice()->pluck('buying_price')->implode('')) }}
+                        </td>
+                        <td>
                             {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                         </td>
                         <td>
@@ -78,7 +80,10 @@
 
                         <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
-                                <span>Edit</span>
+                                <span>Re-stock</span>
+                            </a>
+                           <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
+                                <span>Re-stock</span>
                             </a>
                         </td>
                     </tr>
@@ -87,7 +92,7 @@
 
                </tbody>
             </table>
-              
+
          </div>
       </div>
 
