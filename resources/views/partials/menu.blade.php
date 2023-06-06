@@ -1,12 +1,12 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
    <div class="navbar-header mb-3 mt-0">
-      <ul class="nav navbar-nav flex-row" >
+      <ul class="nav navbar-nav flex-row " >
          <li class="nav-item me-auto">
             <a class="" href="#" >
-               <center><img src="{!! asset('app-assets/images/img.png') !!}" alt="Sidai Africa Limited" class="img" width="80%">
+               <center><img src="{!! asset('app-assets/images/sidaiweblogo.png') !!}" alt="Sidai Africa Limited" class="img" width="100%">
                </center>
             </a>
-            <span style="font-weight: bolder; color: #FF4500; align-content: center; font-size: larger">Sidai Africa Limited</span>
+{{--            <span style="font-weight: bolder; color: #FF4500; align-content: center; font-size: larger">Sidai Africa Limited</span>--}}
          </li>
          {{-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> --}}
       </ul>
@@ -72,7 +72,7 @@
 {{--                </ul>--}}
             </li>
            <li class="nav-item {!! Nav::isResource('notification') !!}">
-                <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
+                <a class="d-flex align-items-center" href=""><i data-feather="message-square"></i><span
                         class="menu-title text-truncate" data-i18n="Invoice">Notifications</span></a>
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{ route('CustomerNotification') }}"><i

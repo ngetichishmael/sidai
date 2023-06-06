@@ -1,14 +1,20 @@
-name: Product
+name: Deliveries
 description: |-
 
-  APIs to manage the products
+  APIs to manage the product categories
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/products/{businessCode}'
+    uri: 'api/deliveries/{businessCode}/{userCode}'
     metadata:
-      title: 'Product list'
+      groupName: Deliveries
+      groupDescription: |-
+
+        APIs to manage the product categories
+      subgroup: null
+      subgroupDescription: null
+      title: 'User Delivery'
       description: ''
       authenticated: false
       custom: []
@@ -20,374 +26,544 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: illum
+        example: 2
+        type: integer
+        custom: []
+      userCode:
+        name: userCode
+        description: ''
+        required: true
+        example: est
         type: string
         custom: []
+    cleanUrlParameters:
+      businessCode: 2
+      userCode: est
     queryParameters: []
+    cleanQueryParameters: []
     bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
     responses:
       -
-        status: 404
+        status: 200
+        content: '{"success":true,"message":"Delivery List","data":[]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '51'
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/delivery/{code}/{businessCode}/details'
+    metadata:
+      groupName: Deliveries
+      groupDescription: |-
+
+        APIs to manage the product categories
+      subgroup: null
+      subgroupDescription: null
+      title: 'Delivery details'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      code:
+        name: code
+        description: ''
+        required: true
+        example: 2
+        type: integer
+        custom: []
+      businessCode:
+        name: businessCode
+        description: ''
+        required: true
+        example: rerum
+        type: string
+        custom: []
+    cleanUrlParameters:
+      code: 2
+      businessCode: rerum
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 500
         content: |-
           {
-              "message": "",
-              "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
-              "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php",
-              "line": 43,
+              "message": "Attempt to read property \"order_code\" on null",
+              "exception": "ErrorException",
+              "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\app\\Http\\Controllers\\Api\\deliveryController.php",
+              "line": 51,
               "trace": [
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Routing/CompiledRouteCollection.php",
-                      "line": 144,
-                      "function": "handleMatchedRoute",
-                      "class": "Illuminate\\Routing\\AbstractRouteCollection",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\app\\Http\\Controllers\\Api\\deliveryController.php",
+                      "line": 51,
+                      "function": "handleError",
+                      "class": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 673,
-                      "function": "match",
-                      "class": "Illuminate\\Routing\\CompiledRouteCollection",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
+                      "line": 54,
+                      "function": "details",
+                      "class": "App\\Http\\Controllers\\Api\\deliveryController",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 662,
-                      "function": "findRoute",
-                      "class": "Illuminate\\Routing\\Router",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
+                      "line": 45,
+                      "function": "callAction",
+                      "class": "Illuminate\\Routing\\Controller",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 651,
-                      "function": "dispatchToRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 167,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 261,
                       "function": "dispatch",
+                      "class": "Illuminate\\Routing\\ControllerDispatcher",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
+                      "line": 205,
+                      "function": "runController",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 721,
+                      "function": "run",
+                      "class": "Illuminate\\Routing\\Route",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Routing\\{closure}",
                       "class": "Illuminate\\Routing\\Router",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 128,
-                      "function": "Illuminate\\Foundation\\Http\\{closure}",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/livewire/livewire/src/DisableBrowserCache.php",
-                      "line": 19,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
+                      "line": 50,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
                       "line": 167,
                       "function": "handle",
-                      "class": "Livewire\\DisableBrowserCache",
+                      "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 127,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
-                      "line": 31,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 93,
+                      "function": "handleRequest",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
+                      "line": 55,
+                      "function": "handleRequestUsingNamedLimiter",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
                       "line": 167,
                       "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
-                      "line": 40,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 167,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
-                      "line": 27,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 167,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
-                      "line": 86,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 167,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/fruitcake/laravel-cors/src/HandleCors.php",
-                      "line": 38,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 167,
-                      "function": "handle",
-                      "class": "Fruitcake\\Cors\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/fideloper/proxy/src/TrustProxies.php",
-                      "line": 57,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 167,
-                      "function": "handle",
-                      "class": "Fideloper\\Proxy\\TrustProxies",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
                       "line": 103,
                       "function": "Illuminate\\Pipeline\\{closure}",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 719,
+                      "function": "then",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 698,
+                      "function": "runRouteWithinStack",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 662,
+                      "function": "runRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
+                      "line": 651,
+                      "function": "dispatchToRoute",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
+                      "line": 167,
+                      "function": "dispatch",
+                      "class": "Illuminate\\Routing\\Router",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 128,
+                      "function": "Illuminate\\Foundation\\Http\\{closure}",
+                      "class": "Illuminate\\Foundation\\Http\\Kernel",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\livewire\\livewire\\src\\DisableBrowserCache.php",
+                      "line": 19,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Livewire\\DisableBrowserCache",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php",
+                      "line": 31,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
+                      "line": 21,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php",
+                      "line": 40,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
+                      "line": 27,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
+                      "line": 86,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
+                      "line": 52,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fruitcake\\Cors\\HandleCors",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
+                      "line": 57,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 167,
+                      "function": "handle",
+                      "class": "Fideloper\\Proxy\\TrustProxies",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
+                      "line": 103,
+                      "function": "Illuminate\\Pipeline\\{closure}",
+                      "class": "Illuminate\\Pipeline\\Pipeline",
+                      "type": "->"
+                  },
+                  {
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
                       "line": 142,
                       "function": "then",
                       "class": "Illuminate\\Pipeline\\Pipeline",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
                       "line": 111,
                       "function": "sendRequestThroughRouter",
                       "class": "Illuminate\\Foundation\\Http\\Kernel",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
                       "line": 299,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Http\\Kernel",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
                       "line": 287,
                       "function": "callLaravelOrLumenRoute",
                       "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 89,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
+                      "line": 92,
                       "function": "makeApiCall",
                       "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
                       "line": 45,
                       "function": "makeResponseCall",
                       "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
                       "line": 35,
                       "function": "makeResponseCallIfConditionsPass",
                       "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 222,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 209,
                       "function": "__invoke",
                       "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 179,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 163,
                       "function": "iterateThroughStrategies",
                       "class": "Knuckles\\Scribe\\Extracting\\Extractor",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 116,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Extractor.php",
+                      "line": 95,
                       "function": "fetchResponses",
                       "class": "Knuckles\\Scribe\\Extracting\\Extractor",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 118,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 124,
                       "function": "processRoute",
                       "class": "Knuckles\\Scribe\\Extracting\\Extractor",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 75,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 71,
                       "function": "extractEndpointsInfoFromLaravelApp",
                       "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 51,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\GroupedEndpoints\\GroupedEndpointsFromApp.php",
+                      "line": 49,
                       "function": "extractEndpointsInfoAndWriteToDisk",
                       "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
-                      "line": 50,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
+                      "line": 51,
                       "function": "get",
                       "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
                       "line": 36,
                       "function": "handle",
                       "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Container/Util.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
                       "line": 40,
                       "function": "Illuminate\\Container\\{closure}",
                       "class": "Illuminate\\Container\\BoundMethod",
                       "type": "::"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
                       "line": 93,
                       "function": "unwrapIfClosure",
                       "class": "Illuminate\\Container\\Util",
                       "type": "::"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 37,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
+                      "line": 35,
                       "function": "callBoundMethod",
                       "class": "Illuminate\\Container\\BoundMethod",
                       "type": "::"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php",
                       "line": 653,
                       "function": "call",
                       "class": "Illuminate\\Container\\BoundMethod",
                       "type": "::"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Console/Command.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
                       "line": 136,
                       "function": "call",
                       "class": "Illuminate\\Container\\Container",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/symfony/console/Command/Command.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\symfony\\console\\Command\\Command.php",
                       "line": 298,
                       "function": "execute",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 121,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
+                      "line": 120,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Command\\Command",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/symfony/console/Application.php",
-                      "line": 1015,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\symfony\\console\\Application.php",
+                      "line": 1040,
                       "function": "run",
                       "class": "Illuminate\\Console\\Command",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/symfony/console/Application.php",
-                      "line": 299,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\symfony\\console\\Application.php",
+                      "line": 301,
                       "function": "doRunCommand",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/symfony/console/Application.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\symfony\\console\\Application.php",
                       "line": 171,
                       "function": "doRun",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Console/Application.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
                       "line": 94,
                       "function": "run",
                       "class": "Symfony\\Component\\Console\\Application",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
                       "line": 129,
                       "function": "run",
                       "class": "Illuminate\\Console\\Application",
                       "type": "->"
                   },
                   {
-                      "file": "/var/www/html/sokoflowadmin/artisan",
-                      "line": 37,
+                      "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\artisan",
+                      "line": 35,
                       "function": "handle",
                       "class": "Illuminate\\Foundation\\Console\\Kernel",
                       "type": "->"
@@ -397,5 +573,78 @@ endpoints:
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '50'
+          access-control-allow-origin: '*'
         description: null
+        custom: []
     responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/accept/delivery
+    metadata:
+      groupName: Deliveries
+      groupDescription: |-
+
+        APIs to manage the product categories
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/reject/delivery
+    metadata:
+      groupName: Deliveries
+      groupDescription: |-
+
+        APIs to manage the product categories
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

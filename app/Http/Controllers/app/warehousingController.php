@@ -63,7 +63,7 @@ class warehousingController extends Controller
       $regions = Region::all();
       $allsubregions = Subregion::all()->whereNotNull('id')->pluck('id');
 
-      $managers =User::where('account_type', 'manager')->get();
+      $managers =User::where('account_type', 'store-manager')->get();
 
       return view('app.warehousing.create', compact('country','managers','allsubregions','regions'));
    }
