@@ -269,7 +269,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('user{id}/suspend', ['uses' => 'app\usersController@suspend', 'as' => 'user.suspend']);
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
-   Route::get('users-admin', ['uses' => 'app\usersController@admin', 'as' => 'users.admin']);
+   Route::get('users-nsm', ['uses' => 'app\usersController@nsm', 'as' => 'users.nsm']);
    Route::get('sale-manager', ['uses' => 'app\usersController@salemanager', 'as' => 'sale-manager']);
    Route::get('manager', ['uses' => 'app\usersController@manager', 'as' => 'manager']);
    Route::get('technical-sales-agent', ['uses' => 'app\usersController@technical', 'as' => 'technical-sales-agent']);

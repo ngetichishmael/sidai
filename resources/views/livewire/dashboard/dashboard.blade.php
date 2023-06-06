@@ -140,7 +140,50 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="card">
-                                @livewire('dashboard.brand-chart')
+{{--                                @livewire('dashboard.brand-chart')--}}
+                                   <canvas id="ordersChart"></canvas>
+                                   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                   <script>
+                                      var ctx = document.getElementById('ordersChart').getContext('2d');
+                                      var chart = new Chart(ctx, {
+                                         type: 'line',
+                                         data: {
+                                            labels: {!! json_encode($preOrdersLabels) !!},
+                                            datasets: [
+                                               {
+                                                  label: 'Pre-Orders',
+                                                  data: {!! json_encode($preOrdersData) !!},
+                                                  backgroundColor: 'rgba(0, 123, 255, 0.3)',
+                                                  borderColor: 'rgba(0, 123, 255, 1)',
+                                                  borderWidth: 2,
+                                                  pointRadius: 4,
+                                                  pointHoverRadius: 6
+                                               },
+                                               {
+                                                  label: 'Delivered',
+                                                  data: {!! json_encode($deliveredOrdersData) !!},
+                                                  backgroundColor: 'rgba(194,62,70,0.51)',
+                                                  borderColor: 'rgb(182,18,27)',
+                                                  borderWidth: 2,
+                                                  pointRadius: 4,
+                                                  pointHoverRadius: 6
+                                               }
+                                            ]
+                                         },
+                                         options: {
+                                            responsive: true,
+                                            maintainAspectRatio: false,
+                                            scales: {
+                                               y: {
+                                                  beginAtZero: true,
+                                                  suggestedMin: 100,
+                                                  stepSize: 50
+                                               }
+                                            }
+                                         }
+                                      });
+                                   </script>
+
                                 </div>
 
                             </div>

@@ -6,16 +6,11 @@
                <center><img src="{!! asset('app-assets/images/sidaiweblogo.png') !!}" alt="Sidai Africa Limited" class="img" width="100%">
                </center>
             </a>
-{{--            <span style="font-weight: bolder; color: #FF4500; align-content: center; font-size: larger">Sidai Africa Limited</span>--}}
          </li>
-         {{-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> --}}
       </ul>
    </div>
-   <div class="shadow-bottom bor"></div>
-   <div class="main-menu-content" >
-
-{{--   <div class="shadow-bottom"></div>--}}
-{{--    <div class="main-menu-content">--}}
+    <div class="shadow-bottom"></div>
+    <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item {!! Nav::isRoute('app.dashboard') !!}">
                 <a class="d-flex align-items-center" href="{!! route('app.dashboard') !!}">
@@ -317,22 +312,22 @@
                  <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
               </a>
               <ul class="menu-content">
-                 <li><a class="d-flex align-items-center" href="{!! route('users.admin') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Admins</span></a>
+                 <li><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}"><i
+                          data-feather="circle"></i><span class="menu-item text-truncate">NSM</span></a>
                  </li>
 
                  <li><a class="d-flex align-items-center" href="{!! route('technical-sales-agent') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Technicians</span></a>
+                          data-feather="circle"></i><span class="menu-item text-truncate">RSM</span></a>
                  </li>
                  <li><a class="d-flex align-items-center" href="{!! route('manager') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Managers</span></a>
+                          data-feather="circle"></i><span class="menu-item text-truncate">TSR</span></a>
                  </li>
 
                  <li><a class="d-flex align-items-center" href="{!! route('sale-manager') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Sales Agent</span></a>
+                          data-feather="circle"></i><span class="menu-item text-truncate">Shop Attendee</span></a>
                  </li>
                  <li><a class="d-flex align-items-center" href="{!! route('rider') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Rider</span></a>
+                          data-feather="circle"></i><span class="menu-item text-truncate">TD</span></a>
                  </li>
               </ul>
 

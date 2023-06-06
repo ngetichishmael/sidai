@@ -19,7 +19,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Users</a></li>
+                            <li class="breadcrumb-item"><a href="#">National Sales Manager</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
@@ -70,13 +70,14 @@
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="select-country">User Type</label>
-                                                    <select class="form-control select2" id="select-country"
+                                                    <select class="form-control select2" id="account-type"
                                                         name="account_type" required>
                                                         <option value="">Select Category</option>
-                                                       <option value="Admin">Administrator</option>
-                                                       <option value="Manager">Manager</option>
-                                                       <option value="Sales">Sales Manager</option>
-                                                       <option value="Technical-sales-agent">Technical Sales Agent</option>
+                                                       <option value="NSM">National Sales Manager</option>
+                                                       <option value="RSM">Regional Sales Manager</option>
+                                                       <option value="TSR">Technical Sales Representative</option>
+                                                       <option value="Shop-Attendee">Shop Attendee</option>
+                                                       <option value="TD">Trade Developer</option>
 
                                                     </select>
                                                 </div>
