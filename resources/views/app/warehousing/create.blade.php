@@ -32,7 +32,7 @@
                      {!! Form::text('name',null,['class'=>'form-control','required'=>'']) !!}
                   </div>
                   <div class="form-group mb-1">
-                     <label for="">Choose Manager</label>
+                     <label for="">Choose Store Manager</label>
                      <select class="form-control select2" id="clerks" name="manager" required>
                              @foreach ($managers as $data)
                             <option value="{{ $data->user_code }}">{{ $data->name  }}</option>

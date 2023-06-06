@@ -6,7 +6,8 @@
                     <thead>
                         <tr>
                             <th width="1%">#</th>
-                            <th>Name</th>
+                            <th>Regions</th>
+                           <th>Customers</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -14,6 +15,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $region->name }}</td>
+                               <td>{{$customer_counts->where('region_id','=',$region->id)->count()}}</td>
                             </tr>
                         @endforeach
                     </tbody>

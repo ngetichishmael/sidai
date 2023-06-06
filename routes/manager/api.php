@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
 use App\Http\Controllers\Api\Manager\UsersController;
 use Illuminate\Support\Facades\Route;
+use Knuckles\Scribe\Annotations as Scribe;
 /*
 |--------------------------------------------------------------------------
 | API Routes

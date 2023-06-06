@@ -58,7 +58,7 @@
                             {!! Form::label('name', 'Name', ['class' => 'control-label']) !!}
                             {!! Form::text('name', null, [
                                 'class' => 'form-control',
-                                'placeholder' => 'Enter Zone Name',
+                                'placeholder' => 'Enter Region Name',
                                 'required' => '',
                             ]) !!}
                         </div>

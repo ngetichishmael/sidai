@@ -1,0 +1,208 @@
+name: "Authentication Api's"
+description: |-
+
+  APIs to manage the user Authentication.
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: "Authentication Api's"
+      groupDescription: |-
+
+        APIs to manage the user Authentication.
+      subgroup: null
+      subgroupDescription: null
+      title: 'User Login'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: ''
+        required: true
+        example: emma75@example.com
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'user password.'
+        required: true
+        example: 'I)wSW8!?7SFZemGRZCp;'
+        type: string
+        custom: []
+    cleanBodyParameters:
+      email: emma75@example.com
+      password: 'I)wSW8!?7SFZemGRZCp;'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "message": "Hi User Name, welcome",
+          "access_token": "254|33icFsR8uIOF1KsOeaJ114ntrU8adIX7gitwAveK",
+          "token_type": "Bearer"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/send/otp/{number}'
+    metadata:
+      groupName: "Authentication Api's"
+      groupDescription: |-
+
+        APIs to manage the user Authentication.
+      subgroup: null
+      subgroupDescription: null
+      title: 'send otp'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      number:
+        name: number
+        description: ''
+        required: true
+        example: velit
+        type: string
+        custom: []
+    cleanUrlParameters:
+      number: velit
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/verify/otp/{number}/{otp}'
+    metadata:
+      groupName: "Authentication Api's"
+      groupDescription: |-
+
+        APIs to manage the user Authentication.
+      subgroup: null
+      subgroupDescription: null
+      title: 'verify otp'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      number:
+        name: number
+        description: ''
+        required: true
+        example: ipsam
+        type: string
+        custom: []
+      otp:
+        name: otp
+        description: ''
+        required: true
+        example: provident
+        type: string
+        custom: []
+    cleanUrlParameters:
+      number: ipsam
+      otp: provident
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/reset-password
+    metadata:
+      groupName: "Authentication Api's"
+      groupDescription: |-
+
+        APIs to manage the user Authentication.
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      phone_number:
+        name: phone_number
+        description: ''
+        required: true
+        example: incidunt
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Must be at least 6 characters.'
+        required: true
+        example: "Hv}_)<'l8"
+        type: string
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: ''
+        required: true
+        example: ad
+        type: string
+        custom: []
+    cleanBodyParameters:
+      phone_number: incidunt
+      password: "Hv}_)<'l8"
+      password_confirmation: ad
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
