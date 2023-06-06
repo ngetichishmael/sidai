@@ -35,7 +35,8 @@ class Dashboard extends Component
         $this->start = $this->start == null ? $start_date : $this->start;
         $this->end = $this->end == null ? $end_date : $this->end;
         // dd($this->start);
-
+       $startDate = Carbon::now()->subMonth();
+       $endDate = Carbon::now();
 
         $vansales = Orders::where('order_type', 'Van sales')
             ->whereBetween('updated_at', [$this->start, $this->end])
@@ -100,6 +101,27 @@ class Dashboard extends Component
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->sum('amount');
 
+       $preOrders = Orders::where('order_type', 'pre-orders')
+          ->where('order_status', 'delivered')
+          ->whereBetween('delivery_date', [$startDate, $endDate])
+          ->selectRaw('DATE(delivery_date) AS date, COUNT(*) AS count')
+          ->groupBy('date')
+          ->orderBy('date')
+          ->get();
+
+// Retrieve delivered orders for the last one month
+       $deliveredOrders = Orders::where('order_status', 'delivered')
+          ->whereBetween('delivery_date', [$startDate, $endDate])
+          ->selectRaw('DATE(delivery_date) AS date, COUNT(*) AS count')
+          ->groupBy('delivery_date')
+          ->orderBy('delivery_date')
+          ->get();
+       $preOrdersLabels = $preOrders->pluck('date')->toArray();
+       $preOrdersData = $preOrders->pluck('count')->toArray();
+
+       $deliveredOrdersLabels = $deliveredOrders->pluck('delivery_date')->toArray();
+       $deliveredOrdersData = $deliveredOrders->pluck('delivery_date')->toArray();
+
 
         $customersCount = Orders::distinct('customerID')
             ->whereBetween('updated_at', [$this->start, $this->end])
@@ -109,6 +131,8 @@ class Dashboard extends Component
             ->distinct('customerID')
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->paginate($this->perBuyingCustomer);
+
+
         return view('livewire.dashboard.dashboard', [
             'Cash' => $cash,
             'Mpesa' => $mpesa,
@@ -128,6 +152,10 @@ class Dashboard extends Component
             'orderfullmentTotal' => $orderfullmentTotal,
             'visitsTotal' => $visitsTotal,
             'customersCountTotal' => $customersCountTotal,
+           'deliveredOrdersData'=>$deliveredOrdersData,
+           'deliveredOrdersLabels'=>$deliveredOrdersLabels,
+           'preOrdersLabels'=>$preOrdersLabels,
+           'preOrdersData'=>$preOrdersData ,
         ]);
     }
     public function mount()

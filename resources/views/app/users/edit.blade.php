@@ -69,11 +69,12 @@
                                                         {{ $edit->account_type }}</label>
                                                     <select class="form-control select2" id="select-country"
                                                         name="account_type" required>
-                                                        <option value="">Select Type</option>
-                                                       <option value="Admin">Administrator</option>
-                                                       <option value="Manager">Manager</option>
-                                                       <option value="Sale-Manager">Sales Manager</option>
-                                                       <option value="Technical-Sales-Agent">Technical Sales Agent</option>
+                                                       <option value="">Select Category</option>
+                                                       <option value="NSM">National Sales Manager</option>
+                                                       <option value="RSM">Regional Sales Manager</option>
+                                                       <option value="TSR">Technical Sales Representative</option>
+                                                       <option value="Shop-Attendee">Shop Attendee</option>
+                                                       <option value="TD">Trade Developer</option>
                                                     </select>
                                                 </div>
                                             </div>
