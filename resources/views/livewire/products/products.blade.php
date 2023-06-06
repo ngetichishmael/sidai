@@ -21,10 +21,11 @@
                     <tr>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th width="13%">Wholesale Price</th>
-                        <th width="10%">Retail Price</th>
-                        <th width="13%">Current Stock</th>
-                        <th width="12%">Actions</th>
+                        <th>Wholesale Price</th>
+                        <th>Distributors Price</th>
+                        <th>Retail Price</th>
+                        <th>Current Stock</th>
+                        <th >Actions</th>
                     </tr>
                 </thead>
                 <tbody>

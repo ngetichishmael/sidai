@@ -262,6 +262,7 @@ Route::group(['middleware' => ['verified']], function () {
    /* === users === */
    Route::get('users', ['uses' => 'app\usersController@index', 'as' => 'users.index']);
    Route::get('user/create', ['uses' => 'app\usersController@create', 'as' => 'user.create']);
+   Route::get('user/creatensm', ['uses' => 'app\usersController@creatensm', 'as' => 'user.creatensm']);
    Route::post('user/store', ['uses' => 'app\usersController@store', 'as' => 'user.store']);
    Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
@@ -270,9 +271,10 @@ Route::group(['middleware' => ['verified']], function () {
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
    Route::get('users-nsm', ['uses' => 'app\usersController@nsm', 'as' => 'users.nsm']);
-   Route::get('sale-manager', ['uses' => 'app\usersController@salemanager', 'as' => 'sale-manager']);
-   Route::get('manager', ['uses' => 'app\usersController@manager', 'as' => 'manager']);
-   Route::get('technical-sales-agent', ['uses' => 'app\usersController@technical', 'as' => 'technical-sales-agent']);
+   Route::get('shop-attendee', ['uses' => 'app\usersController@shopattendee', 'as' => 'shop-attendee']);
+   Route::get('tsr', ['uses' => 'app\usersController@tsr', 'as' => 'tsr']);
+   Route::get('rsm', ['uses' => 'app\usersController@rsm', 'as' => 'rsm']);
+   Route::get('td', ['uses' => 'app\usersController@td', 'as' => 'td']);
    Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
 
    Route::get('Reports', ['uses' => 'app\usersController@reports', 'as' => 'users.reports']);

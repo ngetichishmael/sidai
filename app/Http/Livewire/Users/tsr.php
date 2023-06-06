@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithPagination;
 use Livewire\Component;
 
-class technical extends Component
+class tsr extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -22,14 +22,14 @@ class technical extends Component
    public function render()
    {
       $this->bulkDisabled = count($this->selectedData) < 1;
-        $technical =  User::where('account_type', ['Technical-Sales-Agent'])
+        $tsr =  User::where('account_type', ['TSR'])
                      ->orderBy($this->orderBy,$this->orderAsc ? 'desc' : 'asc')
                      ->paginate($this->perPage);
-        return view('livewire.users.technical',compact('technical'));
+        return view('livewire.users.tsr',compact('tsr'));
     }
    public function SelectedNotify()
    {
-      return redirect()->to('technical-sales-agent');
+      return redirect()->to('tsr');
    }
    public function MassiveNotify()
    {
@@ -54,7 +54,7 @@ class technical extends Component
       }
       $this->sendFirebaseNotification($fcms);
       Session()->flash('success', "Notification Sent");
-      return redirect()->to('technical-sales-agent');
+      return redirect()->to('tsr');
    }
    public function sendFirebaseNotification($fcm_token)
    {

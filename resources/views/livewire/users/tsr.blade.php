@@ -33,7 +33,7 @@
                </tr>
                </thead>
                <tbody>
-               @foreach ($manager as $key => $user)
+               @foreach ($tsr as $key => $user)
                   <tr>
                      <td>{!! $key + 1 !!}</td>
                      <td>{!! $user->Region->name ?? ' ' !!}</td>
@@ -71,7 +71,7 @@
                </tbody>
             </table>
          </div>
-         <div class="mt-1">{!! $manager->links() !!}</div>
+         <div class="mt-1">{!! $tsr->links() !!}</div>
       </div>
    </div>
 </div>

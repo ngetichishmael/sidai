@@ -19,7 +19,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">National Sales Manager</a></li>
+                            <li class="breadcrumb-item"><a href="#">User</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
@@ -84,11 +84,11 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">Route</label>
-                                                    <select class="form-control select2" id="select-country" name="route"
+                                                    <label for="select-region">Regions</label>
+                                                    <select class="form-control select2" id="region" name="region"
                                                         required>
-                                                        <option value="">Route</option>
-                                                        @foreach ($routes as $value)
+                                                        <option value="">Select a Region</option>
+                                                        @foreach ($regions as $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }}
                                                             </option>
                                                         @endforeach

@@ -46,7 +46,7 @@
                 </tr>
              </thead>
              <tbody>
-                @foreach($technical as $key => $user)
+                @foreach($rsm as $key => $user)
 {{--                   @if($user->businessID == Auth::user()->businessID)--}}
                       <tr>
                          <td>{!! $key + 1 !!}</td>
@@ -134,7 +134,7 @@
                 @endforeach
              </tbody>
           </table>
-          <div class="mt-1">{!! $technical->links() !!}</div>
+          <div class="mt-1">{!! $rsm->links() !!}</div>
        </div>
     </div>
    @include('livewire.notification.users.modal')
