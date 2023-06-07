@@ -219,6 +219,11 @@
                     Delivery History</span>
                  </a>
               </li>
+              <li><a class="d-flex align-items-center" href="{!! route('orders.distributororders') !!}">
+                    <i data-feather='circle'></i><span class="menu-title text-truncate" data-i18n="Todo">
+                    Distributor Orders</span>
+                 </a>
+              </li>
            </ul>
         </li>
 {{--        <li class="nav-item {!! Nav::isResource('deliver') !!}">--}}
@@ -288,6 +293,7 @@
                @endif
 {{--               <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i--}}
 {{--                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>--}}
+
                             <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
                                 data-feather="layers"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
@@ -326,7 +332,7 @@
                  <li><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}"><i
                           data-feather="circle"></i><span class="menu-item text-truncate">Shop Attendee</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{!! route('rider') !!}"><i
+                 <li><a class="d-flex align-items-center" href="{!! route('td') !!}"><i
                           data-feather="circle"></i><span class="menu-item text-truncate">TD</span></a>
                  </li>
               </ul>

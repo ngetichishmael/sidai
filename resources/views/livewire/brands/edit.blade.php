@@ -17,10 +17,10 @@
                         <td>{{  $all->name  }}</td>
                         <td>
                            <div class="d-flex" style="gap: 20px;">
-                              <a href="{{ route('product.brand.edit', $all->id) }}" class="btn btn-sm btn-primary">
+                              <a href="{{ route('product.brand.edit', $all->id) }}" class="btn btn-sm" style="background-color: #B6121B;color:white">
                                  Edit
                                  </a>
-                              <a href="{{  route('product.brand.destroy', $all->id)  }}" class="btn btn-sm delete btn-danger">
+                              <a href="{{  route('product.brand.destroy', $all->id)  }}" class="btn btn-sm delete" style="background-color: #B6121B;color:white">
                                  DELETE
                               </a>
                            </div>

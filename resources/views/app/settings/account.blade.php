@@ -55,7 +55,7 @@
                         {!! Form::text('phone_number', null, ['class' => 'form-control', 'required' => '']) !!}
                     </div>
                     <div class="mb-1 col-md-12">
-                        <center><button type="submit" class="btn btn-success">Save Information</button></center>
+                        <center><button type="submit" class="btn" style="background-color: #B6121B;color:white">Save Information</button></center>
                     </div>
                     {!! Form::close() !!}
                 </div>

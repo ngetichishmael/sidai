@@ -51,9 +51,9 @@
 
                             <td>
                                 <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
-                                    class="btn btn-sm btn-secondary">View</a>
+                                    class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm btn-primary">Clear</a>
+                                    class="btn btn-sm" style="background-color: #B6121B;color:white">Edit</a>
                             </td>
                             </tr>
                         @endforeach

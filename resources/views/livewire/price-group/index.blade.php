@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="my-1 col-sm-9 offset-sm-3">
-                                <button type="submit" class="mr-1 btn btn-primary">Submit</button>
+                                <button type="submit" class="mr-1 btn " style="background-color: #B6121B;color:white">Submit</button>
                             </div>
                         </form>
                     </div>

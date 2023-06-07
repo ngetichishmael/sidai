@@ -186,8 +186,7 @@ class customerController extends Controller
       ]);
       $groups = groups::get();
       $pricing = PriceGroup::get();
-      return view(
-         'app.customers.edit',
+      return view('app.customers.edit',
          compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing')
       );
    }
@@ -208,8 +207,7 @@ class customerController extends Controller
       ]);
       $groups = groups::get();
       $pricing = PriceGroup::get();
-      return view(
-         'app.creditors.edit',
+      return view('app.creditors.edit',
          compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing')
       );
    }

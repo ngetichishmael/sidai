@@ -38,7 +38,7 @@
                       <td>{!! $warehouse->product_information_count !!}</td>
                       <td>
  {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
-                         <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Inventory</a>
+                         <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Inventory</a>
                       </td>
                    </tr>
                    @elseif(Auth::user()->account_type == 'Admin')

@@ -34,7 +34,7 @@
                   </div>
                   <div class="form-group mt-4">
                      <center>
-                        <button type="submit" class="btn btn-success submit"><i class="fas fa-save"></i> Update brand</button>
+                        <button type="submit" class="btn submit" style="background-color: #B6121B;color:white"><i class="fas fa-save"></i> Update brand</button>
                      </center>
                   </div>
                {!! Form::close() !!}

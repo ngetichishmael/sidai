@@ -28,6 +28,10 @@ class ordersController extends Controller
    {
       return view('app.orders.pendingdeliveries');
    }
+   public function distributororders()
+   {
+      return view('app.orders.pendingdeliveries');
+   }
    public function pendingorders()
    {
       return view('app.orders.pendingorders');

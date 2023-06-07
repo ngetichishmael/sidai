@@ -25,7 +25,7 @@ class td extends Component
         $td =  User::where('account_type', ['TD'])
                      ->orderBy($this->orderBy,$this->orderAsc ? 'desc' : 'asc')
                      ->paginate($this->perPage);
-        return view('livewire.users.technical',compact('td'));
+        return view('livewire.users.td',compact('td'));
     }
    public function SelectedNotify()
    {

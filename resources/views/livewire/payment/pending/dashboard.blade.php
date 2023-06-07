@@ -41,7 +41,7 @@
                         <td>{!! number_format($deliver->Order->balance ?? 0) !!}</td>
                         <td>{!! $deliver->delivery_status !!}</td>
                         <td>{!! $deliver->updated_at !!}</td>
-                        <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->name) !!}" class="btn btn-sm btn-success">View</a></td>
+                        <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->name) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a></td>
                     </tr>
                     @endforeach
                     </tr>

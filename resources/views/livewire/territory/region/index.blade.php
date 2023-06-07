@@ -38,7 +38,7 @@
                         accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required />
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success submit">Import</button>
+                    <button type="submit" class="btn  submit" style="background-color: #B6121B;color:white">Import</button>
 
                 </div>
             </form>
@@ -64,7 +64,7 @@
                         </div>
                         <div class="mt-4 form-group">
                             <center>
-                                <button type="submit" class="btn btn-success submit"><i class="fas fa-save"></i> Add
+                                <button type="submit" class="btn  submit" style="background-color: #B6121B;color:white"><i class="fas fa-save"></i> Add
                                     Region</button>
                             </center>
                         </div>
