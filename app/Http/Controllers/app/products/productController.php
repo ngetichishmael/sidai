@@ -214,7 +214,7 @@ class productController extends Controller
 //      if ($request->has('image')) {
 //         $image_path = $request->file('image')->store('image', 'public');
 //      }
-      product_information::update([
+      product_information::updateOrCreate([
          'id' => $id,
          "business_code" => Auth::user()->business_code,
       ], [
@@ -280,7 +280,7 @@ class productController extends Controller
       $activityLog->ip_address = $request->ip();
       $activityLog->save();
 
-      return redirect()->route('product.index');
+      return redirect()->back();
    }
 
    public function approvestock($id){
