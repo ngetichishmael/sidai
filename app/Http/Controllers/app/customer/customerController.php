@@ -17,6 +17,7 @@ use App\Models\suppliers\supplier_address;
 use File;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class customerController extends Controller
 {
@@ -65,13 +66,22 @@ class customerController extends Controller
    public function approvecreditor($id)
    {
 
-      Customers::whereId($id)->update(
+      $c=Customers::whereId($id)->update(
          [
             'customer_type' => 'creditor',
             'is_creditor' => '1'
          ]
       );
       Session::flash('success', 'Customer successfully Approved');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Customer approved';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Customer successfully Approved';
+      $activityLog->action = 'Customer '. $c->customer_name.' successfully Approved';
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('creditors');
    }
@@ -113,7 +123,7 @@ class customerController extends Controller
       $customer->save();
 
       Session::flash('success', 'Customer successfully Added');
-      $random = rand(999999);
+      $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating customer';
       $activityLog->user_code = auth()->user()->user_code;
@@ -248,7 +258,7 @@ class customerController extends Controller
 
 
       Session::flash('success', 'Customer updated successfully');
-      $random = rand(0, 9999);
+      $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Updating customer details';
       $activityLog->user_code = auth()->user()->user_code;
