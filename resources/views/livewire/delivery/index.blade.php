@@ -45,8 +45,9 @@
                             <td title="{{ $deliver->Customer->Area->Subregion->name ?? null }}">
                                 {{ Str::limit($deliver->Customer->Area->name ?? null, 20) }}</td>
                             <td>{!! $deliver->User->name !!}</td>
-                           <td>{{ $deliver->delivery_status }}</td>
-                            <td>{!! $deliver->updated_at !!}</td>
+                           <td class="{{ $deliver->delivery_status === 'Delivered' ? 'text-green' : ($deliver->delivery_status === 'Partial delivery' ? 'text-blue' : '') }}">
+                              {{ $deliver->delivery_status }}</td>
+                           <td>{!! $deliver->updated_at !!}</td>
 {{--                            <td><a href="" class="badge {!! $deliver->delivery_status !!}"--}}
 {{--                                    style="color: rgb(2, 66, 100);">{!! $deliver->delivery_status !!}</a></td>--}}
                             <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->User->name) !!}" class="btn btn-sm btn-success">View</a></td>

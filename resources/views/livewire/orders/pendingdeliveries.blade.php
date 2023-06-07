@@ -48,7 +48,7 @@
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
-                                <td>{{ $order->order_type }}</td>
+                                <td>{{ $order->Order->order_type }}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 20) }}</td>
                                 <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
@@ -57,9 +57,9 @@
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
-                                <td>ksh {{ number_format($order->price_total) }}</td>
-                                <td>ksh {{ number_format($order->balance) }}</td>
-                                <td>{{ $order->qty }}</td>
+                                <td>ksh {{ number_format($order->Order->price_total) }}</td>
+                                <td>ksh {{ number_format($order->Order->balance) }}</td>
+                                <td>{{ $order->Order->qty }}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}
 
                                <td>

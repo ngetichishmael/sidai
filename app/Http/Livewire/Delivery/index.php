@@ -22,7 +22,7 @@ class index extends Component
    {
 
       $searchTerm = '%' . $this->search . '%';
-      $deliveries = Delivery::where('delivery_status', 'AAA')
+      $deliveries = Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])->with('User', 'Customer')
          ->search($searchTerm)
          ->orderBy('updated_at', 'desc')
          ->paginate($this->perPage);
