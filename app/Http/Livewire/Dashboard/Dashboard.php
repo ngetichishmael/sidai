@@ -103,12 +103,12 @@ class Dashboard extends Component
 
        $preOrders = Orders::where('order_type', 'pre-orders')
           ->where('order_status', 'delivered')
-          ->whereBetween('delivery_date', [$startDate, $endDate])
-          ->selectRaw('DATE(delivery_date) AS date, COUNT(*) AS count')
+          ->whereBetween('created_at', [$startDate, $endDate])
+          ->selectRaw('DATE(created_at) AS date, COUNT(*) AS count')
           ->groupBy('date')
           ->orderBy('date')
           ->get();
-
+//dump($preOrders);
 // Retrieve delivered orders for the last one month
        $deliveredOrders = Orders::where('order_status', 'delivered')
           ->whereBetween('delivery_date', [$startDate, $endDate])
@@ -116,11 +116,14 @@ class Dashboard extends Component
           ->groupBy('delivery_date')
           ->orderBy('delivery_date')
           ->get();
+//       dump($deliveredOrders);
        $preOrdersLabels = $preOrders->pluck('date')->toArray();
        $preOrdersData = $preOrders->pluck('count')->toArray();
+//       dump($preOrdersData, $preOrdersLabels);
 
-       $deliveredOrdersLabels = $deliveredOrders->pluck('delivery_date')->toArray();
-       $deliveredOrdersData = $deliveredOrders->pluck('delivery_date')->toArray();
+       $deliveredOrdersLabels = $deliveredOrders->pluck('date')->toArray();
+       $deliveredOrdersData = $deliveredOrders->pluck('count')->toArray();
+//       dump($deliveredOrdersData, $deliveredOrdersLabels);
 
 
         $customersCount = Orders::distinct('customerID')

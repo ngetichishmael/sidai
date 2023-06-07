@@ -291,7 +291,6 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('delivery', ['uses' => 'app\deliveryController@index', 'as' => 'delivery.index']);
    Route::get('delivery/{code}/details', ['uses' => 'app\deliveryController@details', 'as' => 'delivery.details']);
 
-
    /* === Warehousing === */
    Route::get('warehousing', ['uses' => 'app\warehousingController@index', 'as' => 'warehousing.index']);
    Route::get('warehousing/create', ['uses' => 'app\warehousingController@create', 'as' => 'warehousing.create']);
@@ -331,6 +330,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('pendingorders', ['uses' => 'app\ordersController@pendingorders', 'as' => 'orders.pendingorders']);
    Route::get('pendingdeliveries', ['uses' => 'app\ordersController@pendingdeliveries', 'as' => 'orders.pendingdeliveries']);
    Route::get('orders/{code}/details', ['uses' => 'app\ordersController@details', 'as' => 'orders.details']);
+   Route::get('orders/{code}/pendingdetails', ['uses' => 'app\ordersController@pendingdetails', 'as' => 'orders.pendingdetails']);
    Route::get('orders/customer/{id}', ['uses' => 'app\ordersController@makeOrder', 'as' => 'make.orders']);
    Route::get('orders/{code}/delivery/allocation', ['uses' => 'app\ordersController@allocation', 'as' => 'orders.delivery.allocation']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@delivery', 'as' => 'order.create.delivery']);

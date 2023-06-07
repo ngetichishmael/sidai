@@ -117,7 +117,7 @@
     </style>
 @endsection
 {{-- page header --}}
-@section('title', 'Order Details')
+@section('title', 'Pending Delivery Details')
 
 {{-- content section --}}
 @section('content')
@@ -125,7 +125,7 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">Order Details</h2>
+                    <h2 class="content-header-title float-start mb-0">Pending Delivery Details</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
@@ -249,7 +249,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Delivery</a></center>
+{{--            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Delivery</a></center>--}}
             @if ($payment)
                 <div class="card">
                     <div class="card-header">Order Payments</div>
@@ -280,5 +280,5 @@
 @endsection
 {{-- page scripts --}}
 @section('script')
-
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 @endsection
