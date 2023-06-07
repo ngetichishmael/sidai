@@ -200,15 +200,15 @@ class productController extends Controller
       if ($information->image == null) {
          $this->validate($request, [
             'product_name' => 'required',
-            'buying_price' => 'required',
-            'selling_price' => 'required',
+//            'buying_price' => 'required',
+//            'selling_price' => 'required',
 //            'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
          ]);
       }
       $this->validate($request, [
          'product_name' => 'required',
-         'buying_price' => 'required',
-         'selling_price' => 'required',
+//         'buying_price' => 'required',
+//         'selling_price' => 'required',
 //         'image' => 'sometimes|mimes:png,jpg,bmp,gif,jpeg|max:5048',
       ]);
 //      if ($request->has('image')) {
@@ -269,7 +269,7 @@ class productController extends Controller
       );
 
       session()->flash('success', 'Product successfully restocked!');
-      $random=rand(0, 9999);
+      $random=Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product updating';
       $activityLog->user_code = auth()->user()->user_code;

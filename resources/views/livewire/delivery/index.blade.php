@@ -36,7 +36,7 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>
-                                {!! $deliver->order_code !!}
+                                {!! $deliver->order_code ?? '' !!}
                             </td>
                             <td title="{{ $deliver->Customer->customer_name ?? null }}">
                                 {{ Str::limit($deliver->Customer->customer_name ?? null, 20) }}</td>
