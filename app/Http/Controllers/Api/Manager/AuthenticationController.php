@@ -7,13 +7,13 @@ use App\Models\activity_log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Psy\Util\Str;
+use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
 {
    public function login(Request $request)
    {
-
+      $random = Str::random(20);
       //(!Auth::attempt(['email' => $request->email, 'password' => $request->password], true))
       if (!Auth::attempt(
          [
@@ -31,7 +31,6 @@ class AuthenticationController extends Controller
 
       $token = $user->createToken('auth_token')->plainTextToken;
 
-      $random=Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Login';
       $activityLog->user_code = auth()->user()->user_code;
