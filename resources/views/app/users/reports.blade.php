@@ -65,7 +65,7 @@
                                 @elseif($report == 'SUPPLIERS REPORT')
                                 <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
                                 @elseif($report == 'INVENTORY REPORT')
-                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                <a href="{{ route('inventory.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'PREORDER REPORT')
                                 <a href="{{ route('preorders.reports') }}" class="btn  btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'VANSALE REPORT')

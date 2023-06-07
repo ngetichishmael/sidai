@@ -44,7 +44,7 @@
                         <td></td>
                         <td>{{ $preorder->user_code }}</td>
                         <td></td>
-                        <td></td>
+                        <td><a href="" class="btn" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                     </tr>
                         
                     @endforeach

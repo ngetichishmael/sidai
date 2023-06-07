@@ -284,6 +284,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/warehouse-Report', ['uses' => 'app\ReportsController@warehouse', 'as' => 'warehouse.reports']);
    Route::get('Reports/distributors', ['uses' => 'app\ReportsController@distributor', 'as' => 'distributor.reports']);
    Route::get('Reports/region-report', ['uses' => 'app\ReportsController@regional', 'as' => 'regional.reports']);
+   Route::get('Reports/inventory-report', ['uses' => 'app\ReportsController@inventory', 'as' => 'inventory.reports']);
 
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);

@@ -46,4 +46,9 @@ class ReportsController extends Controller
          return view('app.reports.regional');
 
     }
+    public function inventory()
+    {
+         return view('app.reports.inventory');
+
+    }
 }
