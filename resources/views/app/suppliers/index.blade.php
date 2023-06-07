@@ -10,8 +10,8 @@
         </div>
         <div class="col-md-4">
             <center>
-                <a href="{!! route('supplier.create') !!}" class="btn btn-success btn-sm">Add Supplier</a>
-                <a href="{{ route('supplier.import.index') }}" class="btn btn-info btn-sm">Import Suppliers</a>
+                <a href="{!! route('supplier.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Add Supplier</a>
+                <a href="{{ route('supplier.import.index') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">Import Suppliers</a>
             </center>
         </div>
     </div>

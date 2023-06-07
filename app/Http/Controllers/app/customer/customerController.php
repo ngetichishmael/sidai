@@ -59,18 +59,21 @@ class customerController extends Controller
    public function details($id)
    {
       $customer = Customers::find($id);
-      return view('app.customers.show',['customer' => $customer]);
+      return view('app.customers.show', ['customer' => $customer]);
    }
 
    public function approvecreditor($id)
    {
-      $approve = Customers::find($id);
-      $approve->creditor_approved = 1;
-      $approve->save();
+
+      Customers::whereId($id)->update(
+         [
+            'customer_type' => 'creditor',
+            'is_creditor' => '1'
+         ]
+      );
       Session::flash('success', 'Customer successfully Approved');
 
       return redirect()->route('creditors');
-
    }
 
    public function store(Request $request)
@@ -110,15 +113,15 @@ class customerController extends Controller
       $customer->save();
 
       Session::flash('success', 'Customer successfully Added');
-      $random=rand(999999);
+      $random = rand(999999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating customer';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Add customer';
-      $activityLog->action = 'Customer '.$customer->customer_name.' successfully Created';
+      $activityLog->action = 'Customer ' . $customer->customer_name . ' successfully Created';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address = "";
       $activityLog->save();
 
       return redirect()->route('customer');
@@ -245,15 +248,15 @@ class customerController extends Controller
 
 
       Session::flash('success', 'Customer updated successfully');
-      $random=rand(0, 9999);
+      $random = rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Updating customer details';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Update customer';
-      $activityLog->action = 'Customer '.$customer->customer_name .' successfully ';
+      $activityLog->action = 'Customer ' . $customer->customer_name . ' successfully ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address = "";
       $activityLog->save();
 
       return redirect()->route('creditors');

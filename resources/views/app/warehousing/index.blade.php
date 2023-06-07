@@ -10,8 +10,8 @@
         </div>
         <div class="col-md-4">
             <center>
-                <a href="{!! route('warehousing.create') !!}" class="btn btn-success btn-sm">Add Warehouse</a>
-                <a href="{!! route('warehousing.import') !!}" class="btn btn-warning btn-sm">Import Warehouses</a>
+                <a href="{!! route('warehousing.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Add Warehouse</a>
+                <a href="{!! route('warehousing.import') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Import Warehouses</a>
             </center>
         </div>
     </div>

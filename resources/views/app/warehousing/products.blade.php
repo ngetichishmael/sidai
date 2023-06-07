@@ -77,15 +77,16 @@
 
                             {{ $product->Inventory()->pluck('current_stock')->implode('') }}
                         </td>
+                        <td>{{ $product->ProductPrice->created_at->format('d/m/Y') }}</td>
 
-                        <td>
+                        {{-- <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
                                 <span>Re-stock</span>
                             </a>
                            <a href="#" class="btn btn-info btn-sm">
                                 <span>View</span>
                             </a>
-                        </td>
+                        </td> --}}
                     </tr>
                   @endif
                @endforeach

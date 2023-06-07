@@ -45,8 +45,8 @@
                            {{-- <td>{!! Finance::products_by_category_count($all->id) !!}</td> --}}
                            <td>
                               <div class="d-flex" style="gap:20px">
-                                 <a href="{{ route('product.category.edit', $all->id) }}" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit</a>
-                                 <a href="{!! route('product.category.destroy', $all->id) !!}" class="btn btn-danger btn-sm delete"><i class="fas fa-trash"></i> Delete</a>
+                                 <a href="{{ route('product.category.edit', $all->id) }}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i class="far fa-edit"></i> Edit</a>
+                                 <a href="{!! route('product.category.destroy', $all->id) !!}" class="btn btn-sm delete" style="background-color: #ee101b;color:white"><i class="fas fa-trash"></i> Delete</a>
                               </div>
                            </td>
                         </tr>
@@ -69,7 +69,7 @@
 
                   <div class="form-group mt-4">
                      <center>
-                        <button type="submit" class="btn btn-success submit"><i class="fas fa-save"></i> Add Category</button>
+                        <button type="submit" class="btn submit" style="background-color: #B6121B;color:white"><i class="fas fa-save"></i> Add Category</button>
                         <img src="{!! asset('assets/img/btn-loader.gif') !!}" class="submit-load none" alt="" width="25%">
                      </center>
                   </div>

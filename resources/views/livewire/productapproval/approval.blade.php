@@ -22,7 +22,7 @@
                             <td>{!! $product->status !!}</td>
                             <td>{!! date('F jS, Y', strtotime($product->created_at)) !!}</td>
                             <td>
-                               <a href="{!! route('inventory.approve',$product->id) !!}" class="btn btn-sm btn-success">view</a>
+                               <a href="{!! route('inventory.approve',$product->id) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">view</a>
                             </td>
                          </tr>
                       @endforeach

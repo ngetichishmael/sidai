@@ -96,7 +96,7 @@
                                     </div>
                                  </div> &nbsp;&nbsp;
                                  <div class="media-body my-auto pl-3 ml-3">
-                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($orderfullment) }}</h4>
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($orderfullmentbydistributors) }}</h4>
                                     <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Distributor-Orders</p>
                                  </div>
                               </a>
@@ -142,52 +142,59 @@
                                 <div class="card">
 {{--                                @livewire('dashboard.brand-chart')--}}
 {{--                                   @dump($preOrdersLabels)--}}
-                                   <canvas id="ordersChart"></canvas>
-                                   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                   <canvas id="lineChart" width="800" height="400"></canvas>
+
                                    <script>
-                                      var ctx = document.getElementById('ordersChart').getContext('2d');
-                                      var chart = new Chart(ctx, {
+                                      const data = @json($graphdata);
+
+                                      const labels = data.map(entry => entry.month);
+
+                                      const preOrderCounts = data.map(entry => entry.preOrderCount);
+                                      const deliveryCounts = data.map(entry => entry.deliveryCount);
+
+                                      const ctx = document.getElementById('lineChart').getContext('2d');
+                                      new Chart(ctx, {
                                          type: 'line',
                                          data: {
-                                            labels: {!! json_encode($preOrdersLabels) !!},
+                                            labels: labels,
                                             datasets: [
                                                {
-                                                  label: 'Pre-Orders',
-                                                  data: {!! json_encode($preOrdersData) !!},
-                                                  backgroundColor: 'rgba(0, 123, 255, 0.3)',
-                                                  borderColor: 'rgba(0, 123, 255, 1)',
-                                                  borderWidth: 2,
-                                                  pointRadius: 4,
-                                                  pointHoverRadius: 6
+                                                  label: 'Pre Orders',
+                                                  data: preOrderCounts,
+                                                  borderColor: 'rgb(255,69,0)',
+                                                  // backgroundColor: 'rgba(255, 69, 0, 0.2)',
+                                                  fill: false
                                                },
                                                {
-                                                  label: 'Delivered',
-                                                  data: {!! json_encode($deliveredOrdersData) !!},
-                                                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
-                                                  borderColor: 'rgba(255, 99, 132, 1)',
-                                                  borderWidth: 2,
-                                                  pointRadius: 4,
-                                                  pointHoverRadius: 6
+                                                  label: 'Deliveries',
+                                                  data: deliveryCounts,
+                                                  borderColor: 'rgb(21,116,239)',
+                                                  // backgroundColor: 'rgba(243,75,84,0.3)',
+                                                  fill: false
                                                }
                                             ]
                                          },
                                          options: {
                                             responsive: true,
-                                            maintainAspectRatio: false,
                                             scales: {
+                                               x: {
+                                                  display: true,
+                                                  title: {
+                                                     display: true,
+                                                     text: 'Months'
+                                                  }
+                                               },
                                                y: {
-                                                  beginAtZero: false,
-                                                  suggestedMin: 100,
-                                                  stepSize: 50,
-                                                  grid: {
-                                                     display: true
+                                                  display: true,
+                                                  title: {
+                                                     display: true,
+                                                     text: 'Count'
                                                   }
                                                }
                                             }
                                          }
                                       });
                                    </script>
-
                                 </div>
 
                             </div>

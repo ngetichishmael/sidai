@@ -275,9 +275,18 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('tsr', ['uses' => 'app\usersController@tsr', 'as' => 'tsr']);
    Route::get('rsm', ['uses' => 'app\usersController@rsm', 'as' => 'rsm']);
    Route::get('td', ['uses' => 'app\usersController@td', 'as' => 'td']);
-   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
+//   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
 
+   //Routes for reports
    Route::get('Reports', ['uses' => 'app\usersController@reports', 'as' => 'users.reports']);
+   Route::get('Reports/pre-oders', ['uses' => 'app\ReportsController@preorders', 'as' => 'preorders.reports']);
+   Route::get('Reports/Van-sales', ['uses' => 'app\ReportsController@vansales', 'as' => 'vansales.reports']);
+   Route::get('Reports/delivery', ['uses' => 'app\ReportsController@delivery', 'as' => 'delivery.reports']);
+   Route::get('Reports/sidai-users', ['uses' => 'app\ReportsController@users', 'as' => 'sidai.reports']);
+   Route::get('Reports/warehouse-Report', ['uses' => 'app\ReportsController@warehouse', 'as' => 'warehouse.reports']);
+   Route::get('Reports/distributors', ['uses' => 'app\ReportsController@distributor', 'as' => 'distributor.reports']);
+   Route::get('Reports/region-report', ['uses' => 'app\ReportsController@regional', 'as' => 'regional.reports']);
+   Route::get('Reports/inventory-report', ['uses' => 'app\ReportsController@inventory', 'as' => 'inventory.reports']);
 
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
@@ -319,7 +328,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('settings/account', ['uses' => 'app\settingsController@account', 'as' => 'settings.account']);
    Route::post('settings/account/{id}/update', ['uses' => 'app\settingsController@update_account', 'as' => 'settings.account.update']);
 
-   //activity log
+   //activity lo
    Route::get('settings/activity-log', ['uses' => 'app\settingsController@activity_log', 'as' => 'settings.activity.log']);
 
    //Territories
@@ -335,6 +344,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('orders/{code}/delivery/allocation', ['uses' => 'app\ordersController@allocation', 'as' => 'orders.delivery.allocation']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@delivery', 'as' => 'order.create.delivery']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@allocateOrders', 'as' => 'order.create.allocateorders']);
+   //distributor orders
+   Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
 
    /* ===  survey === */
    /* === category === */

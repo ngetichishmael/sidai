@@ -12,6 +12,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Psy\Util\Str;
 
 /**
  * @group Authentication Api's
@@ -197,7 +198,7 @@ class AuthController extends Controller
          // ->where('id', $user->id)
          // ->update(['status' => 'activated']);
          //  Log::info('Valid OTP entered');
-         $random=rand(0,9999);
+         $random=Str::random(20);
          $activityLog = new activity_log();
          $activityLog->activity = 'Login';
          $activityLog->user_code = auth()->user()->user_code;
@@ -223,9 +224,17 @@ class AuthController extends Controller
 
       ]);
 
-      $user = User::where('phone_number', $request->phone_number)
-         ->update(['password' => Hash::make($request->password)]);
-
+      User::where('phone_number', $request->phone_number)->update(['password' => Hash::make($request->password)]);
+      $random=Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Password  updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Password update';
+      $activityLog->action = 'Password '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = $request->ip();
+      $activityLog->save();
 
       return response()->json(['message' => 'Password has been changed sucessfully']);
       // DB::table('password_resets')->where(['email'=> $request->email])->delete();

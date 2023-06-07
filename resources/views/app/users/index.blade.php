@@ -11,7 +11,8 @@
         </div>
         <div class="col-md-3">
             <center>
-                <a href="{!! route('user.creatensm') !!}" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Add Users</a>
+                <a href="{!! route('user.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i data-feather="user-plus"></i> Add Users</a>
+
                 {{-- <a href="{!! route('users.all.import') !!}" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Import</a> --}}
             </center>
         </div>

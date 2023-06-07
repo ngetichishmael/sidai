@@ -40,6 +40,11 @@ class usersController extends Controller
       $tsr = User::where('account_type', 'TSR');
       return view('app.users.tsr', compact('tsr'));
    }
+   public function td()
+   {
+      $td = User::where('account_type', 'TD');
+      return view('app.users.td', compact('td'));
+   }
    public function rsm()
    {
       $rsm = User::where('account_type', 'RSM');
@@ -56,10 +61,18 @@ class usersController extends Controller
 
    public function reports()
    {
-      $reports = User::whereIn('account_type',['Admin','Sales','Manager','Technical-sales-agent'])
-      ->distinct('account_type')
-      ->groupBy('account_type')
-      ->pluck('account_type');
+      $reports = [
+            "PREORDER REPORT",
+            "VANSALE REPORT",
+            "DELIVERY REPORT",
+            "SIDAI USERS REPORT",
+            "WAREHOUSE REPORT",
+            "DISTRIBUTOR REPORT",
+            "REGIONAL REPORT",
+            "SUPPLIERS REPORT",
+            "PAYMENT REPORT",
+            "INVENTORY REPORT"
+      ];
       $count = 1;
       return view('app.users.reports', compact('reports','count'));
    }

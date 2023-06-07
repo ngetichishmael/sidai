@@ -6,7 +6,7 @@
            <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search ...">
            <!-- Button trigger modal -->
            <div class="mt-1">
-            <a href="{{ route('order.target.create') }}" type="button" class="btn btn-primary">
+            <a href="{{ route('order.target.create') }}" type="button" class="btn" style="background-color: #B6121B;color:white">
                 New Target
             </a>
         </div>

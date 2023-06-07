@@ -22,12 +22,12 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
+                        <th>Phone Number</th>
                         <th>Route</th>
                         <th>Payment Deadline</th>
                         <th>Total Amount</th>
                         <th>Paid Amount</th>
                         <th width="15%">Action</th>
-{{--                    <th>Status</th>--}}
                     </thead>
                     <tbody>
                         @foreach ($contacts as $count => $contact)
@@ -35,37 +35,26 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
-{{--                            <td>{!! $contact->phone_number !!}</td>--}}
-{{--                            <td>--}}
-{{--                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}--}}
-{{--                            </td>--}}
-{{--                            <td>--}}
-{{--                                {!! $contact->Area->Subregion->name ?? '' !!}--}}
-{{--                            </td>--}}
+                            <td>{!! $contact->phone_number !!}</td>
+                            <td>
+                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
+                            </td>
+                            <td>
+                                {!! $contact->Area->Subregion->name ?? '' !!}
+                            </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Creator->name ?? '' !!}
                             </td>
-                            
+
                             <td>
                                 <a href="{{ route('make.orders', ['id' => $contact->id]) }}"
-                                    class="btn btn-sm btn-secondary">View</a>
+                                    class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm btn-primary">Clear</a>
+                                    class="btn btn-sm" style="background-color: #B6121B;color:white">Edit</a>
                             </td>
-{{--                            <td>--}}
-{{--                                @if ($contact->approval === 'Approved')--}}
-{{--                                    <button wire:click.prevent="deactivate({{ $contact->id }})"--}}
-{{--                                        onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"--}}
-{{--                                        type="button" class="btn btn-success btn-sm">Approved</button>--}}
-{{--                                @else--}}
-{{--                                    <button wire:click.prevent="activate({{ $contact->id }})"--}}
-{{--                                        onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"--}}
-{{--                                        type="button" class="btn btn-danger btn-sm">Pending</button>--}}
-{{--                                @endif--}}
-{{--                            </td>--}}
                             </tr>
                         @endforeach
                     </tbody>
