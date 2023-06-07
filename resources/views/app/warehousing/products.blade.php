@@ -82,8 +82,8 @@
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
                                 <span>Re-stock</span>
                             </a>
-                           <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
-                                <span>Re-stock</span>
+                           <a href="#" class="btn btn-info btn-sm">
+                                <span>View</span>
                             </a>
                         </td>
                     </tr>

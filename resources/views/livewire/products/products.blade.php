@@ -47,9 +47,9 @@
                             </td>
 
                             <td>
-                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
-                                    <span>Edit</span>
-                                </a>
+{{--                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">--}}
+{{--                                    <span>Edit</span>--}}
+{{--                                </a>--}}
                             </td>
                         </tr>
                     @endforeach

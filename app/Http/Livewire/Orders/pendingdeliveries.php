@@ -24,7 +24,11 @@ class pendingdeliveries extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $orders =  Delivery::with('Customer', 'user')->where('delivery_status' ,'=',['Waiting acceptance','Accepted'])
+      $orders =  Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])
+         ->where(function ($query) {
+            $query->where('delivery_status', 'Delivered')
+               ->orWhere('delivery_status', 'Partial delivery');
+         })->with('Customer', 'user', 'Order')
          ->search($searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
