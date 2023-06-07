@@ -55,6 +55,19 @@ class ordersController extends Controller
       // dd($payment);
       return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
    }
+   public function pendingdetails($code)
+   {
+      $order = Orders::where('order_code', $code)->first();
+      // dd($code);
+      $items = Order_items::where('order_code', $order->order_code)->get();
+      $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
+      $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
+      $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
+      $id = $Customer_id->customerID;
+      $test = customers::where('id', $id)->first();
+      $payment = order_payments::where('order_id', $order->order_code)->first();
+      return view('app.orders.pendingdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+   }
 
    //allocation
    public function allocation($code)

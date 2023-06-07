@@ -141,6 +141,7 @@
                             <div class="col-8">
                                 <div class="card">
 {{--                                @livewire('dashboard.brand-chart')--}}
+{{--                                   @dump($preOrdersLabels)--}}
                                    <canvas id="ordersChart"></canvas>
                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                                    <script>
@@ -162,8 +163,8 @@
                                                {
                                                   label: 'Delivered',
                                                   data: {!! json_encode($deliveredOrdersData) !!},
-                                                  backgroundColor: 'rgba(194,62,70,0.51)',
-                                                  borderColor: 'rgb(182,18,27)',
+                                                  backgroundColor: 'rgba(255, 99, 132, 0.3)',
+                                                  borderColor: 'rgba(255, 99, 132, 1)',
                                                   borderWidth: 2,
                                                   pointRadius: 4,
                                                   pointHoverRadius: 6
@@ -175,9 +176,12 @@
                                             maintainAspectRatio: false,
                                             scales: {
                                                y: {
-                                                  beginAtZero: true,
+                                                  beginAtZero: false,
                                                   suggestedMin: 100,
-                                                  stepSize: 50
+                                                  stepSize: 50,
+                                                  grid: {
+                                                     display: true
+                                                  }
                                                }
                                             }
                                          }
