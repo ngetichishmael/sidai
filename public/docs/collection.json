@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Sidai",
-        "_postman_id": "160a1d54-db07-465d-80d4-c114ce0ccf62",
+        "_postman_id": "5d21c011-7013-45a4-a84e-e2ac1fb44e99",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"emma75@example.com\",\"password\":\"I)wSW8!?7SFZemGRZCp;\"}"
+                            "raw": "{\"email\":\"gkassulke@example.org\",\"password\":\"r6.I6*pFQk)^}\"}"
                         },
                         "description": "",
                         "auth": {
@@ -69,7 +69,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "velit",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -105,13 +105,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "ipsam",
+                                    "value": "est",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "provident",
+                                    "value": "ea",
                                     "description": ""
                                 }
                             ]
@@ -157,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"incidunt\",\"password\":\"Hv}_)<'l8\",\"password_confirmation\":\"ad\"}"
+                            "raw": "{\"phone_number\":\"est\",\"password\":\"]HMvk~\",\"password_confirmation\":\"esse\"}"
                         },
                         "description": "",
                         "auth": {
@@ -194,7 +194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerID\":\"libero\",\"latitude\":\"quod\",\"longitude\":\"enim\",\"user_code\":\"aspernatur\"}"
+                            "raw": "{\"customerID\":\"in\",\"latitude\":\"qui\",\"longitude\":\"aspernatur\",\"user_code\":\"ex\"}"
                         },
                         "description": "",
                         "auth": {
@@ -215,7 +215,7 @@
                                 {
                                     "id": "CustomerCode",
                                     "key": "CustomerCode",
-                                    "value": "atque",
+                                    "value": "aut",
                                     "description": ""
                                 }
                             ]
@@ -279,7 +279,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "repudiandae",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -343,7 +343,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "aut",
+                                    "value": "temporibus",
                                     "description": ""
                                 }
                             ]
@@ -407,7 +407,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "qui",
+                                    "value": "veniam",
                                     "description": ""
                                 }
                             ]
@@ -425,7 +425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"productID\":\"ut\",\"qty\":\"occaecati\"}"
+                            "raw": "{\"productID\":\"vel\",\"qty\":\"natus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -474,7 +474,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "id",
+                                    "value": "cumque",
                                     "description": ""
                                 }
                             ]
@@ -492,7 +492,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_type\":\"placeat\",\"reasons_partial_delivery\":\"excepturi\"}"
+                            "raw": "{\"order_type\":\"dolorem\",\"reasons_partial_delivery\":\"dignissimos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -513,7 +513,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "facere",
+                                    "value": "vel",
                                     "description": ""
                                 },
                                 {
@@ -583,7 +583,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "ut",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]
@@ -647,7 +647,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "ipsam",
+                                    "value": "voluptate",
                                     "description": ""
                                 }
                             ]
@@ -665,7 +665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":17}"
+                            "raw": "{\"order_id\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -686,13 +686,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "officiis",
+                                    "value": "consectetur",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "commodi",
+                                    "value": "dolores",
                                     "description": ""
                                 }
                             ]
@@ -756,13 +756,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "omnis",
+                                    "value": "enim",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "enim",
+                                    "value": "magnam",
                                     "description": ""
                                 }
                             ]
@@ -780,7 +780,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"qty\":\"consectetur\",\"orderID\":\"et\"}"
+                            "raw": "{\"qty\":\"in\",\"orderID\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -801,13 +801,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "excepturi",
+                                    "value": "vitae",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "magnam",
+                                    "value": "minus",
                                     "description": ""
                                 }
                             ]
@@ -881,7 +881,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":5}"
+                            "raw": "{\"order_id\":19}"
                         },
                         "description": "",
                         "auth": {
@@ -902,13 +902,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "sequi",
+                                    "value": "fugiat",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "quos",
+                                    "value": "velit",
                                     "description": ""
                                 }
                             ]
@@ -975,17 +975,17 @@
                             "query": [
                                 {
                                     "key": "page_size",
-                                    "value": "3",
+                                    "value": "10",
                                     "description": "size per page. Default to 20",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=3",
+                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=10",
                             "variable": [
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "ipsa",
+                                    "value": "distinctio",
                                     "description": ""
                                 }
                             ]
@@ -1054,55 +1054,55 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "optio",
+                                    "value": "repudiandae",
                                     "type": "text",
                                     "description": "as outlet name"
                                 },
                                 {
                                     "key": "contact_person",
-                                    "value": "ex",
+                                    "value": "consequatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "business_code",
-                                    "value": "veniam",
+                                    "value": "iure",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "created_by",
-                                    "value": "et",
+                                    "value": "laboriosam",
                                     "type": "text",
                                     "description": "user code"
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "aut",
+                                    "value": "velit",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "latitude",
-                                    "value": "ratione",
+                                    "value": "voluptates",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "longitude",
-                                    "value": "eligendi",
+                                    "value": "dolorem",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "email",
-                                    "value": "feil.domenick@example.com",
+                                    "value": "lbosco@example.com",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "address",
-                                    "value": "sed",
+                                    "value": "natus",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1160,7 +1160,7 @@
                                 {
                                     "id": "code",
                                     "key": "code",
-                                    "value": "inventore",
+                                    "value": "libero",
                                     "description": ""
                                 }
                             ]
@@ -1224,13 +1224,13 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "assumenda",
+                                    "value": "ut",
                                     "description": ""
                                 },
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "et",
+                                    "value": "omnis",
                                     "description": ""
                                 }
                             ]
@@ -1358,7 +1358,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "tempora",
+                                    "value": "quam",
                                     "description": ""
                                 }
                             ]
@@ -1422,7 +1422,7 @@
                                 {
                                     "id": "orderCode",
                                     "key": "orderCode",
-                                    "value": "magnam",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]
@@ -1486,7 +1486,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "tempora",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -1562,7 +1562,7 @@
                                 {
                                     "id": "userCode",
                                     "key": "userCode",
-                                    "value": "est",
+                                    "value": "voluptatum",
                                     "description": ""
                                 }
                             ]
@@ -1632,7 +1632,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "rerum",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -1758,7 +1758,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "autem",
+                                    "value": "natus",
                                     "description": ""
                                 }
                             ]
@@ -1820,7 +1820,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "nostrum",
+                                    "value": "odio",
                                     "description": ""
                                 }
                             ]
@@ -1884,7 +1884,7 @@
                                 {
                                     "id": "categoryID",
                                     "key": "categoryID",
-                                    "value": "saepe",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]
@@ -2319,25 +2319,25 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "et",
+                                    "value": "aut",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "tempore",
+                                    "value": "numquam",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Latitude",
-                                    "value": "qui",
+                                    "value": "facere",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Longitude",
-                                    "value": "necessitatibus",
+                                    "value": "neque",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2395,7 +2395,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "aut",
+                                    "value": "nostrum",
                                     "description": ""
                                 }
                             ]
@@ -2431,13 +2431,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "perferendis",
+                                    "value": "rerum",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "modi",
+                                    "value": "eos",
                                     "description": ""
                                 }
                             ]
@@ -2483,7 +2483,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"nostrum\",\"password\":\"YCZMWSicx\\\"Xh\\\"ziy)w\",\"password_confirmation\":\"voluptas\"}"
+                            "raw": "{\"phone_number\":\"amet\",\"password\":\"}'~{eX4uE\",\"password_confirmation\":\"mollitia\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2844,7 +2844,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "voluptatum",
+                                    "value": "eius",
                                     "description": ""
                                 }
                             ]
@@ -2880,7 +2880,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "veniam",
+                                    "value": "dolores",
                                     "description": ""
                                 }
                             ]
@@ -2916,7 +2916,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "quia",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -2952,7 +2952,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "cupiditate",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -3018,7 +3018,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customers_id\":\"quia\",\"date\":\"2023-06-06T08:38:46\",\"comment\":\"necessitatibus\"}"
+                            "raw": "{\"customers_id\":\"ducimus\",\"date\":\"2023-06-07T16:32:15\",\"comment\":\"iure\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3039,13 +3039,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "doloremque",
+                                    "value": "error",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "est",
+                                    "value": "quidem",
                                     "description": ""
                                 }
                             ]
@@ -3081,13 +3081,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "est",
+                                    "value": "et",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "quo",
+                                    "value": "nobis",
                                     "description": ""
                                 }
                             ]
@@ -3391,7 +3391,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "fugit",
+                                    "value": "architecto",
                                     "description": ""
                                 }
                             ]
@@ -3447,7 +3447,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "veniam",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -3503,7 +3503,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "hic",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -3559,7 +3559,7 @@
                                 {
                                     "id": "CustomerAccountNumber",
                                     "key": "CustomerAccountNumber",
-                                    "value": "laudantium",
+                                    "value": "similique",
                                     "description": ""
                                 }
                             ]
@@ -3681,7 +3681,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image\":\"repellendus\"}"
+                            "raw": "{\"image\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3902,7 +3902,7 @@
                                 {
                                     "id": "surveyCode",
                                     "key": "surveyCode",
-                                    "value": "voluptates",
+                                    "value": "culpa",
                                     "description": ""
                                 }
                             ]
@@ -4214,7 +4214,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "nisi",
+                                    "value": "quibusdam",
                                     "description": ""
                                 }
                             ]
@@ -4298,7 +4298,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "perspiciatis",
+                                    "value": "vero",
                                     "description": "The ID of the schedule."
                                 }
                             ]
@@ -4677,7 +4677,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"requisition_products\":[\"officia\"]}"
+                            "raw": "{\"requisition_products\":[\"autem\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -4785,11 +4785,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Im9ibXVkNUdadC9hWWJMcGxIM3BjR0E9PSIsInZhbHVlIjoiOHZ3Ri9lMTNNK0ZwY25Lajh0c2cyNEx6TENSVVhpVFZnczZXRVV5TyszNDhjT0hpM0dKU21vSDV5cnErVHdCTSs0WCtyaXpCY2VRWTFGa1dOUjVuU3E0amF5OVV6VmJCNmJwMzJrN3AvVDVDcXZ5WjQvdC9LVzB3V0VnRkZFcVciLCJtYWMiOiJlYTRmMGM3MTVjNTIzNmQwZWQzNWM0NDBhYmRhN2QxYjM3OGFlOWVjZWZhZGI0ZDJjMzMzMWUzMDYyY2I1MWY1IiwidGFnIjoiIn0%3D; expires=Tue, 06-Jun-2023 10:38:47 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6Ik9FdW9QdWEwZzZtVmZUYWdzRWVMYkE9PSIsInZhbHVlIjoiSnFydFNIYzlHT3VCYU5jTjVKLyt2akhxQUJGV05yaHpIalBCNG5FNmVRUzYzRHNEL25qZ2J2QTNXRW5GU2VmRWZRWlBhVTdDSGI4blB4RFdZeTkzUlpDZFVHK1pLMk1LQnRIeWU4bHFaNzgwcGdtMjV0ZDRBOE9kOWs1TEQ1bSsiLCJtYWMiOiI1N2VlNDgyYmQ5MzY4NDkwNDk5OTJjNzVkOTlmNDdjYjQ0MWQ3MzE1NWI3MzM3OGRkNGVlZDBmNmFmMzU2NzUxIiwidGFnIjoiIn0%3D; expires=Tue, 06-Jun-2023 10:38:47 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6Im1KZ3BEa0lMeEwrNHZqcDVCSzlxYWc9PSIsInZhbHVlIjoib21mQVhCUFpCbnZ2RXNPVm9scytTSmMwRk90bXg4WjR0dDlyYnU1dFpJZlhSWXJ5dUVZL0g2YWxvdTB3bGdPeXpmSHBodmpSTG9CaHcrRHBuZ2RQdnJGbE8xclZqZVlvRnNqUElIbVU4RnFwRlVrL3BBZSsxL283cUE0SWVvVE4iLCJtYWMiOiJiMTYxYWE5OTNhYTE0ZTA3MTRhNzFhMTc1MDkyOTA5MzRmODgxMzUwOGEyNmYxYTFmODk3N2ZiZDE0NTNhNDI5IiwidGFnIjoiIn0%3D; expires=Wed, 07-Jun-2023 18:32:16 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6InFuaXhYSGpXYkhkVjFsd2JXVGV0Y2c9PSIsInZhbHVlIjoiYldTY3dYYVRuYzl3ajVWM1Riam9lUXRrYXpRbDhkSGhNT0hieGJwUk82ZmY0dmhDdVA2RnhyWlFLeWU2cjdlVHVwYms2bE5GelB1MVBlalU1blF0eG0vWU9SNHNBQzIvQyt3dWlBaUNLeHg3YUp0UkU4M0NNWW9VNjhhakc1am8iLCJtYWMiOiI1YThkNmM5OWRmYmZiNTE3ZjBiMTU5OTU3M2Q1YTg4NmJkZDkwMGY2N2E4MWM3YTJiZTQ5MGE2ZGE2ZGY5ZmFiIiwidGFnIjoiIn0%3D; expires=Wed, 07-Jun-2023 18:32:16 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"status\":200,\"Message\":\"All Deliveries with their orders\",\"deliveries\":[{\"id\":2,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"oYW98wsclhahkdmGIQKq\",\"order_code\":\"eLKPGd8WJY\",\"allocated\":\"S001\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-04-13T08:41:16.000000Z\",\"updated_at\":\"2023-04-13T13:51:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":3,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"EWJVjOXGGNJh0rROvJXj\",\"order_code\":\"HZBKopLoqE\",\"allocated\":\"S001\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:48:36\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-04-13T17:17:50.000000Z\",\"updated_at\":\"2023-05-23T10:29:46.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":4,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"qHvw0MLw0ZKAk0xYyuwx\",\"order_code\":\"CBoyQfCY3N\",\"allocated\":\"LoremJay\",\"delivery_note\":\"Deliver to customer\",\"Note\":null,\"delivery_status\":\"pending\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":\"LoremJay\",\"created_at\":\"2023-04-14T09:24:59.000000Z\",\"updated_at\":\"2023-04-14T09:39:43.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":5,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"xpdLpfqwlZWAqfz952AX\",\"order_code\":\"qDaDxJYH8A\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:49:25\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T12:41:01.000000Z\",\"updated_at\":\"2023-05-17T16:13:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":6,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"ZSbQEqatSgpuEdxjiq0g\",\"order_code\":\"t6JCYZYJLz\",\"allocated\":\"00100\",\"delivery_note\":\"dev\",\"Note\":null,\"delivery_status\":\"Partial delivery\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:47:33\",\"accept_allocation\":\"partially delivered\",\"customer_confirmation\":\"partially delivered\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T15:30:51.000000Z\",\"updated_at\":\"2023-05-17T15:47:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":7,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"quwE6XpPWBvq9lDEYs2R\",\"order_code\":\"DV3nie5whs\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:15:02.000000Z\",\"updated_at\":\"2023-05-17T16:15:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":8,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"glNAYmjExHhn16BvL8om\",\"order_code\":\"fDP4g7EsXP\",\"allocated\":\"S003\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:36:38.000000Z\",\"updated_at\":\"2023-05-17T16:36:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":9,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"p9gssSD9ycmHagVvjCUR\",\"order_code\":\"cXlB11ueCU\",\"allocated\":\"S004\",\"delivery_note\":\"del\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:40:25.000000Z\",\"updated_at\":\"2023-05-19T14:42:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":10,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"y1GFmRNYqPY4AIHnZbPF\",\"order_code\":\"nITAZxMMEf\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:41:51.000000Z\",\"updated_at\":\"2023-05-19T14:41:51.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":11,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"nkJkY2AczCBl7CPeOaz5\",\"order_code\":\"BqlMuSvdNM\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T15:25:10.000000Z\",\"updated_at\":\"2023-05-19T15:26:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":12,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"Px5wBBpw0zOFN2npN92S\",\"order_code\":\"I4WDxkFk0x\",\"allocated\":\"S009\",\"delivery_note\":\"123\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:48:33.000000Z\",\"updated_at\":\"2023-05-23T10:23:54.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":13,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"1ZXYCt1ABZZRxbWw7BFl\",\"order_code\":\"pgpbpshcnB\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:53:05.000000Z\",\"updated_at\":\"2023-05-23T09:53:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":14,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"JuNZVF73uu0tXDk2fOIM\",\"order_code\":\"EscXob4Dbn\",\"allocated\":\"S002\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T10:26:33.000000Z\",\"updated_at\":\"2023-05-23T10:26:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":15,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rZ3JK6J4yvBOojxseUYu\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S013\",\"delivery_note\":\"rers\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-25T17:10:33.000000Z\",\"updated_at\":\"2023-05-25T17:12:02.000000Z\",\"delivery_items\":[],\"order\":null}]}",
+                            "body": "{\"success\":true,\"status\":200,\"Message\":\"All Deliveries with their orders\",\"deliveries\":[{\"id\":2,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"oYW98wsclhahkdmGIQKq\",\"order_code\":\"eLKPGd8WJY\",\"allocated\":\"S001\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-04-13T08:41:16.000000Z\",\"updated_at\":\"2023-04-13T13:51:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":3,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"EWJVjOXGGNJh0rROvJXj\",\"order_code\":\"HZBKopLoqE\",\"allocated\":\"S001\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:48:36\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-04-13T17:17:50.000000Z\",\"updated_at\":\"2023-05-23T10:29:46.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":4,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"qHvw0MLw0ZKAk0xYyuwx\",\"order_code\":\"CBoyQfCY3N\",\"allocated\":\"LoremJay\",\"delivery_note\":\"Deliver to customer\",\"Note\":null,\"delivery_status\":\"pending\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":\"LoremJay\",\"created_at\":\"2023-04-14T09:24:59.000000Z\",\"updated_at\":\"2023-04-14T09:39:43.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":5,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"xpdLpfqwlZWAqfz952AX\",\"order_code\":\"qDaDxJYH8A\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:49:25\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T12:41:01.000000Z\",\"updated_at\":\"2023-05-17T16:13:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":6,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"ZSbQEqatSgpuEdxjiq0g\",\"order_code\":\"t6JCYZYJLz\",\"allocated\":\"00100\",\"delivery_note\":\"dev\",\"Note\":null,\"delivery_status\":\"Partial delivery\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:47:33\",\"accept_allocation\":\"partially delivered\",\"customer_confirmation\":\"partially delivered\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T15:30:51.000000Z\",\"updated_at\":\"2023-05-17T15:47:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":7,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"quwE6XpPWBvq9lDEYs2R\",\"order_code\":\"DV3nie5whs\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:15:02.000000Z\",\"updated_at\":\"2023-05-17T16:15:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":8,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"glNAYmjExHhn16BvL8om\",\"order_code\":\"fDP4g7EsXP\",\"allocated\":\"S003\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:36:38.000000Z\",\"updated_at\":\"2023-05-17T16:36:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":9,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"p9gssSD9ycmHagVvjCUR\",\"order_code\":\"cXlB11ueCU\",\"allocated\":\"S004\",\"delivery_note\":\"del\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:40:25.000000Z\",\"updated_at\":\"2023-05-19T14:42:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":10,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"y1GFmRNYqPY4AIHnZbPF\",\"order_code\":\"nITAZxMMEf\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:41:51.000000Z\",\"updated_at\":\"2023-05-19T14:41:51.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":11,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"nkJkY2AczCBl7CPeOaz5\",\"order_code\":\"BqlMuSvdNM\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T15:25:10.000000Z\",\"updated_at\":\"2023-05-19T15:26:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":12,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"Px5wBBpw0zOFN2npN92S\",\"order_code\":\"I4WDxkFk0x\",\"allocated\":\"S009\",\"delivery_note\":\"123\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:48:33.000000Z\",\"updated_at\":\"2023-05-23T10:23:54.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":13,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"1ZXYCt1ABZZRxbWw7BFl\",\"order_code\":\"pgpbpshcnB\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:53:05.000000Z\",\"updated_at\":\"2023-05-23T09:53:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":14,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"JuNZVF73uu0tXDk2fOIM\",\"order_code\":\"EscXob4Dbn\",\"allocated\":\"S002\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T10:26:33.000000Z\",\"updated_at\":\"2023-05-23T10:26:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":15,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rZ3JK6J4yvBOojxseUYu\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S013\",\"delivery_note\":\"rers\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-25T17:10:33.000000Z\",\"updated_at\":\"2023-05-25T17:12:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":16,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rkqcxiAOcyoy4vUKk4gj\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"847187\",\"delivery_note\":\"should go to pending delivery\",\"Note\":null,\"delivery_status\":\"Delivered\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T08:13:07.000000Z\",\"updated_at\":\"2023-06-07T10:52:08.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":17,\"business_code\":\"YkVYPfZv0YZX5OljknAo\",\"delivery_code\":\"28BHMjhAGECM7GEdMX0e\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S009\",\"delivery_note\":\"allocated to weldon\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:01.000000Z\",\"updated_at\":\"2023-06-07T11:06:01.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":18,\"business_code\":\"E2OZQ8TBonRHkT8heYvc\",\"delivery_code\":\"nlR0HK9oRTjWXgcQ4nNr\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":\"erick allo\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:59.000000Z\",\"updated_at\":\"2023-06-07T11:06:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":19,\"business_code\":\"BC571U3tP1d8ykuxJgi6\",\"delivery_code\":\"ZAsIKXJFMnFtEu8CHsL0\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:08:30.000000Z\",\"updated_at\":\"2023-06-07T11:08:30.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":20,\"business_code\":\"QterTqxR0MKmbHOKa1eH\",\"delivery_code\":\"05a4AYVKoFitRTcb3YBM\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":21,\"business_code\":\"wfgZWV5CFjotSDIKGKYx\",\"delivery_code\":\"1IbMLW525S2JhZE8AiFE\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":22,\"business_code\":\"yJzDKwSIRCZpQh6jcn8f\",\"delivery_code\":\"iCTMfSR2FpTfSc5zqw9P\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S009\",\"delivery_note\":\"Weldon allocation due tomorrow\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:04:07.000000Z\",\"updated_at\":\"2023-06-07T12:04:07.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":23,\"business_code\":\"QGvF8Ng7tsmmErPTS9Su\",\"delivery_code\":\"6JJtDMYbbc9SmNVoEBvt\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:09:17.000000Z\",\"updated_at\":\"2023-06-07T12:09:17.000000Z\",\"delivery_items\":[],\"order\":null}]}",
                             "name": ""
                         }
                     ]

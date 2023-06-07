@@ -28,11 +28,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: nostrum
+        example: odio
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: nostrum
+      businessCode: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -79,11 +79,11 @@ endpoints:
         name: categoryID
         description: ''
         required: true
-        example: saepe
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      categoryID: saepe
+      categoryID: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

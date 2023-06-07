@@ -46,11 +46,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: emma75@example.com
+                  example: gkassulke@example.org
                 password:
                   type: string
                   description: 'user password.'
-                  example: 'I)wSW8!?7SFZemGRZCp;'
+                  example: 'r6.I6*pFQk)^}'
               required:
                 - email
                 - password
@@ -70,7 +70,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: velit
+        example: qui
         required: true
         schema:
           type: string
@@ -89,7 +89,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: ipsam
+        example: est
         required: true
         schema:
           type: string
@@ -97,7 +97,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: provident
+        example: ea
         required: true
         schema:
           type: string
@@ -120,15 +120,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: incidunt
+                  example: est
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: "Hv}_)<'l8"
+                  example: ']HMvk~'
                 password_confirmation:
                   type: string
                   description: ''
-                  example: ad
+                  example: esse
               required:
                 - phone_number
                 - password
@@ -153,19 +153,19 @@ paths:
                 customerID:
                   type: string
                   description: 'as Customer ID'
-                  example: libero
+                  example: in
                 latitude:
                   type: string
                   description: 'as current latitude'
-                  example: quod
+                  example: qui
                 longitude:
                   type: string
                   description: 'as current longitude'
-                  example: enim
+                  example: aspernatur
                 user_code:
                   type: string
                   description: 'user code'
-                  example: aspernatur
+                  example: ex
               required:
                 - customerID
                 - latitude
@@ -1013,7 +1013,7 @@ paths:
         in: path
         name: CustomerCode
         description: ''
-        example: atque
+        example: aut
         required: true
         schema:
           type: string
@@ -1052,7 +1052,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: repudiandae
+        example: quia
         required: true
         schema:
           type: string
@@ -1885,7 +1885,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: aut
+        example: temporibus
         required: true
         schema:
           type: string
@@ -1928,11 +1928,11 @@ paths:
                 productID:
                   type: string
                   description: 'as product ID'
-                  example: ut
+                  example: vel
                 qty:
                   type: string
                   description: 'as quantity'
-                  example: occaecati
+                  example: natus
               required:
                 - productID
                 - qty
@@ -1942,7 +1942,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: qui
+        example: veniam
         required: true
         schema:
           type: string
@@ -1965,11 +1965,11 @@ paths:
                 order_type:
                   type: string
                   description: 'as order type [Van sale or Pre order]'
-                  example: placeat
+                  example: dolorem
                 reasons_partial_delivery:
                   type: string
                   description: 'as reasons_partial_delivery'
-                  example: excepturi
+                  example: dignissimos
               required:
                 - order_type
       security: []
@@ -1978,7 +1978,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: id
+        example: cumque
         required: true
         schema:
           type: string
@@ -2013,7 +2013,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: facere
+        example: vel
         required: true
         schema:
           type: string
@@ -2866,7 +2866,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: ut
+        example: voluptatem
         required: true
         schema:
           type: string
@@ -2889,7 +2889,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 17
+                  example: 12
               required:
                 - order_id
       security: []
@@ -2898,7 +2898,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: ipsam
+        example: voluptate
         required: true
         schema:
           type: string
@@ -3743,7 +3743,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: officiis
+        example: consectetur
         required: true
         schema:
           type: string
@@ -3751,7 +3751,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: commodi
+        example: dolores
         required: true
         schema:
           type: string
@@ -3774,11 +3774,11 @@ paths:
                 qty:
                   type: string
                   description: 'as qty'
-                  example: consectetur
+                  example: in
                 orderID:
                   type: string
                   description: 'as orderID'
-                  example: et
+                  example: ut
               required:
                 - qty
       security: []
@@ -3787,7 +3787,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: omnis
+        example: enim
         required: true
         schema:
           type: string
@@ -3795,7 +3795,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: enim
+        example: magnam
         required: true
         schema:
           type: string
@@ -4628,7 +4628,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: excepturi
+        example: vitae
         required: true
         schema:
           type: string
@@ -4636,7 +4636,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: magnam
+        example: minus
         required: true
         schema:
           type: string
@@ -4659,7 +4659,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 5
+                  example: 19
               required:
                 - order_id
       security: []
@@ -5504,7 +5504,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: sequi
+        example: fugiat
         required: true
         schema:
           type: string
@@ -5512,7 +5512,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: quos
+        example: velit
         required: true
         schema:
           type: string
@@ -5526,12 +5526,12 @@ paths:
           in: query
           name: page_size
           description: 'size per page. Default to 20'
-          example: 3
+          example: 10
           required: false
           schema:
             type: integer
             description: 'size per page. Default to 20'
-            example: 3
+            example: 10
       responses:
         401:
           description: ''
@@ -5553,7 +5553,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: ipsa
+        example: distinctio
         required: true
         schema:
           type: string
@@ -5576,31 +5576,31 @@ paths:
                 customer_name:
                   type: string
                   description: 'as outlet name'
-                  example: optio
+                  example: repudiandae
                 contact_person:
                   type: string
                   description: ''
-                  example: ex
+                  example: consequatur
                 business_code:
                   type: string
                   description: ''
-                  example: veniam
+                  example: iure
                 created_by:
                   type: string
                   description: 'user code'
-                  example: et
+                  example: laboriosam
                 phone_number:
                   type: string
                   description: ''
-                  example: aut
+                  example: velit
                 latitude:
                   type: string
                   description: ''
-                  example: ratione
+                  example: voluptates
                 longitude:
                   type: string
                   description: ''
-                  example: eligendi
+                  example: dolorem
                 image:
                   type: string
                   format: binary
@@ -5608,11 +5608,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: feil.domenick@example.com
+                  example: lbosco@example.com
                 address:
                   type: string
                   description: ''
-                  example: sed
+                  example: natus
               required:
                 - customer_name
                 - contact_person
@@ -5666,7 +5666,7 @@ paths:
         in: path
         name: code
         description: ''
-        example: inventore
+        example: libero
         required: true
         schema:
           type: string
@@ -5709,7 +5709,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: assumenda
+        example: ut
         required: true
         schema:
           type: string
@@ -5717,7 +5717,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: et
+        example: omnis
         required: true
         schema:
           type: string
@@ -6701,7 +6701,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: tempora
+        example: quam
         required: true
         schema:
           type: string
@@ -6756,7 +6756,7 @@ paths:
         in: path
         name: orderCode
         description: ''
-        example: magnam
+        example: voluptatem
         required: true
         schema:
           type: string
@@ -6799,7 +6799,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: tempora
+        example: quia
         required: true
         schema:
           type: string
@@ -6846,7 +6846,7 @@ paths:
         in: path
         name: userCode
         description: ''
-        example: est
+        example: voluptatum
         required: true
         schema:
           type: string
@@ -7699,7 +7699,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: rerum
+        example: quia
         required: true
         schema:
           type: string
@@ -7750,7 +7750,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: autem
+        example: natus
         required: true
         schema:
           type: string
@@ -7789,7 +7789,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: nostrum
+        example: odio
         required: true
         schema:
           type: string
@@ -8634,7 +8634,7 @@ paths:
         in: path
         name: categoryID
         description: ''
-        example: saepe
+        example: voluptatem
         required: true
         schema:
           type: string
@@ -9596,19 +9596,19 @@ paths:
                 customer_name:
                   type: string
                   description: ''
-                  example: et
+                  example: aut
                 phone_number:
                   type: string
                   description: ''
-                  example: tempore
+                  example: numquam
                 Latitude:
                   type: string
                   description: ''
-                  example: qui
+                  example: facere
                 Longitude:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: neque
                 image:
                   type: string
                   format: binary
@@ -9645,7 +9645,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: aut
+        example: nostrum
         required: true
         schema:
           type: string
@@ -9664,7 +9664,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: perferendis
+        example: rerum
         required: true
         schema:
           type: string
@@ -9672,7 +9672,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: modi
+        example: eos
         required: true
         schema:
           type: string
@@ -9695,15 +9695,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: amet
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: 'YCZMWSicx"Xh"ziy)w'
+                  example: "}'~{eX4uE"
                 password_confirmation:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: mollitia
               required:
                 - phone_number
                 - password
@@ -9871,7 +9871,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: voluptatum
+        example: eius
         required: true
         schema:
           type: string
@@ -9890,7 +9890,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: veniam
+        example: dolores
         required: true
         schema:
           type: string
@@ -9909,7 +9909,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: quia
+        example: ut
         required: true
         schema:
           type: string
@@ -9940,7 +9940,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the comment.'
-        example: ut
+        example: cupiditate
         required: true
         schema:
           type: string
@@ -9963,15 +9963,15 @@ paths:
                 customers_id:
                   type: string
                   description: ''
-                  example: quia
+                  example: ducimus
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-06-06T08:38:46'
+                  example: '2023-06-07T16:32:15'
                 comment:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: iure
               required:
                 - customers_id
                 - date
@@ -9992,7 +9992,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: doloremque
+        example: error
         required: true
         schema:
           type: string
@@ -10000,7 +10000,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: est
+        example: quidem
         required: true
         schema:
           type: string
@@ -10019,7 +10019,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: est
+        example: et
         required: true
         schema:
           type: string
@@ -10027,7 +10027,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: quo
+        example: nobis
         required: true
         schema:
           type: string
@@ -10178,7 +10178,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: fugit
+        example: architecto
         required: true
         schema:
           type: string
@@ -10209,7 +10209,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: veniam
+        example: quia
         required: true
         schema:
           type: string
@@ -10240,7 +10240,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: hic
+        example: quia
         required: true
         schema:
           type: string
@@ -10259,7 +10259,7 @@ paths:
         in: path
         name: CustomerAccountNumber
         description: ''
-        example: laudantium
+        example: similique
         required: true
         schema:
           type: string
@@ -10314,7 +10314,7 @@ paths:
                 image:
                   type: string
                   description: ''
-                  example: repellendus
+                  example: et
               required:
                 - image
       security: []
@@ -10582,7 +10582,7 @@ paths:
         in: path
         name: surveyCode
         description: ''
-        example: voluptates
+        example: culpa
         required: true
         schema:
           type: string
@@ -10721,7 +10721,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: nisi
+        example: quibusdam
         required: true
         schema:
           type: string
@@ -10770,7 +10770,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the schedule.'
-        example: perspiciatis
+        example: vero
         required: true
         schema:
           type: string
@@ -10937,7 +10937,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - officia
+                    - autem
                   items:
                     type: integer
               required:
@@ -11261,6 +11261,166 @@ paths:
                       updated_at: '2023-05-25T17:12:02.000000Z'
                       delivery_items: []
                       order: null
+                    -
+                      id: 16
+                      business_code: Qx4FstqLJfHwf3WA
+                      delivery_code: rkqcxiAOcyoy4vUKk4gj
+                      order_code: bChc6xQt7S
+                      allocated: '847187'
+                      delivery_note: 'should go to pending delivery'
+                      Note: null
+                      delivery_status: Delivered
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T08:13:07.000000Z'
+                      updated_at: '2023-06-07T10:52:08.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 17
+                      business_code: YkVYPfZv0YZX5OljknAo
+                      delivery_code: 28BHMjhAGECM7GEdMX0e
+                      order_code: bChc6xQt7S
+                      allocated: S009
+                      delivery_note: 'allocated to weldon'
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T11:06:01.000000Z'
+                      updated_at: '2023-06-07T11:06:01.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 18
+                      business_code: E2OZQ8TBonRHkT8heYvc
+                      delivery_code: nlR0HK9oRTjWXgcQ4nNr
+                      order_code: bChc6xQt7S
+                      allocated: S013
+                      delivery_note: 'erick allo'
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T11:06:59.000000Z'
+                      updated_at: '2023-06-07T11:06:59.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 19
+                      business_code: BC571U3tP1d8ykuxJgi6
+                      delivery_code: ZAsIKXJFMnFtEu8CHsL0
+                      order_code: bChc6xQt7S
+                      allocated: S013
+                      delivery_note: null
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T11:08:30.000000Z'
+                      updated_at: '2023-06-07T11:08:30.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 20
+                      business_code: QterTqxR0MKmbHOKa1eH
+                      delivery_code: 05a4AYVKoFitRTcb3YBM
+                      order_code: bChc6xQt7S
+                      allocated: '635353'
+                      delivery_note: null
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T11:58:05.000000Z'
+                      updated_at: '2023-06-07T11:58:05.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 21
+                      business_code: wfgZWV5CFjotSDIKGKYx
+                      delivery_code: 1IbMLW525S2JhZE8AiFE
+                      order_code: bChc6xQt7S
+                      allocated: '635353'
+                      delivery_note: null
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T11:58:05.000000Z'
+                      updated_at: '2023-06-07T11:58:05.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 22
+                      business_code: yJzDKwSIRCZpQh6jcn8f
+                      delivery_code: iCTMfSR2FpTfSc5zqw9P
+                      order_code: Ah3iNAhZko
+                      allocated: S009
+                      delivery_note: 'Weldon allocation due tomorrow'
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T12:04:07.000000Z'
+                      updated_at: '2023-06-07T12:04:07.000000Z'
+                      delivery_items: []
+                      order: null
+                    -
+                      id: 23
+                      business_code: QGvF8Ng7tsmmErPTS9Su
+                      delivery_code: 6JJtDMYbbc9SmNVoEBvt
+                      order_code: bChc6xQt7S
+                      allocated: S007
+                      delivery_note: null
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-07T12:09:17.000000Z'
+                      updated_at: '2023-06-07T12:09:17.000000Z'
+                      delivery_items: []
+                      order: null
                 properties:
                   success:
                     type: boolean
@@ -11552,6 +11712,166 @@ paths:
                         updated_by: null
                         created_at: '2023-05-25T17:10:33.000000Z'
                         updated_at: '2023-05-25T17:12:02.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 16
+                        business_code: Qx4FstqLJfHwf3WA
+                        delivery_code: rkqcxiAOcyoy4vUKk4gj
+                        order_code: bChc6xQt7S
+                        allocated: '847187'
+                        delivery_note: 'should go to pending delivery'
+                        Note: null
+                        delivery_status: Delivered
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T08:13:07.000000Z'
+                        updated_at: '2023-06-07T10:52:08.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 17
+                        business_code: YkVYPfZv0YZX5OljknAo
+                        delivery_code: 28BHMjhAGECM7GEdMX0e
+                        order_code: bChc6xQt7S
+                        allocated: S009
+                        delivery_note: 'allocated to weldon'
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T11:06:01.000000Z'
+                        updated_at: '2023-06-07T11:06:01.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 18
+                        business_code: E2OZQ8TBonRHkT8heYvc
+                        delivery_code: nlR0HK9oRTjWXgcQ4nNr
+                        order_code: bChc6xQt7S
+                        allocated: S013
+                        delivery_note: 'erick allo'
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T11:06:59.000000Z'
+                        updated_at: '2023-06-07T11:06:59.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 19
+                        business_code: BC571U3tP1d8ykuxJgi6
+                        delivery_code: ZAsIKXJFMnFtEu8CHsL0
+                        order_code: bChc6xQt7S
+                        allocated: S013
+                        delivery_note: null
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T11:08:30.000000Z'
+                        updated_at: '2023-06-07T11:08:30.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 20
+                        business_code: QterTqxR0MKmbHOKa1eH
+                        delivery_code: 05a4AYVKoFitRTcb3YBM
+                        order_code: bChc6xQt7S
+                        allocated: '635353'
+                        delivery_note: null
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T11:58:05.000000Z'
+                        updated_at: '2023-06-07T11:58:05.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 21
+                        business_code: wfgZWV5CFjotSDIKGKYx
+                        delivery_code: 1IbMLW525S2JhZE8AiFE
+                        order_code: bChc6xQt7S
+                        allocated: '635353'
+                        delivery_note: null
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T11:58:05.000000Z'
+                        updated_at: '2023-06-07T11:58:05.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 22
+                        business_code: yJzDKwSIRCZpQh6jcn8f
+                        delivery_code: iCTMfSR2FpTfSc5zqw9P
+                        order_code: Ah3iNAhZko
+                        allocated: S009
+                        delivery_note: 'Weldon allocation due tomorrow'
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T12:04:07.000000Z'
+                        updated_at: '2023-06-07T12:04:07.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 23
+                        business_code: QGvF8Ng7tsmmErPTS9Su
+                        delivery_code: 6JJtDMYbbc9SmNVoEBvt
+                        order_code: bChc6xQt7S
+                        allocated: S007
+                        delivery_note: null
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-07T12:09:17.000000Z'
+                        updated_at: '2023-06-07T12:09:17.000000Z'
                         delivery_items: []
                         order: null
                     items:
