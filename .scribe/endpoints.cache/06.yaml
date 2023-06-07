@@ -32,19 +32,19 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: emma75@example.com
+        example: gkassulke@example.org
         type: string
         custom: []
       password:
         name: password
         description: 'user password.'
         required: true
-        example: 'I)wSW8!?7SFZemGRZCp;'
+        example: 'r6.I6*pFQk)^}'
         type: string
         custom: []
     cleanBodyParameters:
-      email: emma75@example.com
-      password: 'I)wSW8!?7SFZemGRZCp;'
+      email: gkassulke@example.org
+      password: 'r6.I6*pFQk)^}'
     fileParameters: []
     responses:
       -
@@ -87,11 +87,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: velit
+        example: qui
         type: string
         custom: []
     cleanUrlParameters:
-      number: velit
+      number: qui
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -127,19 +127,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: ipsam
+        example: est
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: provident
+        example: ea
         type: string
         custom: []
     cleanUrlParameters:
-      number: ipsam
-      otp: provident
+      number: est
+      otp: ea
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -179,27 +179,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: incidunt
+        example: est
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: "Hv}_)<'l8"
+        example: ']HMvk~'
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: ad
+        example: esse
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: incidunt
-      password: "Hv}_)<'l8"
-      password_confirmation: ad
+      phone_number: est
+      password: ']HMvk~'
+      password_confirmation: esse
     fileParameters: []
     responses: []
     responseFields: []

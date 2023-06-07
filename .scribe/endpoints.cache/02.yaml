@@ -28,11 +28,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: autem
+        example: natus
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: autem
+      businessCode: natus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

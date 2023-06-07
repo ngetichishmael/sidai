@@ -26,21 +26,21 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: ipsa
+        example: distinctio
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: ipsa
+      businessCode: distinctio
     queryParameters:
       page_size:
         name: page_size
         description: 'size per page. Default to 20'
         required: false
-        example: 3
+        example: 10
         type: integer
         custom: []
     cleanQueryParameters:
-      page_size: 3
+      page_size: 10
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -87,49 +87,49 @@ endpoints:
         name: customer_name
         description: 'as outlet name'
         required: true
-        example: optio
+        example: repudiandae
         type: string
         custom: []
       contact_person:
         name: contact_person
         description: ''
         required: true
-        example: ex
+        example: consequatur
         type: string
         custom: []
       business_code:
         name: business_code
         description: ''
         required: true
-        example: veniam
+        example: iure
         type: string
         custom: []
       created_by:
         name: created_by
         description: 'user code'
         required: true
-        example: et
+        example: laboriosam
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: aut
+        example: velit
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: false
-        example: ratione
+        example: voluptates
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: false
-        example: eligendi
+        example: dolorem
         type: string
         custom: []
       image:
@@ -143,26 +143,26 @@ endpoints:
         name: email
         description: ''
         required: false
-        example: feil.domenick@example.com
+        example: lbosco@example.com
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: false
-        example: sed
+        example: natus
         type: string
         custom: []
     cleanBodyParameters:
-      customer_name: optio
-      contact_person: ex
-      business_code: veniam
-      created_by: et
-      phone_number: aut
-      latitude: ratione
-      longitude: eligendi
-      email: feil.domenick@example.com
-      address: sed
+      customer_name: repudiandae
+      contact_person: consequatur
+      business_code: iure
+      created_by: laboriosam
+      phone_number: velit
+      latitude: voluptates
+      longitude: dolorem
+      email: lbosco@example.com
+      address: natus
     fileParameters:
       image: null
     responses: []
@@ -227,11 +227,11 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: inventore
+        example: libero
         type: string
         custom: []
     cleanUrlParameters:
-      code: inventore
+      code: libero
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -278,19 +278,19 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: assumenda
+        example: ut
         type: string
         custom: []
       businessCode:
         name: businessCode
         description: ''
         required: true
-        example: et
+        example: omnis
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: assumenda
-      businessCode: et
+      customerID: ut
+      businessCode: omnis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -907,11 +907,11 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: tempora
+        example: quam
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: tempora
+      customerID: quam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -958,11 +958,11 @@ endpoints:
         name: orderCode
         description: ''
         required: true
-        example: magnam
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      orderCode: magnam
+      orderCode: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1009,11 +1009,11 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: tempora
+        example: quia
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: tempora
+      customerID: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
