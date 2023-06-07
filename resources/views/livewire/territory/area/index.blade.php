@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
-                                <button type="submit" class="mb-1 mr-0 btn btn-success mb-sm-0 mr-sm-1"> Add Route</button>
+                                <button type="submit" class="mb-1 mr-0 btn mb-sm-0 mr-sm-1" style="background-color: #B6121B;color:white"> Add Route</button>
                             </div>
                         </form>
                     </div>

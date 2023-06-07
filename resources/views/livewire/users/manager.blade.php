@@ -45,7 +45,7 @@
                      <td>{!! $user->status !!}</td>
                      <td>
                         <div class="dropdown" >
-                           <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                           <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                               <i data-feather="settings"></i>
                            </button>
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

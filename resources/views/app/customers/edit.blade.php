@@ -235,7 +235,7 @@
                                 {{-- @livewire('customers.region') --}}
                             </div>
                             <div class="my-1 col-sm-9 offset-sm-3">
-                                <button type="submit" class="mr-1 btn btn-primary">Update</button>
+                                <button type="submit" class="mr-1 btn" style="background-color: #B6121B;color:white">Update</button>
                                 <a href="{{ route('customer') }}" class="btn btn-outline-secondary">Cancel</a>
                             </div>
                         </form>

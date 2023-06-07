@@ -21,10 +21,10 @@
                         <td>{!! date('d F, Y', strtotime($supplier->created_at)) !!}</td>
                         <td>
                             <div class="d-flex" style="gap: 20px">
-                                <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-sm" style="background-color: #B6121B;color:white">
                                     <span>Edit</span>
                                 </a>
-                                <a href="{!! route('supplier.destroy', $supplier->id) !!}" class="btn btn-sm btn-danger delete">
+                                <a href="{!! route('supplier.destroy', $supplier->id) !!}" class="btn btn-sm delete" style="background-color: #db0610;color:white">
                                     <span>Delete</span>
                                 </a>
                             </div>

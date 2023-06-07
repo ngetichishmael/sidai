@@ -16,11 +16,11 @@
         </div>
         <div class="col-md-6">
             <center>
-                <a href="{!! route('customer.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i class="fa fa-user-plus"></i> Add a
+                <a href="{!! route('customer.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i data-feather="user-plus"></i> Add a
                     Customer</a>
 {{--                    <a href="{!! route('creditor.create') !!}" class="btn btn-success btn-sm"><i class="fa fa-user-plus"></i> Add a--}}
 {{--                        Creditor</a>--}}
-                <a href="{{ route('user-import') }}" class="btn btn-sm" style="background-color: #b8282f;color:white"><i class="fa fa-file-upload"></i> Import
+                <a href="{{ route('user-import') }}" class="btn btn-sm" style="background-color: #b8282f;color:white"><i data-feather="download"></i> Import
                     Customer</a>
                 {{-- <a href="{!! route('customer.export','csv') !!}" class="btn btn-warning btn-sm"><i class="fal fa-file-download"></i> Export Customer</a> --}}
             </center>
