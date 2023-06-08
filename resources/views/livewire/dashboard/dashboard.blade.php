@@ -185,6 +185,11 @@
                                                   }
                                                },
                                                y: {
+                                                  beginAtZero: true,
+                                                  // min: 0,
+                                                  // max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
+                                                  // max: 10000,
+                                                  stepSize: 50,
                                                   display: true,
                                                   title: {
                                                      display: true,
@@ -506,117 +511,117 @@
                     </div>
                 </div>
             </section>
-            <section class="app-user-list" id="activeUsersSection">
-                <div class="card">
-                    <h5 class="card-header">Active Users</h5>
-                    <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="selectSmall">Select Per Page</label>
-                                <select wire:model='perActiveUsers' class="form-control form-control-sm"
-                                    id="selectSmall">
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="500">500</option>
-                                    <option value="1000">1000</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- @dd($activeUserTotal) --}}
-                <div class="card">
-                    <div class="pt-0 card-datatable table-responsive">
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Sales Associates</th>
-                                    <th>Email</th>
-                                    <th>Status</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($activeUserTotal as $key=>$user)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->user()->pluck('name')->implode('') }}</td>
-                                        <td>{{ $user->user()->pluck('email')->implode('') }}</td>
-                                        <td>{{ $user->user()->pluck('status')->implode('') }}</td>
-                                        <td>
-                                            <a href="{{ route('user.edit', $user->user_code) }}"
-                                                class="btn btn-primary btn-sm">Edit</a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <x-emptyrow>
-                                        6
-                                    </x-emptyrow>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $activeUserTotal->links() }}
-                    </div>
-                </div>
-            </section>
-            <section class="app-user-list" id="visitsSection">
-                <div class="card">
-                    <h5 class="card-header">Visits</h5>
-                    <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label for="selectSmall">Select Per Page</label>
-                                <select wire:model='perVisits' class="form-control form-control-sm" id="selectSmall">
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="500">500</option>
-                                    <option value="1000">1000</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--            <section class="app-user-list" id="activeUsersSection">--}}
+{{--                <div class="card">--}}
+{{--                    <h5 class="card-header">Active Users</h5>--}}
+{{--                    <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">--}}
+{{--                        <div class="col-md-2">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="selectSmall">Select Per Page</label>--}}
+{{--                                <select wire:model='perActiveUsers' class="form-control form-control-sm"--}}
+{{--                                    id="selectSmall">--}}
+{{--                                    <option value="10">10</option>--}}
+{{--                                    <option value="20">20</option>--}}
+{{--                                    <option value="50">50</option>--}}
+{{--                                    <option value="100">100</option>--}}
+{{--                                    <option value="500">500</option>--}}
+{{--                                    <option value="1000">1000</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                --}}{{-- @dd($activeUserTotal) --}}
+{{--                <div class="card">--}}
+{{--                    <div class="pt-0 card-datatable table-responsive">--}}
+{{--                        <table class="table">--}}
+{{--                            <thead class="thead-light">--}}
+{{--                                <tr>--}}
+{{--                                    <th>ID</th>--}}
+{{--                                    <th>Sales Associates</th>--}}
+{{--                                    <th>Email</th>--}}
+{{--                                    <th>Status</th>--}}
+{{--                                    <th>Edit</th>--}}
+{{--                                </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                                @forelse ($activeUserTotal as $key=>$user)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ $key + 1 }}</td>--}}
+{{--                                        <td>{{ $user->user()->pluck('name')->implode('') }}</td>--}}
+{{--                                        <td>{{ $user->user()->pluck('email')->implode('') }}</td>--}}
+{{--                                        <td>{{ $user->user()->pluck('status')->implode('') }}</td>--}}
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route('user.edit', $user->user_code) }}"--}}
+{{--                                                class="btn btn-primary btn-sm">Edit</a>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                @empty--}}
+{{--                                    <x-emptyrow>--}}
+{{--                                        6--}}
+{{--                                    </x-emptyrow>--}}
+{{--                                @endforelse--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                        {{ $activeUserTotal->links() }}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </section>--}}
+{{--            <section class="app-user-list" id="visitsSection">--}}
+{{--                <div class="card">--}}
+{{--                    <h5 class="card-header">Visits</h5>--}}
+{{--                    <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">--}}
+{{--                        <div class="col-md-2">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="selectSmall">Select Per Page</label>--}}
+{{--                                <select wire:model='perVisits' class="form-control form-control-sm" id="selectSmall">--}}
+{{--                                    <option value="10">10</option>--}}
+{{--                                    <option value="20">20</option>--}}
+{{--                                    <option value="50">50</option>--}}
+{{--                                    <option value="100">100</option>--}}
+{{--                                    <option value="500">500</option>--}}
+{{--                                    <option value="1000">1000</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="card">
-                    <div class="pt-0 card-datatable table-responsive">
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Customer</th>
-                                    <th>Sales Associates</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($visitsTotal as $key=>$user)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $user->customer()->pluck('customer_name')->implode('') }}</td>
-                                        <td>{{ $user->user()->pluck('name')->implode('') }}</td>
-                                        <td>{{ $user->user()->pluck('status')->implode('') }}</td>
-                                        <td>
-                                            <a href="{{ route('customer.edit', $user->customer_id) }}"
-                                                class="btn btn-sm btn-primary">Edit</a>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <x-emptyrow>
-                                        6
-                                    </x-emptyrow>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $visitsTotal->links() }}
-                    </div>
-                </div>
-            </section>
+{{--                <div class="card">--}}
+{{--                    <div class="pt-0 card-datatable table-responsive">--}}
+{{--                        <table class="table">--}}
+{{--                            <thead class="thead-light">--}}
+{{--                                <tr>--}}
+{{--                                    <th>ID</th>--}}
+{{--                                    <th>Customer</th>--}}
+{{--                                    <th>Sales Associates</th>--}}
+{{--                                    <th>Status</th>--}}
+{{--                                    <th>Action</th>--}}
+{{--                                </tr>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                                @forelse ($visitsTotal as $key=>$user)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{ $key + 1 }}</td>--}}
+{{--                                        <td>{{ $user->customer()->pluck('customer_name')->implode('') }}</td>--}}
+{{--                                        <td>{{ $user->user()->pluck('name')->implode('') }}</td>--}}
+{{--                                        <td>{{ $user->user()->pluck('status')->implode('') }}</td>--}}
+{{--                                        <td>--}}
+{{--                                            <a href="{{ route('customer.edit', $user->customer_id) }}"--}}
+{{--                                                class="btn btn-sm btn-primary">Edit</a>--}}
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                @empty--}}
+{{--                                    <x-emptyrow>--}}
+{{--                                        6--}}
+{{--                                    </x-emptyrow>--}}
+{{--                                @endforelse--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
+{{--                        {{ $visitsTotal->links() }}--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </section>--}}
             <section class="app-user-list" id="buyingCustomersSection">
                 <div class="card">
                     <h5 class="card-header">Buying Customers</h5>

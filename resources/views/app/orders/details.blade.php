@@ -140,7 +140,7 @@
     </div>
     @include('partials._messages')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -153,7 +153,7 @@
                                 <div class="my-1">
                                     Address, <span class="text-blue">{!! $test->address !!}</span>
                                 </div>
-                                <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
+                                <div class="my-1"><i class="fa fa-phone-alt fa-flip-horizontal text-secondary"></i> <b
                                         class="text-600">(+254){!! $test->phone_number !!}</b></div>
                             </div>
                         </div>
@@ -172,7 +172,7 @@
 
                                 <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Status:</span> <span
-                                        class="badge badge-warning badge-pill px-25 text-black-50">{!! $order->order_status !!}</span>
+                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span>
                                 </div>
                             </div>
                         </div>
@@ -223,14 +223,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row my-2">
-                                    <div class="col-7 text-right">
-                                        Tax (10%)
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>
-                                    </div>
-                                </div>
+{{--                                <div class="row my-2">--}}
+{{--                                    <div class="col-7 text-right">--}}
+{{--                                        Tax (10%)--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-5">--}}
+{{--                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                     <div class="col-7 text-right">
@@ -248,33 +248,33 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order</a></center>
-            @if ($payment)
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> {!! $payment->amount !!} <br>
-                            <b>Payment Date:</b> {!! $payment->payment_date !!}<br>
-                            <b>Payment Method:</b> {!! $payment->payment_method !!}<br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @else
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> N/A <br>
-                            <b>Payment Date:</b> N/A <br>
-                            <b>Payment Method:</b> N/A <br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @endif
+{{--            @if ($payment)--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header">Order Payments</div>--}}
+{{--                    <div class="card-body">--}}
+{{--                        <h6>--}}
+{{--                            <b>Amount:</b> {!! $payment->amount !!} <br>--}}
+{{--                            <b>Payment Date:</b> {!! $payment->payment_date !!}<br>--}}
+{{--                            <b>Payment Method:</b> {!! $payment->payment_method !!}<br>--}}
+{{--                        </h6>--}}
+{{--                        <hr>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @else--}}
+{{--                <div class="card">--}}
+{{--                    <div class="card-header">Order Payments</div>--}}
+{{--                    <div class="card-body">--}}
+{{--                        <h6>--}}
+{{--                            <b>Amount:</b> N/A <br>--}}
+{{--                            <b>Payment Date:</b> N/A <br>--}}
+{{--                            <b>Payment Method:</b> N/A <br>--}}
+{{--                        </h6>--}}
+{{--                        <hr>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
         </div>
     </div>
 @endsection
