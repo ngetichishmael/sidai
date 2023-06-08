@@ -22,32 +22,34 @@
                 <th>Name</th>
                 <th>Region</th>
                 <th>Sub Region</th>
-                @if(Auth::user()->account_type == 'Admin')
-                   <th>Manager's Name</th>@endif
+{{--                @if(Auth::user()->account_type =='NSM' || Auth::user()->account_type =='RSM' )--}}
+{{--                   <th>Shop Attendee Name</th>--}}
+{{--                @endif--}}
                 <th>Products Counts</th>
                 <th>Action</th>
              </thead>
              <tbody>
                 @foreach($warehouses as $count=>$warehouse)
-                   @if(Auth::user()->account_type == 'Manager' && $warehouse->manager == Auth::user()->user_code)
+                   @if(Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id || Auth::user()->account_type == 'Shop-Attendee' && $warehouse->manager == Auth::user()->user_code)
                    <tr>
                       <td>{!! $count+1 !!}</td>
                       <td>{!! $warehouse->name !!}</td>
-                      <td>{!! $warehouse->Region->Subregion->name ?? '' !!}</td>
-                     <td>{!! $warehouse->manager ?? 'NA' !!}</td>
+                      <td>{!! $warehouse->region->name ?? '' !!}</td>
+                      <td>{!! $warehouse->region->subregion->name ?? '' !!}</td>
+{{--                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
                       <td>{!! $warehouse->product_information_count !!}</td>
                       <td>
  {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
                          <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Inventory</a>
                       </td>
                    </tr>
-                   @elseif(Auth::user()->account_type == 'Admin')
+                   @elseif(Auth::user()->account_type == 'Admin' || Auth::user()->account_type == 'NSM')
                       <tr>
                          <td>{!! $count+1 !!}</td>
-                         <td>{!! $warehouse->name !!}</td>
-                         <td>{!! $warehouse->Region->name??''!!}</td>
-                         <td>{!! $warehouse->Region->Subregion->name ?? '' !!}</td>
-                         <td>{!! $warehouse->manager ?? 'NA' !!}</td>
+                         <td>{!! $warehouse->name ?? '' !!}</td>
+                         <td>{!! $warehouse->region->name ?? ''!!}</td>
+                         <td>{!! $warehouse->subregion->name ?? '' !!}</td>
+{{--                         <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
                          <td>{!! $warehouse->product_information_count !!}</td>
                          <td>
                             <div class="dropdown" >

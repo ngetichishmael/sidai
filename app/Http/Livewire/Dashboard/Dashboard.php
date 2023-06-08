@@ -112,7 +112,6 @@ class Dashboard extends Component
           ->groupBy('month')
           ->pluck('count', 'month')
           ->toArray();
-
        // Retrieve delivery counts per month
        $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'Partial Delivery'])
           ->whereYear('created_at', '=', date('Y'))

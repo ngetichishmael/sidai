@@ -16,6 +16,14 @@ use Illuminate\Support\Str;
 
 class usersController extends Controller
 {
+   public function getUsers(Request $request)
+   {
+      $accountType = $request->input('account_type');
+      $users = User::where('account_type', $accountType)->get();
+
+      return response()->json(['users' => $users]);
+   }
+
    //list
    public function list()
    {

@@ -21,9 +21,16 @@ class warehousing extends Model
    ];
    public function manager()
    {
-      return $this->belongsTo(User::class ,'shop_attendee', 'user_code');
+      return $this->belongsTo(User::class ,'manager', 'user_code');
    }
-
+   public function region()
+   {
+      return $this->belongsTo(Region::class ,'region_id', 'id' );
+   }
+   public function subregion()
+   {
+      return $this->belongsTo(Subregion::class ,'subregion_id', 'id' );
+   }
    public function productInformation()
    {
       return $this->hasMany(product_information::class, 'warehouse_code', 'warehouse_code');
