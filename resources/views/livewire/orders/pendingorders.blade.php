@@ -34,7 +34,7 @@
                         <th width="1%">#</th>
 {{--                        <th>Order Type</th>--}}
                         <th>Customer</th>
-{{--                        <th>status</th>--}}
+                        <th>status</th>
 {{--                        <th>Region</th>--}}
 {{--                        <th>Route</th>--}}
                         <th>Sales Person</th>
@@ -57,7 +57,7 @@
 {{--                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>--}}
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
-{{--                               <td>{{ $order->order_status }}</td>--}}
+                               <td>{{ $order->order_status }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>

@@ -13,7 +13,7 @@ class pendingorders extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 10;
+   public $perPage = 25;
    public ?string $search = null;
    public $orderBy = 'orders.id';
    public $orderAsc = false;
@@ -23,7 +23,7 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $pendingorders = Orders::where('order_status', 'Pending Delivery')->where('order_type','=','Pre Order')->with('Customer', 'user')
+      $pendingorders = Orders::where('order_status','=', 'Pending Delivery')->where('SupplierID', '=', [null, ' ', '1'])->where('order_type','=','Pre Order')->with('Customer', 'user')
          ->search($searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);

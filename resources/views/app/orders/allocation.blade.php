@@ -33,7 +33,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
-                    <h4>Assign Order To User</h4>
+                   <h4>Assign Order To User of customer <u>{{$order->customer->customer_name}}</u>, Order Code <u>{!! $order->order_code !!}</u></h4>
                     <hr>
                     <div class="row">
                         <div class="form-group col-md-4">
@@ -45,16 +45,16 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="">Assign Stock From</label>
-                            <select name="warehouse" class="form-control" required>
-                                <option value="">Choose warehouse</option>
-                                @foreach ($warehouses as $warehouse)
-                                    <option value="{!! $warehouse->warehouse_code !!}">{!! $warehouse->name !!}</option>
-                                @endforeach
-                            </select>
+                        <div class="form-group col-md-2">
+{{--                            <label for="">Assign Stock From</label>--}}
+{{--                            <select name="warehouse" class="form-control" required>--}}
+{{--                                <option value="">Choose warehouse</option>--}}
+{{--                                @foreach ($warehouses as $warehouse)--}}
+{{--                                    <option value="{!! $warehouse->warehouse_code !!}">{!! $warehouse->name !!}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
                         </div>
