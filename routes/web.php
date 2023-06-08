@@ -201,6 +201,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('users/all/import', ['uses' => 'app\usersController@indexUser', 'as' => 'users.all.import']);
    Route::post('users/post/import', ['uses' => 'app\usersController@import', 'as' => 'users.post.import']);
 
+   Route::get('/get-users', 'app\usersController@getUsers')->name('get.users');
+
    //export products
    Route::get('products/export/{type}', ['uses' => 'app\products\ImportController@export', 'as' => 'products.export']);
 

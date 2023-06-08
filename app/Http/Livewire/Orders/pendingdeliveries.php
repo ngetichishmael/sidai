@@ -24,9 +24,9 @@ class pendingdeliveries extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $orders =  Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])
+      $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
          ->where(function ($query) {
-            $query->where('delivery_status', 'Delivered')
+            $query->where('delivery_status', 'Pending Delivery')
                ->orWhere('delivery_status', 'Partial delivery');
          })->with('Customer', 'user', 'Order')
          ->search($searchTerm)
