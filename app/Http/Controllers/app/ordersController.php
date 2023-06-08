@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\app;
 
+use App\Models\activity_log;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Delivery;
@@ -138,6 +139,16 @@ class ordersController extends Controller
       }
 
       Session::flash('success', 'Delivery created and orders allocated to a user');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Allocate an order to a User';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order Allocation';
+      $activityLog->action = 'Order allocated to user '. $request->name. ' Role '.$request->account_type.'';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('orders.pendingorders');
 //      return redirect()->back();

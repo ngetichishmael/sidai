@@ -32,7 +32,7 @@
     </div>
     <div class="card card-default">
        <div class="card-body">
-          <table class="table table-striped">
+          <table class="table table-striped table-bordered zero-configuration">
              <thead>
                 <tr>
                    <th width="1%">#</th>
