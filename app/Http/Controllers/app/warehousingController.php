@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\app;
 
 use App\Helpers\Helper;
+use App\Models\activity_log;
 use App\Models\country;
 use App\Models\User;
 use App\Models\Subregion;
@@ -63,7 +64,7 @@ class warehousingController extends Controller
       $regions = Region::all();
       $allsubregions = Subregion::all()->whereNotNull('id')->pluck('id');
 
-      $managers =User::where('account_type', 'store-manager')->get();
+      $managers =User::where('account_type', 'Shop-Attendee')->get();
 
       return view('app.warehousing.create', compact('country','managers','allsubregions','regions'));
    }
@@ -78,42 +79,46 @@ class warehousingController extends Controller
    {
       $this->validate($request, [
          'name' => 'required',
-         'phone_number' => 'required',
+         'code' => 'required',
+         'region_id' => 'required',
+         'subregion_id' => 'required',
       ]);
-
       //check if has main
       if ($request->is_main == 'Yes') {
-         $checkMain = warehousing::where('business_code', Auth::user()->business_code)->where('is_main', 'Yes')->count();
+         //$checkMain = warehousing::where('business_code', Auth::user()->business_code)->where('is_main', 'Yes')->count();
+         $checkMain = warehousing::where('is_main', 'Yes')->count();
          if ($checkMain > 0) {
-            warehousing::where('business_code', Auth::user()->business_code)->where('is_main', 'Yes')->update(['is_main' => NULL]);
+           // warehousing::where('business_code', Auth::user()->business_code)->where('is_main', 'Yes')->update(['is_main' => NULL]);
+            warehousing::where('is_main', 'Yes')->update(['is_main' => NULL]);
          }
       }
 
       $warehouse = new warehousing;
       $warehouse->business_code = Auth::user()->business_code;
-      $warehouse->warehouse_code = Str::random(20);
+      $warehouse->warehouse_code = $request->code;
       $warehouse->name = $request->name;
-      $warehouse->country = $request->country;
+      $warehouse->country = 'Kenya';
       $warehouse->region_id = $request->region_id;
       $warehouse->subregion_id = $request->subregion_id;
-      $warehouse->phone_number = $request->phone_number;
-      $warehouse->email = $request->email;
-      $warehouse->manager = $request->manager;
+      $warehouse->phone_number = 0000000;
+      $warehouse->email = '';
+      $warehouse->manager = '';
       $warehouse->status = $request->status;
       $warehouse->is_main = $request->is_main;
       $warehouse->created_by = Auth::user()->user_code;
       $warehouse->save();
 
-      //recorord activity
-      $activities = '<b>' . Auth::user()->name . '</b> Has <b>added</b> a new warehouse <i> ' . $request->name . '</i>';
-      $section = 'Warehouse';
-      $action = 'Create';
-      $businessID = Auth::user()->business_code;
-      $activityID = $warehouse->warehouse_code;
-
-      Helper::activity($activities, $section, $action, $activityID, $businessID);
-
       Session()->flash('success', 'Warehouse added successfully');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Adding a Warehouse';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Creating a warehouse';
+      $activityLog->action = 'User '.auth()->user()->name.' Created warehouse '.$request->name;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('warehousing.index');
    }
@@ -186,16 +191,17 @@ class warehousingController extends Controller
       $warehouse->updated_by = Auth::user()->user_code;
       $warehouse->save();
 
-      //recorord activity
-      $activities = '<b>' . Auth::user()->name . '</b> Has <b>Updated</b> warehouse details for <i> ' . $request->name . '</i>';
-      $section = 'Warehouse';
-      $action = 'Update';
-      $businessID = Auth::user()->business_code;
-      $activityID = $warehouse->warehouse_code;
-
-      Helper::activity($activities, $section, $action, $activityID, $businessID);
-
       Session()->flash('success', 'Warehouse updated successfully');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Updating a Warehouse';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Warehouse Detail Update';
+      $activityLog->action = 'User '.auth()->user()->name.' Updated details for warehouse '.$request->name;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->back();
    }

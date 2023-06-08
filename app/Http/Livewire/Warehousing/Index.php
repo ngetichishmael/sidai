@@ -17,7 +17,7 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $warehouses = warehousing::with('manager')->withCount('productInformation')
+      $warehouses = warehousing::with('manager', 'region', 'subregion')->withCount('productInformation')
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
 
       return view('livewire.warehousing.index', [
