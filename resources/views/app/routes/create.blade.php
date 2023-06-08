@@ -34,7 +34,7 @@
                     {!! csrf_field() !!}
                     <div class="form-group col-md-12 mb-1">
                         <label for="">Routes</label>
-                        {!! Form::select('name', $zones, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
+                        {!! Form::select('name', $routes, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
                     </div>
                     <div class="row mb-1">
                         <div class="form-group col-md-4">
