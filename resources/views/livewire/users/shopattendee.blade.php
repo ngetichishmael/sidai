@@ -19,11 +19,11 @@
           <label for=""></label>
           <div>
              @if ($bulkDisabled)
-                <button type="button" class="btn" style="background-color: #B6121B;color:white" data-bs-toggle="modal" data-bs-target="#danger">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#danger">
                    <span>Notify</span>
                 </button>
              @else
-                <button type="button" class="btn" style="background-color: #B6121B;color:white" data-bs-toggle="modal" data-bs-target="#success">
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success">
                    <span>Notify</span>
                 </button>
              @endif
@@ -46,7 +46,7 @@
                 </tr>
              </thead>
              <tbody>
-                @foreach($salemanager as $key => $user)
+                @foreach($shopattendee as $key => $user)
 {{--                   @if($user->businessID == Auth::user()->businessID)--}}
                       <tr>
                          <td>{!! $key + 1 !!}</td>
@@ -66,7 +66,7 @@
                          <td style="color: {!! $user->status == 'Active' ? 'green' : 'orangered' !!}">{!! $user->status !!}</td>
                          <td>
                             <div class="dropdown" >
-                               <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                               <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                   <i data-feather="settings"></i>
                                </button>
                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -134,7 +134,7 @@
                 @endforeach
              </tbody>
           </table>
-          <div class="mt-1">{!! $salemanager->links() !!}</div>
+          <div class="mt-1">{!! $shopattendee->links() !!}</div>
        </div>
     </div>
    @include('livewire.notification.users.modal')

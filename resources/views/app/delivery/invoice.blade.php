@@ -140,20 +140,24 @@
     </div>
     @include('partials._messages')
     <!-- Invoice -->
-    <div class="col-xl-9 col-md-8 col-12">
+    <div class="row">
+       <div class="col-md-8">
+{{--    <div class="col-xl-9 col-md-8 col-12">--}}
         <div class="card invoice-preview-card">
             <div class="pb-0 card-body invoice-padding">
                 <!-- Header starts -->
                 <div class="mt-0 d-flex justify-content-between flex-md-row flex-column invoice-spacing">
                     <div>
                         <div class="logo-wrapper">
-                            <img style="height:50px;" src={{ asset('app-assets/images/bglogo.png') }} alt="Soko Flow" />
+                            <img style="height:50px;" src={{ asset('app-assets/images/sidaiweblogo.png') }} alt="sidai" />
                         </div>
-                        <p class="card-text mb-25">23 Olenguruone Avenue, Kileleshwa</p>
+                        <p class="card-text mb-25">Baobab House, Ground Floor, Wing A</p>
+                       <p> Westlands Office Park, Waiyaki </p>
                         <p class="card-text mb-25">P.O. Box 15478-00100 City Square, Nairobi</p>
                         <p class="mb-0 card-text">+254 748 424 757, +254 724 032 354</p>
                         <p class="mb-0 card-text">info@deveint.com</p>
                     </div>
+
                     <div class="mt-2 mt-md-0">
 
                        @foreach ($deliveries as $count => $deliver)
@@ -166,8 +170,11 @@
                             <span class="invoice-date">{{ $deliver->delivered_time ?? 'Not Set' }}</span>
                         </div>
                     </div>
+
                 </div>
+
                 <!-- Header ends -->
+
             </div>
 
             <hr class="invoice-spacing" />
@@ -238,9 +245,28 @@
 
             <hr class="invoice-spacing" />
 
-            
+
         </div>
+
     </div>
+
+    <div class="col-md-4">
+    <div class="card">
+       <div class="card-header font-bolder font-medium"><h4><b>Delivery Note</b></h4></div>
+       <div class="card-body">
+          <h5>
+             <br>
+             <b>{{$deliver->delivery_note ?? ''}}</b><br>
+          </h5>
+          <h6>
+             <b>{{$deliver->note ?? ''}}</b><br>
+          </h6>
+          <hr>
+       </div>
+    </div>
+    </div>
+    </div>
+
     <!-- /Invoice -->
 @endsection
 {{-- page scripts --}}

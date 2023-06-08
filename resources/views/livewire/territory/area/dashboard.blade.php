@@ -6,9 +6,11 @@
                     <thead>
                         <tr>
                             <th width="1%">#</th>
-                            <th>Name</th>
+                            <th>Route</th>
                             <th>Sub Region</th>
                             <th>Region</th>
+                           <th>Customers</th>
+{{--                           <th>Actions</th>--}}
                         </tr>
                     </thead>
                     <tbody>
@@ -18,6 +20,8 @@
                                 <td>{{ $area->name }}</td>
                                 <td>{{ $area->Subregion->name }}</td>
                                 <td>{{ $area->Subregion->Region->name }}</td>
+                               <td>{{$customer_counts->where('route','=',$area->id)->count()}}</td>
+
                             </tr>
                         @endforeach
                     </tbody>

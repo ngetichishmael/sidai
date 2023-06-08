@@ -249,7 +249,7 @@
             </div>
         </div>
         <div class="col-md-4">
-{{--            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Delivery</a></center>--}}
+            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order</a></center>
             @if ($payment)
                 <div class="card">
                     <div class="card-header">Order Payments</div>

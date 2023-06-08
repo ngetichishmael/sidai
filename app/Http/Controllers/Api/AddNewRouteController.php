@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Models\Routes;
 use App\Models\Route_customer;
@@ -13,7 +14,11 @@ use Illuminate\Support\Facades\DB;
 
 class AddNewRouteController extends Controller
 {
-    public function store(Request $request)
+   /**
+    * @param Request $request
+    * @return JsonResponse
+    */
+   public function store(Request $request)
    {
 
             //$requestID=$request->collect();

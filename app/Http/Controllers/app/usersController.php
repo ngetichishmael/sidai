@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -11,13 +12,14 @@ use App\Models\AppPermission;
 use App\Models\Region;
 use Exception;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Str;
 
 class usersController extends Controller
 {
    //list
    public function list()
    {
-      $lists = User::whereIn('account_type',['Technical-Sales-Agent','Sale-Manager','Manager','Admin'])
+      $lists = User::whereIn('account_type',['NSM','RSM','TD','TSR', 'Shop-Attendee'])
          ->distinct('account_type')
          ->whereNotIn('account_type', ['Customer'])
          ->groupBy('account_type')
@@ -25,25 +27,30 @@ class usersController extends Controller
       $count = 1;
       return view('app.users.list', compact('lists','count'));
    }
-   public function admin()
+   public function nsm()
    {
-      $admin = User::where('account_type', 'Admin');
+      $admin = User::where('account_type', 'NSM');
       return view('app.users.index', compact('admin'));
    }
-   public function salemanager()
+   public function shopattendee()
    {
-      $salemanager = User::where('account_type', 'Sale-Manager');
-      return view('app.users.salemanager', compact('salemanager'));
+      $shopattendee = User::where('account_type', 'Shop-Attendee');
+      return view('app.users.shopattendee', compact('shopattendee'));
    }
-   public function manager()
+   public function tsr()
    {
-      $manager = User::where('account_type', 'Manager');
-      return view('app.users.manager', compact('manager'));
+      $tsr = User::where('account_type', 'TSR');
+      return view('app.users.tsr', compact('tsr'));
    }
-   public function technical()
+   public function td()
    {
-      $technical = User::where('account_type', 'Technical-Sales-Agent');
-      return view('app.users.technical', compact('technical'));
+      $td = User::where('account_type', 'TD');
+      return view('app.users.td', compact('td'));
+   }
+   public function rsm()
+   {
+      $rsm = User::where('account_type', 'RSM');
+      return view('app.users.rsm', compact('rsm'));
    }
    public function index()
    {
@@ -79,6 +86,16 @@ class usersController extends Controller
       $regions = Region::all();
       $routes = Area::all();
       return view('app.users.create', [
+         "routes" => $routes,
+         "regions" => $regions
+      ]);
+   }
+   public function creatensm()
+   {
+      // $routes = array_merge($regions, $subregions, $zones);
+      $regions = Region::all();
+      $routes = Area::all();
+      return view('app.users.creatensm', [
          "routes" => $routes,
          "regions" => $regions
       ]);
@@ -126,7 +143,7 @@ class usersController extends Controller
          'name' => 'required',
          'phone_number' => 'required',
          'account_type' => 'required',
-         'route' => 'required',
+         'region' => 'required',
       ]);
       $user_code = rand(100000, 999999);
       //save user
@@ -142,9 +159,9 @@ class usersController extends Controller
             "name" => $request->name,
             "account_type" => $request->account_type,
             "email_verified_at" => now(),
-            "route_code" => $request->route,
+            "route_code" => $request->region,
             "status" => 'Active',
-            "password" => Hash::make("password"),
+            "password" => Hash::make($request->phone_number),
             "business_code" => FacadesAuth::user()->business_code,
 
          ]
@@ -167,38 +184,49 @@ class usersController extends Controller
             "merchanizing" => $merchanizing,
          ]
       );
-      try {
-         $curl = curl_init();
+//      try {
+//         $curl = curl_init();
+//
+//         curl_setopt_array($curl, array(
+//            CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
+//            CURLOPT_RETURNTRANSFER => true,
+//            CURLOPT_ENCODING => '',
+//            CURLOPT_MAXREDIRS => 10,
+//            CURLOPT_TIMEOUT => 0,
+//            CURLOPT_FOLLOWLOCATION => true,
+//            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//            CURLOPT_CUSTOMREQUEST => 'POST',
+//            CURLOPT_POSTFIELDS => '{
+//               "number" :  "' . $request->phone_number . '",
+//               "sms" : ' . $code . ',
+//               "callBack" : "https://....",
+//               "senderName" : "PASANDA"
+//         }
+//         ',
+//            CURLOPT_HTTPHEADER => array(
+//               'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
+//               'Content-Type: application/json'
+//            ),
+//         ));
+//
+//         $response = curl_exec($curl);
+//
+//         curl_close($curl);
+//      } catch (Exception $e) {
+//      }
 
-         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-               "number" :  "' . $request->phone_number . '",
-               "sms" : ' . $code . ',
-               "callBack" : "https://....",
-               "senderName" : "PASANDA"
-         }
-         ',
-            CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
-               'Content-Type: application/json'
-            ),
-         ));
-
-         $response = curl_exec($curl);
-
-         curl_close($curl);
-      } catch (Exception $e) {
-      }
-      Session()->flash('success', 'User Created Successfully');
+      Session()->flash('success', 'User Created Successfully, Default Password is Phone_number');
       // Redirect::back()->with('message', 'User Created Successfully');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Adding User';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Creating User';
+      $activityLog->action = 'User '. $request->name. ' Role '.$request->account_type.' Created Successfully';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('users.index');
    }
@@ -265,6 +293,16 @@ class usersController extends Controller
       );
 
       Session()->flash('success', 'User updated Successfully');
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'User update';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'User update';
+      $activityLog->action = 'User '.$request->name.' updated';
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return redirect()->route('users.index');
    }

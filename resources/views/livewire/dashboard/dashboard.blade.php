@@ -30,102 +30,105 @@
                 </div>
                 <div class="card">
 
-                    <div class="card-body statistics-body">
+                    <div class="card-body statistics-body mt-0">
                         <div class="row">
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#vansalesSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-primary mr-2">
-                                            <div class="avatar-content">
-                                                <span
-                                                    class="material-symbols-outlined">production_quantity_limits</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">{{ number_format($vansales) }}</h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Van Sales</p>
-                                        </div>
+{{--                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">--}}
+{{--                                <a href="#vansalesSection">--}}
+{{--                                    <div class="media">--}}
+{{--                                        <div class="avatar bg-light-primary mr-2">--}}
+{{--                                            <div class="avatar-content">--}}
+{{--                                                <span--}}
+{{--                                                    class="material-symbols-outlined">production_quantity_limits</span>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="media-body my-auto">--}}
+{{--                                            <h4 class="font-weight-bolder mb-0">{{ number_format($vansales) }}</h4>--}}
+{{--                                            <p class="card-text font-small-3 mb-0" style="color: black">Van Sales</p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
+{{--                            </div>--}}
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">inventory</span>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#preorderSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-info mr-2">
-                                            <div class="avatar-content">
-                                                <span class="material-symbols-outlined">arrow_forward</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">{{ number_format($preorder) }}</h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Pre Order</p>
-                                        </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder"> &nbsp;{{ number_format($vansales) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Van Sales</p>
+                                 </div>
+                              </a>
+                           </div>
+
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">shopping_cart</span>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#orderFulfillmentSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-danger mr-2">
-                                            <div class="avatar-content">
-                                                <i data-feather="award" class="avatar-icon font-medium-3"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">{{ number_format($orderfullment) }}</h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Order Fulfillment</p>
-                                        </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($preorder) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Pre-Orders</p>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">arrow_forward</span>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#activeUsersSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-success mr-2">
-                                            <div class="avatar-content">
-                                                <span class="material-symbols-outlined">check_circle</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">
-                                                {{ number_format($activeUser) }} / {{ number_format($activeAll) }}
-                                            </h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Active Users</p>
-                                        </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($customersCount) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Customers</p>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">order_approve</span>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#visitsSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-success mr-2">
-                                            <div class="avatar-content">
-                                                <i data-feather="truck" class="avatar-icon font-medium-3"></i>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">{{ number_format($strike) }}</h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Visits</p>
-                                        </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($orderfullmentbydistributors) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Distributor-Orders</p>
+                                 </div>
+                              </a>
+                           </div>
+
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">local_shipping</span>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#buyingCustomersSection">
-                                    <div class="media">
-                                        <div class="avatar bg-light-success mr-2">
-                                            <div class="avatar-content">
-                                                <span class="material-symbols-outlined">rocket_launch</span>
-                                            </div>
-                                        </div>
-                                        <div class="media-body my-auto">
-                                            <h4 class="font-weight-bolder mb-0">{{ number_format($customersCount) }}
-                                            </h4>
-                                            <p class="card-text font-small-3 mb-0" style="color: black">Buying Customer</p>
-                                        </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($orderfullment) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Deliveries</p>
+                                 </div>
+                              </a>
+                           </div>
+                           <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
+                              <a href="#vansalesSection" class="d-flex align-items-center">
+                                 <div class="avatar bg-light-primary">
+                                    <div class="avatar-content">
+                                       <span class="material-symbols-outlined">people</span>
                                     </div>
-                                </a>
-                            </div>
+                                 </div> &nbsp;&nbsp;
+                                 <div class="media-body my-auto pl-3 ml-3">
+                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($activeAll) }}</h4>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Users</p>
+                                 </div>
+                              </a>
+                           </div>
+
                         </div>
                     </div>
                 </div>
@@ -137,14 +140,69 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="card">
-                                @livewire('dashboard.brand-chart')
+{{--                                @livewire('dashboard.brand-chart')--}}
+{{--                                   @dump($preOrdersLabels)--}}
+                                   <canvas id="lineChart" width="800" height="400"></canvas>
+
+                                   <script>
+                                      const data = @json($graphdata);
+
+                                      const labels = data.map(entry => entry.month);
+
+                                      const preOrderCounts = data.map(entry => entry.preOrderCount);
+                                      const deliveryCounts = data.map(entry => entry.deliveryCount);
+
+                                      const ctx = document.getElementById('lineChart').getContext('2d');
+                                      new Chart(ctx, {
+                                         type: 'line',
+                                         data: {
+                                            labels: labels,
+                                            datasets: [
+                                               {
+                                                  label: 'Pre Orders',
+                                                  data: preOrderCounts,
+                                                  borderColor: 'rgb(255,69,0)',
+                                                  // backgroundColor: 'rgba(255, 69, 0, 0.2)',
+                                                  fill: false
+                                               },
+                                               {
+                                                  label: 'Deliveries',
+                                                  data: deliveryCounts,
+                                                  borderColor: 'rgb(21,116,239)',
+                                                  // backgroundColor: 'rgba(243,75,84,0.3)',
+                                                  fill: false
+                                               }
+                                            ]
+                                         },
+                                         options: {
+                                            responsive: true,
+                                            scales: {
+                                               x: {
+                                                  display: true,
+                                                  title: {
+                                                     display: true,
+                                                     text: 'Months'
+                                                  }
+                                               },
+                                               y: {
+                                                  display: true,
+                                                  title: {
+                                                     display: true,
+                                                     text: 'Count'
+                                                  }
+                                               }
+                                            }
+                                         }
+                                      });
+                                   </script>
                                 </div>
+
                             </div>
-                            <div class="col-4">
-                                <div class="card">
-                                @livewire('dashboard.catergory-chart')
-                                </div>
-                            </div>
+{{--                            <div class="col-4">--}}
+{{--                                <div class="card">--}}
+{{--                                @livewire('dashboard.catergory-chart')--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                     {{-- <div class="col-12">
@@ -159,68 +217,124 @@
                             </div>
                         </section>
                     </div> --}}
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h4>Money Collected</h4>
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <th>Total Collected</th>
-                                            <th width="20%"></th>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="table-success">
-                                                <td>Cash</td>
-                                                <td>{{ number_format($Cash) }}</td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <td>Mpesa</td>
-                                                <td>{{ number_format($Mpesa) }}</td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <td>Cheque</td>
-                                                <td>{{ number_format($Cheque) }}</td>
-                                            </tr>
-                                            <tr class="table-success">
-                                                <td>Total Reconciled</td>
-                                                <td>{{ number_format($total) }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="col-6">
-                                    <h4>Receivables Aging</h4>
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <th>Total Collected</th>
-                                            <th width="20%"></th>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="table-warning">
-                                                <td>Today</td>
-                                                <td>{{ number_format($daily) }}</td>
-                                            </tr>
-                                            <tr class="table-warning">
-                                                <td>0-7days</td>
-                                                <td>{{ number_format($weekly) }}</td>
-                                            </tr>
-                                            <tr class="table-warning">
-                                                <td>0-30Days</td>
-                                                <td>{{ number_format($monthly) }}</td>
-                                            </tr>
-                                            <tr class="table-warning">
-                                                <td>Total</td>
-                                                <td>{{ number_format($sumAll) }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-6">--}}
+{{--                                    <h4>Money Collected</h4>--}}
+{{--                                    <table class="table table-striped table-bordered">--}}
+{{--                                        <thead>--}}
+{{--                                            <th>Total Collected</th>--}}
+{{--                                            <th width="20%"></th>--}}
+{{--                                        </thead>--}}
+{{--                                        <tbody>--}}
+{{--                                            <tr class="table-success">--}}
+{{--                                                <td>Cash</td>--}}
+{{--                                                <td>{{ number_format($Cash) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-success">--}}
+{{--                                                <td>Mpesa</td>--}}
+{{--                                                <td>{{ number_format($Mpesa) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-success">--}}
+{{--                                                <td>Cheque</td>--}}
+{{--                                                <td>{{ number_format($Cheque) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-success">--}}
+{{--                                                <td>Total Reconciled</td>--}}
+{{--                                                <td>{{ number_format($total) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                        </tbody>--}}
+{{--                                    </table>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-6">--}}
+{{--                                    <h4>Receivables Aging</h4>--}}
+{{--                                    <table class="table table-striped table-bordered">--}}
+{{--                                        <thead>--}}
+{{--                                            <th>Total Collected</th>--}}
+{{--                                            <th width="20%"></th>--}}
+{{--                                        </thead>--}}
+{{--                                        <tbody>--}}
+{{--                                            <tr class="table-warning">--}}
+{{--                                                <td>Today</td>--}}
+{{--                                                <td>{{ number_format($daily) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-warning">--}}
+{{--                                                <td>0-7days</td>--}}
+{{--                                                <td>{{ number_format($weekly) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-warning">--}}
+{{--                                                <td>0-30Days</td>--}}
+{{--                                                <td>{{ number_format($monthly) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                            <tr class="table-warning">--}}
+{{--                                                <td>Total</td>--}}
+{{--                                                <td>{{ number_format($sumAll) }}</td>--}}
+{{--                                            </tr>--}}
+{{--                                        </tbody>--}}
+{{--                                    </table>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                </div>
+            </div>
+            <section class="app-user-list" id="creditors">
+                <div class="card">
+                    <h5 class="card-header">Overdue Creditors</h5>
+                    <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="selectSmall">Select Per Page</label>
+                                <select wire:model='perVansale' class="form-control form-control-sm"
+                                    id="selectSmall">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="card">
+                    <div class="pt-0 card-datatable table-responsive">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>
+{{--                                    <th>Order Code</th>--}}
+                                    <th>Customer Name</th>
+                                    <th>Balance </th>
+{{--                                    <th>Payment Status</th>--}}
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($vansalesTotal as $key=>$sale)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $sale->order_code }}</td>
+                                        <td>{{ $sale->user()->pluck('name')->implode('') }}</td>
+                                        <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
+                                        <td>{{ $sale->balance }}</td>
+                                        <td>{{ $sale->payment_status }}</td>
+                                        <td>{{ $sale->updated_at }}</td>
+                                    </tr>
+                                @empty
+                                    <x-emptyrow>
+                                        6
+                                    </x-emptyrow>
+                                @endforelse
+                            </tbody>
+                        </table>
+                        {{ $vansalesTotal->links() }}
+                    </div>
+                </div>
+            </section>
             <section class="app-user-list" id="vansalesSection">
                 <div class="card">
                     <h5 class="card-header">Total Vansales</h5>

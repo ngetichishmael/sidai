@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\ReconciledProductsController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\TargetsController;
 use Illuminate\Support\Facades\Route;
+use Knuckles\Scribe\Annotations as Scribe;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -42,7 +43,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details');
    Route::get('customers/{customerID}/orders', 'customersController@orders');
 
-   Route::post('/messages', 'ChatController@sendMessage');
+//   Route::post('/messages', 'ChatController@sendMessage');
 
 
    Route::get('customers/order/{orderCode}/details', 'customersController@order_details');

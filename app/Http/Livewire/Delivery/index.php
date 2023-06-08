@@ -10,7 +10,7 @@ class index extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 5;
+   public $perPage = 25;
    public ?string $search = null;
    public $orderBy = 'delivery.id';
    public $orderAsc = true;
@@ -22,7 +22,7 @@ class index extends Component
    {
 
       $searchTerm = '%' . $this->search . '%';
-      $deliveries = Delivery::with('User', 'Customer')
+      $deliveries = Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])->with('User', 'Customer')
          ->search($searchTerm)
          ->orderBy('updated_at', 'desc')
          ->paginate($this->perPage);

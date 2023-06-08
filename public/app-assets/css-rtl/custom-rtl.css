@@ -102,6 +102,13 @@ li.has-sub.open:not(.menu-item-closing) > a:after {
 
 .select2, .select2-container {
   text-align : right;
+   display: none !important;
+}
+.select2-search .select2-search__icon {
+   display: none !important;
+}
+.select2-selection__arrow {
+   display: none !important;
 }
 
 .apexcharts-canvas .apexcharts-text.apexcharts-yaxis-label {

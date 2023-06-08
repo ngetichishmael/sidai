@@ -26,7 +26,7 @@
         </div>
     </div>
     @include('partials._messages')
-    <form class="row" action="{!! route('order.create.delivery') !!}" method="POST" enctype="multipart/form-data">
+    <form class="row" action="{!! route('order.create.allocateorders') !!}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="order_code" value="{!! $order->order_code !!}">
         <input type="hidden" name="customer" value="{!! $order->customerID !!}">
@@ -38,7 +38,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="">Choose User</label>
-                            <select name="user" class="form-control" required>
+                            <select name="user" class="form-control select2" required>
                                 <option value="">Choose User</option>
                                 @foreach ($users as $user)
                                     <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>

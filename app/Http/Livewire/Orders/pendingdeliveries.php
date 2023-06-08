@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Orders;
 
 use App\Exports\OrdersExport;
+use App\Models\Delivery;
 use Livewire\Component;
 use App\Models\Orders;
 use Livewire\WithPagination;
@@ -15,7 +16,7 @@ class pendingdeliveries extends Component
    protected $paginationTheme = 'bootstrap';
    public $perPage = 10;
    public ?string $search = null;
-   public $orderBy = 'orders.id';
+   public $orderBy = 'delivery.id';
    public $orderAsc = false;
    public $customer_name = null;
 
@@ -23,7 +24,11 @@ class pendingdeliveries extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $orders =  Orders::with('Customer', 'user')->where('order_status' ,'=','Pending Delivery')
+      $orders =  Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])
+         ->where(function ($query) {
+            $query->where('delivery_status', 'Delivered')
+               ->orWhere('delivery_status', 'Partial delivery');
+         })->with('Customer', 'user', 'Order')
          ->search($searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);

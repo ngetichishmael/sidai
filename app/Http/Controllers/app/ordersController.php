@@ -28,6 +28,10 @@ class ordersController extends Controller
    {
       return view('app.orders.pendingdeliveries');
    }
+   public function distributororders()
+   {
+      return view('app.orders.pendingdeliveries');
+   }
    public function pendingorders()
    {
       return view('app.orders.pendingorders');
@@ -55,6 +59,19 @@ class ordersController extends Controller
       // dd($payment);
       return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
    }
+   public function pendingdetails($code)
+   {
+      $order = Orders::where('order_code', $code)->first();
+      // dd($code);
+      $items = Order_items::where('order_code', $order->order_code)->get();
+      $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
+      $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
+      $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
+      $id = $Customer_id->customerID;
+      $test = customers::where('id', $id)->first();
+      $payment = order_payments::where('order_id', $order->order_code)->first();
+      return view('app.orders.pendingdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+   }
 
    //allocation
    public function allocation($code)
@@ -68,6 +85,63 @@ class ordersController extends Controller
    }
 
    //create delivery
+   public function allocateOrders(Request $request)
+   {
+      $this->validate($request, [
+         'user' => 'required',
+         'warehouse' => 'required',
+
+      ]);
+
+      $delivery = Delivery::updateOrCreate(
+         [
+            "business_code" => Str::random(20),
+            "customer" => $request->customer,
+            "order_code" => $request->order_code
+         ],
+         [
+            "delivery_code" => Str::random(20),
+            "allocated" => $request->user,
+            "delivery_note" => $request->note,
+            "delivery_status" => "Waiting acceptance",
+            "created_by" => Auth::user()->user_code
+         ]
+      );
+
+      for ($i = 0; $i < count($request->allocate); $i++) {
+
+         $pricing = product_price::whereId($request->item_code[$i])->first();
+         Delivery_items::updateOrCreate(
+            [
+               "business_code" => Auth::user()->business_code,
+               "delivery_code" => $delivery->delivery_code,
+               "productID" => $request->item_code[$i],
+
+            ],
+            [
+               "selling_price" => $pricing->selling_price,
+               "sub_total" => $pricing->selling_price * $request->allocate[$i],
+               "total_amount" => $pricing->selling_price * $request->allocate[$i],
+               "product_name" => $request->product[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "delivery_item_code" => Str::random(20),
+               "created_by" => Auth::user()->user_code,
+               "requested_quantity" => $request->requested[$i],
+               "created_by" => Auth::user()->user_code
+            ]
+         );
+         Order_items::where('productID', $request->item_code[$i])
+            ->where('order_code', $request->order_code)
+            ->update([
+               "requested_quantity" => $request->product[$i]
+            ]);
+      }
+
+      Session::flash('success', 'Delivery created and orders allocated to a user');
+
+      return redirect()->route('orders.pendingorders');
+//      return redirect()->back();
+   }
    public function delivery(Request $request)
    {
       $this->validate($request, [
@@ -86,7 +160,7 @@ class ordersController extends Controller
             "delivery_code" => Str::random(20),
             "allocated" => $request->user,
             "delivery_note" => $request->note,
-            "delivery_status" => "Waiting acceptance",
+            "delivery_status" => "Delivered",
             "created_by" => Auth::user()->user_code
          ]
       );

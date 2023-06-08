@@ -23,12 +23,12 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $orders =  Orders::with('Customer', 'user')->where('order_status', '=','Waiting Approval')
+      $pendingorders = Orders::where('order_status', 'Pending Delivery')->where('order_type','=','Pre Order')->with('Customer', 'user')
          ->search($searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
 
-      return view('livewire.orders.pendingorders', compact('orders'));
+      return view('livewire.orders.pendingorders', compact('pendingorders'));
    }
    public function export()
    {
