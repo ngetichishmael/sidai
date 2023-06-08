@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\app;
 
+use App\Models\User;
 use App\Models\Orders;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ReportsController extends Controller
 {
@@ -12,7 +14,8 @@ class ReportsController extends Controller
     {
         $count =1;
         $preorders = Orders::all()->where('order_status', 'Pending Delivery')->where('order_type','Pre Order');
-         return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count]);
+        $users = User::where('business_code',Auth::user()->business_code)->pluck('name');
+         return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count,'users'=>$users]);
 
     }
     public function vansales()
