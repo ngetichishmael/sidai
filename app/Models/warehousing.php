@@ -16,8 +16,8 @@ class warehousing extends Model
       'country',
       'city',
       'location',
-      'phone_number',
-      'email'
+      'region.name',
+      'subregion.name',
    ];
    public function manager()
    {

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imports\WarehouseImport;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Livewire;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\products\product_information;
 use Livewire\WithPagination;
@@ -34,7 +35,11 @@ class warehousingController extends Controller
    {
       return view('app.warehousing.index');
    }
-
+   public function getByRegion($regionId)
+   {
+      $subregions = Subregion::where('region_id', $regionId)->get();
+      return response()->json($subregions);
+   }
    public function import()
    {
       return view('app.warehousing.import');
@@ -78,8 +83,8 @@ class warehousingController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'name' => 'required',
-         'code' => 'required',
+         'name' => 'required|unique:warehouse',
+         'warehouse_code' => 'required|unique:warehouse',
          'region_id' => 'required',
          'subregion_id' => 'required',
       ]);
@@ -95,7 +100,7 @@ class warehousingController extends Controller
 
       $warehouse = new warehousing;
       $warehouse->business_code = Auth::user()->business_code;
-      $warehouse->warehouse_code = $request->code;
+      $warehouse->warehouse_code = $request->warehouse_code;
       $warehouse->name = $request->name;
       $warehouse->country = 'Kenya';
       $warehouse->region_id = $request->region_id;
@@ -128,7 +133,21 @@ class warehousingController extends Controller
       $products = product_information::where('warehouse_code', $code)->paginate($this->perPage);
       return view('app.warehousing.products', compact('products','warehouse'));
    }
+   public function assign($code)
+   {
+      $warehouse = warehousing::where('warehouse_code', $code)->first();
+//
+//      if (!$warehouse) {
+//         abort(404);
+//      }
+//      Livewire::component('AssignShopAttendee', [
+//         'warehouse' => $warehouse,
+//         'shopattendee' => User::where('account_type', 'shop-attendee')->get(),
+//      ]);
+      $shopattendee = User::where('account_type', 'shop-attendee')->get();
 
+      return view('livewire.warehousing.assign-shop-attendee',  compact('warehouse', 'shopattendee'));
+   }
    /**
     * Display the specified resource.
     *
@@ -149,9 +168,10 @@ class warehousingController extends Controller
    public function edit($code)
    {
       $country = country::pluck('name', 'name')->prepend('choose country');
-      $edit = warehousing::where('business_code', Auth::user()->business_code)->where('warehouse_code', $code)->first();
+      $edit = warehousing::where('warehouse_code', $code)->with('region', 'subregion')->first();
+      $regions=Region::all();
 
-      return view('app.warehousing.edit', compact('country', 'edit'));
+      return view('app.warehousing.edit', compact('country', 'edit', 'regions'));
    }
 
    /**

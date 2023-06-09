@@ -290,6 +290,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/region-report', ['uses' => 'app\ReportsController@regional', 'as' => 'regional.reports']);
    Route::get('Reports/inventory-report', ['uses' => 'app\ReportsController@inventory', 'as' => 'inventory.reports']);
 
+   //getting subregions
+   Route::get('/get-subregions/{regionId}', 'app\warehousingController@getByRegion')->name('get-subregions');;
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);
@@ -323,6 +325,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
+   Route::get('warehousing/{code}/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
 
 
    /* === settings === */
