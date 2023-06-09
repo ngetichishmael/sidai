@@ -9,7 +9,7 @@
       <div class="col-md-8">
          <h2 class="page-header"><i data-feather="list"></i> Inventory for {!! $warehouse->name !!} </h2>
       </div>
-      @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "Super Admin")
+      @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
          <div class="col-md-4">
             <center>
                <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
@@ -51,7 +51,7 @@
                     <th>Distributor Price ksh:</th>
                     <th>Retail Price ksh:</th>
                     <th>Current Stock</th>
-                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "nsm")
+                    @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                      <th>Actions</th>
                   @endif
                 </tr>
@@ -59,8 +59,8 @@
                <tbody>
                @endif
                @foreach($products as $key => $product)
-                  @if(Auth::check() && Auth::user()->account_type == "Admin" ||
-                    (Auth::check() && Auth::user()->account_type == "nsm" && \App\Models\warehousing::where("warehouse_code",$product->warehouse_code)))
+                  @if(Auth::check() && Auth::user()->account_type == "NSM" ||
+                    (Auth::check() && Auth::user()->account_type == "RSM" && \App\Models\warehousing::where("warehouse_code",$product->warehouse_code)))
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
