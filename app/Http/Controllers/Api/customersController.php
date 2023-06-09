@@ -43,10 +43,11 @@ class customersController extends Controller
          ->get();
 
       return response()->json([
+         "user" => $user,
          "success" => true,
          "message" => "Customer List",
          "data" => $query,
-      ], 200);
+      ]);
    }
 
    /**
