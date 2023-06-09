@@ -34,7 +34,7 @@ class customersController extends Controller
     * @param $businessCode
     * @queryParam page_size int size per page. Default to 20
     **/
-   public function index(Request $request, $businessCode)
+   public function index(Request $request)
    {
       $user = $request->user();
       $query = customers::whereNotNull('latitude')
