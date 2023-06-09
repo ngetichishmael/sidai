@@ -14,7 +14,7 @@ class pendingdeliveries extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 10;
+   public $perPage = 25;
    public ?string $search = null;
    public $orderBy = 'delivery.id';
    public $orderAsc = false;
@@ -25,11 +25,7 @@ class pendingdeliveries extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
-         ->where(function ($query) {
-            $query->where('delivery_status', 'Pending Delivery')
-               ->orWhere('delivery_status', 'Partial delivery');
-         })->with('Customer', 'user', 'Order')
-         ->search($searchTerm)
+         ->with('Customer', 'user', 'Order')
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
 

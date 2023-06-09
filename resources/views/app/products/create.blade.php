@@ -65,6 +65,7 @@
 
                                 <input type="hidden"  name="status" value="Active"/>
                                 <input type="hidden"  name="brandID" id="brandID" value="Sidai"/>
+                                <input type="text"  name="code" id="code" value='{{$code}}' />
                             </div>
                         </div>
 
@@ -108,34 +109,34 @@
             </section>
             <section id="card-demo-example">
                 <div class="row">
-{{--                    <div class="col-md-6 col-lg-4">--}}
-{{--                        <div class="card">--}}
-{{--                            <div class="card-header">--}}
-{{--                                <h4 class="card-title">Product Price</h4>--}}
-{{--                            </div>--}}
-{{--                            <div class="card-body">--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="form-label" for="basic-default-name">Whole Sale</label>--}}
-{{--                                    <input type="number" min="10" max="1000000" class="form-control"--}}
-{{--                                        id="buying_price" name="buying_price" placeholder="Whole Sale" />--}}
-{{--                                </div>--}}
-{{--                                <div class="form-group">--}}
-{{--                                    <label class="form-label" for="basic-default-name">Retail Price</label>--}}
-{{--                                    <input type="number" min="10" max="1000000" id="selling_price"--}}
-{{--                                        name="selling_price" class="form-control" placeholder="Retail Price" required--}}
-{{--                                        onchange="check()" />--}}
-{{--                                </div>--}}
-{{--                               <div class="form-group">--}}
-{{--                                    <label class="form-label" for="basic-default-name">Distributor Price</label>--}}
-{{--                                    <input type="number" min="10" max="1000000" id="distributor_price"--}}
-{{--                                        name="distributor_price" class="form-control" placeholder="Distributor Price" required--}}
-{{--                                        onchange="check()" />--}}
-{{--                                </div>--}}
-{{--                                <span style="color:#ff9398; visibility: hidden" id="msg">Notice!! Your selling price--}}
-{{--                                    is less than buying price</span>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Product Price</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label class="form-label" for="basic-default-name">Whole Sale</label>
+                                    <input type="number" min="10" max="1000000" class="form-control"
+                                        id="buying_price" name="buying_price" placeholder="Whole Sale" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="basic-default-name">Retail Price</label>
+                                    <input type="number" min="10" max="1000000" id="selling_price"
+                                        name="selling_price" class="form-control" placeholder="Retail Price" required
+                                        onchange="check()" />
+                                </div>
+                               <div class="form-group">
+                                    <label class="form-label" for="basic-default-name">Distributor Price</label>
+                                    <input type="number" min="10" max="1000000" id="distributor_price"
+                                        name="distributor_price" class="form-control" placeholder="Distributor Price" required
+                                        onchange="check()" />
+                                </div>
+                                <span style="color:#ff9398; visibility: hidden" id="msg">Notice!! Your selling price
+                                    is less than buying price</span>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 col-lg-2">
 {{--                        <div class="card">--}}
 {{--                            <div class="card-header">--}}

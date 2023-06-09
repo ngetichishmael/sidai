@@ -12,7 +12,7 @@
       @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
          <div class="col-md-4">
             <center>
-               <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
+               <a href="{!! route('products.create',$warehouse->warehouse_code) !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
             </center>
          </div>
       @endif

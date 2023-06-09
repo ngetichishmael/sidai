@@ -40,13 +40,15 @@ class productController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-   public function create()
+   public function create(Request $request)
    {
+      dump($request->warehouse_code);
+      $code=$request->warehouse_code;
       $categories = category::all()->pluck('name', 'id');
       $suppliers = suppliers::all()->pluck('name', 'id');
       $brands = brand::all()->pluck('name', 'id');
 
-      return view('app.products.create', compact('categories', 'suppliers', 'brands'));
+      return view('app.products.create', compact('categories', 'suppliers', 'brands', 'code'));
    }
 
    /**
@@ -59,9 +61,9 @@ class productController extends Controller
    {
       $this->validate($request, [
          'product_name' => 'required',
-//         'buying_price' => 'required',
-//         'selling_price' => 'required',
-//         'distributor_price' => 'required',
+         'buying_price' => 'required',
+         'selling_price' => 'required',
+         'distributor_price' => 'required',
          'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
       ]);
       $image_path = $request->file('image')->store('image', 'public');
@@ -85,24 +87,15 @@ class productController extends Controller
             'productID' => $product->id,
          ],
          [
-//            'product_code' => $product_code,
-//            'buying_price' => $request->buying_price,
-//            'selling_price' => $request->selling_price,
-//            'distributor_price' => $request->distributor_price,
-//            'offer_price' => $request->buying_price,
-//            'setup_fee' => $request->selling_price,
-//            'taxID' => "1",
-//            'tax_rate' => "0",
-//            'default_price' => $request->selling_price,
             'product_code' => $product_code,
-            'buying_price' => 0,
-            'selling_price' => 0,
-            'distributor_price' => 0,
-            'offer_price' => 0,
-            'setup_fee' => 0,
+            'buying_price' => $request->buying_price,
+            'selling_price' => $request->selling_price,
+            'distributor_price' => $request->distributor_price,
+            'offer_price' => $request->buying_price,
+            'setup_fee' => $request->selling_price,
             'taxID' => "1",
             'tax_rate' => "0",
-            'default_price' => 0,
+            'default_price' => $request->selling_price,
             'business_code' => Auth::user()->business_code,
             'created_by' => Auth::user()->user_code,
          ]
@@ -323,7 +316,7 @@ class productController extends Controller
     */
    public function description($id)
    {
-      $product = product_information::where('id', $id)->where('business_code', Auth::user()->business_code)->first();
+      $product = product_information::where('id', $id)->first();
       $productID = $id;
       return view('app.products.description', compact('product', 'productID'));
    }
@@ -339,7 +332,7 @@ class productController extends Controller
    public function description_update(Request $request, $id)
    {
 
-      $product = product_information::where('id', $id)->where('business_code', Auth::user()->business_code)->first();
+      $product = product_information::where('id', $id)->first();
       $product->short_description = $request->short_description;
       $product->description = $request->description;
       $product->business_code = Auth::user()->business_code;
@@ -362,9 +355,9 @@ class productController extends Controller
    public function price($id)
    {
       $mainBranch = branches::where('businessID', Auth::user()->business_code)->first();
-      $product = product_information::where('id', $id)->where('business_code', Auth::user()->business_code)->first();
-      $defaultPrice = product_price::where('productID', $id)->where('business_code', Auth::user()->business_code)->where('default_price', 'Yes')->first();
-      $prices = product_price::where('productID', $id)->where('business_code', Auth::user()->business_code)->get();
+      $product = product_information::where('id', $id)->first();
+      $defaultPrice = product_price::where('productID', $id)->where('default_price', 'Yes')->first();
+      $prices = product_price::where('productID', $id)->get();
       $taxes = tax::where('businessID', Auth::user()->business_code)->get();
       $outlets = branches::where('businessID', Auth::user()->business_code)->get();
       $productID = $id;
