@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','users')
+@section('title','Subregions')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Users | Reports</h2>
+               <h2 class="content-header-title float-start mb-0">Sub Regions | Reports</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -20,27 +20,25 @@
    </div>
    @include('partials._messages')
    <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card card-inverse">
            <div class="card-body">
               <table id="data-table-default" class="table table-striped table-bordered">
                  <thead>
                     <tr>
                        <th>#</th>
-                       <th>User Type</th>
-                       <th>Number of Users</th>
+                       <th>Sub Region</th>
                        <th>Action</th>
                     </tr>
                  </thead>
                  <tbody>
-               @foreach ($users as $user)
-               <tr>
-                  <td>{{ $count++ }}</td>
-                  <td>{{ $user }}</td>
-                  <td>1</td>
-                  <td><a href="" class="btn sm" style="background-color: brown;color:white">View</a></td>
-              </tr>
-               @endforeach
+                  @foreach ($subregions as $subregion)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $subregion->name }}</td>
+                     <td><a href="{{ route('routes.reports') }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
+                 </tr>
+                  @endforeach
                     
                  </tbody>
               </table>

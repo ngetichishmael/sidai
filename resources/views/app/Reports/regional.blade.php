@@ -20,7 +20,7 @@
    </div>
    @include('partials._messages')
    <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card card-inverse">
            <div class="card-body">
               <table id="data-table-default" class="table table-striped table-bordered">
@@ -32,11 +32,14 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($regions as $region)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $region->name }}</td>
+                     <td><a href="{{ route('subregion.reports') }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

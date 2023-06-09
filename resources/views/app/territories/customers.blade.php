@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','users')
+@section('title','Customers')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Users | Reports</h2>
+               <h2 class="content-header-title float-start mb-0">All Customers</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -27,20 +27,22 @@
                  <thead>
                     <tr>
                        <th>#</th>
-                       <th>User Type</th>
-                       <th>Number of Users</th>
-                       <th>Action</th>
+                       <th>Customer Name</th>
+                       <th>Customer Type</th>
+                       <th>Orders</th>
+                       <th>Status</th>
                     </tr>
                  </thead>
                  <tbody>
-               @foreach ($users as $user)
-               <tr>
-                  <td>{{ $count++ }}</td>
-                  <td>{{ $user }}</td>
-                  <td>1</td>
-                  <td><a href="" class="btn sm" style="background-color: brown;color:white">View</a></td>
-              </tr>
-               @endforeach
+                  @foreach ($customers as $customer)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $customer->customer_name }}</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                  @endforeach
                     
                  </tbody>
               </table>
