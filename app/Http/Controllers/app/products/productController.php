@@ -42,10 +42,9 @@ class productController extends Controller
     */
    public function create()
    {
-      $categories = category::where('business_code', Auth::user()->business_code)->pluck('name', 'id');
-      $suppliers = suppliers::where('business_code', Auth::user()->business_code)
-         ->pluck('name', 'id');
-      $brands = brand::where('business_code', Auth::user()->business_code)->pluck('name', 'id');
+      $categories = category::all()->pluck('name', 'id');
+      $suppliers = suppliers::all()->pluck('name', 'id');
+      $brands = brand::all()->pluck('name', 'id');
 
       return view('app.products.create', compact('categories', 'suppliers', 'brands'));
    }
@@ -60,15 +59,16 @@ class productController extends Controller
    {
       $this->validate($request, [
          'product_name' => 'required',
-         'buying_price' => 'required',
-         'selling_price' => 'required',
+//         'buying_price' => 'required',
+//         'selling_price' => 'required',
+//         'distributor_price' => 'required',
          'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
       ]);
       $image_path = $request->file('image')->store('image', 'public');
       $product_code = Str::random(20);
       $product = new product_information;
       $product->product_name = $request->product_name;
-      $product->sku_code = $request->sku_code;
+      $product->sku_code =  Str::random(20);
       $product->url = Str::slug($request->product_name);
       $product->brand = $request->brandID;
       $product->supplierID = $request->supplierID;
@@ -85,14 +85,24 @@ class productController extends Controller
             'productID' => $product->id,
          ],
          [
+//            'product_code' => $product_code,
+//            'buying_price' => $request->buying_price,
+//            'selling_price' => $request->selling_price,
+//            'distributor_price' => $request->distributor_price,
+//            'offer_price' => $request->buying_price,
+//            'setup_fee' => $request->selling_price,
+//            'taxID' => "1",
+//            'tax_rate' => "0",
+//            'default_price' => $request->selling_price,
             'product_code' => $product_code,
-            'buying_price' => $request->buying_price,
-            'selling_price' => $request->selling_price,
-            'offer_price' => $request->buying_price,
-            'setup_fee' => $request->selling_price,
+            'buying_price' => 0,
+            'selling_price' => 0,
+            'distributor_price' => 0,
+            'offer_price' => 0,
+            'setup_fee' => 0,
             'taxID' => "1",
             'tax_rate' => "0",
-            'default_price' => $request->selling_price,
+            'default_price' => 0,
             'business_code' => Auth::user()->business_code,
             'created_by' => Auth::user()->user_code,
          ]
@@ -105,9 +115,9 @@ class productController extends Controller
          ],
          [
             'product_code' => $product_code,
-            'current_stock' => $request->current_stock,
-            'reorder_point' => $request->reorder_point,
-            'reorder_qty' => $request->reorder_qty,
+            'current_stock' => 0,
+            'reorder_point' => 0,
+            'reorder_qty' => 0,
             'expiration_date' => "None",
             'default_inventory' => "None",
             'notification' => 0,

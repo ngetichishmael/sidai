@@ -130,7 +130,7 @@ class warehousingController extends Controller
    public function products($code)
    {
       $warehouse= warehousing::where('warehouse_code',$code)->first();
-      $products = product_information::where('warehouse_code', $code)->paginate($this->perPage);
+      $products = product_information::with('Inventory','ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
       return view('app.warehousing.products', compact('products','warehouse'));
    }
    public function assign($code)
