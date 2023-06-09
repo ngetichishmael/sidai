@@ -168,6 +168,7 @@ class usersController extends Controller
             "account_type" => $request->account_type,
             "email_verified_at" => now(),
             "route_code" => $request->region,
+            "region_id" => $request->region,
             "status" => 'Active',
             "password" => Hash::make($request->phone_number),
             "business_code" => FacadesAuth::user()->business_code,
@@ -236,7 +237,7 @@ class usersController extends Controller
       $activityLog->ip_address ="";
       $activityLog->save();
 
-      return redirect()->route('users.index');
+      return redirect()->back();
    }
 
    //edit
