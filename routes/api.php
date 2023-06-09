@@ -35,7 +35,7 @@ require __DIR__ . '/total/api.php';
 Route::group(['namespace' => 'Api'], function () {
 
    //customers
-   Route::get('customers/', 'customersController@index')->middleware('auth:sanctum');
+   Route::get('customers/{businessCode}', 'customersController@index')->middleware('auth:sanctum');
    Route::post('customers/add-customer', 'customersController@add_customer')->middleware('auth:sanctum');
    Route::post('customer/edit-customer', 'customersController@editCustomer')->middleware('auth:sanctum');
    Route::get('customers/{code}/details', 'customersController@details');
