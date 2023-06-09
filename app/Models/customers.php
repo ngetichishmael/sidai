@@ -24,6 +24,10 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
+public function number_visited()
+   {
+      return $this->hasMany(checkin::class, 'customer_id', 'id');
+   }
 
    public function orderItems()
    {
