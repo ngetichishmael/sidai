@@ -47,13 +47,12 @@ class Dashboard extends Component
             ->paginate($this->perVansale);
 
         $preorder = Orders::where('order_type', 'Pre Order')
-            ->whereBetween('created_at', [$this->start, $this->end])
-            ->where('order_status', 'DELIVERED')
+            ->whereBetween('updated_at', [$this->start, $this->end])
             ->sum('price_total');
         $preorderTotal = Orders::with('user', 'customer')
             ->where('order_type', 'Pre Order')
             ->whereBetween('created_at', [$this->start, $this->end])
-            ->where('order_status', 'DELIVERED')
+            ->where('order_status', '')
             ->paginate($this->perPreorder);
         $orderfullment = Orders::where('order_status', 'DELIVERED')
             ->whereBetween('updated_at', [$this->start, $this->end])
