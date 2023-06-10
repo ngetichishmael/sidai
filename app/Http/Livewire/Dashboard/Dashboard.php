@@ -52,7 +52,7 @@ class Dashboard extends Component
         $preorder = Orders::where('order_type', 'Pre Order')
            ->whereIn('supplierID', [$sidai->id, '', null])
             ->whereBetween('created_at', [$this->start, $this->end])
-            ->where('order_status', 'DELIVERED')
+//            ->where('order_status', 'DELIVERED')
             ->count();
         $preorderTotal = Orders::with('user', 'customer')
             ->where('order_type', 'Pre Order')
