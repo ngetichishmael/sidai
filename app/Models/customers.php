@@ -24,9 +24,9 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
-public function number_visited()
+   public function number_visited()
    {
-      return $this->hasMany(checkin::class, 'customer_id', 'id');
+      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select('customer_id', \DB::raw('count(*) as visits_count'))->groupBy('customer_id');
    }
 
    public function orderItems()
