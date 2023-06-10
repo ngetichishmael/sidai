@@ -32,7 +32,6 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <th width="1%">#</th>
-                        <th>Order Type</th>
                         <th>Customer</th>
                         <th>Region</th>
                         <th>Route</th>
@@ -40,6 +39,7 @@
                         <th>Amount</th>
                         <th>Balance</th>
                         <th>QTY</th>
+                        <th>Date</th>
                        <th>Actions</th>
                     </thead>
                     <tbody>
@@ -48,7 +48,6 @@
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
-                                <td>{{ $order->Order->order_type }}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 20) }}</td>
                                 <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
@@ -60,6 +59,7 @@
                                 <td>ksh {{ number_format($order->Order->price_total) }}</td>
                                 <td>ksh {{ number_format($order->Order->balance) }}</td>
                                 <td>{{ $order->Order->qty }}</td>
+                                <td>{{ $order->created_at }}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}
 
                                <td>

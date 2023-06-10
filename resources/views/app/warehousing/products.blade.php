@@ -7,12 +7,12 @@
    <!-- begin breadcrumb -->
    <div class="row mb-2">
       <div class="col-md-8">
-         <h2 class="page-header"><i data-feather="list"></i> Inventory for {!! $warehouse->name !!} </h2>
+         <h2 class="page-header"><i data-feather="list"></i> Inventory for Warehouse {!! $warehouse->name !!} </h2>
       </div>
-      @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "Super Admin")
+      @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
          <div class="col-md-4">
             <center>
-               <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
+               <a href="{!! route('products.create',$warehouse->warehouse_code) !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
             </center>
          </div>
       @endif
@@ -28,8 +28,7 @@
             <label for=""></label>
             <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search Product">
          </div>
-
-         @if(Auth::check() && Auth::user()->account_type == "Admin")
+         @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
             <div class="col-md-3">
                <label for="">Items Per</label>
                <select wire:model="perPage" class="form-control">`
@@ -51,7 +50,7 @@
                     <th>Distributor Price ksh:</th>
                     <th>Retail Price ksh:</th>
                     <th>Current Stock</th>
-                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "nsm")
+                    @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                      <th>Actions</th>
                   @endif
                 </tr>
@@ -59,34 +58,33 @@
                <tbody>
                @endif
                @foreach($products as $key => $product)
-                  @if(Auth::check() && Auth::user()->account_type == "Admin" ||
-                    (Auth::check() && Auth::user()->account_type == "nsm" && \App\Models\warehousing::where("warehouse_code",$product->warehouse_code)))
+                  @if((Auth::check() && Auth::user()->account_type == "RSM") || Auth::check() && Auth::user()->account_type == "NSM")
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
+
+                           @if ($product->ProductPrice->buying_price ==  0 || 00)
+                           <td>{{'Price Not set' }}</td>
+                        @else
+                              <td>{{number_format((float) $product->ProductPrice->buying_price)}}</td>
+                        @endif
                         <td>
-                            {{ number_format((float) $product->ProductPrice()->pluck('buying_price')->implode('')) }}
-                        </td>
-                        <td>
-                            {{ number_format((float) $product->ProductPrice()->pluck('buying_price')->implode('')) }}
+                            {{ number_format((float) $product->ProductPrice()->pluck('distributor_price')->implode('')) }}
                         </td>
                         <td>
                             {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                         </td>
-                        <td>
-
-                            {{ $product->Inventory()->pluck('current_stock')->implode('') }}
-                        </td>
+                        <td>{{ $product->Inventory()->pluck('current_stock')->implode('') }} </td>
                         <td>{{ $product->ProductPrice->created_at->format('d/m/Y') }}</td>
 
-                        {{-- <td>
+                       <td>
                             <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
                                 <span>Re-stock</span>
                             </a>
                            <a href="#" class="btn btn-info btn-sm">
                                 <span>View</span>
                             </a>
-                        </td> --}}
+                        </td>
                     </tr>
                   @endif
                @endforeach

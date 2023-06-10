@@ -268,7 +268,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('user/store', ['uses' => 'app\usersController@store', 'as' => 'user.store']);
    Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
-   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
+//   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
    Route::get('user{id}/suspend', ['uses' => 'app\usersController@suspend', 'as' => 'user.suspend']);
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
@@ -294,6 +294,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/customers', ['uses' => 'app\ReportsController@customers', 'as' => 'customer.reports']);
    Route::get('Reports/products', ['uses' => 'app\ReportsController@productreport', 'as' => 'allproducts.reports']);
 
+   //getting subregions
+   Route::get('/get-subregions/{regionId}', 'app\warehousingController@getByRegion')->name('get-subregions');;
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);
@@ -327,6 +329,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
+   Route::get('warehousing/{code}/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
 
 
    /* === settings === */

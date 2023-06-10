@@ -14,7 +14,7 @@ class UsersController extends Controller
          "success" => true,
          "status" => 200,
          "data" => User::with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")
-            ->where('account_type', 'Sales')->get(),
+            ->whereIn('account_type', ['TSR','TD'])->where('region_id', auth()->user()->region_id)->get(),
       ]);
    }
 }
