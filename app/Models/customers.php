@@ -26,12 +26,9 @@ class customers extends Model
    }
    public function number_visited()
    {
-      return $this->hasMany(Checkin::class, 'customer_id', 'id')->groupBy('customer_id')->count();
+      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
    }
-//   public function number_visited()
-//   {
-//      return $this->hasMany(Checkin::class, 'customer_id', 'id');
-//   }
+
    public function orderItems()
    {
       return $this->hasManyThrough(Order_items::class, Orders::class, 'customerID', 'order_code', 'id', 'order_code');
