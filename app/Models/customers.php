@@ -24,14 +24,14 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
-//   public function number_visited()
-//   {
-//      return $this->hasMany(Checkin::class, 'customer_id', 'id')->groupBy('customer_id')->count();
-//   }
    public function number_visited()
    {
-      return $this->hasMany(Checkin::class, 'customer_id', 'id');
+      return $this->hasMany(Checkin::class, 'customer_id', 'id')->groupBy('customer_id')->count();
    }
+//   public function number_visited()
+//   {
+//      return $this->hasMany(Checkin::class, 'customer_id', 'id');
+//   }
    public function orderItems()
    {
       return $this->hasManyThrough(Order_items::class, Orders::class, 'customerID', 'order_code', 'id', 'order_code');
