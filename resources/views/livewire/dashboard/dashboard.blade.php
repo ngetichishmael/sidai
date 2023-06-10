@@ -662,8 +662,8 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $sale->order_code }}</td>
-                                        <td>{{ $sale->User->name }}</td>
-                                        <td>{{ $sale->customer->customer_name }}</td>
+                                        <td>{{ $sale->User->name ?? '' }}</td>
+                                        <td>{{ $sale->customer->customer_name ?? '' }}</td>
                                         <td>{{ $sale->balance }}</td>
                                         <td>{{ $sale->payment_status }}</td>
                                         <td>{{ $sale->updated_at }}</td>
