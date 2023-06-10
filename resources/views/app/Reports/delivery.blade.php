@@ -36,15 +36,18 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($deliveries as $delivery)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $delivery->order_code }}</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

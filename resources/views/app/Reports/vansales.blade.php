@@ -36,15 +36,18 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($vansales as $vansale)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $vansale->order_code }}</td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

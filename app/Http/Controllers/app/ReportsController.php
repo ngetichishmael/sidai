@@ -27,12 +27,16 @@ class ReportsController extends Controller
     }
     public function vansales()
     {
-         return view('app.reports.vansales');
+          $count =1;
+          $vansales = Orders::all()->where('order_status', 'Pending Delivery')->where('order_type','Van sales');
+         return view('app.reports.vansales',['vansales'=>$vansales,'count'=>$count]);
 
     }
     public function delivery()
     {
-         return view('app.reports.delivery');
+     $count =1;
+     $deliveries = Orders::all()->where('order_status', 'Delivered');
+    return view('app.reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
 
     }
     public function users()
@@ -47,8 +51,9 @@ class ReportsController extends Controller
     }
 
     public function warehouse()
-    {
-         return view('app.reports.warehouse');
+    {$count =1;
+     $warehouses = warehousing::all()->whereNotNull('warehouse_code');
+    return view('app.reports.warehouse',['warehouses'=>$warehouses,'count'=>$count]);
 
     }
     public function distributor()

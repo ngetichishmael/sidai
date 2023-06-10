@@ -39,9 +39,9 @@ class routesController extends Controller
    {
       $customers = customers::where('business_code', Auth::user()->business_code)->pluck('customer_name', 'id');
       $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type','Sales')->pluck('name', 'id');
-      $routes = area::all()->pluck('name', 'name');
+      
 
-      return view('app.routes.create', compact('customers', 'salesPeople', 'routes'));
+      return view('app.routes.create', ['customers'=>$customers, 'salesPeople'=>$salesPeople]);
    }
 
    /**

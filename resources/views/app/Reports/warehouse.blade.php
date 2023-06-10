@@ -36,15 +36,18 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($warehouses as $warehouse)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $warehouse->name }}</td>
+                     <td></td>
+                     <td>{{ $warehouse->region->name??'' }}</td>
+                     <td>{{ $warehouse->subregion->name??'' }}</td>
+                     <td>{{ $warehouse->product_information_count }}</td>
+                     <td></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

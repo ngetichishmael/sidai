@@ -33,8 +33,9 @@
                     ]) !!}
                     {!! csrf_field() !!}
                     <div class="form-group col-md-12 mb-1">
-                        <label for="">Routes</label>
-                        {!! Form::select('name', $routes, null, ['class' => 'form-control select2']) !!}
+                        @livewire('routes.customerselect')
+                        {{-- <label for="">Routes</label>
+                        {!! Form::select('name', $routes, null, ['class' => 'form-control select2']) !!} --}}
                     </div>
                     <div class="row mb-1">
                         <div class="form-group col-md-4">
@@ -53,10 +54,10 @@
                             ]) !!}
                         </div>
                     </div>
-                    <div class="form-group col-md-12 mb-1">
+                    {{-- <div class="form-group col-md-12 mb-1">
                         <label for="">Add Customer to Route</label>
                         {!! Form::select('customers[]', $customers, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
-                    </div>
+                    </div> --}}
                     <div class="form-group col-md-12 mb-1">
                         <label for="">Add sales people to Route</label>
                         {!! Form::select('sales_persons[]', $salesPeople, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
