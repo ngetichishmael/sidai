@@ -184,8 +184,11 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/products', ['uses' => 'app\products\productController@index', 'as' => 'product.index']);
    Route::get('warehousing/products/create', ['uses' => 'app\products\productController@create', 'as' => 'products.create']);
    Route::post('warehousing/products/store', ['uses' => 'app\products\productController@store', 'as' => 'products.store']);
+   Route::post('warehousing/products/upload', ['uses' => 'app\products\productController@upload', 'as' => 'products.upload']);
    Route::get('warehousing/products/{id}/edit', ['uses' => 'app\products\productController@edit', 'as' => 'products.edit']);
+   Route::get('warehousing/products/{id}/restock', ['uses' => 'app\products\productController@restock', 'as' => 'products.restock']);
    Route::post('warehousing/products/{id}/update', ['uses' => 'app\products\productController@update', 'as' => 'products.update']);
+   Route::post('warehousing/products/{id}/updatestock', ['uses' => 'app\products\productController@updatestock', 'as' => 'products.updatestock']);
    Route::get('warehousing/products/{id}/details', ['uses' => 'app\products\productController@details', 'as' => 'products.details']);
    Route::get('warehousing/products/{id}/destroy', ['middleware' => ['permission:delete-products'], 'uses' => 'app\products\productController@destroy', 'as' => 'products.destroy']);
 
@@ -329,7 +332,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
-   Route::get('warehousing/{code}/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
+   Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
 
 
    /* === settings === */
