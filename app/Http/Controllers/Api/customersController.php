@@ -110,11 +110,26 @@ class customersController extends Controller
       $image_path = $request->file('image')->store('image', 'public');
       $emailData = $request->email == null ? null : $request->email;
 
+      $random=Str::random(10);
+      $user = new User();
+      $user->name = $request->customer_name;
+      $user->email=$emailData;
+      $user->user_code=$random;
+      $user->phone_number = $request->phone_number;
+      $user->gender = $request->gender;
+      $user->account_type= "Customer";
+      $user->email_verified_at =Carbon::now();
+      $user->status="Active";
+      $user->region_id=Auth::user()->region_id;
+      $user->business_code = Auth::user()->business_code;
+      $user->password = "password";
+      $user->save();
 
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
       $customer->contact_person = $request->contact_person;
       $customer->phone_number = $request->phone_number;
+      $customer->user_code = $user->user_code;
       $customer->email = $emailData;
       $customer->address = $request->address;
       $customer->latitude = $request->latitude;
@@ -138,7 +153,7 @@ class customersController extends Controller
       $user->account_type= "Customer";
       $user->email_verified_at =Carbon::now();
       $user->status="Active";
-      $user->region=Auth::user()->region_id;
+      $user->region_id=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = "password";
       $user->save();
