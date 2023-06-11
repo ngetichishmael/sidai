@@ -141,7 +141,7 @@ class customersController extends Controller
       $user->region=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = "password";
-      $user.save();
+      $user->save();
 
       DB::table('leads_targets')
          ->where('user_code', $request->user()->user_code)

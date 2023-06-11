@@ -109,7 +109,7 @@ class customerController extends Controller
       $user->region= Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = "password";
-      $user.save();
+      $user->save();
 
 
       $customer = new customers;
