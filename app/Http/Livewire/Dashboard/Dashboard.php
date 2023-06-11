@@ -42,7 +42,7 @@ class Dashboard extends Component
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->where('order_status', 'DELIVERED')
             ->sum('price_total');
-        $vansalesTotal = Orders::with('user', 'customer')
+        $vansalesTotal = Orders::with('User', 'Customer')
             ->where('order_type', 'Van sales')
            ->whereIn('supplierID', [$sidai->id, '', null])
             ->whereBetween('created_at', [$this->start, $this->end])
@@ -54,7 +54,7 @@ class Dashboard extends Component
             ->whereBetween('created_at', [$this->start, $this->end])
 //            ->where('order_status', 'DELIVERED')
             ->count();
-        $preorderTotal = Orders::with('user', 'customer')
+        $preorderTotal = Orders::with('User', 'Customer')
             ->where('order_type', 'Pre Order')
            ->whereIn('supplierID', [$sidai->id, '', null])
             ->whereBetween('created_at', [$this->start, $this->end])
@@ -70,7 +70,7 @@ class Dashboard extends Component
            ->where('supplierID', '!=', [null, '', 1])
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->count();
-        $orderfullmentTotal = Orders::with('user', 'customer')
+        $orderfullmentTotal = Orders::with('User', 'Customer')
            ->whereIn('supplierID', [$sidai->id, '', null])
             ->where('order_status', 'DELIVERED')
             ->whereBetween('updated_at', [$this->start, $this->end])
@@ -79,7 +79,7 @@ class Dashboard extends Component
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->distinct('user_code')
             ->count();
-        $activeUserTotal = checkin::with('user', 'customer')
+        $activeUserTotal = checkin::with('User', 'Customer')
             ->distinct('user_code')
             ->groupBy('user_code')
             ->whereBetween('updated_at', [$this->start, $this->end])
@@ -88,7 +88,7 @@ class Dashboard extends Component
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->count();
 
-        $visitsTotal = checkin::with('user', 'customer')
+        $visitsTotal = checkin::with('User', 'Customer')
             ->groupBy('customer_id')
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->paginate($this->perVisits);
@@ -158,10 +158,10 @@ class Dashboard extends Component
         $customersCount = Orders::groupBy('customerID')
             ->whereBetween('created_at', [$this->start, $this->end])
             ->count();
-        $customersCountTotal = Orders::with('user', 'customer')
+        $customersCountTotal = Orders::with('User', 'Customer')
             ->groupBy('customerID')
-            ->distinct('customerID')
-            ->whereBetween('updated_at', [$this->start, $this->end])
+//            ->distinct('customerID')
+            ->whereBetween('created_at', [$this->start, $this->end])
             ->paginate($this->perBuyingCustomer);
 
 

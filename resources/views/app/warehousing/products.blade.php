@@ -12,7 +12,18 @@
       @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
          <div class="col-md-4">
             <center>
-               <a href="{!! route('products.create',$warehouse->warehouse_code) !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
+               <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
+{{--               <form action="{!! route('products.upload') !!}" method="POST" enctype="multipart/form-data">--}}
+{{--                  @csrf--}}
+{{--                  <label for="excel_file">Upload File:</label>--}}
+{{--                  <input type="file" name="excel_file" id="excel_file" style="display: none;">--}}
+{{--                  <button type="button" id="upload_button">Import Products</button>--}}
+{{--                  <script>--}}
+{{--                     document.getElementById('upload_button').addEventListener('click', function() {--}}
+{{--                        document.getElementById('excel_file').click();--}}
+{{--                     });--}}
+{{--                  </script>--}}
+{{--               </form>--}}
             </center>
          </div>
       @endif
@@ -50,6 +61,7 @@
                     <th>Distributor Price ksh:</th>
                     <th>Retail Price ksh:</th>
                     <th>Current Stock</th>
+                    <th>Date</th>
                     @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                      <th>Actions</th>
                   @endif
@@ -78,12 +90,17 @@
                         <td>{{ $product->ProductPrice->created_at->format('d/m/Y') }}</td>
 
                        <td>
-                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary btn-sm">
-                                <span>Re-stock</span>
-                            </a>
-                           <a href="#" class="btn btn-info btn-sm">
-                                <span>View</span>
-                            </a>
+                            <div class="dropdown" >
+                             <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                <i data-feather="settings"></i>
+                             </button>
+                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a href="{{ route('products.restock', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="plus"></i> &nbsp;Re-stock</a>
+                                <a href="#" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
+                             </div>
+                          </div>
+
+
                         </td>
                     </tr>
                   @endif

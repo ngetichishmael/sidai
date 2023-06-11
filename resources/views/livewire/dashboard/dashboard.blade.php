@@ -63,7 +63,7 @@
                            </div>
 
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#preorderSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">shopping_cart</span>
@@ -89,7 +89,7 @@
                               </a>
                            </div>
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#orderFulfillmentSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">order_approve</span>
@@ -103,7 +103,7 @@
                            </div>
 
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#orderFulfillmentSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">local_shipping</span>
@@ -186,9 +186,9 @@
                                                },
                                                y: {
                                                   beginAtZero: true,
-                                                  // min: 0,
-                                                  // max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
-                                                  // max: 10000,
+                                                  min: 0,
+                                                  max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
+                                                  max: 10000,
                                                   stepSize: 50,
                                                   display: true,
                                                   title: {
