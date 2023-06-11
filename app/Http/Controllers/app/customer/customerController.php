@@ -19,6 +19,7 @@ use App\Models\suppliers\supplier_address;
 use File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -108,7 +109,7 @@ class customerController extends Controller
       $user->status="Active";
       $user->region_id= Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
-      $user->password = "password";
+      $user->password = Hash::make("password");
       $user->save();
 
 

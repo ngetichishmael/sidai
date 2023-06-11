@@ -14,6 +14,7 @@ use App\Models\Order_items;
 use App\Models\order_payments;
 use App\Models\Orders;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -122,7 +123,7 @@ class customersController extends Controller
       $user->status="Active";
       $user->region_id=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
-      $user->password = "password";
+      $user->password = Hash::make("password");
       $user->save();
 
       $customer = new customers;
