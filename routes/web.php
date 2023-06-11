@@ -328,7 +328,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
-   Route::get('warehousing/{code}/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
+   Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
 
 
    /* === settings === */

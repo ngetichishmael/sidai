@@ -139,17 +139,18 @@ class warehousingController extends Controller
          return redirect()->back();
       }
    }
-   public function assign($code)
+   public function assign(Request $request)
    {
+      $code = $request->query('warehouse_code');
       $warehouse = warehousing::where('warehouse_code', $code)->first();
-//
-//      if (!$warehouse) {
-//         abort(404);
-//      }
-//      Livewire::component('AssignShopAttendee', [
-//         'warehouse' => $warehouse,
-//         'shopattendee' => User::where('account_type', 'shop-attendee')->get(),
-//      ]);
+      $shopattendee = User::where('account_type', 'shop-attendee')->get();
+
+      return view('livewire.warehousing.assign-shop-attendee',  compact('warehouse', 'shopattendee', 'code'));
+   }
+   public function assignwarehouse(Request $request)
+   {
+      $code=$request->query()->warehouse_code;
+      $warehouse = warehousing::where('warehouse_code', $code)->first();
       $shopattendee = User::where('account_type', 'shop-attendee')->get();
 
       return view('livewire.warehousing.assign-shop-attendee',  compact('warehouse', 'shopattendee'));

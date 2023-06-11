@@ -4,6 +4,7 @@ namespace App\Http\Controllers\app\products;
 
 use App\Imports\ProductImport;
 use App\Models\activity_log;
+use App\Models\Models\products\ProductSku;
 use App\Models\tax;
 use App\Models\Branches;
 use Illuminate\Support\Str;
@@ -228,6 +229,7 @@ class productController extends Controller
       $product_information = product_information::whereId($id)->first();
       $product_price = product_price::where('productID', $id)->first();
       $product_inventory = product_inventory::where('productID', $id)->first();
+      $code=$product_information->warehouse_code;
 
 
       return view('app.products.restock', [
@@ -239,6 +241,7 @@ class productController extends Controller
          'product_information' => $product_information,
          'product_inventory' => $product_inventory,
          'product_price' => $product_price,
+         'code'=>$code,
       ]);
    }
 
@@ -249,6 +252,48 @@ class productController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
+   public function updatestock(Request $request, $id)
+   {
+      $information = product_information::whereId($id)->first();
+      $this->validate($request, [
+         'sku_codes' => 'required',
+         'quantities' => 'required',
+      ]);
+      $skuCodes = $request->input('sku_codes');
+      $quantities = $request->input('quantities');
+      foreach ($skuCodes as $key => $skuCode) {
+         $productInventory = product_inventory::where('productID', $id)->first();
+
+         if ($productInventory) {
+            $restockQuantity = $quantities[$key];
+            $productInventory->current_stock += $restockQuantity;
+            $productInventory->save();
+
+            $productSku = new ProductSku();
+            $productSku->product_inventory_id = $productInventory->id;
+            $productSku->warehouse_code = $information->warehouse_code;
+            $productSku->sku_code = $skuCode;
+            $productSku->added_by = Auth::user()->user_code;
+            $productSku->restocked_by = Auth::user()->user_code;
+            $productSku->save();
+         }
+      }
+
+      session()->flash('success', 'Product successfully restocked!');
+      $random=Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Product update ';
+      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = $request->ip();
+      $activityLog->save();
+
+//      return redirect()->back();
+      return redirect('/warehousing/'.$information->warehouse_code.'/products');
+   }
    public function update(Request $request, $id)
    {
       $information = product_information::whereId($id)->first();
@@ -335,95 +380,7 @@ class productController extends Controller
       $activityLog->ip_address = $request->ip();
       $activityLog->save();
 
-      return redirect()->back();
-   }
-   public function updatestock(Request $request, $id)
-   {
-      $information = product_information::whereId($id)->first();
-      if ($information->image == null) {
-         $this->validate($request, [
-            'product_name' => 'required',
-//            'buying_price' => 'required',
-//            'selling_price' => 'required',
-//            'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
-         ]);
-      }
-      $this->validate($request, [
-         'product_name' => 'required',
-//         'buying_price' => 'required',
-//         'selling_price' => 'required',
-//         'image' => 'sometimes|mimes:png,jpg,bmp,gif,jpeg|max:5048',
-      ]);
-//      if ($request->has('image')) {
-//         $image_path = $request->file('image')->store('image', 'public');
-//      }
-      product_information::updateOrCreate([
-         'id' => $id,
-         "business_code" => Auth::user()->business_code,
-      ], [
-         "product_name" => $request->product_name,
-         "sku_code" => $request->sku_code,
-//         "url" => Str::slug($request->product_name),
-//         "brand" => $request->brandID,
-         "supplierID" => $request->supplierID,
-//         "category" => $request->category,
-//         "image" => $image_path ?? $information->image,
-//         "active" => $request->status,
-         "track_inventory" => 'Yes',
-//         "business_code" => Auth::user()->business_code,
-         "updated_by" => Auth::user()->user_code,
-      ]);
-
-
-//      product_price::updateOrCreate(
-//         [
-//            'productID' => $id,
-//         ],
-//         [
-//            'buying_price' => $request->buying_price,
-//            'selling_price' => $request->selling_price,
-//            'offer_price' => $request->buying_price,
-//            'setup_fee' => $request->selling_price,
-//            'taxID' => "1",
-//            'tax_rate' => "0",
-//            'default_price' => $request->selling_price,
-//            'business_code' => Auth::user()->business_code,
-//            'created_by' => Auth::user()->user_code,
-//         ]
-//      );
-
-      product_inventory::updateOrCreate(
-         [
-
-            'productID' => $id,
-         ],
-         [
-            'current_stock' => $request->current_stock,
-            'reorder_point' => $request->reorder_point,
-            'reorder_qty' => $request->reorder_qty,
-            'expiration_date' => "None",
-            'default_inventory' => "None",
-            'notification' => 0,
-//            'created_by' => Auth::user()->user_code,
-            'updated_by' => Auth::user()->user_code,
-            'business_code' => Auth::user()->business_code,
-         ]
-
-      );
-
-      session()->flash('success', 'Product successfully restocked!');
-      $random=Str::random(20);
-      $activityLog = new activity_log();
-      $activityLog->activity = 'Product updating';
-      $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Product update ';
-      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
-      $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
-      $activityLog->ip_address = $request->ip();
-      $activityLog->save();
-
-      return redirect()->back();
+      return redirect('/warehousing/'.$information->warehouse_code.'/products');
    }
 
    public function approvestock($id){
