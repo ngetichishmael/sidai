@@ -65,7 +65,7 @@
 
                                 <input type="hidden"  name="status" value="Active"/>
                                 <input type="hidden"  name="brandID" id="brandID" value="Sidai"/>
-                                <input type="text"  name="code" id="code" value='{{$code}}' />
+{{--                                <input type="hidden"  name="code" id="code" value="{{$code}}" />--}}
                             </div>
                         </div>
 
@@ -181,7 +181,7 @@
                 </div>
                 <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
                     <button type="submit" class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Save</button>
-                    <a href="{{ URL('/products') }}" type="reset" class="btn btn-outline-secondary">Cancel</a>
+                    <a href="{{ URL('/warehousing/'.$code.'/products') }}" type="reset" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </section>
         </div>
