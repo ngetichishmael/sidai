@@ -32,19 +32,19 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: gkassulke@example.org
+        example: claire.armstrong@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'user password.'
         required: true
-        example: 'r6.I6*pFQk)^}'
+        example: 'y}R4rRA<o~.N/JJ+r='
         type: string
         custom: []
     cleanBodyParameters:
-      email: gkassulke@example.org
-      password: 'r6.I6*pFQk)^}'
+      email: claire.armstrong@example.net
+      password: 'y}R4rRA<o~.N/JJ+r='
     fileParameters: []
     responses:
       -
@@ -87,11 +87,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: qui
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      number: qui
+      number: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -127,19 +127,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: est
+        example: doloremque
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: ea
+        example: fugiat
         type: string
         custom: []
     cleanUrlParameters:
-      number: est
-      otp: ea
+      number: doloremque
+      otp: fugiat
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -179,27 +179,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: est
+        example: et
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: ']HMvk~'
+        example: '#w6VHh#"U:Qaf@L39=M'
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: esse
+        example: ut
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: est
-      password: ']HMvk~'
-      password_confirmation: esse
+      phone_number: et
+      password: '#w6VHh#"U:Qaf@L39=M'
+      password_confirmation: ut
     fileParameters: []
     responses: []
     responseFields: []

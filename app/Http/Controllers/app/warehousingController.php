@@ -5,6 +5,8 @@ namespace App\Http\Controllers\app;
 use App\Helpers\Helper;
 use App\Models\activity_log;
 use App\Models\country;
+use App\Models\Models\products\ProductSku;
+use App\Models\products\product_inventory;
 use App\Models\User;
 use App\Models\Subregion;
 use App\Models\Region;
@@ -149,10 +151,30 @@ class warehousingController extends Controller
    }
    public function assignwarehouse(Request $request)
    {
-      $code=$request->query()->warehouse_code;
-      $warehouse = warehousing::where('warehouse_code', $code)->first();
-      $shopattendee = User::where('account_type', 'shop-attendee')->get();
+      $warehouse = warehousing::where('warehouse_code', $request->warehouse)->first();
+      $this->validate($request, [
+         'shopattendee' => 'required',
+      ]);
+      $shopattendee = $request->input('shopattendee');
+      $warehouse = $request->input('warehouser');
 
+      foreach ($this->warehouse as $target) {
+         $warehouseCode = $target['warehouse_code'];
+         $userCode = $target['user_code'];
+
+
+      }
+      session()->flash('success', 'Product successfully restocked!');
+      $random=Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Product update ';
+      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = $request->ip();
+      $activityLog->save();
       return view('livewire.warehousing.assign-shop-attendee',  compact('warehouse', 'shopattendee'));
    }
    /**

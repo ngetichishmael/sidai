@@ -61,6 +61,16 @@ class AuthController extends Controller
       // $user = User::where('phone_number', $request['email'])->firstOrFail();
 
       $token = $user->createToken('auth_token')->plainTextToken;
+      $random = \Illuminate\Support\Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Login in Mobile Device';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile Login';
+      $activityLog->action = 'User '.auth()->user()->name.' Logged in in mobile appication';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -103,6 +113,16 @@ class AuthController extends Controller
    public function logout(Request $request)
    {
       $request->user()->currentAccessToken()->delete();
+      $random = \Illuminate\Support\Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Logout in Mobile Device';
+      $activityLog->user_code = $request->user()->user_code;
+      $activityLog->section = 'Mobile Logout';
+      $activityLog->action = 'User '.$request->user()->name.' Logged out of mobile appication';
+      $activityLog->userID = $request->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
       return [
          'message' => 'You have successfully logged out'
