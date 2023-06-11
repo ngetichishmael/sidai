@@ -106,7 +106,7 @@ class customerController extends Controller
       $user->account_type= "Customer";
       $user->email_verified_at =Carbon::now();
       $user->status="Active";
-      $user->region= Auth::user()->region_id;
+      $user->region_id= Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = "password";
       $user->save();
