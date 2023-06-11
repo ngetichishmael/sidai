@@ -59,7 +59,7 @@
                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit Details</a>
                                   <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Inventory</a>
-                                  <a href="{!! route('warehousing.assign',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #dc2059; font-weight: bold"><i data-feather="plus"></i>&nbsp; Assign Shop Attendees</a>
+                                  <a href="{!! route('warehousing.assign',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #dc2059; font-weight: bold"><i data-feather="plus"></i>&nbsp; Assign Shop Attendees</a>
                                </div>
                             </div>
                          </td>
