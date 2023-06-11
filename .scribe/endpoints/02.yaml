@@ -26,11 +26,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: natus
+        example: vel
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: natus
+      businessCode: vel
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

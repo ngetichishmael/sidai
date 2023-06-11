@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
 use App\Models\customer\customers;
@@ -12,6 +13,7 @@ use App\Models\Delivery_items;
 use App\Models\Order_items;
 use App\Models\order_payments;
 use App\Models\Orders;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +22,7 @@ use App\Models\Area;
 use App\Models\Route_customer;
 use App\Models\Routes;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * @group Customers Api's
@@ -125,6 +128,21 @@ class customersController extends Controller
       $customer->image = $image_path;
       $customer->save();
 
+      $random=Str::random(10);
+      $user = new User();
+      $user->name = $request->customer_name;
+      $user->email=$emailData;
+      $user->user_code=$random;
+      $user->phone_number = $request->phone_number;
+      $user->gender = $request->gender;
+      $user->account_type= "Customer";
+      $user->email_verified_at =Carbon::now();
+      $user->status="Active";
+      $user->region=Auth::user()->region_id;
+      $user->business_code = Auth::user()->business_code;
+      $user->password = "password";
+      $user.save();
+
       DB::table('leads_targets')
          ->where('user_code', $request->user()->user_code)
          ->increment('AchievedLeadsTarget');
@@ -172,6 +190,16 @@ class customersController extends Controller
          ]
       );
 
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Editing customer information';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Customer information update ';
+      $activityLog->action = 'User '.auth()->user()->name.' updated customer '. $customer->customer_name.' information';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
 
 
       return response()->json([
