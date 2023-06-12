@@ -20,22 +20,21 @@ class ReportsController extends Controller
     public function preorders()
     {
         $count =1;
-        $preorders = Orders::all()->where('order_status', 'Pending Delivery')->where('order_type','Pre Order');
-        $users = User::where('business_code',Auth::user()->business_code)->pluck('name');
-         return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count,'users'=>$users]);
+        $preorders = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Pre Order')->get();
+         return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count]);
 
     }
     public function vansales()
     {
           $count =1;
-          $vansales = Orders::all()->where('order_status', 'Pending Delivery')->where('order_type','Van sales');
+          $vansales = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Van sales')->get();
          return view('app.reports.vansales',['vansales'=>$vansales,'count'=>$count]);
 
     }
     public function delivery()
     {
      $count =1;
-     $deliveries = Orders::all()->where('order_status', 'Delivered');
+     $deliveries = Orders::with('User','Customer')->where('order_status', 'Delivered')->get();
     return view('app.reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
 
     }
@@ -52,13 +51,14 @@ class ReportsController extends Controller
 
     public function warehouse()
     {$count =1;
-     $warehouses = warehousing::all()->whereNotNull('warehouse_code');
+     $warehouses = warehousing::whereNotNull('warehouse_code')->get();
     return view('app.reports.warehouse',['warehouses'=>$warehouses,'count'=>$count]);
 
     }
     public function distributor()
     {
-         return view('app.reports.distributor');
+     $distributors = Orders::with('User','Customer')->where('supplierID','!=', '1')->get();
+         return view('app.reports.distributor',['distributors'=>$distributors]);
 
     }
     public function regional()

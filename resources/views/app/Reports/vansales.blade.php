@@ -28,7 +28,6 @@
                     <tr>
                        <th>#</th>
                        <th>Order ID</th>
-                       <th>Warehouse</th>
                        <th>Customer Name</th>
                        <th>User Name</th>
                        <th>User Type</th>
@@ -40,11 +39,10 @@
                   <tr>
                      <td>{{ $count++ }}</td>
                      <td>{{ $vansale->order_code }}</td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>{{ $vansale->Customer->customer_name??'' }}</td>
+                     <td>{{ $vansale->User->name??'' }}</td>
+                     <td>{{ $vansale->User->account_type??'' }}</td>
+                     <td><a href="" class="btn" style="background-color: brown;color:white">View</a></td>
                  </tr>
                   @endforeach
                     

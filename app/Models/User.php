@@ -99,4 +99,9 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->belongsTo(Region::class,  'route_code', 'id');
    }
+
+   public function Users(): HasMany
+   {
+      return $this->hasMany(User::class, 'account_type','account_type');
+   }
 }

@@ -37,7 +37,7 @@
                <tr>
                   <td>{{ $count++ }}</td>
                   <td>{{ $user }}</td>
-                  <td>1</td>
+                  <td>{{ $usercount }}</td>
                   <td><a href="" class="btn sm" style="background-color: brown;color:white">View</a></td>
               </tr>
                @endforeach

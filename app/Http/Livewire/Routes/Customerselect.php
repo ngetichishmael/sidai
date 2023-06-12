@@ -9,6 +9,7 @@ use App\Models\customer\customers;
 class Customerselect extends Component
 {
     public $route_id;
+    public $customer;
     public function render()
     {
         $routes = Area::all();
@@ -18,4 +19,5 @@ class Customerselect extends Component
             'customers' => $customers
          ]);
     }
+   
 }

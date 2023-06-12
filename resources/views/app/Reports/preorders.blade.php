@@ -28,7 +28,6 @@
                     <tr>
                        <th>#</th>
                        <th>Order ID</th>
-                       <th>Warehouse</th>
                        <th>Customer Name</th>
                        <th>User Name</th>
                        <th>User Type</th>
@@ -40,10 +39,9 @@
                     <tr>
                         <td>{{ $count++ }}</td>
                         <td>{{ $preorder->order_code }}</td>
-                        <td></td>
-                        <td></td>
-                        <td>{{ $users[1] }}</td>
-                        <td>Admin</td>
+                        <td>{{ $preorder->Customer->customer_name??'' }}</td>
+                        <td>{{ $preorder->User->name??'' }}</td>
+                        <td>{{ $preorder->User->account_type??'' }}</td>
                         <td><a href="" class="btn" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                     </tr>
                         
