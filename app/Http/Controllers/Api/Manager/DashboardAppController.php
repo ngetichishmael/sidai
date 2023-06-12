@@ -11,6 +11,7 @@ use App\Models\survey\survey;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardAppController extends Controller
 {
@@ -24,11 +25,13 @@ class DashboardAppController extends Controller
       })->count();
 //      $checking = checkin::select('user_code')->today()->groupBy('user_code');
       $today = Carbon::today()->toDateString();
-      $checking = checkin::select('user_code')
-         ->where(function ($query) use ($today) {
-            $query->whereDate('created_at', $today);
-         })
-         ->groupBy('user_code')
+      $subquery = DB::table('checkin')
+         ->select('user_code')
+         ->whereDate('created_at', $today)
+         ->groupBy('user_code');
+
+      $checking = DB::table('your_table')
+         ->whereIn('user_code', $subquery)
          ->get();
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
