@@ -32,23 +32,23 @@
                      {!! Form::text('name',null,['class'=>'form-control','required'=>'']) !!}
                   </div>
                   <div class="form-group mb-1">
-                     <label for="">Choose Store Manager</label>
-                     <select class="form-control select2" id="clerks" name="manager" required>
-                             @foreach ($managers as $data)
-                            <option value="{{ $data->user_code }}">{{ $data->name  }}</option>
-                               @endforeach
-                             </select>
+                     <label for="">Warehouse Code</label>
+                     {!! Form::text('warehouse_code',null,['class'=>'form-control','required'=>'']) !!}
                   </div>
-{{--                  <div class="form-group mb-1">--}}
-{{--                     <label for="">Managers Email</label>--}}
-{{--                     {!! Form::email('email',null,['class'=>'form-control']) !!}--}}
-{{--                  </div>--}}
-{{--                  <div class="form-group mb-1">--}}
-{{--                     <label for="">Phone number</label>--}}
-{{--                     {!! Form::text('phone_number',null,['class'=>'form-control']) !!}--}}
-{{--                  </div>--}}
-                  <div>
-                     @livewire('regionselect.dynamicselect')
+                  <div class="form-group mb-1">
+                     <label for="region_id">Region:</label>
+                     <select id="region_id" class="form-control select2" name="region_id" required>
+                        <option value="">Select a region</option>
+                        @foreach($regions as $region)
+                           <option value="{{ $region->id }}">{{ $region->name }}</option>
+                        @endforeach
+                     </select>
+                  </div>
+                  <div class="form-group mb-1">
+                     <label for="subregion_id">Subregion:</label>
+                     <select id="subregion_id" class="form-control select2" name="subregion_id">
+                        <option value=""></option>
+                     </select>
                   </div>
                   <div class="row">
                      <div class="col-md-6">
@@ -70,6 +70,32 @@
          </div>
       </div>
    </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script>
+      $(document).ready(function() {
+         $('#region_id').change(function() {
+            var regionId = $(this).val();
+            if (regionId) {
+               $.ajax({
+                  url: "{{ route('get-subregions', '') }}/" + regionId,
+                  type: "GET",
+                  dataType: "json",
+                  success: function(data) {
+                     $('#subregion_id').empty();
+                     $('#subregion_id').append('<option value="">Choose a Subregion</option>');
+                     if (data.length > 0) {
+                        $.each(data, function(key, value) {
+                           $('#subregion_id').append('<option value="' + value.id + '">' + value.name + '</option>');
+                        });
+                     }
+                  }
+               });
+            } else {
+               $('#subregion_id').empty();
+            }
+         });
+      });
+   </script>
 @endsection
 {{-- page scripts --}}
 @section('script')

@@ -81,8 +81,9 @@ class ordersController extends Controller
       $items = Order_items::where('order_code', $order->order_code)->get();
       $users = User::orderby('id', 'desc')->get();
       $warehouses = warehousing::orderby('id', 'desc')->get();
+      $account_types = User::whereNotIn('account_type', ['customer', 'admin'])->groupBy('account_type')->get();
 
-      return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses'));
+      return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'account_types'));
    }
 
    //create delivery
@@ -90,7 +91,7 @@ class ordersController extends Controller
    {
       $this->validate($request, [
          'user' => 'required',
-         'warehouse' => 'required',
+//         'warehouse' => 'required',
 
       ]);
 

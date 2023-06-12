@@ -19,8 +19,8 @@
    </div>
    <div class="card card-default">
       <div class="card-body">
-         <div class="card-company-table table-responsive">
-            <table class="table table-striped table-bordered zero-configuration">
+         <div class="card-company-table ">
+            <table class="table table-striped table-bordered zero-configuration table-responsive">
                <thead>
                <tr>
                   <th width="1%">#</th>

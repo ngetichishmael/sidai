@@ -35,59 +35,77 @@
                                         placeholder="Enter Product Name" aria-label="Name" name="product_name"
                                         aria-describedby="basic-addon-name" required />
                                 </div>
-                                <div class="mb-2 form-group">
-                                    <label class="form-label" for="basic-default-email1">SKU CODE</label>
-                                    <input type="text" id="basic-default-email1" class="form-control"
-                                        placeholder="SKU CODE" name="sku_code" required />
-                                </div>
-                                <div class="mb-2 form-group">
-                                    <label for="select-country1">Is currently Available?</label>
-                                    <select class="form-control select" id="select-country1" name="status" required>
-                                        <option value="">Status</option>
-                                        <option value="Active">Active</option>
-                                        <option value="No">No</option>
-                                    </select>
-                                </div>
+{{--                               <div class="mb-2 form-group">--}}
+{{--                                  <label for="select-country1">Brands </label>--}}
+{{--                                  <select class="select2 form-control" name="brandID" id="brandID" required>--}}
+{{--                                     <option value="">-- Please choose the brand--</option>--}}
+{{--                                     @foreach ($brands as $brand)--}}
+{{--                                        <option value='{{ $brand }}'>{{ $brand }}</option>--}}
+{{--                                     @endforeach--}}
+{{--                                  </select>--}}
+{{--                               </div>--}}
+{{--                               <div class="mb-2 form-group">--}}
+{{--                                  <label for="select-country1">Suppliers </label>--}}
+{{--                                  <select name="supplierID" id="brandID" class="form-control select2" required>--}}
+{{--                                     <option value="">-- Please choose the supplier--</option>--}}
+{{--                                     @foreach ($suppliers as $key => $supplier)--}}
+{{--                                        <option value='{{ $key + 1 }}'>{{ $supplier }}</option>--}}
+{{--                                     @endforeach--}}
+{{--                                  </select>--}}
+{{--                               </div>--}}
+                               <div class="mb-2 form-group">
+                                  <label for="select-country1">Product Catergory</label>
+                                  <select name="category" id="category" class="form-control select2">
+                                     <option value="">--Please choose the catergory--</option>
+                                     @foreach ($categories as $category)
+                                        <option value='{{ $category }}'>{{ $category }}</option>
+                                     @endforeach
+                                  </select>
+                               </div>
+
+                                <input type="hidden"  name="status" value="Active"/>
+                                <input type="hidden"  name="brandID" id="brandID" value="Sidai"/>
+{{--                                <input type="hidden"  name="code" id="code" value="{{$code}}" />--}}
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Additional Information</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-2 form-group">
-                                    <label for="select-country1">Brands </label>
-                                    <select class="select2 form-control"name="brandID" id="brandID" required>
-                                        <option value="">-- Please choose the brand--</option>
-                                        @foreach ($brands as $brand)
-                                            <option value='{{ $brand }}'>{{ $brand }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-2 form-group">
-                                    <label for="select-country1">Suppliers </label>
-                                    <select name="supplierID" id="brandID" class="form-control select2" required>
-                                        <option value="">-- Please choose the supplier--</option>
-                                        @foreach ($suppliers as $key => $supplier)
-                                            <option value='{{ $key + 1 }}'>{{ $supplier }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="mb-2 form-group">
-                                    <label for="select-country1">Product Catergory</label>
-                                    <select name="category" id="category" class="form-control select2">
-                                        <option value="">--Please choose the catergory--</option>
-                                        @foreach ($categories as $category)
-                                            <option value='{{ $category }}'>{{ $category }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+{{--                    <div class="col-md-6 col-12">--}}
+{{--                        <div class="card">--}}
+{{--                            <div class="card-header">--}}
+{{--                                <h4 class="card-title">Additional Information</h4>--}}
+{{--                            </div>--}}
+{{--                            <div class="card-body">--}}
+{{--                                <div class="mb-2 form-group">--}}
+{{--                                    <label for="select-country1">Brands </label>--}}
+{{--                                    <select class="select2 form-control"name="brandID" id="brandID" required>--}}
+{{--                                        <option value="">-- Please choose the brand--</option>--}}
+{{--                                        @foreach ($brands as $brand)--}}
+{{--                                            <option value='{{ $brand }}'>{{ $brand }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-2 form-group">--}}
+{{--                                    <label for="select-country1">Suppliers </label>--}}
+{{--                                    <select name="supplierID" id="brandID" class="form-control select2" required>--}}
+{{--                                        <option value="">-- Please choose the supplier--</option>--}}
+{{--                                        @foreach ($suppliers as $key => $supplier)--}}
+{{--                                            <option value='{{ $key + 1 }}'>{{ $supplier }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="mb-2 form-group">--}}
+{{--                                    <label for="select-country1">Product Catergory</label>--}}
+{{--                                    <select name="category" id="category" class="form-control select2">--}}
+{{--                                        <option value="">--Please choose the catergory--</option>--}}
+{{--                                        @foreach ($categories as $category)--}}
+{{--                                            <option value='{{ $category }}'>{{ $category }}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                    </div></div>
             </section>
             <section id="card-demo-example">
                 <div class="row">
@@ -103,9 +121,15 @@
                                         id="buying_price" name="buying_price" placeholder="Whole Sale" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label" for="basic-default-email">Retail Price</label>
+                                    <label class="form-label" for="basic-default-name">Retail Price</label>
                                     <input type="number" min="10" max="1000000" id="selling_price"
                                         name="selling_price" class="form-control" placeholder="Retail Price" required
+                                        onchange="check()" />
+                                </div>
+                               <div class="form-group">
+                                    <label class="form-label" for="basic-default-name">Distributor Price</label>
+                                    <input type="number" min="10" max="1000000" id="distributor_price"
+                                        name="distributor_price" class="form-control" placeholder="Distributor Price" required
                                         onchange="check()" />
                                 </div>
                                 <span style="color:#ff9398; visibility: hidden" id="msg">Notice!! Your selling price
@@ -113,29 +137,29 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Inventory</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-default-name">Available Stock</label>
-                                    <input type="number" min="10" max="100000" class="form-control"
-                                        id="basic-default-name" name="current_stock" placeholder="Available Quantity" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-default-email">Reorder Point</label>
-                                    <input type="number" min="10" max="100000" id="basic-default-email"
-                                        name="reorder_point" class="form-control" placeholder="Reorder Point" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label" for="basic-default-email">Reorder Quantity</label>
-                                    <input type="number" min="10" max="100000" id="basic-default-email"
-                                        name="reorder_qty" class="form-control" placeholder="Reorder Quantity" />
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-4 col-lg-2">
+{{--                        <div class="card">--}}
+{{--                            <div class="card-header">--}}
+{{--                                <h4 class="card-title">Inventory</h4>--}}
+{{--                            </div>--}}
+{{--                            <div class="card-body">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label" for="basic-default-name">Available Stock</label>--}}
+{{--                                    <input type="number" min="10" max="100000" class="form-control"--}}
+{{--                                        id="basic-default-name" name="current_stock" placeholder="Available Quantity" />--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label" for="basic-default-email">Reorder Point</label>--}}
+{{--                                    <input type="number" min="10" max="100000" id="basic-default-email"--}}
+{{--                                        name="reorder_point" class="form-control" placeholder="Reorder Point" />--}}
+{{--                                </div>--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-label" for="basic-default-email">Reorder Quantity</label>--}}
+{{--                                    <input type="number" min="10" max="100000" id="basic-default-email"--}}
+{{--                                        name="reorder_qty" class="form-control" placeholder="Reorder Quantity" />--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <div class="card match-height">
@@ -157,7 +181,7 @@
                 </div>
                 <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
                     <button type="submit" class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Save</button>
-                    <a href="{{ URL('/products') }}" type="reset" class="btn btn-outline-secondary">Cancel</a>
+                    <a href="{{ URL('/warehousing/'.$code.'/products') }}" type="reset" class="btn btn-outline-secondary">Cancel</a>
                 </div>
             </section>
         </div>

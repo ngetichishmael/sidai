@@ -90,31 +90,18 @@ class customerController extends Controller
    {
       $this->validate($request, [
          'customer_name' => 'required',
-         'account' => 'required',
+         'id_number' => 'required',
       ]);
 
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
-      $customer->account = $request->account;
-      $customer->manufacturer_number = $request->manufacturer_number;
-      $customer->vat_number = $request->vat_number;
-      $customer->delivery_time = $request->delivery_time;
       $customer->address = $request->address;
-      $customer->city = $request->city;
-      $customer->province = $request->province;
       $customer->postal_code = $request->postal_code;
-      $customer->country = $request->country;
-      $customer->latitude = $request->latitude;
-      $customer->longitude = $request->longitude;
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
+      $customer->id_number = $request->id_number;
       $customer->customer_group = $request->customer_group;
-      $customer->customer_secondary_group = $request->customer_secondary_group;
-      $customer->price_group = $request->price_group;
       $customer->route = $request->route;
       $customer->route_code = $request->territory;
       $customer->zone_id = $request->territory;
-      $customer->branch = $request->branch;
       $customer->email = $request->email;
       $customer->customer_type = "normal";
       $customer->phone_number = $request->phone_number;
@@ -140,31 +127,17 @@ class customerController extends Controller
    {
       $this->validate($request, [
          'customer_name' => 'required',
-         'account' => 'required',
+         'id_number' => 'required',
       ]);
 
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
-      $customer->account = $request->account;
-      $customer->manufacturer_number = $request->manufacturer_number;
-      $customer->vat_number = $request->vat_number;
-      $customer->delivery_time = $request->delivery_time;
+      $customer->id_number =$request->id_number;
       $customer->address = $request->address;
-      $customer->city = $request->city;
-      $customer->province = $request->province;
-      $customer->postal_code = $request->postal_code;
-      $customer->country = $request->country;
-      $customer->latitude = $request->latitude;
-      $customer->longitude = $request->longitude;
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
       $customer->customer_group = $request->customer_group;
-      $customer->customer_secondary_group = $request->customer_secondary_group;
-      $customer->price_group = $request->price_group;
       $customer->route = $request->route;
       $customer->route_code = $request->territory;
       $customer->zone_id = $request->territory;
-      $customer->branch = $request->branch;
       $customer->email = $request->email;
       $customer->customer_type = "creditor";
       $customer->creditor_approved = 1;

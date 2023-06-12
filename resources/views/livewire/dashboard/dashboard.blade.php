@@ -63,7 +63,7 @@
                            </div>
 
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#preorderSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">shopping_cart</span>
@@ -76,7 +76,7 @@
                               </a>
                            </div>
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#buyingCustomersSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">arrow_forward</span>
@@ -84,12 +84,12 @@
                                  </div> &nbsp;&nbsp;
                                  <div class="media-body my-auto pl-3 ml-3">
                                     <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">{{ number_format($customersCount) }}</h4>
-                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Customers</p>
+                                    <p class="card-text font-small-3 mb-0 font-medium-1" style="color: rgba(71,75,79,0.76)">Active Customers</p>
                                  </div>
                               </a>
                            </div>
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#orderFulfillmentSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">order_approve</span>
@@ -103,7 +103,7 @@
                            </div>
 
                            <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                              <a href="#vansalesSection" class="d-flex align-items-center">
+                              <a href="#orderFulfillmentSection" class="d-flex align-items-center">
                                  <div class="avatar bg-light-primary">
                                     <div class="avatar-content">
                                        <span class="material-symbols-outlined">local_shipping</span>
@@ -186,9 +186,9 @@
                                                },
                                                y: {
                                                   beginAtZero: true,
-                                                  // min: 0,
-                                                  // max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
-                                                  // max: 10000,
+                                                  min: 0,
+                                                  max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
+                                                  max: 10000,
                                                   stepSize: 50,
                                                   display: true,
                                                   title: {
@@ -622,7 +622,7 @@
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--            </section>--}}
-            <section class="app-user-list" id="buyingCustomersSection">
+            <section class="app-user-list mb-4" id="buyingCustomersSection">
                 <div class="card">
                     <h5 class="card-header">Buying Customers</h5>
                     <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
@@ -662,8 +662,8 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $sale->order_code }}</td>
-                                        <td>{{ $sale->User()->pluck('name')->implode('') }}</td>
-                                        <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
+                                        <td>{{ $sale->User->name ?? '' }}</td>
+                                        <td>{{ $sale->customer->customer_name ?? '' }}</td>
                                         <td>{{ $sale->balance }}</td>
                                         <td>{{ $sale->payment_status }}</td>
                                         <td>{{ $sale->updated_at }}</td>
@@ -681,3 +681,5 @@
             </section>
 
         </div>
+       <br/>
+    </div>

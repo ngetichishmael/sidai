@@ -19,6 +19,20 @@ class customers extends Model
       'Area.Subregion.name',
       'Area.Subregion.Region.name',
    ];
+   // Relationship with orders
+   public function orders()
+   {
+      return $this->hasMany(Orders::class, 'customerID', 'id');
+   }
+   public function number_visited()
+   {
+      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
+   }
+
+   public function orderItems()
+   {
+      return $this->hasManyThrough(Order_items::class, Orders::class, 'customerID', 'order_code', 'id', 'order_code');
+   }
    protected $table = 'customers';
    /**
     * Get the Region that owns the customers

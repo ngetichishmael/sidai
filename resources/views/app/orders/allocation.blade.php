@@ -35,26 +35,23 @@
                 <div class="card-body">
                    <h4>Assign Order To User of customer <u>{{$order->customer->customer_name}}</u>, Order Code <u>{!! $order->order_code !!}</u></h4>
                     <hr>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="">Choose User</label>
-                            <select name="user" class="form-control select2" required>
-                                <option value="">Choose User</option>
-                                @foreach ($users as $user)
-                                    <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group col-md-2">
-{{--                            <label for="">Assign Stock From</label>--}}
-{{--                            <select name="warehouse" class="form-control" required>--}}
-{{--                                <option value="">Choose warehouse</option>--}}
-{{--                                @foreach ($warehouses as $warehouse)--}}
-{{--                                    <option value="{!! $warehouse->warehouse_code !!}">{!! $warehouse->name !!}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
-                        </div>
-                        <div class="form-group col-md-4 ml-3">
+                   <div class="row">
+                      <div class="form-group col-md-4">
+                         <label for="">Assign Stock To</label>
+                         <select name="account_type" class="form-control select" id="account_type" required>
+                            <option value="">Choose User Type</option>
+                            @foreach ($account_types as $account)
+                               <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                            @endforeach
+                         </select>
+                      </div>
+                      <div class="form-group col-md-4">
+                         <label for="">Choose User</label>
+                         <select name="user" class="form-control select2" id="user" required>
+                            <option value=""></option>
+                         </select>
+                      </div>
+                   <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
                         </div>
@@ -96,8 +93,39 @@
             <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       $(document).ready(function() {
+          $('#account_type').on('change', function() {
+             var accountType = $(this).val();
+             if (accountType) {
+                $.ajax({
+                   url: '{{ route('get.users') }}',
+                   type: 'GET',
+                   data: { account_type: accountType },
+                   success: function(data) {
+                      $('#user').empty();
+                      $('#user').append('<option value="">Choose a User</option>');
+                      data.users.forEach(function(user) {
+                         $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                      });
+                   },
+                   error: function() {
+                      console.log('Error occurred during AJAX request.');
+                   }
+                });
+             } else {
+                $('#user').empty();
+                $('#user').append('<option value="">Choose User</option>');
+             }
+          });
+       });
+
+    </script>
+
 @endsection
 {{-- page scripts --}}
 @section('script')
+
 
 @endsection

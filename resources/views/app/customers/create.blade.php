@@ -38,32 +38,15 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Account</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" />
+                                        <label for="id-number">ID Number</label>
+                                        <input type="number" id="id-number" maxlength="8" class="form-control"
+                                            placeholder="Eg. 3540...." name="id_number" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Manufacturer Number</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City"
-                                            name="manufacturer_number" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">VAT number</label>
-                                        <input type="text" id="country-floating" class="form-control" name="vat_number"
-                                            placeholder="VAT number" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Delivery Time</label>
-                                        <input type="text" id="company-column" class="form-control" name="delivery_time"
-                                            placeholder="Delivery Time" />
-                                    </div>
-                                </div>
+                                
+                                
+                                
+                               
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
@@ -73,66 +56,9 @@
                                 </div>
 
                             </div>
+                            
                             <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">City</label>
-                                        <input type="text" id="first-name-column" class="form-control" placeholder="City"
-                                            name="city" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Province</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Province" name="province" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Postal Code</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Postal Code" name="postal_code" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input type="text" id="country-floating" class="form-control" name="country"
-                                            placeholder="Country" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Latitude</label>
-                                        <input type="text" id="company-column" class="form-control" name="latitude"
-                                            placeholder="Latitude" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Longitude</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="longitude"
-                                            placeholder="Longitude" />
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Contact Person</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Contact Person" name="contact_person" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Telephone</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Telephone" name="telephone" />
-                                    </div>
-                                </div>
+                               
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>
                                     <select class="select select2" wire:model='region' class="form-control"
@@ -144,26 +70,10 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <label>Pricing Group</label>
-                                    <select class="select select2" wire:model='region' class="form-control"
-                                        name="customer_group">
-                                        <option value="">Pricing Group</option>
-                                        @foreach ($pricing as $group)
-                                            <option value="{{ $group->name }}">{{ $group->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                                
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Branch</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" />
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>

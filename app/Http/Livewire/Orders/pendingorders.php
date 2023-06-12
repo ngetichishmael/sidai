@@ -23,8 +23,10 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $pendingorders = Orders::where('order_status','=', 'Pending Delivery')->where('SupplierID', '=', [null, ' ', '1'])->where('order_type','=','Pre Order')->with('Customer', 'user')
-         ->search($searchTerm)
+      $pendingorders = Orders::with('Customer', 'user')
+         ->where('order_status','=', 'Pending Delivery')
+         ->whereIn('SupplierID', [null, ' ', '1'])
+         ->where('order_type','=','Pre Order')
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
 

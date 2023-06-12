@@ -223,20 +223,21 @@
                                     </div>
                                 </div>
 
-                                <div class="row my-2">
-                                    <div class="col-7 text-right">
-                                        Tax (10%)
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>
-                                    </div>
-                                </div>
+{{--                                <div class="row my-2">--}}
+{{--                                    <div class="col-7 text-right">--}}
+{{--                                        Tax (10%)--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-5">--}}
+{{--                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                                 <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                     <div class="col-7 text-right">
                                         Total Amount
                                     </div>
                                     <div class="col-5">
+                                       <span>--------------</span>
                                         <span class="text-150 text-success-d3 opacity-2">Ksh {!! $total->sum('total_amount') !!}</span>
                                     </div>
                                 </div>

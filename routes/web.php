@@ -184,8 +184,11 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/products', ['uses' => 'app\products\productController@index', 'as' => 'product.index']);
    Route::get('warehousing/products/create', ['uses' => 'app\products\productController@create', 'as' => 'products.create']);
    Route::post('warehousing/products/store', ['uses' => 'app\products\productController@store', 'as' => 'products.store']);
+   Route::post('warehousing/products/upload', ['uses' => 'app\products\productController@upload', 'as' => 'products.upload']);
    Route::get('warehousing/products/{id}/edit', ['uses' => 'app\products\productController@edit', 'as' => 'products.edit']);
+   Route::get('warehousing/products/{id}/restock', ['uses' => 'app\products\productController@restock', 'as' => 'products.restock']);
    Route::post('warehousing/products/{id}/update', ['uses' => 'app\products\productController@update', 'as' => 'products.update']);
+   Route::post('warehousing/products/{id}/updatestock', ['uses' => 'app\products\productController@updatestock', 'as' => 'products.updatestock']);
    Route::get('warehousing/products/{id}/details', ['uses' => 'app\products\productController@details', 'as' => 'products.details']);
    Route::get('warehousing/products/{id}/destroy', ['middleware' => ['permission:delete-products'], 'uses' => 'app\products\productController@destroy', 'as' => 'products.destroy']);
 
@@ -200,6 +203,8 @@ Route::group(['middleware' => ['verified']], function () {
    //import users
    Route::get('users/all/import', ['uses' => 'app\usersController@indexUser', 'as' => 'users.all.import']);
    Route::post('users/post/import', ['uses' => 'app\usersController@import', 'as' => 'users.post.import']);
+
+   Route::get('/get-users', 'app\usersController@getUsers')->name('get.users');
 
    //export products
    Route::get('products/export/{type}', ['uses' => 'app\products\ImportController@export', 'as' => 'products.export']);
@@ -266,7 +271,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('user/store', ['uses' => 'app\usersController@store', 'as' => 'user.store']);
    Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
-   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
+//   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
    Route::get('user{id}/suspend', ['uses' => 'app\usersController@suspend', 'as' => 'user.suspend']);
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
@@ -287,7 +292,13 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/distributors', ['uses' => 'app\ReportsController@distributor', 'as' => 'distributor.reports']);
    Route::get('Reports/region-report', ['uses' => 'app\ReportsController@regional', 'as' => 'regional.reports']);
    Route::get('Reports/inventory-report', ['uses' => 'app\ReportsController@inventory', 'as' => 'inventory.reports']);
+   Route::get('Reports/subregion-report', ['uses' => 'app\ReportsController@subregions', 'as' => 'subregion.reports']);
+   Route::get('Reports/routes-report', ['uses' => 'app\ReportsController@routes', 'as' => 'routes.reports']);
+   Route::get('Reports/customers', ['uses' => 'app\ReportsController@customers', 'as' => 'customer.reports']);
+   Route::get('Reports/products', ['uses' => 'app\ReportsController@productreport', 'as' => 'allproducts.reports']);
 
+   //getting subregions
+   Route::get('/get-subregions/{regionId}', 'app\warehousingController@getByRegion')->name('get-subregions');;
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);
@@ -321,6 +332,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/approved/{id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
+   Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
 
 
    /* === settings === */
