@@ -46,11 +46,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: jacklyn.barrows@example.net
+                  example: dudley.pollich@example.org
                 password:
                   type: string
                   description: 'user password.'
-                  example: '_S:{v*aD50O5'
+                  example: '3*Q_o$sVf\'''
               required:
                 - email
                 - password
@@ -70,7 +70,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: omnis
+        example: soluta
         required: true
         schema:
           type: string
@@ -89,7 +89,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: saepe
+        example: sit
         required: true
         schema:
           type: string
@@ -97,7 +97,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: blanditiis
+        example: et
         required: true
         schema:
           type: string
@@ -120,15 +120,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: blanditiis
+                  example: qui
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: 'W}P~7>$@xn/0V?'
+                  example: umvQs5on
                 password_confirmation:
                   type: string
                   description: ''
-                  example: minima
+                  example: et
               required:
                 - phone_number
                 - password
@@ -153,19 +153,19 @@ paths:
                 customerID:
                   type: string
                   description: 'as Customer ID'
-                  example: illum
+                  example: est
                 latitude:
                   type: string
                   description: 'as current latitude'
-                  example: et
+                  example: amet
                 longitude:
                   type: string
                   description: 'as current longitude'
-                  example: doloribus
+                  example: porro
                 user_code:
                   type: string
                   description: 'user code'
-                  example: sint
+                  example: aliquam
               required:
                 - customerID
                 - latitude
@@ -1013,7 +1013,7 @@ paths:
         in: path
         name: CustomerCode
         description: ''
-        example: eum
+        example: eaque
         required: true
         schema:
           type: string
@@ -1052,7 +1052,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: magni
+        example: provident
         required: true
         schema:
           type: string
@@ -1885,7 +1885,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: voluptatem
+        example: non
         required: true
         schema:
           type: string
@@ -1928,11 +1928,11 @@ paths:
                 productID:
                   type: string
                   description: 'as product ID'
-                  example: ipsum
+                  example: rem
                 qty:
                   type: string
                   description: 'as quantity'
-                  example: voluptates
+                  example: praesentium
               required:
                 - productID
                 - qty
@@ -1942,7 +1942,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: commodi
+        example: qui
         required: true
         schema:
           type: string
@@ -1965,11 +1965,11 @@ paths:
                 order_type:
                   type: string
                   description: 'as order type [Van sale or Pre order]'
-                  example: sit
+                  example: provident
                 reasons_partial_delivery:
                   type: string
                   description: 'as reasons_partial_delivery'
-                  example: culpa
+                  example: quaerat
               required:
                 - order_type
       security: []
@@ -1978,7 +1978,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: rerum
+        example: optio
         required: true
         schema:
           type: string
@@ -2013,7 +2013,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: quidem
+        example: laudantium
         required: true
         schema:
           type: string
@@ -2866,7 +2866,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: est
+        example: beatae
         required: true
         schema:
           type: string
@@ -2889,7 +2889,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 12
+                  example: 11
               required:
                 - order_id
       security: []
@@ -2898,7 +2898,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: molestias
+        example: magnam
         required: true
         schema:
           type: string
@@ -3743,7 +3743,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: cupiditate
+        example: amet
         required: true
         schema:
           type: string
@@ -3751,7 +3751,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: autem
+        example: unde
         required: true
         schema:
           type: string
@@ -3774,11 +3774,11 @@ paths:
                 qty:
                   type: string
                   description: 'as qty'
-                  example: quod
+                  example: dicta
                 orderID:
                   type: string
                   description: 'as orderID'
-                  example: dolorum
+                  example: laboriosam
               required:
                 - qty
       security: []
@@ -3787,7 +3787,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: fuga
+        example: eum
         required: true
         schema:
           type: string
@@ -3795,7 +3795,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: optio
+        example: quam
         required: true
         schema:
           type: string
@@ -4628,7 +4628,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: a
+        example: ipsam
         required: true
         schema:
           type: string
@@ -4636,7 +4636,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: molestiae
+        example: libero
         required: true
         schema:
           type: string
@@ -4659,7 +4659,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 12
+                  example: 6
               required:
                 - order_id
       security: []
@@ -5504,7 +5504,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: vitae
+        example: corrupti
         required: true
         schema:
           type: string
@@ -5512,7 +5512,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: voluptatem
+        example: voluptatum
         required: true
         schema:
           type: string
@@ -5526,12 +5526,12 @@ paths:
           in: query
           name: page_size
           description: 'size per page. Default to 20'
-          example: 19
+          example: 12
           required: false
           schema:
             type: integer
             description: 'size per page. Default to 20'
-            example: 19
+            example: 12
       responses:
         401:
           description: ''
@@ -5553,7 +5553,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: praesentium
+        example: labore
         required: true
         schema:
           type: string
@@ -5576,31 +5576,31 @@ paths:
                 customer_name:
                   type: string
                   description: 'as outlet name'
-                  example: officia
+                  example: accusantium
                 contact_person:
                   type: string
                   description: ''
-                  example: quae
+                  example: animi
                 business_code:
                   type: string
                   description: ''
-                  example: rem
+                  example: qui
                 created_by:
                   type: string
                   description: 'user code'
-                  example: praesentium
+                  example: aut
                 phone_number:
                   type: string
                   description: ''
-                  example: voluptatum
+                  example: ut
                 latitude:
                   type: string
                   description: ''
-                  example: et
+                  example: nisi
                 longitude:
                   type: string
                   description: ''
-                  example: numquam
+                  example: qui
                 image:
                   type: string
                   format: binary
@@ -5608,11 +5608,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: runolfsdottir.abbigail@example.com
+                  example: rgreen@example.com
                 address:
                   type: string
                   description: ''
-                  example: velit
+                  example: qui
               required:
                 - customer_name
                 - contact_person
@@ -5666,7 +5666,7 @@ paths:
         in: path
         name: code
         description: ''
-        example: ut
+        example: voluptate
         required: true
         schema:
           type: string
@@ -5709,7 +5709,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: sint
+        example: rerum
         required: true
         schema:
           type: string
@@ -5717,7 +5717,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: quia
+        example: corrupti
         required: true
         schema:
           type: string
@@ -6701,7 +6701,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: sit
+        example: veritatis
         required: true
         schema:
           type: string
@@ -6756,7 +6756,7 @@ paths:
         in: path
         name: orderCode
         description: ''
-        example: illum
+        example: quia
         required: true
         schema:
           type: string
@@ -6799,7 +6799,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: ab
+        example: sed
         required: true
         schema:
           type: string
@@ -6846,7 +6846,7 @@ paths:
         in: path
         name: userCode
         description: ''
-        example: asperiores
+        example: dignissimos
         required: true
         schema:
           type: string
@@ -7699,7 +7699,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: natus
+        example: laborum
         required: true
         schema:
           type: string
@@ -7750,7 +7750,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: aut
+        example: asperiores
         required: true
         schema:
           type: string
@@ -7789,7 +7789,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: tempora
+        example: nemo
         required: true
         schema:
           type: string
@@ -8634,7 +8634,7 @@ paths:
         in: path
         name: categoryID
         description: ''
-        example: temporibus
+        example: ipsum
         required: true
         schema:
           type: string
@@ -12289,6 +12289,667 @@ paths:
       tags:
         - Endpoints
       security: []
+  /api/manager/simplified/orders:
+    get:
+      summary: ''
+      operationId: getApiManagerSimplifiedOrders
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/customers/orders:
+    get:
+      summary: ''
+      operationId: getApiManagerCustomersOrders
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/allocation/data:
+    get:
+      summary: ''
+      operationId: getApiManagerAllocationData
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/order/approval:
+    post:
+      summary: ''
+      operationId: postApiManagerOrderApproval
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: string
+                  description: ''
+                  example: consectetur
+                allocation_code:
+                  type: string
+                  description: ''
+                  example: commodi
+              required:
+                - productID
+                - allocation_code
+      security: []
+  /api/manager/order/disapproval:
+    post:
+      summary: ''
+      operationId: postApiManagerOrderDisapproval
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productID:
+                  type: string
+                  description: ''
+                  example: enim
+                allocation_code:
+                  type: string
+                  description: ''
+                  example: eveniet
+              required:
+                - productID
+                - allocation_code
+      security: []
+  /api/manager/allocation/allocate:
+    post:
+      summary: ''
+      operationId: postApiManagerAllocationAllocate
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerID:
+                  type: string
+                  description: ''
+                  example: corrupti
+                user_code:
+                  type: string
+                  description: ''
+                  example: cum
+                order_code:
+                  type: string
+                  description: ''
+                  example: ipsum
+              required:
+                - customerID
+                - user_code
+                - order_code
+      security: []
+  /api/manager/orders/transaction:
+    get:
+      summary: ''
+      operationId: getApiManagerOrdersTransaction
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/orders/custom/transaction:
+    post:
+      summary: ''
+      operationId: postApiManagerOrdersCustomTransaction
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/dashboard/custom/data:
+    post:
+      summary: ''
+      operationId: postApiManagerDashboardCustomData
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/routes/data:
+    get:
+      summary: ''
+      operationId: getApiManagerRoutesData
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/vansales/today:
+    get:
+      summary: ''
+      operationId: getApiManagerVansalesToday
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/vansales/last-week:
+    get:
+      summary: ''
+      operationId: getApiManagerVansalesLastWeek
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/vansales/last-month:
+    get:
+      summary: ''
+      operationId: getApiManagerVansalesLastMonth
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/preorder/today:
+    get:
+      summary: ''
+      operationId: getApiManagerPreorderToday
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/preorder/last-week:
+    get:
+      summary: ''
+      operationId: getApiManagerPreorderLastWeek
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/preorder/last-month:
+    get:
+      summary: ''
+      operationId: getApiManagerPreorderLastMonth
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/order-fulfillment/today:
+    get:
+      summary: ''
+      operationId: getApiManagerOrderFulfillmentToday
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/order-fulfillment/last-week:
+    get:
+      summary: ''
+      operationId: getApiManagerOrderFulfillmentLastWeek
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/order-fulfillment/last-month:
+    get:
+      summary: ''
+      operationId: getApiManagerOrderFulfillmentLastMonth
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/visits/today:
+    get:
+      summary: ''
+      operationId: getApiManagerVisitsToday
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/visits/last-week:
+    get:
+      summary: ''
+      operationId: getApiManagerVisitsLastWeek
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/visits/last-month:
+    get:
+      summary: ''
+      operationId: getApiManagerVisitsLastMonth
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/active-users/today:
+    get:
+      summary: ''
+      operationId: getApiManagerActiveUsersToday
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/active-users/last-week:
+    get:
+      summary: ''
+      operationId: getApiManagerActiveUsersLastWeek
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/active-users/last-month:
+    get:
+      summary: ''
+      operationId: getApiManagerActiveUsersLastMonth
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/manager/assign/lead/target:
+    post:
+      summary: ''
+      operationId: postApiManagerAssignLeadTarget
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_code:
+                  type: string
+                  description: ''
+                  example: quis
+                target:
+                  type: string
+                  description: ''
+                  example: accusamus
+              required:
+                - user_code
+                - target
+      security: []
+  /api/manager/assign/sale/target:
+    post:
+      summary: ''
+      operationId: postApiManagerAssignSaleTarget
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_code:
+                  type: string
+                  description: ''
+                  example: et
+                target:
+                  type: string
+                  description: ''
+                  example: qui
+              required:
+                - user_code
+                - target
+      security: []
+  /api/manager/assign/visit/target:
+    post:
+      summary: ''
+      operationId: postApiManagerAssignVisitTarget
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_code:
+                  type: string
+                  description: ''
+                  example: facilis
+                target:
+                  type: string
+                  description: ''
+                  example: dolore
+              required:
+                - user_code
+                - target
+      security: []
+  /api/manager/assign/order/target:
+    post:
+      summary: ''
+      operationId: postApiManagerAssignOrderTarget
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_code:
+                  type: string
+                  description: ''
+                  example: aut
+                target:
+                  type: string
+                  description: ''
+                  example: quia
+              required:
+                - user_code
+                - target
+      security: []
   /api/customer/registration:
     post:
       summary: ''
@@ -12308,19 +12969,19 @@ paths:
                 customer_name:
                   type: string
                   description: ''
-                  example: itaque
+                  example: pariatur
                 phone_number:
                   type: string
                   description: ''
-                  example: id
+                  example: qui
                 Latitude:
                   type: string
                   description: ''
-                  example: dolore
+                  example: quos
                 Longitude:
                   type: string
                   description: ''
-                  example: fugiat
+                  example: distinctio
                 image:
                   type: string
                   format: binary
@@ -12357,7 +13018,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: iste
+        example: assumenda
         required: true
         schema:
           type: string
@@ -12376,7 +13037,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: impedit
+        example: veniam
         required: true
         schema:
           type: string
@@ -12384,7 +13045,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: et
+        example: illo
         required: true
         schema:
           type: string
@@ -12407,15 +13068,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: sit
+                  example: laudantium
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '737YeZ,?-'
+                  example: '?#Nxz:*6pQn^GVXo5/'
                 password_confirmation:
                   type: string
                   description: ''
-                  example: ad
+                  example: explicabo
               required:
                 - phone_number
                 - password
@@ -12564,7 +13225,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: a
+        example: sapiente
         required: true
         schema:
           type: string
@@ -12583,7 +13244,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: inventore
+        example: ut
         required: true
         schema:
           type: string
@@ -12602,7 +13263,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: corrupti
+        example: sint
         required: true
         schema:
           type: string
@@ -12621,7 +13282,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: ullam
+        example: suscipit
         required: true
         schema:
           type: string
@@ -12652,7 +13313,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the comment.'
-        example: et
+        example: accusamus
         required: true
         schema:
           type: string
@@ -12675,15 +13336,15 @@ paths:
                 customers_id:
                   type: string
                   description: ''
-                  example: debitis
+                  example: voluptas
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-06-12T13:19:48'
+                  example: '2023-06-12T13:45:26'
                 comment:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: error
               required:
                 - customers_id
                 - date
@@ -12704,7 +13365,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: quo
+        example: quibusdam
         required: true
         schema:
           type: string
@@ -12712,7 +13373,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: alias
+        example: perferendis
         required: true
         schema:
           type: string
@@ -12731,7 +13392,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: vitae
+        example: quo
         required: true
         schema:
           type: string
@@ -12739,7 +13400,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: alias
+        example: ut
         required: true
         schema:
           type: string
@@ -12747,7 +13408,7 @@ paths:
         in: path
         name: distributor
         description: ''
-        example: deserunt
+        example: quibusdam
         required: true
         schema:
           type: string
@@ -12898,7 +13559,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: occaecati
+        example: aut
         required: true
         schema:
           type: string
@@ -12929,7 +13590,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: voluptates
+        example: iure
         required: true
         schema:
           type: string
@@ -12960,7 +13621,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: inventore
+        example: tempore
         required: true
         schema:
           type: string
@@ -12979,7 +13640,7 @@ paths:
         in: path
         name: CustomerAccountNumber
         description: ''
-        example: minima
+        example: dolorem
         required: true
         schema:
           type: string
@@ -13034,7 +13695,7 @@ paths:
                 image:
                   type: string
                   description: ''
-                  example: quia
+                  example: perspiciatis
               required:
                 - image
       security: []
@@ -13302,7 +13963,7 @@ paths:
         in: path
         name: surveyCode
         description: ''
-        example: blanditiis
+        example: non
         required: true
         schema:
           type: string
@@ -13490,7 +14151,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the schedule.'
-        example: ut
+        example: minima
         required: true
         schema:
           type: string
@@ -13657,7 +14318,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - quibusdam
+                    - molestias
                   items:
                     type: integer
               required:

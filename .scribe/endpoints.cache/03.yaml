@@ -28,11 +28,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: tempora
+        example: nemo
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: tempora
+      businessCode: nemo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -79,11 +79,11 @@ endpoints:
         name: categoryID
         description: ''
         required: true
-        example: temporibus
+        example: ipsum
         type: string
         custom: []
     cleanUrlParameters:
-      categoryID: temporibus
+      categoryID: ipsum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -47,30 +47,9 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Account</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" value="{{ $customer->account }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Manufacturer Number</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City"
-                                            name="manufacturer_number" value="{{ $customer->manufacturer_number }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
                                         <label for="country-floating">VAT number</label>
                                         <input type="text" id="country-floating" class="form-control" name="vat_number"
                                             placeholder="VAT number" value="{{ $customer->vat_number }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Delivery Time</label>
-                                        <input type="text" id="company-column" class="form-control" name="delivery_time"
-                                            placeholder="Delivery Time" value="{{ $customer->delivery_time }}" />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -122,7 +101,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Longitude</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="longitude"
+                                        <input type="text" id="email-id-column" class="form-control" name="longitude"
                                             placeholder="Longitude" value="{{ $customer->longitude }}" />
                                     </div>
                                 </div>
@@ -173,14 +152,14 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Branch</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" value="{{ $customer->branch }}" />
-                                    </div>
-                                </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="first-name-column">Branch</label>--}}
+{{--                                        <input type="text" id="first-name-column" class="form-control"--}}
+{{--                                            placeholder="Branch" name="branch" value="{{ $customer->branch }}" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
@@ -197,9 +176,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <label>Zone</label>
+                                    <label>Regions</label>
                                     <select wire:model='region' class="form-control" name="zone">
-                                        <option value="">Zone</option>
+                                        <option value="">Regions</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
@@ -210,9 +189,9 @@
                                 </div>
 
                                 <div class="col-md-6 col-12">
-                                    <label>Region</label>
+                                    <label>Sub-Region</label>
                                     <select wire:model='regions'class="form-control" name="region">
-                                        <option value="">Region</option>
+                                        <option value="">Sub-Region</option>
                                         @foreach ($subregions as $subregion)
                                             <option value="{{ $subregion->id }}"
                                                 @if ($subregion->id == $customer->subregion_id) selected @endif>{{ $subregion->name }}

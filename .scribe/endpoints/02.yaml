@@ -26,11 +26,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: aut
+        example: asperiores
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: aut
+      businessCode: asperiores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

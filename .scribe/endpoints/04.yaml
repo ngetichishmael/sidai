@@ -33,12 +33,12 @@ endpoints:
         name: userCode
         description: ''
         required: true
-        example: asperiores
+        example: dignissimos
         type: string
         custom: []
     cleanUrlParameters:
       businessCode: 2
-      userCode: asperiores
+      userCode: dignissimos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -92,12 +92,12 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: natus
+        example: laborum
         type: string
         custom: []
     cleanUrlParameters:
       code: 2
-      businessCode: natus
+      businessCode: laborum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

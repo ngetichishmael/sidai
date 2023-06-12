@@ -30,19 +30,19 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: jacklyn.barrows@example.net
+        example: dudley.pollich@example.org
         type: string
         custom: []
       password:
         name: password
         description: 'user password.'
         required: true
-        example: '_S:{v*aD50O5'
+        example: '3*Q_o$sVf\'''
         type: string
         custom: []
     cleanBodyParameters:
-      email: jacklyn.barrows@example.net
-      password: '_S:{v*aD50O5'
+      email: dudley.pollich@example.org
+      password: '3*Q_o$sVf\'''
     fileParameters: []
     responses:
       -
@@ -85,11 +85,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: omnis
+        example: soluta
         type: string
         custom: []
     cleanUrlParameters:
-      number: omnis
+      number: soluta
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -125,19 +125,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: saepe
+        example: sit
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: blanditiis
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      number: saepe
-      otp: blanditiis
+      number: sit
+      otp: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -177,27 +177,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: blanditiis
+        example: qui
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: 'W}P~7>$@xn/0V?'
+        example: umvQs5on
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: minima
+        example: et
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: blanditiis
-      password: 'W}P~7>$@xn/0V?'
-      password_confirmation: minima
+      phone_number: qui
+      password: umvQs5on
+      password_confirmation: et
     fileParameters: []
     responses: []
     responseFields: []
