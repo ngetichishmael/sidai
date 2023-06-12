@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\suppliers\suppliers;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -56,5 +57,9 @@ class Orders extends Model
    public function Customer(): BelongsTo
    {
       return $this->belongsTo(customers::class, 'customerID', 'id');
+   }
+   public function distributor(): BelongsTo
+   {
+      return $this->belongsTo(suppliers::class, 'supplierID', 'id');
    }
 }
