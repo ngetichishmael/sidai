@@ -4,6 +4,8 @@ namespace App\Http\Controllers\app\customer;
 
 use App\Helpers\Helper;
 use App\Models\activity_log;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
@@ -15,7 +17,9 @@ use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\suppliers\supplier_address;
 use File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -92,9 +96,30 @@ class customerController extends Controller
          'customer_name' => 'required',
          'id_number' => 'required',
       ]);
+      $emailData = $request->email == null ? null : $request->email;
+      $random=Str::random(10);
+      $user = new User();
+      $user->name = $request->customer_name;
+      $user->email=$emailData;
+      $user->user_code=$random;
+      $user->phone_number = $request->phone_number;
+      $user->gender = $request->gender;
+      $user->account_type= "Customer";
+      $user->email_verified_at =Carbon::now();
+      $user->status="Active";
+      $user->region_id= Auth::user()->region_id;
+      $user->business_code = Auth::user()->business_code;
+      $user->password = Hash::make("password");
+      $user->save();
+
 
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
+      $customer->account = $request->account;
+      $customer->manufacturer_number = $request->manufacturer_number;
+      $customer->user_code = $user->user_code;
+      $customer->vat_number = $request->vat_number;
+      $customer->delivery_time = $request->delivery_time;
       $customer->address = $request->address;
       $customer->postal_code = $request->postal_code;
       $customer->id_number = $request->id_number;
@@ -145,6 +170,21 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
+
+      $random=Str::random(10);
+      $user = new User();
+      $user->name = $request->customer_name;
+      $user->email=$request->customer_name;
+      $user->user_code=$random;
+      $user->phone_number = $request->phone_number;
+      $user->gender = $request->gender;
+      $user->account_type= "Customer";
+      $user->email_verified_at =Carbon::now();
+      $user->status="Active";
+      $user->region=Auth::user()->region_id;
+      $user->business_code = Auth::user()->business_code;
+      $user->password = "password";
+      $user->save();
 
       Session::flash('success', 'Customer successfully Added');
 

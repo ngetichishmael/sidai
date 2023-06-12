@@ -108,7 +108,7 @@
 
 @include('partials._messages')
    <!-- end page-header -->
-   <form class="needs-validation responsive" action="{{ route('warehousing.assign', [
+   <form class="needs-validation responsive" action="{{ route('warehousing.assignwarehouse', [
         'code' => $code]) }}" method="POST"
          enctype="multipart/form-data" id="restock-form">
       @csrf
@@ -123,16 +123,16 @@
          <tr class="sku-field ">
 
             <td>
-               <select class="form-control"
-                        class="form-control border border-danger">
+               <select  class="form-control select2" name="shopattendee">
                   <option value="">-- choose Shop Attendee --</option>
                   @foreach ($shopattendee as $user)
                      <option value="{{ $user->user_code }}">{{ $user->name }}</option>
                   @endforeach
-               </select></td>
-            <td><input for="fp-date-time" type="number" class="form-control col-lg-3 col-md-6" name="quantities[]" required></td>
+               </select>
+            <input type="hidden" name="warehouse" value="{{$code}}">
+            </td>
             <td><button for="fp-date-time"  type="button" class="remove-sku form-control btn btn-sm btn-outline-danger" style="width: fit-content">
-                  <i data-feather="trash-2" class="mr-25"></i><span> &nbsp;Delete</span></button>
+                  <span> &nbsp;Delete</span></button>
             </td>
          </tr>
          </tbody>
@@ -159,12 +159,17 @@
          var newField = document.createElement('tr');
          newField.classList.add('sku-field');
          newField.innerHTML = `
-            <td><input for="fp-date-time" type="text" class="form-control col-lg-3 col-md-6" name="sku_codes[]" required></td>
-             <td><input for="fp-date-time" type="number" class="form-control col-lg-1 col-md-3" name="quantities[]" required></td>
-             <td><button for="fp-date-time"  type="button" class="remove-sku form-control btn btn-sm btn-outline-danger" style="width: fit-content">
-                    <i class="fas fa-trash mr-25"></i><span> &nbsp;Delete</span></button>
-             </td>
-        `;
+            <td>
+               <select  class="form-control select2">
+                  <option value="">-- choose Shop Attendee --</option>
+                  @foreach ($shopattendee as $user)
+         <option value="{{ $user->user_code }}">{{ $user->name }}</option>
+                  @endforeach
+         </select></td>
+      <td><button for="fp-date-time"  type="button" class="remove-sku form-control btn btn-sm btn-outline-danger" style="width: fit-content">
+            <span> &nbsp;Delete</span></button>
+      </td>
+`;
          skuFields.appendChild(newField);
       });
 

@@ -333,6 +333,7 @@ Route::group(['middleware' => ['verified']], function () {
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
    Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
+   Route::post('warehousing/assignwarehouse', ['uses' => 'app\warehousingController@assignwarehouse', 'as' => 'warehousing.assignwarehouse']);
 
 
    /* === settings === */
