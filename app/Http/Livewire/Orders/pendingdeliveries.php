@@ -30,13 +30,6 @@ class pendingdeliveries extends Component
       $sidai=suppliers::where('name', 'Sidai')->first();
       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->whereNull('supplierID')->orWhere('supplierID', '')->orWhere('supplierID', $sidai->id)
-         ->when($this->fromDate, function ($query) {
-            return $query->whereDate('created_at', '>=', $this->fromDate);
-         })
-         ->when($this->toDate, function ($query) {
-            return $query->whereDate('created_at', '<=', $this->toDate);
-         })
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
@@ -47,6 +40,12 @@ class pendingdeliveries extends Component
                ->orWhereHas('Order', function ($subQuery) use ($searchTerm) {
                   $subQuery->where('order_code', 'like', $searchTerm);
                });
+         })
+         ->when($this->fromDate, function ($query) {
+            return $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            return $query->whereDate('created_at', '<=', $this->toDate);
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
