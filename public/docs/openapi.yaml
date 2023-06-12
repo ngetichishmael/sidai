@@ -46,11 +46,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: dudley.pollich@example.org
+                  example: brennon31@example.net
                 password:
                   type: string
                   description: 'user password.'
-                  example: '3*Q_o$sVf\'''
+                  example: '0p{uumaA'
               required:
                 - email
                 - password
@@ -70,7 +70,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: soluta
+        example: voluptate
         required: true
         schema:
           type: string
@@ -89,7 +89,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: sit
+        example: vel
         required: true
         schema:
           type: string
@@ -97,7 +97,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: et
+        example: quo
         required: true
         schema:
           type: string
@@ -120,15 +120,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: qui
+                  example: quis
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: umvQs5on
+                  example: '5P?uTM^9;Zud~'
                 password_confirmation:
                   type: string
                   description: ''
-                  example: et
+                  example: exercitationem
               required:
                 - phone_number
                 - password
@@ -157,15 +157,15 @@ paths:
                 latitude:
                   type: string
                   description: 'as current latitude'
-                  example: amet
+                  example: minima
                 longitude:
                   type: string
                   description: 'as current longitude'
-                  example: porro
+                  example: totam
                 user_code:
                   type: string
                   description: 'user code'
-                  example: aliquam
+                  example: provident
               required:
                 - customerID
                 - latitude
@@ -1013,7 +1013,7 @@ paths:
         in: path
         name: CustomerCode
         description: ''
-        example: eaque
+        example: maiores
         required: true
         schema:
           type: string
@@ -1052,7 +1052,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: provident
+        example: minima
         required: true
         schema:
           type: string
@@ -1885,7 +1885,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: non
+        example: occaecati
         required: true
         schema:
           type: string
@@ -1928,11 +1928,11 @@ paths:
                 productID:
                   type: string
                   description: 'as product ID'
-                  example: rem
+                  example: optio
                 qty:
                   type: string
                   description: 'as quantity'
-                  example: praesentium
+                  example: harum
               required:
                 - productID
                 - qty
@@ -1942,7 +1942,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: qui
+        example: quos
         required: true
         schema:
           type: string
@@ -1965,11 +1965,11 @@ paths:
                 order_type:
                   type: string
                   description: 'as order type [Van sale or Pre order]'
-                  example: provident
+                  example: illum
                 reasons_partial_delivery:
                   type: string
                   description: 'as reasons_partial_delivery'
-                  example: quaerat
+                  example: reiciendis
               required:
                 - order_type
       security: []
@@ -1978,7 +1978,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: optio
+        example: ullam
         required: true
         schema:
           type: string
@@ -2013,7 +2013,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: laudantium
+        example: accusamus
         required: true
         schema:
           type: string
@@ -2866,7 +2866,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: beatae
+        example: sed
         required: true
         schema:
           type: string
@@ -2889,7 +2889,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 11
+                  example: 6
               required:
                 - order_id
       security: []
@@ -2898,7 +2898,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: magnam
+        example: quia
         required: true
         schema:
           type: string
@@ -3743,7 +3743,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: amet
+        example: et
         required: true
         schema:
           type: string
@@ -3751,7 +3751,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: unde
+        example: et
         required: true
         schema:
           type: string
@@ -3774,11 +3774,11 @@ paths:
                 qty:
                   type: string
                   description: 'as qty'
-                  example: dicta
+                  example: laudantium
                 orderID:
                   type: string
                   description: 'as orderID'
-                  example: laboriosam
+                  example: ut
               required:
                 - qty
       security: []
@@ -3787,7 +3787,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: eum
+        example: nisi
         required: true
         schema:
           type: string
@@ -3795,7 +3795,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: quam
+        example: nobis
         required: true
         schema:
           type: string
@@ -4628,7 +4628,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: ipsam
+        example: quia
         required: true
         schema:
           type: string
@@ -4636,7 +4636,7 @@ paths:
         in: path
         name: itemID
         description: ''
-        example: libero
+        example: magnam
         required: true
         schema:
           type: string
@@ -4659,7 +4659,7 @@ paths:
                 order_id:
                   type: integer
                   description: 'as order_id'
-                  example: 6
+                  example: 11
               required:
                 - order_id
       security: []
@@ -5504,7 +5504,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: corrupti
+        example: blanditiis
         required: true
         schema:
           type: string
@@ -5512,7 +5512,7 @@ paths:
         in: path
         name: orderID
         description: ''
-        example: voluptatum
+        example: optio
         required: true
         schema:
           type: string
@@ -5526,12 +5526,12 @@ paths:
           in: query
           name: page_size
           description: 'size per page. Default to 20'
-          example: 12
+          example: 11
           required: false
           schema:
             type: integer
             description: 'size per page. Default to 20'
-            example: 12
+            example: 11
       responses:
         401:
           description: ''
@@ -5553,7 +5553,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: labore
+        example: ut
         required: true
         schema:
           type: string
@@ -5576,31 +5576,31 @@ paths:
                 customer_name:
                   type: string
                   description: 'as outlet name'
-                  example: accusantium
+                  example: sint
                 contact_person:
                   type: string
                   description: ''
-                  example: animi
+                  example: voluptatem
                 business_code:
                   type: string
                   description: ''
-                  example: qui
+                  example: reprehenderit
                 created_by:
                   type: string
                   description: 'user code'
-                  example: aut
+                  example: vitae
                 phone_number:
                   type: string
                   description: ''
-                  example: ut
+                  example: omnis
                 latitude:
                   type: string
                   description: ''
-                  example: nisi
+                  example: ab
                 longitude:
                   type: string
                   description: ''
-                  example: qui
+                  example: libero
                 image:
                   type: string
                   format: binary
@@ -5608,11 +5608,11 @@ paths:
                 email:
                   type: string
                   description: ''
-                  example: rgreen@example.com
+                  example: itreutel@example.org
                 address:
                   type: string
                   description: ''
-                  example: qui
+                  example: rerum
               required:
                 - customer_name
                 - contact_person
@@ -5666,7 +5666,7 @@ paths:
         in: path
         name: code
         description: ''
-        example: voluptate
+        example: ullam
         required: true
         schema:
           type: string
@@ -5709,7 +5709,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: rerum
+        example: fugit
         required: true
         schema:
           type: string
@@ -5717,7 +5717,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: corrupti
+        example: pariatur
         required: true
         schema:
           type: string
@@ -6701,7 +6701,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: veritatis
+        example: vitae
         required: true
         schema:
           type: string
@@ -6756,7 +6756,7 @@ paths:
         in: path
         name: orderCode
         description: ''
-        example: quia
+        example: officiis
         required: true
         schema:
           type: string
@@ -6799,7 +6799,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: sed
+        example: non
         required: true
         schema:
           type: string
@@ -6846,7 +6846,7 @@ paths:
         in: path
         name: userCode
         description: ''
-        example: dignissimos
+        example: magni
         required: true
         schema:
           type: string
@@ -7699,7 +7699,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: laborum
+        example: amet
         required: true
         schema:
           type: string
@@ -7750,7 +7750,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: asperiores
+        example: a
         required: true
         schema:
           type: string
@@ -7789,7 +7789,7 @@ paths:
         in: path
         name: businessCode
         description: ''
-        example: nemo
+        example: reprehenderit
         required: true
         schema:
           type: string
@@ -8634,7 +8634,7 @@ paths:
         in: path
         name: categoryID
         description: ''
-        example: ipsum
+        example: aperiam
         required: true
         schema:
           type: string
@@ -12374,11 +12374,11 @@ paths:
                 productID:
                   type: string
                   description: ''
-                  example: consectetur
+                  example: in
                 allocation_code:
                   type: string
                   description: ''
-                  example: commodi
+                  example: et
               required:
                 - productID
                 - allocation_code
@@ -12402,11 +12402,11 @@ paths:
                 productID:
                   type: string
                   description: ''
-                  example: enim
+                  example: laboriosam
                 allocation_code:
                   type: string
                   description: ''
-                  example: eveniet
+                  example: at
               required:
                 - productID
                 - allocation_code
@@ -12430,15 +12430,15 @@ paths:
                 customerID:
                   type: string
                   description: ''
-                  example: corrupti
+                  example: tenetur
                 user_code:
                   type: string
                   description: ''
-                  example: cum
+                  example: architecto
                 order_code:
                   type: string
                   description: ''
-                  example: ipsum
+                  example: ducimus
               required:
                 - customerID
                 - user_code
@@ -12857,11 +12857,11 @@ paths:
                 user_code:
                   type: string
                   description: ''
-                  example: quis
+                  example: repellendus
                 target:
                   type: string
                   description: ''
-                  example: accusamus
+                  example: voluptatem
               required:
                 - user_code
                 - target
@@ -12885,11 +12885,11 @@ paths:
                 user_code:
                   type: string
                   description: ''
-                  example: et
+                  example: earum
                 target:
                   type: string
                   description: ''
-                  example: qui
+                  example: omnis
               required:
                 - user_code
                 - target
@@ -12913,11 +12913,11 @@ paths:
                 user_code:
                   type: string
                   description: ''
-                  example: facilis
+                  example: eaque
                 target:
                   type: string
                   description: ''
-                  example: dolore
+                  example: officia
               required:
                 - user_code
                 - target
@@ -12941,11 +12941,11 @@ paths:
                 user_code:
                   type: string
                   description: ''
-                  example: aut
+                  example: laboriosam
                 target:
                   type: string
                   description: ''
-                  example: quia
+                  example: voluptas
               required:
                 - user_code
                 - target
@@ -12969,19 +12969,19 @@ paths:
                 customer_name:
                   type: string
                   description: ''
-                  example: pariatur
+                  example: et
                 phone_number:
                   type: string
                   description: ''
-                  example: qui
+                  example: natus
                 Latitude:
                   type: string
                   description: ''
-                  example: quos
+                  example: deleniti
                 Longitude:
                   type: string
                   description: ''
-                  example: distinctio
+                  example: dolorem
                 image:
                   type: string
                   format: binary
@@ -13018,7 +13018,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: assumenda
+        example: inventore
         required: true
         schema:
           type: string
@@ -13037,7 +13037,7 @@ paths:
         in: path
         name: number
         description: ''
-        example: veniam
+        example: ducimus
         required: true
         schema:
           type: string
@@ -13045,7 +13045,7 @@ paths:
         in: path
         name: otp
         description: ''
-        example: illo
+        example: nihil
         required: true
         schema:
           type: string
@@ -13068,15 +13068,15 @@ paths:
                 phone_number:
                   type: string
                   description: ''
-                  example: laudantium
+                  example: eius
                 password:
                   type: string
                   description: 'Must be at least 6 characters.'
-                  example: '?#Nxz:*6pQn^GVXo5/'
+                  example: 't=dcR65p2}g9'
                 password_confirmation:
                   type: string
                   description: ''
-                  example: explicabo
+                  example: autem
               required:
                 - phone_number
                 - password
@@ -13138,6 +13138,70 @@ paths:
     post:
       summary: ''
       operationId: postApiCustomerCreditor
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/customer/make/checkout:
+    post:
+      summary: ''
+      operationId: postApiCustomerMakeCheckout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/customer/deliveries/all_deriveries:
+    get:
+      summary: ''
+      operationId: getApiCustomerDeliveriesAll_deriveries
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/customer/deliveries/pending_deriveries:
+    get:
+      summary: ''
+      operationId: getApiCustomerDeliveriesPending_deriveries
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/customer/updateFcmToken:
+    put:
+      summary: ''
+      operationId: putApiCustomerUpdateFcmToken
       description: ''
       parameters: []
       responses: {  }
@@ -13225,7 +13289,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: sapiente
+        example: quos
         required: true
         schema:
           type: string
@@ -13244,7 +13308,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: ut
+        example: animi
         required: true
         schema:
           type: string
@@ -13263,7 +13327,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: sint
+        example: repudiandae
         required: true
         schema:
           type: string
@@ -13282,7 +13346,7 @@ paths:
         in: path
         name: delivery_code
         description: ''
-        example: suscipit
+        example: consequuntur
         required: true
         schema:
           type: string
@@ -13313,7 +13377,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the comment.'
-        example: accusamus
+        example: nostrum
         required: true
         schema:
           type: string
@@ -13336,15 +13400,15 @@ paths:
                 customers_id:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: eius
                 date:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2023-06-12T13:45:26'
+                  example: '2023-06-12T19:13:45'
                 comment:
                   type: string
                   description: ''
-                  example: error
+                  example: voluptates
               required:
                 - customers_id
                 - date
@@ -13365,7 +13429,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: quibusdam
+        example: ut
         required: true
         schema:
           type: string
@@ -13373,7 +13437,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: perferendis
+        example: aut
         required: true
         schema:
           type: string
@@ -13392,7 +13456,7 @@ paths:
         in: path
         name: checkinCode
         description: ''
-        example: quo
+        example: ullam
         required: true
         schema:
           type: string
@@ -13400,7 +13464,7 @@ paths:
         in: path
         name: random
         description: ''
-        example: ut
+        example: accusamus
         required: true
         schema:
           type: string
@@ -13408,7 +13472,7 @@ paths:
         in: path
         name: distributor
         description: ''
-        example: quibusdam
+        example: velit
         required: true
         schema:
           type: string
@@ -13559,7 +13623,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: aut
+        example: magni
         required: true
         schema:
           type: string
@@ -13590,7 +13654,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: iure
+        example: in
         required: true
         schema:
           type: string
@@ -13621,7 +13685,7 @@ paths:
         in: path
         name: shopID
         description: ''
-        example: tempore
+        example: sunt
         required: true
         schema:
           type: string
@@ -13640,7 +13704,7 @@ paths:
         in: path
         name: CustomerAccountNumber
         description: ''
-        example: dolorem
+        example: odio
         required: true
         schema:
           type: string
@@ -13695,7 +13759,7 @@ paths:
                 image:
                   type: string
                   description: ''
-                  example: perspiciatis
+                  example: dolor
               required:
                 - image
       security: []
@@ -13963,7 +14027,7 @@ paths:
         in: path
         name: surveyCode
         description: ''
-        example: non
+        example: hic
         required: true
         schema:
           type: string
@@ -14102,7 +14166,7 @@ paths:
         in: path
         name: customerID
         description: ''
-        example: et
+        example: tempora
         required: true
         schema:
           type: string
@@ -14151,7 +14215,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the schedule.'
-        example: minima
+        example: aut
         required: true
         schema:
           type: string
@@ -14318,7 +14382,7 @@ paths:
                   type: array
                   description: ''
                   example:
-                    - molestias
+                    - recusandae
                   items:
                     type: integer
               required:
@@ -14862,6 +14926,26 @@ paths:
                       updated_at: '2023-06-09T12:57:28.000000Z'
                       delivery_items: []
                       order: null
+                    -
+                      id: 27
+                      business_code: 8OKX9VM41k5lTSe18boS
+                      delivery_code: unmiKexp3M7PazJhpB2y
+                      order_code: Lq5wRbcNsS
+                      allocated: 5324rWREWR
+                      delivery_note: 'no enough sidai Ultrdip 1ltr'
+                      Note: null
+                      delivery_status: 'Waiting acceptance'
+                      customer: null
+                      delivered_time: null
+                      accept_allocation: null
+                      customer_confirmation: null
+                      approval: 0
+                      created_by: 5324rWREWR
+                      updated_by: null
+                      created_at: '2023-06-12T16:33:19.000000Z'
+                      updated_at: '2023-06-12T16:33:19.000000Z'
+                      delivery_items: []
+                      order: null
                 properties:
                   success:
                     type: boolean
@@ -15373,6 +15457,26 @@ paths:
                         updated_by: null
                         created_at: '2023-06-09T12:57:28.000000Z'
                         updated_at: '2023-06-09T12:57:28.000000Z'
+                        delivery_items: []
+                        order: null
+                      -
+                        id: 27
+                        business_code: 8OKX9VM41k5lTSe18boS
+                        delivery_code: unmiKexp3M7PazJhpB2y
+                        order_code: Lq5wRbcNsS
+                        allocated: 5324rWREWR
+                        delivery_note: 'no enough sidai Ultrdip 1ltr'
+                        Note: null
+                        delivery_status: 'Waiting acceptance'
+                        customer: null
+                        delivered_time: null
+                        accept_allocation: null
+                        customer_confirmation: null
+                        approval: 0
+                        created_by: 5324rWREWR
+                        updated_by: null
+                        created_at: '2023-06-12T16:33:19.000000Z'
+                        updated_at: '2023-06-12T16:33:19.000000Z'
                         delivery_items: []
                         order: null
                     items:

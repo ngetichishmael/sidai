@@ -9,20 +9,22 @@ use App\Models\inventory\allocations;
 use App\Models\Orders;
 use App\Models\survey\survey;
 use App\Models\User;
-use Carbon\Carbon;
+//use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class DashboardAppController extends Controller
 {
-   public function dashboard(Request $request)
-   {
 
+   public function dashboard(Request $request)
+   { $today1 = Carbon::today();
+      $yesterday1 = Carbon::yesterday();
       //Active Users
       $checking = checkin::select('user_code')->groupBy('user_code');
       $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-      $checking = checkin::select('user_code')->today()->groupBy('user_code');
+      $checking = checkin::select('user_code')->$today1->groupBy('user_code');
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();

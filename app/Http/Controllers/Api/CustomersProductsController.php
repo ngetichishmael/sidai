@@ -9,15 +9,24 @@ use Illuminate\Support\Facades\Validator;
 
 class CustomersProductsController extends Controller
 {
-   public function getAllProducts()
+   public function getAllProducts(Request $request)
    {
-      $productinfo = product_information::with('ProductPrice')->all();
+      $productinfo = product_information::where('region_id', $request->user()->region_id)->with('ProductPrice')->all();
       return response()->json([
          "success" => true,
          "message" => "Product information",
          "products" => $productinfo
       ]);
    }
+//   public function getAllProducts()
+//   {
+//      $productinfo = product_information::with('ProductPrice')->all();
+//      return response()->json([
+//         "success" => true,
+//         "message" => "Product information",
+//         "products" => $productinfo
+//      ]);
+//   }
 
    public function sendDefaultImage(Request $request)
    {
