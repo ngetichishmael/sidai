@@ -20,8 +20,10 @@ class pendingdeliveries extends Component
    public $orderBy = 'delivery.id';
    public $orderAsc = false;
    public $customer_name = null;
+   public $fromDate;
+   public $toDate;
 
-
+   protected $queryString = ['search', 'fromDate', 'toDate'];
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
@@ -29,6 +31,12 @@ class pendingdeliveries extends Component
       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
          ->whereNull('supplierID')->orWhere('supplierID', '')->orWhere('supplierID', $sidai->id)
+         ->when($this->fromDate, function ($query) {
+            return $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            return $query->whereDate('created_at', '<=', $this->toDate);
+         })
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
@@ -40,15 +48,8 @@ class pendingdeliveries extends Component
                   $subQuery->where('order_code', 'like', $searchTerm);
                });
          })
-         ->when($this->fromDate, function ($query) {
-            $query->whereDate('created_at', '>=', $this->fromDate);
-         })
-         ->when($this->toDate, function ($query) {
-            $query->whereDate('created_at', '<=', $this->toDate);
-         })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
-
       return view('livewire.orders.pendingdeliveries', compact('orders'));
    }
    public function export()

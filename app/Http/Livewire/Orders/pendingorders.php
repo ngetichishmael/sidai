@@ -20,7 +20,8 @@ class pendingorders extends Component
    public $orderAsc = false;
    public $customer_name = null;
 
-
+   public $fromDate;
+   public $toDate;
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
@@ -37,6 +38,12 @@ class pendingorders extends Component
                   $subQuery->where('name', 'like', $searchTerm);
                })
                ;
+         })
+         ->when($this->fromDate, function ($query) {
+            $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            $query->whereDate('created_at', '<=', $this->toDate);
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
