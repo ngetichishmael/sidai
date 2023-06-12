@@ -201,7 +201,7 @@ class CheckingSaleOrderController extends Controller
 
 
    // Beginning of NewSales
-   public function NewSales(Request $request, $checkinCode, $random)
+   public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
       // $checkin = customers::whereId($checkinCode)->first();
 
@@ -239,7 +239,7 @@ class CheckingSaleOrderController extends Controller
                'order_status' => 'Pending Delivery',
                'payment_status' => 'Pending Payment',
                'qty' => $value["qty"],
-               'supplierID'=>$request->distributor,
+               'supplierID'=>$distributor,
                'discount' => $items["discount"] ?? "0",
                'checkin_code' => $checkinCode,
                'order_type' => 'Pre Order',
