@@ -294,9 +294,10 @@ $region=
       $customer->save();
 
       $user=User::where('user_code', $customer->user_code)->first();
-      $user->region_id = $request->region ?? Auth::user()->region_id ?? null;
-      $user->save();
-
+      if ($user != null || !empty($user)) {
+         $user->region_id = $request->region ?? Auth::user()->region_id ?? null;
+         $user->save();
+      }
       Session::flash('success', 'Customer updated successfully');
       $random = Str::random(20);
       $activityLog = new activity_log();
