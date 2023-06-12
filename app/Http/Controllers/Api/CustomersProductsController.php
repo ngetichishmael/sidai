@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\products\product_information;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CustomersProductsController extends Controller
 {
    public function getAllProducts(Request $request)
    {
-      $productinfo = product_information::where('region_id', $request->user()->region_id)->with('ProductPrice')->get();
+      $productinfo = product_information::where('region_id', Auth::user()->region_id)->with('ProductPrice')->get();
       return response()->json([
          "success" => true,
          "message" => "Product information",
