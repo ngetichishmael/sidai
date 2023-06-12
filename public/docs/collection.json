@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Sidai",
-        "_postman_id": "574000db-31a4-416d-9c48-68c425f7c981",
+        "_postman_id": "b97deb19-8d22-4f34-8f66-6565640f6831",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"claire.armstrong@example.net\",\"password\":\"y}R4rRA<o~.N\\\/JJ+r=\"}"
+                            "raw": "{\"email\":\"jacklyn.barrows@example.net\",\"password\":\"_S:{v*aD50O5\"}"
                         },
                         "description": "",
                         "auth": {
@@ -69,7 +69,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "voluptatem",
+                                    "value": "omnis",
                                     "description": ""
                                 }
                             ]
@@ -105,13 +105,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "doloremque",
+                                    "value": "saepe",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "fugiat",
+                                    "value": "blanditiis",
                                     "description": ""
                                 }
                             ]
@@ -157,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"et\",\"password\":\"#w6VHh#\\\"U:Qaf@L39=M\",\"password_confirmation\":\"ut\"}"
+                            "raw": "{\"phone_number\":\"blanditiis\",\"password\":\"W}P~7>$@xn\\\/0V?\",\"password_confirmation\":\"minima\"}"
                         },
                         "description": "",
                         "auth": {
@@ -194,7 +194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerID\":\"et\",\"latitude\":\"porro\",\"longitude\":\"aut\",\"user_code\":\"impedit\"}"
+                            "raw": "{\"customerID\":\"illum\",\"latitude\":\"et\",\"longitude\":\"doloribus\",\"user_code\":\"sint\"}"
                         },
                         "description": "",
                         "auth": {
@@ -215,7 +215,7 @@
                                 {
                                     "id": "CustomerCode",
                                     "key": "CustomerCode",
-                                    "value": "quas",
+                                    "value": "eum",
                                     "description": ""
                                 }
                             ]
@@ -279,7 +279,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "rerum",
+                                    "value": "magni",
                                     "description": ""
                                 }
                             ]
@@ -343,7 +343,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "totam",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]
@@ -407,7 +407,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "natus",
+                                    "value": "commodi",
                                     "description": ""
                                 }
                             ]
@@ -425,7 +425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"productID\":\"id\",\"qty\":\"est\"}"
+                            "raw": "{\"productID\":\"ipsum\",\"qty\":\"voluptates\"}"
                         },
                         "description": "",
                         "auth": {
@@ -474,7 +474,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "iste",
+                                    "value": "rerum",
                                     "description": ""
                                 }
                             ]
@@ -492,7 +492,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_type\":\"aut\",\"reasons_partial_delivery\":\"sit\"}"
+                            "raw": "{\"order_type\":\"sit\",\"reasons_partial_delivery\":\"culpa\"}"
                         },
                         "description": "",
                         "auth": {
@@ -513,7 +513,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "labore",
+                                    "value": "quidem",
                                     "description": ""
                                 },
                                 {
@@ -583,7 +583,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "aut",
+                                    "value": "est",
                                     "description": ""
                                 }
                             ]
@@ -647,7 +647,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "at",
+                                    "value": "molestias",
                                     "description": ""
                                 }
                             ]
@@ -665,7 +665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":18}"
+                            "raw": "{\"order_id\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -686,13 +686,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "numquam",
+                                    "value": "cupiditate",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "aut",
+                                    "value": "autem",
                                     "description": ""
                                 }
                             ]
@@ -756,13 +756,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "nisi",
+                                    "value": "fuga",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "tenetur",
+                                    "value": "optio",
                                     "description": ""
                                 }
                             ]
@@ -780,7 +780,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"qty\":\"qui\",\"orderID\":\"dolorem\"}"
+                            "raw": "{\"qty\":\"quod\",\"orderID\":\"dolorum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -801,13 +801,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "qui",
+                                    "value": "a",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "neque",
+                                    "value": "molestiae",
                                     "description": ""
                                 }
                             ]
@@ -881,7 +881,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":5}"
+                            "raw": "{\"order_id\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -902,13 +902,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "libero",
+                                    "value": "vitae",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "iure",
+                                    "value": "voluptatem",
                                     "description": ""
                                 }
                             ]
@@ -975,17 +975,17 @@
                             "query": [
                                 {
                                     "key": "page_size",
-                                    "value": "17",
+                                    "value": "19",
                                     "description": "size per page. Default to 20",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=17",
+                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=19",
                             "variable": [
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "saepe",
+                                    "value": "praesentium",
                                     "description": ""
                                 }
                             ]
@@ -1054,55 +1054,55 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "laboriosam",
+                                    "value": "officia",
                                     "type": "text",
                                     "description": "as outlet name"
                                 },
                                 {
                                     "key": "contact_person",
-                                    "value": "et",
+                                    "value": "quae",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "business_code",
-                                    "value": "deleniti",
+                                    "value": "rem",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "created_by",
-                                    "value": "sed",
+                                    "value": "praesentium",
                                     "type": "text",
                                     "description": "user code"
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "qui",
+                                    "value": "voluptatum",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "latitude",
-                                    "value": "modi",
+                                    "value": "et",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "longitude",
-                                    "value": "ut",
+                                    "value": "numquam",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "email",
-                                    "value": "schultz.baylee@example.com",
+                                    "value": "runolfsdottir.abbigail@example.com",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "address",
-                                    "value": "natus",
+                                    "value": "velit",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1160,7 +1160,7 @@
                                 {
                                     "id": "code",
                                     "key": "code",
-                                    "value": "eum",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -1224,13 +1224,13 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "voluptas",
+                                    "value": "sint",
                                     "description": ""
                                 },
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "minus",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -1341,7 +1341,7 @@
                                 }
                             ],
                             "code": 500,
-                            "body": "{\n    \"message\": \"SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'selling_price' in field list is ambiguous (SQL: select *, (selling_price * allocated_quantity) as total_amount from `delivery_items` inner join `product_price` on `product_price`.`productID` = `delivery_items`.`productID` where `delivery_code` = 2)\",\n    \"exception\": \"Illuminate\\\\Database\\\\QueryException\",\n    \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n    \"line\": 712,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 672,\n            \"function\": \"runQueryCallback\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 359,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2413,\n            \"function\": \"select\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2402,\n            \"function\": \"runSelect\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2936,\n            \"function\": \"Illuminate\\\\Database\\\\Query\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2401,\n            \"function\": \"onceWithColumns\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 625,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 609,\n            \"function\": \"getModels\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\app\\\\Http\\\\Controllers\\\\Api\\\\customersController.php\",\n            \"line\": 296,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"delivery_details\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\Api\\\\customersController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 205,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 721,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 93,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 719,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\DisableBrowserCache.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\DisableBrowserCache\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 92,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 209,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 163,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 124,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 71,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 49,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 51,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 35,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 120,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\artisan\",\n            \"line\": 35,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "body": "{\n    \"message\": \"SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'selling_price' in field list is ambiguous (SQL: select *, (selling_price * allocated_quantity) as total_amount from `delivery_items` inner join `product_price` on `product_price`.`productID` = `delivery_items`.`productID` where `delivery_code` = 2)\",\n    \"exception\": \"Illuminate\\\\Database\\\\QueryException\",\n    \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n    \"line\": 712,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 672,\n            \"function\": \"runQueryCallback\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 359,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2413,\n            \"function\": \"select\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2402,\n            \"function\": \"runSelect\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2936,\n            \"function\": \"Illuminate\\\\Database\\\\Query\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2401,\n            \"function\": \"onceWithColumns\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 625,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 609,\n            \"function\": \"getModels\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\app\\\\Http\\\\Controllers\\\\Api\\\\customersController.php\",\n            \"line\": 328,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"delivery_details\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\Api\\\\customersController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 205,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 721,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 93,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 719,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\DisableBrowserCache.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\DisableBrowserCache\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 92,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 209,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 163,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 124,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 71,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 49,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 51,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 35,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 120,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\artisan\",\n            \"line\": 35,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
                             "name": ""
                         }
                     ]
@@ -1358,7 +1358,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "ipsam",
+                                    "value": "sit",
                                     "description": ""
                                 }
                             ]
@@ -1422,7 +1422,7 @@
                                 {
                                     "id": "orderCode",
                                     "key": "orderCode",
-                                    "value": "quia",
+                                    "value": "illum",
                                     "description": ""
                                 }
                             ]
@@ -1486,7 +1486,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "ipsam",
+                                    "value": "ab",
                                     "description": ""
                                 }
                             ]
@@ -1562,7 +1562,7 @@
                                 {
                                     "id": "userCode",
                                     "key": "userCode",
-                                    "value": "ut",
+                                    "value": "asperiores",
                                     "description": ""
                                 }
                             ]
@@ -1632,7 +1632,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "nostrum",
+                                    "value": "natus",
                                     "description": ""
                                 }
                             ]
@@ -1758,7 +1758,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "vel",
+                                    "value": "aut",
                                     "description": ""
                                 }
                             ]
@@ -1820,7 +1820,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "magnam",
+                                    "value": "tempora",
                                     "description": ""
                                 }
                             ]
@@ -1884,7 +1884,7 @@
                                 {
                                     "id": "categoryID",
                                     "key": "categoryID",
-                                    "value": "voluptatem",
+                                    "value": "temporibus",
                                     "description": ""
                                 }
                             ]
@@ -2319,25 +2319,25 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "ipsam",
+                                    "value": "itaque",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "suscipit",
+                                    "value": "id",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Latitude",
-                                    "value": "sequi",
+                                    "value": "dolore",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Longitude",
-                                    "value": "eveniet",
+                                    "value": "fugiat",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2395,7 +2395,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "sit",
+                                    "value": "iste",
                                     "description": ""
                                 }
                             ]
@@ -2431,13 +2431,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "sint",
+                                    "value": "impedit",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "voluptas",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -2483,7 +2483,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"voluptas\",\"password\":\"1%G]T2KK&yV*uH%MzR9\",\"password_confirmation\":\"illum\"}"
+                            "raw": "{\"phone_number\":\"sit\",\"password\":\"737YeZ,?-\",\"password_confirmation\":\"ad\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2808,7 +2808,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "eius",
+                                    "value": "a",
                                     "description": ""
                                 }
                             ]
@@ -2844,7 +2844,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "accusamus",
+                                    "value": "inventore",
                                     "description": ""
                                 }
                             ]
@@ -2880,7 +2880,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "eius",
+                                    "value": "corrupti",
                                     "description": ""
                                 }
                             ]
@@ -2916,7 +2916,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "inventore",
+                                    "value": "ullam",
                                     "description": ""
                                 }
                             ]
@@ -2952,7 +2952,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "cumque",
+                                    "value": "et",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -3018,7 +3018,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customers_id\":\"tempora\",\"date\":\"2023-06-11T19:28:38\",\"comment\":\"rerum\"}"
+                            "raw": "{\"customers_id\":\"debitis\",\"date\":\"2023-06-12T13:19:48\",\"comment\":\"doloribus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3039,13 +3039,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "sit",
+                                    "value": "quo",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "facilis",
+                                    "value": "alias",
                                     "description": ""
                                 }
                             ]
@@ -3070,24 +3070,30 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/checkin\/newsales\/{checkinCode}\/{random}\/add-to-cart",
+                    "name": "POST api\/checkin\/newsales\/{checkinCode}\/{random}\/{distributor}\/add-to-cart",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/checkin\/newsales\/:checkinCode\/:random\/add-to-cart",
+                            "path": "api\/checkin\/newsales\/:checkinCode\/:random\/:distributor\/add-to-cart",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/checkin\/newsales\/:checkinCode\/:random\/add-to-cart",
+                            "raw": "{{baseUrl}}\/api\/checkin\/newsales\/:checkinCode\/:random\/:distributor\/add-to-cart",
                             "variable": [
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "minima",
+                                    "value": "vitae",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "beatae",
+                                    "value": "alias",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "distributor",
+                                    "key": "distributor",
+                                    "value": "deserunt",
                                     "description": ""
                                 }
                             ]
@@ -3391,7 +3397,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "est",
+                                    "value": "occaecati",
                                     "description": ""
                                 }
                             ]
@@ -3447,7 +3453,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "dolor",
+                                    "value": "voluptates",
                                     "description": ""
                                 }
                             ]
@@ -3503,7 +3509,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "quas",
+                                    "value": "inventore",
                                     "description": ""
                                 }
                             ]
@@ -3559,7 +3565,7 @@
                                 {
                                     "id": "CustomerAccountNumber",
                                     "key": "CustomerAccountNumber",
-                                    "value": "odit",
+                                    "value": "minima",
                                     "description": ""
                                 }
                             ]
@@ -3681,7 +3687,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image\":\"adipisci\"}"
+                            "raw": "{\"image\":\"quia\"}"
                         },
                         "description": "",
                         "auth": {
@@ -4214,7 +4220,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "commodi",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -4298,7 +4304,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "blanditiis",
+                                    "value": "ut",
                                     "description": "The ID of the schedule."
                                 }
                             ]
@@ -4677,7 +4683,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"requisition_products\":[\"nulla\"]}"
+                            "raw": "{\"requisition_products\":[\"quibusdam\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -4785,7 +4791,7 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IkQ1YXJlOHRqb3Nadyt0Vm9zRnY2bFE9PSIsInZhbHVlIjoiTFRYd3A2NkhlTTFnTWpJQTYrQjR1T2VxWmZsZ1pTYXZTeEdBQnRRaStJK3AxampOTlA5NFZjTmE3YlRpN0FZQkU1SnkwazdQaHU2Vk8yL21yckRMcGJ0RGt1UXVzNTg1NER2MHZPVzBsb01XQU9mT3IxaTBkSU5KQ3lrbzNIUnMiLCJtYWMiOiI2NmIyZTAzOTNjZGU5OWRkZjAyZjQ5NDk3YjNkNjgxMTRiYjdlY2FmNTIzYTMwZjY4MGRkNjY3NTZkZDQ4MzZjIiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6Im8yNGs4d3BlT2h0WmRsN3RnK0NYSWc9PSIsInZhbHVlIjoiVWk4enJWVVE4TWdNTFpLZkZnbmFnMEltRm1kS1B4bFlOdGtFQ2F5eUhFakRkQWpVaUVIdTZDTWtTaDZ3MDJQU2kxRkJSTmhwOHB2cTdwT05WVW1CSWUzYThpZWNIZ01HbjY2emxwdVFKY2cvTk5yWndkWG4vRzVqcSszMzhZbWMiLCJtYWMiOiJkNzZhMzRjYmYwNjhhMDE5YmVhNDNjZWNjNzgxNjdjOTJiODM5MDE3NTI0Y2I3M2IyMGM5Y2RlZmFkMWFjMzE4IiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6IktkSEtSL0JVMTk4TU1WRUhTNHNzUWc9PSIsInZhbHVlIjoicHI5eXltc1BIRHo2dW5tV3cvbnNtNTFwcWhSbUdySld5UEErMUlzMmx4NU03cUkvQVM3d1VRd3ozZkcwWk1RaGJ6bmFsdEovMFArc3ZjMTVvY053NGJML2NjT2ExcUh1MFZudjNRQVMxbVA1MC85RER3TTVOeHRpaVVja0c3VC8iLCJtYWMiOiI2MDgwYjQyNWRjYjA2YzQzMzFlMjc0NzIxMzZlMDg3MDEzNDhmZTE5OTIwZTg2MjBhMjRjZWVlNmJjYWFhODc4IiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6IjJSVHo2RE1wcm1PYjhKbnV3R0p1dmc9PSIsInZhbHVlIjoiV0c3TWkxL1BPNGNPTW9yUHlVTnJ0d0kxN3BOOC9PMGFQNWg4aVVVRmxOKzB3SEhxZk5qSW9IWERQa0tWbVNpTjVNb1VNOThLbmRyb2NGb0hlODM1OCtLWHQ1eGxWVURxNFdKaUhWS21YZUVoRFkzZnA4TzdSQjRqeUJ1elF6Y3ciLCJtYWMiOiJkY2M5MzBmNTE0Y2NhOWE2MDNiN2RmODkxMmJjYzIxMDc4Zjc3ZWRlZmI0MWIxNmY4NmEyYmMxMzA0ZTI0ZTYzIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,

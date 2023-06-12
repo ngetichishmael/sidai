@@ -26,11 +26,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: vel
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: vel
+      businessCode: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

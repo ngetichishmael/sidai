@@ -26,11 +26,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: magnam
+        example: tempora
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: magnam
+      businessCode: tempora
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -77,11 +77,11 @@ endpoints:
         name: categoryID
         description: ''
         required: true
-        example: voluptatem
+        example: temporibus
         type: string
         custom: []
     cleanUrlParameters:
-      categoryID: voluptatem
+      categoryID: temporibus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

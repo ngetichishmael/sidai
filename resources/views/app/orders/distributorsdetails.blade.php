@@ -248,11 +248,12 @@
                 </div>
             </div>
         </div>
-          <div class="col-md-4">
-             <a href="{{ url()->previous() }}" class="btn btn-md btn-info mb-2" data-feather="arrow-back">&nbsp; Back &nbsp; </a>
+    </div>
+    <div class="row">
+          <div class="col-md-5 ml-5">
+             <a href="{{ url()->previous() }}" class="btn btn-info mb-2" style="align-content: center" >&nbsp; Back &nbsp; </a>
        </div>
     </div>
-
 
 @endsection
 {{-- page scripts --}}

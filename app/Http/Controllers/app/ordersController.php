@@ -73,7 +73,7 @@ class ordersController extends Controller
       // dd($test->id);
       $payment = order_payments::where('order_id', $order->order_code)->first();
       // dd($payment);
-      return view('app.orders.distributorsetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+      return view('app.orders.distributorsdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
    }
    public function pendingdetails($code)
    {

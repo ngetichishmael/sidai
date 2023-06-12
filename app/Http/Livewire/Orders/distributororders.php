@@ -25,7 +25,7 @@ class distributororders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $sidai=suppliers::where('name', 'Sidai')->first();
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
          ->where('supplierID', '!=', $sidai->id)
