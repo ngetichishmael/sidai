@@ -50,8 +50,7 @@ class DashboardAppController extends Controller
             "user_count" => $all,
          ],
          'new_customers_visits' => [
-//            'today' => checkin::select('customer_id', 'updated_at')->today()->groupBy('customer_id')->count(),
-            'today' => checkin::select('customer_id', 'updated_at')->whereDate('updated_at', now())->groupBy('customer_id')->count(),
+            'today' => checkin::select('customer_id', 'updated_at')->today()->groupBy('customer_id')->count(),
             'yesterday' => checkin::select('customer_id', 'updated_at')->yesterday()->groupBy('customer_id')->count(),
             'this_week' => checkin::select('customer_id', 'updated_at')->currentWeek()->groupBy('customer_id')->count(),
             'month' => checkin::select('customer_id', 'updated_at')->currentMonth()->groupBy('customer_id')->count(),
