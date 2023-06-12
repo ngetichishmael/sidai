@@ -30,7 +30,7 @@ class DashboardAppController extends Controller
          ->whereDate('created_at', $today)
          ->groupBy('user_code');
 
-      $checking = DB::table('your_table')
+      $checking = DB::table('user')
          ->whereIn('user_code', $subquery)
          ->get();
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
