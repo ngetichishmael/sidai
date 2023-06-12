@@ -33,12 +33,14 @@
                     </tr>
                  </thead>
                  <tbody>
+                    @foreach ($distributors as $distributor)
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $distributor->user_code }}</td>
+                     <td></td>
+                     <td></td>
+                 </tr> 
+                    @endforeach
                  </tbody>
               </table>
            </div>
