@@ -12,8 +12,9 @@ class warehouse_assign extends Model
     protected $table='warehouse_assigns';
    public function manager()
    {
-      return $this->belongsTo(User::class ,'manager', 'user_code');
+      return $this->belongsTo(User::class, 'manager', 'user_code');
    }
+
    public function user()
    {
       return $this->belongsTo(User::class ,'created_by', 'user_code' );

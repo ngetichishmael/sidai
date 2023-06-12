@@ -217,9 +217,14 @@ class warehousingController extends Controller
     * @param  int  $id
     * @return \Illuminate\Http\Response
     */
-   public function show($id)
+   public function show(Request $request)
    {
-      //
+      $code=$request->query('warehouse_code');
+
+      $attendees=warehouse_assign::where('warehouse_code',$code)->with('manager', 'user', 'updatedBy')->get();
+
+      $warehouse = warehousing::where('warehouse_code',$code)->with('subregion','region')->first();
+      return view('app.warehousing.view', compact('warehouse', 'attendees'));
    }
 
    /**
