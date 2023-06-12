@@ -291,7 +291,8 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
-
+      $user= where('user_code', $customer->user_code)->first();
+      $user->region_id= $request->region ?? $user->region_id;
 
       Session::flash('success', 'Customer updated successfully');
       $random = Str::random(20);
