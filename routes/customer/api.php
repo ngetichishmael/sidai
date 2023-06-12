@@ -50,5 +50,10 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/customer/clearCart',  [CartController::class, 'clearCart']);
       Route::post('customer/creditor',  [CartController::class, 'isCreditor']);
 
+      Route::post('/customer/make/checkout',  [CartController::class, 'checkOut']);
+      Route::get('/customer/deliveries/all_deriveries',  [CartController::class, 'getAllCustomerDeliveries']);
+      Route::get('/customer/deliveries/pending_deriveries',  [CartController::class, 'getAllCustomerPendingDeliveries']);
+      Route::put('/customer/updateFcmToken',  [CartController::class, 'updateFcmToken']);
+
    });
 });

@@ -18,51 +18,23 @@ class DashboardAppController extends Controller
    {
 
       //Active Users
-//      $checking = checkin::select('user_code')->groupBy('user_code');
-//      $all = User::joinSub($checking, 'customer_checkin', function ($join) {
-//         $join->on('users.user_code', '=', 'customer_checkin.user_code');
-//      })->count();
-//      $checking = checkin::select('user_code')->today()->groupBy('user_code');
-//      $today = User::joinSub($checking, 'customer_checkin', function ($join) {
-//         $join->on('users.user_code', '=', 'customer_checkin.user_code');
-//      })->count();
-//      $checking = checkin::select('user_code')->yesterday()->groupBy('user_code');
-//      $yesterday = User::joinSub($checking, 'customer_checkin', function ($join) {
-//         $join->on('users.user_code', '=', 'customer_checkin.user_code');
-//      })->count();
-//      $checking = checkin::select('user_code')->currentWeek()->groupBy('user_code');
-//      $this_week = User::joinSub($checking, 'customer_checkin', function ($join) {
-//         $join->on('users.user_code', '=', 'customer_checkin.user_code');
-//      })->count();
-//      $checking = checkin::select('user_code')->currentMonth()->groupBy('user_code');
-//      $month = User::joinSub($checking, 'customer_checkin', function ($join) {
-//         $join->on('users.user_code', '=', 'customer_checkin.user_code');
-//      })->count();
-
-      $currentDate = Carbon::now()->format('Y-m-d');
-
-      //Active Users
-      $checking = checkin::select('user_code')->whereDate('created_at', $currentDate)->groupBy('user_code');
+      $checking = checkin::select('user_code')->groupBy('user_code');
       $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-
-      $yesterday = Carbon::now()->subDays(1)->format('Y-m-d');
-      $checking = checkin::select('user_code')->whereDate('created_at', $yesterday)->groupBy('user_code');
+      $checking = checkin::select('user_code')->today()->groupBy('user_code');
+      $today = User::joinSub($checking, 'customer_checkin', function ($join) {
+         $join->on('users.user_code', '=', 'customer_checkin.user_code');
+      })->count();
+      $checking = checkin::select('user_code')->yesterday()->groupBy('user_code');
       $yesterday = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-
-      $this_week_start = Carbon::now()->startOfWeek()->format('Y-m-d');
-      $this_week_end = Carbon::now()->endOfWeek()->format('Y-m-d');
-      $checking = checkin::select('user_code')->whereBetween('created_at', [$this_week_start, $this_week_end])->groupBy('user_code');
+      $checking = checkin::select('user_code')->currentWeek()->groupBy('user_code');
       $this_week = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-
-      $this_month_start = Carbon::now()->startOfMonth()->format('Y-m-d');
-      $this_month_end = Carbon::now()->endOfMonth()->format('Y-m-d');
-      $checking = checkin::select('user_code')->whereBetween('created_at', [$this_month_start, $this_month_end])->groupBy('user_code');
+      $checking = checkin::select('user_code')->currentMonth()->groupBy('user_code');
       $month = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
