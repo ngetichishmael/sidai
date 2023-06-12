@@ -62,7 +62,7 @@ class Dashboard extends Component
             ->whereBetween('updated_at', [$this->start, $this->end])
 //            ->where('order_status', '')
             ->paginate($this->perPreorder);
-        $orderfullment = Orders::where('order_status', 'DELIVERED')
+        $orderfullment = Orders::whereIn('order_status', ['DELIVERED','Delivered'])
            ->where('order_type', 'Pre Order')
            ->whereIn('supplierID', [null, '', $sidai->id])
             ->whereBetween('updated_at', [$this->start, $this->end])
@@ -80,7 +80,7 @@ class Dashboard extends Component
            ->paginate($this->perPreorder);
         $orderfullmentTotal = Orders::with('User', 'Customer')
            ->whereIn('supplierID', [$sidai->id, '', null])
-            ->where('order_status', 'DELIVERED')
+            ->whereIn('order_status', ['DELIVERED','Delivered'])
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->paginate($this->perOrderFulfilment);
         $activeUser = DB::table('customer_checkin')
@@ -132,9 +132,9 @@ class Dashboard extends Component
           ->pluck('count', 'month')
           ->toArray();
        // Retrieve delivery counts per month
-       $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'Partial Delivery'])
+       $deliveryCounts = Orders::whereIn('order_status', ['Delivered','DELIVERED', 'Partial Delivery'])
           ->whereYear('created_at', '=', date('Y'))
-          ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+          ->selectRaw('MONTH(created_at) as month, COUNT(*) * 50 as count')
           ->groupBy('month')
           ->pluck('count', 'month')
           ->toArray();
@@ -162,7 +162,6 @@ class Dashboard extends Component
              'deliveryCount' => $deliveryCounts[$month] ?? 0,
           ];
        }
-
         $customersCount = Orders::groupBy('customerID')
             ->whereBetween('created_at', [$this->start, $this->end])
             ->count();
