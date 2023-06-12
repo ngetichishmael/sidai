@@ -223,7 +223,6 @@
             </div>
         </div>
     </section>
-
     <!-- Basic Floating Label Form section end -->
 
 @endsection
