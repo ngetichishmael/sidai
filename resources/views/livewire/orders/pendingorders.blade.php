@@ -7,6 +7,11 @@
             <label for="">Search</label>
             <input type="text" wire:model="search" class="form-control" placeholder="Enter customer name">
         </div>
+       <label for="fromDate">From:</label>
+       <input type="date" id="fromDate" wire:model="fromDate">
+
+       <label for="toDate">To:</label>
+       <input type="date" id="toDate" wire:model="toDate">
         <div class="col-md-2">
             <label for="">Items Per</label>
             <select wire:model="perPage" class="form-control">`
