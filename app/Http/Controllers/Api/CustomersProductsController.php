@@ -13,7 +13,7 @@ class CustomersProductsController extends Controller
    public function getAllProducts(Request $request)
    {
       if ($request->user()->region_id == null){
-         $productinfo = product_information::with('ProductPrice')->all();
+         $productinfo = product_information::with('ProductPrice')->get();
          return response()->json([
             "success" => true,
             "message" => "Product information",
