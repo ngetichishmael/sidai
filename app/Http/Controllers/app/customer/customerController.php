@@ -292,7 +292,7 @@ class customerController extends Controller
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
       $user=User::where('user_code', $customer->user_code)->first();
-      $user->region_id = $request->region ?? $user->region_id ?? Auth::user()->region_id;
+      $user->region_id = $request->region ?? Auth::user()->region_id;
       $user->save();
 
       Session::flash('success', 'Customer updated successfully');
