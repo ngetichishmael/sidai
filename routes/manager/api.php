@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Manager\OrdersController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
 use App\Http\Controllers\Api\Manager\UsersController;
+use App\Http\Controllers\app\routesController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*
@@ -36,5 +37,20 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
+
+      Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource'])->name('manager.orders');
+      Route::get('/manager/customers/orders', [OrdersController::class, 'allOrderForCustomers']);
+      Route::get('/manager/allocation/data', [OrdersController::class, 'allocationItems']);
+      Route::post('/manager/order/approval', [OrdersController::class, 'orderApproval']);
+      Route::post('/manager/order/disapproval', [OrdersController::class, 'orderDisapproval']);
+      Route::post('/manager/allocation/allocate', [OrdersController::class, 'allocateOrders']);
+
+      Route::get('/manager/orders/transaction', [OrdersController::class, 'transaction'])->name('manager.transaction');
+      Route::post('/manager/orders/custom/transaction', [OrdersController::class, 'customTransaction']);
+
+      Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
+      Route::post('/manager/dashboard/custom/data', [DashboardAppController::class, 'custom']);
+
+      Route::get('/manager/routes/data', [RoutesController::class, 'getRoutes']);
    });
 });
