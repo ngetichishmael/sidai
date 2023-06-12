@@ -1,16 +1,16 @@
 <div class="col-md-6 col-12">
-    <label>Zone</label>
+    <label>Region</label>
     <select wire:model='region' class="form-control" name="zone">
-        <option value="">Zone</option>
+        <option value="">Regions</option>
         @foreach ($regions as $region)
             <option value="{{ $region->id }}">{{ $region->name }}</option>
         @endforeach
     </select>
 </div>
 <div class="col-md-6 col-12">
-    <label>Region</label>
+    <label>Sub-Region</label>
     <select wire:model='regions'class="form-control" name="region">
-        <option value="">Region</option>
+        <option value="">Sub-Region</option>
         @forelse ($subregions as $region)
             <option value="{{ $region->id }}">{{ $region->name }}</option>
         @empty
