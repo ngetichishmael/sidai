@@ -9,6 +9,7 @@ use App\Models\inventory\allocations;
 use App\Models\Orders;
 use App\Models\survey\survey;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardAppController extends Controller
@@ -22,7 +23,11 @@ class DashboardAppController extends Controller
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
 //      $checking = checkin::select('user_code')->today()->groupBy('user_code');
-      $checking = checkin::select('user_code')->whereDate('created_at', now()->toDateString())->groupBy('user_code')->get();
+      $today = Carbon::today()->toDateString();
+      $checking = checkin::select('user_code')
+         ->whereDate('created_at', $today)
+         ->groupBy('user_code')
+         ->get();
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
