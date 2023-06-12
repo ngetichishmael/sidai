@@ -23,16 +23,7 @@ class DashboardAppController extends Controller
       $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-//      $checking = checkin::select('user_code')->today()->groupBy('user_code');
-      $today = Carbon::today()->toDateString();
-      $subquery = DB::table('checkin')
-         ->select('user_code')
-         ->whereDate('created_at', $today)
-         ->groupBy('user_code');
-
-      $checking = DB::table('users')
-         ->whereIn('user_code', $subquery)
-         ->get();
+      $checking = checkin::select('user_code')->today()->groupBy('user_code');
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
