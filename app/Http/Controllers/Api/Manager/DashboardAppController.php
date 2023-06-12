@@ -21,7 +21,8 @@ class DashboardAppController extends Controller
       $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-      $checking = checkin::select('user_code')->today()->groupBy('user_code');
+//      $checking = checkin::select('user_code')->today()->groupBy('user_code');
+      $checking = checkin::select('user_code')->whereDate('created_at', now()->toDateString())->groupBy('user_code')->get();
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
@@ -49,7 +50,8 @@ class DashboardAppController extends Controller
             "user_count" => $all,
          ],
          'new_customers_visits' => [
-            'today' => checkin::select('customer_id', 'updated_at')->today()->groupBy('customer_id')->count(),
+//            'today' => checkin::select('customer_id', 'updated_at')->today()->groupBy('customer_id')->count(),
+            'today' => checkin::select('customer_id', 'updated_at')->whereDate('updated_at', now())->groupBy('customer_id')->count(),
             'yesterday' => checkin::select('customer_id', 'updated_at')->yesterday()->groupBy('customer_id')->count(),
             'this_week' => checkin::select('customer_id', 'updated_at')->currentWeek()->groupBy('customer_id')->count(),
             'month' => checkin::select('customer_id', 'updated_at')->currentMonth()->groupBy('customer_id')->count(),
