@@ -310,6 +310,7 @@ Route::group(['middleware' => ['verified']], function () {
    /* === Warehousing === */
    Route::get('warehousing', ['uses' => 'app\warehousingController@index', 'as' => 'warehousing.index']);
    Route::get('warehousing/create', ['uses' => 'app\warehousingController@create', 'as' => 'warehousing.create']);
+   Route::get('warehousing/show', ['uses' => 'app\warehousingController@show', 'as' => 'warehousing.show']);
    Route::get('warehousing/import', ['uses' => 'app\warehousingController@import', 'as' => 'warehousing.import']);
    Route::post('warehousing/import/store', ['uses' => 'app\warehousingController@storeWarehouse', 'as' => 'warehousing.import.store']);
    Route::post('warehousing/store', ['uses' => 'app\warehousingController@store', 'as' => 'warehousing.store']);
