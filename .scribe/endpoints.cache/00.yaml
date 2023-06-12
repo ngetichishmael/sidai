@@ -260,6 +260,1176 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - GET
+    uri: api/manager/simplified/orders
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/customers/orders
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/allocation/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/order/approval
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      productID:
+        name: productID
+        description: ''
+        required: true
+        example: consectetur
+        type: string
+        custom: []
+      allocation_code:
+        name: allocation_code
+        description: ''
+        required: true
+        example: commodi
+        type: string
+        custom: []
+    cleanBodyParameters:
+      productID: consectetur
+      allocation_code: commodi
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/order/disapproval
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      productID:
+        name: productID
+        description: ''
+        required: true
+        example: enim
+        type: string
+        custom: []
+      allocation_code:
+        name: allocation_code
+        description: ''
+        required: true
+        example: eveniet
+        type: string
+        custom: []
+    cleanBodyParameters:
+      productID: enim
+      allocation_code: eveniet
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/allocation/allocate
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      customerID:
+        name: customerID
+        description: ''
+        required: true
+        example: corrupti
+        type: string
+        custom: []
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: cum
+        type: string
+        custom: []
+      order_code:
+        name: order_code
+        description: ''
+        required: true
+        example: ipsum
+        type: string
+        custom: []
+    cleanBodyParameters:
+      customerID: corrupti
+      user_code: cum
+      order_code: ipsum
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/orders/transaction
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/orders/custom/transaction
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/dashboard/custom/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/routes/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/lead/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: quis
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: accusamus
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: quis
+      target: accusamus
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/sale/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: qui
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: et
+      target: qui
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/visit/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: facilis
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: dolore
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: facilis
+      target: dolore
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/order/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: aut
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: quia
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: aut
+      target: quia
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - POST
     uri: api/customer/registration
     metadata:
@@ -283,28 +1453,28 @@ endpoints:
         name: customer_name
         description: ''
         required: true
-        example: itaque
+        example: pariatur
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: id
+        example: qui
         type: string
         custom: []
       Latitude:
         name: Latitude
         description: ''
         required: true
-        example: dolore
+        example: quos
         type: string
         custom: []
       Longitude:
         name: Longitude
         description: ''
         required: true
-        example: fugiat
+        example: distinctio
         type: string
         custom: []
       image:
@@ -315,10 +1485,10 @@ endpoints:
         type: file
         custom: []
     cleanBodyParameters:
-      customer_name: itaque
-      phone_number: id
-      Latitude: dolore
-      Longitude: fugiat
+      customer_name: pariatur
+      phone_number: qui
+      Latitude: quos
+      Longitude: distinctio
     fileParameters:
       image: null
     responses: []
@@ -379,11 +1549,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: iste
+        example: assumenda
         type: string
         custom: []
     cleanUrlParameters:
-      number: iste
+      number: assumenda
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -417,19 +1587,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: impedit
+        example: veniam
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: et
+        example: illo
         type: string
         custom: []
     cleanUrlParameters:
-      number: impedit
-      otp: et
+      number: veniam
+      otp: illo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -467,27 +1637,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: sit
+        example: laudantium
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: '737YeZ,?-'
+        example: '?#Nxz:*6pQn^GVXo5/'
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: ad
+        example: explicabo
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: sit
-      password: '737YeZ,?-'
-      password_confirmation: ad
+      phone_number: laudantium
+      password: '?#Nxz:*6pQn^GVXo5/'
+      password_confirmation: explicabo
     fileParameters: []
     responses: []
     responseFields: []
@@ -793,11 +1963,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: a
+        example: sapiente
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: a
+      delivery_code: sapiente
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -831,11 +2001,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: inventore
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: inventore
+      delivery_code: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -869,11 +2039,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: corrupti
+        example: sint
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: corrupti
+      delivery_code: sint
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -907,11 +2077,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: ullam
+        example: suscipit
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: ullam
+      delivery_code: suscipit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -945,11 +2115,11 @@ endpoints:
         name: id
         description: 'The ID of the comment.'
         required: true
-        example: et
+        example: accusamus
         type: string
         custom: []
     cleanUrlParameters:
-      id: et
+      id: accusamus
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -996,27 +2166,27 @@ endpoints:
         name: customers_id
         description: ''
         required: true
-        example: debitis
+        example: voluptas
         type: string
         custom: []
       date:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2023-06-12T13:19:48'
+        example: '2023-06-12T13:45:26'
         type: string
         custom: []
       comment:
         name: comment
         description: ''
         required: true
-        example: doloribus
+        example: error
         type: string
         custom: []
     cleanBodyParameters:
-      customers_id: debitis
-      date: '2023-06-12T13:19:48'
-      comment: doloribus
+      customers_id: voluptas
+      date: '2023-06-12T13:45:26'
+      comment: error
     fileParameters: []
     responses: []
     responseFields: []
@@ -1046,19 +2216,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: quo
+        example: quibusdam
         type: string
         custom: []
       random:
         name: random
         description: ''
         required: true
-        example: alias
+        example: perferendis
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: quo
-      random: alias
+      checkinCode: quibusdam
+      random: perferendis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1092,27 +2262,27 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: vitae
+        example: quo
         type: string
         custom: []
       random:
         name: random
         description: ''
         required: true
-        example: alias
+        example: ut
         type: string
         custom: []
       distributor:
         name: distributor
         description: ''
         required: true
-        example: deserunt
+        example: quibusdam
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: vitae
-      random: alias
-      distributor: deserunt
+      checkinCode: quo
+      random: ut
+      distributor: quibusdam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1371,11 +2541,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: occaecati
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: occaecati
+      shopID: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1418,11 +2588,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: voluptates
+        example: iure
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: voluptates
+      shopID: iure
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1465,11 +2635,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: inventore
+        example: tempore
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: inventore
+      shopID: tempore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1512,11 +2682,11 @@ endpoints:
         name: CustomerAccountNumber
         description: ''
         required: true
-        example: minima
+        example: dolorem
         type: string
         custom: []
     cleanUrlParameters:
-      CustomerAccountNumber: minima
+      CustomerAccountNumber: dolorem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1623,11 +2793,11 @@ endpoints:
         name: image
         description: ''
         required: true
-        example: quia
+        example: perspiciatis
         type: string
         custom: []
     cleanBodyParameters:
-      image: quia
+      image: perspiciatis
     fileParameters: []
     responses: []
     responseFields: []
@@ -1815,11 +2985,11 @@ endpoints:
         name: surveyCode
         description: ''
         required: true
-        example: blanditiis
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      surveyCode: blanditiis
+      surveyCode: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2157,11 +3327,11 @@ endpoints:
         name: id
         description: 'The ID of the schedule.'
         required: true
-        example: ut
+        example: minima
         type: string
         custom: []
     cleanUrlParameters:
-      id: ut
+      id: minima
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2474,26 +3644,26 @@ endpoints:
         description: ''
         required: true
         example:
-          - quibusdam
+          - molestias
         type: 'integer[]'
         custom: []
       'requisition_products[].product_id':
         name: 'requisition_products[].product_id'
         description: ''
         required: true
-        example: 16
+        example: 11
         type: integer
         custom: []
       'requisition_products[].quantity':
         name: 'requisition_products[].quantity'
         description: ''
         required: true
-        example: 15
+        example: 8
         type: integer
         custom: []
     cleanBodyParameters:
       requisition_products:
-        - quibusdam
+        - molestias
     fileParameters: []
     responses: []
     responseFields: []
@@ -2593,7 +3763,7 @@ endpoints:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IktkSEtSL0JVMTk4TU1WRUhTNHNzUWc9PSIsInZhbHVlIjoicHI5eXltc1BIRHo2dW5tV3cvbnNtNTFwcWhSbUdySld5UEErMUlzMmx4NU03cUkvQVM3d1VRd3ozZkcwWk1RaGJ6bmFsdEovMFArc3ZjMTVvY053NGJML2NjT2ExcUh1MFZudjNRQVMxbVA1MC85RER3TTVOeHRpaVVja0c3VC8iLCJtYWMiOiI2MDgwYjQyNWRjYjA2YzQzMzFlMjc0NzIxMzZlMDg3MDEzNDhmZTE5OTIwZTg2MjBhMjRjZWVlNmJjYWFhODc4IiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6IjJSVHo2RE1wcm1PYjhKbnV3R0p1dmc9PSIsInZhbHVlIjoiV0c3TWkxL1BPNGNPTW9yUHlVTnJ0d0kxN3BOOC9PMGFQNWg4aVVVRmxOKzB3SEhxZk5qSW9IWERQa0tWbVNpTjVNb1VNOThLbmRyb2NGb0hlODM1OCtLWHQ1eGxWVURxNFdKaUhWS21YZUVoRFkzZnA4TzdSQjRqeUJ1elF6Y3ciLCJtYWMiOiJkY2M5MzBmNTE0Y2NhOWE2MDNiN2RmODkxMmJjYzIxMDc4Zjc3ZWRlZmI0MWIxNmY4NmEyYmMxMzA0ZTI0ZTYzIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjNlZnVFSTF0aWRPR3FnMlgvWU83WFE9PSIsInZhbHVlIjoidHpvcFFOL1ZBaFZCeHJndW00SGFWTm5QUWFrWVo3T0pnTWNEYS9rcWhsc25mcUY0WXV5TE5qQjFPaGNGTHpnR1BVTkxlWHIzMU8rTGtTK2RxSmhheXl4MG5GbEJIcDBZemEveU83Mk1xRE9lcGZlREVNRFlSQTNuZkhXU3JTR1UiLCJtYWMiOiI2YzcwNmNjMDBmYjVkMjM3N2U1OTZkZDdjMmZlNDBhNmIwZTQyMzdjOGYxZTZhNjY2NDYwYjk5YTMzOTgzZGZlIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6IlFHVEJ0ZldXcXo1TWFsT0ZMME96UVE9PSIsInZhbHVlIjoiT1pYYStNNlp0ZnhWMVBaaVlWOUNIRzlDaDlmMWlNS0ZVbFh1N3U2azBZWlBZQTR0QnJjQ2gzT0ZMckdZUktNcFZHUGNSd1VPNm95dXU4SzU4SC9LYXlDMk8waXo0VW5hKzZoZ3Q5QUlFVm1OTE5LeHV1NkVKcWlBN2NpMUNlbm4iLCJtYWMiOiIwMjk4MTNhMjAwODkzMGRiMjM0MTA1NjBlYmFlMDAxOWEwZGQ2NDVhMjA5MTI1YmQ0MzRjOTVjOWQwMmQyMjcxIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []

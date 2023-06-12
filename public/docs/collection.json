@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Sidai",
-        "_postman_id": "b97deb19-8d22-4f34-8f66-6565640f6831",
+        "_postman_id": "af5191bc-db65-436f-bffd-ae7bbc2f1d0a",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"jacklyn.barrows@example.net\",\"password\":\"_S:{v*aD50O5\"}"
+                            "raw": "{\"email\":\"dudley.pollich@example.org\",\"password\":\"3*Q_o$sVf\\\\'\"}"
                         },
                         "description": "",
                         "auth": {
@@ -69,7 +69,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "omnis",
+                                    "value": "soluta",
                                     "description": ""
                                 }
                             ]
@@ -105,13 +105,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "saepe",
+                                    "value": "sit",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "blanditiis",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -157,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"blanditiis\",\"password\":\"W}P~7>$@xn\\\/0V?\",\"password_confirmation\":\"minima\"}"
+                            "raw": "{\"phone_number\":\"qui\",\"password\":\"umvQs5on\",\"password_confirmation\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -194,7 +194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerID\":\"illum\",\"latitude\":\"et\",\"longitude\":\"doloribus\",\"user_code\":\"sint\"}"
+                            "raw": "{\"customerID\":\"est\",\"latitude\":\"amet\",\"longitude\":\"porro\",\"user_code\":\"aliquam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -215,7 +215,7 @@
                                 {
                                     "id": "CustomerCode",
                                     "key": "CustomerCode",
-                                    "value": "eum",
+                                    "value": "eaque",
                                     "description": ""
                                 }
                             ]
@@ -279,7 +279,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "magni",
+                                    "value": "provident",
                                     "description": ""
                                 }
                             ]
@@ -343,7 +343,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "voluptatem",
+                                    "value": "non",
                                     "description": ""
                                 }
                             ]
@@ -407,7 +407,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "commodi",
+                                    "value": "qui",
                                     "description": ""
                                 }
                             ]
@@ -425,7 +425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"productID\":\"ipsum\",\"qty\":\"voluptates\"}"
+                            "raw": "{\"productID\":\"rem\",\"qty\":\"praesentium\"}"
                         },
                         "description": "",
                         "auth": {
@@ -474,7 +474,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "rerum",
+                                    "value": "optio",
                                     "description": ""
                                 }
                             ]
@@ -492,7 +492,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_type\":\"sit\",\"reasons_partial_delivery\":\"culpa\"}"
+                            "raw": "{\"order_type\":\"provident\",\"reasons_partial_delivery\":\"quaerat\"}"
                         },
                         "description": "",
                         "auth": {
@@ -513,7 +513,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "quidem",
+                                    "value": "laudantium",
                                     "description": ""
                                 },
                                 {
@@ -583,7 +583,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "est",
+                                    "value": "beatae",
                                     "description": ""
                                 }
                             ]
@@ -647,7 +647,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "molestias",
+                                    "value": "magnam",
                                     "description": ""
                                 }
                             ]
@@ -665,7 +665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":12}"
+                            "raw": "{\"order_id\":11}"
                         },
                         "description": "",
                         "auth": {
@@ -686,13 +686,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "cupiditate",
+                                    "value": "amet",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "autem",
+                                    "value": "unde",
                                     "description": ""
                                 }
                             ]
@@ -756,13 +756,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "fuga",
+                                    "value": "eum",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "optio",
+                                    "value": "quam",
                                     "description": ""
                                 }
                             ]
@@ -780,7 +780,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"qty\":\"quod\",\"orderID\":\"dolorum\"}"
+                            "raw": "{\"qty\":\"dicta\",\"orderID\":\"laboriosam\"}"
                         },
                         "description": "",
                         "auth": {
@@ -801,13 +801,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "a",
+                                    "value": "ipsam",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "molestiae",
+                                    "value": "libero",
                                     "description": ""
                                 }
                             ]
@@ -881,7 +881,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":12}"
+                            "raw": "{\"order_id\":6}"
                         },
                         "description": "",
                         "auth": {
@@ -902,13 +902,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "vitae",
+                                    "value": "corrupti",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "voluptatem",
+                                    "value": "voluptatum",
                                     "description": ""
                                 }
                             ]
@@ -975,17 +975,17 @@
                             "query": [
                                 {
                                     "key": "page_size",
-                                    "value": "19",
+                                    "value": "12",
                                     "description": "size per page. Default to 20",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=19",
+                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=12",
                             "variable": [
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "praesentium",
+                                    "value": "labore",
                                     "description": ""
                                 }
                             ]
@@ -1054,55 +1054,55 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "officia",
+                                    "value": "accusantium",
                                     "type": "text",
                                     "description": "as outlet name"
                                 },
                                 {
                                     "key": "contact_person",
-                                    "value": "quae",
+                                    "value": "animi",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "business_code",
-                                    "value": "rem",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "created_by",
-                                    "value": "praesentium",
+                                    "value": "aut",
                                     "type": "text",
                                     "description": "user code"
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "voluptatum",
+                                    "value": "ut",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "latitude",
-                                    "value": "et",
+                                    "value": "nisi",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "longitude",
-                                    "value": "numquam",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "email",
-                                    "value": "runolfsdottir.abbigail@example.com",
+                                    "value": "rgreen@example.com",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "address",
-                                    "value": "velit",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1160,7 +1160,7 @@
                                 {
                                     "id": "code",
                                     "key": "code",
-                                    "value": "ut",
+                                    "value": "voluptate",
                                     "description": ""
                                 }
                             ]
@@ -1224,13 +1224,13 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "sint",
+                                    "value": "rerum",
                                     "description": ""
                                 },
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "quia",
+                                    "value": "corrupti",
                                     "description": ""
                                 }
                             ]
@@ -1358,7 +1358,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "sit",
+                                    "value": "veritatis",
                                     "description": ""
                                 }
                             ]
@@ -1422,7 +1422,7 @@
                                 {
                                     "id": "orderCode",
                                     "key": "orderCode",
-                                    "value": "illum",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -1486,7 +1486,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "ab",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -1562,7 +1562,7 @@
                                 {
                                     "id": "userCode",
                                     "key": "userCode",
-                                    "value": "asperiores",
+                                    "value": "dignissimos",
                                     "description": ""
                                 }
                             ]
@@ -1632,7 +1632,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "natus",
+                                    "value": "laborum",
                                     "description": ""
                                 }
                             ]
@@ -1758,7 +1758,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "aut",
+                                    "value": "asperiores",
                                     "description": ""
                                 }
                             ]
@@ -1820,7 +1820,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "tempora",
+                                    "value": "nemo",
                                     "description": ""
                                 }
                             ]
@@ -1884,7 +1884,7 @@
                                 {
                                     "id": "categoryID",
                                     "key": "categoryID",
-                                    "value": "temporibus",
+                                    "value": "ipsum",
                                     "description": ""
                                 }
                             ]
@@ -2295,6 +2295,1239 @@
                     ]
                 },
                 {
+                    "name": "GET api\/manager\/simplified\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/simplified\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/simplified\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/customers\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/customers\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/customers\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/allocation\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/allocation\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/allocation\/data"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/order\/approval",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order\/approval",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order\/approval"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"productID\":\"consectetur\",\"allocation_code\":\"commodi\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/order\/disapproval",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order\/disapproval",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order\/disapproval"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"productID\":\"enim\",\"allocation_code\":\"eveniet\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/allocation\/allocate",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/allocation\/allocate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/allocation\/allocate"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"customerID\":\"corrupti\",\"user_code\":\"cum\",\"order_code\":\"ipsum\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/manager\/orders\/transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/orders\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/orders\/transaction"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/orders\/custom\/transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/orders\/custom\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/orders\/custom\/transaction"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/dashboard\/custom\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/dashboard\/custom\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/dashboard\/custom\/data"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/manager\/routes\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/routes\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/routes\/data"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/assign\/lead\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/lead\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/lead\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"quis\",\"target\":\"accusamus\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/sale\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/sale\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/sale\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"et\",\"target\":\"qui\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/visit\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/visit\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/visit\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"facilis\",\"target\":\"dolore\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/order\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/order\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/order\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"aut\",\"target\":\"quia\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "POST api\/customer\/registration",
                     "request": {
                         "url": {
@@ -2319,25 +3552,25 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "itaque",
+                                    "value": "pariatur",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "id",
+                                    "value": "qui",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Latitude",
-                                    "value": "dolore",
+                                    "value": "quos",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Longitude",
-                                    "value": "fugiat",
+                                    "value": "distinctio",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2395,7 +3628,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "iste",
+                                    "value": "assumenda",
                                     "description": ""
                                 }
                             ]
@@ -2431,13 +3664,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "impedit",
+                                    "value": "veniam",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "et",
+                                    "value": "illo",
                                     "description": ""
                                 }
                             ]
@@ -2483,7 +3716,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"sit\",\"password\":\"737YeZ,?-\",\"password_confirmation\":\"ad\"}"
+                            "raw": "{\"phone_number\":\"laudantium\",\"password\":\"?#Nxz:*6pQn^GVXo5\\\/\",\"password_confirmation\":\"explicabo\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2808,7 +4041,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "a",
+                                    "value": "sapiente",
                                     "description": ""
                                 }
                             ]
@@ -2844,7 +4077,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "inventore",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -2880,7 +4113,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "corrupti",
+                                    "value": "sint",
                                     "description": ""
                                 }
                             ]
@@ -2916,7 +4149,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "ullam",
+                                    "value": "suscipit",
                                     "description": ""
                                 }
                             ]
@@ -2952,7 +4185,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "et",
+                                    "value": "accusamus",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -3018,7 +4251,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customers_id\":\"debitis\",\"date\":\"2023-06-12T13:19:48\",\"comment\":\"doloribus\"}"
+                            "raw": "{\"customers_id\":\"voluptas\",\"date\":\"2023-06-12T13:45:26\",\"comment\":\"error\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3039,13 +4272,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "quo",
+                                    "value": "quibusdam",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "alias",
+                                    "value": "perferendis",
                                     "description": ""
                                 }
                             ]
@@ -3081,19 +4314,19 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "vitae",
+                                    "value": "quo",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "alias",
+                                    "value": "ut",
                                     "description": ""
                                 },
                                 {
                                     "id": "distributor",
                                     "key": "distributor",
-                                    "value": "deserunt",
+                                    "value": "quibusdam",
                                     "description": ""
                                 }
                             ]
@@ -3397,7 +4630,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "occaecati",
+                                    "value": "aut",
                                     "description": ""
                                 }
                             ]
@@ -3453,7 +4686,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "voluptates",
+                                    "value": "iure",
                                     "description": ""
                                 }
                             ]
@@ -3509,7 +4742,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "inventore",
+                                    "value": "tempore",
                                     "description": ""
                                 }
                             ]
@@ -3565,7 +4798,7 @@
                                 {
                                     "id": "CustomerAccountNumber",
                                     "key": "CustomerAccountNumber",
-                                    "value": "minima",
+                                    "value": "dolorem",
                                     "description": ""
                                 }
                             ]
@@ -3687,7 +4920,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image\":\"quia\"}"
+                            "raw": "{\"image\":\"perspiciatis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3908,7 +5141,7 @@
                                 {
                                     "id": "surveyCode",
                                     "key": "surveyCode",
-                                    "value": "blanditiis",
+                                    "value": "non",
                                     "description": ""
                                 }
                             ]
@@ -4304,7 +5537,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "minima",
                                     "description": "The ID of the schedule."
                                 }
                             ]
@@ -4683,7 +5916,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"requisition_products\":[\"quibusdam\"]}"
+                            "raw": "{\"requisition_products\":[\"molestias\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -4791,7 +6024,7 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IktkSEtSL0JVMTk4TU1WRUhTNHNzUWc9PSIsInZhbHVlIjoicHI5eXltc1BIRHo2dW5tV3cvbnNtNTFwcWhSbUdySld5UEErMUlzMmx4NU03cUkvQVM3d1VRd3ozZkcwWk1RaGJ6bmFsdEovMFArc3ZjMTVvY053NGJML2NjT2ExcUh1MFZudjNRQVMxbVA1MC85RER3TTVOeHRpaVVja0c3VC8iLCJtYWMiOiI2MDgwYjQyNWRjYjA2YzQzMzFlMjc0NzIxMzZlMDg3MDEzNDhmZTE5OTIwZTg2MjBhMjRjZWVlNmJjYWFhODc4IiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6IjJSVHo2RE1wcm1PYjhKbnV3R0p1dmc9PSIsInZhbHVlIjoiV0c3TWkxL1BPNGNPTW9yUHlVTnJ0d0kxN3BOOC9PMGFQNWg4aVVVRmxOKzB3SEhxZk5qSW9IWERQa0tWbVNpTjVNb1VNOThLbmRyb2NGb0hlODM1OCtLWHQ1eGxWVURxNFdKaUhWS21YZUVoRFkzZnA4TzdSQjRqeUJ1elF6Y3ciLCJtYWMiOiJkY2M5MzBmNTE0Y2NhOWE2MDNiN2RmODkxMmJjYzIxMDc4Zjc3ZWRlZmI0MWIxNmY4NmEyYmMxMzA0ZTI0ZTYzIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:19:49 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6IjNlZnVFSTF0aWRPR3FnMlgvWU83WFE9PSIsInZhbHVlIjoidHpvcFFOL1ZBaFZCeHJndW00SGFWTm5QUWFrWVo3T0pnTWNEYS9rcWhsc25mcUY0WXV5TE5qQjFPaGNGTHpnR1BVTkxlWHIzMU8rTGtTK2RxSmhheXl4MG5GbEJIcDBZemEveU83Mk1xRE9lcGZlREVNRFlSQTNuZkhXU3JTR1UiLCJtYWMiOiI2YzcwNmNjMDBmYjVkMjM3N2U1OTZkZDdjMmZlNDBhNmIwZTQyMzdjOGYxZTZhNjY2NDYwYjk5YTMzOTgzZGZlIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6IlFHVEJ0ZldXcXo1TWFsT0ZMME96UVE9PSIsInZhbHVlIjoiT1pYYStNNlp0ZnhWMVBaaVlWOUNIRzlDaDlmMWlNS0ZVbFh1N3U2azBZWlBZQTR0QnJjQ2gzT0ZMckdZUktNcFZHUGNSd1VPNm95dXU4SzU4SC9LYXlDMk8waXo0VW5hKzZoZ3Q5QUlFVm1OTE5LeHV1NkVKcWlBN2NpMUNlbm4iLCJtYWMiOiIwMjk4MTNhMjAwODkzMGRiMjM0MTA1NjBlYmFlMDAxOWEwZGQ2NDVhMjA5MTI1YmQ0MzRjOTVjOWQwMmQyMjcxIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,

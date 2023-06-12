@@ -186,9 +186,11 @@
                                                },
                                                y: {
                                                   beginAtZero: true,
-                                                  min: 0,
-                                                  max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
-                                                  stepSize: 50,
+                                                  ticks: {
+                                                     min: 0,
+                                                     max: Math.ceil(Math.max(...preOrderCounts, ...deliveryCounts) / 50) * 50,
+                                                     stepSize: 50
+                                                  },
                                                   display: true,
                                                   title: {
                                                      display: true,
