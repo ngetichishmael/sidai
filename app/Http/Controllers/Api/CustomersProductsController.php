@@ -12,7 +12,8 @@ class CustomersProductsController extends Controller
 {
    public function getAllProducts(Request $request)
    {
-      dump($request->user()->region_id);
+      dump(Auth::user()->region_id);
+      dump(Auth::user()->name);
       $productinfo = product_information::where('region_id', $request->user()->region_id)->with('ProductPrice')->get();
       return response()->json([
          "success" => true,
