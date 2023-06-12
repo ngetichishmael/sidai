@@ -305,7 +305,7 @@ class customerController extends Controller
       $activityLog->ip_address = "";
       $activityLog->save();
 
-      return redirect()->route('creditors');
+      return redirect()->route('customer');
    }
    public function updatecreditor(Request $request, $id)
    {
