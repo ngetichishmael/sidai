@@ -134,7 +134,7 @@ class Dashboard extends Component
        // Retrieve delivery counts per month
        $deliveryCounts = Orders::whereIn('order_status', ['Delivered','DELIVERED', 'Partial Delivery'])
           ->whereYear('created_at', '=', date('Y'))
-          ->selectRaw('MONTH(created_at) as month, COUNT(*) * 50 as count')
+          ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
           ->groupBy('month')
           ->pluck('count', 'month')
           ->toArray();

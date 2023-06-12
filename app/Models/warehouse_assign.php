@@ -10,11 +10,11 @@ class warehouse_assign extends Model
     use HasFactory;
     protected $guarded=[''];
     protected $table='warehouse_assigns';
-   public function manager()
-   {
-      return $this->belongsTo(User::class, 'manager', 'user_code');
-   }
 
+   public function managers()
+   {
+      return $this->belongsTo(User::class ,'manager', 'user_code' );
+   }
    public function user()
    {
       return $this->belongsTo(User::class ,'created_by', 'user_code' );

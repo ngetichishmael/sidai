@@ -109,7 +109,6 @@ class ordersController extends Controller
 //         'warehouse' => 'required',
 
       ]);
-
       $delivery = Delivery::updateOrCreate(
          [
             "business_code" => Str::random(20),
@@ -154,7 +153,6 @@ class ordersController extends Controller
             ]);
       }
 
-      Session::flash('success', 'Delivery created and orders allocated to a user');
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Allocate an order to a User';
@@ -165,9 +163,8 @@ class ordersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
       $activityLog->save();
-
+      Session::flash('success', 'Delivery created and orders allocated to a user');
       return redirect()->route('orders.pendingorders');
-//      return redirect()->back();
    }
    public function delivery(Request $request)
    {

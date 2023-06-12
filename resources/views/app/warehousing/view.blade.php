@@ -50,7 +50,7 @@
                   <tbody>
                   @foreach ($attendees as $attendee)
                      <tr>
-                        <td>{{ $attendee->manager->name ?? '' }}</td>
+                        <td>{{ $attendee->managers->name ?? '' }}</td>
                         <td>{{ $attendee->position ?? ''}}</td>
                         <td>{{ $attendee->created_at ?? '' }}</td>
                         <td>{{ $attendee->user->name ?? '' }}</td>
@@ -63,7 +63,7 @@
       </div>
             </div>
    <center>
-      <a href="{{ url()->previous() }}" class="btn btn-success mt-2">
+      <a href="{{ url()->previous() }}" class="btn btn-info mt-2">
          <i data-feather='arrow-left'></i> Back
       </a>
    </center>
