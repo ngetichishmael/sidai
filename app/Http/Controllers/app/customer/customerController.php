@@ -124,7 +124,7 @@ class customerController extends Controller
       $customer->city = $request->city;
       $customer->province = $request->province;
       $customer->postal_code = $request->postal_code;
-      $customer->country = $request->country;
+      $customer->country = "Kenya";
       $customer->latitude = $request->latitude;
       $customer->longitude = $request->longitude;
       $customer->contact_person = $request->contact_person;

@@ -58,8 +58,9 @@
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
                                 <td>ksh {{ number_format($order->Order->price_total) }}</td>
                                 <td>ksh {{ number_format($order->Order->balance) }}</td>
-                                <td>{{ $order->Order->qty }}</td>
-                                <td>{{ $order->created_at }}</td>
+                               <td>{{ $order->DeliveryItems->first()->allocated_quantity ?? '' }}</td>
+{{--                               <td>{{$order->Order->qty}}</td>--}}
+                               <td>{{ $order->created_at }}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}
 
                                <td>

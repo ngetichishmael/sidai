@@ -34,7 +34,6 @@
                         <th width="1%">#</th>
 {{--                        <th>Order Type</th>--}}
                         <th>Customer</th>
-                        <th>status</th>
 {{--                        <th>Region</th>--}}
 {{--                        <th>Route</th>--}}
                         <th>Sales Person</th>
@@ -42,7 +41,7 @@
 {{--                        <th>Balance (Ksh.)</th>--}}
                         <th>Date</th>
                         <th>Quantity</th>
-                        <th>type</th>
+
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -58,14 +57,13 @@
 {{--                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>--}}
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
-                               <td>{{ $order->order_status }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                 <td>{{ $order->qty}}</td>
-                                <td>{{ $order->order_type}}</td>
+
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}
 {{--                                    <a href="{!! route('orders.details', $order->order_code) !!}" class="btn btn-warning btn-sm">View</a>--}}

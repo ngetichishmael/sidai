@@ -3,23 +3,21 @@
 namespace App\Http\Controllers\app;
 
 use App\Helpers\Helper;
-use App\Models\activity_log;
-use App\Models\country;
-use App\Models\Models\products\ProductSku;
-use App\Models\products\product_inventory;
-use App\Models\User;
-use App\Models\Subregion;
-use App\Models\Region;
-use App\Models\warehousing;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imports\WarehouseImport;
-use Illuminate\Support\Facades\Auth;
-use Livewire\Livewire;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Models\activity_log;
+use App\Models\country;
 use App\Models\products\product_information;
+use App\Models\Region;
+use App\Models\Subregion;
+use App\Models\User;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class warehousingController extends Controller
 {
@@ -155,14 +153,19 @@ class warehousingController extends Controller
       $this->validate($request, [
          'shopattendee' => 'required',
       ]);
+      dd($request->all());
       $shopattendee = $request->input('shopattendee');
       $warehouse = $request->input('warehouser');
 
-      foreach ($this->warehouse as $target) {
-         $warehouseCode = $target['warehouse_code'];
-         $userCode = $target['user_code'];
-
-
+      foreach ($shopattendee as $key => $manager) {
+         $user = User::where('user_code', $manager)->first();
+         if ($user) {
+            $assign = new warehouse_assign();
+            $assign->manager = $user->user_code;
+            $assign->warehouse_code =$warehouse;
+            $assign->created_by = Auth::user()->user_code;
+            $productSku->save();
+         }
       }
       session()->flash('success', 'Product successfully restocked!');
       $random=Str::random(20);

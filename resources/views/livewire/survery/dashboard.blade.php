@@ -40,7 +40,7 @@
                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                              <a href="{!! route('survey.show', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #86f686;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit</a>
                                              <a href="{!! route('survey.edit', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #a1e1f6; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
-                                             <a href="{!! route('survey.delete', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>
+{{--                                             <a href="{!! route('survey.delete', $survery->code) !!}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>--}}
                                           </div>
                                        </div>
                                     </td>
