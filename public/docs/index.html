@@ -427,7 +427,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 7, 2023</li>
+        <li>Last updated: June 11, 2023</li>
     </ul>
 </div>
 
@@ -467,8 +467,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"gkassulke@example.org\",
-    \"password\": \"r6.I6*pFQk)^}\"
+    \"email\": \"claire.armstrong@example.net\",
+    \"password\": \"y}R4rRA&lt;o~.N\\/JJ+r=\"
 }"
 </code></pre></div>
 
@@ -484,8 +484,8 @@ const headers = {
 };
 
 let body = {
-    "email": "gkassulke@example.org",
-    "password": "r6.I6*pFQk)^}"
+    "email": "claire.armstrong@example.net",
+    "password": "y}R4rRA&lt;o~.N\/JJ+r="
 };
 
 fetch(url, {
@@ -585,10 +585,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-login"
-               value="gkassulke@example.org"
+               value="claire.armstrong@example.net"
                data-component="body">
     <br>
-<p>Example: <code>gkassulke@example.org</code></p>
+<p>Example: <code>claire.armstrong@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -596,10 +596,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-login"
-               value="r6.I6*pFQk)^}"
+               value="y}R4rRA<o~.N/JJ+r="
                data-component="body">
     <br>
-<p>user password. Example: <code>r6.I6*pFQk)^}</code></p>
+<p>user password. Example: <code>y}R4rRA&lt;o~.N/JJ+r=</code></p>
         </div>
         </form>
 
@@ -616,14 +616,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/send/otp/qui" \
+    "http://127.0.0.1/api/send/otp/voluptatem" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/send/otp/qui"
+    "http://127.0.0.1/api/send/otp/voluptatem"
 );
 
 const headers = {
@@ -716,10 +716,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-send-otp--number-"
-               value="qui"
+               value="voluptatem"
                data-component="url">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>voluptatem</code></p>
             </div>
                     </form>
 
@@ -736,14 +736,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/verify/otp/est/ea" \
+    "http://127.0.0.1/api/verify/otp/doloremque/fugiat" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/verify/otp/est/ea"
+    "http://127.0.0.1/api/verify/otp/doloremque/fugiat"
 );
 
 const headers = {
@@ -836,10 +836,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-verify-otp--number---otp-"
-               value="est"
+               value="doloremque"
                data-component="url">
     <br>
-<p>Example: <code>est</code></p>
+<p>Example: <code>doloremque</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>otp</code></b>&nbsp;&nbsp;
@@ -847,10 +847,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="otp"                data-endpoint="POSTapi-verify-otp--number---otp-"
-               value="ea"
+               value="fugiat"
                data-component="url">
     <br>
-<p>Example: <code>ea</code></p>
+<p>Example: <code>fugiat</code></p>
             </div>
                     </form>
 
@@ -871,9 +871,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"est\",
-    \"password\": \"]HMvk~\",
-    \"password_confirmation\": \"esse\"
+    \"phone_number\": \"et\",
+    \"password\": \"#w6VHh#\\\"U:Qaf@L39=M\",
+    \"password_confirmation\": \"ut\"
 }"
 </code></pre></div>
 
@@ -889,9 +889,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "est",
-    "password": "]HMvk~",
-    "password_confirmation": "esse"
+    "phone_number": "et",
+    "password": "#w6VHh#\"U:Qaf@L39=M",
+    "password_confirmation": "ut"
 };
 
 fetch(url, {
@@ -980,10 +980,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-reset-password"
-               value="est"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>est</code></p>
+<p>Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -991,10 +991,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-reset-password"
-               value="]HMvk~"
+               value="#w6VHh#"U:Qaf@L39=M"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>]HMvk~</code></p>
+<p>Must be at least 6 characters. Example: <code>#w6VHh#"U:Qaf@L39=M</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -1002,10 +1002,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password_confirmation"                data-endpoint="POSTapi-reset-password"
-               value="esse"
+               value="ut"
                data-component="body">
     <br>
-<p>Example: <code>esse</code></p>
+<p>Example: <code>ut</code></p>
         </div>
         </form>
 
@@ -1030,10 +1030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customerID\": \"in\",
-    \"latitude\": \"qui\",
-    \"longitude\": \"aspernatur\",
-    \"user_code\": \"ex\"
+    \"customerID\": \"et\",
+    \"latitude\": \"porro\",
+    \"longitude\": \"aut\",
+    \"user_code\": \"impedit\"
 }"
 </code></pre></div>
 
@@ -1049,10 +1049,10 @@ const headers = {
 };
 
 let body = {
-    "customerID": "in",
-    "latitude": "qui",
-    "longitude": "aspernatur",
-    "user_code": "ex"
+    "customerID": "et",
+    "latitude": "porro",
+    "longitude": "aut",
+    "user_code": "impedit"
 };
 
 fetch(url, {
@@ -1141,10 +1141,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="POSTapi-customer-checkin-session"
-               value="in"
+               value="et"
                data-component="body">
     <br>
-<p>as Customer ID Example: <code>in</code></p>
+<p>as Customer ID Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>latitude</code></b>&nbsp;&nbsp;
@@ -1152,10 +1152,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="latitude"                data-endpoint="POSTapi-customer-checkin-session"
-               value="qui"
+               value="porro"
                data-component="body">
     <br>
-<p>as current latitude Example: <code>qui</code></p>
+<p>as current latitude Example: <code>porro</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>longitude</code></b>&nbsp;&nbsp;
@@ -1163,10 +1163,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="longitude"                data-endpoint="POSTapi-customer-checkin-session"
-               value="aspernatur"
+               value="aut"
                data-component="body">
     <br>
-<p>as current longitude Example: <code>aspernatur</code></p>
+<p>as current longitude Example: <code>aut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_code</code></b>&nbsp;&nbsp;
@@ -1174,10 +1174,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-customer-checkin-session"
-               value="ex"
+               value="impedit"
                data-component="body">
     <br>
-<p>user code Example: <code>ex</code></p>
+<p>user code Example: <code>impedit</code></p>
         </div>
         </form>
 
@@ -1194,14 +1194,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customer/aut/checkin" \
+    --get "http://127.0.0.1/api/customer/quas/checkin" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/aut/checkin"
+    "http://127.0.0.1/api/customer/quas/checkin"
 );
 
 const headers = {
@@ -1772,10 +1772,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="CustomerCode"                data-endpoint="GETapi-customer--CustomerCode--checkin"
-               value="aut"
+               value="quas"
                data-component="url">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>quas</code></p>
             </div>
                     </form>
 
@@ -1792,14 +1792,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/quia/stock" \
+    --get "http://127.0.0.1/api/checkin/rerum/stock" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/quia/stock"
+    "http://127.0.0.1/api/checkin/rerum/stock"
 );
 
 const headers = {
@@ -1912,10 +1912,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--stock"
-               value="quia"
+               value="rerum"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>rerum</code></p>
             </div>
                     </form>
 
@@ -1932,14 +1932,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/temporibus/out" \
+    --get "http://127.0.0.1/api/checkin/totam/out" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/temporibus/out"
+    "http://127.0.0.1/api/checkin/totam/out"
 );
 
 const headers = {
@@ -2503,10 +2503,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--out"
-               value="temporibus"
+               value="totam"
                data-component="url">
     <br>
-<p>Example: <code>temporibus</code></p>
+<p>Example: <code>totam</code></p>
             </div>
                     </form>
 
@@ -2523,19 +2523,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/veniam/cart" \
+    --get "http://127.0.0.1/api/checkin/natus/cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"productID\": \"vel\",
-    \"qty\": \"natus\"
+    \"productID\": \"id\",
+    \"qty\": \"est\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/veniam/cart"
+    "http://127.0.0.1/api/checkin/natus/cart"
 );
 
 const headers = {
@@ -2544,8 +2544,8 @@ const headers = {
 };
 
 let body = {
-    "productID": "vel",
-    "qty": "natus"
+    "productID": "id",
+    "qty": "est"
 };
 
 fetch(url, {
@@ -2654,10 +2654,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="veniam"
+               value="natus"
                data-component="url">
     <br>
-<p>Example: <code>veniam</code></p>
+<p>Example: <code>natus</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2666,10 +2666,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="productID"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="vel"
+               value="id"
                data-component="body">
     <br>
-<p>as product ID Example: <code>vel</code></p>
+<p>as product ID Example: <code>id</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>qty</code></b>&nbsp;&nbsp;
@@ -2677,10 +2677,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="qty"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="natus"
+               value="est"
                data-component="body">
     <br>
-<p>as quantity Example: <code>natus</code></p>
+<p>as quantity Example: <code>est</code></p>
         </div>
         </form>
 
@@ -2697,19 +2697,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/cumque/order-save" \
+    "http://127.0.0.1/api/checkin/iste/order-save" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"dolorem\",
-    \"reasons_partial_delivery\": \"dignissimos\"
+    \"order_type\": \"aut\",
+    \"reasons_partial_delivery\": \"sit\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/cumque/order-save"
+    "http://127.0.0.1/api/checkin/iste/order-save"
 );
 
 const headers = {
@@ -2718,8 +2718,8 @@ const headers = {
 };
 
 let body = {
-    "order_type": "dolorem",
-    "reasons_partial_delivery": "dignissimos"
+    "order_type": "aut",
+    "reasons_partial_delivery": "sit"
 };
 
 fetch(url, {
@@ -2808,10 +2808,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="cumque"
+               value="iste"
                data-component="url">
     <br>
-<p>Example: <code>cumque</code></p>
+<p>Example: <code>iste</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2820,10 +2820,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="order_type"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="dolorem"
+               value="aut"
                data-component="body">
     <br>
-<p>as order type [Van sale or Pre order] Example: <code>dolorem</code></p>
+<p>as order type [Van sale or Pre order] Example: <code>aut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reasons_partial_delivery</code></b>&nbsp;&nbsp;
@@ -2831,10 +2831,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="reasons_partial_delivery"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="dignissimos"
+               value="sit"
                data-component="body">
     <br>
-<p>as reasons_partial_delivery Example: <code>dignissimos</code></p>
+<p>as reasons_partial_delivery Example: <code>sit</code></p>
         </div>
         </form>
 
@@ -2851,14 +2851,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/vel/cart/1/delete" \
+    --get "http://127.0.0.1/api/checkin/labore/cart/1/delete" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/vel/cart/1/delete"
+    "http://127.0.0.1/api/checkin/labore/cart/1/delete"
 );
 
 const headers = {
@@ -2970,10 +2970,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--cart--id--delete"
-               value="vel"
+               value="labore"
                data-component="url">
     <br>
-<p>Example: <code>vel</code></p>
+<p>Example: <code>labore</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -3001,14 +3001,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/voluptatem/orders" \
+    --get "http://127.0.0.1/api/checkin/aut/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/voluptatem/orders"
+    "http://127.0.0.1/api/checkin/aut/orders"
 );
 
 const headers = {
@@ -3579,10 +3579,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--orders"
-               value="voluptatem"
+               value="aut"
                data-component="url">
     <br>
-<p>Example: <code>voluptatem</code></p>
+<p>Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -3599,18 +3599,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/voluptate/order/edit/reason" \
+    "http://127.0.0.1/api/checkin/at/order/edit/reason" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_id\": 12
+    \"order_id\": 18
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/voluptate/order/edit/reason"
+    "http://127.0.0.1/api/checkin/at/order/edit/reason"
 );
 
 const headers = {
@@ -3619,7 +3619,7 @@ const headers = {
 };
 
 let body = {
-    "order_id": 12
+    "order_id": 18
 };
 
 fetch(url, {
@@ -3708,10 +3708,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order-edit-reason"
-               value="voluptate"
+               value="at"
                data-component="url">
     <br>
-<p>Example: <code>voluptate</code></p>
+<p>Example: <code>at</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3720,10 +3720,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="order_id"                data-endpoint="POSTapi-checkin--checkinCode--order-edit-reason"
-               value="12"
+               value="18"
                data-component="body">
     <br>
-<p>as order_id Example: <code>12</code></p>
+<p>as order_id Example: <code>18</code></p>
         </div>
         </form>
 
@@ -3740,14 +3740,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/consectetur/order/dolores/edit" \
+    --get "http://127.0.0.1/api/checkin/numquam/order/aut/edit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/consectetur/order/dolores/edit"
+    "http://127.0.0.1/api/checkin/numquam/order/aut/edit"
 );
 
 const headers = {
@@ -4318,10 +4318,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--edit"
-               value="consectetur"
+               value="numquam"
                data-component="url">
     <br>
-<p>Example: <code>consectetur</code></p>
+<p>Example: <code>numquam</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -4329,10 +4329,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--edit"
-               value="dolores"
+               value="aut"
                data-component="url">
     <br>
-<p>Example: <code>dolores</code></p>
+<p>Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -4349,19 +4349,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/enim/order/magnam/update" \
+    "http://127.0.0.1/api/checkin/nisi/order/tenetur/update" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"qty\": \"in\",
-    \"orderID\": \"ut\"
+    \"qty\": \"qui\",
+    \"orderID\": \"dolorem\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/enim/order/magnam/update"
+    "http://127.0.0.1/api/checkin/nisi/order/tenetur/update"
 );
 
 const headers = {
@@ -4370,8 +4370,8 @@ const headers = {
 };
 
 let body = {
-    "qty": "in",
-    "orderID": "ut"
+    "qty": "qui",
+    "orderID": "dolorem"
 };
 
 fetch(url, {
@@ -4460,10 +4460,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="enim"
+               value="nisi"
                data-component="url">
     <br>
-<p>Example: <code>enim</code></p>
+<p>Example: <code>nisi</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>itemID</code></b>&nbsp;&nbsp;
@@ -4471,10 +4471,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="itemID"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="magnam"
+               value="tenetur"
                data-component="url">
     <br>
-<p>Example: <code>magnam</code></p>
+<p>Example: <code>tenetur</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4483,10 +4483,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="qty"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="in"
+               value="qui"
                data-component="body">
     <br>
-<p>as qty Example: <code>in</code></p>
+<p>as qty Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -4494,10 +4494,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="ut"
+               value="dolorem"
                data-component="body">
     <br>
-<p>as orderID Example: <code>ut</code></p>
+<p>as orderID Example: <code>dolorem</code></p>
         </div>
         </form>
 
@@ -4514,14 +4514,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/vitae/order/minus/delete/item" \
+    --get "http://127.0.0.1/api/checkin/qui/order/neque/delete/item" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/vitae/order/minus/delete/item"
+    "http://127.0.0.1/api/checkin/qui/order/neque/delete/item"
 );
 
 const headers = {
@@ -5085,10 +5085,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--itemID--delete-item"
-               value="vitae"
+               value="qui"
                data-component="url">
     <br>
-<p>Example: <code>vitae</code></p>
+<p>Example: <code>qui</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>itemID</code></b>&nbsp;&nbsp;
@@ -5096,10 +5096,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="itemID"                data-endpoint="GETapi-checkin--checkinCode--order--itemID--delete-item"
-               value="minus"
+               value="neque"
                data-component="url">
     <br>
-<p>Example: <code>minus</code></p>
+<p>Example: <code>neque</code></p>
             </div>
                     </form>
 
@@ -5120,7 +5120,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_id\": 19
+    \"order_id\": 5
 }"
 </code></pre></div>
 
@@ -5136,7 +5136,7 @@ const headers = {
 };
 
 let body = {
-    "order_id": 19
+    "order_id": 5
 };
 
 fetch(url, {
@@ -5225,10 +5225,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="order_id"                data-endpoint="POSTapi-checkin-checkinCode-cancel"
-               value="19"
+               value="5"
                data-component="body">
     <br>
-<p>as order_id Example: <code>19</code></p>
+<p>as order_id Example: <code>5</code></p>
         </div>
         </form>
 
@@ -5245,14 +5245,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/fugiat/order/velit/details" \
+    --get "http://127.0.0.1/api/checkin/libero/order/iure/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/fugiat/order/velit/details"
+    "http://127.0.0.1/api/checkin/libero/order/iure/details"
 );
 
 const headers = {
@@ -5823,10 +5823,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--details"
-               value="fugiat"
+               value="libero"
                data-component="url">
     <br>
-<p>Example: <code>fugiat</code></p>
+<p>Example: <code>libero</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -5834,10 +5834,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--details"
-               value="velit"
+               value="iure"
                data-component="url">
     <br>
-<p>Example: <code>velit</code></p>
+<p>Example: <code>iure</code></p>
             </div>
                     </form>
 
@@ -5858,18 +5858,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/distinctio?page_size=10" \
+    --get "http://127.0.0.1/api/customers/saepe?page_size=17" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/distinctio"
+    "http://127.0.0.1/api/customers/saepe"
 );
 
 const params = {
-    "page_size": "10",
+    "page_size": "17",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -5980,10 +5980,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-customers--businessCode-"
-               value="distinctio"
+               value="saepe"
                data-component="url">
     <br>
-<p>Example: <code>distinctio</code></p>
+<p>Example: <code>saepe</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -5992,10 +5992,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="page_size"                data-endpoint="GETapi-customers--businessCode-"
-               value="10"
+               value="17"
                data-component="query">
     <br>
-<p>size per page. Default to 20 Example: <code>10</code></p>
+<p>size per page. Default to 20 Example: <code>17</code></p>
             </div>
                 </form>
 
@@ -6015,16 +6015,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/customers/add-customer" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "customer_name=repudiandae" \
-    --form "contact_person=consequatur" \
-    --form "business_code=iure" \
-    --form "created_by=laboriosam" \
-    --form "phone_number=velit" \
-    --form "latitude=voluptates" \
-    --form "longitude=dolorem" \
-    --form "email=lbosco@example.com" \
+    --form "customer_name=laboriosam" \
+    --form "contact_person=et" \
+    --form "business_code=deleniti" \
+    --form "created_by=sed" \
+    --form "phone_number=qui" \
+    --form "latitude=modi" \
+    --form "longitude=ut" \
+    --form "email=schultz.baylee@example.com" \
     --form "address=natus" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpA0F8.tmp" </code></pre></div>
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php8B88.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6038,14 +6038,14 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('customer_name', 'repudiandae');
-body.append('contact_person', 'consequatur');
-body.append('business_code', 'iure');
-body.append('created_by', 'laboriosam');
-body.append('phone_number', 'velit');
-body.append('latitude', 'voluptates');
-body.append('longitude', 'dolorem');
-body.append('email', 'lbosco@example.com');
+body.append('customer_name', 'laboriosam');
+body.append('contact_person', 'et');
+body.append('business_code', 'deleniti');
+body.append('created_by', 'sed');
+body.append('phone_number', 'qui');
+body.append('latitude', 'modi');
+body.append('longitude', 'ut');
+body.append('email', 'schultz.baylee@example.com');
 body.append('address', 'natus');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
@@ -6135,10 +6135,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customer_name"                data-endpoint="POSTapi-customers-add-customer"
-               value="repudiandae"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>as outlet name Example: <code>repudiandae</code></p>
+<p>as outlet name Example: <code>laboriosam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact_person</code></b>&nbsp;&nbsp;
@@ -6146,10 +6146,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="contact_person"                data-endpoint="POSTapi-customers-add-customer"
-               value="consequatur"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>consequatur</code></p>
+<p>Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>business_code</code></b>&nbsp;&nbsp;
@@ -6157,10 +6157,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="business_code"                data-endpoint="POSTapi-customers-add-customer"
-               value="iure"
+               value="deleniti"
                data-component="body">
     <br>
-<p>Example: <code>iure</code></p>
+<p>Example: <code>deleniti</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>created_by</code></b>&nbsp;&nbsp;
@@ -6168,10 +6168,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="created_by"                data-endpoint="POSTapi-customers-add-customer"
-               value="laboriosam"
+               value="sed"
                data-component="body">
     <br>
-<p>user code Example: <code>laboriosam</code></p>
+<p>user code Example: <code>sed</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -6179,10 +6179,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customers-add-customer"
-               value="velit"
+               value="qui"
                data-component="body">
     <br>
-<p>Example: <code>velit</code></p>
+<p>Example: <code>qui</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>latitude</code></b>&nbsp;&nbsp;
@@ -6190,10 +6190,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="latitude"                data-endpoint="POSTapi-customers-add-customer"
-               value="voluptates"
+               value="modi"
                data-component="body">
     <br>
-<p>Example: <code>voluptates</code></p>
+<p>Example: <code>modi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>longitude</code></b>&nbsp;&nbsp;
@@ -6201,10 +6201,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="longitude"                data-endpoint="POSTapi-customers-add-customer"
-               value="dolorem"
+               value="ut"
                data-component="body">
     <br>
-<p>Example: <code>dolorem</code></p>
+<p>Example: <code>ut</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -6215,7 +6215,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpA0F8.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php8B88.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6223,10 +6223,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-customers-add-customer"
-               value="lbosco@example.com"
+               value="schultz.baylee@example.com"
                data-component="body">
     <br>
-<p>Example: <code>lbosco@example.com</code></p>
+<p>Example: <code>schultz.baylee@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -6362,14 +6362,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/libero/details" \
+    --get "http://127.0.0.1/api/customers/eum/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/libero/details"
+    "http://127.0.0.1/api/customers/eum/details"
 );
 
 const headers = {
@@ -6482,10 +6482,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="code"                data-endpoint="GETapi-customers--code--details"
-               value="libero"
+               value="eum"
                data-component="url">
     <br>
-<p>Example: <code>libero</code></p>
+<p>Example: <code>eum</code></p>
             </div>
                     </form>
 
@@ -6502,14 +6502,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/ut/omnis/deliveries" \
+    --get "http://127.0.0.1/api/customers/voluptas/minus/deliveries" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/ut/omnis/deliveries"
+    "http://127.0.0.1/api/customers/voluptas/minus/deliveries"
 );
 
 const headers = {
@@ -6623,10 +6623,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID---businessCode--deliveries"
-               value="ut"
+               value="voluptas"
                data-component="url">
     <br>
-<p>Example: <code>ut</code></p>
+<p>Example: <code>voluptas</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>businessCode</code></b>&nbsp;&nbsp;
@@ -6634,10 +6634,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-customers--customerID---businessCode--deliveries"
-               value="omnis"
+               value="minus"
                data-component="url">
     <br>
-<p>Example: <code>omnis</code></p>
+<p>Example: <code>minus</code></p>
             </div>
                     </form>
 
@@ -6755,7 +6755,7 @@ access-control-allow-origin: *
         },
         {
             &quot;file&quot;: &quot;C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\app\\Http\\Controllers\\Api\\customersController.php&quot;,
-            &quot;line&quot;: 284,
+            &quot;line&quot;: 296,
             &quot;function&quot;: &quot;get&quot;,
             &quot;class&quot;: &quot;Illuminate\\Database\\Eloquent\\Builder&quot;,
             &quot;type&quot;: &quot;-&gt;&quot;
@@ -7308,14 +7308,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/quam/orders" \
+    --get "http://127.0.0.1/api/customers/ipsam/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/quam/orders"
+    "http://127.0.0.1/api/customers/ipsam/orders"
 );
 
 const headers = {
@@ -7429,10 +7429,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID--orders"
-               value="quam"
+               value="ipsam"
                data-component="url">
     <br>
-<p>Example: <code>quam</code></p>
+<p>Example: <code>ipsam</code></p>
             </div>
                     </form>
 
@@ -7449,14 +7449,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/order/voluptatem/details" \
+    --get "http://127.0.0.1/api/customers/order/quia/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/order/voluptatem/details"
+    "http://127.0.0.1/api/customers/order/quia/details"
 );
 
 const headers = {
@@ -7573,10 +7573,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderCode"                data-endpoint="GETapi-customers-order--orderCode--details"
-               value="voluptatem"
+               value="quia"
                data-component="url">
     <br>
-<p>Example: <code>voluptatem</code></p>
+<p>Example: <code>quia</code></p>
             </div>
                     </form>
 
@@ -7593,14 +7593,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/quia/new-order" \
+    --get "http://127.0.0.1/api/customers/ipsam/new-order" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/quia/new-order"
+    "http://127.0.0.1/api/customers/ipsam/new-order"
 );
 
 const headers = {
@@ -7714,10 +7714,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID--new-order"
-               value="quia"
+               value="ipsam"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>ipsam</code></p>
             </div>
                     </form>
 
@@ -7738,14 +7738,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/deliveries/2/voluptatum" \
+    --get "http://127.0.0.1/api/deliveries/2/ut" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/deliveries/2/voluptatum"
+    "http://127.0.0.1/api/deliveries/2/ut"
 );
 
 const headers = {
@@ -7869,10 +7869,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="userCode"                data-endpoint="GETapi-deliveries--businessCode---userCode-"
-               value="voluptatum"
+               value="ut"
                data-component="url">
     <br>
-<p>Example: <code>voluptatum</code></p>
+<p>Example: <code>ut</code></p>
             </div>
                     </form>
 
@@ -7889,14 +7889,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/delivery/2/quia/details" \
+    --get "http://127.0.0.1/api/delivery/2/nostrum/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/delivery/2/quia/details"
+    "http://127.0.0.1/api/delivery/2/nostrum/details"
 );
 
 const headers = {
@@ -8478,10 +8478,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-delivery--code---businessCode--details"
-               value="quia"
+               value="nostrum"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>nostrum</code></p>
             </div>
                     </form>
 
@@ -8718,14 +8718,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/products/natus" \
+    --get "http://127.0.0.1/api/products/vel" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/products/natus"
+    "http://127.0.0.1/api/products/vel"
 );
 
 const headers = {
@@ -8834,10 +8834,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-products--businessCode-"
-               value="natus"
+               value="vel"
                data-component="url">
     <br>
-<p>Example: <code>natus</code></p>
+<p>Example: <code>vel</code></p>
             </div>
                     </form>
 
@@ -8858,14 +8858,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/products/categories/odio" \
+    --get "http://127.0.0.1/api/products/categories/magnam" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/products/categories/odio"
+    "http://127.0.0.1/api/products/categories/magnam"
 );
 
 const headers = {
@@ -8978,10 +8978,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-products-categories--businessCode-"
-               value="odio"
+               value="magnam"
                data-component="url">
     <br>
-<p>Example: <code>odio</code></p>
+<p>Example: <code>magnam</code></p>
             </div>
                     </form>
 
@@ -9690,6 +9690,7 @@ access-control-allow-origin: *
                         &quot;product_code&quot;: &quot;wRJ08lZxI4HKL1Pnd4yF&quot;,
                         &quot;buying_price&quot;: &quot;30&quot;,
                         &quot;selling_price&quot;: &quot;656&quot;,
+                        &quot;distributor_price&quot;: null,
                         &quot;offer_price&quot;: &quot;30&quot;,
                         &quot;setup_fee&quot;: 656,
                         &quot;taxID&quot;: 1,
@@ -9701,6 +9702,230 @@ access-control-allow-origin: *
                         &quot;updated_by&quot;: null,
                         &quot;created_at&quot;: &quot;2023-05-30T11:55:34.000000Z&quot;,
                         &quot;updated_at&quot;: &quot;2023-05-30T11:55:34.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 69,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;testing 00121&quot;,
+                    &quot;sku_code&quot;: &quot;YaycJaSl2CUViSJIyEti&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;testing-00121&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Accaricide&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/ZDgw9jequ5m7NaiADlsc5Z0vL8MJQceCv7PKtirU.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T09:23:04.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T09:23:04.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 69,
+                        &quot;productID&quot;: 69,
+                        &quot;product_code&quot;: &quot;87QzJv13Fk3BdDQusYwv&quot;,
+                        &quot;buying_price&quot;: &quot;234&quot;,
+                        &quot;selling_price&quot;: &quot;250&quot;,
+                        &quot;distributor_price&quot;: 240,
+                        &quot;offer_price&quot;: &quot;234&quot;,
+                        &quot;setup_fee&quot;: 250,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;250&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T09:23:04.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T09:23:04.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 73,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Veda Barr&quot;,
+                    &quot;sku_code&quot;: &quot;cGu2U56LHs4A8kdZGXkE&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;veda-barr&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Accaricide&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/521GCv08uKKWxJvhxVxLvfVpaYZaEN9vCoAIX8J9.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T09:53:07.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T09:53:07.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 73,
+                        &quot;productID&quot;: 73,
+                        &quot;product_code&quot;: &quot;7rIDYfVg8Q395uRNQxYZ&quot;,
+                        &quot;buying_price&quot;: &quot;0&quot;,
+                        &quot;selling_price&quot;: &quot;0&quot;,
+                        &quot;distributor_price&quot;: 0,
+                        &quot;offer_price&quot;: &quot;0&quot;,
+                        &quot;setup_fee&quot;: 0,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;0&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T09:53:07.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T09:53:07.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 74,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;peanut butter&quot;,
+                    &quot;sku_code&quot;: &quot;Sq3bkmLLRoMg9YNHwM1t&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;peanut-butter&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Accaricide&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/OUk4awkIkNyvsFSdyu3h0htvzMl5M41W8Q7CCNWf.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T10:17:08.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T10:17:08.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 74,
+                        &quot;productID&quot;: 74,
+                        &quot;product_code&quot;: &quot;HoIUy7JsndVZFMjd2Rxo&quot;,
+                        &quot;buying_price&quot;: &quot;0&quot;,
+                        &quot;selling_price&quot;: &quot;0&quot;,
+                        &quot;distributor_price&quot;: 0,
+                        &quot;offer_price&quot;: &quot;0&quot;,
+                        &quot;setup_fee&quot;: 0,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;0&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T10:17:08.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T10:17:08.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 75,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;peanut butter&quot;,
+                    &quot;sku_code&quot;: &quot;EACwUP3ELT7RJZ5pqUJs&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;peanut-butter&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Accaricide&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/W3bmzERaskij8y2h3sIQOGXR3f4rMD5r0kzAEgaK.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T10:22:04.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T10:22:04.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 75,
+                        &quot;productID&quot;: 75,
+                        &quot;product_code&quot;: &quot;X2xUDr3UXTXCTkonkTJa&quot;,
+                        &quot;buying_price&quot;: &quot;0&quot;,
+                        &quot;selling_price&quot;: &quot;0&quot;,
+                        &quot;distributor_price&quot;: 0,
+                        &quot;offer_price&quot;: &quot;0&quot;,
+                        &quot;setup_fee&quot;: 0,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;0&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T10:22:04.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T10:22:04.000000Z&quot;
                     }
                 }
             ]
@@ -9715,7 +9940,288 @@ access-control-allow-origin: *
             &quot;updated_by&quot;: null,
             &quot;created_at&quot;: &quot;2023-03-30T12:05:08.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-03-30T12:05:08.000000Z&quot;,
-            &quot;product_information&quot;: []
+            &quot;product_information&quot;: [
+                {
+                    &quot;id&quot;: 72,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Colette Christensen&quot;,
+                    &quot;sku_code&quot;: &quot;j1sfrkRnydQapDywmvp9&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;colette-christensen&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Feeds&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/TDdRZbYEzWXZ9LGNGoDlcXgrUfS82bIDHlYCyddp.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T09:52:20.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T09:52:20.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 72,
+                        &quot;productID&quot;: 72,
+                        &quot;product_code&quot;: &quot;kflRT4BXtFIQwRBuLN1v&quot;,
+                        &quot;buying_price&quot;: &quot;0&quot;,
+                        &quot;selling_price&quot;: &quot;0&quot;,
+                        &quot;distributor_price&quot;: 0,
+                        &quot;offer_price&quot;: &quot;0&quot;,
+                        &quot;setup_fee&quot;: 0,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;0&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T09:52:20.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T09:52:20.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 76,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: null,
+                    &quot;sku_code&quot;: null,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;hollee-nicholson&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Feeds&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/BqJmlsSUHURxW0xShCEfLrGBbbSjsUZueSWa1k6K.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: 5324,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:06:57.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T13:39:10.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 76,
+                        &quot;productID&quot;: 76,
+                        &quot;product_code&quot;: &quot;NjuEfSTFaYNnviCLdtw6&quot;,
+                        &quot;buying_price&quot;: &quot;462&quot;,
+                        &quot;selling_price&quot;: &quot;874&quot;,
+                        &quot;distributor_price&quot;: 504,
+                        &quot;offer_price&quot;: &quot;462&quot;,
+                        &quot;setup_fee&quot;: 874,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;874&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:06:57.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:06:57.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 77,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Hollee Nicholson&quot;,
+                    &quot;sku_code&quot;: &quot;TvyAxWxKe3Q5sZIsAdVd&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;hollee-nicholson&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Feeds&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/aod584lH32yegqarze244GeOhzMP3258GuQgJumL.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:06:58.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:06:58.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 77,
+                        &quot;productID&quot;: 77,
+                        &quot;product_code&quot;: &quot;bUo4vRILa7Z8LySID1r1&quot;,
+                        &quot;buying_price&quot;: &quot;462&quot;,
+                        &quot;selling_price&quot;: &quot;874&quot;,
+                        &quot;distributor_price&quot;: 504,
+                        &quot;offer_price&quot;: &quot;462&quot;,
+                        &quot;setup_fee&quot;: 874,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;874&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:06:58.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:06:58.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 78,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Hollee Nicholson&quot;,
+                    &quot;sku_code&quot;: &quot;2SYMiAQUQnbEiqaLgGrU&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;hollee-nicholson&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Feeds&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/6ESPYODjHBvlNL4mYt3sgWqoh7dX5PQIMCq0komK.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:07:36.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:07:36.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 78,
+                        &quot;productID&quot;: 78,
+                        &quot;product_code&quot;: &quot;wVC3X03IW1WQut0peRxh&quot;,
+                        &quot;buying_price&quot;: &quot;462&quot;,
+                        &quot;selling_price&quot;: &quot;874&quot;,
+                        &quot;distributor_price&quot;: 504,
+                        &quot;offer_price&quot;: &quot;462&quot;,
+                        &quot;setup_fee&quot;: 874,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;874&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:07:36.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:07:36.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 79,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Madonna Pittman&quot;,
+                    &quot;sku_code&quot;: &quot;nwXPBSv0A9pSIJtPkNRm&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;madonna-pittman&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Feeds&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/6zXfguH2ZoYPBmpdxk3GjKlWGYQjHUYBMcDhOmPq.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:12:45.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:12:45.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 79,
+                        &quot;productID&quot;: 79,
+                        &quot;product_code&quot;: &quot;holUdZmtxpA6GcqFfgWd&quot;,
+                        &quot;buying_price&quot;: &quot;400&quot;,
+                        &quot;selling_price&quot;: &quot;600&quot;,
+                        &quot;distributor_price&quot;: 478,
+                        &quot;offer_price&quot;: &quot;400&quot;,
+                        &quot;setup_fee&quot;: 600,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;600&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:12:45.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:12:45.000000Z&quot;
+                    }
+                }
+            ]
         },
         {
             &quot;id&quot;: 3,
@@ -9770,6 +10276,7 @@ access-control-allow-origin: *
                         &quot;product_code&quot;: &quot;A7QnnP2TGtsU68oFGZBR&quot;,
                         &quot;buying_price&quot;: &quot;24&quot;,
                         &quot;selling_price&quot;: &quot;55&quot;,
+                        &quot;distributor_price&quot;: null,
                         &quot;offer_price&quot;: &quot;24&quot;,
                         &quot;setup_fee&quot;: 55,
                         &quot;taxID&quot;: 1,
@@ -9781,6 +10288,230 @@ access-control-allow-origin: *
                         &quot;updated_by&quot;: null,
                         &quot;created_at&quot;: &quot;2023-05-17T15:35:43.000000Z&quot;,
                         &quot;updated_at&quot;: &quot;2023-05-17T15:35:43.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 84,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Alma Barnes&quot;,
+                    &quot;sku_code&quot;: &quot;g6myumT90LTRm5S5BLbD&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;alma-barnes&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Dewormers&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/LN06DEyorQubW6Yo3CaClzDAn8y6o8Vr1BKpYh4q.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:27:34.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:27:34.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 84,
+                        &quot;productID&quot;: 84,
+                        &quot;product_code&quot;: &quot;wFaqB3YOUiV0LpEpXgva&quot;,
+                        &quot;buying_price&quot;: &quot;295&quot;,
+                        &quot;selling_price&quot;: &quot;625&quot;,
+                        &quot;distributor_price&quot;: 288,
+                        &quot;offer_price&quot;: &quot;295&quot;,
+                        &quot;setup_fee&quot;: 625,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;625&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:27:34.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:27:34.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 85,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Cameron Walker&quot;,
+                    &quot;sku_code&quot;: &quot;rWuVO4RJu3tt1nGw2iVe&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;cameron-walker&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Dewormers&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/ri5UcngkpNGFdV2IIhCMjFVuFoHsheOzD2UFCaMo.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:36:27.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:36:27.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 85,
+                        &quot;productID&quot;: 85,
+                        &quot;product_code&quot;: &quot;sXSqWU25v9zcEBnNCGs0&quot;,
+                        &quot;buying_price&quot;: &quot;938&quot;,
+                        &quot;selling_price&quot;: &quot;570&quot;,
+                        &quot;distributor_price&quot;: 114,
+                        &quot;offer_price&quot;: &quot;938&quot;,
+                        &quot;setup_fee&quot;: 570,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;570&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:36:27.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:36:27.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 88,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Dexter Whitney&quot;,
+                    &quot;sku_code&quot;: &quot;SNoD8DZdwgODjar5vNhf&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;dexter-whitney&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Dewormers&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/uUJiQ4psAWEU486sWVUE2ehUEHILMJ3worE024jd.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:42:47.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:42:47.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 88,
+                        &quot;productID&quot;: 88,
+                        &quot;product_code&quot;: &quot;nh9P4v9d5ZNMXtLMAwDO&quot;,
+                        &quot;buying_price&quot;: &quot;599&quot;,
+                        &quot;selling_price&quot;: &quot;660&quot;,
+                        &quot;distributor_price&quot;: 670,
+                        &quot;offer_price&quot;: &quot;599&quot;,
+                        &quot;setup_fee&quot;: 660,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;660&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:42:47.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:42:47.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 90,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Felicia Buckley&quot;,
+                    &quot;sku_code&quot;: &quot;JzJMbPfJUt2LCXo8lorJ&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;felicia-buckley&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Dewormers&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/kuL72nX9WMAw9GntkHSqgKqLUNC8LS6ShI7XUcxl.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:51:57.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:51:57.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 90,
+                        &quot;productID&quot;: 90,
+                        &quot;product_code&quot;: &quot;VTMmFN5I2EM5Auaq7a2o&quot;,
+                        &quot;buying_price&quot;: &quot;494&quot;,
+                        &quot;selling_price&quot;: &quot;565&quot;,
+                        &quot;distributor_price&quot;: 516,
+                        &quot;offer_price&quot;: &quot;494&quot;,
+                        &quot;setup_fee&quot;: 565,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;565&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:51:57.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:51:57.000000Z&quot;
                     }
                 }
             ]
@@ -9795,7 +10526,344 @@ access-control-allow-origin: *
             &quot;updated_by&quot;: null,
             &quot;created_at&quot;: &quot;2023-03-30T12:05:31.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-03-30T12:05:31.000000Z&quot;,
-            &quot;product_information&quot;: []
+            &quot;product_information&quot;: [
+                {
+                    &quot;id&quot;: 80,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Amber Raymond&quot;,
+                    &quot;sku_code&quot;: &quot;fFZgUyITMNyp9KYvrZQ2&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;amber-raymond&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/LuQEkBpKQCXvLabyqWRXZrfxuGNmuwYT9mbAQCKY.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:13:46.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:13:46.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 80,
+                        &quot;productID&quot;: 80,
+                        &quot;product_code&quot;: &quot;Um9Q9WCP7rjTqnbVFDPP&quot;,
+                        &quot;buying_price&quot;: &quot;930&quot;,
+                        &quot;selling_price&quot;: &quot;1200&quot;,
+                        &quot;distributor_price&quot;: 1100,
+                        &quot;offer_price&quot;: &quot;930&quot;,
+                        &quot;setup_fee&quot;: 1200,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;1200&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:13:46.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:13:46.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 81,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Lani Baker&quot;,
+                    &quot;sku_code&quot;: &quot;UPZMiLhUFWQsdSjWLGN8&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;lani-baker&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/UK6KI3ywCQMVRshLg9WXW3yHNIPursahYsaFy4as.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:18:39.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:18:39.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 81,
+                        &quot;productID&quot;: 81,
+                        &quot;product_code&quot;: &quot;dvQ0ny3tUwpgE9tsSHOJ&quot;,
+                        &quot;buying_price&quot;: &quot;834&quot;,
+                        &quot;selling_price&quot;: &quot;1373&quot;,
+                        &quot;distributor_price&quot;: 1145,
+                        &quot;offer_price&quot;: &quot;834&quot;,
+                        &quot;setup_fee&quot;: 1373,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;1373&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:18:39.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:18:39.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 86,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Quinn Barnett&quot;,
+                    &quot;sku_code&quot;: &quot;b18sNxZQvNgtxTQwZOR5&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;quinn-barnett&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/A0G0gveAJdLn3b0RIqIX2u8N4c8vIMioHu2Eabj1.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:38:32.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:38:32.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 86,
+                        &quot;productID&quot;: 86,
+                        &quot;product_code&quot;: &quot;IVW45t9fbThZfSM11SvX&quot;,
+                        &quot;buying_price&quot;: &quot;648&quot;,
+                        &quot;selling_price&quot;: &quot;884&quot;,
+                        &quot;distributor_price&quot;: 737,
+                        &quot;offer_price&quot;: &quot;648&quot;,
+                        &quot;setup_fee&quot;: 884,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;884&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:38:32.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:38:32.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 87,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Nina Rollins&quot;,
+                    &quot;sku_code&quot;: &quot;IcddxyY3PVcRJiN0GXul&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;nina-rollins&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/YJ3oMt53VgsNGyCfgTdpWH2EPzcNSrw365Be6j7d.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:41:16.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:41:16.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 87,
+                        &quot;productID&quot;: 87,
+                        &quot;product_code&quot;: &quot;6DukExhhxspNtIiuSGK4&quot;,
+                        &quot;buying_price&quot;: &quot;566&quot;,
+                        &quot;selling_price&quot;: &quot;872&quot;,
+                        &quot;distributor_price&quot;: 792,
+                        &quot;offer_price&quot;: &quot;566&quot;,
+                        &quot;setup_fee&quot;: 872,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;872&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:41:16.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:41:16.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 89,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Meghan Rosales&quot;,
+                    &quot;sku_code&quot;: &quot;hJ115HRPrq6Guv2OTUQN&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;{\&quot;id\&quot;:154,\&quot;business_code\&quot;:\&quot;Qx4FstqLJfHwf3WA\&quot;,\&quot;warehouse_code\&quot;:\&quot;8888CXXCCX\&quot;,\&quot;name\&quot;:\&quot;testing 002\&quot;,\&quot;country\&quot;:\&quot;Kenya\&quot;,\&quot;city\&quot;:null,\&quot;location\&quot;:null,\&quot;phone_number\&quot;:\&quot;0\&quot;,\&quot;email\&quot;:\&quot;\&quot;,\&quot;longitude\&quot;:null,\&quot;latitude\&quot;:null,\&quot;status\&quot;:\&quot;Active\&quot;,\&quot;is_main\&quot;:null,\&quot;created_by\&quot;:\&quot;532&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;meghan-rosales&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/yycTr0cvshu9AOWO7593v32cJMlKsyIYnWNdJQYi.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:49:01.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:49:01.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 89,
+                        &quot;productID&quot;: 89,
+                        &quot;product_code&quot;: &quot;L9uyjbsXUJSytvYARtWT&quot;,
+                        &quot;buying_price&quot;: &quot;280&quot;,
+                        &quot;selling_price&quot;: &quot;399&quot;,
+                        &quot;distributor_price&quot;: 324,
+                        &quot;offer_price&quot;: &quot;280&quot;,
+                        &quot;setup_fee&quot;: 399,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;399&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:49:01.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:49:01.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 91,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: null,
+                    &quot;sku_code&quot;: null,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;8888CXXCCX&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;nell-willis&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Udder Hygine&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/z6VLreSxEC4vVbTc7DvcbpTyKaP0FXEZE4WmU264.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: 5324,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:52:46.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T13:38:14.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 91,
+                        &quot;productID&quot;: 91,
+                        &quot;product_code&quot;: &quot;MPS5IG4BXg0jz3FlSY6p&quot;,
+                        &quot;buying_price&quot;: &quot;499&quot;,
+                        &quot;selling_price&quot;: &quot;669&quot;,
+                        &quot;distributor_price&quot;: 512,
+                        &quot;offer_price&quot;: &quot;499&quot;,
+                        &quot;setup_fee&quot;: 669,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;669&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:52:46.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:52:46.000000Z&quot;
+                    }
+                }
+            ]
         },
         {
             &quot;id&quot;: 5,
@@ -9850,6 +10918,7 @@ access-control-allow-origin: *
                         &quot;product_code&quot;: &quot;PCPSIDPVT001&quot;,
                         &quot;buying_price&quot;: &quot;75&quot;,
                         &quot;selling_price&quot;: &quot;60&quot;,
+                        &quot;distributor_price&quot;: null,
                         &quot;offer_price&quot;: &quot;75&quot;,
                         &quot;setup_fee&quot;: 60,
                         &quot;taxID&quot;: 1,
@@ -9905,6 +10974,7 @@ access-control-allow-origin: *
                         &quot;product_code&quot;: &quot;PCPSIDPVT003&quot;,
                         &quot;buying_price&quot;: &quot;535&quot;,
                         &quot;selling_price&quot;: &quot;470&quot;,
+                        &quot;distributor_price&quot;: null,
                         &quot;offer_price&quot;: &quot;535&quot;,
                         &quot;setup_fee&quot;: 470,
                         &quot;taxID&quot;: 1,
@@ -9916,6 +10986,230 @@ access-control-allow-origin: *
                         &quot;updated_by&quot;: null,
                         &quot;created_at&quot;: &quot;2023-03-28T16:55:09.000000Z&quot;,
                         &quot;updated_at&quot;: &quot;2023-03-30T12:13:54.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 70,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Lamar Petty&quot;,
+                    &quot;sku_code&quot;: &quot;qfMvPUwKipXZaKqJwgZc&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;lamar-petty&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Vitamains&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/561IpaU6Pl530vqARfCxND54PdNPqTqhSLuAyQK5.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T09:26:03.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T09:26:03.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 70,
+                        &quot;productID&quot;: 70,
+                        &quot;product_code&quot;: &quot;Geyozh6vn1Wj3EBd1kCe&quot;,
+                        &quot;buying_price&quot;: &quot;903&quot;,
+                        &quot;selling_price&quot;: &quot;970&quot;,
+                        &quot;distributor_price&quot;: 931,
+                        &quot;offer_price&quot;: &quot;903&quot;,
+                        &quot;setup_fee&quot;: 970,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;970&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T09:26:03.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T09:26:03.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 71,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;peanut butter&quot;,
+                    &quot;sku_code&quot;: &quot;npEo15s4n9THwe2wATwx&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;peanut-butter&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Vitamains&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/z1hVAonezSHZBOsM5qOxqtVg5edchxdAzx9ISiH0.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-09T09:40:55.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-09T09:40:55.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 71,
+                        &quot;productID&quot;: 71,
+                        &quot;product_code&quot;: &quot;rAe77Ykekyq44Acp2Dcd&quot;,
+                        &quot;buying_price&quot;: &quot;0&quot;,
+                        &quot;selling_price&quot;: &quot;0&quot;,
+                        &quot;distributor_price&quot;: 0,
+                        &quot;offer_price&quot;: &quot;0&quot;,
+                        &quot;setup_fee&quot;: 0,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;0&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-09T09:40:55.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-09T09:40:55.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 82,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Minerva Callahan&quot;,
+                    &quot;sku_code&quot;: &quot;e6L2iG0BwFAEYUwD9lme&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: null,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;minerva-callahan&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Vitamains&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/f8URPqxx6qem2CznChyzo7mmGxQAI1DlZnvDjPlj.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:21:01.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:21:01.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 82,
+                        &quot;productID&quot;: 82,
+                        &quot;product_code&quot;: &quot;7RQorhEIVjNX2kpATTuf&quot;,
+                        &quot;buying_price&quot;: &quot;389&quot;,
+                        &quot;selling_price&quot;: &quot;638&quot;,
+                        &quot;distributor_price&quot;: 595,
+                        &quot;offer_price&quot;: &quot;389&quot;,
+                        &quot;setup_fee&quot;: 638,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;638&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:21:01.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:21:01.000000Z&quot;
+                    }
+                },
+                {
+                    &quot;id&quot;: 83,
+                    &quot;parentID&quot;: null,
+                    &quot;product_name&quot;: &quot;Kylie Hodges&quot;,
+                    &quot;sku_code&quot;: &quot;KwUkNFqOp4fUNSfNwXX8&quot;,
+                    &quot;brand&quot;: &quot;Sidai&quot;,
+                    &quot;supplierID&quot;: null,
+                    &quot;warehouse_code&quot;: &quot;6urihK1X6jYUtFAPotxF&quot;,
+                    &quot;track_inventory&quot;: &quot;Yes&quot;,
+                    &quot;same_price&quot;: null,
+                    &quot;short_description&quot;: null,
+                    &quot;notification_email&quot;: null,
+                    &quot;url&quot;: &quot;kylie-hodges&quot;,
+                    &quot;description&quot;: null,
+                    &quot;trash&quot;: null,
+                    &quot;attributeID&quot;: null,
+                    &quot;valueID&quot;: null,
+                    &quot;orderable&quot;: null,
+                    &quot;manufacture_code&quot;: null,
+                    &quot;category&quot;: &quot;Vitamains&quot;,
+                    &quot;units&quot;: null,
+                    &quot;measure&quot;: null,
+                    &quot;weight&quot;: null,
+                    &quot;returnable&quot;: null,
+                    &quot;returnable_on_pre_sale_delivery&quot;: null,
+                    &quot;batch_code&quot;: null,
+                    &quot;barcode&quot;: null,
+                    &quot;exclude_on_van_sale&quot;: null,
+                    &quot;image&quot;: &quot;image/9PCD4BIsy2qpmB7BjMH2hLAd0OOAFNV5r2KhiSQy.jpg&quot;,
+                    &quot;created_by&quot;: 5324,
+                    &quot;updated_by&quot;: null,
+                    &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                    &quot;status&quot;: null,
+                    &quot;active&quot;: &quot;Active&quot;,
+                    &quot;created_at&quot;: &quot;2023-06-11T11:23:41.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2023-06-11T11:23:41.000000Z&quot;,
+                    &quot;product_price&quot;: {
+                        &quot;id&quot;: 83,
+                        &quot;productID&quot;: 83,
+                        &quot;product_code&quot;: &quot;kjekR0b1g2NVepEqjXhR&quot;,
+                        &quot;buying_price&quot;: &quot;405&quot;,
+                        &quot;selling_price&quot;: &quot;883&quot;,
+                        &quot;distributor_price&quot;: 789,
+                        &quot;offer_price&quot;: &quot;405&quot;,
+                        &quot;setup_fee&quot;: 883,
+                        &quot;taxID&quot;: 1,
+                        &quot;tax_rate&quot;: &quot;0&quot;,
+                        &quot;branch_id&quot;: null,
+                        &quot;default_price&quot;: &quot;883&quot;,
+                        &quot;business_code&quot;: &quot;Qx4FstqLJfHwf3WA&quot;,
+                        &quot;created_by&quot;: 5324,
+                        &quot;updated_by&quot;: null,
+                        &quot;created_at&quot;: &quot;2023-06-11T11:23:41.000000Z&quot;,
+                        &quot;updated_at&quot;: &quot;2023-06-11T11:23:41.000000Z&quot;
                     }
                 }
             ]
@@ -10851,11 +12145,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/customer/registration" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "customer_name=aut" \
-    --form "phone_number=numquam" \
-    --form "Latitude=facere" \
-    --form "Longitude=neque" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpA04A.tmp" </code></pre></div>
+    --form "customer_name=ipsam" \
+    --form "phone_number=suscipit" \
+    --form "Latitude=sequi" \
+    --form "Longitude=eveniet" \
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php8A6C.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -10869,10 +12163,10 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('customer_name', 'aut');
-body.append('phone_number', 'numquam');
-body.append('Latitude', 'facere');
-body.append('Longitude', 'neque');
+body.append('customer_name', 'ipsam');
+body.append('phone_number', 'suscipit');
+body.append('Latitude', 'sequi');
+body.append('Longitude', 'eveniet');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -10961,10 +12255,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customer_name"                data-endpoint="POSTapi-customer-registration"
-               value="aut"
+               value="ipsam"
                data-component="body">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>ipsam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -10972,10 +12266,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customer-registration"
-               value="numquam"
+               value="suscipit"
                data-component="body">
     <br>
-<p>Example: <code>numquam</code></p>
+<p>Example: <code>suscipit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>Latitude</code></b>&nbsp;&nbsp;
@@ -10983,10 +12277,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="Latitude"                data-endpoint="POSTapi-customer-registration"
-               value="facere"
+               value="sequi"
                data-component="body">
     <br>
-<p>Example: <code>facere</code></p>
+<p>Example: <code>sequi</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>Longitude</code></b>&nbsp;&nbsp;
@@ -10994,10 +12288,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="Longitude"                data-endpoint="POSTapi-customer-registration"
-               value="neque"
+               value="eveniet"
                data-component="body">
     <br>
-<p>Example: <code>neque</code></p>
+<p>Example: <code>eveniet</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -11008,7 +12302,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpA04A.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php8A6C.tmp</code></p>
         </div>
         </form>
 
@@ -11133,14 +12427,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/customer/send/otp/nostrum" \
+    "http://127.0.0.1/api/customer/send/otp/sit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/send/otp/nostrum"
+    "http://127.0.0.1/api/customer/send/otp/sit"
 );
 
 const headers = {
@@ -11233,10 +12527,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-customer-send-otp--number-"
-               value="nostrum"
+               value="sit"
                data-component="url">
     <br>
-<p>Example: <code>nostrum</code></p>
+<p>Example: <code>sit</code></p>
             </div>
                     </form>
 
@@ -11253,14 +12547,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/customer/verify/otp/rerum/eos" \
+    "http://127.0.0.1/api/customer/verify/otp/sint/voluptas" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/verify/otp/rerum/eos"
+    "http://127.0.0.1/api/customer/verify/otp/sint/voluptas"
 );
 
 const headers = {
@@ -11353,10 +12647,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-customer-verify-otp--number---otp-"
-               value="rerum"
+               value="sint"
                data-component="url">
     <br>
-<p>Example: <code>rerum</code></p>
+<p>Example: <code>sint</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>otp</code></b>&nbsp;&nbsp;
@@ -11364,10 +12658,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="otp"                data-endpoint="POSTapi-customer-verify-otp--number---otp-"
-               value="eos"
+               value="voluptas"
                data-component="url">
     <br>
-<p>Example: <code>eos</code></p>
+<p>Example: <code>voluptas</code></p>
             </div>
                     </form>
 
@@ -11388,9 +12682,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"amet\",
-    \"password\": \"}\'~{eX4uE\",
-    \"password_confirmation\": \"mollitia\"
+    \"phone_number\": \"voluptas\",
+    \"password\": \"1%G]T2KK&amp;yV*uH%MzR9\",
+    \"password_confirmation\": \"illum\"
 }"
 </code></pre></div>
 
@@ -11406,9 +12700,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "amet",
-    "password": "}'~{eX4uE",
-    "password_confirmation": "mollitia"
+    "phone_number": "voluptas",
+    "password": "1%G]T2KK&amp;yV*uH%MzR9",
+    "password_confirmation": "illum"
 };
 
 fetch(url, {
@@ -11497,10 +12791,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customer-reset-password"
-               value="amet"
+               value="voluptas"
                data-component="body">
     <br>
-<p>Example: <code>amet</code></p>
+<p>Example: <code>voluptas</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -11508,10 +12802,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-customer-reset-password"
-               value="}'~{eX4uE"
+               value="1%G]T2KK&yV*uH%MzR9"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>}'~{eX4uE</code></p>
+<p>Must be at least 6 characters. Example: <code>1%G]T2KK&amp;yV*uH%MzR9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -11519,10 +12813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password_confirmation"                data-endpoint="POSTapi-customer-reset-password"
-               value="mollitia"
+               value="illum"
                data-component="body">
     <br>
-<p>Example: <code>mollitia</code></p>
+<p>Example: <code>illum</code></p>
         </div>
         </form>
 
@@ -12467,14 +13761,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/partial/delivery/non" \
+    "http://127.0.0.1/api/partial/delivery/eius" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/partial/delivery/non"
+    "http://127.0.0.1/api/partial/delivery/eius"
 );
 
 const headers = {
@@ -12567,10 +13861,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-partial-delivery--delivery_code-"
-               value="non"
+               value="eius"
                data-component="url">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>eius</code></p>
             </div>
                     </form>
 
@@ -12587,14 +13881,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/full/delivery/eius" \
+    "http://127.0.0.1/api/full/delivery/accusamus" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/full/delivery/eius"
+    "http://127.0.0.1/api/full/delivery/accusamus"
 );
 
 const headers = {
@@ -12687,10 +13981,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-full-delivery--delivery_code-"
-               value="eius"
+               value="accusamus"
                data-component="url">
     <br>
-<p>Example: <code>eius</code></p>
+<p>Example: <code>accusamus</code></p>
             </div>
                     </form>
 
@@ -12707,14 +14001,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/edit/delivery/dolores" \
+    "http://127.0.0.1/api/edit/delivery/eius" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/edit/delivery/dolores"
+    "http://127.0.0.1/api/edit/delivery/eius"
 );
 
 const headers = {
@@ -12807,10 +14101,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-edit-delivery--delivery_code-"
-               value="dolores"
+               value="eius"
                data-component="url">
     <br>
-<p>Example: <code>dolores</code></p>
+<p>Example: <code>eius</code></p>
             </div>
                     </form>
 
@@ -12827,14 +14121,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/cancel/delivery/ut" \
+    "http://127.0.0.1/api/cancel/delivery/inventore" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/cancel/delivery/ut"
+    "http://127.0.0.1/api/cancel/delivery/inventore"
 );
 
 const headers = {
@@ -12927,10 +14221,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-cancel-delivery--delivery_code-"
-               value="ut"
+               value="inventore"
                data-component="url">
     <br>
-<p>Example: <code>ut</code></p>
+<p>Example: <code>inventore</code></p>
             </div>
                     </form>
 
@@ -12947,14 +14241,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customer/comments/cupiditate" \
+    --get "http://127.0.0.1/api/customer/comments/cumque" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/comments/cupiditate"
+    "http://127.0.0.1/api/customer/comments/cumque"
 );
 
 const headers = {
@@ -13063,10 +14357,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="id"                data-endpoint="GETapi-customer-comments--id-"
-               value="cupiditate"
+               value="cumque"
                data-component="url">
     <br>
-<p>The ID of the comment. Example: <code>cupiditate</code></p>
+<p>The ID of the comment. Example: <code>cumque</code></p>
             </div>
                     </form>
 
@@ -13087,9 +14381,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customers_id\": \"ducimus\",
-    \"date\": \"2023-06-07T16:32:15\",
-    \"comment\": \"iure\"
+    \"customers_id\": \"tempora\",
+    \"date\": \"2023-06-11T19:28:38\",
+    \"comment\": \"rerum\"
 }"
 </code></pre></div>
 
@@ -13105,9 +14399,9 @@ const headers = {
 };
 
 let body = {
-    "customers_id": "ducimus",
-    "date": "2023-06-07T16:32:15",
-    "comment": "iure"
+    "customers_id": "tempora",
+    "date": "2023-06-11T19:28:38",
+    "comment": "rerum"
 };
 
 fetch(url, {
@@ -13196,10 +14490,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customers_id"                data-endpoint="POSTapi-customer-comment"
-               value="ducimus"
+               value="tempora"
                data-component="body">
     <br>
-<p>Example: <code>ducimus</code></p>
+<p>Example: <code>tempora</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -13207,10 +14501,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="date"                data-endpoint="POSTapi-customer-comment"
-               value="2023-06-07T16:32:15"
+               value="2023-06-11T19:28:38"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2023-06-07T16:32:15</code></p>
+<p>Must be a valid date. Example: <code>2023-06-11T19:28:38</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -13218,10 +14512,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="comment"                data-endpoint="POSTapi-customer-comment"
-               value="iure"
+               value="rerum"
                data-component="body">
     <br>
-<p>Example: <code>iure</code></p>
+<p>Example: <code>rerum</code></p>
         </div>
         </form>
 
@@ -13238,14 +14532,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/vansales/error/quidem/add-to-cart" \
+    "http://127.0.0.1/api/checkin/vansales/sit/facilis/add-to-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/vansales/error/quidem/add-to-cart"
+    "http://127.0.0.1/api/checkin/vansales/sit/facilis/add-to-cart"
 );
 
 const headers = {
@@ -13338,10 +14632,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin-vansales--checkinCode---random--add-to-cart"
-               value="error"
+               value="sit"
                data-component="url">
     <br>
-<p>Example: <code>error</code></p>
+<p>Example: <code>sit</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>random</code></b>&nbsp;&nbsp;
@@ -13349,10 +14643,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="random"                data-endpoint="POSTapi-checkin-vansales--checkinCode---random--add-to-cart"
-               value="quidem"
+               value="facilis"
                data-component="url">
     <br>
-<p>Example: <code>quidem</code></p>
+<p>Example: <code>facilis</code></p>
             </div>
                     </form>
 
@@ -13369,14 +14663,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/newsales/et/nobis/add-to-cart" \
+    "http://127.0.0.1/api/checkin/newsales/minima/beatae/add-to-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/newsales/et/nobis/add-to-cart"
+    "http://127.0.0.1/api/checkin/newsales/minima/beatae/add-to-cart"
 );
 
 const headers = {
@@ -13469,10 +14763,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin-newsales--checkinCode---random--add-to-cart"
-               value="et"
+               value="minima"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>minima</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>random</code></b>&nbsp;&nbsp;
@@ -13480,10 +14774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="random"                data-endpoint="POSTapi-checkin-newsales--checkinCode---random--add-to-cart"
-               value="nobis"
+               value="beatae"
                data-component="url">
     <br>
-<p>Example: <code>nobis</code></p>
+<p>Example: <code>beatae</code></p>
             </div>
                     </form>
 
@@ -14228,14 +15522,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/architecto" \
+    --get "http://127.0.0.1/api/SalesHistory/est" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/architecto"
+    "http://127.0.0.1/api/SalesHistory/est"
 );
 
 const headers = {
@@ -14344,10 +15638,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory--shopID-"
-               value="architecto"
+               value="est"
                data-component="url">
     <br>
-<p>Example: <code>architecto</code></p>
+<p>Example: <code>est</code></p>
             </div>
                     </form>
 
@@ -14364,14 +15658,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/vansale/quia" \
+    --get "http://127.0.0.1/api/SalesHistory/vansale/dolor" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/vansale/quia"
+    "http://127.0.0.1/api/SalesHistory/vansale/dolor"
 );
 
 const headers = {
@@ -14480,10 +15774,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory-vansale--shopID-"
-               value="quia"
+               value="dolor"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>dolor</code></p>
             </div>
                     </form>
 
@@ -14500,14 +15794,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/newsale/quia" \
+    --get "http://127.0.0.1/api/SalesHistory/newsale/quas" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/newsale/quia"
+    "http://127.0.0.1/api/SalesHistory/newsale/quas"
 );
 
 const headers = {
@@ -14616,10 +15910,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory-newsale--shopID-"
-               value="quia"
+               value="quas"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>quas</code></p>
             </div>
                     </form>
 
@@ -14636,14 +15930,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/scheduleVisit/similique" \
+    "http://127.0.0.1/api/scheduleVisit/odit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/scheduleVisit/similique"
+    "http://127.0.0.1/api/scheduleVisit/odit"
 );
 
 const headers = {
@@ -14736,10 +16030,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="CustomerAccountNumber"                data-endpoint="POSTapi-scheduleVisit--CustomerAccountNumber-"
-               value="similique"
+               value="odit"
                data-component="url">
     <br>
-<p>Example: <code>similique</code></p>
+<p>Example: <code>odit</code></p>
             </div>
                     </form>
 
@@ -14992,7 +16286,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"image\": \"et\"
+    \"image\": \"adipisci\"
 }"
 </code></pre></div>
 
@@ -15008,7 +16302,7 @@ const headers = {
 };
 
 let body = {
-    "image": "et"
+    "image": "adipisci"
 };
 
 fetch(url, {
@@ -15097,10 +16391,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="image"                data-endpoint="POSTapi-stocklift"
-               value="et"
+               value="adipisci"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>adipisci</code></p>
         </div>
         </form>
 
@@ -15658,14 +16952,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/survey/questions/culpa" \
+    --get "http://127.0.0.1/api/survey/questions/blanditiis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/survey/questions/culpa"
+    "http://127.0.0.1/api/survey/questions/blanditiis"
 );
 
 const headers = {
@@ -15778,10 +17072,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="surveyCode"                data-endpoint="GETapi-survey-questions--surveyCode-"
-               value="culpa"
+               value="blanditiis"
                data-component="url">
     <br>
-<p>Example: <code>culpa</code></p>
+<p>Example: <code>blanditiis</code></p>
             </div>
                     </form>
 
@@ -16510,14 +17804,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/get/count/quibusdam" \
+    --get "http://127.0.0.1/api/get/count/commodi" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/get/count/quibusdam"
+    "http://127.0.0.1/api/get/count/commodi"
 );
 
 const headers = {
@@ -16626,10 +17920,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-get-count--customerID-"
-               value="quibusdam"
+               value="commodi"
                data-component="url">
     <br>
-<p>Example: <code>quibusdam</code></p>
+<p>Example: <code>commodi</code></p>
             </div>
                     </form>
 
@@ -16754,14 +18048,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/route/schedule/vero" \
+    --get "http://127.0.0.1/api/route/schedule/blanditiis" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/route/schedule/vero"
+    "http://127.0.0.1/api/route/schedule/blanditiis"
 );
 
 const headers = {
@@ -16874,10 +18168,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="id"                data-endpoint="GETapi-route-schedule--id-"
-               value="vero"
+               value="blanditiis"
                data-component="url">
     <br>
-<p>The ID of the schedule. Example: <code>vero</code></p>
+<p>The ID of the schedule. Example: <code>blanditiis</code></p>
             </div>
                     </form>
 
@@ -17021,7 +18315,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/update/default/image" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpA3A9.tmp" </code></pre></div>
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php8F43.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -17126,7 +18420,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpA3A9.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php8F43.tmp</code></p>
         </div>
         </form>
 
@@ -17752,7 +19046,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"requisition_products\": [
-        \"autem\"
+        \"nulla\"
     ]
 }"
 </code></pre></div>
@@ -17770,7 +19064,7 @@ const headers = {
 
 let body = {
     "requisition_products": [
-        "autem"
+        "nulla"
     ]
 };
 
@@ -17869,10 +19163,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="requisition_products.0.product_id"                data-endpoint="POSTapi-stock-create-request"
-               value="5"
+               value="18"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>18</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -17880,10 +19174,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="requisition_products.0.quantity"                data-endpoint="POSTapi-stock-create-request"
-               value="17"
+               value="8"
                data-component="body">
     <br>
-<p>Example: <code>17</code></p>
+<p>Example: <code>8</code></p>
                     </div>
                                     </details>
         </div>
@@ -18151,7 +19445,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 access-control-allow-origin: *
-set-cookie: XSRF-TOKEN=eyJpdiI6Im1KZ3BEa0lMeEwrNHZqcDVCSzlxYWc9PSIsInZhbHVlIjoib21mQVhCUFpCbnZ2RXNPVm9scytTSmMwRk90bXg4WjR0dDlyYnU1dFpJZlhSWXJ5dUVZL0g2YWxvdTB3bGdPeXpmSHBodmpSTG9CaHcrRHBuZ2RQdnJGbE8xclZqZVlvRnNqUElIbVU4RnFwRlVrL3BBZSsxL283cUE0SWVvVE4iLCJtYWMiOiJiMTYxYWE5OTNhYTE0ZTA3MTRhNzFhMTc1MDkyOTA5MzRmODgxMzUwOGEyNmYxYTFmODk3N2ZiZDE0NTNhNDI5IiwidGFnIjoiIn0%3D; expires=Wed, 07-Jun-2023 18:32:16 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6InFuaXhYSGpXYkhkVjFsd2JXVGV0Y2c9PSIsInZhbHVlIjoiYldTY3dYYVRuYzl3ajVWM1Riam9lUXRrYXpRbDhkSGhNT0hieGJwUk82ZmY0dmhDdVA2RnhyWlFLeWU2cjdlVHVwYms2bE5GelB1MVBlalU1blF0eG0vWU9SNHNBQzIvQyt3dWlBaUNLeHg3YUp0UkU4M0NNWW9VNjhhakc1am8iLCJtYWMiOiI1YThkNmM5OWRmYmZiNTE3ZjBiMTU5OTU3M2Q1YTg4NmJkZDkwMGY2N2E4MWM3YTJiZTQ5MGE2ZGE2ZGY5ZmFiIiwidGFnIjoiIn0%3D; expires=Wed, 07-Jun-2023 18:32:16 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6IkQ1YXJlOHRqb3Nadyt0Vm9zRnY2bFE9PSIsInZhbHVlIjoiTFRYd3A2NkhlTTFnTWpJQTYrQjR1T2VxWmZsZ1pTYXZTeEdBQnRRaStJK3AxampOTlA5NFZjTmE3YlRpN0FZQkU1SnkwazdQaHU2Vk8yL21yckRMcGJ0RGt1UXVzNTg1NER2MHZPVzBsb01XQU9mT3IxaTBkSU5KQ3lrbzNIUnMiLCJtYWMiOiI2NmIyZTAzOTNjZGU5OWRkZjAyZjQ5NDk3YjNkNjgxMTRiYjdlY2FmNTIzYTMwZjY4MGRkNjY3NTZkZDQ4MzZjIiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6Im8yNGs4d3BlT2h0WmRsN3RnK0NYSWc9PSIsInZhbHVlIjoiVWk4enJWVVE4TWdNTFpLZkZnbmFnMEltRm1kS1B4bFlOdGtFQ2F5eUhFakRkQWpVaUVIdTZDTWtTaDZ3MDJQU2kxRkJSTmhwOHB2cTdwT05WVW1CSWUzYThpZWNIZ01HbjY2emxwdVFKY2cvTk5yWndkWG4vRzVqcSszMzhZbWMiLCJtYWMiOiJkNzZhMzRjYmYwNjhhMDE5YmVhNDNjZWNjNzgxNjdjOTJiODM5MDE3NTI0Y2I3M2IyMGM5Y2RlZmFkMWFjMzE4IiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -18618,6 +19912,69 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Im1KZ3BEa0lMeEwrNHZqcDVCSzlxYWc9PSIsInZhbHVlIjoib
             &quot;updated_by&quot;: null,
             &quot;created_at&quot;: &quot;2023-06-07T12:09:17.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-06-07T12:09:17.000000Z&quot;,
+            &quot;delivery_items&quot;: [],
+            &quot;order&quot;: null
+        },
+        {
+            &quot;id&quot;: 24,
+            &quot;business_code&quot;: &quot;9C7mRWC57b2AHWP0qIOD&quot;,
+            &quot;delivery_code&quot;: &quot;ffi16S2pk7mIqbOJQKc3&quot;,
+            &quot;order_code&quot;: &quot;bChc6xQt7S&quot;,
+            &quot;allocated&quot;: &quot;635353&quot;,
+            &quot;delivery_note&quot;: &quot;update&quot;,
+            &quot;Note&quot;: null,
+            &quot;delivery_status&quot;: &quot;Waiting acceptance&quot;,
+            &quot;customer&quot;: null,
+            &quot;delivered_time&quot;: null,
+            &quot;accept_allocation&quot;: null,
+            &quot;customer_confirmation&quot;: null,
+            &quot;approval&quot;: 0,
+            &quot;created_by&quot;: &quot;5324rWREWR&quot;,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2023-06-08T12:25:40.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-06-08T12:25:40.000000Z&quot;,
+            &quot;delivery_items&quot;: [],
+            &quot;order&quot;: null
+        },
+        {
+            &quot;id&quot;: 25,
+            &quot;business_code&quot;: &quot;ZRKWtzEgJ7xHTMJM8By7&quot;,
+            &quot;delivery_code&quot;: &quot;29N0IIri5SX2Uw1Oa0Px&quot;,
+            &quot;order_code&quot;: &quot;bChc6xQt7S&quot;,
+            &quot;allocated&quot;: &quot;235523&quot;,
+            &quot;delivery_note&quot;: null,
+            &quot;Note&quot;: null,
+            &quot;delivery_status&quot;: &quot;Waiting acceptance&quot;,
+            &quot;customer&quot;: null,
+            &quot;delivered_time&quot;: null,
+            &quot;accept_allocation&quot;: null,
+            &quot;customer_confirmation&quot;: null,
+            &quot;approval&quot;: 0,
+            &quot;created_by&quot;: &quot;5324rWREWR&quot;,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2023-06-09T10:41:50.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-06-09T10:41:50.000000Z&quot;,
+            &quot;delivery_items&quot;: [],
+            &quot;order&quot;: null
+        },
+        {
+            &quot;id&quot;: 26,
+            &quot;business_code&quot;: &quot;ZDKFD4qA0vy5p2ymnYSA&quot;,
+            &quot;delivery_code&quot;: &quot;YgvDBQkpyzZs7KwsqOm7&quot;,
+            &quot;order_code&quot;: &quot;Np9hQ54btW&quot;,
+            &quot;allocated&quot;: &quot;635353&quot;,
+            &quot;delivery_note&quot;: &quot;rsm&quot;,
+            &quot;Note&quot;: null,
+            &quot;delivery_status&quot;: &quot;Waiting acceptance&quot;,
+            &quot;customer&quot;: null,
+            &quot;delivered_time&quot;: null,
+            &quot;accept_allocation&quot;: null,
+            &quot;customer_confirmation&quot;: null,
+            &quot;approval&quot;: 0,
+            &quot;created_by&quot;: &quot;5324rWREWR&quot;,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2023-06-09T12:57:28.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-06-09T12:57:28.000000Z&quot;,
             &quot;delivery_items&quot;: [],
             &quot;order&quot;: null
         }
