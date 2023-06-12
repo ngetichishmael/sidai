@@ -177,7 +177,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Regions</label>
-                                    <select wire:model='region' class="form-control" name="zone">
+                                    <select wire:model='region' class="form-control" name="region">
                                         <option value="">Regions</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
@@ -190,7 +190,7 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub-Region</label>
-                                    <select wire:model='regions'class="form-control" name="region">
+                                    <select wire:model='subregions'class="form-control" name="subregion">
                                         <option value="">Sub-Region</option>
                                         @foreach ($subregions as $subregion)
                                             <option value="{{ $subregion->id }}"
@@ -223,6 +223,7 @@
             </div>
         </div>
     </section>
+
     <!-- Basic Floating Label Form section end -->
 
 @endsection
