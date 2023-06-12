@@ -26,6 +26,7 @@
   'notification.customers.index' => 'App\\Http\\Livewire\\Notification\\Customers\\Index',
   'notification.users.index' => 'App\\Http\\Livewire\\Notification\\Users\\Index',
   'orders.targets' => 'App\\Http\\Livewire\\Orders\\Targets',
+  'orders.distributororders' => 'App\\Http\\Livewire\\Orders\\distributororders',
   'orders.index' => 'App\\Http\\Livewire\\Orders\\index',
   'orders.pendingdeliveries' => 'App\\Http\\Livewire\\Orders\\pendingdeliveries',
   'orders.pendingorders' => 'App\\Http\\Livewire\\Orders\\pendingorders',
