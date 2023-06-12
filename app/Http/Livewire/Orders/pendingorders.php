@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Orders;
 
 use App\Exports\OrdersExport;
+use App\Models\suppliers\suppliers;
 use Livewire\Component;
 use App\Models\Orders;
 use Livewire\WithPagination;
@@ -23,10 +24,20 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
+      $sidai=suppliers::where('name', 'Sidai')->first();
       $pendingorders = Orders::with('Customer', 'user')
          ->where('order_status','=', 'Pending Delivery')
-         ->whereIn('SupplierID', [null, ' ', '1'])
+         ->whereNull('supplierID')->orWhere('supplierID', '')->orWhere('supplierID', $sidai->id)
          ->where('order_type','=','Pre Order')
+         ->where(function ($query) use ($searchTerm) {
+            $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('customer_name', 'like', $searchTerm);
+            })
+               ->orWhereHas('User', function ($subQuery) use ($searchTerm) {
+                  $subQuery->where('name', 'like', $searchTerm);
+               })
+               ;
+         })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
 

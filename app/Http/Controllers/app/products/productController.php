@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\app\products;
 
+use App\Http\Controllers\Controller;
 use App\Imports\ProductImport;
 use App\Models\activity_log;
-use App\Models\Models\products\ProductSku;
-use App\Models\tax;
 use App\Models\Branches;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use App\Models\customers;
 use App\Models\products\brand;
 use App\Models\products\category;
-use App\Models\suppliers\suppliers;
-use App\Http\Controllers\Controller;
-use App\Models\customers;
-use Illuminate\Support\Facades\Auth;
-use App\Models\products\product_price;
-use App\Models\products\product_inventory;
 use App\Models\products\product_information;
+use App\Models\products\product_inventory;
+use App\Models\products\product_price;
+use App\Models\products\ProductSku;
 use App\Models\suppliers\supplier_address;
+use App\Models\suppliers\suppliers;
+use App\Models\tax;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 
