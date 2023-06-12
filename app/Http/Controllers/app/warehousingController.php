@@ -16,6 +16,7 @@ use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -151,34 +152,64 @@ class warehousingController extends Controller
    {
       $warehouse = warehousing::where('warehouse_code', $request->warehouse)->first();
       $this->validate($request, [
-         'shopattendee' => 'required',
+         'shopattendee' => 'required|array',
+         'shopattendee.*' => [
+            'exists:users,user_code',
+            Rule::unique('warehouse_assigns', 'manager')
+               ->whereNull('warehouse_code')
+               ->where(function ($query) use ($request) {
+                  $query->where('warehouse_code', $request->warehouse);
+               }),
+         ],
+         'position' => 'required|array',
+         'position.*' => 'required',
+      ], [
+         'shopattendee.*.unique' => 'User :input is already assigned to a warehouse.',
+         'position.required' => 'The position field is required.',
+         'position.*.required' => 'Please specify a position for all shop attendees.',
       ]);
-      dd($request->all());
-      $shopattendee = $request->input('shopattendee');
-      $warehouse = $request->input('warehouser');
 
+      $warehouseCode = $request->input('warehouse');
+      $shopattendee = $request->input('shopattendee');
+      $positions = $request->input('position');
+      $check=warehouse_assign::where('manager',$shopattendee)->get();
+      if ($check->count()>0){
+         session()->flash('error', 'Could not assign, User(s) is already assigned to a warehouse');
+         return redirect()->back();
+      }
+      $assignedUsers = [];
       foreach ($shopattendee as $key => $manager) {
          $user = User::where('user_code', $manager)->first();
          if ($user) {
             $assign = new warehouse_assign();
             $assign->manager = $user->user_code;
-            $assign->warehouse_code =$warehouse;
+            $assign->warehouse_code = $warehouseCode;
+            $assign->position = $positions[$key];
             $assign->created_by = Auth::user()->user_code;
-            $productSku->save();
+            $assign->save();
+
+            $assignedUsers[] = $user->name . ' (' . $positions[$key] . ')';
+         }else{
+            session()->flash('error', 'Could not assign User(s) to a warehouse');
+            return redirect()->route('warehousing.index');
          }
       }
-      session()->flash('success', 'Product successfully restocked!');
+
+      $action = 'Warehouse ' . $warehouse->name . ' was assigned to ';
+      $action .= implode(', ', $assignedUsers);
+
       $random=Str::random(20);
       $activityLog = new activity_log();
-      $activityLog->activity = 'Product updating';
+      $activityLog->activity = 'Assigning a user to a warehouse';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Product update ';
-      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->section = 'Warehouse assigning ';
+      $activityLog->action = $action;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address = $request->ip();
       $activityLog->save();
-      return view('livewire.warehousing.assign-shop-attendee',  compact('warehouse', 'shopattendee'));
+      session()->flash('success', 'User(s) successfully assigned to a warehouse');
+      return redirect()->route('warehousing.index');
    }
    /**
     * Display the specified resource.

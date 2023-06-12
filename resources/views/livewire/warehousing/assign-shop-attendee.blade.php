@@ -116,6 +116,7 @@
          <thead class="thead-light">
          <tr>
             <th>Sales Force</th>
+            <th>Role</th>
             <th>Action</th>
          </tr>
          </thead>
@@ -123,13 +124,21 @@
          <tr class="sku-field ">
 
             <td>
-               <select  class="form-control select2" name="shopattendee">
+               <select  class="form-control select2" name="shopattendee[]" required>
                   <option value="">-- choose Shop Attendee --</option>
                   @foreach ($shopattendee as $user)
                      <option value="{{ $user->user_code }}">{{ $user->name }}</option>
                   @endforeach
                </select>
             <input type="hidden" name="warehouse" value="{{$code}}">
+            </td>
+            <td>
+               <select  class="form-control select2" name="position[]" required>
+                  <option value="">-- choose role --</option>
+                  <option value="lead">Lead</option>
+                  <option value="Assistant">Assistant</option>
+                  <option value="Other">Other</option>
+               </select>
             </td>
             <td><button for="fp-date-time"  type="button" class="remove-sku form-control btn btn-sm btn-outline-danger" style="width: fit-content">
                   <span> &nbsp;Delete</span></button>
@@ -160,12 +169,21 @@
          newField.classList.add('sku-field');
          newField.innerHTML = `
             <td>
-               <select  class="form-control select2">
-                  <option value="">-- choose Shop Attendee --</option>
+               <select  class="form-control select2" name="shopattendee[]" required>
+                  <option value="" selected>-- choose Shop Attendee --</option>
                   @foreach ($shopattendee as $user)
          <option value="{{ $user->user_code }}">{{ $user->name }}</option>
                   @endforeach
-         </select></td>
+         </select>
+         </td>
+       <td>
+               <select  class="form-control select2" name="position[]" required>
+                  <option value="" selected>-- choose role --</option>
+                  <option value="lead">Lead</option>
+                  <option value="Assistant">Assistant</option>
+                  <option value="Other">Other</option>
+               </select>
+            </td>
       <td><button for="fp-date-time"  type="button" class="remove-sku form-control btn btn-sm btn-outline-danger" style="width: fit-content">
             <span> &nbsp;Delete</span></button>
       </td>
