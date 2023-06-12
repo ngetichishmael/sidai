@@ -32,35 +32,35 @@ endpoints:
         name: customerID
         description: 'as Customer ID'
         required: true
-        example: et
+        example: illum
         type: string
         custom: []
       latitude:
         name: latitude
         description: 'as current latitude'
         required: true
-        example: porro
+        example: et
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'as current longitude'
         required: true
-        example: aut
+        example: doloribus
         type: string
         custom: []
       user_code:
         name: user_code
         description: 'user code'
         required: true
-        example: impedit
+        example: sint
         type: string
         custom: []
     cleanBodyParameters:
-      customerID: et
-      latitude: porro
-      longitude: aut
-      user_code: impedit
+      customerID: illum
+      latitude: et
+      longitude: doloribus
+      user_code: sint
     fileParameters: []
     responses: []
     responseFields: []
@@ -92,11 +92,11 @@ endpoints:
         name: CustomerCode
         description: ''
         required: true
-        example: quas
+        example: eum
         type: string
         custom: []
     cleanUrlParameters:
-      CustomerCode: quas
+      CustomerCode: eum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -606,11 +606,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: rerum
+        example: magni
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: rerum
+      checkinCode: magni
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -657,11 +657,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: totam
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: totam
+      checkinCode: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1164,11 +1164,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: natus
+        example: commodi
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: natus
+      checkinCode: commodi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1176,19 +1176,19 @@ endpoints:
         name: productID
         description: 'as product ID'
         required: true
-        example: id
+        example: ipsum
         type: string
         custom: []
       qty:
         name: qty
         description: 'as quantity'
         required: true
-        example: est
+        example: voluptates
         type: string
         custom: []
     cleanBodyParameters:
-      productID: id
-      qty: est
+      productID: ipsum
+      qty: voluptates
     fileParameters: []
     responses:
       -
@@ -1231,11 +1231,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: iste
+        example: rerum
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: iste
+      checkinCode: rerum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1243,19 +1243,19 @@ endpoints:
         name: order_type
         description: 'as order type [Van sale or Pre order]'
         required: true
-        example: aut
+        example: sit
         type: string
         custom: []
       reasons_partial_delivery:
         name: reasons_partial_delivery
         description: 'as reasons_partial_delivery'
         required: false
-        example: sit
+        example: culpa
         type: string
         custom: []
     cleanBodyParameters:
-      order_type: aut
-      reasons_partial_delivery: sit
+      order_type: sit
+      reasons_partial_delivery: culpa
     fileParameters: []
     responses: []
     responseFields: []
@@ -1287,7 +1287,7 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: labore
+        example: quidem
         type: string
         custom: []
       id:
@@ -1298,7 +1298,7 @@ endpoints:
         type: integer
         custom: []
     cleanUrlParameters:
-      checkinCode: labore
+      checkinCode: quidem
       id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -1346,11 +1346,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: aut
+        example: est
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: aut
+      checkinCode: est
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1860,11 +1860,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: at
+        example: molestias
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: at
+      checkinCode: molestias
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1872,11 +1872,11 @@ endpoints:
         name: order_id
         description: 'as order_id'
         required: true
-        example: 18
+        example: 12
         type: integer
         custom: []
     cleanBodyParameters:
-      order_id: 18
+      order_id: 12
     fileParameters: []
     responses: []
     responseFields: []
@@ -1908,19 +1908,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: numquam
+        example: cupiditate
         type: string
         custom: []
       orderID:
         name: orderID
         description: ''
         required: true
-        example: aut
+        example: autem
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: numquam
-      orderID: aut
+      checkinCode: cupiditate
+      orderID: autem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2430,19 +2430,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: nisi
+        example: fuga
         type: string
         custom: []
       itemID:
         name: itemID
         description: ''
         required: true
-        example: tenetur
+        example: optio
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: nisi
-      itemID: tenetur
+      checkinCode: fuga
+      itemID: optio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2450,19 +2450,19 @@ endpoints:
         name: qty
         description: 'as qty'
         required: true
-        example: qui
+        example: quod
         type: string
         custom: []
       orderID:
         name: orderID
         description: 'as orderID'
         required: false
-        example: dolorem
+        example: dolorum
         type: string
         custom: []
     cleanBodyParameters:
-      qty: qui
-      orderID: dolorem
+      qty: quod
+      orderID: dolorum
     fileParameters: []
     responses: []
     responseFields: []
@@ -2494,19 +2494,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: qui
+        example: a
         type: string
         custom: []
       itemID:
         name: itemID
         description: ''
         required: true
-        example: neque
+        example: molestiae
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: qui
-      itemID: neque
+      checkinCode: a
+      itemID: molestiae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3013,11 +3013,11 @@ endpoints:
         name: order_id
         description: 'as order_id'
         required: true
-        example: 5
+        example: 12
         type: integer
         custom: []
     cleanBodyParameters:
-      order_id: 5
+      order_id: 12
     fileParameters: []
     responses: []
     responseFields: []
@@ -3049,19 +3049,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: libero
+        example: vitae
         type: string
         custom: []
       orderID:
         name: orderID
         description: ''
         required: true
-        example: iure
+        example: voluptatem
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: libero
-      orderID: iure
+      checkinCode: vitae
+      orderID: voluptatem
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

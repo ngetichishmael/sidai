@@ -4,10 +4,10 @@ use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
+use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
 use App\Http\Controllers\Api\Manager\UsersController;
-use App\Http\Controllers\app\routesController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*
@@ -52,5 +52,33 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/dashboard/custom/data', [DashboardAppController::class, 'custom']);
 
       Route::get('/manager/routes/data', [RoutesController::class, 'getRoutes']);
+
+
+      Route::get('/manager/vansales/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesToday']);
+      Route::get('/manager/vansales/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesWeek']);
+      Route::get('/manager/vansales/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesMonth']);
+
+      Route::get('/manager/preorder/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderToday']);
+      Route::get('/manager/preorder/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderWeek']);
+      Route::get('/manager/preorder/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderMonth']);
+
+      Route::get('/manager/order-fulfillment/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentToday']);
+      Route::get('/manager/order-fulfillment/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentWeek']);
+      Route::get('/manager/order-fulfillment/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentMonth']);
+
+      Route::get('/manager/visits/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'visitsToday']);
+      Route::get('/manager/visits/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'visitsWeek']);
+      Route::get('/manager/visits/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'visitsMonth']);
+
+      Route::get('/manager/active-users/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'activeUsersToday']);
+      Route::get('/manager/active-users/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'activeUsersWeek']);
+      Route::get('/manager/active-users/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'activeUsersMonth']);
+
+      Route::post('/manager/assign/lead/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignLeadTarget']);
+      Route::post('/manager/assign/sale/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignSaleTarget']);
+      Route::post('/manager/assign/visit/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignVisitTarget']);
+      Route::post('/manager/assign/order/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignOrderTarget']);
+      Route::post('/manager/add/customer', [CustomerController::class, 'addCustomer']);
+
    });
 });

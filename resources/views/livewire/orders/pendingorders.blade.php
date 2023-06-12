@@ -79,7 +79,7 @@
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                 <td>{{ $order->qty}}</td>
-                                <td>{{ $order->distributor->name}}</td>
+                                <td>{{ $order->distributor->name ?? ''}}</td>
 
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}

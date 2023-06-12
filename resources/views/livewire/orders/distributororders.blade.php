@@ -100,7 +100,7 @@
                                         <i data-feather='settings'></i>
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{!! route('orders.distributorsetails', $order->order_code) !!}">View</a>
+                                        <a class="dropdown-item" href="{!! route('orders.distributorsdetails', $order->order_code) !!}">View</a>
 {{--                                        @if ($order->order_status === 'CANCELLED')--}}
 {{--                                           <a wire:click.prevent="activate({{ $order->id }})"--}}
 {{--                                                   onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"--}}
