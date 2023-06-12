@@ -194,6 +194,7 @@ class customerController extends Controller
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
 
+      $emailData = $request->email == null ? null : $request->email;
       $random=Str::random(10);
       $user = new User();
       $user->name = $request->customer_name;
@@ -209,7 +210,7 @@ class customerController extends Controller
       $user->password = "password";
       $user.save();
 
-      Session::flash('success', 'Customer successfully Added');
+      Session::flash('success', 'Customer successfully Creditor Added');
 
       return redirect()->route('creditors');
    }
@@ -263,7 +264,7 @@ class customerController extends Controller
       $this->validate($request, [
          'customer_name' => 'required'
       ]);
-
+$region=
       $customer = customers::where('id', $id)->first();
       $customer->customer_name = $request->customer_name ?? $customer->customer_name;
       $customer->account = $request->account ?? $customer->account;
@@ -291,8 +292,9 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
+
       $user=User::where('user_code', $customer->user_code)->first();
-      $user->region_id = $request->region ?? Auth::user()->region_id;
+      $user->region_id = $request->region ?? Auth::user()->region_id ?? null;
       $user->save();
 
       Session::flash('success', 'Customer updated successfully');
