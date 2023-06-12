@@ -107,7 +107,7 @@ class customerController extends Controller
       $user->account_type= "Customer";
       $user->email_verified_at =Carbon::now();
       $user->status="Active";
-      $user->region_id= Auth::user()->region_id;
+      $user->region_id= $request->region;
       $user->business_code = Auth::user()->business_code;
       $user->password = Hash::make("password");
       $user->save();
@@ -133,8 +133,8 @@ class customerController extends Controller
       $customer->customer_secondary_group = $request->customer_secondary_group;
       $customer->price_group = $request->price_group;
       $customer->route = $request->route;
-      $customer->route_code = $request->territory;
-      $customer->zone_id = $request->territory;
+      $customer->route_code = $request->route;
+      $customer->zone_id = $request->route;
       $customer->branch = $request->branch;
       $customer->email = $request->email;
       $customer->customer_type = "normal";
