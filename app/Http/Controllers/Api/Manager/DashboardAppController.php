@@ -43,7 +43,7 @@ class DashboardAppController extends Controller
 
       //Active Users
       $checking = checkin::select('user_code')->whereDate('created_at', $currentDate)->groupBy('user_code');
-      $today = User::joinSub($checking, 'customer_checkin', function ($join) {
+      $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
 
