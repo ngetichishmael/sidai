@@ -356,6 +356,18 @@
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-POSTapi-customer-creditor">
                                 <a href="#endpoints-POSTapi-customer-creditor">POST api/customer/creditor</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-customer-make-checkout">
+                                <a href="#endpoints-POSTapi-customer-make-checkout">POST api/customer/make/checkout</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-customer-deliveries-all_deriveries">
+                                <a href="#endpoints-GETapi-customer-deliveries-all_deriveries">GET api/customer/deliveries/all_deriveries</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-customer-deliveries-pending_deriveries">
+                                <a href="#endpoints-GETapi-customer-deliveries-pending_deriveries">GET api/customer/deliveries/pending_deriveries</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-PUTapi-customer-updateFcmToken">
+                                <a href="#endpoints-PUTapi-customer-updateFcmToken">PUT api/customer/updateFcmToken</a>
+                            </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-total-regions-data">
                                 <a href="#endpoints-GETapi-total-regions-data">GET api/total/regions/data</a>
                             </li>
@@ -554,8 +566,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"dudley.pollich@example.org\",
-    \"password\": \"3*Q_o$sVf\\\\\'\"
+    \"email\": \"brennon31@example.net\",
+    \"password\": \"0p{uumaA\"
 }"
 </code></pre></div>
 
@@ -571,8 +583,8 @@ const headers = {
 };
 
 let body = {
-    "email": "dudley.pollich@example.org",
-    "password": "3*Q_o$sVf\\'"
+    "email": "brennon31@example.net",
+    "password": "0p{uumaA"
 };
 
 fetch(url, {
@@ -672,10 +684,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-login"
-               value="dudley.pollich@example.org"
+               value="brennon31@example.net"
                data-component="body">
     <br>
-<p>Example: <code>dudley.pollich@example.org</code></p>
+<p>Example: <code>brennon31@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -683,10 +695,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-login"
-               value="3*Q_o$sVf\'"
+               value="0p{uumaA"
                data-component="body">
     <br>
-<p>user password. Example: <code>3*Q_o$sVf\'</code></p>
+<p>user password. Example: <code>0p{uumaA</code></p>
         </div>
         </form>
 
@@ -703,14 +715,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/send/otp/soluta" \
+    "http://127.0.0.1/api/send/otp/voluptate" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/send/otp/soluta"
+    "http://127.0.0.1/api/send/otp/voluptate"
 );
 
 const headers = {
@@ -803,10 +815,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-send-otp--number-"
-               value="soluta"
+               value="voluptate"
                data-component="url">
     <br>
-<p>Example: <code>soluta</code></p>
+<p>Example: <code>voluptate</code></p>
             </div>
                     </form>
 
@@ -823,14 +835,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/verify/otp/sit/et" \
+    "http://127.0.0.1/api/verify/otp/vel/quo" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/verify/otp/sit/et"
+    "http://127.0.0.1/api/verify/otp/vel/quo"
 );
 
 const headers = {
@@ -923,10 +935,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-verify-otp--number---otp-"
-               value="sit"
+               value="vel"
                data-component="url">
     <br>
-<p>Example: <code>sit</code></p>
+<p>Example: <code>vel</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>otp</code></b>&nbsp;&nbsp;
@@ -934,10 +946,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="otp"                data-endpoint="POSTapi-verify-otp--number---otp-"
-               value="et"
+               value="quo"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>quo</code></p>
             </div>
                     </form>
 
@@ -958,9 +970,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"qui\",
-    \"password\": \"umvQs5on\",
-    \"password_confirmation\": \"et\"
+    \"phone_number\": \"quis\",
+    \"password\": \"5P?uTM^9;Zud~\",
+    \"password_confirmation\": \"exercitationem\"
 }"
 </code></pre></div>
 
@@ -976,9 +988,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "qui",
-    "password": "umvQs5on",
-    "password_confirmation": "et"
+    "phone_number": "quis",
+    "password": "5P?uTM^9;Zud~",
+    "password_confirmation": "exercitationem"
 };
 
 fetch(url, {
@@ -1067,10 +1079,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-reset-password"
-               value="qui"
+               value="quis"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>quis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -1078,10 +1090,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-reset-password"
-               value="umvQs5on"
+               value="5P?uTM^9;Zud~"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>umvQs5on</code></p>
+<p>Must be at least 6 characters. Example: <code>5P?uTM^9;Zud~</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -1089,10 +1101,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password_confirmation"                data-endpoint="POSTapi-reset-password"
-               value="et"
+               value="exercitationem"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>exercitationem</code></p>
         </div>
         </form>
 
@@ -1118,9 +1130,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"customerID\": \"est\",
-    \"latitude\": \"amet\",
-    \"longitude\": \"porro\",
-    \"user_code\": \"aliquam\"
+    \"latitude\": \"minima\",
+    \"longitude\": \"totam\",
+    \"user_code\": \"provident\"
 }"
 </code></pre></div>
 
@@ -1137,9 +1149,9 @@ const headers = {
 
 let body = {
     "customerID": "est",
-    "latitude": "amet",
-    "longitude": "porro",
-    "user_code": "aliquam"
+    "latitude": "minima",
+    "longitude": "totam",
+    "user_code": "provident"
 };
 
 fetch(url, {
@@ -1239,10 +1251,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="latitude"                data-endpoint="POSTapi-customer-checkin-session"
-               value="amet"
+               value="minima"
                data-component="body">
     <br>
-<p>as current latitude Example: <code>amet</code></p>
+<p>as current latitude Example: <code>minima</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>longitude</code></b>&nbsp;&nbsp;
@@ -1250,10 +1262,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="longitude"                data-endpoint="POSTapi-customer-checkin-session"
-               value="porro"
+               value="totam"
                data-component="body">
     <br>
-<p>as current longitude Example: <code>porro</code></p>
+<p>as current longitude Example: <code>totam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_code</code></b>&nbsp;&nbsp;
@@ -1261,10 +1273,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-customer-checkin-session"
-               value="aliquam"
+               value="provident"
                data-component="body">
     <br>
-<p>user code Example: <code>aliquam</code></p>
+<p>user code Example: <code>provident</code></p>
         </div>
         </form>
 
@@ -1281,14 +1293,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customer/eaque/checkin" \
+    --get "http://127.0.0.1/api/customer/maiores/checkin" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/eaque/checkin"
+    "http://127.0.0.1/api/customer/maiores/checkin"
 );
 
 const headers = {
@@ -1859,10 +1871,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="CustomerCode"                data-endpoint="GETapi-customer--CustomerCode--checkin"
-               value="eaque"
+               value="maiores"
                data-component="url">
     <br>
-<p>Example: <code>eaque</code></p>
+<p>Example: <code>maiores</code></p>
             </div>
                     </form>
 
@@ -1879,14 +1891,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/provident/stock" \
+    --get "http://127.0.0.1/api/checkin/minima/stock" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/provident/stock"
+    "http://127.0.0.1/api/checkin/minima/stock"
 );
 
 const headers = {
@@ -1999,10 +2011,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--stock"
-               value="provident"
+               value="minima"
                data-component="url">
     <br>
-<p>Example: <code>provident</code></p>
+<p>Example: <code>minima</code></p>
             </div>
                     </form>
 
@@ -2019,14 +2031,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/non/out" \
+    --get "http://127.0.0.1/api/checkin/occaecati/out" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/non/out"
+    "http://127.0.0.1/api/checkin/occaecati/out"
 );
 
 const headers = {
@@ -2590,10 +2602,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--out"
-               value="non"
+               value="occaecati"
                data-component="url">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>occaecati</code></p>
             </div>
                     </form>
 
@@ -2610,19 +2622,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/qui/cart" \
+    --get "http://127.0.0.1/api/checkin/quos/cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"productID\": \"rem\",
-    \"qty\": \"praesentium\"
+    \"productID\": \"optio\",
+    \"qty\": \"harum\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/qui/cart"
+    "http://127.0.0.1/api/checkin/quos/cart"
 );
 
 const headers = {
@@ -2631,8 +2643,8 @@ const headers = {
 };
 
 let body = {
-    "productID": "rem",
-    "qty": "praesentium"
+    "productID": "optio",
+    "qty": "harum"
 };
 
 fetch(url, {
@@ -2741,10 +2753,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="qui"
+               value="quos"
                data-component="url">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>quos</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2753,10 +2765,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="productID"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="rem"
+               value="optio"
                data-component="body">
     <br>
-<p>as product ID Example: <code>rem</code></p>
+<p>as product ID Example: <code>optio</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>qty</code></b>&nbsp;&nbsp;
@@ -2764,10 +2776,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="qty"                data-endpoint="GETapi-checkin--checkinCode--cart"
-               value="praesentium"
+               value="harum"
                data-component="body">
     <br>
-<p>as quantity Example: <code>praesentium</code></p>
+<p>as quantity Example: <code>harum</code></p>
         </div>
         </form>
 
@@ -2784,19 +2796,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/optio/order-save" \
+    "http://127.0.0.1/api/checkin/ullam/order-save" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_type\": \"provident\",
-    \"reasons_partial_delivery\": \"quaerat\"
+    \"order_type\": \"illum\",
+    \"reasons_partial_delivery\": \"reiciendis\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/optio/order-save"
+    "http://127.0.0.1/api/checkin/ullam/order-save"
 );
 
 const headers = {
@@ -2805,8 +2817,8 @@ const headers = {
 };
 
 let body = {
-    "order_type": "provident",
-    "reasons_partial_delivery": "quaerat"
+    "order_type": "illum",
+    "reasons_partial_delivery": "reiciendis"
 };
 
 fetch(url, {
@@ -2895,10 +2907,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="optio"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>optio</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2907,10 +2919,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="order_type"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="provident"
+               value="illum"
                data-component="body">
     <br>
-<p>as order type [Van sale or Pre order] Example: <code>provident</code></p>
+<p>as order type [Van sale or Pre order] Example: <code>illum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>reasons_partial_delivery</code></b>&nbsp;&nbsp;
@@ -2918,10 +2930,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="reasons_partial_delivery"                data-endpoint="POSTapi-checkin--checkinCode--order-save"
-               value="quaerat"
+               value="reiciendis"
                data-component="body">
     <br>
-<p>as reasons_partial_delivery Example: <code>quaerat</code></p>
+<p>as reasons_partial_delivery Example: <code>reiciendis</code></p>
         </div>
         </form>
 
@@ -2938,14 +2950,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/laudantium/cart/1/delete" \
+    --get "http://127.0.0.1/api/checkin/accusamus/cart/1/delete" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/laudantium/cart/1/delete"
+    "http://127.0.0.1/api/checkin/accusamus/cart/1/delete"
 );
 
 const headers = {
@@ -3057,10 +3069,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--cart--id--delete"
-               value="laudantium"
+               value="accusamus"
                data-component="url">
     <br>
-<p>Example: <code>laudantium</code></p>
+<p>Example: <code>accusamus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
@@ -3088,14 +3100,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/beatae/orders" \
+    --get "http://127.0.0.1/api/checkin/sed/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/beatae/orders"
+    "http://127.0.0.1/api/checkin/sed/orders"
 );
 
 const headers = {
@@ -3666,10 +3678,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--orders"
-               value="beatae"
+               value="sed"
                data-component="url">
     <br>
-<p>Example: <code>beatae</code></p>
+<p>Example: <code>sed</code></p>
             </div>
                     </form>
 
@@ -3686,18 +3698,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/magnam/order/edit/reason" \
+    "http://127.0.0.1/api/checkin/quia/order/edit/reason" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_id\": 11
+    \"order_id\": 6
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/magnam/order/edit/reason"
+    "http://127.0.0.1/api/checkin/quia/order/edit/reason"
 );
 
 const headers = {
@@ -3706,7 +3718,7 @@ const headers = {
 };
 
 let body = {
-    "order_id": 11
+    "order_id": 6
 };
 
 fetch(url, {
@@ -3795,10 +3807,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order-edit-reason"
-               value="magnam"
+               value="quia"
                data-component="url">
     <br>
-<p>Example: <code>magnam</code></p>
+<p>Example: <code>quia</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -3807,10 +3819,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="order_id"                data-endpoint="POSTapi-checkin--checkinCode--order-edit-reason"
-               value="11"
+               value="6"
                data-component="body">
     <br>
-<p>as order_id Example: <code>11</code></p>
+<p>as order_id Example: <code>6</code></p>
         </div>
         </form>
 
@@ -3827,14 +3839,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/amet/order/unde/edit" \
+    --get "http://127.0.0.1/api/checkin/et/order/et/edit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/amet/order/unde/edit"
+    "http://127.0.0.1/api/checkin/et/order/et/edit"
 );
 
 const headers = {
@@ -4405,10 +4417,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--edit"
-               value="amet"
+               value="et"
                data-component="url">
     <br>
-<p>Example: <code>amet</code></p>
+<p>Example: <code>et</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -4416,10 +4428,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--edit"
-               value="unde"
+               value="et"
                data-component="url">
     <br>
-<p>Example: <code>unde</code></p>
+<p>Example: <code>et</code></p>
             </div>
                     </form>
 
@@ -4436,19 +4448,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/eum/order/quam/update" \
+    "http://127.0.0.1/api/checkin/nisi/order/nobis/update" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"qty\": \"dicta\",
-    \"orderID\": \"laboriosam\"
+    \"qty\": \"laudantium\",
+    \"orderID\": \"ut\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/eum/order/quam/update"
+    "http://127.0.0.1/api/checkin/nisi/order/nobis/update"
 );
 
 const headers = {
@@ -4457,8 +4469,8 @@ const headers = {
 };
 
 let body = {
-    "qty": "dicta",
-    "orderID": "laboriosam"
+    "qty": "laudantium",
+    "orderID": "ut"
 };
 
 fetch(url, {
@@ -4547,10 +4559,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="eum"
+               value="nisi"
                data-component="url">
     <br>
-<p>Example: <code>eum</code></p>
+<p>Example: <code>nisi</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>itemID</code></b>&nbsp;&nbsp;
@@ -4558,10 +4570,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="itemID"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="quam"
+               value="nobis"
                data-component="url">
     <br>
-<p>Example: <code>quam</code></p>
+<p>Example: <code>nobis</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -4570,10 +4582,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="qty"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="dicta"
+               value="laudantium"
                data-component="body">
     <br>
-<p>as qty Example: <code>dicta</code></p>
+<p>as qty Example: <code>laudantium</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -4581,10 +4593,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="POSTapi-checkin--checkinCode--order--itemID--update"
-               value="laboriosam"
+               value="ut"
                data-component="body">
     <br>
-<p>as orderID Example: <code>laboriosam</code></p>
+<p>as orderID Example: <code>ut</code></p>
         </div>
         </form>
 
@@ -4601,14 +4613,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/ipsam/order/libero/delete/item" \
+    --get "http://127.0.0.1/api/checkin/quia/order/magnam/delete/item" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/ipsam/order/libero/delete/item"
+    "http://127.0.0.1/api/checkin/quia/order/magnam/delete/item"
 );
 
 const headers = {
@@ -5172,10 +5184,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--itemID--delete-item"
-               value="ipsam"
+               value="quia"
                data-component="url">
     <br>
-<p>Example: <code>ipsam</code></p>
+<p>Example: <code>quia</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>itemID</code></b>&nbsp;&nbsp;
@@ -5183,10 +5195,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="itemID"                data-endpoint="GETapi-checkin--checkinCode--order--itemID--delete-item"
-               value="libero"
+               value="magnam"
                data-component="url">
     <br>
-<p>Example: <code>libero</code></p>
+<p>Example: <code>magnam</code></p>
             </div>
                     </form>
 
@@ -5207,7 +5219,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"order_id\": 6
+    \"order_id\": 11
 }"
 </code></pre></div>
 
@@ -5223,7 +5235,7 @@ const headers = {
 };
 
 let body = {
-    "order_id": 6
+    "order_id": 11
 };
 
 fetch(url, {
@@ -5312,10 +5324,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="order_id"                data-endpoint="POSTapi-checkin-checkinCode-cancel"
-               value="6"
+               value="11"
                data-component="body">
     <br>
-<p>as order_id Example: <code>6</code></p>
+<p>as order_id Example: <code>11</code></p>
         </div>
         </form>
 
@@ -5332,14 +5344,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/checkin/corrupti/order/voluptatum/details" \
+    --get "http://127.0.0.1/api/checkin/blanditiis/order/optio/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/corrupti/order/voluptatum/details"
+    "http://127.0.0.1/api/checkin/blanditiis/order/optio/details"
 );
 
 const headers = {
@@ -5910,10 +5922,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--details"
-               value="corrupti"
+               value="blanditiis"
                data-component="url">
     <br>
-<p>Example: <code>corrupti</code></p>
+<p>Example: <code>blanditiis</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>orderID</code></b>&nbsp;&nbsp;
@@ -5921,10 +5933,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderID"                data-endpoint="GETapi-checkin--checkinCode--order--orderID--details"
-               value="voluptatum"
+               value="optio"
                data-component="url">
     <br>
-<p>Example: <code>voluptatum</code></p>
+<p>Example: <code>optio</code></p>
             </div>
                     </form>
 
@@ -5945,18 +5957,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/labore?page_size=12" \
+    --get "http://127.0.0.1/api/customers/ut?page_size=11" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/labore"
+    "http://127.0.0.1/api/customers/ut"
 );
 
 const params = {
-    "page_size": "12",
+    "page_size": "11",
 };
 Object.keys(params)
     .forEach(key =&gt; url.searchParams.append(key, params[key]));
@@ -6067,10 +6079,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-customers--businessCode-"
-               value="labore"
+               value="ut"
                data-component="url">
     <br>
-<p>Example: <code>labore</code></p>
+<p>Example: <code>ut</code></p>
             </div>
                         <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                                     <div style="padding-left: 28px; clear: unset;">
@@ -6079,10 +6091,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="page_size"                data-endpoint="GETapi-customers--businessCode-"
-               value="12"
+               value="11"
                data-component="query">
     <br>
-<p>size per page. Default to 20 Example: <code>12</code></p>
+<p>size per page. Default to 20 Example: <code>11</code></p>
             </div>
                 </form>
 
@@ -6102,16 +6114,16 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/customers/add-customer" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "customer_name=accusantium" \
-    --form "contact_person=animi" \
-    --form "business_code=qui" \
-    --form "created_by=aut" \
-    --form "phone_number=ut" \
-    --form "latitude=nisi" \
-    --form "longitude=qui" \
-    --form "email=rgreen@example.com" \
-    --form "address=qui" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpBFA4.tmp" </code></pre></div>
+    --form "customer_name=sint" \
+    --form "contact_person=voluptatem" \
+    --form "business_code=reprehenderit" \
+    --form "created_by=vitae" \
+    --form "phone_number=omnis" \
+    --form "latitude=ab" \
+    --form "longitude=libero" \
+    --form "email=itreutel@example.org" \
+    --form "address=rerum" \
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php5643.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -6125,15 +6137,15 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('customer_name', 'accusantium');
-body.append('contact_person', 'animi');
-body.append('business_code', 'qui');
-body.append('created_by', 'aut');
-body.append('phone_number', 'ut');
-body.append('latitude', 'nisi');
-body.append('longitude', 'qui');
-body.append('email', 'rgreen@example.com');
-body.append('address', 'qui');
+body.append('customer_name', 'sint');
+body.append('contact_person', 'voluptatem');
+body.append('business_code', 'reprehenderit');
+body.append('created_by', 'vitae');
+body.append('phone_number', 'omnis');
+body.append('latitude', 'ab');
+body.append('longitude', 'libero');
+body.append('email', 'itreutel@example.org');
+body.append('address', 'rerum');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -6222,10 +6234,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customer_name"                data-endpoint="POSTapi-customers-add-customer"
-               value="accusantium"
+               value="sint"
                data-component="body">
     <br>
-<p>as outlet name Example: <code>accusantium</code></p>
+<p>as outlet name Example: <code>sint</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>contact_person</code></b>&nbsp;&nbsp;
@@ -6233,10 +6245,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="contact_person"                data-endpoint="POSTapi-customers-add-customer"
-               value="animi"
+               value="voluptatem"
                data-component="body">
     <br>
-<p>Example: <code>animi</code></p>
+<p>Example: <code>voluptatem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>business_code</code></b>&nbsp;&nbsp;
@@ -6244,10 +6256,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="business_code"                data-endpoint="POSTapi-customers-add-customer"
-               value="qui"
+               value="reprehenderit"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>reprehenderit</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>created_by</code></b>&nbsp;&nbsp;
@@ -6255,10 +6267,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="created_by"                data-endpoint="POSTapi-customers-add-customer"
-               value="aut"
+               value="vitae"
                data-component="body">
     <br>
-<p>user code Example: <code>aut</code></p>
+<p>user code Example: <code>vitae</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -6266,10 +6278,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customers-add-customer"
-               value="ut"
+               value="omnis"
                data-component="body">
     <br>
-<p>Example: <code>ut</code></p>
+<p>Example: <code>omnis</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>latitude</code></b>&nbsp;&nbsp;
@@ -6277,10 +6289,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="latitude"                data-endpoint="POSTapi-customers-add-customer"
-               value="nisi"
+               value="ab"
                data-component="body">
     <br>
-<p>Example: <code>nisi</code></p>
+<p>Example: <code>ab</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>longitude</code></b>&nbsp;&nbsp;
@@ -6288,10 +6300,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="longitude"                data-endpoint="POSTapi-customers-add-customer"
-               value="qui"
+               value="libero"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>libero</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -6302,7 +6314,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpBFA4.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php5643.tmp</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -6310,10 +6322,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="email"                data-endpoint="POSTapi-customers-add-customer"
-               value="rgreen@example.com"
+               value="itreutel@example.org"
                data-component="body">
     <br>
-<p>Example: <code>rgreen@example.com</code></p>
+<p>Example: <code>itreutel@example.org</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>address</code></b>&nbsp;&nbsp;
@@ -6321,10 +6333,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="address"                data-endpoint="POSTapi-customers-add-customer"
-               value="qui"
+               value="rerum"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>rerum</code></p>
         </div>
         </form>
 
@@ -6449,14 +6461,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/voluptate/details" \
+    --get "http://127.0.0.1/api/customers/ullam/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/voluptate/details"
+    "http://127.0.0.1/api/customers/ullam/details"
 );
 
 const headers = {
@@ -6569,10 +6581,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="code"                data-endpoint="GETapi-customers--code--details"
-               value="voluptate"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>voluptate</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                     </form>
 
@@ -6589,14 +6601,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/rerum/corrupti/deliveries" \
+    --get "http://127.0.0.1/api/customers/fugit/pariatur/deliveries" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/rerum/corrupti/deliveries"
+    "http://127.0.0.1/api/customers/fugit/pariatur/deliveries"
 );
 
 const headers = {
@@ -6710,10 +6722,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID---businessCode--deliveries"
-               value="rerum"
+               value="fugit"
                data-component="url">
     <br>
-<p>Example: <code>rerum</code></p>
+<p>Example: <code>fugit</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>businessCode</code></b>&nbsp;&nbsp;
@@ -6721,10 +6733,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-customers--customerID---businessCode--deliveries"
-               value="corrupti"
+               value="pariatur"
                data-component="url">
     <br>
-<p>Example: <code>corrupti</code></p>
+<p>Example: <code>pariatur</code></p>
             </div>
                     </form>
 
@@ -7395,14 +7407,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/veritatis/orders" \
+    --get "http://127.0.0.1/api/customers/vitae/orders" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/veritatis/orders"
+    "http://127.0.0.1/api/customers/vitae/orders"
 );
 
 const headers = {
@@ -7516,10 +7528,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID--orders"
-               value="veritatis"
+               value="vitae"
                data-component="url">
     <br>
-<p>Example: <code>veritatis</code></p>
+<p>Example: <code>vitae</code></p>
             </div>
                     </form>
 
@@ -7536,14 +7548,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/order/quia/details" \
+    --get "http://127.0.0.1/api/customers/order/officiis/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/order/quia/details"
+    "http://127.0.0.1/api/customers/order/officiis/details"
 );
 
 const headers = {
@@ -7660,10 +7672,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="orderCode"                data-endpoint="GETapi-customers-order--orderCode--details"
-               value="quia"
+               value="officiis"
                data-component="url">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>officiis</code></p>
             </div>
                     </form>
 
@@ -7680,14 +7692,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customers/sed/new-order" \
+    --get "http://127.0.0.1/api/customers/non/new-order" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customers/sed/new-order"
+    "http://127.0.0.1/api/customers/non/new-order"
 );
 
 const headers = {
@@ -7801,10 +7813,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-customers--customerID--new-order"
-               value="sed"
+               value="non"
                data-component="url">
     <br>
-<p>Example: <code>sed</code></p>
+<p>Example: <code>non</code></p>
             </div>
                     </form>
 
@@ -7825,14 +7837,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/deliveries/2/dignissimos" \
+    --get "http://127.0.0.1/api/deliveries/2/magni" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/deliveries/2/dignissimos"
+    "http://127.0.0.1/api/deliveries/2/magni"
 );
 
 const headers = {
@@ -7956,10 +7968,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="userCode"                data-endpoint="GETapi-deliveries--businessCode---userCode-"
-               value="dignissimos"
+               value="magni"
                data-component="url">
     <br>
-<p>Example: <code>dignissimos</code></p>
+<p>Example: <code>magni</code></p>
             </div>
                     </form>
 
@@ -7976,14 +7988,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/delivery/2/laborum/details" \
+    --get "http://127.0.0.1/api/delivery/2/amet/details" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/delivery/2/laborum/details"
+    "http://127.0.0.1/api/delivery/2/amet/details"
 );
 
 const headers = {
@@ -8565,10 +8577,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-delivery--code---businessCode--details"
-               value="laborum"
+               value="amet"
                data-component="url">
     <br>
-<p>Example: <code>laborum</code></p>
+<p>Example: <code>amet</code></p>
             </div>
                     </form>
 
@@ -8805,14 +8817,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/products/asperiores" \
+    --get "http://127.0.0.1/api/products/a" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/products/asperiores"
+    "http://127.0.0.1/api/products/a"
 );
 
 const headers = {
@@ -8921,10 +8933,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-products--businessCode-"
-               value="asperiores"
+               value="a"
                data-component="url">
     <br>
-<p>Example: <code>asperiores</code></p>
+<p>Example: <code>a</code></p>
             </div>
                     </form>
 
@@ -8945,14 +8957,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/products/categories/nemo" \
+    --get "http://127.0.0.1/api/products/categories/reprehenderit" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/products/categories/nemo"
+    "http://127.0.0.1/api/products/categories/reprehenderit"
 );
 
 const headers = {
@@ -9065,10 +9077,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="businessCode"                data-endpoint="GETapi-products-categories--businessCode-"
-               value="nemo"
+               value="reprehenderit"
                data-component="url">
     <br>
-<p>Example: <code>nemo</code></p>
+<p>Example: <code>reprehenderit</code></p>
             </div>
                     </form>
 
@@ -9085,14 +9097,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/products/ipsum/category" \
+    --get "http://127.0.0.1/api/products/aperiam/category" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/products/ipsum/category"
+    "http://127.0.0.1/api/products/aperiam/category"
 );
 
 const headers = {
@@ -9663,10 +9675,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="categoryID"                data-endpoint="GETapi-products--categoryID--category"
-               value="ipsum"
+               value="aperiam"
                data-component="url">
     <br>
-<p>Example: <code>ipsum</code></p>
+<p>Example: <code>aperiam</code></p>
             </div>
                     </form>
 
@@ -12605,8 +12617,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"productID\": \"consectetur\",
-    \"allocation_code\": \"commodi\"
+    \"productID\": \"in\",
+    \"allocation_code\": \"et\"
 }"
 </code></pre></div>
 
@@ -12622,8 +12634,8 @@ const headers = {
 };
 
 let body = {
-    "productID": "consectetur",
-    "allocation_code": "commodi"
+    "productID": "in",
+    "allocation_code": "et"
 };
 
 fetch(url, {
@@ -12712,10 +12724,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="productID"                data-endpoint="POSTapi-manager-order-approval"
-               value="consectetur"
+               value="in"
                data-component="body">
     <br>
-<p>Example: <code>consectetur</code></p>
+<p>Example: <code>in</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allocation_code</code></b>&nbsp;&nbsp;
@@ -12723,10 +12735,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="allocation_code"                data-endpoint="POSTapi-manager-order-approval"
-               value="commodi"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>commodi</code></p>
+<p>Example: <code>et</code></p>
         </div>
         </form>
 
@@ -12747,8 +12759,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"productID\": \"enim\",
-    \"allocation_code\": \"eveniet\"
+    \"productID\": \"laboriosam\",
+    \"allocation_code\": \"at\"
 }"
 </code></pre></div>
 
@@ -12764,8 +12776,8 @@ const headers = {
 };
 
 let body = {
-    "productID": "enim",
-    "allocation_code": "eveniet"
+    "productID": "laboriosam",
+    "allocation_code": "at"
 };
 
 fetch(url, {
@@ -12854,10 +12866,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="productID"                data-endpoint="POSTapi-manager-order-disapproval"
-               value="enim"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>Example: <code>enim</code></p>
+<p>Example: <code>laboriosam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>allocation_code</code></b>&nbsp;&nbsp;
@@ -12865,10 +12877,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="allocation_code"                data-endpoint="POSTapi-manager-order-disapproval"
-               value="eveniet"
+               value="at"
                data-component="body">
     <br>
-<p>Example: <code>eveniet</code></p>
+<p>Example: <code>at</code></p>
         </div>
         </form>
 
@@ -12889,9 +12901,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customerID\": \"corrupti\",
-    \"user_code\": \"cum\",
-    \"order_code\": \"ipsum\"
+    \"customerID\": \"tenetur\",
+    \"user_code\": \"architecto\",
+    \"order_code\": \"ducimus\"
 }"
 </code></pre></div>
 
@@ -12907,9 +12919,9 @@ const headers = {
 };
 
 let body = {
-    "customerID": "corrupti",
-    "user_code": "cum",
-    "order_code": "ipsum"
+    "customerID": "tenetur",
+    "user_code": "architecto",
+    "order_code": "ducimus"
 };
 
 fetch(url, {
@@ -12998,10 +13010,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="POSTapi-manager-allocation-allocate"
-               value="corrupti"
+               value="tenetur"
                data-component="body">
     <br>
-<p>Example: <code>corrupti</code></p>
+<p>Example: <code>tenetur</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_code</code></b>&nbsp;&nbsp;
@@ -13009,10 +13021,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-manager-allocation-allocate"
-               value="cum"
+               value="architecto"
                data-component="body">
     <br>
-<p>Example: <code>cum</code></p>
+<p>Example: <code>architecto</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>order_code</code></b>&nbsp;&nbsp;
@@ -13020,10 +13032,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="order_code"                data-endpoint="POSTapi-manager-allocation-allocate"
-               value="ipsum"
+               value="ducimus"
                data-component="body">
     <br>
-<p>Example: <code>ipsum</code></p>
+<p>Example: <code>ducimus</code></p>
         </div>
         </form>
 
@@ -15368,8 +15380,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_code\": \"quis\",
-    \"target\": \"accusamus\"
+    \"user_code\": \"repellendus\",
+    \"target\": \"voluptatem\"
 }"
 </code></pre></div>
 
@@ -15385,8 +15397,8 @@ const headers = {
 };
 
 let body = {
-    "user_code": "quis",
-    "target": "accusamus"
+    "user_code": "repellendus",
+    "target": "voluptatem"
 };
 
 fetch(url, {
@@ -15475,10 +15487,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-manager-assign-lead-target"
-               value="quis"
+               value="repellendus"
                data-component="body">
     <br>
-<p>Example: <code>quis</code></p>
+<p>Example: <code>repellendus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target</code></b>&nbsp;&nbsp;
@@ -15486,10 +15498,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="target"                data-endpoint="POSTapi-manager-assign-lead-target"
-               value="accusamus"
+               value="voluptatem"
                data-component="body">
     <br>
-<p>Example: <code>accusamus</code></p>
+<p>Example: <code>voluptatem</code></p>
         </div>
         </form>
 
@@ -15510,8 +15522,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_code\": \"et\",
-    \"target\": \"qui\"
+    \"user_code\": \"earum\",
+    \"target\": \"omnis\"
 }"
 </code></pre></div>
 
@@ -15527,8 +15539,8 @@ const headers = {
 };
 
 let body = {
-    "user_code": "et",
-    "target": "qui"
+    "user_code": "earum",
+    "target": "omnis"
 };
 
 fetch(url, {
@@ -15617,10 +15629,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-manager-assign-sale-target"
-               value="et"
+               value="earum"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>earum</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target</code></b>&nbsp;&nbsp;
@@ -15628,10 +15640,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="target"                data-endpoint="POSTapi-manager-assign-sale-target"
-               value="qui"
+               value="omnis"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>omnis</code></p>
         </div>
         </form>
 
@@ -15652,8 +15664,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_code\": \"facilis\",
-    \"target\": \"dolore\"
+    \"user_code\": \"eaque\",
+    \"target\": \"officia\"
 }"
 </code></pre></div>
 
@@ -15669,8 +15681,8 @@ const headers = {
 };
 
 let body = {
-    "user_code": "facilis",
-    "target": "dolore"
+    "user_code": "eaque",
+    "target": "officia"
 };
 
 fetch(url, {
@@ -15759,10 +15771,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-manager-assign-visit-target"
-               value="facilis"
+               value="eaque"
                data-component="body">
     <br>
-<p>Example: <code>facilis</code></p>
+<p>Example: <code>eaque</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target</code></b>&nbsp;&nbsp;
@@ -15770,10 +15782,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="target"                data-endpoint="POSTapi-manager-assign-visit-target"
-               value="dolore"
+               value="officia"
                data-component="body">
     <br>
-<p>Example: <code>dolore</code></p>
+<p>Example: <code>officia</code></p>
         </div>
         </form>
 
@@ -15794,8 +15806,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"user_code\": \"aut\",
-    \"target\": \"quia\"
+    \"user_code\": \"laboriosam\",
+    \"target\": \"voluptas\"
 }"
 </code></pre></div>
 
@@ -15811,8 +15823,8 @@ const headers = {
 };
 
 let body = {
-    "user_code": "aut",
-    "target": "quia"
+    "user_code": "laboriosam",
+    "target": "voluptas"
 };
 
 fetch(url, {
@@ -15901,10 +15913,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="user_code"                data-endpoint="POSTapi-manager-assign-order-target"
-               value="aut"
+               value="laboriosam"
                data-component="body">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>laboriosam</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>target</code></b>&nbsp;&nbsp;
@@ -15912,10 +15924,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="target"                data-endpoint="POSTapi-manager-assign-order-target"
-               value="quia"
+               value="voluptas"
                data-component="body">
     <br>
-<p>Example: <code>quia</code></p>
+<p>Example: <code>voluptas</code></p>
         </div>
         </form>
 
@@ -15935,11 +15947,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/customer/registration" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "customer_name=pariatur" \
-    --form "phone_number=qui" \
-    --form "Latitude=quos" \
-    --form "Longitude=distinctio" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpBF35.tmp" </code></pre></div>
+    --form "customer_name=et" \
+    --form "phone_number=natus" \
+    --form "Latitude=deleniti" \
+    --form "Longitude=dolorem" \
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php5586.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -15953,10 +15965,10 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('customer_name', 'pariatur');
-body.append('phone_number', 'qui');
-body.append('Latitude', 'quos');
-body.append('Longitude', 'distinctio');
+body.append('customer_name', 'et');
+body.append('phone_number', 'natus');
+body.append('Latitude', 'deleniti');
+body.append('Longitude', 'dolorem');
 body.append('image', document.querySelector('input[name="image"]').files[0]);
 
 fetch(url, {
@@ -16045,10 +16057,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customer_name"                data-endpoint="POSTapi-customer-registration"
-               value="pariatur"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>pariatur</code></p>
+<p>Example: <code>et</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>phone_number</code></b>&nbsp;&nbsp;
@@ -16056,10 +16068,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customer-registration"
-               value="qui"
+               value="natus"
                data-component="body">
     <br>
-<p>Example: <code>qui</code></p>
+<p>Example: <code>natus</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>Latitude</code></b>&nbsp;&nbsp;
@@ -16067,10 +16079,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="Latitude"                data-endpoint="POSTapi-customer-registration"
-               value="quos"
+               value="deleniti"
                data-component="body">
     <br>
-<p>Example: <code>quos</code></p>
+<p>Example: <code>deleniti</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>Longitude</code></b>&nbsp;&nbsp;
@@ -16078,10 +16090,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="Longitude"                data-endpoint="POSTapi-customer-registration"
-               value="distinctio"
+               value="dolorem"
                data-component="body">
     <br>
-<p>Example: <code>distinctio</code></p>
+<p>Example: <code>dolorem</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>image</code></b>&nbsp;&nbsp;
@@ -16092,7 +16104,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpBF35.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php5586.tmp</code></p>
         </div>
         </form>
 
@@ -16217,14 +16229,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/customer/send/otp/assumenda" \
+    "http://127.0.0.1/api/customer/send/otp/inventore" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/send/otp/assumenda"
+    "http://127.0.0.1/api/customer/send/otp/inventore"
 );
 
 const headers = {
@@ -16317,10 +16329,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-customer-send-otp--number-"
-               value="assumenda"
+               value="inventore"
                data-component="url">
     <br>
-<p>Example: <code>assumenda</code></p>
+<p>Example: <code>inventore</code></p>
             </div>
                     </form>
 
@@ -16337,14 +16349,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/customer/verify/otp/veniam/illo" \
+    "http://127.0.0.1/api/customer/verify/otp/ducimus/nihil" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/verify/otp/veniam/illo"
+    "http://127.0.0.1/api/customer/verify/otp/ducimus/nihil"
 );
 
 const headers = {
@@ -16437,10 +16449,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="number"                data-endpoint="POSTapi-customer-verify-otp--number---otp-"
-               value="veniam"
+               value="ducimus"
                data-component="url">
     <br>
-<p>Example: <code>veniam</code></p>
+<p>Example: <code>ducimus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>otp</code></b>&nbsp;&nbsp;
@@ -16448,10 +16460,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="otp"                data-endpoint="POSTapi-customer-verify-otp--number---otp-"
-               value="illo"
+               value="nihil"
                data-component="url">
     <br>
-<p>Example: <code>illo</code></p>
+<p>Example: <code>nihil</code></p>
             </div>
                     </form>
 
@@ -16472,9 +16484,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"phone_number\": \"laudantium\",
-    \"password\": \"?#Nxz:*6pQn^GVXo5\\/\",
-    \"password_confirmation\": \"explicabo\"
+    \"phone_number\": \"eius\",
+    \"password\": \"t=dcR65p2}g9\",
+    \"password_confirmation\": \"autem\"
 }"
 </code></pre></div>
 
@@ -16490,9 +16502,9 @@ const headers = {
 };
 
 let body = {
-    "phone_number": "laudantium",
-    "password": "?#Nxz:*6pQn^GVXo5\/",
-    "password_confirmation": "explicabo"
+    "phone_number": "eius",
+    "password": "t=dcR65p2}g9",
+    "password_confirmation": "autem"
 };
 
 fetch(url, {
@@ -16581,10 +16593,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="phone_number"                data-endpoint="POSTapi-customer-reset-password"
-               value="laudantium"
+               value="eius"
                data-component="body">
     <br>
-<p>Example: <code>laudantium</code></p>
+<p>Example: <code>eius</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -16592,10 +16604,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password"                data-endpoint="POSTapi-customer-reset-password"
-               value="?#Nxz:*6pQn^GVXo5/"
+               value="t=dcR65p2}g9"
                data-component="body">
     <br>
-<p>Must be at least 6 characters. Example: <code>?#Nxz:*6pQn^GVXo5/</code></p>
+<p>Must be at least 6 characters. Example: <code>t=dcR65p2}g9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
@@ -16603,10 +16615,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="password_confirmation"                data-endpoint="POSTapi-customer-reset-password"
-               value="explicabo"
+               value="autem"
                data-component="body">
     <br>
-<p>Example: <code>explicabo</code></p>
+<p>Example: <code>autem</code></p>
         </div>
         </form>
 
@@ -17166,6 +17178,470 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
+                    <h2 id="endpoints-POSTapi-customer-make-checkout">POST api/customer/make/checkout</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-customer-make-checkout">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://127.0.0.1/api/customer/make/checkout" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1/api/customer/make/checkout"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-customer-make-checkout">
+</span>
+<span id="execution-results-POSTapi-customer-make-checkout" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-customer-make-checkout"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-customer-make-checkout"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-customer-make-checkout" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-customer-make-checkout">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-customer-make-checkout" data-method="POST"
+      data-path="api/customer/make/checkout"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-customer-make-checkout', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-customer-make-checkout"
+                    onclick="tryItOut('POSTapi-customer-make-checkout');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-customer-make-checkout"
+                    onclick="cancelTryOut('POSTapi-customer-make-checkout');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-customer-make-checkout"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/customer/make/checkout</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-customer-make-checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-customer-make-checkout"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-customer-deliveries-all_deriveries">GET api/customer/deliveries/all_deriveries</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-customer-deliveries-all_deriveries">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1/api/customer/deliveries/all_deriveries" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1/api/customer/deliveries/all_deriveries"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-customer-deliveries-all_deriveries">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-customer-deliveries-all_deriveries" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-customer-deliveries-all_deriveries"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-customer-deliveries-all_deriveries"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-customer-deliveries-all_deriveries" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-customer-deliveries-all_deriveries">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-customer-deliveries-all_deriveries" data-method="GET"
+      data-path="api/customer/deliveries/all_deriveries"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-customer-deliveries-all_deriveries', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-customer-deliveries-all_deriveries"
+                    onclick="tryItOut('GETapi-customer-deliveries-all_deriveries');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-customer-deliveries-all_deriveries"
+                    onclick="cancelTryOut('GETapi-customer-deliveries-all_deriveries');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-customer-deliveries-all_deriveries"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/customer/deliveries/all_deriveries</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-customer-deliveries-all_deriveries"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-customer-deliveries-all_deriveries"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-GETapi-customer-deliveries-pending_deriveries">GET api/customer/deliveries/pending_deriveries</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-customer-deliveries-pending_deriveries">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://127.0.0.1/api/customer/deliveries/pending_deriveries" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1/api/customer/deliveries/pending_deriveries"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-customer-deliveries-pending_deriveries">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-customer-deliveries-pending_deriveries" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-customer-deliveries-pending_deriveries"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-customer-deliveries-pending_deriveries"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-customer-deliveries-pending_deriveries" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-customer-deliveries-pending_deriveries">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-customer-deliveries-pending_deriveries" data-method="GET"
+      data-path="api/customer/deliveries/pending_deriveries"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-customer-deliveries-pending_deriveries', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-customer-deliveries-pending_deriveries"
+                    onclick="tryItOut('GETapi-customer-deliveries-pending_deriveries');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-customer-deliveries-pending_deriveries"
+                    onclick="cancelTryOut('GETapi-customer-deliveries-pending_deriveries');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-customer-deliveries-pending_deriveries"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/customer/deliveries/pending_deriveries</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-customer-deliveries-pending_deriveries"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-customer-deliveries-pending_deriveries"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                    <h2 id="endpoints-PUTapi-customer-updateFcmToken">PUT api/customer/updateFcmToken</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-customer-updateFcmToken">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://127.0.0.1/api/customer/updateFcmToken" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://127.0.0.1/api/customer/updateFcmToken"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-customer-updateFcmToken">
+</span>
+<span id="execution-results-PUTapi-customer-updateFcmToken" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-customer-updateFcmToken"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-customer-updateFcmToken"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-customer-updateFcmToken" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-customer-updateFcmToken">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-customer-updateFcmToken" data-method="PUT"
+      data-path="api/customer/updateFcmToken"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-customer-updateFcmToken', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-customer-updateFcmToken"
+                    onclick="tryItOut('PUTapi-customer-updateFcmToken');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-customer-updateFcmToken"
+                    onclick="cancelTryOut('PUTapi-customer-updateFcmToken');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-customer-updateFcmToken"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/customer/updateFcmToken</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="PUTapi-customer-updateFcmToken"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="PUTapi-customer-updateFcmToken"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
                     <h2 id="endpoints-GETapi-total-regions-data">GET api/total/regions/data</h2>
 
 <p>
@@ -17551,14 +18027,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/partial/delivery/sapiente" \
+    "http://127.0.0.1/api/partial/delivery/quos" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/partial/delivery/sapiente"
+    "http://127.0.0.1/api/partial/delivery/quos"
 );
 
 const headers = {
@@ -17651,10 +18127,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-partial-delivery--delivery_code-"
-               value="sapiente"
+               value="quos"
                data-component="url">
     <br>
-<p>Example: <code>sapiente</code></p>
+<p>Example: <code>quos</code></p>
             </div>
                     </form>
 
@@ -17671,14 +18147,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/full/delivery/ut" \
+    "http://127.0.0.1/api/full/delivery/animi" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/full/delivery/ut"
+    "http://127.0.0.1/api/full/delivery/animi"
 );
 
 const headers = {
@@ -17771,10 +18247,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-full-delivery--delivery_code-"
-               value="ut"
+               value="animi"
                data-component="url">
     <br>
-<p>Example: <code>ut</code></p>
+<p>Example: <code>animi</code></p>
             </div>
                     </form>
 
@@ -17791,14 +18267,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/edit/delivery/sint" \
+    "http://127.0.0.1/api/edit/delivery/repudiandae" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/edit/delivery/sint"
+    "http://127.0.0.1/api/edit/delivery/repudiandae"
 );
 
 const headers = {
@@ -17891,10 +18367,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-edit-delivery--delivery_code-"
-               value="sint"
+               value="repudiandae"
                data-component="url">
     <br>
-<p>Example: <code>sint</code></p>
+<p>Example: <code>repudiandae</code></p>
             </div>
                     </form>
 
@@ -17911,14 +18387,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/cancel/delivery/suscipit" \
+    "http://127.0.0.1/api/cancel/delivery/consequuntur" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/cancel/delivery/suscipit"
+    "http://127.0.0.1/api/cancel/delivery/consequuntur"
 );
 
 const headers = {
@@ -18011,10 +18487,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="delivery_code"                data-endpoint="POSTapi-cancel-delivery--delivery_code-"
-               value="suscipit"
+               value="consequuntur"
                data-component="url">
     <br>
-<p>Example: <code>suscipit</code></p>
+<p>Example: <code>consequuntur</code></p>
             </div>
                     </form>
 
@@ -18031,14 +18507,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/customer/comments/accusamus" \
+    --get "http://127.0.0.1/api/customer/comments/nostrum" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/customer/comments/accusamus"
+    "http://127.0.0.1/api/customer/comments/nostrum"
 );
 
 const headers = {
@@ -18147,10 +18623,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="id"                data-endpoint="GETapi-customer-comments--id-"
-               value="accusamus"
+               value="nostrum"
                data-component="url">
     <br>
-<p>The ID of the comment. Example: <code>accusamus</code></p>
+<p>The ID of the comment. Example: <code>nostrum</code></p>
             </div>
                     </form>
 
@@ -18171,9 +18647,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"customers_id\": \"voluptas\",
-    \"date\": \"2023-06-12T13:45:26\",
-    \"comment\": \"error\"
+    \"customers_id\": \"eius\",
+    \"date\": \"2023-06-12T19:13:45\",
+    \"comment\": \"voluptates\"
 }"
 </code></pre></div>
 
@@ -18189,9 +18665,9 @@ const headers = {
 };
 
 let body = {
-    "customers_id": "voluptas",
-    "date": "2023-06-12T13:45:26",
-    "comment": "error"
+    "customers_id": "eius",
+    "date": "2023-06-12T19:13:45",
+    "comment": "voluptates"
 };
 
 fetch(url, {
@@ -18280,10 +18756,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customers_id"                data-endpoint="POSTapi-customer-comment"
-               value="voluptas"
+               value="eius"
                data-component="body">
     <br>
-<p>Example: <code>voluptas</code></p>
+<p>Example: <code>eius</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>date</code></b>&nbsp;&nbsp;
@@ -18291,10 +18767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="date"                data-endpoint="POSTapi-customer-comment"
-               value="2023-06-12T13:45:26"
+               value="2023-06-12T19:13:45"
                data-component="body">
     <br>
-<p>Must be a valid date. Example: <code>2023-06-12T13:45:26</code></p>
+<p>Must be a valid date. Example: <code>2023-06-12T19:13:45</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>comment</code></b>&nbsp;&nbsp;
@@ -18302,10 +18778,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="comment"                data-endpoint="POSTapi-customer-comment"
-               value="error"
+               value="voluptates"
                data-component="body">
     <br>
-<p>Example: <code>error</code></p>
+<p>Example: <code>voluptates</code></p>
         </div>
         </form>
 
@@ -18322,14 +18798,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/vansales/quibusdam/perferendis/add-to-cart" \
+    "http://127.0.0.1/api/checkin/vansales/ut/aut/add-to-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/vansales/quibusdam/perferendis/add-to-cart"
+    "http://127.0.0.1/api/checkin/vansales/ut/aut/add-to-cart"
 );
 
 const headers = {
@@ -18422,10 +18898,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin-vansales--checkinCode---random--add-to-cart"
-               value="quibusdam"
+               value="ut"
                data-component="url">
     <br>
-<p>Example: <code>quibusdam</code></p>
+<p>Example: <code>ut</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>random</code></b>&nbsp;&nbsp;
@@ -18433,10 +18909,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="random"                data-endpoint="POSTapi-checkin-vansales--checkinCode---random--add-to-cart"
-               value="perferendis"
+               value="aut"
                data-component="url">
     <br>
-<p>Example: <code>perferendis</code></p>
+<p>Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -18453,14 +18929,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/checkin/newsales/quo/ut/quibusdam/add-to-cart" \
+    "http://127.0.0.1/api/checkin/newsales/ullam/accusamus/velit/add-to-cart" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/checkin/newsales/quo/ut/quibusdam/add-to-cart"
+    "http://127.0.0.1/api/checkin/newsales/ullam/accusamus/velit/add-to-cart"
 );
 
 const headers = {
@@ -18553,10 +19029,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="checkinCode"                data-endpoint="POSTapi-checkin-newsales--checkinCode---random---distributor--add-to-cart"
-               value="quo"
+               value="ullam"
                data-component="url">
     <br>
-<p>Example: <code>quo</code></p>
+<p>Example: <code>ullam</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>random</code></b>&nbsp;&nbsp;
@@ -18564,10 +19040,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="random"                data-endpoint="POSTapi-checkin-newsales--checkinCode---random---distributor--add-to-cart"
-               value="ut"
+               value="accusamus"
                data-component="url">
     <br>
-<p>Example: <code>ut</code></p>
+<p>Example: <code>accusamus</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>distributor</code></b>&nbsp;&nbsp;
@@ -18575,10 +19051,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="distributor"                data-endpoint="POSTapi-checkin-newsales--checkinCode---random---distributor--add-to-cart"
-               value="quibusdam"
+               value="velit"
                data-component="url">
     <br>
-<p>Example: <code>quibusdam</code></p>
+<p>Example: <code>velit</code></p>
             </div>
                     </form>
 
@@ -19323,14 +19799,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/aut" \
+    --get "http://127.0.0.1/api/SalesHistory/magni" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/aut"
+    "http://127.0.0.1/api/SalesHistory/magni"
 );
 
 const headers = {
@@ -19439,10 +19915,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory--shopID-"
-               value="aut"
+               value="magni"
                data-component="url">
     <br>
-<p>Example: <code>aut</code></p>
+<p>Example: <code>magni</code></p>
             </div>
                     </form>
 
@@ -19459,14 +19935,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/vansale/iure" \
+    --get "http://127.0.0.1/api/SalesHistory/vansale/in" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/vansale/iure"
+    "http://127.0.0.1/api/SalesHistory/vansale/in"
 );
 
 const headers = {
@@ -19575,10 +20051,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory-vansale--shopID-"
-               value="iure"
+               value="in"
                data-component="url">
     <br>
-<p>Example: <code>iure</code></p>
+<p>Example: <code>in</code></p>
             </div>
                     </form>
 
@@ -19595,14 +20071,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/SalesHistory/newsale/tempore" \
+    --get "http://127.0.0.1/api/SalesHistory/newsale/sunt" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/SalesHistory/newsale/tempore"
+    "http://127.0.0.1/api/SalesHistory/newsale/sunt"
 );
 
 const headers = {
@@ -19711,10 +20187,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="shopID"                data-endpoint="GETapi-SalesHistory-newsale--shopID-"
-               value="tempore"
+               value="sunt"
                data-component="url">
     <br>
-<p>Example: <code>tempore</code></p>
+<p>Example: <code>sunt</code></p>
             </div>
                     </form>
 
@@ -19731,14 +20207,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://127.0.0.1/api/scheduleVisit/dolorem" \
+    "http://127.0.0.1/api/scheduleVisit/odio" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/scheduleVisit/dolorem"
+    "http://127.0.0.1/api/scheduleVisit/odio"
 );
 
 const headers = {
@@ -19831,10 +20307,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="CustomerAccountNumber"                data-endpoint="POSTapi-scheduleVisit--CustomerAccountNumber-"
-               value="dolorem"
+               value="odio"
                data-component="url">
     <br>
-<p>Example: <code>dolorem</code></p>
+<p>Example: <code>odio</code></p>
             </div>
                     </form>
 
@@ -20087,7 +20563,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"image\": \"perspiciatis\"
+    \"image\": \"dolor\"
 }"
 </code></pre></div>
 
@@ -20103,7 +20579,7 @@ const headers = {
 };
 
 let body = {
-    "image": "perspiciatis"
+    "image": "dolor"
 };
 
 fetch(url, {
@@ -20192,10 +20668,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="image"                data-endpoint="POSTapi-stocklift"
-               value="perspiciatis"
+               value="dolor"
                data-component="body">
     <br>
-<p>Example: <code>perspiciatis</code></p>
+<p>Example: <code>dolor</code></p>
         </div>
         </form>
 
@@ -20753,14 +21229,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/survey/questions/non" \
+    --get "http://127.0.0.1/api/survey/questions/hic" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/survey/questions/non"
+    "http://127.0.0.1/api/survey/questions/hic"
 );
 
 const headers = {
@@ -20873,10 +21349,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="surveyCode"                data-endpoint="GETapi-survey-questions--surveyCode-"
-               value="non"
+               value="hic"
                data-component="url">
     <br>
-<p>Example: <code>non</code></p>
+<p>Example: <code>hic</code></p>
             </div>
                     </form>
 
@@ -21605,14 +22081,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/get/count/et" \
+    --get "http://127.0.0.1/api/get/count/tempora" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/get/count/et"
+    "http://127.0.0.1/api/get/count/tempora"
 );
 
 const headers = {
@@ -21721,10 +22197,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="customerID"                data-endpoint="GETapi-get-count--customerID-"
-               value="et"
+               value="tempora"
                data-component="url">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>tempora</code></p>
             </div>
                     </form>
 
@@ -21849,14 +22325,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://127.0.0.1/api/route/schedule/minima" \
+    --get "http://127.0.0.1/api/route/schedule/aut" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://127.0.0.1/api/route/schedule/minima"
+    "http://127.0.0.1/api/route/schedule/aut"
 );
 
 const headers = {
@@ -21969,10 +22445,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="id"                data-endpoint="GETapi-route-schedule--id-"
-               value="minima"
+               value="aut"
                data-component="url">
     <br>
-<p>The ID of the schedule. Example: <code>minima</code></p>
+<p>The ID of the schedule. Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -22116,7 +22592,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     "http://127.0.0.1/api/update/default/image" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
-    --form "image=@C:\Users\Admin\AppData\Local\Temp\phpC275.tmp" </code></pre></div>
+    --form "image=@C:\Users\Admin\AppData\Local\Temp\php58B6.tmp" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -22221,7 +22697,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                value=""
                data-component="body">
     <br>
-<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\phpC275.tmp</code></p>
+<p>Must be an image. Example: <code>C:\Users\Admin\AppData\Local\Temp\php58B6.tmp</code></p>
         </div>
         </form>
 
@@ -22847,7 +23323,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"requisition_products\": [
-        \"molestias\"
+        \"recusandae\"
     ]
 }"
 </code></pre></div>
@@ -22865,7 +23341,7 @@ const headers = {
 
 let body = {
     "requisition_products": [
-        "molestias"
+        "recusandae"
     ]
 };
 
@@ -22964,10 +23440,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="requisition_products.0.product_id"                data-endpoint="POSTapi-stock-create-request"
-               value="11"
+               value="7"
                data-component="body">
     <br>
-<p>Example: <code>11</code></p>
+<p>Example: <code>7</code></p>
                     </div>
                                                                 <div style="margin-left: 14px; clear: unset;">
                         <b style="line-height: 2;"><code>quantity</code></b>&nbsp;&nbsp;
@@ -22975,10 +23451,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="requisition_products.0.quantity"                data-endpoint="POSTapi-stock-create-request"
-               value="8"
+               value="15"
                data-component="body">
     <br>
-<p>Example: <code>8</code></p>
+<p>Example: <code>15</code></p>
                     </div>
                                     </details>
         </div>
@@ -23246,7 +23722,7 @@ fetch(url, {
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 access-control-allow-origin: *
-set-cookie: XSRF-TOKEN=eyJpdiI6IjNlZnVFSTF0aWRPR3FnMlgvWU83WFE9PSIsInZhbHVlIjoidHpvcFFOL1ZBaFZCeHJndW00SGFWTm5QUWFrWVo3T0pnTWNEYS9rcWhsc25mcUY0WXV5TE5qQjFPaGNGTHpnR1BVTkxlWHIzMU8rTGtTK2RxSmhheXl4MG5GbEJIcDBZemEveU83Mk1xRE9lcGZlREVNRFlSQTNuZkhXU3JTR1UiLCJtYWMiOiI2YzcwNmNjMDBmYjVkMjM3N2U1OTZkZDdjMmZlNDBhNmIwZTQyMzdjOGYxZTZhNjY2NDYwYjk5YTMzOTgzZGZlIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6IlFHVEJ0ZldXcXo1TWFsT0ZMME96UVE9PSIsInZhbHVlIjoiT1pYYStNNlp0ZnhWMVBaaVlWOUNIRzlDaDlmMWlNS0ZVbFh1N3U2azBZWlBZQTR0QnJjQ2gzT0ZMckdZUktNcFZHUGNSd1VPNm95dXU4SzU4SC9LYXlDMk8waXo0VW5hKzZoZ3Q5QUlFVm1OTE5LeHV1NkVKcWlBN2NpMUNlbm4iLCJtYWMiOiIwMjk4MTNhMjAwODkzMGRiMjM0MTA1NjBlYmFlMDAxOWEwZGQ2NDVhMjA5MTI1YmQ0MzRjOTVjOWQwMmQyMjcxIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 15:45:27 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+set-cookie: XSRF-TOKEN=eyJpdiI6InRTbjMwWXR3VzdFNGJHcS9VNnhaRWc9PSIsInZhbHVlIjoiUDkyM1QvTjZNZk9CemoycHBPd1lKeGlCVTJTZ01sL1pMaktibVQ1eGNsbkJtWG5ib1VzMjZYUS9FdmVXZEs3bHJWTVFsaHd5enVKRUN0N0tIUmQ2YjRWQ2ROMTZNUmlEMjVHSkE2QnFDNFJTa0JUYS9zQ2diT2dDbWgvOU11S3MiLCJtYWMiOiJiNGNkNGU0NDhlMGI3ZmNlZTc5MWZiYzA4MjEyMTI4NWMwN2EyYmZkMGU3YzI3YTg3NWVhODgwNjJmMzljMTVmIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6Ii94bXA4ZlVlMllaUUtWNGZvT0JtbkE9PSIsInZhbHVlIjoiZ2x4V0NVQWlScU9OSy9uMURhOFg3dklmWS82bCtJVm53cks5U2JLR0VwaVh0bGh5akhJTDRTQlJ5dFNDTTdvVndiK1FwL3VEL0VMdFk2NnJ1djVBNzFDTG83RUlsZ3pONTdOREVETS84a0hvWmpyaXc3MG1BR1ZiMVNkS0lWMlEiLCJtYWMiOiJiZjgxYmQwNjFiZjlhNDUxZjM4NjBlNmNhNGYwZDM3NDlmNDhhYmQyNTU1YWRjNjE3YTFlMWUyMjE2NTM3MGEwIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=/; httponly; samesite=lax
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
@@ -23776,6 +24252,27 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjNlZnVFSTF0aWRPR3FnMlgvWU83WFE9PSIsInZhbHVlIjoid
             &quot;updated_by&quot;: null,
             &quot;created_at&quot;: &quot;2023-06-09T12:57:28.000000Z&quot;,
             &quot;updated_at&quot;: &quot;2023-06-09T12:57:28.000000Z&quot;,
+            &quot;delivery_items&quot;: [],
+            &quot;order&quot;: null
+        },
+        {
+            &quot;id&quot;: 27,
+            &quot;business_code&quot;: &quot;8OKX9VM41k5lTSe18boS&quot;,
+            &quot;delivery_code&quot;: &quot;unmiKexp3M7PazJhpB2y&quot;,
+            &quot;order_code&quot;: &quot;Lq5wRbcNsS&quot;,
+            &quot;allocated&quot;: &quot;5324rWREWR&quot;,
+            &quot;delivery_note&quot;: &quot;no enough sidai Ultrdip 1ltr&quot;,
+            &quot;Note&quot;: null,
+            &quot;delivery_status&quot;: &quot;Waiting acceptance&quot;,
+            &quot;customer&quot;: null,
+            &quot;delivered_time&quot;: null,
+            &quot;accept_allocation&quot;: null,
+            &quot;customer_confirmation&quot;: null,
+            &quot;approval&quot;: 0,
+            &quot;created_by&quot;: &quot;5324rWREWR&quot;,
+            &quot;updated_by&quot;: null,
+            &quot;created_at&quot;: &quot;2023-06-12T16:33:19.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2023-06-12T16:33:19.000000Z&quot;,
             &quot;delivery_items&quot;: [],
             &quot;order&quot;: null
         }

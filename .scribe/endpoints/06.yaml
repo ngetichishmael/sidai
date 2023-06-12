@@ -30,19 +30,19 @@ endpoints:
         name: email
         description: ''
         required: true
-        example: dudley.pollich@example.org
+        example: brennon31@example.net
         type: string
         custom: []
       password:
         name: password
         description: 'user password.'
         required: true
-        example: '3*Q_o$sVf\'''
+        example: '0p{uumaA'
         type: string
         custom: []
     cleanBodyParameters:
-      email: dudley.pollich@example.org
-      password: '3*Q_o$sVf\'''
+      email: brennon31@example.net
+      password: '0p{uumaA'
     fileParameters: []
     responses:
       -
@@ -85,11 +85,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: soluta
+        example: voluptate
         type: string
         custom: []
     cleanUrlParameters:
-      number: soluta
+      number: voluptate
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -125,19 +125,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: sit
+        example: vel
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: et
+        example: quo
         type: string
         custom: []
     cleanUrlParameters:
-      number: sit
-      otp: et
+      number: vel
+      otp: quo
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -177,27 +177,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: qui
+        example: quis
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: umvQs5on
+        example: '5P?uTM^9;Zud~'
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: et
+        example: exercitationem
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: qui
-      password: umvQs5on
-      password_confirmation: et
+      phone_number: quis
+      password: '5P?uTM^9;Zud~'
+      password_confirmation: exercitationem
     fileParameters: []
     responses: []
     responseFields: []

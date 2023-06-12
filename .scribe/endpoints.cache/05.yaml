@@ -39,28 +39,28 @@ endpoints:
         name: latitude
         description: 'as current latitude'
         required: true
-        example: amet
+        example: minima
         type: string
         custom: []
       longitude:
         name: longitude
         description: 'as current longitude'
         required: true
-        example: porro
+        example: totam
         type: string
         custom: []
       user_code:
         name: user_code
         description: 'user code'
         required: true
-        example: aliquam
+        example: provident
         type: string
         custom: []
     cleanBodyParameters:
       customerID: est
-      latitude: amet
-      longitude: porro
-      user_code: aliquam
+      latitude: minima
+      longitude: totam
+      user_code: provident
     fileParameters: []
     responses: []
     responseFields: []
@@ -92,11 +92,11 @@ endpoints:
         name: CustomerCode
         description: ''
         required: true
-        example: eaque
+        example: maiores
         type: string
         custom: []
     cleanUrlParameters:
-      CustomerCode: eaque
+      CustomerCode: maiores
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -606,11 +606,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: provident
+        example: minima
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: provident
+      checkinCode: minima
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -657,11 +657,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: non
+        example: occaecati
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: non
+      checkinCode: occaecati
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1164,11 +1164,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: qui
+        example: quos
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: qui
+      checkinCode: quos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1176,19 +1176,19 @@ endpoints:
         name: productID
         description: 'as product ID'
         required: true
-        example: rem
+        example: optio
         type: string
         custom: []
       qty:
         name: qty
         description: 'as quantity'
         required: true
-        example: praesentium
+        example: harum
         type: string
         custom: []
     cleanBodyParameters:
-      productID: rem
-      qty: praesentium
+      productID: optio
+      qty: harum
     fileParameters: []
     responses:
       -
@@ -1231,11 +1231,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: optio
+        example: ullam
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: optio
+      checkinCode: ullam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1243,19 +1243,19 @@ endpoints:
         name: order_type
         description: 'as order type [Van sale or Pre order]'
         required: true
-        example: provident
+        example: illum
         type: string
         custom: []
       reasons_partial_delivery:
         name: reasons_partial_delivery
         description: 'as reasons_partial_delivery'
         required: false
-        example: quaerat
+        example: reiciendis
         type: string
         custom: []
     cleanBodyParameters:
-      order_type: provident
-      reasons_partial_delivery: quaerat
+      order_type: illum
+      reasons_partial_delivery: reiciendis
     fileParameters: []
     responses: []
     responseFields: []
@@ -1287,7 +1287,7 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: laudantium
+        example: accusamus
         type: string
         custom: []
       id:
@@ -1298,7 +1298,7 @@ endpoints:
         type: integer
         custom: []
     cleanUrlParameters:
-      checkinCode: laudantium
+      checkinCode: accusamus
       id: 1
     queryParameters: []
     cleanQueryParameters: []
@@ -1346,11 +1346,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: beatae
+        example: sed
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: beatae
+      checkinCode: sed
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1860,11 +1860,11 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: magnam
+        example: quia
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: magnam
+      checkinCode: quia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -1872,11 +1872,11 @@ endpoints:
         name: order_id
         description: 'as order_id'
         required: true
-        example: 11
+        example: 6
         type: integer
         custom: []
     cleanBodyParameters:
-      order_id: 11
+      order_id: 6
     fileParameters: []
     responses: []
     responseFields: []
@@ -1908,19 +1908,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: amet
+        example: et
         type: string
         custom: []
       orderID:
         name: orderID
         description: ''
         required: true
-        example: unde
+        example: et
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: amet
-      orderID: unde
+      checkinCode: et
+      orderID: et
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2430,19 +2430,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: eum
+        example: nisi
         type: string
         custom: []
       itemID:
         name: itemID
         description: ''
         required: true
-        example: quam
+        example: nobis
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: eum
-      itemID: quam
+      checkinCode: nisi
+      itemID: nobis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -2450,19 +2450,19 @@ endpoints:
         name: qty
         description: 'as qty'
         required: true
-        example: dicta
+        example: laudantium
         type: string
         custom: []
       orderID:
         name: orderID
         description: 'as orderID'
         required: false
-        example: laboriosam
+        example: ut
         type: string
         custom: []
     cleanBodyParameters:
-      qty: dicta
-      orderID: laboriosam
+      qty: laudantium
+      orderID: ut
     fileParameters: []
     responses: []
     responseFields: []
@@ -2494,19 +2494,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: ipsam
+        example: quia
         type: string
         custom: []
       itemID:
         name: itemID
         description: ''
         required: true
-        example: libero
+        example: magnam
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: ipsam
-      itemID: libero
+      checkinCode: quia
+      itemID: magnam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -3013,11 +3013,11 @@ endpoints:
         name: order_id
         description: 'as order_id'
         required: true
-        example: 6
+        example: 11
         type: integer
         custom: []
     cleanBodyParameters:
-      order_id: 6
+      order_id: 11
     fileParameters: []
     responses: []
     responseFields: []
@@ -3049,19 +3049,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: corrupti
+        example: blanditiis
         type: string
         custom: []
       orderID:
         name: orderID
         description: ''
         required: true
-        example: voluptatum
+        example: optio
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: corrupti
-      orderID: voluptatum
+      checkinCode: blanditiis
+      orderID: optio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
