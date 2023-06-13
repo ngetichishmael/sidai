@@ -216,6 +216,10 @@ Route::group(['namespace' => 'Api'], function () {
     */
    Route::get('/get/outlet/types', [OutletTypesController::class, "getOutletTypes"])->middleware('auth:sanctum');
 
+   Route::get('customer/profile', 'customersController@customerprofile')->middleware('auth:sanctum');
+   Route::put('customer/profile/update', 'customersController@updateCustomerProfile')->middleware('auth:sanctum');
+   Route::put('customer/image/update', 'customersController@updateCustomerImage')->middleware('auth:sanctum');
+
    /**
     * Get Company Routes
     */
