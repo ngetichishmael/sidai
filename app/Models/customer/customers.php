@@ -24,7 +24,7 @@ class customers extends Model
 
    public function scopeToday($query)
    {
-      $query->where('updated_at', Carbon::today())->get();
+      $query->where('updated_at', Carbon::today());
    }
    public function scopeYesterday($query)
    {

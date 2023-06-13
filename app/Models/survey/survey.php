@@ -1,6 +1,7 @@
 <?php
 namespace App\Models\survey;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class survey extends Model
@@ -57,4 +58,16 @@ class survey extends Model
 //             'id' // Local key on the cars table...
 //         );
 //     }
+   public function scopePeriod($query, $start = null, $end = null)
+   {
+      if ($start === $end && $start !== null) {
+         $query->whereLike(['updated_at'], (string)$start);
+      } else {
+         $monthStart = Carbon::now()->startOfMonth()->format('Y-m-d');
+         $monthEnd = Carbon::now()->endOfMonth()->format('Y-m-d');
+         $from = $start == null ? $monthStart : $start;
+         $to = $end == null ? $monthEnd : $end;
+         $query->whereBetween('updated_at', [$from, $to]);
+      }
+   }
 }

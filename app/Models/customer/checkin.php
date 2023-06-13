@@ -75,9 +75,7 @@ class checkin extends Model
 
    public function scopeToday($query)
    {
-//      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
-      $today = Carbon::now()->toDateString();
-      return $query->whereDate('updated_at', $today);
+      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
    }
    public function scopeYesterday($query)
    {
