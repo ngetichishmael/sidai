@@ -28,6 +28,6 @@ class StockRequisition extends Model
     */
    public function user(): BelongsTo
    {
-       return $this->belongsTo(User::class, 'user_code');
+       return $this->belongsTo(User::class, 'sales_person','user_code');
    }
 }

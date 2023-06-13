@@ -83,6 +83,117 @@ class customersController extends Controller
     * @bodyParam business_code string required
     * @bodyParam created_by string required user code
     **/
+
+   public function customerprofile(Request $request){
+      $user_code=$request->user()->user_code;
+      $customer=customers::where('user_code', $user_code)->first();
+      return response()->json([
+         "success" => true,
+         "message" => "Customer Profile",
+         "profile" => $customer
+      ]);
+   }
+
+   public function updateCustomerProfile(Request $request){
+
+      $validator = Validator::make($request->all(), [
+         'customer_name' => 'required',
+         'email' => 'nullable',
+         'address' => 'nullable',
+         'contact_person' => 'nullable',
+         'phone_number' => 'nullable',
+         'telephone' => 'nullable'
+
+      ]);
+      if ($validator->fails()) {
+         return response()->json(['errors' => $validator->errors()], 422);
+
+      }
+
+      $user_code=$request->user()->user_code;
+      // $image_path = $request->file('image')->store('image', 'public');
+
+      $name=$request->user()->name;
+      $customers=customers::where('user_code', $user_code)->first();
+
+
+      $customer_data = [
+         'email' => $request->email,
+         'address' => $request->address,
+         'customer_name' => $request->customer_name,
+         'contact_person' => $request->contact_person,
+         'telephone' => $request->telephone,
+         'phone_number' => $request->phone_number,
+
+      ];
+
+      // Remove null or empty values
+      $customer_data = array_filter($customer_data, function($value) {
+         return !is_null($value) && $value !== '';
+      });
+
+      // Update the customer with the filtered data
+      $customer = $customers->update($customer_data);
+
+      $user=User::where('user_code', $user_code)->update(
+
+         [
+
+            'name' => $request->customer_name,
+            'email' => $request->email,
+            'location' => $request->address,
+            'phone_number' => $request->phone_number,
+
+         ]
+      );
+
+
+
+      return response()->json([
+         "success" => true,
+         "message" => "Updated customer profile",
+         "customer" => $customers
+      ]);
+
+
+
+   }
+   public function updateCustomerImage(Request $request){
+      $validator = Validator::make($request->all(), [
+         'image' => 'required',
+
+      ]);
+      if ($validator->fails()) {
+         return response()->json(['errors' => $validator->errors()], 422);
+
+      }
+
+      $user_code=$request->user()->user_code;
+      $image_path = $request->file('image')->store('image', 'public');
+
+      $name=$request->user()->name;
+      $customers=customers::where('user_code', $user_code)->first();
+
+
+      $customer_data = [
+         'image' => $image_path,
+      ];
+
+      // Remove null or empty values
+      $customer_data = array_filter($customer_data, function($value) {
+         return !is_null($value) && $value !== '';
+      });
+
+      // Update the customer image with the filtered data
+      $customer = $customers->update($customer_data);
+
+      return response()->json([
+         "success" => true,
+         "message" => "Updated customer image",
+         "image" => $image_path
+      ]);
+
+   }
    public function add_customer(Request $request)
    {
       //   $user_code = $request->user()->user_code;
@@ -90,8 +201,8 @@ class customersController extends Controller
          "customer_name"   => "required|unique:customers",
          "contact_person"  => "required",
          "business_code"   => "required",
-         "created_by"      => "required",
          "phone_number"    => "required|unique:customers",
+         "email" => "nullable|unique:users",
          "latitude"        => "required",
          "longitude"       => "required",
          "image" => 'required|image|mimes:jpg,png,jpeg,gif,svg',
@@ -108,9 +219,9 @@ class customersController extends Controller
             403
          );
       }
+      $random=Str::random(3);
       $image_path = $request->file('image')->store('image', 'public');
-      $emailData = $request->email == null ? null : $request->email;
-
+      $emailData = $request->email !== null ? $request->email : $request->customer_name.$random.'@gmail.com';
       $random=Str::random(10);
       $user = new User();
       $user->name = $request->customer_name;
@@ -123,7 +234,7 @@ class customersController extends Controller
       $user->status="Active";
       $user->region_id=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
-      $user->password = Hash::make("password");
+      $user->password = "password";
       $user->save();
 
       $customer = new customers;
@@ -143,21 +254,6 @@ class customersController extends Controller
       $customer->unit_id = $request->route_code;
       $customer->image = $image_path;
       $customer->save();
-
-      $random=Str::random(10);
-      $user = new User();
-      $user->name = $request->customer_name;
-      $user->email=$emailData;
-      $user->user_code=$random;
-      $user->phone_number = $request->phone_number;
-      $user->gender = $request->gender;
-      $user->account_type= "Customer";
-      $user->email_verified_at =Carbon::now();
-      $user->status="Active";
-      $user->region_id=Auth::user()->region_id;
-      $user->business_code = Auth::user()->business_code;
-      $user->password = "password";
-      $user->save();
 
       DB::table('leads_targets')
          ->where('user_code', $request->user()->user_code)
