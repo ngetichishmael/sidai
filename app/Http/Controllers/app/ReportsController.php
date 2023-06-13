@@ -17,6 +17,7 @@ use App\Models\products\product_information;
 
 class ReportsController extends Controller
 {
+     public $perPage = 50;
     public function preorders()
     {
         $count =1;
@@ -57,8 +58,9 @@ class ReportsController extends Controller
     }
     public function distributor()
     {
-     $distributors = Orders::with('User','Customer')->where('supplierID','!=', '1')->get();
-         return view('app.reports.distributor',['distributors'=>$distributors]);
+     $count =1;
+     $distributors = Orders::with('User','Customer')->where('supplierID','!=', '1')->where('supplierID','!=','NULL')->get();
+         return view('app.reports.distributor',['distributors'=>$distributors,'count'=>$count]);
 
     }
     public function regional()
@@ -73,7 +75,14 @@ class ReportsController extends Controller
      $warehouses= warehousing::whereNotNull('warehouse_code')->distinct('name')->pluck('name');
      $count=1;
          return view('app.reports.inventory',['warehouses'=>$warehouses,'count'=>$count]);
+    }
 
+    public function products($code)
+    {
+     $count=1;
+     $warehouse= warehousing::where('warehouse_code',$code)->first();
+     $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
+         return view('app.reports.inventory',['warehouses'=>$warehouse,'count'=>$count,'products'=>$products]);
     }
     public function subregions()
     {
