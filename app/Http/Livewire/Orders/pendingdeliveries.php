@@ -30,7 +30,7 @@ class pendingdeliveries extends Component
       $sidai=suppliers::where('name', 'Sidai')->first();
       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->where(function ($query) use ($searchTerm) {
+         ->where(function ($query) use ($sidai, $searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
             })
@@ -39,6 +39,11 @@ class pendingdeliveries extends Component
                })
                ->orWhereHas('Order', function ($subQuery) use ($searchTerm) {
                   $subQuery->where('order_code', 'like', $searchTerm);
+               })
+               ->orWhereHas('Order', function ($subQuery) use ($sidai) {
+                  $subQuery->whereNull('distributor')
+                     ->orWhere('distributor', '')
+                     ->orWhere('distributor', $sidai->id);
                });
          })
          ->when($this->fromDate, function ($query) {
