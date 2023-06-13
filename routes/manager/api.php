@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/routes/data', [RoutesController::class, 'getRoutes']);
 
+      Route::get('/manager/reports/data', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'reports']);
+
 
       Route::get('/manager/vansales/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesToday']);
       Route::get('/manager/vansales/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesWeek']);
