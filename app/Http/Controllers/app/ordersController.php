@@ -152,17 +152,17 @@ class ordersController extends Controller
                "requested_quantity" => $request->product[$i],
                "allocated_quantity" => $request->allocate[$i]
             ]);
-         if ($request->product[$i] < $request->allocate[$i]) {
-            Orders::where('order_code', $request->order_code)
-               ->update([
-                  "order_status" => "Partial delivery"
-               ]);
-         }else{
+//         if ($request->product[$i] < $request->allocate[$i]) {
+//            Orders::where('order_code', $request->order_code)
+//               ->update([
+//                  "order_status" => "Partial delivery"
+//               ]);
+//         }else{
             Orders::where('order_code', $request->order_code)
                ->update([
                   "order_status" => "Waiting acceptance"
                ]);
-         }
+//         }
       }
 
       $random = Str::random(20);
