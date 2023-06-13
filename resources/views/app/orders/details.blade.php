@@ -153,7 +153,7 @@
                                 <div class="my-1">
                                     Address, <span class="text-blue">{!! $test->address !!}</span>
                                 </div>
-                                <div class="my-1"><i class="fa fa-phone-alt fa-flip-horizontal text-secondary"></i> <b
+                                <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
                                         class="text-600">(+254){!! $test->phone_number !!}</b></div>
                             </div>
                         </div>
@@ -164,13 +164,13 @@
                             <div class="text-grey-m2">
                                 <div class="mt-1">Invoice </div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">ID:</span> #{!! $order->id !!}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Issue Date:</span> {!! $order->created_at !!}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Status:</span> <span
                                         class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span>
                                 </div>
@@ -199,7 +199,7 @@
                                         <tr>
                                             <td>{!! $count + 1 !!}</td>
                                             <td>{!! $item->product_name !!}</td>
-                                            <td>{!! $item->quantity !!}</td>
+                                            <td>{!! $item->allocated_quantity !!}</td>
                                             <td class="text-95">ksh{!! $item->selling_price !!}</td>
                                             <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
                                         </tr>

@@ -36,29 +36,105 @@
                                             placeholder="Customer Name" name="customer_name" />
                                     </div>
                                 </div>
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="last-name-column">Account</label>--}}
+                                        <input type="hidden" id="last-name-column" class="form-control"
+                                            placeholder="Account" name="account" value="Sidai" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="city-column">Manufacturer Number</label>--}}
+                                        <input type="hidden"  class="form-control"
+                                            name="manufacturer_number" value="000000" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="country-floating">VAT number</label>--}}
+{{--                                        <input type="text" id="country-floating" class="form-control" name="vat_number"--}}
+{{--                                            placeholder="VAT number" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="company-column">Delivery Time</label>--}}
+{{--                                        <input type="text" id="company-column" class="form-control" name="delivery_time"--}}
+{{--                                            placeholder="Delivery Time" />--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="id-number">ID Number</label>
-                                        <input type="number" id="id-number" maxlength="8" class="form-control"
-                                            placeholder="Eg. 3540...." name="id_number" />
-                                    </div>
-                                </div>
-                                
-                                
-                                
-                               
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Address</label>
-                                        <input type="text" id="email-id-column" class="form-control" name="address"
+                                        <label for="address-id-column">Address</label>
+                                        <input type="text" id="address" class="form-control" name="address"
                                             placeholder="address" />
                                     </div>
                                 </div>
 
                             </div>
-                            
+
                             <div class="row">
-                               
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="first-name-column">City</label>--}}
+                                        <input type="hidden" id="first-name-column" class="form-control"
+                                            name="city" value="Nairobi" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="last-name-column">Province</label>
+                                        <input type="text" id="last-name-column" class="form-control"
+                                            placeholder="Province" name="province" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="city-column">Postal Code</label>
+                                        <input type="text" id="city-column" class="form-control"
+                                            placeholder="Postal Code" name="postal_code" />
+                                    </div>
+                                </div>
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="country-floating">Country</label>--}}
+                                        <input type="hidden" id="country-floating" class="form-control" name="country"
+                                            placeholder="Country" value="Kenya" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="company-column">Latitude</label>
+                                        <input type="text" id="company-column" class="form-control" name="latitude"
+                                            placeholder="Latitude" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="longitude-id-column">Longitude</label>
+                                        <input type="text" id="longitude-id-column" class="form-control" name="longitude"
+                                            placeholder="Longitude" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">Contact Person</label>
+                                        <input type="text" id="first-name-column" class="form-control"
+                                            placeholder="Contact Person" name="contact_person" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="last-name-column">Telephone</label>
+                                        <input type="text" id="last-name-column" class="form-control"
+                                            placeholder="Telephone" name="telephone" />
+                                    </div>
+                                </div>
+
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>
                                     <select class="select select2" wire:model='region' class="form-control"
@@ -70,10 +146,16 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
-                                
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="first-name-column">Branch</label>--}}
+                                        <input type="hidden" id="first-name-column" class="form-control"
+                                            placeholder="Branch" name="branch" value="Sidai" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>

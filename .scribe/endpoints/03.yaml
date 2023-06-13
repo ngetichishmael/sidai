@@ -26,11 +26,11 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: magnam
+        example: reprehenderit
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: magnam
+      businessCode: reprehenderit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -77,11 +77,11 @@ endpoints:
         name: categoryID
         description: ''
         required: true
-        example: voluptatem
+        example: aperiam
         type: string
         custom: []
     cleanUrlParameters:
-      categoryID: voluptatem
+      categoryID: aperiam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

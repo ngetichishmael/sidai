@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class pendingorders extends Component
+class distributororders extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
@@ -25,10 +25,10 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $sidai=suppliers::where('name', 'Sidai')->first();
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
-         ->whereNull('supplierID')->orWhere('supplierID','=', '')->orWhere('supplierID', $sidai->id)
+         ->where('supplierID', '!=', $sidai->id)
          ->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
@@ -48,7 +48,7 @@ class pendingorders extends Component
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
 
-      return view('livewire.orders.pendingorders', compact('pendingorders'));
+      return view('livewire.orders.distributororders', compact('pendingorders'));
    }
    public function export()
    {

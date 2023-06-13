@@ -260,6 +260,1176 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - GET
+    uri: api/manager/simplified/orders
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/customers/orders
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/allocation/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/order/approval
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      productID:
+        name: productID
+        description: ''
+        required: true
+        example: in
+        type: string
+        custom: []
+      allocation_code:
+        name: allocation_code
+        description: ''
+        required: true
+        example: et
+        type: string
+        custom: []
+    cleanBodyParameters:
+      productID: in
+      allocation_code: et
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/order/disapproval
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      productID:
+        name: productID
+        description: ''
+        required: true
+        example: laboriosam
+        type: string
+        custom: []
+      allocation_code:
+        name: allocation_code
+        description: ''
+        required: true
+        example: at
+        type: string
+        custom: []
+    cleanBodyParameters:
+      productID: laboriosam
+      allocation_code: at
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/allocation/allocate
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      customerID:
+        name: customerID
+        description: ''
+        required: true
+        example: tenetur
+        type: string
+        custom: []
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: architecto
+        type: string
+        custom: []
+      order_code:
+        name: order_code
+        description: ''
+        required: true
+        example: ducimus
+        type: string
+        custom: []
+    cleanBodyParameters:
+      customerID: tenetur
+      user_code: architecto
+      order_code: ducimus
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/orders/transaction
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/orders/custom/transaction
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/dashboard/custom/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/routes/data
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/vansales/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/preorder/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/order-fulfillment/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/visits/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/today
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/last-week
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/manager/active-users/last-month
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/lead/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: repellendus
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: repellendus
+      target: voluptatem
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/sale/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: earum
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: omnis
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: earum
+      target: omnis
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/visit/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: eaque
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: officia
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: eaque
+      target: officia
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/manager/assign/order/target
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      user_code:
+        name: user_code
+        description: ''
+        required: true
+        example: laboriosam
+        type: string
+        custom: []
+      target:
+        name: target
+        description: ''
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+    cleanBodyParameters:
+      user_code: laboriosam
+      target: voluptas
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - POST
     uri: api/customer/registration
     metadata:
@@ -283,28 +1453,28 @@ endpoints:
         name: customer_name
         description: ''
         required: true
-        example: ipsam
+        example: et
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: suscipit
+        example: natus
         type: string
         custom: []
       Latitude:
         name: Latitude
         description: ''
         required: true
-        example: sequi
+        example: deleniti
         type: string
         custom: []
       Longitude:
         name: Longitude
         description: ''
         required: true
-        example: eveniet
+        example: dolorem
         type: string
         custom: []
       image:
@@ -315,10 +1485,10 @@ endpoints:
         type: file
         custom: []
     cleanBodyParameters:
-      customer_name: ipsam
-      phone_number: suscipit
-      Latitude: sequi
-      Longitude: eveniet
+      customer_name: et
+      phone_number: natus
+      Latitude: deleniti
+      Longitude: dolorem
     fileParameters:
       image: null
     responses: []
@@ -379,11 +1549,11 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: sit
+        example: inventore
         type: string
         custom: []
     cleanUrlParameters:
-      number: sit
+      number: inventore
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -417,19 +1587,19 @@ endpoints:
         name: number
         description: ''
         required: true
-        example: sint
+        example: ducimus
         type: string
         custom: []
       otp:
         name: otp
         description: ''
         required: true
-        example: voluptas
+        example: nihil
         type: string
         custom: []
     cleanUrlParameters:
-      number: sint
-      otp: voluptas
+      number: ducimus
+      otp: nihil
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -467,27 +1637,27 @@ endpoints:
         name: phone_number
         description: ''
         required: true
-        example: voluptas
+        example: eius
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 6 characters.'
         required: true
-        example: '1%G]T2KK&yV*uH%MzR9'
+        example: 't=dcR65p2}g9'
         type: string
         custom: []
       password_confirmation:
         name: password_confirmation
         description: ''
         required: true
-        example: illum
+        example: autem
         type: string
         custom: []
     cleanBodyParameters:
-      phone_number: voluptas
-      password: '1%G]T2KK&yV*uH%MzR9'
-      password_confirmation: illum
+      phone_number: eius
+      password: 't=dcR65p2}g9'
+      password_confirmation: autem
     fileParameters: []
     responses: []
     responseFields: []
@@ -657,6 +1827,144 @@ endpoints:
     custom: []
   -
     httpMethods:
+      - POST
+    uri: api/customer/make/checkout
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/customer/deliveries/all_deriveries
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: api/customer/deliveries/pending_deriveries
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/customer/updateFcmToken
+    metadata:
+      groupName: Endpoints
+      groupDescription: ''
+      subgroup: null
+      subgroupDescription: null
+      title: ''
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
       - GET
     uri: api/total/regions/data
     metadata:
@@ -793,11 +2101,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: eius
+        example: quos
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: eius
+      delivery_code: quos
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -831,11 +2139,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: accusamus
+        example: animi
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: accusamus
+      delivery_code: animi
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -869,11 +2177,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: eius
+        example: repudiandae
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: eius
+      delivery_code: repudiandae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -907,11 +2215,11 @@ endpoints:
         name: delivery_code
         description: ''
         required: true
-        example: inventore
+        example: consequuntur
         type: string
         custom: []
     cleanUrlParameters:
-      delivery_code: inventore
+      delivery_code: consequuntur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -945,11 +2253,11 @@ endpoints:
         name: id
         description: 'The ID of the comment.'
         required: true
-        example: cumque
+        example: nostrum
         type: string
         custom: []
     cleanUrlParameters:
-      id: cumque
+      id: nostrum
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -996,27 +2304,27 @@ endpoints:
         name: customers_id
         description: ''
         required: true
-        example: tempora
+        example: eius
         type: string
         custom: []
       date:
         name: date
         description: 'Must be a valid date.'
         required: true
-        example: '2023-06-11T19:28:38'
+        example: '2023-06-12T19:13:45'
         type: string
         custom: []
       comment:
         name: comment
         description: ''
         required: true
-        example: rerum
+        example: voluptates
         type: string
         custom: []
     cleanBodyParameters:
-      customers_id: tempora
-      date: '2023-06-11T19:28:38'
-      comment: rerum
+      customers_id: eius
+      date: '2023-06-12T19:13:45'
+      comment: voluptates
     fileParameters: []
     responses: []
     responseFields: []
@@ -1046,19 +2354,19 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: sit
+        example: ut
         type: string
         custom: []
       random:
         name: random
         description: ''
         required: true
-        example: facilis
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: sit
-      random: facilis
+      checkinCode: ut
+      random: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1074,7 +2382,7 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/checkin/newsales/{checkinCode}/{random}/add-to-cart'
+    uri: 'api/checkin/newsales/{checkinCode}/{random}/{distributor}/add-to-cart'
     metadata:
       groupName: Endpoints
       groupDescription: ''
@@ -1092,19 +2400,27 @@ endpoints:
         name: checkinCode
         description: ''
         required: true
-        example: minima
+        example: ullam
         type: string
         custom: []
       random:
         name: random
         description: ''
         required: true
-        example: beatae
+        example: accusamus
+        type: string
+        custom: []
+      distributor:
+        name: distributor
+        description: ''
+        required: true
+        example: velit
         type: string
         custom: []
     cleanUrlParameters:
-      checkinCode: minima
-      random: beatae
+      checkinCode: ullam
+      random: accusamus
+      distributor: velit
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1363,11 +2679,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: est
+        example: magni
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: est
+      shopID: magni
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1410,11 +2726,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: dolor
+        example: in
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: dolor
+      shopID: in
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1457,11 +2773,11 @@ endpoints:
         name: shopID
         description: ''
         required: true
-        example: quas
+        example: sunt
         type: string
         custom: []
     cleanUrlParameters:
-      shopID: quas
+      shopID: sunt
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1504,11 +2820,11 @@ endpoints:
         name: CustomerAccountNumber
         description: ''
         required: true
-        example: odit
+        example: odio
         type: string
         custom: []
     cleanUrlParameters:
-      CustomerAccountNumber: odit
+      CustomerAccountNumber: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1615,11 +2931,11 @@ endpoints:
         name: image
         description: ''
         required: true
-        example: adipisci
+        example: dolor
         type: string
         custom: []
     cleanBodyParameters:
-      image: adipisci
+      image: dolor
     fileParameters: []
     responses: []
     responseFields: []
@@ -1807,11 +3123,11 @@ endpoints:
         name: surveyCode
         description: ''
         required: true
-        example: blanditiis
+        example: hic
         type: string
         custom: []
     cleanUrlParameters:
-      surveyCode: blanditiis
+      surveyCode: hic
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2072,11 +3388,11 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: commodi
+        example: tempora
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: commodi
+      customerID: tempora
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2149,11 +3465,11 @@ endpoints:
         name: id
         description: 'The ID of the schedule.'
         required: true
-        example: blanditiis
+        example: aut
         type: string
         custom: []
     cleanUrlParameters:
-      id: blanditiis
+      id: aut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -2466,26 +3782,26 @@ endpoints:
         description: ''
         required: true
         example:
-          - nulla
+          - recusandae
         type: 'integer[]'
         custom: []
       'requisition_products[].product_id':
         name: 'requisition_products[].product_id'
         description: ''
         required: true
-        example: 18
+        example: 7
         type: integer
         custom: []
       'requisition_products[].quantity':
         name: 'requisition_products[].quantity'
         description: ''
         required: true
-        example: 8
+        example: 15
         type: integer
         custom: []
     cleanBodyParameters:
       requisition_products:
-        - nulla
+        - recusandae
     fileParameters: []
     responses: []
     responseFields: []
@@ -2580,12 +3896,12 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"status":200,"Message":"All Deliveries with their orders","deliveries":[{"id":2,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"oYW98wsclhahkdmGIQKq","order_code":"eLKPGd8WJY","allocated":"S001","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-04-13T08:41:16.000000Z","updated_at":"2023-04-13T13:51:38.000000Z","delivery_items":[],"order":null},{"id":3,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"EWJVjOXGGNJh0rROvJXj","order_code":"HZBKopLoqE","allocated":"S001","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":"2023-05-17 12:48:36","accept_allocation":"accepted","customer_confirmation":"confirmed","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-04-13T17:17:50.000000Z","updated_at":"2023-05-23T10:29:46.000000Z","delivery_items":[],"order":null},{"id":4,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"qHvw0MLw0ZKAk0xYyuwx","order_code":"CBoyQfCY3N","allocated":"LoremJay","delivery_note":"Deliver to customer","Note":null,"delivery_status":"pending","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":"LoremJay","created_at":"2023-04-14T09:24:59.000000Z","updated_at":"2023-04-14T09:39:43.000000Z","delivery_items":[],"order":null},{"id":5,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"xpdLpfqwlZWAqfz952AX","order_code":"qDaDxJYH8A","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":"2023-05-17 12:49:25","accept_allocation":"accepted","customer_confirmation":"confirmed","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-05-17T12:41:01.000000Z","updated_at":"2023-05-17T16:13:59.000000Z","delivery_items":[],"order":null},{"id":6,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"ZSbQEqatSgpuEdxjiq0g","order_code":"t6JCYZYJLz","allocated":"00100","delivery_note":"dev","Note":null,"delivery_status":"Partial delivery","customer":null,"delivered_time":"2023-05-17 12:47:33","accept_allocation":"partially delivered","customer_confirmation":"partially delivered","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-05-17T15:30:51.000000Z","updated_at":"2023-05-17T15:47:33.000000Z","delivery_items":[],"order":null},{"id":7,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"quwE6XpPWBvq9lDEYs2R","order_code":"DV3nie5whs","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-17T16:15:02.000000Z","updated_at":"2023-05-17T16:15:02.000000Z","delivery_items":[],"order":null},{"id":8,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"glNAYmjExHhn16BvL8om","order_code":"fDP4g7EsXP","allocated":"S003","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-17T16:36:38.000000Z","updated_at":"2023-05-17T16:36:38.000000Z","delivery_items":[],"order":null},{"id":9,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"p9gssSD9ycmHagVvjCUR","order_code":"cXlB11ueCU","allocated":"S004","delivery_note":"del","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T14:40:25.000000Z","updated_at":"2023-05-19T14:42:44.000000Z","delivery_items":[],"order":null},{"id":10,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"y1GFmRNYqPY4AIHnZbPF","order_code":"nITAZxMMEf","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T14:41:51.000000Z","updated_at":"2023-05-19T14:41:51.000000Z","delivery_items":[],"order":null},{"id":11,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"nkJkY2AczCBl7CPeOaz5","order_code":"BqlMuSvdNM","allocated":"S007","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T15:25:10.000000Z","updated_at":"2023-05-19T15:26:44.000000Z","delivery_items":[],"order":null},{"id":12,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"Px5wBBpw0zOFN2npN92S","order_code":"I4WDxkFk0x","allocated":"S009","delivery_note":"123","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T09:48:33.000000Z","updated_at":"2023-05-23T10:23:54.000000Z","delivery_items":[],"order":null},{"id":13,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"1ZXYCt1ABZZRxbWw7BFl","order_code":"pgpbpshcnB","allocated":"S013","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T09:53:05.000000Z","updated_at":"2023-05-23T09:53:05.000000Z","delivery_items":[],"order":null},{"id":14,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"JuNZVF73uu0tXDk2fOIM","order_code":"EscXob4Dbn","allocated":"S002","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T10:26:33.000000Z","updated_at":"2023-05-23T10:26:33.000000Z","delivery_items":[],"order":null},{"id":15,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"rZ3JK6J4yvBOojxseUYu","order_code":"Ah3iNAhZko","allocated":"S013","delivery_note":"rers","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-25T17:10:33.000000Z","updated_at":"2023-05-25T17:12:02.000000Z","delivery_items":[],"order":null},{"id":16,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"rkqcxiAOcyoy4vUKk4gj","order_code":"bChc6xQt7S","allocated":"847187","delivery_note":"should go to pending delivery","Note":null,"delivery_status":"Delivered","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T08:13:07.000000Z","updated_at":"2023-06-07T10:52:08.000000Z","delivery_items":[],"order":null},{"id":17,"business_code":"YkVYPfZv0YZX5OljknAo","delivery_code":"28BHMjhAGECM7GEdMX0e","order_code":"bChc6xQt7S","allocated":"S009","delivery_note":"allocated to weldon","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:06:01.000000Z","updated_at":"2023-06-07T11:06:01.000000Z","delivery_items":[],"order":null},{"id":18,"business_code":"E2OZQ8TBonRHkT8heYvc","delivery_code":"nlR0HK9oRTjWXgcQ4nNr","order_code":"bChc6xQt7S","allocated":"S013","delivery_note":"erick allo","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:06:59.000000Z","updated_at":"2023-06-07T11:06:59.000000Z","delivery_items":[],"order":null},{"id":19,"business_code":"BC571U3tP1d8ykuxJgi6","delivery_code":"ZAsIKXJFMnFtEu8CHsL0","order_code":"bChc6xQt7S","allocated":"S013","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:08:30.000000Z","updated_at":"2023-06-07T11:08:30.000000Z","delivery_items":[],"order":null},{"id":20,"business_code":"QterTqxR0MKmbHOKa1eH","delivery_code":"05a4AYVKoFitRTcb3YBM","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:58:05.000000Z","updated_at":"2023-06-07T11:58:05.000000Z","delivery_items":[],"order":null},{"id":21,"business_code":"wfgZWV5CFjotSDIKGKYx","delivery_code":"1IbMLW525S2JhZE8AiFE","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:58:05.000000Z","updated_at":"2023-06-07T11:58:05.000000Z","delivery_items":[],"order":null},{"id":22,"business_code":"yJzDKwSIRCZpQh6jcn8f","delivery_code":"iCTMfSR2FpTfSc5zqw9P","order_code":"Ah3iNAhZko","allocated":"S009","delivery_note":"Weldon allocation due tomorrow","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T12:04:07.000000Z","updated_at":"2023-06-07T12:04:07.000000Z","delivery_items":[],"order":null},{"id":23,"business_code":"QGvF8Ng7tsmmErPTS9Su","delivery_code":"6JJtDMYbbc9SmNVoEBvt","order_code":"bChc6xQt7S","allocated":"S007","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T12:09:17.000000Z","updated_at":"2023-06-07T12:09:17.000000Z","delivery_items":[],"order":null},{"id":24,"business_code":"9C7mRWC57b2AHWP0qIOD","delivery_code":"ffi16S2pk7mIqbOJQKc3","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":"update","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-08T12:25:40.000000Z","updated_at":"2023-06-08T12:25:40.000000Z","delivery_items":[],"order":null},{"id":25,"business_code":"ZRKWtzEgJ7xHTMJM8By7","delivery_code":"29N0IIri5SX2Uw1Oa0Px","order_code":"bChc6xQt7S","allocated":"235523","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-09T10:41:50.000000Z","updated_at":"2023-06-09T10:41:50.000000Z","delivery_items":[],"order":null},{"id":26,"business_code":"ZDKFD4qA0vy5p2ymnYSA","delivery_code":"YgvDBQkpyzZs7KwsqOm7","order_code":"Np9hQ54btW","allocated":"635353","delivery_note":"rsm","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-09T12:57:28.000000Z","updated_at":"2023-06-09T12:57:28.000000Z","delivery_items":[],"order":null}]}'
+        content: '{"success":true,"status":200,"Message":"All Deliveries with their orders","deliveries":[{"id":2,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"oYW98wsclhahkdmGIQKq","order_code":"eLKPGd8WJY","allocated":"S001","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-04-13T08:41:16.000000Z","updated_at":"2023-04-13T13:51:38.000000Z","delivery_items":[],"order":null},{"id":3,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"EWJVjOXGGNJh0rROvJXj","order_code":"HZBKopLoqE","allocated":"S001","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":"2023-05-17 12:48:36","accept_allocation":"accepted","customer_confirmation":"confirmed","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-04-13T17:17:50.000000Z","updated_at":"2023-05-23T10:29:46.000000Z","delivery_items":[],"order":null},{"id":4,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"qHvw0MLw0ZKAk0xYyuwx","order_code":"CBoyQfCY3N","allocated":"LoremJay","delivery_note":"Deliver to customer","Note":null,"delivery_status":"pending","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":"LoremJay","created_at":"2023-04-14T09:24:59.000000Z","updated_at":"2023-04-14T09:39:43.000000Z","delivery_items":[],"order":null},{"id":5,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"xpdLpfqwlZWAqfz952AX","order_code":"qDaDxJYH8A","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":"2023-05-17 12:49:25","accept_allocation":"accepted","customer_confirmation":"confirmed","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-05-17T12:41:01.000000Z","updated_at":"2023-05-17T16:13:59.000000Z","delivery_items":[],"order":null},{"id":6,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"ZSbQEqatSgpuEdxjiq0g","order_code":"t6JCYZYJLz","allocated":"00100","delivery_note":"dev","Note":null,"delivery_status":"Partial delivery","customer":null,"delivered_time":"2023-05-17 12:47:33","accept_allocation":"partially delivered","customer_confirmation":"partially delivered","approval":0,"created_by":"00100","updated_by":"00100","created_at":"2023-05-17T15:30:51.000000Z","updated_at":"2023-05-17T15:47:33.000000Z","delivery_items":[],"order":null},{"id":7,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"quwE6XpPWBvq9lDEYs2R","order_code":"DV3nie5whs","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-17T16:15:02.000000Z","updated_at":"2023-05-17T16:15:02.000000Z","delivery_items":[],"order":null},{"id":8,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"glNAYmjExHhn16BvL8om","order_code":"fDP4g7EsXP","allocated":"S003","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-17T16:36:38.000000Z","updated_at":"2023-05-17T16:36:38.000000Z","delivery_items":[],"order":null},{"id":9,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"p9gssSD9ycmHagVvjCUR","order_code":"cXlB11ueCU","allocated":"S004","delivery_note":"del","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T14:40:25.000000Z","updated_at":"2023-05-19T14:42:44.000000Z","delivery_items":[],"order":null},{"id":10,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"y1GFmRNYqPY4AIHnZbPF","order_code":"nITAZxMMEf","allocated":"S013","delivery_note":"deliver","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T14:41:51.000000Z","updated_at":"2023-05-19T14:41:51.000000Z","delivery_items":[],"order":null},{"id":11,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"nkJkY2AczCBl7CPeOaz5","order_code":"BqlMuSvdNM","allocated":"S007","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-19T15:25:10.000000Z","updated_at":"2023-05-19T15:26:44.000000Z","delivery_items":[],"order":null},{"id":12,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"Px5wBBpw0zOFN2npN92S","order_code":"I4WDxkFk0x","allocated":"S009","delivery_note":"123","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T09:48:33.000000Z","updated_at":"2023-05-23T10:23:54.000000Z","delivery_items":[],"order":null},{"id":13,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"1ZXYCt1ABZZRxbWw7BFl","order_code":"pgpbpshcnB","allocated":"S013","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T09:53:05.000000Z","updated_at":"2023-05-23T09:53:05.000000Z","delivery_items":[],"order":null},{"id":14,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"JuNZVF73uu0tXDk2fOIM","order_code":"EscXob4Dbn","allocated":"S002","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-23T10:26:33.000000Z","updated_at":"2023-05-23T10:26:33.000000Z","delivery_items":[],"order":null},{"id":15,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"rZ3JK6J4yvBOojxseUYu","order_code":"Ah3iNAhZko","allocated":"S013","delivery_note":"rers","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"00100","updated_by":null,"created_at":"2023-05-25T17:10:33.000000Z","updated_at":"2023-05-25T17:12:02.000000Z","delivery_items":[],"order":null},{"id":16,"business_code":"Qx4FstqLJfHwf3WA","delivery_code":"rkqcxiAOcyoy4vUKk4gj","order_code":"bChc6xQt7S","allocated":"847187","delivery_note":"should go to pending delivery","Note":null,"delivery_status":"Delivered","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T08:13:07.000000Z","updated_at":"2023-06-07T10:52:08.000000Z","delivery_items":[],"order":null},{"id":17,"business_code":"YkVYPfZv0YZX5OljknAo","delivery_code":"28BHMjhAGECM7GEdMX0e","order_code":"bChc6xQt7S","allocated":"S009","delivery_note":"allocated to weldon","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:06:01.000000Z","updated_at":"2023-06-07T11:06:01.000000Z","delivery_items":[],"order":null},{"id":18,"business_code":"E2OZQ8TBonRHkT8heYvc","delivery_code":"nlR0HK9oRTjWXgcQ4nNr","order_code":"bChc6xQt7S","allocated":"S013","delivery_note":"erick allo","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:06:59.000000Z","updated_at":"2023-06-07T11:06:59.000000Z","delivery_items":[],"order":null},{"id":19,"business_code":"BC571U3tP1d8ykuxJgi6","delivery_code":"ZAsIKXJFMnFtEu8CHsL0","order_code":"bChc6xQt7S","allocated":"S013","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:08:30.000000Z","updated_at":"2023-06-07T11:08:30.000000Z","delivery_items":[],"order":null},{"id":20,"business_code":"QterTqxR0MKmbHOKa1eH","delivery_code":"05a4AYVKoFitRTcb3YBM","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:58:05.000000Z","updated_at":"2023-06-07T11:58:05.000000Z","delivery_items":[],"order":null},{"id":21,"business_code":"wfgZWV5CFjotSDIKGKYx","delivery_code":"1IbMLW525S2JhZE8AiFE","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T11:58:05.000000Z","updated_at":"2023-06-07T11:58:05.000000Z","delivery_items":[],"order":null},{"id":22,"business_code":"yJzDKwSIRCZpQh6jcn8f","delivery_code":"iCTMfSR2FpTfSc5zqw9P","order_code":"Ah3iNAhZko","allocated":"S009","delivery_note":"Weldon allocation due tomorrow","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T12:04:07.000000Z","updated_at":"2023-06-07T12:04:07.000000Z","delivery_items":[],"order":null},{"id":23,"business_code":"QGvF8Ng7tsmmErPTS9Su","delivery_code":"6JJtDMYbbc9SmNVoEBvt","order_code":"bChc6xQt7S","allocated":"S007","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-07T12:09:17.000000Z","updated_at":"2023-06-07T12:09:17.000000Z","delivery_items":[],"order":null},{"id":24,"business_code":"9C7mRWC57b2AHWP0qIOD","delivery_code":"ffi16S2pk7mIqbOJQKc3","order_code":"bChc6xQt7S","allocated":"635353","delivery_note":"update","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-08T12:25:40.000000Z","updated_at":"2023-06-08T12:25:40.000000Z","delivery_items":[],"order":null},{"id":25,"business_code":"ZRKWtzEgJ7xHTMJM8By7","delivery_code":"29N0IIri5SX2Uw1Oa0Px","order_code":"bChc6xQt7S","allocated":"235523","delivery_note":null,"Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-09T10:41:50.000000Z","updated_at":"2023-06-09T10:41:50.000000Z","delivery_items":[],"order":null},{"id":26,"business_code":"ZDKFD4qA0vy5p2ymnYSA","delivery_code":"YgvDBQkpyzZs7KwsqOm7","order_code":"Np9hQ54btW","allocated":"635353","delivery_note":"rsm","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-09T12:57:28.000000Z","updated_at":"2023-06-09T12:57:28.000000Z","delivery_items":[],"order":null},{"id":27,"business_code":"8OKX9VM41k5lTSe18boS","delivery_code":"unmiKexp3M7PazJhpB2y","order_code":"Lq5wRbcNsS","allocated":"5324rWREWR","delivery_note":"no enough sidai Ultrdip 1ltr","Note":null,"delivery_status":"Waiting acceptance","customer":null,"delivered_time":null,"accept_allocation":null,"customer_confirmation":null,"approval":0,"created_by":"5324rWREWR","updated_by":null,"created_at":"2023-06-12T16:33:19.000000Z","updated_at":"2023-06-12T16:33:19.000000Z","delivery_items":[],"order":null}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
           access-control-allow-origin: '*'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkQ1YXJlOHRqb3Nadyt0Vm9zRnY2bFE9PSIsInZhbHVlIjoiTFRYd3A2NkhlTTFnTWpJQTYrQjR1T2VxWmZsZ1pTYXZTeEdBQnRRaStJK3AxampOTlA5NFZjTmE3YlRpN0FZQkU1SnkwazdQaHU2Vk8yL21yckRMcGJ0RGt1UXVzNTg1NER2MHZPVzBsb01XQU9mT3IxaTBkSU5KQ3lrbzNIUnMiLCJtYWMiOiI2NmIyZTAzOTNjZGU5OWRkZjAyZjQ5NDk3YjNkNjgxMTRiYjdlY2FmNTIzYTMwZjY4MGRkNjY3NTZkZDQ4MzZjIiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6Im8yNGs4d3BlT2h0WmRsN3RnK0NYSWc9PSIsInZhbHVlIjoiVWk4enJWVVE4TWdNTFpLZkZnbmFnMEltRm1kS1B4bFlOdGtFQ2F5eUhFakRkQWpVaUVIdTZDTWtTaDZ3MDJQU2kxRkJSTmhwOHB2cTdwT05WVW1CSWUzYThpZWNIZ01HbjY2emxwdVFKY2cvTk5yWndkWG4vRzVqcSszMzhZbWMiLCJtYWMiOiJkNzZhMzRjYmYwNjhhMDE5YmVhNDNjZWNjNzgxNjdjOTJiODM5MDE3NTI0Y2I3M2IyMGM5Y2RlZmFkMWFjMzE4IiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InRTbjMwWXR3VzdFNGJHcS9VNnhaRWc9PSIsInZhbHVlIjoiUDkyM1QvTjZNZk9CemoycHBPd1lKeGlCVTJTZ01sL1pMaktibVQ1eGNsbkJtWG5ib1VzMjZYUS9FdmVXZEs3bHJWTVFsaHd5enVKRUN0N0tIUmQ2YjRWQ2ROMTZNUmlEMjVHSkE2QnFDNFJTa0JUYS9zQ2diT2dDbWgvOU11S3MiLCJtYWMiOiJiNGNkNGU0NDhlMGI3ZmNlZTc5MWZiYzA4MjEyMTI4NWMwN2EyYmZkMGU3YzI3YTg3NWVhODgwNjJmMzljMTVmIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=/; samesite=lax; sidai_session=eyJpdiI6Ii94bXA4ZlVlMllaUUtWNGZvT0JtbkE9PSIsInZhbHVlIjoiZ2x4V0NVQWlScU9OSy9uMURhOFg3dklmWS82bCtJVm53cks5U2JLR0VwaVh0bGh5akhJTDRTQlJ5dFNDTTdvVndiK1FwL3VEL0VMdFk2NnJ1djVBNzFDTG83RUlsZ3pONTdOREVETS84a0hvWmpyaXc3MG1BR1ZiMVNkS0lWMlEiLCJtYWMiOiJiZjgxYmQwNjFiZjlhNDUxZjM4NjBlNmNhNGYwZDM3NDlmNDhhYmQyNTU1YWRjNjE3YTFlMWUyMjE2NTM3MGEwIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
         custom: []
     responseFields: []

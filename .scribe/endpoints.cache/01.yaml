@@ -28,21 +28,21 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: saepe
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      businessCode: saepe
+      businessCode: ut
     queryParameters:
       page_size:
         name: page_size
         description: 'size per page. Default to 20'
         required: false
-        example: 17
+        example: 11
         type: integer
         custom: []
     cleanQueryParameters:
-      page_size: 17
+      page_size: 11
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
@@ -89,49 +89,49 @@ endpoints:
         name: customer_name
         description: 'as outlet name'
         required: true
-        example: laboriosam
+        example: sint
         type: string
         custom: []
       contact_person:
         name: contact_person
         description: ''
         required: true
-        example: et
+        example: voluptatem
         type: string
         custom: []
       business_code:
         name: business_code
         description: ''
         required: true
-        example: deleniti
+        example: reprehenderit
         type: string
         custom: []
       created_by:
         name: created_by
         description: 'user code'
         required: true
-        example: sed
+        example: vitae
         type: string
         custom: []
       phone_number:
         name: phone_number
         description: ''
         required: true
-        example: qui
+        example: omnis
         type: string
         custom: []
       latitude:
         name: latitude
         description: ''
         required: false
-        example: modi
+        example: ab
         type: string
         custom: []
       longitude:
         name: longitude
         description: ''
         required: false
-        example: ut
+        example: libero
         type: string
         custom: []
       image:
@@ -145,26 +145,26 @@ endpoints:
         name: email
         description: ''
         required: false
-        example: schultz.baylee@example.com
+        example: itreutel@example.org
         type: string
         custom: []
       address:
         name: address
         description: ''
         required: false
-        example: natus
+        example: rerum
         type: string
         custom: []
     cleanBodyParameters:
-      customer_name: laboriosam
-      contact_person: et
-      business_code: deleniti
-      created_by: sed
-      phone_number: qui
-      latitude: modi
-      longitude: ut
-      email: schultz.baylee@example.com
-      address: natus
+      customer_name: sint
+      contact_person: voluptatem
+      business_code: reprehenderit
+      created_by: vitae
+      phone_number: omnis
+      latitude: ab
+      longitude: libero
+      email: itreutel@example.org
+      address: rerum
     fileParameters:
       image: null
     responses: []
@@ -229,11 +229,11 @@ endpoints:
         name: code
         description: ''
         required: true
-        example: eum
+        example: ullam
         type: string
         custom: []
     cleanUrlParameters:
-      code: eum
+      code: ullam
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -280,19 +280,19 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: voluptas
+        example: fugit
         type: string
         custom: []
       businessCode:
         name: businessCode
         description: ''
         required: true
-        example: minus
+        example: pariatur
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: voluptas
-      businessCode: minus
+      customerID: fugit
+      businessCode: pariatur
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -417,7 +417,7 @@ endpoints:
                   },
                   {
                       "file": "C:\\Users\\Admin\\Documents\\Deveint Projects\\sidai\\app\\Http\\Controllers\\Api\\customersController.php",
-                      "line": 296,
+                      "line": 328,
                       "function": "get",
                       "class": "Illuminate\\Database\\Eloquent\\Builder",
                       "type": "->"
@@ -909,11 +909,11 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: ipsam
+        example: vitae
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: ipsam
+      customerID: vitae
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -960,11 +960,11 @@ endpoints:
         name: orderCode
         description: ''
         required: true
-        example: quia
+        example: officiis
         type: string
         custom: []
     cleanUrlParameters:
-      orderCode: quia
+      orderCode: officiis
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -1011,11 +1011,11 @@ endpoints:
         name: customerID
         description: ''
         required: true
-        example: ipsam
+        example: non
         type: string
         custom: []
     cleanUrlParameters:
-      customerID: ipsam
+      customerID: non
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

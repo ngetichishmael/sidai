@@ -117,7 +117,7 @@
     </style>
 @endsection
 {{-- page header --}}
-@section('title', 'Pending Delivery Details')
+@section('title', 'Distributor Order Details')
 
 {{-- content section --}}
 @section('content')
@@ -125,11 +125,11 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">Pending Delivery Details</h2>
+                    <h2 class="content-header-title float-start mb-0">Distributor Order Details</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Orders</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Distributor Orders</a></li>
                             <li class="breadcrumb-item active">{!! $order->order_code !!}</li>
                             <li class="breadcrumb-item active">Details</li>
                         </ol>
@@ -140,7 +140,7 @@
     </div>
     @include('partials._messages')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -153,7 +153,7 @@
                                 <div class="my-1">
                                     Address, <span class="text-blue">{!! $test->address !!}</span>
                                 </div>
-                                <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
+                                <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
                                         class="text-600">(+254){!! $test->phone_number !!}</b></div>
                             </div>
                         </div>
@@ -164,15 +164,15 @@
                             <div class="text-grey-m2">
                                 <div class="mt-1">Invoice </div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">ID:</span> #{!! $order->id !!}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Issue Date:</span> {!! $order->created_at !!}</div>
 
-                                <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Status:</span> <span
-                                        class="badge badge-warning badge-pill px-25 text-black-50">{!! $order->order_status !!}</span>
+                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +237,6 @@
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                       <span>--------------</span>
                                         <span class="text-150 text-success-d3 opacity-2">Ksh {!! $total->sum('total_amount') !!}</span>
                                     </div>
                                 </div>
@@ -249,37 +248,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-{{--            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Delivery</a></center>--}}
-            @if ($payment)
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> {!! $payment->amount !!} <br>
-                            <b>Payment Date:</b> {!! $payment->payment_date !!}<br>
-                            <b>Payment Method:</b> {!! $payment->payment_method !!}<br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @else
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> N/A <br>
-                            <b>Payment Date:</b> N/A <br>
-                            <b>Payment Method:</b> N/A <br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @endif
-        </div>
     </div>
+    <div class="row">
+          <div class="col-md-5 ml-5">
+             <a href="{{ url()->previous() }}" class="btn btn-info mb-2" style="align-content: center" >&nbsp; Back &nbsp; </a>
+       </div>
+    </div>
+
 @endsection
 {{-- page scripts --}}
 @section('script')
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 @endsection

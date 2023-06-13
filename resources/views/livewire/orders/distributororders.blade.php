@@ -57,6 +57,7 @@
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
                         <th>Quantity</th>
+                        <th>Distributor</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -78,6 +79,8 @@
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                 <td>{{ $order->qty}}</td>
+                                <td>{{ $order->distributor->name ?? ''}}</td>
+
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}
 {{--                                    <a href="{!! route('orders.details', $order->order_code) !!}" class="btn btn-warning btn-sm">View</a>--}}
@@ -97,16 +100,16 @@
                                         <i data-feather='settings'></i>
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{!! route('orders.details', $order->order_code) !!}">View</a>
-                                        @if ($order->order_status === 'CANCELLED')
-                                           <a wire:click.prevent="activate({{ $order->id }})"
-                                                   onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                                   type="button" class="dropdown-item btn btn-sm" style="color: lightgreen">Reinstate</a>
-                                        @else
-                                           <a wire:click.prevent="deactivate({{ $order->id }})"
-                                                   onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                                   type="button" class="dropdown-item btn btn-sm" style="color: orangered">Cancel</a>
-                                        @endif
+                                        <a class="dropdown-item" href="{!! route('orders.distributorsdetails', $order->order_code) !!}">View</a>
+{{--                                        @if ($order->order_status === 'CANCELLED')--}}
+{{--                                           <a wire:click.prevent="activate({{ $order->id }})"--}}
+{{--                                                   onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"--}}
+{{--                                                   type="button" class="dropdown-item btn btn-sm" style="color: lightgreen">Reinstate</a>--}}
+{{--                                        @else--}}
+{{--                                           <a wire:click.prevent="deactivate({{ $order->id }})"--}}
+{{--                                                   onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"--}}
+{{--                                                   type="button" class="dropdown-item btn btn-sm" style="color: orangered">Cancel</a>--}}
+{{--                                        @endif--}}
                                      </div>
                                   </div>
                                </td>

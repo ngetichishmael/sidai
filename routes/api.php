@@ -78,7 +78,7 @@ Route::group(['namespace' => 'Api'], function () {
 
    //New Sales Order
 
-   Route::post('checkin/newsales/{checkinCode}/{random}/add-to-cart', 'CheckingSaleOrderController@NewSales')->middleware('auth:sanctum');
+   Route::post('checkin/newsales/{checkinCode}/{random}/{distributor}/add-to-cart', 'CheckingSaleOrderController@NewSales')->middleware('auth:sanctum');
 
 
 

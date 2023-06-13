@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Sidai",
-        "_postman_id": "574000db-31a4-416d-9c48-68c425f7c981",
+        "_postman_id": "7316a1a6-7c50-40a0-b754-e9b7b8acd628",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"claire.armstrong@example.net\",\"password\":\"y}R4rRA<o~.N\\\/JJ+r=\"}"
+                            "raw": "{\"email\":\"brennon31@example.net\",\"password\":\"0p{uumaA\"}"
                         },
                         "description": "",
                         "auth": {
@@ -69,7 +69,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "voluptatem",
+                                    "value": "voluptate",
                                     "description": ""
                                 }
                             ]
@@ -105,13 +105,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "doloremque",
+                                    "value": "vel",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "fugiat",
+                                    "value": "quo",
                                     "description": ""
                                 }
                             ]
@@ -157,7 +157,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"et\",\"password\":\"#w6VHh#\\\"U:Qaf@L39=M\",\"password_confirmation\":\"ut\"}"
+                            "raw": "{\"phone_number\":\"quis\",\"password\":\"5P?uTM^9;Zud~\",\"password_confirmation\":\"exercitationem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -194,7 +194,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customerID\":\"et\",\"latitude\":\"porro\",\"longitude\":\"aut\",\"user_code\":\"impedit\"}"
+                            "raw": "{\"customerID\":\"est\",\"latitude\":\"minima\",\"longitude\":\"totam\",\"user_code\":\"provident\"}"
                         },
                         "description": "",
                         "auth": {
@@ -215,7 +215,7 @@
                                 {
                                     "id": "CustomerCode",
                                     "key": "CustomerCode",
-                                    "value": "quas",
+                                    "value": "maiores",
                                     "description": ""
                                 }
                             ]
@@ -279,7 +279,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "rerum",
+                                    "value": "minima",
                                     "description": ""
                                 }
                             ]
@@ -343,7 +343,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "totam",
+                                    "value": "occaecati",
                                     "description": ""
                                 }
                             ]
@@ -407,7 +407,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "natus",
+                                    "value": "quos",
                                     "description": ""
                                 }
                             ]
@@ -425,7 +425,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"productID\":\"id\",\"qty\":\"est\"}"
+                            "raw": "{\"productID\":\"optio\",\"qty\":\"harum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -474,7 +474,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "iste",
+                                    "value": "ullam",
                                     "description": ""
                                 }
                             ]
@@ -492,7 +492,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_type\":\"aut\",\"reasons_partial_delivery\":\"sit\"}"
+                            "raw": "{\"order_type\":\"illum\",\"reasons_partial_delivery\":\"reiciendis\"}"
                         },
                         "description": "",
                         "auth": {
@@ -513,7 +513,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "labore",
+                                    "value": "accusamus",
                                     "description": ""
                                 },
                                 {
@@ -583,7 +583,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "aut",
+                                    "value": "sed",
                                     "description": ""
                                 }
                             ]
@@ -647,7 +647,7 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "at",
+                                    "value": "quia",
                                     "description": ""
                                 }
                             ]
@@ -665,7 +665,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":18}"
+                            "raw": "{\"order_id\":6}"
                         },
                         "description": "",
                         "auth": {
@@ -686,13 +686,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "numquam",
+                                    "value": "et",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "aut",
+                                    "value": "et",
                                     "description": ""
                                 }
                             ]
@@ -762,7 +762,7 @@
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "tenetur",
+                                    "value": "nobis",
                                     "description": ""
                                 }
                             ]
@@ -780,7 +780,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"qty\":\"qui\",\"orderID\":\"dolorem\"}"
+                            "raw": "{\"qty\":\"laudantium\",\"orderID\":\"ut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -801,13 +801,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "qui",
+                                    "value": "quia",
                                     "description": ""
                                 },
                                 {
                                     "id": "itemID",
                                     "key": "itemID",
-                                    "value": "neque",
+                                    "value": "magnam",
                                     "description": ""
                                 }
                             ]
@@ -881,7 +881,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"order_id\":5}"
+                            "raw": "{\"order_id\":11}"
                         },
                         "description": "",
                         "auth": {
@@ -902,13 +902,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "libero",
+                                    "value": "blanditiis",
                                     "description": ""
                                 },
                                 {
                                     "id": "orderID",
                                     "key": "orderID",
-                                    "value": "iure",
+                                    "value": "optio",
                                     "description": ""
                                 }
                             ]
@@ -975,17 +975,17 @@
                             "query": [
                                 {
                                     "key": "page_size",
-                                    "value": "17",
+                                    "value": "11",
                                     "description": "size per page. Default to 20",
                                     "disabled": false
                                 }
                             ],
-                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=17",
+                            "raw": "{{baseUrl}}\/api\/customers\/:businessCode?page_size=11",
                             "variable": [
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "saepe",
+                                    "value": "ut",
                                     "description": ""
                                 }
                             ]
@@ -1054,55 +1054,55 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "laboriosam",
+                                    "value": "sint",
                                     "type": "text",
                                     "description": "as outlet name"
                                 },
                                 {
                                     "key": "contact_person",
-                                    "value": "et",
+                                    "value": "voluptatem",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "business_code",
-                                    "value": "deleniti",
+                                    "value": "reprehenderit",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "created_by",
-                                    "value": "sed",
+                                    "value": "vitae",
                                     "type": "text",
                                     "description": "user code"
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "qui",
+                                    "value": "omnis",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "latitude",
-                                    "value": "modi",
+                                    "value": "ab",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "longitude",
-                                    "value": "ut",
+                                    "value": "libero",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "email",
-                                    "value": "schultz.baylee@example.com",
+                                    "value": "itreutel@example.org",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "address",
-                                    "value": "natus",
+                                    "value": "rerum",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -1160,7 +1160,7 @@
                                 {
                                     "id": "code",
                                     "key": "code",
-                                    "value": "eum",
+                                    "value": "ullam",
                                     "description": ""
                                 }
                             ]
@@ -1224,13 +1224,13 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "voluptas",
+                                    "value": "fugit",
                                     "description": ""
                                 },
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "minus",
+                                    "value": "pariatur",
                                     "description": ""
                                 }
                             ]
@@ -1341,7 +1341,7 @@
                                 }
                             ],
                             "code": 500,
-                            "body": "{\n    \"message\": \"SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'selling_price' in field list is ambiguous (SQL: select *, (selling_price * allocated_quantity) as total_amount from `delivery_items` inner join `product_price` on `product_price`.`productID` = `delivery_items`.`productID` where `delivery_code` = 2)\",\n    \"exception\": \"Illuminate\\\\Database\\\\QueryException\",\n    \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n    \"line\": 712,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 672,\n            \"function\": \"runQueryCallback\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 359,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2413,\n            \"function\": \"select\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2402,\n            \"function\": \"runSelect\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2936,\n            \"function\": \"Illuminate\\\\Database\\\\Query\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2401,\n            \"function\": \"onceWithColumns\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 625,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 609,\n            \"function\": \"getModels\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\app\\\\Http\\\\Controllers\\\\Api\\\\customersController.php\",\n            \"line\": 296,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"delivery_details\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\Api\\\\customersController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 205,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 721,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 93,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 719,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\DisableBrowserCache.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\DisableBrowserCache\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 92,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 209,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 163,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 124,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 71,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 49,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 51,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 35,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 120,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\artisan\",\n            \"line\": 35,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "body": "{\n    \"message\": \"SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'selling_price' in field list is ambiguous (SQL: select *, (selling_price * allocated_quantity) as total_amount from `delivery_items` inner join `product_price` on `product_price`.`productID` = `delivery_items`.`productID` where `delivery_code` = 2)\",\n    \"exception\": \"Illuminate\\\\Database\\\\QueryException\",\n    \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n    \"line\": 712,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 672,\n            \"function\": \"runQueryCallback\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Connection.php\",\n            \"line\": 359,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2413,\n            \"function\": \"select\",\n            \"class\": \"Illuminate\\\\Database\\\\Connection\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2402,\n            \"function\": \"runSelect\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2936,\n            \"function\": \"Illuminate\\\\Database\\\\Query\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Query\\\\Builder.php\",\n            \"line\": 2401,\n            \"function\": \"onceWithColumns\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 625,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Query\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Database\\\\Eloquent\\\\Builder.php\",\n            \"line\": 609,\n            \"function\": \"getModels\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\app\\\\Http\\\\Controllers\\\\Api\\\\customersController.php\",\n            \"line\": 328,\n            \"function\": \"get\",\n            \"class\": \"Illuminate\\\\Database\\\\Eloquent\\\\Builder\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"delivery_details\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\Api\\\\customersController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 205,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 721,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 127,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 93,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 55,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 719,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 698,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 662,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 651,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 128,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\livewire\\\\livewire\\\\src\\\\DisableBrowserCache.php\",\n            \"line\": 19,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Livewire\\\\DisableBrowserCache\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fruitcake\\\\laravel-cors\\\\src\\\\HandleCors.php\",\n            \"line\": 52,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fruitcake\\\\Cors\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\fideloper\\\\proxy\\\\src\\\\TrustProxies.php\",\n            \"line\": 57,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 167,\n            \"function\": \"handle\",\n            \"class\": \"Fideloper\\\\Proxy\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 103,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 92,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 209,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 163,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 95,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 124,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 71,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 49,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 51,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 40,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 35,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 653,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 298,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 120,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 1040,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 301,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 94,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\Admin\\\\Documents\\\\Deveint Projects\\\\sidai\\\\artisan\",\n            \"line\": 35,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
                             "name": ""
                         }
                     ]
@@ -1358,7 +1358,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "ipsam",
+                                    "value": "vitae",
                                     "description": ""
                                 }
                             ]
@@ -1422,7 +1422,7 @@
                                 {
                                     "id": "orderCode",
                                     "key": "orderCode",
-                                    "value": "quia",
+                                    "value": "officiis",
                                     "description": ""
                                 }
                             ]
@@ -1486,7 +1486,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "ipsam",
+                                    "value": "non",
                                     "description": ""
                                 }
                             ]
@@ -1562,7 +1562,7 @@
                                 {
                                     "id": "userCode",
                                     "key": "userCode",
-                                    "value": "ut",
+                                    "value": "magni",
                                     "description": ""
                                 }
                             ]
@@ -1632,7 +1632,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "nostrum",
+                                    "value": "amet",
                                     "description": ""
                                 }
                             ]
@@ -1758,7 +1758,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "vel",
+                                    "value": "a",
                                     "description": ""
                                 }
                             ]
@@ -1820,7 +1820,7 @@
                                 {
                                     "id": "businessCode",
                                     "key": "businessCode",
-                                    "value": "magnam",
+                                    "value": "reprehenderit",
                                     "description": ""
                                 }
                             ]
@@ -1884,7 +1884,7 @@
                                 {
                                     "id": "categoryID",
                                     "key": "categoryID",
-                                    "value": "voluptatem",
+                                    "value": "aperiam",
                                     "description": ""
                                 }
                             ]
@@ -2295,6 +2295,1239 @@
                     ]
                 },
                 {
+                    "name": "GET api\/manager\/simplified\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/simplified\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/simplified\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/customers\/orders",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/customers\/orders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/customers\/orders"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/allocation\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/allocation\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/allocation\/data"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/order\/approval",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order\/approval",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order\/approval"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"productID\":\"in\",\"allocation_code\":\"et\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/order\/disapproval",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order\/disapproval",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order\/disapproval"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"productID\":\"laboriosam\",\"allocation_code\":\"at\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/allocation\/allocate",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/allocation\/allocate",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/allocation\/allocate"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"customerID\":\"tenetur\",\"user_code\":\"architecto\",\"order_code\":\"ducimus\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/manager\/orders\/transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/orders\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/orders\/transaction"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/orders\/custom\/transaction",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/orders\/custom\/transaction",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/orders\/custom\/transaction"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/dashboard\/custom\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/dashboard\/custom\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/dashboard\/custom\/data"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/manager\/routes\/data",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/routes\/data",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/routes\/data"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/vansales\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/vansales\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/vansales\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/preorder\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/preorder\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/preorder\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/order-fulfillment\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/order-fulfillment\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/order-fulfillment\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/visits\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/visits\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/visits\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/today",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/today",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/today"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/last-week",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/last-week",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/last-week"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/manager\/active-users\/last-month",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/active-users\/last-month",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/active-users\/last-month"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/manager\/assign\/lead\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/lead\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/lead\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"repellendus\",\"target\":\"voluptatem\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/sale\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/sale\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/sale\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"earum\",\"target\":\"omnis\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/visit\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/visit\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/visit\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"eaque\",\"target\":\"officia\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/manager\/assign\/order\/target",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/manager\/assign\/order\/target",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/manager\/assign\/order\/target"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"user_code\":\"laboriosam\",\"target\":\"voluptas\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "POST api\/customer\/registration",
                     "request": {
                         "url": {
@@ -2319,25 +3552,25 @@
                             "formdata": [
                                 {
                                     "key": "customer_name",
-                                    "value": "ipsam",
+                                    "value": "et",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "phone_number",
-                                    "value": "suscipit",
+                                    "value": "natus",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Latitude",
-                                    "value": "sequi",
+                                    "value": "deleniti",
                                     "type": "text",
                                     "description": ""
                                 },
                                 {
                                     "key": "Longitude",
-                                    "value": "eveniet",
+                                    "value": "dolorem",
                                     "type": "text",
                                     "description": ""
                                 },
@@ -2395,7 +3628,7 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "sit",
+                                    "value": "inventore",
                                     "description": ""
                                 }
                             ]
@@ -2431,13 +3664,13 @@
                                 {
                                     "id": "number",
                                     "key": "number",
-                                    "value": "sint",
+                                    "value": "ducimus",
                                     "description": ""
                                 },
                                 {
                                     "id": "otp",
                                     "key": "otp",
-                                    "value": "voluptas",
+                                    "value": "nihil",
                                     "description": ""
                                 }
                             ]
@@ -2483,7 +3716,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"phone_number\":\"voluptas\",\"password\":\"1%G]T2KK&yV*uH%MzR9\",\"password_confirmation\":\"illum\"}"
+                            "raw": "{\"phone_number\":\"eius\",\"password\":\"t=dcR65p2}g9\",\"password_confirmation\":\"autem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -2634,6 +3867,158 @@
                             "raw": "{{baseUrl}}\/api\/customer\/creditor"
                         },
                         "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/customer\/make\/checkout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/customer\/make\/checkout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/customer\/make\/checkout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/customer\/deliveries\/all_deriveries",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/customer\/deliveries\/all_deriveries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/customer\/deliveries\/all_deriveries"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/customer\/deliveries\/pending_deriveries",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/customer\/deliveries\/pending_deriveries",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/customer\/deliveries\/pending_deriveries"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/customer\/updateFcmToken",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/customer\/updateFcmToken",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/customer\/updateFcmToken"
+                        },
+                        "method": "PUT",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -2808,7 +4193,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "eius",
+                                    "value": "quos",
                                     "description": ""
                                 }
                             ]
@@ -2844,7 +4229,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "accusamus",
+                                    "value": "animi",
                                     "description": ""
                                 }
                             ]
@@ -2880,7 +4265,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "eius",
+                                    "value": "repudiandae",
                                     "description": ""
                                 }
                             ]
@@ -2916,7 +4301,7 @@
                                 {
                                     "id": "delivery_code",
                                     "key": "delivery_code",
-                                    "value": "inventore",
+                                    "value": "consequuntur",
                                     "description": ""
                                 }
                             ]
@@ -2952,7 +4337,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "cumque",
+                                    "value": "nostrum",
                                     "description": "The ID of the comment."
                                 }
                             ]
@@ -3018,7 +4403,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"customers_id\":\"tempora\",\"date\":\"2023-06-11T19:28:38\",\"comment\":\"rerum\"}"
+                            "raw": "{\"customers_id\":\"eius\",\"date\":\"2023-06-12T19:13:45\",\"comment\":\"voluptates\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3039,13 +4424,13 @@
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "sit",
+                                    "value": "ut",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "facilis",
+                                    "value": "aut",
                                     "description": ""
                                 }
                             ]
@@ -3070,24 +4455,30 @@
                     "response": []
                 },
                 {
-                    "name": "POST api\/checkin\/newsales\/{checkinCode}\/{random}\/add-to-cart",
+                    "name": "POST api\/checkin\/newsales\/{checkinCode}\/{random}\/{distributor}\/add-to-cart",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/checkin\/newsales\/:checkinCode\/:random\/add-to-cart",
+                            "path": "api\/checkin\/newsales\/:checkinCode\/:random\/:distributor\/add-to-cart",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/checkin\/newsales\/:checkinCode\/:random\/add-to-cart",
+                            "raw": "{{baseUrl}}\/api\/checkin\/newsales\/:checkinCode\/:random\/:distributor\/add-to-cart",
                             "variable": [
                                 {
                                     "id": "checkinCode",
                                     "key": "checkinCode",
-                                    "value": "minima",
+                                    "value": "ullam",
                                     "description": ""
                                 },
                                 {
                                     "id": "random",
                                     "key": "random",
-                                    "value": "beatae",
+                                    "value": "accusamus",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "distributor",
+                                    "key": "distributor",
+                                    "value": "velit",
                                     "description": ""
                                 }
                             ]
@@ -3391,7 +4782,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "est",
+                                    "value": "magni",
                                     "description": ""
                                 }
                             ]
@@ -3447,7 +4838,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "dolor",
+                                    "value": "in",
                                     "description": ""
                                 }
                             ]
@@ -3503,7 +4894,7 @@
                                 {
                                     "id": "shopID",
                                     "key": "shopID",
-                                    "value": "quas",
+                                    "value": "sunt",
                                     "description": ""
                                 }
                             ]
@@ -3559,7 +4950,7 @@
                                 {
                                     "id": "CustomerAccountNumber",
                                     "key": "CustomerAccountNumber",
-                                    "value": "odit",
+                                    "value": "odio",
                                     "description": ""
                                 }
                             ]
@@ -3681,7 +5072,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"image\":\"adipisci\"}"
+                            "raw": "{\"image\":\"dolor\"}"
                         },
                         "description": "",
                         "auth": {
@@ -3902,7 +5293,7 @@
                                 {
                                     "id": "surveyCode",
                                     "key": "surveyCode",
-                                    "value": "blanditiis",
+                                    "value": "hic",
                                     "description": ""
                                 }
                             ]
@@ -4214,7 +5605,7 @@
                                 {
                                     "id": "customerID",
                                     "key": "customerID",
-                                    "value": "commodi",
+                                    "value": "tempora",
                                     "description": ""
                                 }
                             ]
@@ -4298,7 +5689,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "blanditiis",
+                                    "value": "aut",
                                     "description": "The ID of the schedule."
                                 }
                             ]
@@ -4677,7 +6068,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"requisition_products\":[\"nulla\"]}"
+                            "raw": "{\"requisition_products\":[\"recusandae\"]}"
                         },
                         "description": "",
                         "auth": {
@@ -4785,11 +6176,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IkQ1YXJlOHRqb3Nadyt0Vm9zRnY2bFE9PSIsInZhbHVlIjoiTFRYd3A2NkhlTTFnTWpJQTYrQjR1T2VxWmZsZ1pTYXZTeEdBQnRRaStJK3AxampOTlA5NFZjTmE3YlRpN0FZQkU1SnkwazdQaHU2Vk8yL21yckRMcGJ0RGt1UXVzNTg1NER2MHZPVzBsb01XQU9mT3IxaTBkSU5KQ3lrbzNIUnMiLCJtYWMiOiI2NmIyZTAzOTNjZGU5OWRkZjAyZjQ5NDk3YjNkNjgxMTRiYjdlY2FmNTIzYTMwZjY4MGRkNjY3NTZkZDQ4MzZjIiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6Im8yNGs4d3BlT2h0WmRsN3RnK0NYSWc9PSIsInZhbHVlIjoiVWk4enJWVVE4TWdNTFpLZkZnbmFnMEltRm1kS1B4bFlOdGtFQ2F5eUhFakRkQWpVaUVIdTZDTWtTaDZ3MDJQU2kxRkJSTmhwOHB2cTdwT05WVW1CSWUzYThpZWNIZ01HbjY2emxwdVFKY2cvTk5yWndkWG4vRzVqcSszMzhZbWMiLCJtYWMiOiJkNzZhMzRjYmYwNjhhMDE5YmVhNDNjZWNjNzgxNjdjOTJiODM5MDE3NTI0Y2I3M2IyMGM5Y2RlZmFkMWFjMzE4IiwidGFnIjoiIn0%3D; expires=Sun, 11-Jun-2023 21:28:39 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6InRTbjMwWXR3VzdFNGJHcS9VNnhaRWc9PSIsInZhbHVlIjoiUDkyM1QvTjZNZk9CemoycHBPd1lKeGlCVTJTZ01sL1pMaktibVQ1eGNsbkJtWG5ib1VzMjZYUS9FdmVXZEs3bHJWTVFsaHd5enVKRUN0N0tIUmQ2YjRWQ2ROMTZNUmlEMjVHSkE2QnFDNFJTa0JUYS9zQ2diT2dDbWgvOU11S3MiLCJtYWMiOiJiNGNkNGU0NDhlMGI3ZmNlZTc5MWZiYzA4MjEyMTI4NWMwN2EyYmZkMGU3YzI3YTg3NWVhODgwNjJmMzljMTVmIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=\/; samesite=lax; sidai_session=eyJpdiI6Ii94bXA4ZlVlMllaUUtWNGZvT0JtbkE9PSIsInZhbHVlIjoiZ2x4V0NVQWlScU9OSy9uMURhOFg3dklmWS82bCtJVm53cks5U2JLR0VwaVh0bGh5akhJTDRTQlJ5dFNDTTdvVndiK1FwL3VEL0VMdFk2NnJ1djVBNzFDTG83RUlsZ3pONTdOREVETS84a0hvWmpyaXc3MG1BR1ZiMVNkS0lWMlEiLCJtYWMiOiJiZjgxYmQwNjFiZjlhNDUxZjM4NjBlNmNhNGYwZDM3NDlmNDhhYmQyNTU1YWRjNjE3YTFlMWUyMjE2NTM3MGEwIiwidGFnIjoiIn0%3D; expires=Mon, 12-Jun-2023 21:13:46 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"status\":200,\"Message\":\"All Deliveries with their orders\",\"deliveries\":[{\"id\":2,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"oYW98wsclhahkdmGIQKq\",\"order_code\":\"eLKPGd8WJY\",\"allocated\":\"S001\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-04-13T08:41:16.000000Z\",\"updated_at\":\"2023-04-13T13:51:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":3,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"EWJVjOXGGNJh0rROvJXj\",\"order_code\":\"HZBKopLoqE\",\"allocated\":\"S001\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:48:36\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-04-13T17:17:50.000000Z\",\"updated_at\":\"2023-05-23T10:29:46.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":4,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"qHvw0MLw0ZKAk0xYyuwx\",\"order_code\":\"CBoyQfCY3N\",\"allocated\":\"LoremJay\",\"delivery_note\":\"Deliver to customer\",\"Note\":null,\"delivery_status\":\"pending\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":\"LoremJay\",\"created_at\":\"2023-04-14T09:24:59.000000Z\",\"updated_at\":\"2023-04-14T09:39:43.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":5,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"xpdLpfqwlZWAqfz952AX\",\"order_code\":\"qDaDxJYH8A\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:49:25\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T12:41:01.000000Z\",\"updated_at\":\"2023-05-17T16:13:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":6,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"ZSbQEqatSgpuEdxjiq0g\",\"order_code\":\"t6JCYZYJLz\",\"allocated\":\"00100\",\"delivery_note\":\"dev\",\"Note\":null,\"delivery_status\":\"Partial delivery\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:47:33\",\"accept_allocation\":\"partially delivered\",\"customer_confirmation\":\"partially delivered\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T15:30:51.000000Z\",\"updated_at\":\"2023-05-17T15:47:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":7,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"quwE6XpPWBvq9lDEYs2R\",\"order_code\":\"DV3nie5whs\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:15:02.000000Z\",\"updated_at\":\"2023-05-17T16:15:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":8,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"glNAYmjExHhn16BvL8om\",\"order_code\":\"fDP4g7EsXP\",\"allocated\":\"S003\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:36:38.000000Z\",\"updated_at\":\"2023-05-17T16:36:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":9,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"p9gssSD9ycmHagVvjCUR\",\"order_code\":\"cXlB11ueCU\",\"allocated\":\"S004\",\"delivery_note\":\"del\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:40:25.000000Z\",\"updated_at\":\"2023-05-19T14:42:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":10,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"y1GFmRNYqPY4AIHnZbPF\",\"order_code\":\"nITAZxMMEf\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:41:51.000000Z\",\"updated_at\":\"2023-05-19T14:41:51.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":11,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"nkJkY2AczCBl7CPeOaz5\",\"order_code\":\"BqlMuSvdNM\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T15:25:10.000000Z\",\"updated_at\":\"2023-05-19T15:26:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":12,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"Px5wBBpw0zOFN2npN92S\",\"order_code\":\"I4WDxkFk0x\",\"allocated\":\"S009\",\"delivery_note\":\"123\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:48:33.000000Z\",\"updated_at\":\"2023-05-23T10:23:54.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":13,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"1ZXYCt1ABZZRxbWw7BFl\",\"order_code\":\"pgpbpshcnB\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:53:05.000000Z\",\"updated_at\":\"2023-05-23T09:53:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":14,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"JuNZVF73uu0tXDk2fOIM\",\"order_code\":\"EscXob4Dbn\",\"allocated\":\"S002\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T10:26:33.000000Z\",\"updated_at\":\"2023-05-23T10:26:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":15,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rZ3JK6J4yvBOojxseUYu\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S013\",\"delivery_note\":\"rers\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-25T17:10:33.000000Z\",\"updated_at\":\"2023-05-25T17:12:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":16,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rkqcxiAOcyoy4vUKk4gj\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"847187\",\"delivery_note\":\"should go to pending delivery\",\"Note\":null,\"delivery_status\":\"Delivered\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T08:13:07.000000Z\",\"updated_at\":\"2023-06-07T10:52:08.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":17,\"business_code\":\"YkVYPfZv0YZX5OljknAo\",\"delivery_code\":\"28BHMjhAGECM7GEdMX0e\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S009\",\"delivery_note\":\"allocated to weldon\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:01.000000Z\",\"updated_at\":\"2023-06-07T11:06:01.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":18,\"business_code\":\"E2OZQ8TBonRHkT8heYvc\",\"delivery_code\":\"nlR0HK9oRTjWXgcQ4nNr\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":\"erick allo\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:59.000000Z\",\"updated_at\":\"2023-06-07T11:06:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":19,\"business_code\":\"BC571U3tP1d8ykuxJgi6\",\"delivery_code\":\"ZAsIKXJFMnFtEu8CHsL0\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:08:30.000000Z\",\"updated_at\":\"2023-06-07T11:08:30.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":20,\"business_code\":\"QterTqxR0MKmbHOKa1eH\",\"delivery_code\":\"05a4AYVKoFitRTcb3YBM\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":21,\"business_code\":\"wfgZWV5CFjotSDIKGKYx\",\"delivery_code\":\"1IbMLW525S2JhZE8AiFE\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":22,\"business_code\":\"yJzDKwSIRCZpQh6jcn8f\",\"delivery_code\":\"iCTMfSR2FpTfSc5zqw9P\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S009\",\"delivery_note\":\"Weldon allocation due tomorrow\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:04:07.000000Z\",\"updated_at\":\"2023-06-07T12:04:07.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":23,\"business_code\":\"QGvF8Ng7tsmmErPTS9Su\",\"delivery_code\":\"6JJtDMYbbc9SmNVoEBvt\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:09:17.000000Z\",\"updated_at\":\"2023-06-07T12:09:17.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":24,\"business_code\":\"9C7mRWC57b2AHWP0qIOD\",\"delivery_code\":\"ffi16S2pk7mIqbOJQKc3\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":\"update\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-08T12:25:40.000000Z\",\"updated_at\":\"2023-06-08T12:25:40.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":25,\"business_code\":\"ZRKWtzEgJ7xHTMJM8By7\",\"delivery_code\":\"29N0IIri5SX2Uw1Oa0Px\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"235523\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-09T10:41:50.000000Z\",\"updated_at\":\"2023-06-09T10:41:50.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":26,\"business_code\":\"ZDKFD4qA0vy5p2ymnYSA\",\"delivery_code\":\"YgvDBQkpyzZs7KwsqOm7\",\"order_code\":\"Np9hQ54btW\",\"allocated\":\"635353\",\"delivery_note\":\"rsm\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-09T12:57:28.000000Z\",\"updated_at\":\"2023-06-09T12:57:28.000000Z\",\"delivery_items\":[],\"order\":null}]}",
+                            "body": "{\"success\":true,\"status\":200,\"Message\":\"All Deliveries with their orders\",\"deliveries\":[{\"id\":2,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"oYW98wsclhahkdmGIQKq\",\"order_code\":\"eLKPGd8WJY\",\"allocated\":\"S001\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-04-13T08:41:16.000000Z\",\"updated_at\":\"2023-04-13T13:51:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":3,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"EWJVjOXGGNJh0rROvJXj\",\"order_code\":\"HZBKopLoqE\",\"allocated\":\"S001\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:48:36\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-04-13T17:17:50.000000Z\",\"updated_at\":\"2023-05-23T10:29:46.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":4,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"qHvw0MLw0ZKAk0xYyuwx\",\"order_code\":\"CBoyQfCY3N\",\"allocated\":\"LoremJay\",\"delivery_note\":\"Deliver to customer\",\"Note\":null,\"delivery_status\":\"pending\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":\"LoremJay\",\"created_at\":\"2023-04-14T09:24:59.000000Z\",\"updated_at\":\"2023-04-14T09:39:43.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":5,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"xpdLpfqwlZWAqfz952AX\",\"order_code\":\"qDaDxJYH8A\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:49:25\",\"accept_allocation\":\"accepted\",\"customer_confirmation\":\"confirmed\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T12:41:01.000000Z\",\"updated_at\":\"2023-05-17T16:13:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":6,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"ZSbQEqatSgpuEdxjiq0g\",\"order_code\":\"t6JCYZYJLz\",\"allocated\":\"00100\",\"delivery_note\":\"dev\",\"Note\":null,\"delivery_status\":\"Partial delivery\",\"customer\":null,\"delivered_time\":\"2023-05-17 12:47:33\",\"accept_allocation\":\"partially delivered\",\"customer_confirmation\":\"partially delivered\",\"approval\":0,\"created_by\":\"00100\",\"updated_by\":\"00100\",\"created_at\":\"2023-05-17T15:30:51.000000Z\",\"updated_at\":\"2023-05-17T15:47:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":7,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"quwE6XpPWBvq9lDEYs2R\",\"order_code\":\"DV3nie5whs\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:15:02.000000Z\",\"updated_at\":\"2023-05-17T16:15:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":8,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"glNAYmjExHhn16BvL8om\",\"order_code\":\"fDP4g7EsXP\",\"allocated\":\"S003\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-17T16:36:38.000000Z\",\"updated_at\":\"2023-05-17T16:36:38.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":9,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"p9gssSD9ycmHagVvjCUR\",\"order_code\":\"cXlB11ueCU\",\"allocated\":\"S004\",\"delivery_note\":\"del\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:40:25.000000Z\",\"updated_at\":\"2023-05-19T14:42:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":10,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"y1GFmRNYqPY4AIHnZbPF\",\"order_code\":\"nITAZxMMEf\",\"allocated\":\"S013\",\"delivery_note\":\"deliver\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T14:41:51.000000Z\",\"updated_at\":\"2023-05-19T14:41:51.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":11,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"nkJkY2AczCBl7CPeOaz5\",\"order_code\":\"BqlMuSvdNM\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-19T15:25:10.000000Z\",\"updated_at\":\"2023-05-19T15:26:44.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":12,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"Px5wBBpw0zOFN2npN92S\",\"order_code\":\"I4WDxkFk0x\",\"allocated\":\"S009\",\"delivery_note\":\"123\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:48:33.000000Z\",\"updated_at\":\"2023-05-23T10:23:54.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":13,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"1ZXYCt1ABZZRxbWw7BFl\",\"order_code\":\"pgpbpshcnB\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T09:53:05.000000Z\",\"updated_at\":\"2023-05-23T09:53:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":14,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"JuNZVF73uu0tXDk2fOIM\",\"order_code\":\"EscXob4Dbn\",\"allocated\":\"S002\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-23T10:26:33.000000Z\",\"updated_at\":\"2023-05-23T10:26:33.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":15,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rZ3JK6J4yvBOojxseUYu\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S013\",\"delivery_note\":\"rers\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"00100\",\"updated_by\":null,\"created_at\":\"2023-05-25T17:10:33.000000Z\",\"updated_at\":\"2023-05-25T17:12:02.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":16,\"business_code\":\"Qx4FstqLJfHwf3WA\",\"delivery_code\":\"rkqcxiAOcyoy4vUKk4gj\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"847187\",\"delivery_note\":\"should go to pending delivery\",\"Note\":null,\"delivery_status\":\"Delivered\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T08:13:07.000000Z\",\"updated_at\":\"2023-06-07T10:52:08.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":17,\"business_code\":\"YkVYPfZv0YZX5OljknAo\",\"delivery_code\":\"28BHMjhAGECM7GEdMX0e\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S009\",\"delivery_note\":\"allocated to weldon\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:01.000000Z\",\"updated_at\":\"2023-06-07T11:06:01.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":18,\"business_code\":\"E2OZQ8TBonRHkT8heYvc\",\"delivery_code\":\"nlR0HK9oRTjWXgcQ4nNr\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":\"erick allo\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:06:59.000000Z\",\"updated_at\":\"2023-06-07T11:06:59.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":19,\"business_code\":\"BC571U3tP1d8ykuxJgi6\",\"delivery_code\":\"ZAsIKXJFMnFtEu8CHsL0\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S013\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:08:30.000000Z\",\"updated_at\":\"2023-06-07T11:08:30.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":20,\"business_code\":\"QterTqxR0MKmbHOKa1eH\",\"delivery_code\":\"05a4AYVKoFitRTcb3YBM\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":21,\"business_code\":\"wfgZWV5CFjotSDIKGKYx\",\"delivery_code\":\"1IbMLW525S2JhZE8AiFE\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T11:58:05.000000Z\",\"updated_at\":\"2023-06-07T11:58:05.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":22,\"business_code\":\"yJzDKwSIRCZpQh6jcn8f\",\"delivery_code\":\"iCTMfSR2FpTfSc5zqw9P\",\"order_code\":\"Ah3iNAhZko\",\"allocated\":\"S009\",\"delivery_note\":\"Weldon allocation due tomorrow\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:04:07.000000Z\",\"updated_at\":\"2023-06-07T12:04:07.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":23,\"business_code\":\"QGvF8Ng7tsmmErPTS9Su\",\"delivery_code\":\"6JJtDMYbbc9SmNVoEBvt\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"S007\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-07T12:09:17.000000Z\",\"updated_at\":\"2023-06-07T12:09:17.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":24,\"business_code\":\"9C7mRWC57b2AHWP0qIOD\",\"delivery_code\":\"ffi16S2pk7mIqbOJQKc3\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"635353\",\"delivery_note\":\"update\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-08T12:25:40.000000Z\",\"updated_at\":\"2023-06-08T12:25:40.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":25,\"business_code\":\"ZRKWtzEgJ7xHTMJM8By7\",\"delivery_code\":\"29N0IIri5SX2Uw1Oa0Px\",\"order_code\":\"bChc6xQt7S\",\"allocated\":\"235523\",\"delivery_note\":null,\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-09T10:41:50.000000Z\",\"updated_at\":\"2023-06-09T10:41:50.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":26,\"business_code\":\"ZDKFD4qA0vy5p2ymnYSA\",\"delivery_code\":\"YgvDBQkpyzZs7KwsqOm7\",\"order_code\":\"Np9hQ54btW\",\"allocated\":\"635353\",\"delivery_note\":\"rsm\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-09T12:57:28.000000Z\",\"updated_at\":\"2023-06-09T12:57:28.000000Z\",\"delivery_items\":[],\"order\":null},{\"id\":27,\"business_code\":\"8OKX9VM41k5lTSe18boS\",\"delivery_code\":\"unmiKexp3M7PazJhpB2y\",\"order_code\":\"Lq5wRbcNsS\",\"allocated\":\"5324rWREWR\",\"delivery_note\":\"no enough sidai Ultrdip 1ltr\",\"Note\":null,\"delivery_status\":\"Waiting acceptance\",\"customer\":null,\"delivered_time\":null,\"accept_allocation\":null,\"customer_confirmation\":null,\"approval\":0,\"created_by\":\"5324rWREWR\",\"updated_by\":null,\"created_at\":\"2023-06-12T16:33:19.000000Z\",\"updated_at\":\"2023-06-12T16:33:19.000000Z\",\"delivery_items\":[],\"order\":null}]}",
                             "name": ""
                         }
                     ]

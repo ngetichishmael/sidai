@@ -36,14 +36,16 @@ class Dashboard extends Component
         $end_date = Carbon::now()->endOfMonth()->format('Y-m-d');
         $this->start = $this->start == null ? $start_date : $this->start;
         $this->end = $this->end == null ? $end_date : $this->end;
-       $sidai=suppliers::where('name', 'Sidai')->first();
+       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
         // dd($this->start);
         $vansales = Orders::where('order_type', 'Van sales')
             ->whereBetween('updated_at', [$this->start, $this->end])
+           ->whereIn('supplierID', [$sidai->id, '', null])
             ->where('order_status', 'DELIVERED')
             ->sum('price_total');
         $vansalesTotal = Orders::with('User', 'Customer')
             ->where('order_type', 'Van sales')
+           ->whereIn('supplierID', [$sidai->id, '', null])
            ->whereIn('supplierID', [$sidai->id, '', null])
             ->whereBetween('created_at', [$this->start, $this->end])
             ->where('order_status', 'DELIVERED')
@@ -51,28 +53,34 @@ class Dashboard extends Component
 
         $preorder = Orders::where('order_type', 'Pre Order')
            ->whereIn('supplierID', [$sidai->id, '', null])
-            ->whereBetween('created_at', [$this->start, $this->end])
+            ->whereBetween('updated_at', [$this->start, $this->end])
 //            ->where('order_status', 'DELIVERED')
             ->count();
         $preorderTotal = Orders::with('User', 'Customer')
             ->where('order_type', 'Pre Order')
            ->whereIn('supplierID', [$sidai->id, '', null])
-            ->whereBetween('created_at', [$this->start, $this->end])
-            ->where('order_status', '')
+            ->whereBetween('updated_at', [$this->start, $this->end])
+//            ->where('order_status', '')
             ->paginate($this->perPreorder);
-        $orderfullment = Orders::where('order_status', 'DELIVERED')
-           ->whereIn('supplierID', [$sidai->id, '', null])
-            ->whereBetween('updated_at', [$this->start, $this->end])
-            ->count();
-        $orderfullmentbydistributors = Orders::where('order_status', 'DELIVERED')
-           ->whereNotIn('supplierID', [$sidai->id, '', null])
+        $orderfullment = Orders::whereIn('order_status', ['DELIVERED','Delivered'])
            ->where('order_type', 'Pre Order')
-           ->where('supplierID', '!=', [null, '', 1])
+           ->whereIn('supplierID', [null, '', $sidai->id])
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->count();
+        $orderfullmentbydistributors = Orders::whereIn('order_status', ['DELIVERED','Delivered'])
+           ->where('supplierID', '!=', $sidai->id)
+           ->where('order_type', 'Pre Order')
+            ->whereBetween('updated_at', [$this->start, $this->end])
+            ->count();
+        $orderfullmentbydistributorspage = Orders::with('Customer', 'user', 'distributor')
+           ->whereIn('order_status', ['DELIVERED','Delivered'])
+           ->where('supplierID', '!=', $sidai->id)
+           ->where('order_type', 'Pre Order')
+            ->whereBetween('updated_at', [$this->start, $this->end])
+           ->paginate($this->perPreorder);
         $orderfullmentTotal = Orders::with('User', 'Customer')
            ->whereIn('supplierID', [$sidai->id, '', null])
-            ->where('order_status', 'DELIVERED')
+            ->whereIn('order_status', ['DELIVERED','Delivered'])
             ->whereBetween('updated_at', [$this->start, $this->end])
             ->paginate($this->perOrderFulfilment);
         $activeUser = DB::table('customer_checkin')
@@ -124,7 +132,7 @@ class Dashboard extends Component
           ->pluck('count', 'month')
           ->toArray();
        // Retrieve delivery counts per month
-       $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'Partial Delivery'])
+       $deliveryCounts = Orders::whereIn('order_status', ['Delivered','DELIVERED', 'Partial Delivery'])
           ->whereYear('created_at', '=', date('Y'))
           ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
           ->groupBy('month')
@@ -154,7 +162,6 @@ class Dashboard extends Component
              'deliveryCount' => $deliveryCounts[$month] ?? 0,
           ];
        }
-
         $customersCount = Orders::groupBy('customerID')
             ->whereBetween('created_at', [$this->start, $this->end])
             ->count();
@@ -174,6 +181,7 @@ class Dashboard extends Component
             'vansales' => $vansales,
             'preorder' => $preorder,
             'orderfullmentbydistributors'=>$orderfullmentbydistributors,
+            'orderfullmentbydistributorspage'=>$orderfullmentbydistributorspage,
             'orderfullment' => $orderfullment,
             'activeUser' => $activeUser,
             'activeAll' => $activeAll,

@@ -14,13 +14,13 @@
         @forelse ($subregions as $region)
             <option value="{{ $region->id }}">{{ $region->name }}</option>
         @empty
-            <option value="1">Region</option>
+            <option value="1">Sub-Region</option>
         @endforelse
     </select>
 </div>
 <div class="col-md-6 col-12">
     <label>Route</label>
-    <select class="form-control select select2" name="territory">
+    <select class="form-control select select2" name="route">
         <option value="">Route</option>
         @forelse ($areas as $area)
             <option value="{{ $area->id }}">{{ $area->name }}</option>
