@@ -13,6 +13,7 @@
   'dashboard.catergory-chart' => 'App\\Http\\Livewire\\Dashboard\\CatergoryChart',
   'dashboard.dashboard' => 'App\\Http\\Livewire\\Dashboard\\Dashboard',
   'dashboard.individual-targets' => 'App\\Http\\Livewire\\Dashboard\\IndividualTargets',
+  'dashboard.line-chart' => 'App\\Http\\Livewire\\Dashboard\\LineChart',
   'dashboard.percentage-targets' => 'App\\Http\\Livewire\\Dashboard\\PercentageTargets',
   'delivery.index' => 'App\\Http\\Livewire\\Delivery\\index',
   'individual.leads' => 'App\\Http\\Livewire\\Individual\\Leads',
