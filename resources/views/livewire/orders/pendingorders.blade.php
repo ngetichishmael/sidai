@@ -2,6 +2,26 @@
     use Illuminate\Support\Str;
 @endphp
 <div>
+   <div class="col-xl-12 col-md-12 col-12">
+      <div class="card">
+         <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="fromDate">From:</label>
+                  <input type="date" id="fromDate" wire:model="fromDate"
+                         name="startDate" type="date" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="validationTooltip01">End Date</label>
+                  <input type="date" id="toDate" wire:model="toDate" name="endDate" type="date" class="form-control"
+                         placeholder="YYYY-MM-DD HH:MM" required />
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
     <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50">
         <div class="col-md-6">
             <label for="">Search</label>
@@ -32,17 +52,11 @@
                 <table class="table table-striped table-bordered zero-configuration table-responsive">
                     <thead>
                         <th width="1%">#</th>
-{{--                        <th>Order Type</th>--}}
                         <th>Customer</th>
-                        <th>status</th>
-{{--                        <th>Region</th>--}}
-{{--                        <th>Route</th>--}}
                         <th>Sales Person</th>
                         <th>Amount (Ksh.)</th>
-{{--                        <th>Balance (Ksh.)</th>--}}
                         <th>Date</th>
                         <th>Quantity</th>
-                        <th>type</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -58,14 +72,12 @@
 {{--                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>--}}
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
-                               <td>{{ $order->order_status }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                 <td>{{ $order->qty}}</td>
-                                <td>{{ $order->order_type}}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}
 {{--                                    <a href="{!! route('orders.details', $order->order_code) !!}" class="btn btn-warning btn-sm">View</a>--}}

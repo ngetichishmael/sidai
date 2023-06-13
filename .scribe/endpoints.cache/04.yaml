@@ -35,12 +35,12 @@ endpoints:
         name: userCode
         description: ''
         required: true
-        example: ut
+        example: magni
         type: string
         custom: []
     cleanUrlParameters:
       businessCode: 2
-      userCode: ut
+      userCode: magni
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -94,12 +94,12 @@ endpoints:
         name: businessCode
         description: ''
         required: true
-        example: nostrum
+        example: amet
         type: string
         custom: []
     cleanUrlParameters:
       code: 2
-      businessCode: nostrum
+      businessCode: amet
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

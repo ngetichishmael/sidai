@@ -4,6 +4,7 @@ namespace App\Models\customer;
 
 use App\Models\User;
 use App\Traits\Searchable;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -63,5 +64,49 @@ class checkin extends Model
    public function Admin(): BelongsTo
    {
       return $this->belongsTo(customers::class, 'customer_id', 'id')->where('checkin_type', 'admin');
+   }
+   public function getTimeAgoAttribute()
+   {
+      $endTime = Carbon::parse($this->start_time);
+      $startTime = Carbon::parse($this->stop_time);
+      $timeleft = $startTime->diffAsCarbonInterval($endTime);
+      return $timeleft;
+   }
+
+   public function scopeToday($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+   }
+   public function scopeYesterday($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::yesterday()->startOfDay(), Carbon::yesterday()->endOfDay()]);
+   }
+   public function scopeCurrentWeek($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+   }
+   public function scopeLastWeek($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->subWeek(1), Carbon::now()->startOfWeek()]);
+   }
+   public function scopeCurrentMonth($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+   }
+   public function scopeLastMonth($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->subMonth(1), Carbon::now()->startOfMonth()]);
+   }
+   public function scopePeriod($query, $start = null, $end = null)
+   {
+      if ($start === $end && $start !== null) {
+         $query->whereLike(['updated_at'], (string)$start);
+      } else {
+         $monthStart = Carbon::now()->startOfMonth()->format('Y-m-d');
+         $monthEnd = Carbon::now()->endOfMonth()->format('Y-m-d');
+         $from = $start == null ? $monthStart : $start;
+         $to = $end == null ? $monthEnd : $end;
+         $query->whereBetween('updated_at', [$from, $to]);
+      }
    }
 }

@@ -31,7 +31,7 @@ class ordersController extends Controller
    }
    public function distributororders()
    {
-      return view('app.orders.pendingdeliveries');
+      return view('app.orders.distributororders');
    }
    public function pendingorders()
    {
@@ -59,6 +59,21 @@ class ordersController extends Controller
       $payment = order_payments::where('order_id', $order->order_code)->first();
       // dd($payment);
       return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+   }
+   public function distributordetails($code)
+   {
+      $order = Orders::where('order_code', $code)->first();
+      // dd($code);
+      $items = Order_items::where('order_code', $order->order_code)->get();
+      $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
+      $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
+      $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
+      $id = $Customer_id->customerID;
+      $test = customers::where('id', $id)->first();
+      // dd($test->id);
+      $payment = order_payments::where('order_id', $order->order_code)->first();
+      // dd($payment);
+      return view('app.orders.distributorsdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
    }
    public function pendingdetails($code)
    {
@@ -94,7 +109,6 @@ class ordersController extends Controller
 //         'warehouse' => 'required',
 
       ]);
-
       $delivery = Delivery::updateOrCreate(
          [
             "business_code" => Str::random(20),
@@ -139,7 +153,6 @@ class ordersController extends Controller
             ]);
       }
 
-      Session::flash('success', 'Delivery created and orders allocated to a user');
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Allocate an order to a User';
@@ -150,9 +163,8 @@ class ordersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
       $activityLog->save();
-
+      Session::flash('success', 'Delivery created and orders allocated to a user');
       return redirect()->route('orders.pendingorders');
-//      return redirect()->back();
    }
    public function delivery(Request $request)
    {
