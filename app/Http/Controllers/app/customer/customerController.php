@@ -93,8 +93,7 @@ class customerController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'customer_name' => 'required',
-         'id_number' => 'required',
+         'customer_name' => 'required'
       ]);
       $emailData = $request->email == null ? null : $request->email;
       $random=Str::random(10);

@@ -107,15 +107,15 @@ class ReportsController extends Controller
      $count =1;
          return view('app.territories.subregions',['subregions'=>$subregions,'count'=>$count]);
     }
-    public function routes()
+    public function routes($id)
     {
-     $routes = Area::paginate(10);
+     $routes = Area::where('subregion_id',$id)->get();
      $count =1;
          return view('app.territories.routes',['routes' =>$routes,'count'=>$count]);
     }
-    public function customers()
+    public function customers($id)
     {
-     $customers = customers::all();
+     $customers = customers::where('route',$id)->get();
      $count = 1;
      return view('app.territories.customers',['count'=>$count,'customers'=>$customers]);
     }

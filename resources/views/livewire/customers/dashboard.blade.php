@@ -77,9 +77,7 @@
                     </tbody>
                 </table>
 
-                <div class="mt-1">
-                    {{ $contacts->links() }}
-                </div>
+                
             </div>
         </div>
     </div>

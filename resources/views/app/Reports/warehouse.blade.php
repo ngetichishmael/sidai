@@ -44,7 +44,7 @@
                      <td>{{ $warehouse->region->name??'' }}</td>
                      <td>{{ $warehouse->subregion->name??'' }}</td>
                      <td>{{ $warehouse->product_information_count }}</td>
-                     <td></td>
+                     <td>{{ $warehouse->updated_at }}</td>
                  </tr>
                   @endforeach
                     
