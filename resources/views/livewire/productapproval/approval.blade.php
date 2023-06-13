@@ -15,14 +15,14 @@
                       <th>Action</th>
                    </thead>
                    <tbody>
-                      @foreach($products as $count=>$product)
+                      @foreach($requisitions as $count=>$requisition)
                          <tr>
                             <td>{!! $count+1 !!}</td>
-                            <td>{!! $product->User->name ?? '' !!}</td>
-                            <td>{!! $product->status !!}</td>
-                            <td>{!! date('F jS, Y', strtotime($product->created_at)) !!}</td>
+                            <td>{!! $requisition->sales_person ?? '' !!}</td>
+                            <td>{!! $requisition->status !!}</td>
+                            <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
                             <td>
-                               <a href="{!! route('inventory.approve',$product->id) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">view</a>
+                               <a href="{!! route('inventory.approve',[$requisition->id]) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">view</a>
                             </td>
                          </tr>
                       @endforeach
@@ -30,7 +30,7 @@
                 </table>
              </div>
              <div class="mt-1">
-                {{ $products->links() }}
+                {{ $requisitions->links() }}
              </div>
           </div>
        </div>

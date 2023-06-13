@@ -14,7 +14,8 @@ class approve_item extends Component
 
    public function render()
    {
-      $products = RequisitionProduct::whereId($this->product_id)->get();
+      $products = RequisitionProduct::where('requisition_id',$this->product_id)->with('ProductInformation')->get();
+
       return view('livewire.productapproval.approve', [
          'products' => $products,
       ]);
@@ -23,7 +24,7 @@ class approve_item extends Component
    {
       StockRequisition::whereId($this->product_id)->update(
          [
-            'status' => 'approved'
+            'status' => 'Approved'
          ]
       );
       $products = RequisitionProduct::whereId($this->product_id)->get();
@@ -32,7 +33,23 @@ class approve_item extends Component
             'current_stock',$product->quantity
          );
       }
-      
-      return redirect('/warehousing/all/products');
+
+      return redirect('/warehousing/all/stock-requisition');
+   }
+   public function disapprove()
+   {
+      StockRequisition::whereId($this->product_id)->update(
+         [
+            'status' => 'Disapproved'
+         ]
+      );
+      $products = RequisitionProduct::whereId($this->product_id)->get();
+      foreach($products as $product){
+         product_inventory::whereId($this->product_id)->increment(
+            'current_stock',$product->quantity
+         );
+      }
+
+      return redirect('/warehousing/all/stock-requisition');
    }
 }
