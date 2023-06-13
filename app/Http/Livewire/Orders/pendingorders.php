@@ -28,7 +28,9 @@ class pendingorders extends Component
       $sidai=suppliers::where('name', 'Sidai')->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
-         ->whereNull('supplierID')->orWhere('supplierID','=', '')->orWhere('supplierID', $sidai->id)
+         ->whereNull('supplierID')->where( function ($query) use ($sidai){
+            $query->orWhere('supplierID','=', '')->orWhere('supplierID', $sidai->id);
+         })
          ->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
