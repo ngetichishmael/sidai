@@ -48,7 +48,7 @@ class OrdersController extends Controller
          'success' => true,
          // 'Data1' => User::withCount(['Checkings'])->with('Orders.OrderItem')->where('account_type', 'Sales')->get(),
          'Data' => UserResource::collection(
-            User::withCount(['Checkings'])->with('Orders.OrderItem')->where('account_type', 'Sales')->get()
+            User::withCount(['Checkings'])->with('Orders.OrderItem')->whereIn('account_type', ['TSR','TD','RSM'])->get()
          ),
       ]);
    }

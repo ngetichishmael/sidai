@@ -6,6 +6,7 @@ use App\Models\customer\checkin;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class customers extends Model
@@ -28,7 +29,10 @@ class customers extends Model
    {
       return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
    }
-
+   public function Checkings(): HasMany
+   {
+      return $this->hasMany(checkin::class, 'customer_id', 'id');
+   }
    public function orderItems()
    {
       return $this->hasManyThrough(Order_items::class, Orders::class, 'customerID', 'order_code', 'id', 'order_code');
