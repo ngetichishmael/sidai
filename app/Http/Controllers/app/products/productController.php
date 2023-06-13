@@ -13,6 +13,7 @@ use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
 use App\Models\products\ProductSku;
+use App\Models\RequisitionProduct;
 use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\suppliers;
 use App\Models\tax;
@@ -383,17 +384,20 @@ class productController extends Controller
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
    }
 
-   public function approvestock($id){
-      $approveproduct = product_information::whereId($id)->first();
-      $approveproduct->is_approved = "Yes";
-      $approveproduct->save();
+   public function approvestock($requisition_id){
+      $requisition_products = RequisitionProduct::where('requisition_id',$requisition_id)->get();
+      foreach ($requisition_products as $requisition_product){
+         $approveproduct = product_information::whereId($requisition_product)->first();
+         $approveproduct->is_approved = "Yes";
+         $approveproduct->save();
+      }
       session()->flash('success', 'Product successfully Approved !');
       $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Stock Approval';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Stock Approved ';
-      $activityLog->action = 'Product '.$approveproduct->product_name .' ssuccessfully Approved  ';
+      $activityLog->action = 'Product '.$approveproduct->product_name .' Successfully Approved  ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address = '';

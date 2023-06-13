@@ -18,7 +18,7 @@ class RequisitionProduct extends Model
     */
    public function ProductInformation(): BelongsTo
    {
-       return $this->belongsTo(product_information::class);
+       return $this->belongsTo(product_information::class, 'product_id', 'id');
    }
    /**
     * Get the StockRequisition that owns the RequisitionProduct
@@ -27,6 +27,6 @@ class RequisitionProduct extends Model
     */
    public function StockRequisition(): BelongsTo
    {
-       return $this->belongsTo(StockRequisition::class);
+       return $this->belongsTo(StockRequisition::class, 'requisition_id', 'id');
    }
 }

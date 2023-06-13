@@ -23,12 +23,12 @@
                                         <td>
                                            @if($product->status =="Waiting Approval")
                                               <a wire:click.prevent="approve()"
-                                                 onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
-                                                 type="button" class="btn btn-info btn-sm">{{$product->status}}</a>
+                                                 onclick="confirm('Are you sure you want to APPROVE This Requisition `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
+                                                 type="button" class="btn btn-success btn-sm">Approve</a>
                                            @else
-                                              <a wire:click.prevent="approve()"
-                                                 onclick="confirm('Are you sure you want to APPROVE `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
-                                                 type="button" class="btn btn-success btn-sm">{{$product->status}}</a>
+                                              <a wire:click.prevent="disapprove()"
+                                                 onclick="confirm('Are you sure you want to DISAPPROVE This Requisition `{{$product->ProductInformation->product_name  }}`')||event.stopImmediatePropagation()"
+                                                 type="button" class="btn btn-danger btn-sm">Disapprove</a>
                                            @endif
 
                                         </td>
