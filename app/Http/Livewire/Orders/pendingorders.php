@@ -28,12 +28,13 @@ class pendingorders extends Component
       $sidai=suppliers::where('name', 'Sidai')->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
+//         ->whereNull('supplierID')->where( function ($query) use ($sidai){
+//            $query->orWhere('supplierID','=', '')->orWhere('supplierID', $sidai->id);
+//         })
          >where(function ($query) use ($sidai) {
-            $query->whereHas('Order', function ($subQuery) use ($sidai) {
-               $subQuery->whereNull('supplierID')
+               $query->whereNull('supplierID')
                   ->orWhere('supplierID', '')
                   ->orWhere('supplierID', $sidai->id);
-            });
          })
          ->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {
