@@ -11,21 +11,18 @@ use App\Models\survey\survey;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class DashboardAppController extends Controller
 {
-
    public function dashboard(Request $request)
    {
+
       //Active Users
       $checking = checkin::select('user_code')->groupBy('user_code');
       $all = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-//      $checking = checkin::select('user_code')->today()->groupBy('user_code');
-      $checking = Checkin::whereDate('created_at', now())->distinct('user_code')
-         ->pluck('user_code');
+      $checking = checkin::select('user_code')->today()->groupBy('user_code');
       $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
@@ -41,7 +38,6 @@ class DashboardAppController extends Controller
       $month = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
-
       $data = [
          'status' => 200,
          'success' => true,

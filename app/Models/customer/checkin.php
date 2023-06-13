@@ -65,9 +65,19 @@ class checkin extends Model
    {
       return $this->belongsTo(customers::class, 'customer_id', 'id')->where('checkin_type', 'admin');
    }
+   public function getTimeAgoAttribute()
+   {
+      $endTime = Carbon::parse($this->start_time);
+      $startTime = Carbon::parse($this->stop_time);
+      $timeleft = $startTime->diffAsCarbonInterval($endTime);
+      return $timeleft;
+   }
+
    public function scopeToday($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+//      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+      $today = Carbon::now()->toDateString();
+      return $query->whereDate('updated_at', $today);
    }
    public function scopeYesterday($query)
    {

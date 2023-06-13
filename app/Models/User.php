@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\customer\checkin;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -98,5 +100,34 @@ class User extends Authenticatable implements MustVerifyEmail
    public function Region(): BelongsTo
    {
       return $this->belongsTo(Region::class,  'route_code', 'id');
+   }
+   public function Checkings(): HasMany
+   {
+      return $this->hasMany(checkin::class, 'user_code', 'user_code');
+   }
+   public function Orders(): HasMany
+   {
+      return $this->hasMany(Orders::class, 'user_code', 'user_code');
+   }
+   /**
+    * Get all of the Customers for the User
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function Customers(): HasMany
+   {
+      return $this->hasMany(customers::class, 'created_by', 'user_code');
+   }
+   public function scopePeriod($query, $start = null, $end = null)
+   {
+      if ($start === $end && $start !== null) {
+         $query->whereLike(['updated_at'], (string)$start);
+      } else {
+         $monthStart = Carbon::now()->startOfMonth()->format('Y-m-d');
+         $monthEnd = Carbon::now()->endOfMonth()->format('Y-m-d');
+         $from = $start == null ? $monthStart : $start;
+         $to = $end == null ? $monthEnd : $end;
+         $query->whereBetween('updated_at', [$from, $to]);
+      }
    }
 }
