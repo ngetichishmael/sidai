@@ -219,9 +219,9 @@ class customersController extends Controller
             403
          );
       }
+      $random=Str::random(3);
       $image_path = $request->file('image')->store('image', 'public');
-      $emailData = $request->email == null ? null : $request->email;
-
+      $emailData = $request->email !== null ? $request->email : $request->customer_name.$random.'@gmail.com';
       $random=Str::random(10);
       $user = new User();
       $user->name = $request->customer_name;
