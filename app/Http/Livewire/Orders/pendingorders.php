@@ -31,7 +31,7 @@ class pendingorders extends Component
 //         ->whereNull('supplierID')->where( function ($query) use ($sidai){
 //            $query->orWhere('supplierID','=', '')->orWhere('supplierID', $sidai->id);
 //         })
-         >where(function ($query) use ($sidai) {
+         ->where(function ($query) use ($sidai) {
                $query->whereNull('supplierID')
                   ->orWhere('supplierID', '')
                   ->orWhere('supplierID', $sidai->id);
