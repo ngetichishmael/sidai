@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','warehouse')
+@section('title','Product reports')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Warehouse | Reports</h2>
+               <h2 class="content-header-title float-start mb-0">All Products</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -27,27 +27,24 @@
                  <thead>
                     <tr>
                        <th>#</th>
-                       <th>Warehouse Name</th>
-                       <th>Shop Attendees</th>
-                       <th>Region</th>
-                       <th>Subregion</th>
-                       <th>Quantity</th>
-                       <th>Last Re-stock</th>
+                       <th>Product Name</th>
+                       <th>Wholesale Price</th>
+                       <th>Retail Price</th>
+                       <th>Distributor Price</th>
+                       <th>Sku Code</th>
+                       <th>Status</th>
                     </tr>
                  </thead>
                  <tbody>
-                  @foreach ($warehouses as $warehouse)
-                  <tr>
-                     <td>{{ $count++ }}</td>
-                     <td>{{ $warehouse->name }}</td>
-                     <td></td>
-                     <td>{{ $warehouse->region->name??'' }}</td>
-                     <td>{{ $warehouse->subregion->name??'' }}</td>
-                     <td>{{ $warehouse->product_information_count }}</td>
-                     <td></td>
+                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                  </tr>
-                  @endforeach
-                    
                  </tbody>
               </table>
            </div>

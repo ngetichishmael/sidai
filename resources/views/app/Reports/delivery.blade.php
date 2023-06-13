@@ -28,7 +28,6 @@
                     <tr>
                        <th>#</th>
                        <th>Order ID</th>
-                       <th>Warehouse</th>
                        <th>Customer Name</th>
                        <th>User Name</th>
                        <th>User Type</th>
@@ -36,15 +35,17 @@
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($deliveries as $delivery)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $delivery->order_code }}</td>
+                     <td>{{ $delivery->Customer->customer_name??'' }}</td>
+                     <td>{{ $delivery->User->name??'' }}</td>
+                     <td>{{ $delivery->User->account_type??'' }}</td>
+                     <td><a href="" class="btn" style="background-color: brown;color:white">View</a></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

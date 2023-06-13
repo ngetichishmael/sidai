@@ -25,7 +25,7 @@ class warehousing extends Model
    }
    public function region()
    {
-      return $this->belongsTo(Region::class ,'region_id', 'id' );
+      return $this->belongsTo(Region::class);
    }
    public function subregion()
    {

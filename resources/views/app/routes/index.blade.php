@@ -10,7 +10,7 @@
       </div>
       <div class="col-md-4">
          <center>
-            <a href="{!! route('routes.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i class="fas fa-plus"></i> Add Route</a>
+            <a href="{!! route('routes.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i data-feather="plus"></i> Add Route</a>
          </center>
       </div>
    </div>

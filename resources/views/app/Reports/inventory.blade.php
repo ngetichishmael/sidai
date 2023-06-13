@@ -20,7 +20,7 @@
    </div>
    @include('partials._messages')
    <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card card-inverse">
            <div class="card-body">
               <table id="data-table-default" class="table table-striped table-bordered">
@@ -28,15 +28,18 @@
                     <tr>
                        <th>#</th>
                        <th>Warehouse Name</th>
-                       <th>Action</th>
+                       <th>History</th>
                     </tr>
                  </thead>
                  <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                  @foreach ($warehouses as $warehouse)
+                  <tr>
+                     <td>{{ $count++ }}</td>
+                     <td>{{ $warehouse }}</td>
+                     <td><a href="{{ route('allproducts.reports') }}" class="btn sm" style="background-color: brown;color:white">inventory history</a></td>
+                 </tr>
+                  @endforeach
+                    
                  </tbody>
               </table>
            </div>

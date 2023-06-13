@@ -73,6 +73,7 @@
                                 </div>
 
                             </div>
+
                             <div class="row">
 {{--                                <div class="col-md-6 col-12">--}}
 {{--                                    <div class="form-group">--}}
@@ -133,6 +134,7 @@
                                             placeholder="Telephone" name="telephone" />
                                     </div>
                                 </div>
+
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>
                                     <select class="select select2" wire:model='region' class="form-control"
@@ -144,17 +146,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <label>Pricing Group</label>
-                                    <select class="select select2" wire:model='region' class="form-control"
-                                        name="customer_group">
-                                        <option value="">Pricing Group</option>
-                                        @foreach ($pricing as $group)
-                                            <option value="{{ $group->name }}">{{ $group->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+
                             </div>
                             <div class="row">
 {{--                                <div class="col-md-6 col-12">--}}
