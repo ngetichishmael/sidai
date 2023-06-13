@@ -1,4 +1,24 @@
 <div>
+   <div class="col-xl-12 col-md-12 col-12">
+      <div class="card">
+         <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="fromDate">From:</label>
+                  <input type="date" id="fromDate" wire:model="fromDate"
+                         name="startDate" type="date" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="form-group">
+                  <label for="validationTooltip01">End Date</label>
+                  <input type="date" id="toDate" wire:model="toDate" name="endDate" type="date" class="form-control"
+                         placeholder="YYYY-MM-DD HH:MM" required />
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
     <div class="mb-1 row">
         <div class="col-md-10">
             <label for="">Search</label>
