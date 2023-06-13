@@ -17,13 +17,22 @@ class index extends Component
    public $customer_name = null;
    public $name = null;
    public $order_code = null;
+   public $fromDate;
+   public $toDate;
 
+   protected $queryString = ['search', 'fromDate', 'toDate'];
    public function render()
    {
 
       $searchTerm = '%' . $this->search . '%';
       $deliveries = Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])->with('User', 'Customer')
-         ->search($searchTerm)
+//         ->search($searchTerm)
+         ->when($this->fromDate, function ($query) {
+            return $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            return $query->whereDate('created_at', '<=', $this->toDate);
+         })
          ->orderBy('updated_at', 'desc')
          ->paginate($this->perPage);
       return view('livewire.delivery.index', compact('deliveries'));
