@@ -158,7 +158,7 @@ class warehousingController extends Controller
       $shopattendee = $request->input('shopattendee');
       $warehouse = $request->input('warehouser');
 
-      foreach ($this->warehouse as $target) {
+      foreach ($warehouse as $target) {
          $warehouseCode = $target['warehouse_code'];
          $userCode = $target['user_code'];
 

@@ -36,7 +36,7 @@
                   <tr>
                      <td>{{ $count++ }}</td>
                      <td>{{ $region->name }}</td>
-                     <td><a href="{{ route('subregion.reports') }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
+                     <td><a href="{{ route('subregion.reports',['id'=>$region->id]) }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
                  </tr>
                   @endforeach
                     

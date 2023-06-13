@@ -42,7 +42,7 @@
                      <td>{{ $delivery->Customer->customer_name??'' }}</td>
                      <td>{{ $delivery->User->name??'' }}</td>
                      <td>{{ $delivery->User->account_type??'' }}</td>
-                     <td><a href="" class="btn" style="background-color: brown;color:white">View</a></td>
+                     <td><a href="{{ URL('orders/deliveryitems/'.$delivery->order_code) }}" class="btn" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                  </tr>
                   @endforeach
                     
