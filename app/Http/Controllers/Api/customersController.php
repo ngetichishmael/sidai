@@ -201,8 +201,8 @@ class customersController extends Controller
          "customer_name"   => "required|unique:customers",
          "contact_person"  => "required",
          "business_code"   => "required",
-         "created_by"      => "required",
          "phone_number"    => "required|unique:customers",
+         "email" => "nullable|unique:users",
          "latitude"        => "required",
          "longitude"       => "required",
          "image" => 'required|image|mimes:jpg,png,jpeg,gif,svg',
@@ -234,7 +234,7 @@ class customersController extends Controller
       $user->status="Active";
       $user->region_id=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
-      $user->password = Hash::make("password");
+      $user->password = "password";
       $user->save();
 
       $customer = new customers;
@@ -254,21 +254,6 @@ class customersController extends Controller
       $customer->unit_id = $request->route_code;
       $customer->image = $image_path;
       $customer->save();
-
-      $random=Str::random(10);
-      $user = new User();
-      $user->name = $request->customer_name;
-      $user->email=$emailData;
-      $user->user_code=$random;
-      $user->phone_number = $request->phone_number;
-      $user->gender = $request->gender;
-      $user->account_type= "Customer";
-      $user->email_verified_at =Carbon::now();
-      $user->status="Active";
-      $user->region_id=Auth::user()->region_id;
-      $user->business_code = Auth::user()->business_code;
-      $user->password = "password";
-      $user->save();
 
       DB::table('leads_targets')
          ->where('user_code', $request->user()->user_code)
