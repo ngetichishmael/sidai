@@ -34,6 +34,8 @@ class pendingdeliveries extends Component
                $subQuery->whereNull('supplierID')
                   ->orWhere('supplierID', '')
                   ->orWhere('supplierID', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
