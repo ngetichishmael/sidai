@@ -41,6 +41,7 @@
                    <th>Name</th>
                    <th>Email</th>
                    <th>Phone</th>
+                   <th>Region</th>
                    <th>Status</th>
                    <th width="12%">Actions</th>
                 </tr>
@@ -63,6 +64,7 @@
                             {!! $user->email !!}
                          </td>
                          <td>{!! $user->phone_number !!}</td>
+                         <td>{!! $user->Region->name !!}</td>
                          <td style="color: {!! $user->status == 'Active' ? 'green' : 'orangered' !!}">{!! $user->status !!}</td>
                          <td>
                             <div class="dropdown" >
