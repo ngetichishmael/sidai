@@ -31,6 +31,7 @@ class Dashboard extends Component
    public $perVisits = 10;
    public $perOrderFulfilment = 10;
    public $perActiveUsers = 10;
+   public $perUserTotal = 10;
 
    // Individual functions for data retrieval
 
@@ -150,8 +151,8 @@ class Dashboard extends Component
 
    public function getActiveAllCount()
    {
-      return User::where('status', 'Active')
-         ->where('account_type', '!=', 'Customer')
+      return User::where('account_type', '!=', 'Customer')
+         ->whereBetween('created_at', [$this->start, $this->end])
          ->count();
    }
 
@@ -208,7 +209,12 @@ class Dashboard extends Component
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perActiveUsers);
    }
-
+   public function getUserTotal()
+   {
+      return User::where('account_type','!=','Customer' )->with('Region')
+         ->whereBetween('created_at', [$this->start, $this->end])
+         ->paginate($this->perUserTotal);
+   }
    public function getOrderFullmentTotal()
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
@@ -328,6 +334,7 @@ class Dashboard extends Component
          'vansalesTotal' => $this->getVanSalesTotal(),
          'preorderTotal' => $this->getPreOrderTotal(),
          'activeUserTotal' => $this->getActiveUserTotal(),
+         'getUserTotal' => $this->getUserTotal(),
          'orderfullmentTotal' => $this->getOrderFullmentTotal(),
          'visitsTotal' => $this->getVisitsTotal(),
          'customersCountTotal' => $this->getCustomersCountTotal(),
@@ -384,6 +391,7 @@ class Dashboard extends Component
       $this->getVanSalesTotal();
       $this->getPreOrderTotal();
       $this->getActiveUserTotal();
+      $this->getUserTotal();
       $this->getOrderFullmentTotal();
       $this->getVisitsTotal();
       $this->getCustomersCountTotal();
