@@ -98,7 +98,11 @@ class Dashboard extends Component
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
       return Orders::whereIn('order_status', ['DELIVERED', 'Delivered'])
-         ->where('supplierID', '!=', $sidai->id)
+         ->where(function ($query) use ($sidai) {
+            $query->whereNotNull('supplierID')
+               ->where('supplierID', '!=', '')
+               ->where('supplierID', '!=', $sidai->id);
+         })
          ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
@@ -113,8 +117,8 @@ class Dashboard extends Component
 //         ->whereNotIn('supplierID',  [$sidai->id,'',null])
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
-               ->orWhereNot('supplierID', '')
-               ->orWhereNot('supplierID', $sidai->id);
+               ->where('supplierID', '!=', '')
+               ->where('supplierID', '!=', $sidai->id);
          })
          ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
