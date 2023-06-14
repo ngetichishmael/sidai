@@ -261,12 +261,18 @@ class Dashboard extends Component
          12 => 'December',
       ];
 
-      $preOrderCounts = Orders::where('order_type', 'Pre Order')
-         ->where(function ($query) use ($sidai) {
-            $query->whereNull('supplierID')
-               ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
-         })->whereYear('updated_at', '=', date('Y'))
+//      $preOrderCounts = Orders::where('order_type', 'Pre Order')
+//         ->where(function ($query) use ($sidai) {
+//            $query->whereNull('supplierID')
+//               ->orWhere('supplierID', '')
+//               ->orWhere('supplierID', $sidai->id);
+//         })->whereYear('updated_at', '=', date('Y'))
+//         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
+//         ->groupBy('month')
+//         ->pluck('count', 'month')
+//         ->toArray();
+
+      $preOrderCounts = Orders::whereYear('updated_at', '=', date('Y'))
          ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
@@ -291,8 +297,8 @@ class Dashboard extends Component
       for ($month = 1; $month <= 12; $month++) {
          $graphdata[] = [
             'month' => $months[$month],
-            'preOrderCount' => $preOrderCounts[$month] ?? 0,
-            'deliveryCount' => $deliveryCounts[$month] ?? 0,
+            'preOrderCount' => $preOrderCounts[$month] ?? $month++,
+            'deliveryCount' => $deliveryCounts[$month] ?? $month++,
          ];
       }
       return $graphdata;
@@ -325,7 +331,8 @@ class Dashboard extends Component
          'orderfullmentTotal' => $this->getOrderFullmentTotal(),
          'visitsTotal' => $this->getVisitsTotal(),
          'customersCountTotal' => $this->getCustomersCountTotal(),
-         'graphdata'=>$this->getGraphData(),
+         'graphdata'=>$this->getGraphData()
+
       ];
 
       return view('livewire.dashboard.dashboard', $data);

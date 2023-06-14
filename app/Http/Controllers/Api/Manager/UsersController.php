@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api\manager;
+namespace App\Http\Controllers\api\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -14,8 +14,7 @@ class UsersController extends Controller
       return response()->json([
          "success" => true,
          "status" => 200,
-         "data" => User::with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")
-            ->whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id', Auth::user()->region_id)->get(),
+         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id', Auth::user()->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->region_id)->get(),
       ]);
    }
 }

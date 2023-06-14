@@ -248,13 +248,13 @@ class usersController extends Controller
          ->first();
       $permissions = AppPermission::where('user_code', $user_code)->firstOrFail();
 
-      $routes = Region::all();
+      $regions = Region::all();
 
       return view('app.users.edit', [
          'edit' => $edit,
          'user_code' => $user_code,
          'permissions' => $permissions,
-         'routes' => $routes,
+         'regions' => $regions,
       ]);
    }
 
@@ -277,9 +277,10 @@ class usersController extends Controller
             "email" => $request->email,
             "phone_number" => $request->phone_number,
             "name" => $request->name,
-            "account_type" => $request->account_type,
+            "account_type" => $re
+      quest->account_type,
             "status" => 'Active',
-            "route_code" => $request->route,
+            "region_id" => $request->region,
 
          ]
       );
@@ -313,7 +314,7 @@ class usersController extends Controller
       $activityLog->ip_address ="";
       $activityLog->save();
 
-      return redirect()->route('users.index');
+      return redirect()->back();
    }
    public function destroy($id)
    {
