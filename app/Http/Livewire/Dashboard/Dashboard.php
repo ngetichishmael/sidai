@@ -84,7 +84,11 @@ class Dashboard extends Component
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
       return Orders::where('order_type', 'Pre Order')
-         ->whereIn('supplierID', [$sidai->id, '', null])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
@@ -106,7 +110,12 @@ class Dashboard extends Component
 
       return Orders::with('Customer', 'user', 'distributor')
          ->whereIn('order_status', ['DELIVERED', 'Delivered'])
-         ->where('supplierID', '!=', $sidai->id)
+//         ->whereNotIn('supplierID',  [$sidai->id,'',null])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNotNull('supplierID')
+               ->orWhereNot('supplierID', '')
+               ->orWhereNot('supplierID', $sidai->id);
+         })
          ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perPreorder);
@@ -118,7 +127,11 @@ class Dashboard extends Component
 
       return Orders::whereIn('order_status', ['DELIVERED', 'Delivered'])
          ->where('order_type', 'Pre Order')
-         ->whereIn('supplierID', [null, '', $sidai->id])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
@@ -147,7 +160,10 @@ class Dashboard extends Component
 
    public function getCustomersCount()
    {
-      return Orders::groupBy('customerID')
+//      return Orders::groupBy('customerID')
+//         ->whereBetween('created_at', [$this->start, $this->end])
+//         ->count();
+      return User::where('account_type', 'Customer')
          ->whereBetween('created_at', [$this->start, $this->end])
          ->count();
    }
@@ -158,8 +174,11 @@ class Dashboard extends Component
 
       return Orders::with('User', 'Customer')
          ->where('order_type', 'Van sales')
-         ->whereIn('supplierID', [$sidai->id, '', null])
-         ->whereIn('supplierID', [$sidai->id, '', null])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })
          ->whereBetween('created_at', [$this->start, $this->end])
          ->where('order_status', 'DELIVERED')
          ->paginate($this->perVansale);
@@ -190,7 +209,11 @@ class Dashboard extends Component
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
       return Orders::with('User', 'Customer')
-         ->whereIn('supplierID', [$sidai->id, '', null])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })
          ->whereIn('order_status', ['DELIVERED', 'Delivered'])
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perOrderFulfilment);
@@ -206,8 +229,7 @@ class Dashboard extends Component
 
    public function getCustomersCountTotal()
    {
-      return Orders::with('User', 'Customer')
-         ->groupBy('customerID')
+      return User::with('Regions', 'Customers')
          ->whereBetween('created_at', [$this->start, $this->end])
          ->paginate($this->perBuyingCustomer);
    }
@@ -231,8 +253,12 @@ class Dashboard extends Component
       ];
 
       $preOrderCounts = Orders::where('order_type', 'Pre Order')
-         ->whereIn('supplierID', [$sidai->id, '', null])
-         ->where('order_status', 'DELIVERED')
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })
+//         ->where('order_status', 'DELIVERED')
          ->whereYear('created_at', '=', date('Y'))
          ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
          ->groupBy('month')
