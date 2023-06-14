@@ -277,8 +277,7 @@ class usersController extends Controller
             "email" => $request->email,
             "phone_number" => $request->phone_number,
             "name" => $request->name,
-            "account_type" => $re
-      quest->account_type,
+            "account_type" => $request->account_type,
             "status" => 'Active',
             "region_id" => $request->region,
 
