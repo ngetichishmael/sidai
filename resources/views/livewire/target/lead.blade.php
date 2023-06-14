@@ -26,7 +26,7 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
-                        <th>Sales Person</th>
+                        <th>User Category</th>
                         <th>Target</th>
                         <th>Achieved</th>
                         <th>Dead Line</th>
