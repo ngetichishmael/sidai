@@ -116,7 +116,7 @@ class User extends Authenticatable implements MustVerifyEmail
     */
    public function Customers(): HasMany
    {
-      return $this->hasMany(customers::class, 'created_by', 'user_code');
+      return $this->hasMany(customers::class, 'user_code', 'user_code');
    }
    public function scopePeriod($query, $start = null, $end = null)
    {

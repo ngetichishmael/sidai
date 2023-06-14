@@ -45,7 +45,7 @@ class customers extends Model
     */
    public function Region(): BelongsTo
    {
-      return $this->belongsTo(Region::class, 'route_code', 'id');
+      return $this->belongsTo(Region::class, 'region_id', 'id');
    }
    /**
     * Get the Creator associated with the customers
