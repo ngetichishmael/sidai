@@ -93,29 +93,10 @@ class Dashboard extends Component
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
-
    public function getOrderFullmentByDistributorsCount()
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
-
-      return Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
-         ->where(function ($query) use ($sidai) {
-            $query->whereHas('Order', function ($subQuery) use ($sidai) {
-               $subQuery->whereNotNull('supplierID')
-                  ->where('supplierID', '!=', '')
-                  ->where('supplierID', '!=', $sidai->id);
-            })->whereHas('Order', function ($subQuery) {
-               $subQuery->where('order_type', 'Pre Order');
-            });
-         })
-         ->whereBetween('updated_at', [$this->start, $this->end])
-         ->count();
-   }
-   public function getOrderFullmentByDistributorsCount2()
-   {
-      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
-
-      return Orders::whereIn('order_status', ['DELIVERED', 'Delivered'])
+      return Orders::whereIn('order_status', ['Pending Delivery', 'Pending delivery'])
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
@@ -129,27 +110,8 @@ class Dashboard extends Component
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
-      return Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
-         ->where(function ($query) use ($sidai) {
-            $query->whereHas('Order', function ($subQuery) use ($sidai) {
-               $subQuery->whereNotNull('supplierID')
-                  ->where('supplierID', '!=', '')
-                  ->where('supplierID', '!=', $sidai->id);
-            })->whereHas('Order', function ($subQuery) {
-               $subQuery->where('order_type', 'Pre Order');
-            });
-         })
-         ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->whereBetween('updated_at', [$this->start, $this->end])
-         ->paginate($this->perPreorder);
-   }
-   public function getOrderFullmentByDistributorsPage2()
-   {
-      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
-
       return Orders::with('Customer', 'user', 'distributor')
-         ->whereIn('order_status', ['DELIVERED', 'Delivered'])
-//         ->whereNotIn('supplierID',  [$sidai->id,'',null])
+         ->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
@@ -164,12 +126,15 @@ class Dashboard extends Component
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
-      return Orders::whereIn('order_status', ['DELIVERED', 'Delivered'])
-         ->where('order_type', 'Pre Order')
+      return Delivery::whereIn('delivery_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
          ->where(function ($query) use ($sidai) {
-            $query->whereNull('supplierID')
-               ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
+            $query->whereHas('Order', function ($subQuery) use ($sidai) {
+               $subQuery->whereNull('supplierID')
+                  ->where('supplierID', '=', '')
+                  ->where('supplierID', '=', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
+            });
          })
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
@@ -225,11 +190,13 @@ class Dashboard extends Component
    public function getPreOrderTotal()
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
-
       return Orders::with('User', 'Customer')
          ->where('order_type', 'Pre Order')
-         ->whereIn('supplierID', [$sidai->id, '', null])
-         ->whereBetween('updated_at', [$this->start, $this->end])
+         ->where(function ($query) use ($sidai) {
+            $query->whereNull('supplierID')
+               ->orWhere('supplierID', '')
+               ->orWhere('supplierID', $sidai->id);
+         })->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perPreorder);
    }
 
@@ -246,13 +213,17 @@ class Dashboard extends Component
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
-      return Orders::with('User', 'Customer')
+      return Delivery::whereIn('delivery_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
          ->where(function ($query) use ($sidai) {
-            $query->whereNull('supplierID')
-               ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
+            $query->whereHas('Order', function ($subQuery) use ($sidai) {
+               $subQuery->whereNull('supplierID')
+                  ->where('supplierID', '=', '')
+                  ->where('supplierID', '=', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
+            });
          })
-         ->whereIn('order_status', ['DELIVERED', 'Delivered'])
+      ->with('User', 'Customer')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perOrderFulfilment);
    }
@@ -295,15 +266,21 @@ class Dashboard extends Component
             $query->whereNull('supplierID')
                ->orWhere('supplierID', '')
                ->orWhere('supplierID', $sidai->id);
-         })
-//         ->where('order_status', 'DELIVERED')
-         ->whereYear('updated_at', '=', date('Y'))
+         })->whereYear('updated_at', '=', date('Y'))
          ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
-
-      $deliveryCounts = Orders::whereIn('order_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
+      $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
+         ->where(function ($query) use ($sidai) {
+            $query->whereHas('Order', function ($subQuery) use ($sidai) {
+               $subQuery->whereNull('supplierID')
+                  ->where('supplierID', '=', '')
+                  ->where('supplierID', '=', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
+            });
+         })
          ->whereYear('updated_at', '=', date('Y'))
          ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
@@ -318,10 +295,8 @@ class Dashboard extends Component
             'deliveryCount' => $deliveryCounts[$month] ?? 0,
          ];
       }
-
       return $graphdata;
    }
-
    public function render()
    {
       $start_date = Carbon::now()->startOfMonth()->format('Y-m-d');
@@ -350,6 +325,7 @@ class Dashboard extends Component
          'orderfullmentTotal' => $this->getOrderFullmentTotal(),
          'visitsTotal' => $this->getVisitsTotal(),
          'customersCountTotal' => $this->getCustomersCountTotal(),
+         'graphdata'=>$this->getGraphData(),
       ];
 
       return view('livewire.dashboard.dashboard', $data);

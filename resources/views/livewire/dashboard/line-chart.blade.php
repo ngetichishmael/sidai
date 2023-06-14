@@ -7,7 +7,7 @@
        const labels = data.map(entry => entry.month);
 
        console.log("Hellow");
-       console.log(labels);
+       console.log(data);
        console.log("Hellow");
        const preOrderCounts = data.map(entry => entry.preOrderCount);
        const deliveryCounts = data.map(entry => entry.deliveryCount);
