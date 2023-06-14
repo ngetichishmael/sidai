@@ -121,6 +121,7 @@ class Dashboard extends Component
                ->where('supplierID', '!=', '')
                ->where('supplierID', '!=', $sidai->id);
          })
+         ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
@@ -139,7 +140,6 @@ class Dashboard extends Component
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perPreorder);
    }
