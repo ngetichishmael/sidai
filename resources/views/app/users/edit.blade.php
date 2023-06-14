@@ -92,11 +92,11 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">Zone</label>
-                                                    <select class="form-control select2" id="select-country" name="route"
+                                                    <label for="select-country">Region</label>
+                                                    <select class="form-control select2" id="select-country" name="region"
                                                         required>
-                                                        <option value="">Zone</option>
-                                                        @foreach ($routes as $value)
+                                                        <option value="">Region</option>
+                                                        @foreach ($regions as $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }}
                                                             </option>
                                                         @endforeach

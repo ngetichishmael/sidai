@@ -3,12 +3,10 @@
 
    <script type="application/javascript">
        const data = @json($graphdata);
-
+{{--       @dd($graphdata)--}}
        const labels = data.map(entry => entry.month);
 
-       console.log("Hellow");
        console.log(data);
-       console.log("Hellow");
        const preOrderCounts = data.map(entry => entry.preOrderCount);
        const deliveryCounts = data.map(entry => entry.deliveryCount);
 
