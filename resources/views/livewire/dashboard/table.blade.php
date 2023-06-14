@@ -302,15 +302,11 @@
                 <thead class="thead-light">
                     <tr>
                         <th>ID</th>
-{{--                        <th>Order Code</th>--}}
+                        <th>Order Code</th>
                         <th>Customer</th>
-                        <th>Type</th>
-                        <th>Group</th>
-{{--                        <th>Sales Associates</th>--}}
-                        <th>Region</th>
-{{--                        <th>Payment Status</th>--}}
-                        <th>Route</th>
-                       <th>Registered By</th>
+                        <th>Sales Associates</th>
+                        <th>Balance </th>
+                        <th>Payment Status</th>
                         <th>Date</th>
                     </tr>
                 </thead>
@@ -318,16 +314,11 @@
                     @forelse ($customersCountTotal as $key=>$sale)
                         <tr>
                             <td>{{ $key + 1 }}</td>
-{{--                            <td>{{ $sale->order_code }}</td>--}}
-                            <td>{{ $sale->name ?? '' }}</td>
-                            <td>{{ $sale->Customers->customer_type ?? '' }}</td>
-                            <td>{{ $sale->Customers->customer_group ?? '' }}</td>
-{{--                            <td>{{ $sale->customer->customer_name ?? '' }}</td>--}}
-{{--                            <td>{{ $sale->balance }}</td>--}}
-{{--                            <td>{{ $sale->payment_status }}</td>--}}
-                           <td>{{$sale->Customers->Region->name}}</td>
-                           <td>{{$sale->Customers->Area->name}}</td>
-                           <td>{{$sale->Customers->Creator->name}}</td>
+                            <td>{{ $sale->order_code }}</td>
+                            <td>{{ $sale->User->name ?? '' }}</td>
+                            <td>{{ $sale->customer->customer_name ?? '' }}</td>
+                            <td>{{ $sale->balance }}</td>
+                            <td>{{ $sale->payment_status }}</td>
                             <td>{{ $sale->updated_at }}</td>
                         </tr>
                     @empty
