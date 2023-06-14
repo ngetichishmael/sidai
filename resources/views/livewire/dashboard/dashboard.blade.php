@@ -74,7 +74,7 @@
                                         <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
                                             {{ number_format($customersCount) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
-                                            style="color: rgba(71,75,79,0.76)">Registered Customers</p>
+                                            style="color: rgba(71,75,79,0.76)">Customers</p>
                                     </div>
                                 </a>
                             </div>

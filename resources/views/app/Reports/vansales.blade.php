@@ -42,7 +42,7 @@
                      <td>{{ $vansale->Customer->customer_name??'' }}</td>
                      <td>{{ $vansale->User->name??'' }}</td>
                      <td>{{ $vansale->User->account_type??'' }}</td>
-                     <td><a href="" class="btn" style="background-color: brown;color:white">View</a></td>
+                     <td><a href="{{ URL('orders/vansaleitems/'.$vansale->order_code) }}" class="btn" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                  </tr>
                   @endforeach
                     

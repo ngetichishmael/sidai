@@ -12,13 +12,12 @@
         </div>
             </div>
     <br/>
-    <div class="col-md-12 col-12">
+    <p style="color:green">This route has {{ $customer_count }} Customers</p>
+    <div class="col-md-12 col-12" hidden>
        <div class="form-group">
     <label for="subregion_id">Route Customers:</label>
     <select wire:model="customer" id="customer_ids" class="form-control"
-            name="customer_ids" >
-            
-       <option value="all">All</option>
+            name="customer_ids">
        @foreach($customers as $customer)
           <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
        @endforeach

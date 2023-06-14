@@ -3,9 +3,11 @@
 namespace App\Models\customer;
 
 use App\Models\Area;
+use App\Models\Order_items;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class customers extends Model
 {
@@ -21,7 +23,11 @@ class customers extends Model
    {
       return $this->belongsTo(Area::class, 'route_code', 'id');
    }
-
+   public function customers()
+{
+    return $this->hasMany(Order_items::class);
+}
+   
    public function scopeToday($query)
    {
       $query->where('updated_at', Carbon::today());

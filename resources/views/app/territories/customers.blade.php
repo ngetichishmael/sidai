@@ -34,13 +34,13 @@
                     </tr>
                  </thead>
                  <tbody>
-                  @foreach ($customers as $customer)
+                  @foreach ($customers as $key=>$customer)
                   <tr>
-                     <td>{{ $count++ }}</td>
+                     <td>{{ $key+1 }}</td>
                      <td>{{ $customer->customer_name }}</td>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>{{ $customer->customer_type }}</td>
+                     <td>N/A</td>
+                     <td><button class="btn btn-success btn-sm">{{ $customer->status }}</button></td>
                  </tr>
                   @endforeach
                     
