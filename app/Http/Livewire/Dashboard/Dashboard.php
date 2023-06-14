@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Models\customer\checkin;
+use App\Models\customers;
 use App\Models\Delivery;
 use App\Models\Orders;
 use App\Models\suppliers\suppliers;
@@ -233,7 +234,7 @@ class Dashboard extends Component
 
    public function getCustomersCountTotal()
    {
-      return User::with('Region', 'Customers')
+      return customers::with('Area', 'Creator', 'Region')
          ->whereBetween('created_at', [$this->start, $this->end])
          ->paginate($this->perBuyingCustomer);
    }
