@@ -284,7 +284,7 @@ Route::group(['middleware' => ['verified']], function () {
 
    //Routes for reports
    Route::get('Reports', ['uses' => 'app\usersController@reports', 'as' => 'users.reports']);
-   Route::get('reports/pre-oders', ['uses' => 'app\ReportsController@preorders', 'as' => 'preorders.reports']);
+   Route::get('Reports/pre-oders', ['uses' => 'app\ReportsController@preorders', 'as' => 'preorders.reports']);
    Route::get('Reports/Van-sales', ['uses' => 'app\ReportsController@vansales', 'as' => 'vansales.reports']);
    Route::get('Reports/delivery', ['uses' => 'app\ReportsController@delivery', 'as' => 'delivery.reports']);
    Route::get('Reports/sidai-users', ['uses' => 'app\ReportsController@users', 'as' => 'sidai.reports']);
