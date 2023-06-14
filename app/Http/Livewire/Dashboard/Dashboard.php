@@ -98,6 +98,22 @@ class Dashboard extends Component
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
+      return Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
+         ->where(function ($query) use ($sidai) {
+            $query->whereHas('Order', function ($subQuery) use ($sidai) {
+               $subQuery->whereNotNull('supplierID')
+                  ->where('supplierID', '!=', '')
+                  ->where('supplierID', '!=', $sidai->id);
+            });
+         })
+         ->where('order_type', 'Pre Order')
+         ->whereBetween('updated_at', [$this->start, $this->end])
+         ->count();
+   }
+   public function getOrderFullmentByDistributorsCount2()
+   {
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
+
       return Orders::whereIn('order_status', ['DELIVERED', 'Delivered'])
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
@@ -108,8 +124,24 @@ class Dashboard extends Component
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
-
    public function getOrderFullmentByDistributorsPage()
+   {
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
+
+      return Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
+         ->where(function ($query) use ($sidai) {
+            $query->whereHas('Order', function ($subQuery) use ($sidai) {
+               $subQuery->whereNotNull('supplierID')
+                  ->where('supplierID', '!=', '')
+                  ->where('supplierID', '!=', $sidai->id);
+            });
+         })
+         ->with('Customer', 'User', 'Order', 'DeliveryItems')
+         ->where('order_type', 'Pre Order')
+         ->whereBetween('updated_at', [$this->start, $this->end])
+         ->paginate($this->perPreorder);
+   }
+   public function getOrderFullmentByDistributorsPage2()
    {
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
 
@@ -168,8 +200,7 @@ class Dashboard extends Component
 //      return Orders::groupBy('customerID')
 //         ->whereBetween('created_at', [$this->start, $this->end])
 //         ->count();
-      return User::where('account_type', 'Customer')
-         ->whereBetween('created_at', [$this->start, $this->end])
+      return customers::whereBetween('created_at', [$this->start, $this->end])
          ->count();
    }
 
@@ -264,15 +295,15 @@ class Dashboard extends Component
                ->orWhere('supplierID', $sidai->id);
          })
 //         ->where('order_status', 'DELIVERED')
-         ->whereYear('created_at', '=', date('Y'))
-         ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+         ->whereYear('updated_at', '=', date('Y'))
+         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
 
       $deliveryCounts = Orders::whereIn('order_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
-         ->whereYear('created_at', '=', date('Y'))
-         ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+         ->whereYear('updated_at', '=', date('Y'))
+         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
