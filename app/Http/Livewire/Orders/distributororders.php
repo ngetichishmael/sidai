@@ -28,8 +28,11 @@ class distributororders extends Component
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
-         ->where('supplierID', '!=', $sidai->id)
-         ->where('order_type','=','Pre Order')
+         ->where(function ($query) use ($sidai) {
+            $query->whereNotNull('supplierID')
+               ->where('supplierID', '!=', '')
+               ->where('supplierID', '!=', $sidai->id);
+         })->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
