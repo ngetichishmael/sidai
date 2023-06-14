@@ -19,14 +19,14 @@
                          <tr>
                             <td>{!! $count+1 !!}</td>
                             <td>{!! $requisition->sales_person ?? '' !!}</td>
-                            <td>@if ($requisition->status==="approved")
-                              <button class="btn btn-success btn-sm">Approved</button>
+                            @if ($requisition->status==="approved")
+                               <td class="btn btn-success btn-sm">Approved</td>
                               @elseif ($requisition->status==="Waiting Approval")
-                              <button class="btn btn-warning btn-sm">Waiting Approval</button>
+                              <td class="btn btn-warning btn-sm">Waiting Approval</td>
                               @elseif ($requisition->status==="Disapproved")
-                              <button class="btn btn-danger btn-sm">Disapproved</button>
+                              <td class="btn btn-danger btn-sm">Disapproved</td>
                             @endif
-                              </td>
+
                             <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
                             <td>
                                <a href="{!! route('inventory.approve',[$requisition->id]) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">view</a>
