@@ -38,7 +38,7 @@
             </div>
         </div>
         </div>
-    <div class="col-md-6">
+    <div class="col-md-6 center">
         <div class="card card-inverse">
            <div class="card-body">
               <table id="data-table-default" class="table table-striped table-bordered">
