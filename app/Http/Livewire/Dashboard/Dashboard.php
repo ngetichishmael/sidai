@@ -104,9 +104,10 @@ class Dashboard extends Component
                $subQuery->whereNotNull('supplierID')
                   ->where('supplierID', '!=', '')
                   ->where('supplierID', '!=', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
             });
          })
-         ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
@@ -120,7 +121,6 @@ class Dashboard extends Component
                ->where('supplierID', '!=', '')
                ->where('supplierID', '!=', $sidai->id);
          })
-         ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
    }
@@ -134,6 +134,8 @@ class Dashboard extends Component
                $subQuery->whereNotNull('supplierID')
                   ->where('supplierID', '!=', '')
                   ->where('supplierID', '!=', $sidai->id);
+            })->whereHas('Order', function ($subQuery) {
+               $subQuery->where('order_type', 'Pre Order');
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
