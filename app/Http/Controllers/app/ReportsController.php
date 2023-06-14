@@ -23,39 +23,39 @@ class ReportsController extends Controller
     {
         $count =1;
         $preorders = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Pre Order')->get();
-         return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count]);
+         return view('app.Reports.preorders',['preorders' => $preorders,'count'=>$count]);
 
     }
     public function preorderitems($order_code)
     {
       $items = Order_items::where('order_code',$order_code)->get();
       return view('app.items.preorder',['items'=>$items]);
-      
+
     }
     public function vansaleitems($order_code)
     {
       $items = Order_items::where('order_code',$order_code)->get();
       return view('app.items.vansale',['items'=>$items]);
-      
+
     }
     public function deliveryitems($order_code)
     {
       $items = Order_items::where('order_code',$order_code)->get();
       return view('app.items.delivery',['items'=>$items]);
-      
+
     }
     public function vansales()
     {
           $count =1;
           $vansales = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Van sales')->get();
-         return view('app.reports.vansales',['vansales'=>$vansales,'count'=>$count]);
+         return view('app.Reports.vansales',['vansales'=>$vansales,'count'=>$count]);
 
     }
     public function delivery()
     {
      $count =1;
      $deliveries = Orders::with('User','Customer')->where('order_status', 'Delivered')->get();
-    return view('app.reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
+    return view('app.Reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
 
     }
     public function users()
@@ -63,35 +63,35 @@ class ReportsController extends Controller
      $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))
      ->groupBy('account_type')
      ->get();
-         return view('app.reports.users',['usercount'=>$usercount]);
+         return view('app.Reports.users',['usercount'=>$usercount]);
 
     }
 
     public function warehouse()
     {$count =1;
      $warehouses = warehousing::whereNotNull('warehouse_code')->get();
-    return view('app.reports.warehouse',['warehouses'=>$warehouses,'count'=>$count]);
+    return view('app.Reports.warehouse',['warehouses'=>$warehouses,'count'=>$count]);
 
     }
     public function distributor()
     {
      $count =1;
      $distributors = Orders::with('User','Customer')->where('supplierID','!=', '1')->where('supplierID','!=','NULL')->get();
-         return view('app.reports.distributor',['distributors'=>$distributors,'count'=>$count]);
+         return view('app.Reports.distributor',['distributors'=>$distributors,'count'=>$count]);
 
     }
     public function regional()
     {
      $regions = Region::all();
      $count =1;
-     return view('app.reports.regional',['regions'=>$regions,'count'=>$count]);
+     return view('app.Reports.regional',['regions'=>$regions,'count'=>$count]);
 
     }
     public function inventory()
     {
      $warehouses= warehousing::whereNotNull('warehouse_code')->distinct('name')->get();
      $count=1;
-         return view('app.reports.inventory',['warehouses'=>$warehouses,'count'=>$count]);
+         return view('app.Reports.inventory',['warehouses'=>$warehouses,'count'=>$count]);
     }
 
     public function products($code)
@@ -99,7 +99,7 @@ class ReportsController extends Controller
      $count=1;
      $warehouse= warehousing::where('warehouse_code',$code)->first();
      $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
-         return view('app.reports.inventory',['warehouses'=>$warehouse,'count'=>$count,'products'=>$products]);
+         return view('app.Reports.inventory',['warehouses'=>$warehouse,'count'=>$count,'products'=>$products]);
     }
     public function subregions($id)
     {
@@ -127,7 +127,7 @@ class ReportsController extends Controller
          session(['warehouse_code' => $warehouse->warehouse_code]);
          return view('app.products.productreport',['warehouse'=>$warehouse,'products'=>$products]);
       }
-     
+
     }
 
 }
