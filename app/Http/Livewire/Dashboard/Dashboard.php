@@ -234,7 +234,7 @@ class Dashboard extends Component
    public function getCustomersCountTotal()
    {
       return User::with('Region', 'Customers')
-         ->whereBetween('created_at', [$this->start, $this->end])
+         ->whereBetween('created_at', [$this->start, $this->end])->get()
          ->paginate($this->perBuyingCustomer);
    }
 
