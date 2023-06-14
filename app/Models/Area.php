@@ -30,4 +30,8 @@ class Area extends Model
    {
       return $this->hasMany(Subarea::class);
    }
+   public function customers()
+{
+    return $this->hasMany(customers::class);
+}
 }

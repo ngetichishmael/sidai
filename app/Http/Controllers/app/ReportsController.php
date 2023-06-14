@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Order_items;
 use Illuminate\Support\Facades\Auth;
 use App\Models\products\product_information;
 
@@ -24,6 +25,24 @@ class ReportsController extends Controller
         $preorders = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Pre Order')->get();
          return view('app.reports.preorders',['preorders' => $preorders,'count'=>$count]);
 
+    }
+    public function preorderitems($order_code)
+    {
+      $items = Order_items::where('order_code',$order_code)->get();
+      return view('app.items.preorder',['items'=>$items]);
+      
+    }
+    public function vansaleitems($order_code)
+    {
+      $items = Order_items::where('order_code',$order_code)->get();
+      return view('app.items.vansale',['items'=>$items]);
+      
+    }
+    public function deliveryitems($order_code)
+    {
+      $items = Order_items::where('order_code',$order_code)->get();
+      return view('app.items.delivery',['items'=>$items]);
+      
     }
     public function vansales()
     {
@@ -41,12 +60,10 @@ class ReportsController extends Controller
     }
     public function users()
     {
-     $count=1;
-     $users = User::whereNotNull('user_code')->distinct('account_type')->pluck('account_type');
-     $usercount = User::select('account_type', DB::raw('COUNT(*) as count'))
+     $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))
      ->groupBy('account_type')
      ->get();
-         return view('app.reports.users',['users'=>$users,'count'=>$count,'usercount'=>$usercount]);
+         return view('app.reports.users',['usercount'=>$usercount]);
 
     }
 
@@ -67,12 +84,12 @@ class ReportsController extends Controller
     {
      $regions = Region::all();
      $count =1;
-         return view('app.reports.regional',['regions'=>$regions,'count'=>$count]);
+     return view('app.reports.regional',['regions'=>$regions,'count'=>$count]);
 
     }
     public function inventory()
     {
-     $warehouses= warehousing::whereNotNull('warehouse_code')->distinct('name')->pluck('name');
+     $warehouses= warehousing::whereNotNull('warehouse_code')->distinct('name')->get();
      $count=1;
          return view('app.reports.inventory',['warehouses'=>$warehouses,'count'=>$count]);
     }
@@ -84,30 +101,33 @@ class ReportsController extends Controller
      $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
          return view('app.reports.inventory',['warehouses'=>$warehouse,'count'=>$count,'products'=>$products]);
     }
-    public function subregions()
+    public function subregions($id)
     {
-     $subregions = Subregion::all();
+     $subregions = Subregion::where('region_id',$id)->get();
      $count =1;
          return view('app.territories.subregions',['subregions'=>$subregions,'count'=>$count]);
     }
-    public function routes()
+    public function routes($id)
     {
-     $routes = Area::paginate(10);
+     $routes = Area::where('subregion_id',$id)->get();
      $count =1;
          return view('app.territories.routes',['routes' =>$routes,'count'=>$count]);
     }
-    public function customers()
+    public function customers($id)
     {
-     $customers = customers::all();
+     $customers = customers::where('route',$id)->get();
      $count = 1;
      return view('app.territories.customers',['count'=>$count,'customers'=>$customers]);
     }
-    public function productreport()
+    public function productreport($code)
     {
-     $warehouses= warehousing::where('warehouse_code')->first();
-      $products = product_information::where('warehouse_code');
-     $count = 1;
-     return view('app.products.productreport',['count'=>$count,'warehouses'=>$warehouses,'products'=>$products]);
+     $warehouse= warehousing::where('warehouse_code',$code)->first();
+      if (!empty($warehouse)) {
+         $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
+         session(['warehouse_code' => $warehouse->warehouse_code]);
+         return view('app.products.productreport',['warehouse'=>$warehouse,'products'=>$products]);
+      }
+     
     }
 
 }

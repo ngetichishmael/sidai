@@ -33,12 +33,12 @@
                     </tr>
                  </thead>
                  <tbody>
-               @foreach ($users as $user)
+               @foreach ($usercount as $key=>$user)
                <tr>
-                  <td>{{ $count++ }}</td>
-                  <td>{{ $user }}</td>
-                  <td>{{ $usercount }}</td>
-                  <td><a href="" class="btn sm" style="background-color: brown;color:white">View</a></td>
+                  <td>{{ $key+1 }}</td>
+                  <td>{{ $user->account_type }}</td>
+                  <td>{{ $user->count}}</td>
+                  <td><a href="" class="btn btn-sm" style="background-color: brown;color:white">View</a></td>
               </tr>
                @endforeach
                     

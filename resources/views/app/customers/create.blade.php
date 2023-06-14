@@ -82,7 +82,7 @@
                                             name="city" value="Nairobi" />
 {{--                                    </div>--}}
 {{--                                </div>--}}
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Province</label>
                                         <input type="text" id="last-name-column" class="form-control"
@@ -95,7 +95,7 @@
                                         <input type="text" id="city-column" class="form-control"
                                             placeholder="Postal Code" name="postal_code" />
                                     </div>
-                                </div>
+                                </div> --}}
 {{--                                <div class="col-md-6 col-12">--}}
 {{--                                    <div class="form-group">--}}
 {{--                                        <label for="country-floating">Country</label>--}}
@@ -103,7 +103,7 @@
                                             placeholder="Country" value="Kenya" />
 {{--                                    </div>--}}
 {{--                                </div>--}}
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="company-column">Latitude</label>
                                         <input type="text" id="company-column" class="form-control" name="latitude"
@@ -116,11 +116,11 @@
                                         <input type="text" id="longitude-id-column" class="form-control" name="longitude"
                                             placeholder="Longitude" />
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
                                         <input type="text" id="first-name-column" class="form-control"
@@ -133,7 +133,7 @@
                                         <input type="text" id="last-name-column" class="form-control"
                                             placeholder="Telephone" name="telephone" />
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>

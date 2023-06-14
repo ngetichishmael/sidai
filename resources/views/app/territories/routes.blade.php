@@ -36,16 +36,14 @@
                   <tr>
                      <td>{{ $count++ }}</td>
                      <td>{{ $route->name }}</td>
-                     <td><a href="{{ route('customer.reports') }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
+                     <td><a href="{{ route('customers.reports',['id'=>$route->id]) }}" class="btn btn-sm" style="background-color: brown;color:white">View</a></td>
                  </tr>
                   @endforeach
                     
                  </tbody>
                  
               </table>
-              <div class="mt-1">
-               {{ $routes->links() }}
-           </div>
+              
            </div>
         </div>
      </div>
