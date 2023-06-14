@@ -36,15 +36,30 @@
                     </tr>
                  </thead>
                  <tbody>
-                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                 </tr>
+                  @foreach ($products as $key => $product)
+                  <tr>
+                     <td>{!! $key + 1 !!}</td>
+                        <td>{!! $product->product_name !!}</td>
+                        @if ($product->ProductPrice->buying_price ==  0 || 00)
+                        <td>{{'Price Not set' }}</td>
+                     @else
+                           <td>{{number_format((float) $product->ProductPrice->buying_price)}}</td>
+                     @endif
+                     <td>
+                        {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
+                    </td>
+                    <td>
+                     {{ number_format((float) $product->ProductPrice()->pluck('distributor_price')->implode('')) }}
+                    </td>
+                     <td></td>
+                     @if ($product->Inventory()->pluck('current_stock')->implode('')>1)
+                           <td><button class="btn btn-success btn-sm">{{'Available' }}</button></td>
+                        @elseif ($product->Inventory()->pluck('current_stock')->implode('')<1)
+                              <td><button class="btn btn-danger btn-sm">{{ 'SOLD OUT' }}</button></td>
+                        @endif
+                  </tr>
+                  @endforeach
+                 
                  </tbody>
               </table>
            </div>

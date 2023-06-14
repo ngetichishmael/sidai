@@ -3,6 +3,7 @@
 namespace App\Models\customer;
 
 use App\Models\Area;
+use App\Models\Order_items;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -22,6 +23,10 @@ class customers extends Model
    {
       return $this->belongsTo(Area::class, 'route_code', 'id');
    }
+   public function customers()
+{
+    return $this->hasMany(Order_items::class);
+}
    
    public function scopeToday($query)
    {

@@ -119,12 +119,15 @@ class ReportsController extends Controller
      $count = 1;
      return view('app.territories.customers',['count'=>$count,'customers'=>$customers]);
     }
-    public function productreport()
+    public function productreport($code)
     {
-     $warehouses= warehousing::where('warehouse_code')->first();
-      $products = product_information::where('warehouse_code');
-     $count = 1;
-     return view('app.products.productreport',['count'=>$count,'warehouses'=>$warehouses,'products'=>$products]);
+     $warehouse= warehousing::where('warehouse_code',$code)->first();
+      if (!empty($warehouse)) {
+         $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
+         session(['warehouse_code' => $warehouse->warehouse_code]);
+         return view('app.products.productreport',['warehouse'=>$warehouse,'products'=>$products]);
+      }
+     
     }
 
 }

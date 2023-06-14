@@ -295,7 +295,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/subregion-report/{id}', ['uses' => 'app\ReportsController@subregions', 'as' => 'subregion.reports']);
    Route::get('Reports/{id}/routes-report', ['uses' => 'app\ReportsController@routes', 'as' => 'routes.reports']);
    Route::get('Reports/customers/{id}', ['uses' => 'app\ReportsController@customers', 'as' => 'customers.reports']);
-   Route::get('Reports/products', ['uses' => 'app\ReportsController@productreport', 'as' => 'allproducts.reports']);
+   Route::get('Reports/products/{code}', ['uses' => 'app\ReportsController@productreport', 'as' => 'allproducts.reports']);
    Route::get('Reports/{code}/products', ['uses' => 'app\ReportsController@products', 'as' => 'report.products']);
    Route::get('orders/items/{order_code}', ['uses' => 'app\ReportsController@preorderitems', 'as' => 'product.items']);
    Route::get('orders/vansaleitems/{order_code}', ['uses' => 'app\ReportsController@vansaleitems', 'as' => 'vansale.items']);

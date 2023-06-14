@@ -131,6 +131,7 @@ class customerController extends Controller
       $customer->route_code = $request->route;
       $customer->zone_id = $request->route;
       $customer->branch = $request->branch;
+      $customer->status = "Active";
       $customer->email = $request->email;
       $customer->customer_type = "normal";
       $customer->phone_number = $request->phone_number;

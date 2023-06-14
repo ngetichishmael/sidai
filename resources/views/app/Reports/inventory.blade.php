@@ -36,7 +36,7 @@
                   <tr>
                      <td>{{ $count++ }}</td>
                      <td>{{ $warehouse->name }}</td>
-                     <td><a href="{{ route('allproducts.reports',['id'=>$warehouse->id]) }}" class="btn sm" style="background-color: brown;color:white">inventory history</a></td>
+                     <td><a href="{{ route('allproducts.reports',$warehouse->warehouse_code) }}" class="btn btn-sm" style="background-color: brown;color:white">inventory history</a></td>
                  </tr>
                   @endforeach
                     
