@@ -79,7 +79,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#orderFulfillmentSection" class="d-flex align-items-center">
+                                <a href="#distributorsOrders" class="d-flex align-items-center">
                                     <div class="avatar bg-light-primary">
                                         <div class="avatar-content">
                                             <span class="material-symbols-outlined">order_approve</span>
@@ -110,7 +110,7 @@
                                 </a>
                             </div>
                             <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                                <a href="#vansalesSection" class="d-flex align-items-center">
+                                <a href="#systemUsers" class="d-flex align-items-center">
                                     <div class="avatar bg-light-primary">
                                         <div class="avatar-content">
                                             <span class="material-symbols-outlined">people</span>
@@ -129,18 +129,61 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-8">
+           <div class="row match-height">
+              <div class="col-lg-8 col-12">
+                 <div class="card card-company-table">
+                    <div class="p-0 card-body">
+                       <div class="table-responsive">
+                          <div>
                               @livewire('dashboard.line-chart')
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+           <div class="col-lg-4 col-md-6 col-12">
+              <div class="card card-developer-meetup">
+                 <div class="text-center meetup-img-wrapper rounded-top">
+                    <img src="{{ asset('app-assets/images/illustration/marketing.svg') }}" alt="Meeting Pic" height="170" />
+                 </div>
+                 <div class="card-body">
+                    <div class="meetup-header d-flex align-items-center">
+                       <div class="meetup-day">
+                          <h6 class="mb-0">{{ date_format(now(), 'M') }}</h6>
+                          <h3 class="mb-0">{{ date_format(now(), 'd') }}</h3>
+                       </div>
+                       <div class="my-auto">
+                          <h4 class="card-title mb-25">Sidai Africa Ltd</h4>
+                          <p class="mb-0 card-text">Tunza Mifugo Yako</p>
+                       </div>
+                    </div>
+                    <div class="media">
+                       <div class="mr-1 rounded avatar bg-light-primary">
+                          <div class="avatar-content">
+                             <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                          </div>
+                       </div>
+                       <div class="media-body">
+                          <h6 class="mb-0">{{ date_format(now(), 'D, F, Y') }}</h6>
+                          <small>8:AM to 5:PM</small>
+                       </div>
+                    </div>
+                    <div class="mt-2 media">
+                       <div class="mr-1 rounded avatar bg-light-primary">
+                          <div class="avatar-content">
+                             <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
+                          </div>
+                       </div>
+                       <div class="media-body">
+                          <h6 class="mb-0">Sahmeer Park</h6>
+                          <small>Nairobi, Kenya</small>
+                       </div>
+                    </div>
 
+                 </div>
+              </div>
+           </div>
+           </div>
             @include('livewire.dashboard.table')
 
         </div>
