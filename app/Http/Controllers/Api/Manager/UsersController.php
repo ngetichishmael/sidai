@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\manager;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,7 @@ class UsersController extends Controller
          "success" => true,
          "status" => 200,
          "data" => User::with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")
-            ->whereIn('account_type', ['TSR','TD'])->where('region_id', auth()->user()->region_id)->get(),
+            ->whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id', Auth::user()->region_id)->get(),
       ]);
    }
 }
