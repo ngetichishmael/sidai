@@ -20,11 +20,11 @@
                             <td>{!! $count+1 !!}</td>
                             <td>{!! $requisition->sales_person ?? '' !!}</td>
                             @if ($requisition->status==="approved")
-                               <td class="btn btn-success btn-sm">Approved</td>
+                               <td style="color: #78be6f"> Approved</td>
                               @elseif ($requisition->status==="Waiting Approval")
-                              <td class="btn btn-warning btn-sm">Waiting Approval</td>
+                              <td style="color: #f5b747">Waiting Approval</td>
                               @elseif ($requisition->status==="Disapproved")
-                              <td class="btn btn-danger btn-sm">Disapproved</td>
+                              <td style="color: #fd6b37">Disapproved</td>
                             @endif
 
                             <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
