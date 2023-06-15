@@ -14,8 +14,7 @@ class UsersController extends Controller
       return response()->json([
          "success" => true,
          "status" => 200,
-         "id"=>$request->user()->region_id,
-         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
+         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id','=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
       ]);
    }
 }
