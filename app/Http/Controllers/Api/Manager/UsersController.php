@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
-   public function getUsers()
+   public function getUsers(Request $request)
    {
       return response()->json([
          "success" => true,
          "status" => 200,
-         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id','=', Auth::user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
+         "id"=>$request->user()->region_id,
+         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id','=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
       ]);
    }
 }
