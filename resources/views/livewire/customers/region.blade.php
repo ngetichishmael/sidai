@@ -8,7 +8,7 @@
     </select>
 </div>
 <div class="col-md-6 col-12">
-    <label>Region</label>
+    <label>Sub Region</label>
     <select wire:model='regions'class="form-control" name="region">
         <option value="">Sub Region</option>
         @forelse ($subregions as $region)

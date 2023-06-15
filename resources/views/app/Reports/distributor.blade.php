@@ -36,7 +36,7 @@
                     @foreach ($distributors as $distributor)
                     <tr>
                      <td>{{ $count++ }}</td>
-                     <td>{{ $distributor->user_code }}</td>
+                     <td>{{ $distributor->Customer->customer_name }}</td>
                      <td></td>
                      <td></td>
                  </tr> 
