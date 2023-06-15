@@ -58,7 +58,6 @@
                         <th>Sales Person</th>
                         <th>Amount</th>
                         <th>Balance</th>
-                        <th>QTY</th>
                         <th>Date</th>
                        <th>Actions</th>
                     </thead>
@@ -78,7 +77,6 @@
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
                                 <td>ksh {{ number_format($order->Order->price_total) }}</td>
                                 <td>ksh {{ number_format($order->Order->balance) }}</td>
-                               <td>{{ $order->DeliveryItems->first()->allocated_quantity ?? '' }}</td>
 {{--                               <td>{{$order->Order->qty}}</td>--}}
                                <td>{{ $order->created_at }}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}

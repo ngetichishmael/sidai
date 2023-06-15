@@ -201,7 +201,7 @@
                                             <td>{!! $item->product_name !!}</td>
                                             <td>{!! $item->allocated_quantity !!}</td>
                                             <td class="text-95">ksh{!! $item->selling_price !!}</td>
-                                            <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
+                                            <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->allocated_quantity !!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

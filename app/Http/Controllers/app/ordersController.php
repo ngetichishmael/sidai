@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\app;
 
 use App\Models\activity_log;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Delivery;
@@ -80,8 +81,8 @@ class ordersController extends Controller
       $order = Orders::where('order_code', $code)->first();
       // dd($code);
       $items = Order_items::where('order_code', $order->order_code)->get();
-      $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
-      $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
+      $sub = Order_items::select('allocated_subtotal')->where('order_code', $order->order_code)->get();
+      $total = Order_items::select('allocated_totalamount')->where('order_code', $order->order_code)->get();
       $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
       $id = $Customer_id->customerID;
       $test = customers::where('id', $id)->first();
@@ -94,11 +95,12 @@ class ordersController extends Controller
    {
       $order = Orders::where('order_code', $code)->first();
       $items = Order_items::where('order_code', $order->order_code)->get();
-      $users = User::orderby('id', 'desc')->get();
+      $users = User::orderby('name', 'desc')->get();
       $warehouses = warehousing::orderby('id', 'desc')->get();
-      $account_types = User::whereNotIn('account_type', ['customer', 'admin'])->groupBy('account_type')->get();
+      $distributors = suppliers::orderby('name', 'desc')->get();
+      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
 
-      return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'account_types'));
+      return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors','account_types'));
    }
 
    //create delivery
@@ -109,6 +111,7 @@ class ordersController extends Controller
 //         'warehouse' => 'required',
 
       ]);
+
       $delivery = Delivery::updateOrCreate(
          [
             "business_code" => Str::random(20),
@@ -123,48 +126,52 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
-
+      $totalSum=0;
       for ($i = 0; $i < count($request->allocate); $i++) {
-
          $pricing = product_price::whereId($request->item_code[$i])->first();
          Delivery_items::updateOrCreate(
             [
                "business_code" => Auth::user()->business_code,
                "delivery_code" => $delivery->delivery_code,
                "productID" => $request->item_code[$i],
-
             ],
             [
                "selling_price" => $pricing->selling_price,
                "sub_total" => $pricing->selling_price * $request->allocate[$i],
                "total_amount" => $pricing->selling_price * $request->allocate[$i],
+//               "total_amount" => $request->price[$i],
                "product_name" => $request->product[$i],
                "allocated_quantity" => $request->allocate[$i],
                "delivery_item_code" => Str::random(20),
-               "created_by" => Auth::user()->user_code,
                "requested_quantity" => $request->requested[$i],
                "created_by" => Auth::user()->user_code
             ]
          );
+
          Order_items::where('productID', $request->item_code[$i])
             ->where('order_code', $request->order_code)
             ->update([
-               "requested_quantity" => $request->product[$i],
-               "allocated_quantity" => $request->allocate[$i]
+               "requested_quantity" => $request->requested[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "allocated_subtotal" => $pricing->selling_price * $request->allocate[$i],
+               "allocated_totalamount" => $pricing->selling_price * $request->allocate[$i],
             ]);
+
 //         if ($request->product[$i] < $request->allocate[$i]) {
 //            Orders::where('order_code', $request->order_code)
 //               ->update([
 //                  "order_status" => "Partial delivery"
 //               ]);
 //         }else{
-            Orders::where('order_code', $request->order_code)
-               ->update([
-                  "order_status" => "Waiting acceptance"
-               ]);
 //         }
-      }
 
+         $totalSum += ($pricing->selling_price * $request->allocate[$i]);
+      }
+      Orders::where('order_code', $request->order_code)
+         ->update([
+            "order_status" => "Waiting acceptance",
+            "price_total" =>$totalSum,
+         ]);
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Allocate an order to a User';
@@ -218,7 +225,6 @@ class ordersController extends Controller
                "product_name" => $request->product[$i],
                "allocated_quantity" => $request->allocate[$i],
                "delivery_item_code" => Str::random(20),
-               "created_by" => Auth::user()->user_code,
                "requested_quantity" => $request->requested[$i],
                "created_by" => Auth::user()->user_code
             ]
