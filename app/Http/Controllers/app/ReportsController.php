@@ -58,6 +58,18 @@ class ReportsController extends Controller
     return view('app.Reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
 
     }
+    public function supplier()
+    {
+     $count =1;
+     $suppliers = Orders::with('User','Customer')->where('order_status', 'Delivered')->get();
+    return view('app.Reports.supplier',['suppliers'=>$suppliers,'count'=>$count]);
+
+    }
+    public function payments()
+    {
+    return view('app.Reports.payments');
+
+    }
     public function users()
     {
      $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))

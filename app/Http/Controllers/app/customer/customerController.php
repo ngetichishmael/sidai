@@ -69,7 +69,6 @@ class customerController extends Controller
 
    public function approvecreditor($id)
    {
-
       $c=Customers::whereId($id)->update(
          [
             'customer_type' => 'creditor',
@@ -82,7 +81,7 @@ class customerController extends Controller
       $activityLog->activity = 'Customer approved';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Customer successfully Approved';
-      $activityLog->action = 'Customer '. $c->customer_name.' successfully Approved';
+      $activityLog->action = 'Customer With id'. $c.' successfully Approved';
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
       $activityLog->save();
@@ -114,23 +113,14 @@ class customerController extends Controller
 
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
-      $customer->account = $request->account;
-      $customer->manufacturer_number = $request->manufacturer_number;
       $customer->user_code = $user->user_code;
-      $customer->vat_number = $request->vat_number;
-      $customer->delivery_time = $request->delivery_time;
+      $customer->id_number = $user->id_number;
+      //$customer->vat_number = $request->vat_number;
       $customer->address = $request->address;
-      $customer->postal_code = $request->postal_code;
-      $customer->country = "Kenya";
-      $customer->latitude = $request->latitude;
-      $customer->longitude = $request->longitude;
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
-      $customer->customer_group = $request->customer_group;
+      $customer->customer_group = $request->pricing_category;
       $customer->route = $request->route;
       $customer->route_code = $request->route;
       $customer->zone_id = $request->route;
-      $customer->branch = $request->branch;
       $customer->status = "Active";
       $customer->email = $request->email;
       $customer->customer_type = "normal";
@@ -249,22 +239,11 @@ class customerController extends Controller
 $region=
       $customer = customers::where('id', $id)->first();
       $customer->customer_name = $request->customer_name ?? $customer->customer_name;
-      $customer->account = $request->account ?? $customer->account;
-      $customer->manufacturer_number = $request->manufacturer_number ?? $customer->manufacturer_number;
-      $customer->vat_number = $request->vat_number ?? $customer->vat_number;
-      $customer->delivery_time = $request->delivery_time ?? $customer->delivery_time;
+      $customer->id_number = $request->id_number ?? $customer->id_number;
+      //$customer->vat_number = $request->vat_number ?? $customer->vat_number;
       $customer->address = $request->address ?? $customer->address;
-      $customer->city = $request->city ?? $customer->city;
-      $customer->province = $request->province ?? $customer->province;
-      $customer->postal_code = $request->postal_code ?? $customer->postal_code;
-      $customer->country = $request->country ?? $customer->country;
-      $customer->latitude = $request->latitude ?? $customer->latitude;
-      $customer->longitude = $request->longitude ?? $customer->longitude;
-      $customer->contact_person = $request->contact_person ?? $customer->contact_person;
-      $customer->telephone = $request->telephone ?? $customer->telephone;
-      $customer->customer_group = $request->customer_group ?? $customer->customer_group;
+      $customer->customer_group = $request->pricing_category ?? $customer->pricing_category;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
-      $customer->price_group = $request->price_group ?? $customer->price_group;
       $customer->route = $request->route ?? $customer->route;
       $customer->route_code = $request->territory ?? $customer->territory;
       $customer->zone_id = $request->territory ?? $customer->territory;
@@ -302,22 +281,10 @@ $region=
 
       $customer = customers::where('id', $id)->first();
       $customer->customer_name = $request->customer_name ?? $customer->customer_name;
-      $customer->account = $request->account ?? $customer->account;
-      $customer->manufacturer_number = $request->manufacturer_number ?? $customer->manufacturer_number;
       $customer->vat_number = $request->vat_number ?? $customer->vat_number;
-      $customer->delivery_time = $request->delivery_time ?? $customer->delivery_time;
-      $customer->address = $request->address ?? $customer->address;
-      $customer->city = $request->city ?? $customer->city;
-      $customer->province = $request->province ?? $customer->province;
       $customer->postal_code = $request->postal_code ?? $customer->postal_code;
-      $customer->country = $request->country ?? $customer->country;
-      $customer->latitude = $request->latitude ?? $customer->latitude;
-      $customer->longitude = $request->longitude ?? $customer->longitude;
-      $customer->contact_person = $request->contact_person ?? $customer->contact_person;
-      $customer->telephone = $request->telephone ?? $customer->telephone;
-      $customer->customer_group = $request->customer_group ?? $customer->customer_group;
+      $customer->customer_group = $request->pricing_category ?? $customer->pricing_category;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
-      $customer->price_group = $request->price_group ?? $customer->price_group;
       $customer->route = $request->route ?? $customer->route;
       $customer->route_code = $request->territory ?? $customer->territory;
       $customer->zone_id = $request->territory ?? $customer->territory;

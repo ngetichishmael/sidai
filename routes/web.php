@@ -289,6 +289,8 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('Reports/delivery', ['uses' => 'app\ReportsController@delivery', 'as' => 'delivery.reports']);
    Route::get('Reports/sidai-users', ['uses' => 'app\ReportsController@users', 'as' => 'sidai.reports']);
    Route::get('Reports/warehouse-Report', ['uses' => 'app\ReportsController@warehouse', 'as' => 'warehouse.reports']);
+   Route::get('Reports/supplier-report', ['uses' => 'app\ReportsController@supplier', 'as' => 'supplier.reports']);
+   Route::get('Reports/payments-report', ['uses' => 'app\ReportsController@payments', 'as' => 'payments.reports']);
    Route::get('Reports/distributors', ['uses' => 'app\ReportsController@distributor', 'as' => 'distributor.reports']);
    Route::get('Reports/region-report', ['uses' => 'app\ReportsController@regional', 'as' => 'regional.reports']);
    Route::get('Reports/inventory-report', ['uses' => 'app\ReportsController@inventory', 'as' => 'inventory.reports']);
