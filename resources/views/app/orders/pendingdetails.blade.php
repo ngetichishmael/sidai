@@ -214,14 +214,14 @@
                             </div>
 
                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                                <div class="row my-2">
-                                    <div class="col-7 text-right">
-                                        SubTotal
-                                    </div>
-                                    <div class="col-5">
-                                        <span class="text-120 text-secondary-d1">Ksh {!! $sub->sum('sub_total') !!}</span>
-                                    </div>
-                                </div>
+{{--                                <div class="row my-2">--}}
+{{--                                    <div class="col-7 text-right">--}}
+{{--                                        SubTotal--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-5">--}}
+{{--                                        <span class="text-120 text-secondary-d1">Ksh {!! $sub->sum('located_subtotal') !!}</span>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 {{--                                <div class="row my-2">--}}
 {{--                                    <div class="col-7 text-right">--}}
@@ -237,8 +237,9 @@
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                       <span>--------------</span>
-                                        <span class="text-150 text-success-d3 opacity-2">Ksh {!! $total->sum('total_amount') !!}</span>
+                                       <span>------------</span>
+                                       </br>
+                                        <span class="text-150 text-success-d3 opacity-2"> {!! $total->sum('allocated_totalamount') !!}</span>
                                     </div>
                                 </div>
                             </div>

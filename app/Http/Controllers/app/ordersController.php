@@ -129,6 +129,7 @@ class ordersController extends Controller
       $totalSum=0;
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
+         $totalSum += $request->price[$i];
          Delivery_items::updateOrCreate(
             [
                "business_code" => Auth::user()->business_code,
@@ -137,9 +138,9 @@ class ordersController extends Controller
             ],
             [
                "selling_price" => $pricing->selling_price,
-               "sub_total" => $pricing->selling_price * $request->allocate[$i],
-               "total_amount" => $pricing->selling_price * $request->allocate[$i],
-//               "total_amount" => $request->price[$i],
+               "sub_total" => $request->price[$i],
+//               "total_amount" => $pricing->selling_price * $request->allocate[$i],
+               "total_amount" => $request->price[$i],
                "product_name" => $request->product[$i],
                "allocated_quantity" => $request->allocate[$i],
                "delivery_item_code" => Str::random(20),
@@ -153,8 +154,8 @@ class ordersController extends Controller
             ->update([
                "requested_quantity" => $request->requested[$i],
                "allocated_quantity" => $request->allocate[$i],
-               "allocated_subtotal" => $pricing->selling_price * $request->allocate[$i],
-               "allocated_totalamount" => $pricing->selling_price * $request->allocate[$i],
+               "allocated_subtotal" => $request->price[$i],
+               "allocated_totalamount" => $request->price[$i],
             ]);
 
 //         if ($request->product[$i] < $request->allocate[$i]) {
@@ -164,13 +165,13 @@ class ordersController extends Controller
 //               ]);
 //         }else{
 //         }
-
-         $totalSum += ($pricing->selling_price * $request->allocate[$i]);
       }
+
       Orders::where('order_code', $request->order_code)
          ->update([
             "order_status" => "Waiting acceptance",
             "price_total" =>$totalSum,
+            "Balance" =>$totalSum,
          ]);
       $random = Str::random(20);
       $activityLog = new activity_log();
