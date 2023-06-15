@@ -15,7 +15,7 @@ class UsersController extends Controller
          "success" => true,
          "status" => 200,
          "id"=>$request->user()->region_id,
-         "data" => User::whereIn('account_type', ['TSR','TD', 'Shop-Attendee'])->where('region_id','=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
+         "data" => User::where('region_id','=', 2)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get(),
       ]);
    }
 }
