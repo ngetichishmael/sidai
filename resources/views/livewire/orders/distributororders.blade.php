@@ -57,7 +57,6 @@
                         <th>Sales Person</th>
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
-                        <th>Quantity</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </thead>
@@ -79,7 +78,7 @@
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
-                                <td>{{ $order->qty}}</td>
+{{--                                <td>{{ $order->qty}}</td>--}}
                                @if($order->order_status == 'Pending Delivery') <td>{{'Pending Order'}}</td>
                                @else
                                {{ $order->order_status}}

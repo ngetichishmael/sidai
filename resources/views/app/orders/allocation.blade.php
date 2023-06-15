@@ -80,26 +80,49 @@
                                 </div>
                             </div><div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="">Price</label>
-                                    <input type="text"  value="{!! $item->selling_price !!}"
+                                    <label for="">Total Price</label>
+                                    <input type="text"  value="{!! $item->selling_price * $item->quantity !!}"
                                         class="form-control" readonly>
                                 </div>
                             </div>
-                           <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Allocate</label>
-                                    <input type="number" name="allocate[]" class="form-control"
-                                        placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required>
-                                </div>
-                            </div>
+{{--                           <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>--}}
+{{--                            <div class="col-md-2">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Allocate</label>--}}
+{{--                                    <input type="number" name="allocate[]" class="form-control"--}}
+{{--                                        placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                           <div class="col-md-2">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Updated Price</label>--}}
+{{--                                    <input type="number" name="price[]" class="form-control"--}}
+{{--                                           ksh{!! $item->selling_price * $item->quantity !!} required>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Price</label>
-                                    <input type="number" name="price[]" class="form-control"
-                                           ksh{!! $item->selling_price * $item->quantity !!} required>
-                                </div>
-                            </div>
+                              <div class="form-group">
+                                 <label for="">Allocate</label>
+                                 <input type="number" name="allocate[]" class="form-control" placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required oninput="calculatePrice(this, {!! $item->selling_price !!})">
+                              </div>
+                           </div>
+
+                           <div class="col-md-2">
+                              <div class="form-group">
+                                 <label for="">Updated Price</label>
+                                 <input type="number" name="price[]" class="form-control" required readonly>
+                              </div>
+                           </div>
+
+                           <script>
+                              function calculatePrice(input, sellingPrice) {
+                                 const allocatedQuantity = input.value;
+                                 const totalPrice = allocatedQuantity * sellingPrice;
+                                 const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
+                                 priceInput.value = totalPrice;
+                              }
+                           </script>
+
                         </div>
                     @endforeach
                 </div>
@@ -108,6 +131,7 @@
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
        $(document).ready(function() {
           $('#account_type').on('change', function() {

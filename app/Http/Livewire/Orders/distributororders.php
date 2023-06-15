@@ -32,7 +32,8 @@ class distributororders extends Component
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
                ->where('supplierID', '!=', $sidai->id);
-         })->where('order_type','=','Pre Order')
+         })
+         ->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
