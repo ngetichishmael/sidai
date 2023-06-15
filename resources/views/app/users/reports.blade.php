@@ -56,25 +56,25 @@
                        <td>{!! $report !!}</td>
                        <td>
                           <div class="d-flex" style="gap:20px">
-                             @if($report == 'PAYMENT REPORT')
-                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
-                            @elseif($report == 'REGIONAL REPORT')
+                             @if($report == 'Payments Report')
+                                <a href="{{ route('payments.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
+                            @elseif($report == 'Regional Report')
                                 <a href="{{ route('regional.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
-                                @elseif($report == 'DISTRIBUTOR REPORT')
+                                @elseif($report == 'Distributors Report')
                                 <a href="{{ route('distributor.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'SUPPLIERS REPORT')
-                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
-                                @elseif($report == 'INVENTORY REPORT')
+                                @elseif($report == 'Suppliers Report')
+                                <a href="{{ route('supplier.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
+                                @elseif($report == 'Inventory Report')
                                 <a href="{{ route('inventory.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'PREORDER REPORT')
+                                @elseif($report == 'Preorder Report')
                                 <a href="{{ route('preorders.reports') }}" class="btn  btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'VANSALE REPORT')
+                                @elseif($report == 'Vansale Report')
                                 <a href="{{ route('vansales.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'DELIVERY REPORT')
+                                @elseif($report == 'Delivery Report')
                                 <a href="{{ route('delivery.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'SIDAI USERS REPORT')
+                                @elseif($report == 'Sidai Users Report')
                                 <a href="{{ route('sidai.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
-                                @elseif($report == 'WAREHOUSE REPORT')
+                                @elseif($report == 'Warehouse Report')
                                 <a href="{{ route('warehouse.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                             @endif
                           </div>
