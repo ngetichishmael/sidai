@@ -12,12 +12,12 @@ class UsersController extends Controller
    public function getUsers(Request $request)
    {
       if ($request->account_type == 'RSM') {
-         $users = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
+         $userz = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
       }
       else{
-         $users = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
+         $userz = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
       }
-      $users = $users->map(function ($user) {
+      $users = $userz->map(function ($user) {
          $user->target_sales = (object) $user->target_sales;
          $user->target_leads = (object) $user->target_leads;
          $user->targets_order = (object) $user->targets_order;
