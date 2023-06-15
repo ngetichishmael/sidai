@@ -12,12 +12,12 @@ class UsersController extends Controller
    public function getUsers(Request $request)
    {
       if ($request->account_type == 'RSM') {
-         $userz = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
+         $users = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
       }
       else{
-         $userz = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
+         $users = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
       }
-      $users = $userz->map(function ($user) {
+      $transformedUsers = $users->transform(function ($user) {
          $user->target_sales = (object) $user->target_sales;
          $user->target_leads = (object) $user->target_leads;
          $user->targets_order = (object) $user->targets_order;
@@ -27,7 +27,7 @@ class UsersController extends Controller
       return response()->json([
          "success" => true,
          "status" => 200,
-         "data" => $users,
+         "data" => $transformedUsers,
       ]);
    }
 }
