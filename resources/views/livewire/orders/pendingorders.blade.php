@@ -56,7 +56,7 @@
                         <th>Sales Person</th>
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
-                        <th>Quantity</th>
+{{--                        <th>Quantity</th>--}}
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
-                                <td>{{ $order->qty}}</td>
+{{--                                <td>{{ $order->qty}}</td>--}}
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}
 {{--                                    <a href="{!! route('orders.details', $order->order_code) !!}" class="btn btn-warning btn-sm">View</a>--}}

@@ -52,12 +52,13 @@
                 <table class="table table-striped table-bordered zero-configuration table-responsive">
                     <thead>
                         <th width="1%">#</th>
+                        <th>Distributor</th>
                         <th>Customer</th>
                         <th>Sales Person</th>
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
                         <th>Quantity</th>
-                        <th>Distributor</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -66,7 +67,7 @@
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
-{{--                                <td>{{ $order->order_type }}</td>--}}
+                               <td>{{ $order->distributor->name ?? ''}}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 30) }}</td>
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
@@ -79,7 +80,10 @@
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                 <td>{{ $order->qty}}</td>
-                                <td>{{ $order->distributor->name ?? ''}}</td>
+                               @if($order->order_status == 'Pending Delivery') <td>{{'Pending Order'}}</td>
+                               @else
+                               {{ $order->order_status}}
+                               @endif
 
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}

@@ -175,7 +175,7 @@
                           </div>
                        </div>
                        <div class="media-body">
-                          <h6 class="mb-0">Sahmeer Park</h6>
+                          <h6 class="mb-0"> </h6>
                           <small>Nairobi, Kenya</small>
                        </div>
                     </div>
