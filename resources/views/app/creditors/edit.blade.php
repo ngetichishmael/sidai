@@ -45,34 +45,8 @@
                                             value="{{ $customer->customer_name }}" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Account</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" value="{{ $customer->account }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Manufacturer Number</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City"
-                                            name="manufacturer_number" value="{{ $customer->manufacturer_number }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">VAT number</label>
-                                        <input type="text" id="country-floating" class="form-control" name="vat_number"
-                                            placeholder="VAT number" value="{{ $customer->vat_number }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Delivery Time</label>
-                                        <input type="text" id="company-column" class="form-control" name="delivery_time"
-                                            placeholder="Delivery Time" value="{{ $customer->delivery_time }}" />
-                                    </div>
-                                </div>
+                                
+                               
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
@@ -83,73 +57,11 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">City</label>
-                                        <input type="text" id="first-name-column" class="form-control" placeholder="City"
-                                            name="city" value="{{ $customer->city }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Province</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Province" name="province" value="{{ $customer->province }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Postal Code</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Postal Code" name="postal_code"
-                                            value="{{ $customer->postal_code }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input type="text" id="country-floating" class="form-control" name="country"
-                                            placeholder="Country" value="{{ $customer->country }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Latitude</label>
-                                        <input type="text" id="company-column" class="form-control" name="latitude"
-                                            placeholder="Latitude" value="{{ $customer->latitude }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Longitude</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="longitude"
-                                            placeholder="Longitude" value="{{ $customer->longitude }}" />
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Contact Person</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Contact Person" name="contact_person"
-                                            value="{{ $customer->contact_person }}" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Telephone</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Telephone" name="telephone"
-                                            value="{{ $customer->telephone }}" />
-                                    </div>
-                                </div>
                                 {{-- @dd($customer) --}}
                                 <div class="col-md-6 col-12">
-                                    <label>Customer Group</label>
-                                    <select wire:model='region' class="form-control" name="customer_group">
-                                        <option value="">Customer Group</option>
+                                    <label>Pricing Category</label>
+                                    <select wire:model='region' class="form-control" name="pricing_category">
+                                        <option value="">Pricing Category</option>
 
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->outlet_name }}"
@@ -159,7 +71,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <label>Pricing Group</label>
                                     <select wire:model='region' class="form-control" name="price_group">
                                         <option value="">Pricing Group</option>
@@ -170,17 +82,17 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Branch</label>
                                         <input type="text" id="first-name-column" class="form-control"
                                             placeholder="Branch" name="branch" value="{{ $customer->branch }}" />
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
@@ -199,7 +111,7 @@
                                 <div class="col-md-6 col-12">
                                     <label>Zone</label>
                                     <select wire:model='region' class="form-control" name="zone">
-                                        <option value="">Zone</option>
+                                        <option value="">Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
@@ -210,7 +122,7 @@
                                 </div>
 
                                 <div class="col-md-6 col-12">
-                                    <label>Region</label>
+                                    <label>Sub Region</label>
                                     <select wire:model='regions'class="form-control" name="region">
                                         <option value="">Region</option>
                                         @foreach ($subregions as $subregion)

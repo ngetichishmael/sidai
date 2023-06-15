@@ -24,12 +24,14 @@
                         <th>Name</th>
                         <th>number</th>
                         <th>Region</th>
-                        <th>Route</th>
+                        <th>Town</th>
+                        <th>Customer Type</th>
                         <th>Created By</th>
                         <th>Created Date</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
+                        
                         @foreach ($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
@@ -43,6 +45,7 @@
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
+                            <td>{!! $contact->customer_type !!}</td>
                             <td>
                                 {!! $contact->Creator->name ?? '' !!}
                             </td>
