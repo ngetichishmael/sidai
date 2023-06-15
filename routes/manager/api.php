@@ -38,6 +38,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
 
+      Route::post('/manager/suspend/user', [UsersController::class, 'suspendUser']);
+      Route::post('/manager/activate/user', [UsersController::class, 'activateUser']);
+
       Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource'])->name('manager.orders');
       Route::get('/manager/customers/orders', [OrdersController::class, 'allOrderForCustomers']);
       Route::get('/manager/allocation/data', [OrdersController::class, 'allocationItems']);
