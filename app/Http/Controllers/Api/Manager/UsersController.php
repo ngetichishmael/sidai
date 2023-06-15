@@ -17,8 +17,12 @@ class UsersController extends Controller
       else{
          $users = User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->with("TargetSales", "TargetLeads", "TargetsOrder", "TargetsVisit")->get();
       }
-      $users->each(function ($user) {
-         $user->append('TargetsVisit', 'TargetsOrder', 'TargetLeads', 'TargetSales');
+      $users = $users->map(function ($user) {
+         $user->target_sales = (object) $user->target_sales;
+         $user->target_leads = (object) $user->target_leads;
+         $user->targets_order = (object) $user->targets_order;
+         $user->targets_visit = (object) $user->targets_visit;
+         return $user;
       });
       return response()->json([
          "success" => true,
