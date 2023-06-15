@@ -10,10 +10,10 @@
     <div class="dashboard-landing">
         <div class="left-side">
             <nav>
-                <img src={{ asset('app-assets/images/sidaifavicon.png') }} class="logo" alt="Sidai" />
+                <img src={{ asset('app-assets/images/sidaiweblogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" />
             </nav>
             <img src="{{ asset('app-assets/images/loginpage.svg') }}" alt="" class="img-fluid">
-            <h1 class="title">Sidai</h1>
+            <h1 class="title" style="color: #fd6b37">Sidai</h1>
         </div>
         <div class="right-side">
             <div class="login-fields">
@@ -38,7 +38,7 @@
                             <div class="mb-1">
                                 <div class="d-flex justify-content-left">
                                     <label class="form-label" for="login-password">Password</label>
-                                    
+
                                 </div>
                                 <div class="input-group input-group-merge form-password-toggle">
                                     <input type="password" class="form-control form-control-merge" id="login-password"

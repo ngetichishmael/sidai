@@ -72,18 +72,32 @@
                                         class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="">Quantity</label>
                                     <input type="text" name="requested[]" value="{!! $item->quantity !!}"
                                         class="form-control" readonly>
                                 </div>
+                            </div><div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="">Price</label>
+                                    <input type="text"  value="{!! $item->selling_price !!}"
+                                        class="form-control" readonly>
+                                </div>
                             </div>
-                            <div class="col-md-4">
+                           <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="">Allocate</label>
                                     <input type="number" name="allocate[]" class="form-control"
                                         placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required>
+                                </div>
+                            </div>
+                           <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="">Price</label>
+                                    <input type="number" name="price[]" class="form-control"
+                                           ksh{!! $item->selling_price * $item->quantity !!} required>
                                 </div>
                             </div>
                         </div>
