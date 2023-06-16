@@ -59,17 +59,17 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
-      if ($request->account_type == 'RSM') {
+      if ($request->account_type === 'RSM') {
          $users = UserResource::collection(
             User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
                ->where('region_id', $request->user()->region_id)
                ->pluck('user_code','name', 'account_type')
       );
-      }else{
+      }elseif ($request->account_type === 'NMS'){
          $users = UserResource::collection(
             User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
                ->where('region_id', $request->user()->region_id)
-               ->pluck('user_code','user_name', 'account_type')
+               ->pluck('user_code','user', 'account_type')
          );
       }
       return response()->json([
