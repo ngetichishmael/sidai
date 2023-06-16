@@ -13,6 +13,7 @@ use App\Models\products\product_information;
 use App\Models\products\product_price;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -249,6 +250,7 @@ class CartController extends Controller
       ])
          ->where('customer', $id)
          ->get();
+      $deliveries = new Collection($deliveries);
       return response()->json([
          "success" => true,
          "status" => 200,
