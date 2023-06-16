@@ -223,6 +223,7 @@ class CartController extends Controller
       }])
          ->where('customerID', $id)
          ->get();
+      $deliveries = new Collection($deliveries);
       return response()->json([
          "success" => true,
          "status" => 200,
