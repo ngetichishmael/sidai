@@ -33,7 +33,7 @@ class customers extends Model
    public function number_visited()
    {
       return $this->hasMany(Checkin::class, 'customer_id', 'id')
-         ->selectRaw('count(*) as count')
+         ->select(\DB::raw('customer_id, count(*) as counts'))
          ->groupBy('customer_id');
    }
 
