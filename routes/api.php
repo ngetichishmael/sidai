@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('customer/edit-customer', 'customersController@editCustomer')->middleware('auth:sanctum');
    Route::get('customers/{code}/details', 'customersController@details')->middleware('auth:sanctum');
    Route::post('customer/request/toBeCreditor', 'customersController@RequestToBeCreditor')->middleware('auth:sanctum');
-   Route::get('customer/creditor/status', 'customersController@creditorStatus')->middleware('auth:sanctum');
+   Route::post('customer/creditor/status', 'customersController@creditorStatus')->middleware('auth:sanctum');
    Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries')->middleware('auth:sanctum');
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details')->middleware('auth:sanctum');
    Route::get('customers/{customerID}/orders', 'customersController@orders')->middleware('auth:sanctum');
