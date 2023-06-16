@@ -8,10 +8,14 @@ use Illuminate\Http\Request;
 
 class TargetsController extends Controller
 {
+    public function countPendingOrders(): int
+    {
+        return $this->PendingOrders()->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Derivery', 'Waiting acceptance'])->count();
+    }
    public function getSalespersonTarget(Request $request)
    {
        $user_code=$request->user()->user_code;
-       $target=User::with('countPendingOrders','TargetSales','TargetLeads','TargetsOrder','TargetsVisit')
+       $target=User::with('PendingOrders','TargetSales','TargetLeads','TargetsOrder','TargetsVisit')
        ->where('user_code',$user_code)->get();
 
        $target->each(function ($item) {
