@@ -28,8 +28,6 @@ class CustomerController extends Controller
       $customers = customers::with(['number_visited', 'orders.orderItems'])
          ->where('region_id', Auth::user()->region_id)
          ->get();
-
-      // Transform the collection to replace the 'number_visited' attribute with the count value
       $transformedCustomers = $customers->transform(function ($customer) {
          $customer->number_visited = $customer->number_visited->pluck('count')->first();
          return $customer;

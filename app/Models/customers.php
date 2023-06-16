@@ -32,7 +32,7 @@ class customers extends Model
 
    public function number_visited()
    {
-      return $this->hasMany(Checkin::class, 'customer_id', 'id')
+      return $this->hasOne(Checkin::class, 'customer_id', 'id')
          ->selectRaw('count(*) as count')
          ->groupBy('customer_id');
    }
