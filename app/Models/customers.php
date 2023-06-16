@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class customers extends Model
 {
    use searchable;
+   protected $table = 'customers';
+   protected $guarded = [
+      ''
+   ];
    protected $searchable = [
       'Area.name',
       'customer_name',
@@ -25,10 +29,10 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
-//   public function number_visited()
-//   {
-//      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
-//   }
+   //   public function number_visited()
+   //   {
+   //      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
+   //   }
 
    public function number_visited()
    {
@@ -45,7 +49,6 @@ class customers extends Model
    {
       return $this->hasManyThrough(Order_items::class, Orders::class, 'customerID', 'order_code', 'id', 'order_code');
    }
-   protected $table = 'customers';
    /**
     * Get the Region that owns the customers
     *

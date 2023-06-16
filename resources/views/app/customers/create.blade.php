@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <label for="phone-column">Phone Number</label>
                                         <input type="number" id="phone_number" class="form-control"
-                                            placeholder="Phone Number" name="phone_number" />
+                                            placeholder="Phone Number" name="phone_number">
                                     </div>
                                 </div>
                                 @livewire('customers.region')

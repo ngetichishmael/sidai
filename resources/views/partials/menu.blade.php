@@ -96,6 +96,9 @@
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
                             data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>
                 </li>
+                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
+                  data-feather="circle"></i><span class="menu-item text-truncate">Customer Groups</span></a>
+               </li>
                 <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                         href="{{ route('CustomerComment') }}"><i data-feather="circle"></i><span
                             class="menu-item text-truncate">Comments</span></a>
