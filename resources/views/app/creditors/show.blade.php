@@ -92,9 +92,7 @@
 
                             </div>
                             
-                            <div class="my-1 col-sm-9 offset-sm-3">
-                                <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-info">Approve To Creditor</a>
-                            </div>
+                            
                     </div>
                 </div>
             </div>
