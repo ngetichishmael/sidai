@@ -43,6 +43,7 @@
                             @foreach ($account_types as $account)
                                <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
                             @endforeach
+                            <option value="distributors">Distributors</option>
                          </select>
                       </div>
                       <div class="form-group col-md-4">
@@ -136,27 +137,46 @@
        $(document).ready(function() {
           $('#account_type').on('change', function() {
              var accountType = $(this).val();
-             if (accountType) {
+             if (accountType === 'distributors') {
                 $.ajax({
-                   url: '{{ route('get.users') }}',
+                   url: '{{ route('get./get-distributors') }}',
                    type: 'GET',
-                   data: { account_type: accountType },
-                   success: function(data) {
+                   data: {account_type: accountType},
+                   success: function (data) {
                       $('#user').empty();
                       $('#user').append('<option value="">Choose a User</option>');
-                      data.users.forEach(function(user) {
+                      data.users.forEach(function (user) {
                          $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
                       });
                    },
-                   error: function() {
+                   error: function () {
                       console.log('Error occurred during AJAX request.');
                    }
                 });
              } else {
-                $('#user').empty();
-                $('#user').append('<option value="">Choose User</option>');
+                if (accountType) {
+                   $.ajax({
+                      url: '{{ route('get.users') }}',
+                      type: 'GET',
+                      data: {account_type: accountType},
+                      success: function (data) {
+                         $('#user').empty();
+                         $('#user').append('<option value="">Choose a User</option>');
+                         data.users.forEach(function (user) {
+                            $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                         });
+                      },
+                      error: function () {
+                         console.log('Error occurred during AJAX request.');
+                      }
+                   });
+                } else {
+                   $('#user').empty();
+                   $('#user').append('<option value="">Choose User</option>');
+                }
              }
           });
+
        });
 
     </script>

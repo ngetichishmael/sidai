@@ -200,8 +200,8 @@
                                             <td>{!! $count + 1 !!}</td>
                                             <td>{!! $item->product_name !!}</td>
                                             <td>{!! $item->allocated_quantity !!}</td>
-                                            <td class="text-95">ksh{!! $item->selling_price !!}</td>
-                                            <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->allocated_quantity !!}</td>
+                                            <td class="text-95">{!! $item->selling_price !!}</td>
+                                            <td class="text-secondary-d2">{!! $item->selling_price * $item->allocated_quantity !!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -246,6 +246,40 @@
                         </div>
 
                         <hr />
+                       <br/>
+                       <h2 class="content-header-title float-start mb-0">Unallocated Items</h2>
+                       <div class="table-responsive">
+                          <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
+                             <thead>
+                             <tr class="text-black">
+                                <th class="opacity-2">#</th>
+                                <th>Description</th>
+                                <th>Qty</th>
+                                <th>Unit Price</th>
+                                <th width="140">Amount</th>
+                             </tr>
+                             </thead>
+
+                             <tbody class="text-95 text-secondary-d3">
+                             @foreach ($items as $count => $item)
+                                @if ((int)$item->allocated_quantity < (int)$item->quantity )
+                                <tr>
+                                   <td>{!! $count + 1 !!}</td>
+                                   <td>{!! $item->product_name !!}</td>
+                                   <td>{!! ((int)$item->quantity) - ((int)$item->allocated_quantity)!!}</td>
+                                   <td class="text-95">{!! $item->selling_price !!}</td>
+                                   <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
+                                </tr>
+                                @endif
+                             @endforeach
+                             </tbody>
+                          </table>
+                       </div>
+                       @if ((int)$item->allocated_quantity < (int)$item->quantity )
+                       <div><center>
+                             <a href="#" class="btn btn-primary"> Allocate</a>
+                          </center></div>
+                       @endif
                     </div>
                 </div>
             </div>
