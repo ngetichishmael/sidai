@@ -55,5 +55,10 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('/customer/deliveries/pending_deriveries',  [CartController::class, 'getAllCustomerPendingDeliveries']);
       Route::put('/customer/updateFcmToken',  [CartController::class, 'updateFcmToken']);
 
+      Route::get('/support/all', [SupportTicketController::class , 'index2'])->middleware('auth:sanctum');
+      Route::post('/support/request', [SupportTicketController::class, 'store'])->middleware('auth:sanctum');
+      Route::post('/support/{ticket_id}/messages/reply', [SupportTicketController::class, 'replyToMessage'])->middleware('auth:sanctum');
+      Route::get('/support/{ticket_id}/messages', [SupportTicketController::class, 'getMessages'])->middleware('auth:sanctum');
+      Route::get('/support/{id}', [SupportTicketController::class, 'show'])->middleware('auth:sanctum');
    });
 });
