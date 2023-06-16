@@ -219,6 +219,10 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customer/profile', 'customersController@customerprofile')->middleware('auth:sanctum');
    Route::put('customer/profile/update', 'customersController@updateCustomerProfile')->middleware('auth:sanctum');
    Route::put('customer/image/update', 'customersController@updateCustomerImage')->middleware('auth:sanctum');
+//customer offers endpoints
+   Route::get('/all/products', [CustomersProductsController::class, "getAllProducts"])->middleware('auth:sanctum');
+   Route::get('/all/products-offers', [CustomersProductsController::class, "getAllProductsOffers"])->middleware('auth:sanctum');
+   Route::post('/update/default/image', [CustomersProductsController::class, "sendDefaultImage"])->middleware('auth:sanctum');
 
    /**
     * Get Company Routes

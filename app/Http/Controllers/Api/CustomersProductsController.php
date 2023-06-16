@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\products\product_information;
+use App\Models\products\product_price;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,19 +14,28 @@ class CustomersProductsController extends Controller
 {
    public function getAllProducts(Request $request)
    {
+      $userRegionId = $request->user()->region_id;
       if ($request->user()->region_id == null){
-         $productinfo = product_information::with('ProductPrice')->get();
+         $productInfo = product_information::with(['ProductPrice' => function ($query) use ($userRegionId) {
+            $query->whereHas('Warehouse', function ($query) use ($userRegionId) {
+               $query->where('region_id', $userRegionId);
+            });
+         }])->get();
+//         $productinfo = product_information::with('ProductPrice')->get();
          return response()->json([
             "success" => true,
             "message" => "Product information",
-            "products" => $productinfo
+            "products" => $productInfo
          ]);
       }else
-      $productinfo = product_information::where('region_id', $request->user()->region_id)->with('ProductPrice')->get();
-      return response()->json([
+         $productInfo = product_information::with(['ProductPrice' => function ($query) use ($userRegionId) {
+            $query->whereHas('Warehouse', function ($query) use ($userRegionId) {
+               $query->where('region_id', $userRegionId);
+            });
+         }])->get();      return response()->json([
          "success" => true,
          "message" => "Product information",
-         "products" => $productinfo
+         "products" => $productInfo
       ]);
    }
 //   public function getAllProducts()
@@ -36,6 +47,33 @@ class CustomersProductsController extends Controller
 //         "products" => $productinfo
 //      ]);
 //   }
+   public function getAllProductsOffers()
+   {
+      $productOffers = product_price::whereNotNull('offer_price')
+         ->with('ProductInfo')
+         ->where('time_valid', '>=', Carbon::now())
+         ->with('ProductInfo.ProductPrice')
+         ->get(['id', 'selling_price', 'time_valid', 'offer_price', 'productID']);
+
+      $formattedProductOffers = [];
+
+      foreach ($productOffers as $offer) {
+         $formattedProductOffers[] = [
+            'Id' => $offer->id,
+            'selling_price' => $offer->selling_price,
+            'time_valid' => $offer->time_valid,
+            'offer_price' => $offer->offer_price,
+            'product' => $offer->ProductInfo
+         ];
+      }
+
+      return response()->json([
+         "status" => true,
+         "message" => "Filtered product offers information",
+         "result" => $formattedProductOffers
+      ], 200);
+   }
+
 
    public function sendDefaultImage(Request $request)
    {
