@@ -211,7 +211,7 @@ class CartController extends Controller
       $code=customers::where('user_code',$customer_code)->first();
       $id=$code->id;
       $deliveries = Orders::with(['OrderItems'=> function ($query) {
-         $query->select('id', 'order_code', 'quantity', 'productID')
+         $query->select('id', 'order_code', 'quantity', 'requested_quantity','requested_allocated','productID')
             ->with([
                'productInformation' => function ($query) {
                   $query->select('id', 'product_name', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
