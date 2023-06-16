@@ -57,6 +57,27 @@ class UsersController extends Controller
          "data" => $users,
       ]);
    }
+   public function usersList(Request $request)
+   {
+      if ($request->account_type == 'RSM') {
+         $users = UserResource::collection(
+            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
+               ->where('region_id', $request->user()->region_id)
+               ->pluck('user_code','user_name', 'account_type')
+      );
+      }else{
+         $users = UserResource::collection(
+            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
+               ->where('region_id', $request->user()->region_id)
+               ->pluck('user_code','user_name', 'account_type')
+         );
+      }
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $users,
+      ]);
+   }
    public function suspendUser(Request $request)
    {
       $suspension = User::where('user_code', $request->user_code)->update([
