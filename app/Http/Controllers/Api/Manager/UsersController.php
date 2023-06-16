@@ -63,7 +63,7 @@ class UsersController extends Controller
          $users = UserResource::collection(
             User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
                ->where('region_id', $request->user()->region_id)
-               ->pluck('user_code','user_name', 'account_type')
+               ->pluck('user_code','name', 'account_type')
       );
       }else{
          $users = UserResource::collection(

@@ -93,6 +93,36 @@ class customersController extends Controller
          "profile" => $customer
       ]);
    }
+public function RequestToBeCreditor(Request $request){
+   $customer = customers::find($request->customer_id);
+   if (!empty($customer)){
+      customers::whereId($request->id)->update([ 'is_creditor'=>$request->is_creditor]);
+      return response()->json([
+         "success" => true,
+         "message" => "Request to be a Creditor Received Successfully",
+      ], 200);
+   }
+
+   return response()->json([
+      "success" => false,
+      "message" => "Customer Not found"
+   ], 409);
+}
+public function creditorStatus(Request $request){
+   $customer = customers::find($request->customer_id);
+   if (!empty($customer)){
+      customers::whereId($request->id)->first();
+      return response()->json([
+         "success" => true,
+         "message" => "Request to be a Creditor Received Successfully",
+      ], 200);
+   }
+
+   return response()->json([
+      "success" => false,
+      "message" => "Customer Not found"
+   ], 409);
+}
 
    public function updateCustomerProfile(Request $request){
 
