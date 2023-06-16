@@ -210,8 +210,8 @@ class CartController extends Controller
       $customer_code = $request->user()->user_code;
       $code=customers::where('user_code',$customer_code)->first();
       $id=$code->id;
-      $deliveries = Orders::with(['OrderItem'=> function ($query) {
-         $query->select('id', 'order_code', 'quantity', 'productID')
+      $deliveries = Orders::with(['OrderItems'=> function ($query) {
+         $query->select('id', 'order_code', 'quantity', 'requested_quantity','requested_allocated','productID')
             ->with([
                'productInformation' => function ($query) {
                   $query->select('id', 'product_name', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
@@ -222,11 +222,8 @@ class CartController extends Controller
             ]);
       }])
          ->where('customerID', $id)
-         ->get()
-      ->map(function ($delivery) {
-      $delivery->OrderItem = $delivery->OrderItem->toArray();
-      return $delivery;
-   });
+         ->get();
+
       return response()->json([
          "success" => true,
          "status" => 200,

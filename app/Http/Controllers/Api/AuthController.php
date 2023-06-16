@@ -37,7 +37,7 @@ class AuthController extends Controller
    {
       $status = false;
       if (is_numeric($request->email)) {
-         $status = FacadesAuth::attempt(['phone_number' => $request->email, 'password' => $request->password], true)->where;
+         $status = FacadesAuth::attempt(['phone_number' => $request->email, 'password' => $request->password], true);
       } else {
          $status = FacadesAuth::attempt(['email' => $request->email, 'password' => $request->password], true);
       }
@@ -48,7 +48,9 @@ class AuthController extends Controller
       $user = User::where(function ($query) use ($request) {
          $query->where('email', $request->email)
             ->orWhere('phone_number', $request->email);
-      })->whereIn('account_type' ,['TD','TSR'])->first();
+      })
+         ->whereIn('account_type', ['TD', 'TSR'])
+         ->first();
       if ($user == null) {
          return response()->json(
             [
