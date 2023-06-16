@@ -11,8 +11,9 @@ class TargetsController extends Controller
    public function getSalespersonTarget(Request $request)
    {
        $user_code=$request->user()->user_code;
-       $target=User::with('countPendingOrders','TargetSales','TargetLeads','TargetsOrder','TargetsVisit')
+       $target=User::with('PendingOrders','TargetSales','TargetLeads','TargetsOrder','TargetsVisit')
        ->where('user_code',$user_code)->get();
+       $pendingOrderCount = $target->PendingOrders->count();
        return response()->json([
            "success" => true,
            "message" => "Target Set",
