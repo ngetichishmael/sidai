@@ -31,7 +31,7 @@
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
-                        
+
                         @foreach ($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
@@ -53,26 +53,38 @@
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
                             <td>
-                               <div class="dropdown" >
-                                  <button style="background-color: #B6121B;color:white" class="btn btn-md  dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                     <i data-feather="settings"></i>
-                                  </button>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                     <a href="{{ route('customer.edit', $contact->id) }}" type="button" class="dropdown-item btn btn-sm" style="color:#7cc7e0 ;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit</a>
-                                     <a href="{{ route('creditor.details', $contact->id) }}" type="button" class="dropdown-item btn btn-sm" style="color:#6df16d ; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
-                                     {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>--}}
+                                <div class="dropdown">
+                                    <button style="background-color: #B6121B;color:white"
+                                        class="btn btn-md  dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
+                                        data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"
+                                        data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                        <i data-feather="settings"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a href="{{ route('customer.edit', $contact->id) }}" type="button"
+                                            class="dropdown-item btn btn-sm" style="color:#7cc7e0 ;font-weight: bold"><i
+                                                data-feather="edit"></i> &nbsp;Edit</a>
+                                        <a href="{{ route('creditor.details', $contact->id) }}" type="button"
+                                            class="dropdown-item btn btn-sm"
+                                            style="color:#6df16d ; font-weight: bold"><i data-feather="eye"></i>&nbsp;
+                                            View</a>
+                                        {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a> --}}
 
-                                     @if ($contact->approval === 'Approved')
-                                        <a wire:click.prevent="deactivate({{ $contact->id }})"
+                                        @if ($contact->approval === 'Approved')
+                                            <a wire:click.prevent="deactivate({{ $contact->id }})"
                                                 onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                                type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold"><i data-feather="check"></i>&nbsp;>Approved</a>
-                                     @else
-                                        <a wire:click.prevent="activate({{ $contact->id }})"
-                                            onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                                type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" ><i data-feather="pause"></i>&nbsp;Pending</a>
-                                     @endif
-                                  </div>
-                               </div>
+                                                type="button" class="dropdown-item btn btn-sm me-2"
+                                                style="color:  #54a149; font-weight: bold"><i
+                                                    data-feather="check"></i>&nbsp;>Approved</a>
+                                        @else
+                                            <a wire:click.prevent="activate({{ $contact->id }})"
+                                                onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
+                                                type="button" class="dropdown-item btn btn-sm me-2"
+                                                style="color: #e5602f;font-weight: bold"><i
+                                                    data-feather="pause"></i>&nbsp;Pending</a>
+                                        @endif
+                                    </div>
+                                </div>
 
                             </td>
                             </tr>
@@ -80,7 +92,7 @@
                     </tbody>
                 </table>
 
-                
+
             </div>
         </div>
     </div>
