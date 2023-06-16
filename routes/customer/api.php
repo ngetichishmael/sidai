@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\customer\CartController;
 use App\Http\Controllers\Api\CustomerAuthController;
+use App\Http\Controllers\SupportTicketController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*

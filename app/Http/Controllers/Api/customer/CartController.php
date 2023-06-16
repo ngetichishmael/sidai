@@ -213,10 +213,10 @@ class CartController extends Controller
          $query->select('id', 'order_code', 'quantity', 'productID')
             ->with([
                'productInformation' => function ($query) {
-                  $query->select('id', 'product_name','sku_code', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
+                  $query->select('id', 'product_name', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
                },
                'productPrice' => function ($query) {
-                  $query->select('id', 'productID', 'buying_price', 'selling_price', 'created_at');
+                  $query->select('id', 'productID', 'buying_price', 'selling_price','distributor_price', 'created_at');
                }
             ]);
       }])
