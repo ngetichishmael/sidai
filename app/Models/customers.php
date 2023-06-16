@@ -25,10 +25,18 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
+//   public function number_visited()
+//   {
+//      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
+//   }
+
    public function number_visited()
    {
-      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
+      return $this->hasMany(Checkin::class, 'customer_id', 'id')
+         ->selectRaw('count(*) as count')
+         ->groupBy('customer_id');
    }
+
    public function Checkings(): HasMany
    {
       return $this->hasMany(checkin::class, 'customer_id', 'id');

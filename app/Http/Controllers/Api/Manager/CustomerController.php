@@ -10,10 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerController extends Controller
 {
-   public function getCustomers()
+   public function getCustomers2()
    {
       $customers = customers::with(['number_visited','orders.orderItems'])
-//         ->select('id', 'customer_name', 'id_number', 'customer_type', 'latitude', 'longitude', 'contact_person', 'telephone', 'is_creditor', 'creditor_approved', 'customer_group', 'customer_secondary_group', 'price_group', 'route', 'route_code', 'region_id', 'subregion_id', 'status', 'email', 'image', 'phone_number', 'business_code', 'created_by', 'updated_by', 'created_at', 'updated_at')
          ->where('region_id', Auth::user()->region_id)
          ->get();
 
@@ -24,4 +23,23 @@ class CustomerController extends Controller
       ]);
 
    }
+   public function getCustomers()
+   {
+      $customers = customers::with(['number_visited', 'orders.orderItems'])
+         ->where('region_id', Auth::user()->region_id)
+         ->get();
+
+      // Transform the collection to replace the 'number_visited' attribute with the count value
+      $transformedCustomers = $customers->transform(function ($customer) {
+         $customer->number_visited = $customer->number_visited->pluck('count')->first();
+         return $customer;
+      });
+
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $transformedCustomers,
+      ]);
+   }
+
 }
