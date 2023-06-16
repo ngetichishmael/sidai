@@ -17,7 +17,7 @@ class Dashboard extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $contacts = customers::with('Area.Subregion.Region', 'Creator')
+      $contacts = customers::where('customer_type','normal')
          ->search($searchTerm)
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
