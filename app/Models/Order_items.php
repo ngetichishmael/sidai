@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\products\product_information;
 use App\Models\products\product_price;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,5 +30,9 @@ class Order_items extends Model
    public function ProductPrice(): HasOne
    {
       return $this->hasOne(product_price::class, 'productID', 'productID');
+   }
+   public function productInformation(): BelongsTo
+   {
+      return $this->belongsTo(product_information::class, 'productID', 'id');
    }
 }
