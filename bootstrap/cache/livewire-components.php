@@ -5,6 +5,7 @@
   'checkin.index' => 'App\\Http\\Livewire\\Checkin\\index',
   'comment.dashboard' => 'App\\Http\\Livewire\\Comment\\Dashboard',
   'creditors.dashboard' => 'App\\Http\\Livewire\\Creditors\\Dashboard',
+  'customer-group.customergroup' => 'App\\Http\\Livewire\\CustomerGroup\\Customergroup',
   'customers.dashboard' => 'App\\Http\\Livewire\\Customers\\Dashboard',
   'customers.index' => 'App\\Http\\Livewire\\Customers\\Index',
   'customers.order' => 'App\\Http\\Livewire\\Customers\\Order',
