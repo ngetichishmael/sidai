@@ -59,23 +59,30 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
-      if ($request->account_type === 'RSM') {
-         $users = UserResource::collection(
+      if ($request->account_type == 'RSM' || 'rsm') {
+         $users =
             User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
                ->where('region_id', $request->user()->region_id)
-               ->pluck('user_code','name', 'account_type')
-      );
-      }elseif ($request->account_type === 'NMS'){
-         $users = UserResource::collection(
+               ->pluck('name', 'user_code','account_type');
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $users,
+         ]);
+      }else if ($request->account_type == 'NMS' || 'nsm'){
+         $users =
             User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
-               ->where('region_id', $request->user()->region_id)
-               ->pluck('user_code','user', 'account_type')
-         );
+               ->pluck('name', 'user_code', 'account_type');
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $users,
+         ]);
       }
       return response()->json([
-         "success" => true,
-         "status" => 200,
-         "data" => $users,
+         "success" => false,
+         "status" => 401,
+         "data" => "UNAUTHORIZED USER!!!",
       ]);
    }
    public function suspendUser(Request $request)
