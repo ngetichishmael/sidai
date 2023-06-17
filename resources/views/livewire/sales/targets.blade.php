@@ -10,7 +10,7 @@
                    <table class="table">
                        <thead class="thead-light">
                            <tr>
-                               <th>Account Type</th>
+                               {{-- <th>Account Type</th> --}}
                                <th>Sales Force</th>
                                <th>Target</th>
                                <th>Deadline</th>

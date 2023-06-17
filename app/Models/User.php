@@ -101,6 +101,10 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->belongsTo(Region::class,  'route_code', 'id');
    }
+   public function Subregion(): BelongsTo
+   {
+      return $this->belongsTo(Subregion::class,  'route_code', 'id');
+   }
    public function Checkings(): HasMany
    {
       return $this->hasMany(checkin::class, 'user_code', 'user_code');

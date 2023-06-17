@@ -32,6 +32,7 @@
                        <th>Achieved</th>
                        <th>Dead Line</th>
                        <th>Count Down</th>
+                       <th>Action</th>
                    </tr>
                </thead>
                <tbody>
@@ -69,6 +70,7 @@
                                  </button>
                               @endif
                           </td>
+                          <td><a href="{{ route('orderstarget.edit',$order->user_code) }}" class="btn btn-outline-info btn-sm">Edit</a></td>
                       </tr>
                   @empty
                       <tr>

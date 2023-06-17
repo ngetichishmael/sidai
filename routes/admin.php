@@ -20,7 +20,7 @@ Route::middleware(['auth'])->group(function () {
       'index' => 'sales.target',
       'show' => 'sales.target.show',
       'edit' => 'sales.target.edit',
-      'update' => 'sales.target.update',
+      'update/{code}' => 'sales.target.update',
       'destroy' => 'sales.target.destroy',
       'create' => 'sales.target.create',
       'store' => 'sales.target.store',
