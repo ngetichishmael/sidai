@@ -10,6 +10,7 @@
                    <table class="table">
                        <thead class="thead-light">
                            <tr>
+                               <th>Account Type</th>
                                <th>Sales Force</th>
                                <th>Target</th>
                                <th>Deadline</th>
@@ -96,3 +97,33 @@
        </div>
    </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+   $(document).ready(function() {
+      $('#account_type').on('change', function() {
+         var accountType = $(this).val();
+         if (accountType) {
+            $.ajax({
+               url: '{{ route('get.users') }}',
+               type: 'GET',
+               data: { account_type: accountType },
+               success: function(data) {
+                  $('#user').empty();
+                  $('#user').append('<option value="">Choose a User</option>');
+                  data.users.forEach(function(user) {
+                     $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                  });
+               },
+               error: function() {
+                  console.log('Error occurred during AJAX request.');
+               }
+            });
+         } else {
+            $('#user').empty();
+            $('#user').append('<option value="">Choose User</option>');
+         }
+      });
+   });
+
+</script>

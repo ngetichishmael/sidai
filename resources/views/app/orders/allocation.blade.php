@@ -137,32 +137,27 @@
        $(document).ready(function() {
           $('#account_type').on('change', function() {
              var accountType = $(this).val();
-             if (accountType === 'distributors') {
-
+             if (accountType) {
+                $.ajax({
+                   url: '{{ route('get.users') }}',
+                   type: 'GET',
+                   data: { account_type: accountType },
+                   success: function(data) {
+                      $('#user').empty();
+                      $('#user').append('<option value="">Choose a User</option>');
+                      data.users.forEach(function(user) {
+                         $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                      });
+                   },
+                   error: function() {
+                      console.log('Error occurred during AJAX request.');
+                   }
+                });
              } else {
-                if (accountType) {
-                   $.ajax({
-                      url: '{{ route('get.users') }}',
-                      type: 'GET',
-                      data: {account_type: accountType},
-                      success: function (data) {
-                         $('#user').empty();
-                         $('#user').append('<option value="">Choose a User</option>');
-                         data.users.forEach(function (user) {
-                            $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
-                         });
-                      },
-                      error: function () {
-                         console.log('Error occurred during AJAX request.');
-                      }
-                   });
-                } else {
-                   $('#user').empty();
-                   $('#user').append('<option value="">Choose User</option>');
-                }
+                $('#user').empty();
+                $('#user').append('<option value="">Choose User</option>');
              }
           });
-
        });
 
     </script>
