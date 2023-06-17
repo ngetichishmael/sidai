@@ -20,6 +20,22 @@
                        <tbody>
                            @foreach ($Targets as $index => $target)
                                <tr class="col-12">
+                                {{-- <td>
+                                    <label for="">Select User Type</label>
+                                    <select name="user_type" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select" id="account_type" required>
+                                       <option value="">Choose User Type</option>
+                                       @foreach ($account_types as $account)
+                                          <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                                       @endforeach
+                                    </select>
+                                 </td>
+                                <td>
+                                    <label for="">Choose User</label>
+                                    <select name="user" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select2" id="user" required>
+                                       <option value=""></option>
+                                    </select>
+                                 </td> --}}
+
                                    <td>
                                        <label for="fp-date-time">Sales Force</label>
                                        <select wire:model="Targets.{{ $index }}.primarykey"
@@ -97,7 +113,9 @@
        </div>
    </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
    $(document).ready(function() {
@@ -127,3 +145,4 @@
    });
 
 </script>
+

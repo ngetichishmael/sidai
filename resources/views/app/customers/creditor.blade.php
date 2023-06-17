@@ -38,32 +38,12 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <label for="last-name-column">Account</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" />
+                                        <label for="first-name-column">ID Number</label>
+                                        <input type="number" maxlenth="9" id="first-name-column" class="form-control"
+                                            placeholder="Id Number" name="id_number" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Manufacturer Number</label>
-                                        <input type="text" id="city-column" class="form-control" placeholder="City"
-                                            name="manufacturer_number" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">VAT number</label>
-                                        <input type="text" id="country-floating" class="form-control" name="vat_number"
-                                            placeholder="VAT number" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Delivery Time</label>
-                                        <input type="text" id="company-column" class="form-control" name="delivery_time"
-                                            placeholder="Delivery Time" />
-                                    </div>
-                                </div>
+                               
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
@@ -71,54 +51,6 @@
                                             placeholder="address" />
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">City</label>
-                                        <input type="text" id="first-name-column" class="form-control" placeholder="City"
-                                            name="city" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Province</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            placeholder="Province" name="province" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="city-column">Postal Code</label>
-                                        <input type="text" id="city-column" class="form-control"
-                                            placeholder="Postal Code" name="postal_code" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="country-floating">Country</label>
-                                        <input type="text" id="country-floating" class="form-control" name="country"
-                                            placeholder="Country" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="company-column">Latitude</label>
-                                        <input type="text" id="company-column" class="form-control" name="latitude"
-                                            placeholder="Latitude" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="email-id-column">Longitude</label>
-                                        <input type="email" id="email-id-column" class="form-control" name="longitude"
-                                            placeholder="Longitude" />
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
@@ -139,30 +71,21 @@
                                         name="customer_group">
                                         <option value="">Customer Group</option>
                                         @foreach ($groups as $group)
-                                            <option value="{{ $group->outlet_name }}">{{ $group->outlet_name }}
+                                            <option value="{{ $group->group_name }}">{{ $group->group_name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <label>Pricing Group</label>
+                                    <label>Pricing category</label>
                                     <select class="select select2" wire:model='region' class="form-control"
-                                        name="customer_group">
-                                        <option value="">Pricing Group</option>
-                                        @foreach ($pricing as $group)
-                                            <option value="{{ $group->name }}">{{ $group->name }}
+                                        name="pricing_category">
+                                        <option value="">Pricing category</option>
+                                        @foreach ($prices as $price)
+                                            <option value="{{ $price->name }}">{{ $price->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Branch</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" />
-                                    </div>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -179,6 +102,7 @@
                                     </div>
                                 </div>
                                 @livewire('customers.region')
+
                             </div>
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn btn-primary">Submit</button>

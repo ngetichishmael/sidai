@@ -89,7 +89,9 @@ class usersController extends Controller
             "Regional Report",
             "Suppliers Report",
             "Payments Report",
-            "Inventory Report"
+            "Inventory Report",
+            "Visitation Reports",
+            "Target Reports"
       ];
       $count = 1;
       return view('app.users.reports', compact('reports','count'));

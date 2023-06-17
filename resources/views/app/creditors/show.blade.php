@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Customer Details')
+@section('title', 'Creditor Details')
 {{-- page styles --}}
 
 
@@ -9,7 +9,7 @@
     <!-- begin breadcrumb -->
     <div class="mb-2 row">
         <div class="col-md-8">
-            <h2 class="page-header"><i data-feather="users"></i>Customers | Details </h2>
+            <h2 class="page-header"><i data-feather="users"></i>Creditor | Details </h2>
         </div>
         <div class="col-md-4">
 
@@ -22,7 +22,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Customers</h4>
+                        <h4 class="card-title">Creditor</h4>
                     </div>
                     <div class="card-body">
                         
@@ -60,6 +60,12 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
+                                        <h4>Customer Type:</h4>
+                                        <p style="color:black">{{ $customer->customer_type ?? 'N/A' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
                                         <h4>Starus:</h4>
                                         <p style="color:black">{{ $customer->status ?? 'N/A' }}</p>
                                     </div>
@@ -86,9 +92,6 @@
 
                             </div>
                             
-                            <div class="my-1 col-sm-9 offset-sm-3">
-                                <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-success">Approve To Creditor</a>
-                            </div>
                     </div>
                 </div>
             </div>

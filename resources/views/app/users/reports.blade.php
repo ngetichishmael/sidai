@@ -76,6 +76,10 @@
                                 <a href="{{ route('sidai.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'Warehouse Report')
                                 <a href="{{ route('warehouse.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                @elseif($report == 'Visitaion Reports')
+                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                @elseif($report == 'Target Reports')
+                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                             @endif
                           </div>
                        </td>

@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
+use App\Models\customer_group;
+use App\Models\price_group;
 use App\Models\customer\customers;
 use App\Models\country;
 use App\Models\customer\groups;
@@ -35,6 +37,10 @@ class customerController extends Controller
    {
       return view('app.customers.index');
    }
+   public function customergroups()
+   {
+      return view('livewire.customer-group.customergroup');
+   }
 
    public function creditor()
    {
@@ -44,27 +50,45 @@ class customerController extends Controller
    {
       return view('app.customers.index');
    }
+   public function groupstore(Request $request)
+   {
+      $customer = new customer_group;
+      $customer->group_name = $request->group_name;
+      $customer->business_code = $request->business_code;
+      $customer->save();
+
+      Session::flash('success', 'Customer Group Added');
+      return redirect()->route('groupings');
+
+   }
 
    public function create()
    {
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
-      $groups = groups::get();
+      $groups = customer_group::all();
       $pricing = PriceGroup::get();
+      $prices = price_group::all();
 
-      return view('app.customers.create', compact('country', 'groups', 'pricing'));
+      return view('app.customers.create', compact('country', 'groups', 'pricing','prices'));
    }
    public function createcreditor()
    {
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
-      $groups = groups::get();
+      $groups = customer_group::all();
       $pricing = PriceGroup::get();
-      return view('app.customers.creditor', compact('country', 'groups', 'pricing'));
+      $prices = price_group::all();
+      return view('app.customers.creditor', compact('country', 'groups', 'pricing','prices'));
    }
 
    public function details($id)
    {
       $customer = Customers::find($id);
       return view('app.customers.show', ['customer' => $customer]);
+   }
+   public function creditordetails($id)
+   {
+      $customer = Customers::find($id);
+      return view('app.creditors.show', ['customer' => $customer]);
    }
 
    public function approvecreditor($id)
@@ -115,9 +139,11 @@ class customerController extends Controller
       $customer->customer_name = $request->customer_name;
       $customer->user_code = $user->user_code;
       $customer->id_number = $user->id_number;
-      //$customer->vat_number = $request->vat_number;
+      $customer->contact_person = $request->contact_person;
+      $customer->telephone = $request->telephone;
       $customer->address = $request->address;
-      $customer->price_group = $request->pricing_category;
+      $customer->price_group = $request->price_group;
+      $customer->customer_group = $request->customer_group;
       $customer->route = $request->route;
       $customer->route_code = $request->route;
       $customer->zone_id = $request->route;
@@ -154,7 +180,10 @@ class customerController extends Controller
       $customer->customer_name = $request->customer_name;
       $customer->id_number =$request->id_number;
       $customer->address = $request->address;
+      $customer->contact_person = $request->contact_person;
+      $customer->telephone = $request->telephone;
       $customer->price_group = $request->pricing_category;
+      $customer->customer_group = $request->customer_group;
       $customer->route = $request->route;
       $customer->route_code = $request->territory;
       $customer->zone_id = $request->territory;
@@ -224,10 +253,11 @@ class customerController extends Controller
          'subregion_id' => $subregion_id,
          'region_id' => $region_id,
       ]);
-      $groups = groups::get();
+      $groups = customer_group::all();
+      $prices = price_group::all();
       $pricing = PriceGroup::get();
       return view('app.creditors.edit',
-         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing')
+         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing','prices')
       );
    }
 
@@ -240,7 +270,8 @@ $region=
       $customer = customers::where('id', $id)->first();
       $customer->customer_name = $request->customer_name ?? $customer->customer_name;
       $customer->id_number = $request->id_number ?? $customer->id_number;
-      //$customer->vat_number = $request->vat_number ?? $customer->vat_number;
+      $customer->contact_person = $request->contact_person;
+      $customer->telephone = $request->telephone;
       $customer->address = $request->address ?? $customer->address;
       $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
@@ -281,9 +312,10 @@ $region=
 
       $customer = customers::where('id', $id)->first();
       $customer->customer_name = $request->customer_name ?? $customer->customer_name;
-      $customer->vat_number = $request->vat_number ?? $customer->vat_number;
-      $customer->postal_code = $request->postal_code ?? $customer->postal_code;
+      $customer->contact_person = $request->contact_person;
+      $customer->telephone = $request->telephone;
       $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
+      $customer->customer_group = $request->customer_group ?? $customer->customer_group;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
       $customer->route = $request->route ?? $customer->route;
       $customer->route_code = $request->territory ?? $customer->territory;
@@ -296,7 +328,7 @@ $region=
       $customer->save();
 
 
-      Session::flash('success', 'Customer updated successfully');
+      Session::flash('success', 'Creditor updated successfully');
 
       return redirect()->route('creditors');
    }
@@ -327,4 +359,5 @@ $region=
       $accounts = customers::where('businessID', FacadesAuth::user()->business_code)->orderby('id', 'desc')->get(['id', 'customer_name as text']);
       return ['results' => $accounts];
    }
+   
 }
