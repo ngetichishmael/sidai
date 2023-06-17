@@ -727,6 +727,7 @@ footer.footer-border {
    box-shadow: 0 0 10px 1px rgb(241 132 33);
    color: #fff;
    font-weight: 400;
+   font-size: small;
    border-radius: 4px;
 }
 

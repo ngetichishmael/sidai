@@ -95,9 +95,11 @@ Route::group(['middleware' => ['verified']], function () {
       'store' => 'customer.store',
    ]);
    Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
+   Route::get('creditors/pending', ['uses' => 'app\customer\customerController@pendingcreditor', 'as' => 'pending.creditors']);
    Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
    Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
-   Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
+   Route::get('customer/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
+   Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@creditordetails', 'as' => 'creditors.details']);
    Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
    Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
    Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
@@ -220,6 +222,9 @@ Route::group(['middleware' => ['verified']], function () {
    /* === product price === */
    Route::get('product/price/{id}/edit', ['uses' => 'app\products\productController@price', 'as' => 'product.price']);
    Route::post('price/{id}/update', ['uses' => 'app\products\productController@price_update', 'as' => 'product.price.update']);
+   //customer groups
+   Route::get('customers/groups', ['uses' => 'app\customer\customerController@customergroups', 'as' => 'groupings']);
+   Route::post('customers/groups/store', ['uses' => 'app\customer\customerController@groupstore', 'as' => 'groupstore']);
 
    /* === product inventory === */
    Route::get('products/inventory/{id}/edit', ['uses' => 'app\products\inventoryController@inventory', 'as' => 'products.inventory']);

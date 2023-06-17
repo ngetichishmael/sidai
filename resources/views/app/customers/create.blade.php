@@ -43,19 +43,6 @@
                                             placeholder="Id Number" name="id_number" />
                                     </div>
                                 </div>
-{{--                                <div class="col-md-6 col-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="last-name-column">Account</label>--}}
-                                        <input type="hidden" id="last-name-column" class="form-control"
-                                            placeholder="Account" name="account" value="Sidai" />
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="col-md-6 col-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label for="city-column">Manufacturer Number</label>--}}
-                                        <input type="hidden"  class="form-control"
-                                            name="manufacturer_number" value="000000" />
-
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="address-id-column">Address</label>
@@ -63,37 +50,42 @@
                                             placeholder="address" />
                                     </div>
                                 </div>
-
-                            </div>
-
-                            <div class="row">
-
-                                        <input type="hidden" id="first-name-column" class="form-control"
-                                            name="city" value="Nairobi" />
-
-                                        <input type="hidden" id="country-floating" class="form-control" name="country"
-                                            placeholder="Country" value="Kenya" />
-
-
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 col-12">
-                                    <label>Pricing category</label>
+                                    <div class="form-group">
+                                        <label for="contact_person">Contact person Name</label>
+                                        <input type="text" id="contact_person" class="form-control"
+                                            placeholder="contact person" name="contact_person">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="telephone">Contact person Telephone</label>
+                                        <input type="number" id="contact_person" class="form-control"
+                                            placeholder="eg 07.." name="telephone">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label>Customer Group</label>
                                     <select class="select select2" wire:model='region' class="form-control"
-                                        name="pricing_category">
-                                        <option value="">Pricing category</option>
+                                        name="customer_group">
+                                        <option value="">Select Group</option>
                                         @foreach ($groups as $group)
-                                            <option value="{{ $group->outlet_name }}">{{ $group->outlet_name }}
+                                            <option value="{{ $group->group_name }}">{{ $group->group_name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                        <input type="hidden" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" value="Sidai" />
-
+                                <div class="col-md-6 col-12">
+                                    <label>Pricing category</label>
+                                    <select class="select select2" wire:model='region' class="form-control"
+                                        name="price_group">
+                                        <option value="">Pricing category</option>
+                                        @foreach ($prices as $price)
+                                            <option value="{{ $price->name }}">{{ $price->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
@@ -109,6 +101,31 @@
                                     </div>
                                 </div>
                                 @livewire('customers.region')
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="last-name-column">Account</label>--}}
+                                        <input type="hidden" id="last-name-column" class="form-control"
+                                            placeholder="Account" name="account" value="Sidai" />
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 col-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label for="city-column">Manufacturer Number</label>--}}
+                                        <input type="hidden"  class="form-control"
+                                            name="manufacturer_number" value="000000" />
+
+                                
+
+                            </div>
+
+                            <div class="row">
+                                        <input type="hidden" id="first-name-column" class="form-control"
+                                            name="city" value="Nairobi" />
+
+                                        <input type="hidden" id="country-floating" class="form-control" name="country"
+                                            placeholder="Country" value="Kenya" />
+                                            <input type="hidden" id="first-name-column" class="form-control"
+                                            placeholder="Branch" name="branch" value="Sidai" />
                             </div>
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn btn-primary">Submit</button>

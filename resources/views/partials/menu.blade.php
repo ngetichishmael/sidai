@@ -84,23 +84,21 @@
                     Customers Managements</span>
             </a>
             <ul class="menu-content">
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('customer') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Customers</span></a>
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('customer') }}">
+                  <span class="menu-item text-truncate">Customers</span></a>
                 </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
-                    data-feather="circle"></i><span class="menu-item text-truncate">Creditors</span></a>
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}">
+                  <span class="menu-item text-truncate">Creditors</span></a>
                 </li>
-               <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}"><i
-                    data-feather="circle"></i><span class="menu-item text-truncate">Approve Creditors</span></a>
+               <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}">
+                  <span class="menu-item text-truncate">Approve Creditors</span></a>
                 </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">Pricing</span></a>
-                </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><i
-                  data-feather="circle"></i><span class="menu-item text-truncate">Customer Groups</span></a>
+                
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('groupings') }}">
+                  <span class="menu-item text-truncate">Customer Groups</span></a>
                </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
-                        href="{{ route('CustomerComment') }}"><i data-feather="circle"></i><span
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
+                        href="{{ route('CustomerComment') }}"><span
                             class="menu-item text-truncate">Comments</span></a>
                 </li>
             </ul>
@@ -131,19 +129,19 @@
               {{-- <li><a class="d-flex align-items-center" href="{!! route('orders.index') !!}"><i
                        data-feather="shopping-cart"></i><span class="menu-item text-truncate">All Order</span></a>
               </li> --}}
-              <li><a class="d-flex align-items-center" href="{{ route('orders.pendingorders') }}"><i
-                       data-feather="circle"></i><span class="menu-item text-truncate">Pending Orders</span></a>
+              <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('orders.pendingorders') }}">
+               <span class="menu-item text-truncate">Pending Orders</span></a>
               </li>
-              <li><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}"><i
-                       data-feather="circle"></i><span class="menu-item text-truncate">Pending Deliveries</span></a>
+              <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('orders.pendingdeliveries') }}">
+               <span class="menu-item text-truncate">Pending Deliveries</span></a>
               </li>
-              <li><a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">
-                    <i data-feather='circle'></i><span class="menu-title text-truncate" data-i18n="Todo">
+              <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">
+                    <span class="menu-title text-truncate" data-i18n="Todo">
                     Delivery History</span>
                  </a>
               </li>
-              <li><a class="d-flex align-items-center" href="{!! route('orders.distributororders') !!}">
-                    <i data-feather='circle'></i><span class="menu-title text-truncate" data-i18n="Todo">
+              <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('orders.distributororders') !!}">
+                    <span class="menu-title text-truncate" data-i18n="Todo">
                     Distributor Orders</span>
                  </a>
               </li>
@@ -168,12 +166,12 @@
                     Payment Management</span>
             </a>
             <ul class="menu-content">
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
-                        href="{{ route('PaidPayment') }}"><i data-feather="circle"></i><span
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
+                        href="{{ route('PaidPayment') }}"><span
                             class="menu-item text-truncate">Payments</span></a>
                 </li>
-                <li><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
-                        href="{{ route('PendingPayment') }}"><i data-feather="circle"></i><span
+                <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer*') !!}"
+                        href="{{ route('PendingPayment') }}"><span
                             class="menu-item text-truncate">Creditors Payment</span></a>
                 </li>
             </ul>
@@ -183,24 +181,24 @@
                     class="menu-title text-truncate" data-i18n="Invoice"> Warehousing Management</span></a>
             <ul class="menu-content">
                @if(Auth::check() && Auth::user()->account_type == "NSM")
-                <li><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}"><i
-
-                            data-feather="archive"></i><span class="menu-item text-truncate">All
+                <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('warehousing.index') !!}">
+                  <span class="menu-item text-truncate">All
                             Warehouses</span></a></li>
                @endif
 {{--               <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i--}}
 {{--                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li>--}}
 
-                            <li><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><i
-                                data-feather="layers"></i><span class="menu-item text-truncate">Approve Stock</span></a></li>
-                    <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i
-                        data-feather="gift"></i><span class="menu-item text-truncate">Suppliers</span></a>
+                            <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><span class="menu-item text-truncate">Approve Stock</span></a></li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('supplier') !!}">
+                     <span class="menu-item text-truncate">Suppliers</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{!! route('product.category') !!}"><i
-                        data-feather="check-circle"></i><span class="menu-item text-truncate">Categories</span></a>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><span class="menu-item text-truncate">Pricing</span></a>
+                  </li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('product.category') !!}">
+                     <span class="menu-item text-truncate">Categories</span></a>
                     </li>
-                    <li><a class="d-flex align-items-center" href="{!! route('product.brand') !!}"><i
-                                data-feather="award"></i><span class="menu-item text-truncate">Brands</span></a>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('product.brand') !!}">
+                     <span class="menu-item text-truncate">Brands</span></a>
                     </li>
             </ul>
         </li>
@@ -216,22 +214,22 @@
                  <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
               </a>
               <ul class="menu-content">
-                 <li><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">NSM</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}">
+                  <span class="menu-item text-truncate">NSM</span></a>
                  </li>
 
-                 <li><a class="d-flex align-items-center" href="{!! route('rsm') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">RSM</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('rsm') !!}">
+                  <span class="menu-item text-truncate">RSM</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{!! route('tsr') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">TSR</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('tsr') !!}">
+                  <span class="menu-item text-truncate">TSR</span></a>
                  </li>
 
-                 <li><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Shop Attendee</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}">
+                  <span class="menu-item text-truncate">Shop Attendee</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{!! route('td') !!}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">TD</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('td') !!}">
+                  <span class="menu-item text-truncate">TD</span></a>
                  </li>
               </ul>
 
@@ -252,17 +250,17 @@
               <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
               <ul class="menu-content">
-                 <li><a class="d-flex align-items-center" href=" {{ route('sales.target') }}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Sales</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {{ route('sales.target') }}">
+                  <span class="menu-item text-truncate">Sales</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{{ route('visit.target') }}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Visits</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('visit.target') }}">
+                  <span class="menu-item text-truncate">Visits</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{{ route('leads.target') }}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Leads</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('leads.target') }}">
+                  <span class="menu-item text-truncate">Leads</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center" href="{{ route('order.target') }}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Orders</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('order.target') }}">
+                  <span class="menu-item text-truncate">Orders</span></a>
                  </li>
               </ul>
            </li>
@@ -272,8 +270,8 @@
             <a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Reports</span></a>
             <ul class="menu-content">
-                <li><a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
-                            data-feather="circle"></i><span class="menu-item text-truncate">All Reports</span></a>
+                <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.reports') !!}">
+                  <span class="menu-item text-truncate">All Reports</span></a>
                 </li>
             </ul>
         </li>
@@ -283,32 +281,30 @@
               <a class="d-flex align-items-center" href="#"><i data-feather="map-pin"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
               <ul class="menu-content">
-                 <li>
+                 <li style="padding-left: 50px">
                     <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
-                       href="{{ route('regions') }}"><i data-feather="circle"></i><span
+                       href="{{ route('regions') }}"><span
                           class="menu-item text-truncate">Regions</span></a></li>
-                 <li><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
-                        href="{{ route('subregions') }}"><i data-feather="circle"></i><span
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
+                        href="{{ route('subregions') }}"><span
                           class="menu-item text-truncate">Sub Regions</span></a>
                  </li>
-                 <li><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}"><i
-                          data-feather="circle"></i><span class="menu-item text-truncate">Routes</span></a>
+                 <li style="padding-left: 50px"><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}">
+                  <span class="menu-item text-truncate">Routes</span></a>
                  </li>
 
                  <li class="nav-item {!! Nav::isResource('maps') !!}">
-                    <a class="d-flex align-items-center" href="#"><i data-feather="globe"></i><span
+                    <a class="d-flex align-items-center" href="#"><span
                           class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
                     <ul class="menu-content">
                        <li class="nav-item {!! Nav::isResource('maps') !!}">
                           <a class="d-flex align-items-center" href="{!! route('maps') !!}">
-                             <i data-feather='circle'></i>
                              <span class="menu-title text-truncate" data-i18n="Todo">
                                 Maps</span>
                           </a>
                        </li>
                        <li class="nav-item {!! Nav::isResource('current-information') !!}">
                           <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
-                             <i data-feather='circle'></i>
                              <span class="menu-title text-truncate" data-i18n="Todo">
                                 Sales Agents</span>
                           </a>
@@ -347,17 +343,15 @@
                  <i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
               </a>
               <ul class="menu-content">
-                 <li>
+                 <li style="padding-left: 50px">
                     <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
-                       <i data-feather="circle">
-                       </i>
+                      
                        <span class="menu-item text-truncate">Survey</span>
                     </a>
                  </li>
-                 <li>
+                 <li style="padding-left: 50px">
                     <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
-                       <i data-feather="circle">
-                       </i>
+                      
                        <span class="menu-item text-truncate">Responses</span>
                     </a>
                  </li>

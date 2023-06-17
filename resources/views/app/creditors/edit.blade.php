@@ -26,7 +26,7 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-8">
-                c <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Customers</h4>
                     </div>
@@ -45,6 +45,27 @@
                                             value="{{ $customer->customer_name }}" />
                                     </div>
                                 </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="id-column">ID Number</label>
+                                        <input type="number" id="id-column" class="form-control" name="id_number"
+                                            placeholder="address" value="{{ $customer->id_number }}" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="first-name-column">Contact Person</label>
+                                        <input type="text" id="first-name-column" class="form-control"
+                                            value="{{ $customer->contact_person }}" name="contact_person" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <div class="form-group">
+                                        <label for="last-name-column">Telephone</label>
+                                        <input type="text" id="telephone-column" class="form-control"
+                                            value="{{ $customer->telephone }}" name="telephone" />
+                                    </div>
+                                </div>
                                 
                                
                                 <div class="col-md-6 col-12">
@@ -54,45 +75,32 @@
                                             placeholder="address" value="{{ $customer->address }}" />
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                {{-- @dd($customer) --}}
                                 <div class="col-md-6 col-12">
-                                    <label>Pricing Category</label>
-                                    <select wire:model='region' class="form-control" name="pricing_category">
-                                        <option value="">Pricing Category</option>
+                                    <label>Customer Group</label>
+                                    <select class="form-control" name="customer_group">
+                                        <option value="">Customer Group</option>
 
                                         @foreach ($groups as $group)
-                                            <option value="{{ $group->outlet_name }}"
-                                                @if ($group->outlet_name == $customer->customer_group) selected @endif>
-                                                {{ $group->outlet_name }}
+                                            <option value="{{ $group->group_name }}"
+                                                @if ($group->group_name == $customer->group_name) selected @endif>
+                                                {{ $group->group_name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="col-md-6 col-12">
-                                    <label>Pricing Group</label>
-                                    <select wire:model='region' class="form-control" name="price_group">
-                                        <option value="">Pricing Group</option>
-                                        @foreach ($pricing as $group)
-                                            <option value="{{ $group->name }}"
-                                                @if ($group->name == $customer->price_group) selected @endif>
-                                                {{ $group->name }}
+                                <div class="col-md-6 col-12">
+                                    <label>Pricing Category</label>
+                                    <select class="form-control" name="pricing_category">
+                                        <option value="">Pricing Category</option>
+
+                                        @foreach ($prices as $price)
+                                            <option value="{{ $price->name }}"
+                                                @if ($price->name == $price->group_name) selected @endif>
+                                                {{ $price->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                </div> --}}
-                            </div>
-
-                            <div class="row">
-                                {{-- <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="first-name-column">Branch</label>
-                                        <input type="text" id="first-name-column" class="form-control"
-                                            placeholder="Branch" name="branch" value="{{ $customer->branch }}" />
-                                    </div>
-                                </div> --}}
+                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
@@ -109,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
-                                    <label>Zone</label>
+                                    <label>Region</label>
                                     <select wire:model='region' class="form-control" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
@@ -144,8 +152,10 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- @livewire('customers.region') --}}
+
                             </div>
+
+                            <div class="row">
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn" style="background-color: #B6121B;color:white">Update</button>
                                 <a href="{{ route('customer') }}" class="btn btn-outline-secondary">Cancel</a>
