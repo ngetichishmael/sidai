@@ -77,7 +77,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>
-                                    <select wire:model='region' class="form-control" name="pricing_category">
+                                    <select class="form-control" name="customer_group">
                                         <option value="">Customer Group</option>
 
                                         @foreach ($groups as $group)
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Pricing Category</label>
-                                    <select wire:model='region' class="form-control" name="pricing_category">
+                                    <select class="form-control" name="pricing_category">
                                         <option value="">Pricing Category</option>
 
                                         @foreach ($prices as $price)

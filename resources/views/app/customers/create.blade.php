@@ -67,7 +67,7 @@
                                 <div class="col-md-6 col-12">
                                     <label>Customer Group</label>
                                     <select class="select select2" wire:model='region' class="form-control"
-                                        name="pricing_category">
+                                        name="customer_group">
                                         <option value="">Select Group</option>
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->group_name }}">{{ $group->group_name }}
@@ -78,7 +78,7 @@
                                 <div class="col-md-6 col-12">
                                     <label>Pricing category</label>
                                     <select class="select select2" wire:model='region' class="form-control"
-                                        name="pricing_category">
+                                        name="price_group">
                                         <option value="">Pricing category</option>
                                         @foreach ($prices as $price)
                                             <option value="{{ $price->name }}">{{ $price->name }}

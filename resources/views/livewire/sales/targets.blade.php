@@ -19,6 +19,22 @@
                        <tbody>
                            @foreach ($Targets as $index => $target)
                                <tr class="col-12">
+                                {{-- <td>
+                                    <label for="">Select User Type</label>
+                                    <select name="user_type" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select" id="account_type" required>
+                                       <option value="">Choose User Type</option>
+                                       @foreach ($account_types as $account)
+                                          <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                                       @endforeach
+                                    </select>
+                                 </td>
+                                <td>
+                                    <label for="">Choose User</label>
+                                    <select name="user" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select2" id="user" required>
+                                       <option value=""></option>
+                                    </select>
+                                 </td> --}}
+                                 
                                    <td>
                                        <label for="fp-date-time">Sales Force</label>
                                        <select wire:model="Targets.{{ $index }}.primarykey"
@@ -96,3 +112,33 @@
        </div>
    </div>
 </div>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+   $(document).ready(function() {
+      $('#account_type').on('change', function() {
+         var accountType = $(this).val();
+         if (accountType) {
+            $.ajax({
+               url: '{{ route('get.users') }}',
+               type: 'GET',
+               data: { account_type: accountType },
+               success: function(data) {
+                  $('#user').empty();
+                  $('#user').append('<option value="">Choose a User</option>');
+                  data.users.forEach(function(user) {
+                     $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                  });
+               },
+               error: function() {
+                  console.log('Error occurred during AJAX request.');
+               }
+            });
+         } else {
+            $('#user').empty();
+            $('#user').append('<option value="">Choose User</option>');
+         }
+      });
+   });
+
+</script> --}}

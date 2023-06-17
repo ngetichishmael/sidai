@@ -142,7 +142,7 @@ class customerController extends Controller
       $customer->contact_person = $request->contact_person;
       $customer->telephone = $request->telephone;
       $customer->address = $request->address;
-      $customer->price_group = $request->pricing_category;
+      $customer->price_group = $request->price_group;
       $customer->customer_group = $request->customer_group;
       $customer->route = $request->route;
       $customer->route_code = $request->route;
