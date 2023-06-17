@@ -20,9 +20,8 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Type</th>
+                        <th>User Name</th>
+                        <th>User Type</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                     </tr>
@@ -32,7 +31,6 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->name !!}</td>
-                            <td>{!! $route->status !!}</td>
                             <td>{!! $route->Type !!}</td>
                             <td>{!! $route->start_date !!}</td>
                             <td>{!! $route->end_date !!}</td>
