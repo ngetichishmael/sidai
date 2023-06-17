@@ -5,12 +5,16 @@ namespace App\Http\Livewire\Creditors;
 use App\Exports\customers as ExportsCustomers;
 use App\Models\customers;
 use Livewire\Component;
+use App\Models\Region;
+use App\Models\customer_group;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Dashboard extends Component
 {
     use WithPagination;
+   public $region = null;
+   public $group = null;
    protected $paginationTheme = 'bootstrap';
    public $perPage = 10;
    public ?string $search = null;
@@ -24,7 +28,9 @@ class Dashboard extends Component
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
          return view('livewire.creditors.dashboard', [
-         'contacts' => $contacts
+         'contacts' => $contacts,
+         'regions' =>$this->region(),
+         'groups' =>$this->groups()
       ]);
    }
    public function export()
@@ -45,6 +51,14 @@ class Dashboard extends Component
       );
 
       return redirect()->to('/customer');
+   }
+   public function region(){
+      $region = Region::all();
+      return $region;
+   }
+   public function groups(){
+      $groups = customer_group::all();
+         return $groups;
    }
     
 }

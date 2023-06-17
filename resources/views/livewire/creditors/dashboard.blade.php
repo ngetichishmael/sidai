@@ -1,11 +1,30 @@
 <div>
     <div class="mb-1 row">
-        <div class="col-md-10">
+        <div class="col-md-3">
+            <label for="">Filter By Region</label>
+            <select wire:model="region" class="form-control">`
+                <option value="" selected>select</option>
+                @foreach ($regions as $region)
+                <option value="{{ $region->id }}">{{ $region->name }}</option> 
+                @endforeach
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label for="">Flter By Group</label>
+            <select wire:model="group" class="form-control">
+                <option value="" selected>select</option>
+                @foreach ($groups as $group)
+                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option> 
+                @endforeach
+                
+            </select>
+        </div>
+        <div class="col-md-3">
             <label for="">Search by name, route, region</label>
             <input type="text" wire:model="search" class="form-control"
                 placeholder="Enter customer name, email address or phone number">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <label for="">Items Per</label>
             <select wire:model="perPage" class="form-control">`
                 <option value="10" selected>10</option>
