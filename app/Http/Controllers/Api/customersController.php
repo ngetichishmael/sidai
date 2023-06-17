@@ -114,7 +114,8 @@ public function creditorStatus(Request $request){
    if ($customer){
       return response()->json([
          "success" => true,
-         "message" => $customer->creditor_approved,
+         "message" => "Customer Status",
+         "data"=>$customer->is_creditor,
       ], 200);
    }
    return response()->json([
