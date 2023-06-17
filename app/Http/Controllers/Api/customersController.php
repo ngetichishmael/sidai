@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\customer\customer_group;
 use App\Models\customer\customers;
+use App\Models\customer_groups;
 use App\Models\Delivery;
 use App\Models\Delivery_items;
 use App\Models\Order_items;
@@ -95,7 +97,7 @@ class customersController extends Controller
    }
 public function RequestToBeCreditor(Request $request){
    $customer = customers::find($request->customer_id);
-   if (!empty($customer)){
+   if ($customer){
       customers::whereId($request->id)->update([ 'is_creditor'=>1]);
       return response()->json([
          "success" => true,
@@ -110,17 +112,23 @@ public function RequestToBeCreditor(Request $request){
 }
 public function creditorStatus(Request $request){
    $customer = customers::find($request->customer_id);
-   if (!empty($customer)){
+   if ($customer){
       return response()->json([
          "success" => true,
          "message" => $customer->creditor_approved,
       ], 200);
    }
-
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
    ], 409);
+}
+public function groups(){
+      return response()->json([
+      "success" => false,
+      "message" => "Customer Groups",
+         "data" => customer_groups::all(),
+   ], 200);
 }
 
    public function updateCustomerProfile(Request $request){
