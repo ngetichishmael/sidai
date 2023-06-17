@@ -96,7 +96,7 @@ class customersController extends Controller
       ]);
    }
 public function RequestToBeCreditor(Request $request){
-   $customer = customers::find($request->customer_id);
+   $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
       customers::whereId($request->id)->update([ 'is_creditor'=>1]);
       return response()->json([
@@ -104,14 +104,13 @@ public function RequestToBeCreditor(Request $request){
          "message" => "Request to be a Creditor Received Successfully",
       ], 200);
    }
-
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
    ], 409);
 }
 public function creditorStatus(Request $request){
-   $customer = customers::find($request->customer_id);
+   $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
       return response()->json([
          "success" => true,
@@ -127,7 +126,7 @@ public function groups(){
       return response()->json([
       "success" => false,
       "message" => "Customer Groups",
-         "data" => customer_groups::all(),
+      "data" => customer_groups::all(),
    ], 200);
 }
 
