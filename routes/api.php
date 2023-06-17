@@ -44,6 +44,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries')->middleware('auth:sanctum');
    Route::get('customers/delivery/{code}/details', 'customersController@delivery_details')->middleware('auth:sanctum');
    Route::get('customers/{customerID}/orders', 'customersController@orders')->middleware('auth:sanctum');
+   Route::get('customer/groups', 'customersController@groups')->middleware('auth:sanctum');
 
 //   Route::post('/messages', 'ChatController@sendMessage');
 

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\customer\customer_group;
 use App\Models\customer\customers;
+use App\Models\customer_groups;
 use App\Models\Delivery;
 use App\Models\Delivery_items;
 use App\Models\Order_items;
@@ -94,33 +96,39 @@ class customersController extends Controller
       ]);
    }
 public function RequestToBeCreditor(Request $request){
-   $customer = customers::find($request->customer_id);
-   if (!empty($customer)){
-      customers::whereId($request->id)->update([ 'is_creditor'=>1]);
+   $customer = customers::where('id', $request->customer_id)->first();
+   if ($customer){
+      customers::whereId($customer->id)->update([ 'is_creditor'=>1]);
       return response()->json([
          "success" => true,
          "message" => "Request to be a Creditor Received Successfully",
       ], 200);
    }
-
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
    ], 409);
 }
 public function creditorStatus(Request $request){
-   $customer = customers::find($request->customer_id);
-   if (!empty($customer)){
+   $customer = customers::where('id', $request->customer_id)->first();
+   if ($customer){
       return response()->json([
          "success" => true,
-         "message" => $customer->creditor_approved,
+         "message" => "Customer Status",
+         "data"=>$customer->is_creditor,
       ], 200);
    }
-
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
    ], 409);
+}
+public function groups(){
+      return response()->json([
+      "success" => false,
+      "message" => "Customer Groups",
+      "data" => customer_groups::all(),
+   ], 200);
 }
 
    public function updateCustomerProfile(Request $request){
@@ -278,7 +286,8 @@ public function creditorStatus(Request $request){
       $customer->business_code = $request->business_code;
       $customer->created_by = $request->user()->user_code;
       $customer->route_code = $request->route_code;
-      $customer->customer_group = $request->outlet;
+      $customer->customer_group = $request->customer_group;
+      $customer->price_group = $request->outlet;
       $customer->region_id = $request->route_code;
       $customer->unit_id = $request->route_code;
       $customer->image = $image_path;

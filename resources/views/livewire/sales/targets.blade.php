@@ -10,6 +10,7 @@
                    <table class="table">
                        <thead class="thead-light">
                            <tr>
+                               <th>Account Type</th>
                                <th>Sales Force</th>
                                <th>Target</th>
                                <th>Deadline</th>
@@ -34,7 +35,7 @@
                                        <option value=""></option>
                                     </select>
                                  </td> --}}
-                                 
+
                                    <td>
                                        <label for="fp-date-time">Sales Force</label>
                                        <select wire:model="Targets.{{ $index }}.primarykey"
@@ -112,7 +113,9 @@
        </div>
    </div>
 </div>
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <script>
    $(document).ready(function() {
@@ -141,4 +144,5 @@
       });
    });
 
-</script> --}}
+</script>
+

@@ -52,6 +52,7 @@ class Dashboard extends Component
 
       return redirect()->to('/customer');
    }
+
    public function region(){
       $region = Region::all();
       return $region;
@@ -60,5 +61,5 @@ class Dashboard extends Component
       $groups = customer_group::all();
          return $groups;
    }
-    
+
 }
