@@ -19,7 +19,6 @@ class Dashboard extends Component
       $searchTerm = '%' . $this->search . '%';
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
-         ->where('customer_type','creditor')
          ->where('is_creditor', '1')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
@@ -46,5 +45,5 @@ class Dashboard extends Component
 
       return redirect()->to('/customer');
    }
-    
+
 }
