@@ -38,16 +38,18 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customers/{businessCode}', 'customersController@index')->middleware('auth:sanctum');
    Route::post('customers/add-customer', 'customersController@add_customer')->middleware('auth:sanctum');
    Route::post('customer/edit-customer', 'customersController@editCustomer')->middleware('auth:sanctum');
-   Route::get('customers/{code}/details', 'customersController@details');
-   Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries');
-   Route::get('customers/delivery/{code}/details', 'customersController@delivery_details');
-   Route::get('customers/{customerID}/orders', 'customersController@orders');
+   Route::get('customers/{code}/details', 'customersController@details')->middleware('auth:sanctum');
+   Route::post('customer/request/toBeCreditor', 'customersController@RequestToBeCreditor')->middleware('auth:sanctum');
+   Route::post('customer/creditor/status', 'customersController@creditorStatus')->middleware('auth:sanctum');
+   Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries')->middleware('auth:sanctum');
+   Route::get('customers/delivery/{code}/details', 'customersController@delivery_details')->middleware('auth:sanctum');
+   Route::get('customers/{customerID}/orders', 'customersController@orders')->middleware('auth:sanctum');
 
 //   Route::post('/messages', 'ChatController@sendMessage');
 
 
-   Route::get('customers/order/{orderCode}/details', 'customersController@order_details');
-   Route::get('customers/{customerID}/new-order/', 'customersController@new_order');
+   Route::get('customers/order/{orderCode}/details', 'customersController@order_details')->middleware('auth:sanctum');
+   Route::get('customers/{customerID}/new-order/', 'customersController@new_order')->middleware('auth:sanctum');
 
    //products
    Route::get('products/{businessCode}', 'productsController@index')->middleware('auth:sanctum');
@@ -192,7 +194,8 @@ Route::group(['namespace' => 'Api'], function () {
     */
    Route::get('/all/products', [CustomersProductsController::class, "getAllProducts"])->middleware('auth:sanctum');
    Route::post('/update/default/image', [CustomersProductsController::class, "sendDefaultImage"])->middleware('auth:sanctum');
-
+//customer offers endpoints
+   Route::get('/all/products-offers', [CustomersProductsController::class, "getAllProductsOffers"])->middleware('auth:sanctum');
 
 
    /**
@@ -203,7 +206,7 @@ Route::group(['namespace' => 'Api'], function () {
    /**
     * Product Category with product information and  Prices
     */
-   Route::get('/get/category/information', [productCategoriesController::class, "getCategory"]);
+   Route::get('/get/category/information', [productCategoriesController::class, "getCategory"])->middleware('auth:sanctum');
 
 
    /**
@@ -219,7 +222,6 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('customer/profile', 'customersController@customerprofile')->middleware('auth:sanctum');
    Route::put('customer/profile/update', 'customersController@updateCustomerProfile')->middleware('auth:sanctum');
    Route::put('customer/image/update', 'customersController@updateCustomerImage')->middleware('auth:sanctum');
-
    /**
     * Get Company Routes
     */

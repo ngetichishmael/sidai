@@ -5,6 +5,7 @@ namespace App\Http\Controllers\app;
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Area;
+use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,13 @@ class usersController extends Controller
    {
       $accountType = $request->input('account_type');
       $users = User::where('account_type', $accountType)->get();
+
+      return response()->json(['users' => $users]);
+   }
+   public function getDistributors(Request $request)
+   {
+      $accountType = $request->input('account_type');
+      $users = suppliers::where('account_type', $accountType)->get();
 
       return response()->json(['users' => $users]);
    }

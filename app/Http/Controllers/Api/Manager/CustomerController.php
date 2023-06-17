@@ -25,18 +25,13 @@ class CustomerController extends Controller
    }
    public function getCustomers()
    {
-      $customers = customers::with(['number_visited', 'orders.orderItems'])
+      $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
          ->where('region_id', Auth::user()->region_id)
          ->get();
-      $transformedCustomers = $customers->transform(function ($customer) {
-         $customer->number_visited = $customer->number_visited->pluck('count')->first();
-         return $customer;
-      });
-
       return response()->json([
          "success" => true,
          "status" => 200,
-         "data" => $transformedCustomers,
+         "data" => $customers,
       ]);
    }
 

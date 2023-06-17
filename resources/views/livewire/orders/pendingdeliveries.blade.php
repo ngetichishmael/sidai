@@ -75,8 +75,8 @@
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
-                                <td>ksh {{ number_format($order->Order->price_total) }}</td>
-                                <td>ksh {{ number_format($order->Order->balance) }}</td>
+                                <td>{{ number_format($order->Order->price_total) }}</td>
+                                <td>{{ number_format($order->Order->balance) }}</td>
 {{--                               <td>{{$order->Order->qty}}</td>--}}
                                <td>{{ $order->created_at }}</td>
 {{--                                <td>{{ $order->order_status }}</td>--}}

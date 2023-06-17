@@ -13,6 +13,7 @@ use App\Models\products\product_information;
 use App\Models\products\product_price;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -209,19 +210,20 @@ class CartController extends Controller
       $customer_code = $request->user()->user_code;
       $code=customers::where('user_code',$customer_code)->first();
       $id=$code->id;
-      $deliveries = Orders::with(['OrderItem'=> function ($query) {
-         $query->select('id', 'order_code', 'quantity', 'productID')
+      $deliveries = Orders::with(['OrderItems'=> function ($query) {
+         $query->select('id', 'order_code', 'quantity','productID','allocated_quantity',)
             ->with([
                'productInformation' => function ($query) {
-                  $query->select('id', 'product_name','sku_code', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
+                  $query->select('id', 'product_name', 'brand', 'supplierID','short_description', 'notification_email', 'url', 'description', 'category','image', 'business_code', 'status', 'active', 'created_at');
                },
                'productPrice' => function ($query) {
-                  $query->select('id', 'productID', 'buying_price', 'selling_price', 'created_at');
+                  $query->select('id', 'productID', 'buying_price', 'selling_price','distributor_price', 'created_at');
                }
             ]);
       }])
          ->where('customerID', $id)
          ->get();
+
       return response()->json([
          "success" => true,
          "status" => 200,
@@ -249,6 +251,7 @@ class CartController extends Controller
       ])
          ->where('customer', $id)
          ->get();
+      $deliveries = new Collection($deliveries);
       return response()->json([
          "success" => true,
          "status" => 200,

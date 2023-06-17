@@ -109,6 +109,15 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->hasMany(Orders::class, 'user_code', 'user_code');
    }
+   public function PendingOrders(): HasMany
+   {
+      return $this->hasMany(Orders::class, 'user_code', 'user_code');
+   }
+   public function countPendingOrders(): int
+   {
+      return $this->PendingOrders()->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Derivery', 'Waiting acceptance'])->count();
+   }
+
    /**
     * Get all of the Customers for the User
     *

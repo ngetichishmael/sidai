@@ -57,6 +57,34 @@ class UsersController extends Controller
          "data" => $users,
       ]);
    }
+   public function usersList(Request $request)
+   {
+      if ($request->account_type == 'RSM' || 'rsm') {
+         $users =
+            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
+               ->where('region_id', $request->user()->region_id)
+               ->pluck('name', 'user_code','account_type');
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $users,
+         ]);
+      }else if ($request->account_type == 'NMS' || 'nsm'){
+         $users =
+            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
+               ->pluck('name', 'user_code', 'account_type');
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $users,
+         ]);
+      }
+      return response()->json([
+         "success" => false,
+         "status" => 401,
+         "data" => "UNAUTHORIZED USER!!!",
+      ]);
+   }
    public function suspendUser(Request $request)
    {
       $suspension = User::where('user_code', $request->user_code)->update([
