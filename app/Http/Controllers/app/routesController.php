@@ -38,7 +38,7 @@ class routesController extends Controller
    public function create()
    {
       $customers = customers::where('business_code', Auth::user()->business_code)->pluck('customer_name', 'id');
-      $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'Shop-Attendee')->pluck('name', 'id');
+      $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'RSM')->pluck('name', 'id');
 
 
       return view('app.routes.create', ['customers' => $customers, 'salesPeople' => $salesPeople]);
