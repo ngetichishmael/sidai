@@ -11,6 +11,7 @@ class Targets extends Component
 {
    public $Targets;
    public $users;
+//   public $account_types;
    // public $QPTargets;
    public $countTargets = true;
    public function mount()
@@ -18,7 +19,8 @@ class Targets extends Component
 
       $today = Carbon::now();
       $lastDayofMonth =  Carbon::parse($today)->endOfMonth()->toDateString();
-      $this->users = User::where('account_type', 'Sales')->get();
+      $this->users = User::whereNotIn('account_type', ['Customer','Admin'])->get();
+//      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
       $this->fill([
          'Targets' => collect([
             ['primarykey' => '', 'deadline' => $lastDayofMonth]
@@ -41,8 +43,8 @@ class Targets extends Component
    }
    public function submit()
    {
-      $today = Carbon::now(); //Current Date and Time
 
+      $today = Carbon::now();
       $lastDayofMonth =    Carbon::parse($today)->endOfMonth()->toDateString();
       $this->validate([
          'Targets.*.primarykey' => 'required',
@@ -51,7 +53,7 @@ class Targets extends Component
       ]);
       foreach ($this->Targets as $value) {
          if ($value["primarykey"] === 'ALL') {
-            $users = User::where('account_type', 'Sales')->get();
+            $users = User::whereNotIn('account_type', ['Customer','Admin'])->get();
             foreach ($users as $user) {
                LeadsTargets::updateOrCreate(
                   [
@@ -79,6 +81,7 @@ class Targets extends Component
    }
    public function render()
    {
-      return view('livewire.leads.targets');
+      $account_types = User::whereNotIn('account_type', ['customer', 'Admin'])->groupBy('account_type')->get();
+      return view('livewire.leads.targets', ['account_types'=>$account_types]);
    }
 }

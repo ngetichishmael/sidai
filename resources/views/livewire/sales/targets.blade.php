@@ -20,7 +20,7 @@
                        <tbody>
                            @foreach ($Targets as $index => $target)
                                <tr class="col-12">
-                                {{-- <td>
+                                 <td>
                                     <label for="">Select User Type</label>
                                     <select name="user_type" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select" id="account_type" required>
                                        <option value="">Choose User Type</option>
@@ -29,12 +29,12 @@
                                        @endforeach
                                     </select>
                                  </td>
-                                <td>
-                                    <label for="">Choose User</label>
-                                    <select name="user" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select2" id="user" required>
-                                       <option value=""></option>
-                                    </select>
-                                 </td> --}}
+{{--                                <td>--}}
+{{--                                    <label for="">Choose User</label>--}}
+{{--                                    <select name="user" wire:model.prevent="Targets.{{ $index }}.Target" class="form-control select2" id="user" required>--}}
+{{--                                       <option value=""></option>--}}
+{{--                                    </select>--}}
+{{--                                 </td>--}}
 
                                    <td>
                                        <label for="fp-date-time">Sales Force</label>
