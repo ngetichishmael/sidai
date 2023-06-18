@@ -82,6 +82,7 @@ class Targets extends Component
    }
    public function render()
    {
-      return view('livewire.orders.targets');
+      $account_types = User::whereNotIn('account_type', ['customer', 'Admin'])->groupBy('account_type')->get();
+      return view('livewire.orders.targets',['account_types'=>$account_types]);
    }
 }

@@ -38,7 +38,20 @@
                   <td>{{ $key+1 }}</td>
                   <td>{{ $user->account_type }}</td>
                   <td>{{ $user->count}}</td>
-                  <td><a href="" class="btn btn-sm" style="background-color: brown;color:white">View</a></td>
+                  <td>@if ($user->account_type ==="TSR")
+                     <a href="{{ route('tsr.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @elseif ($user->account_type ==="RSM")
+                     <a href="{{ route('rsm.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @elseif ($user->account_type ==="Shop-Attendee")
+                     <a href="{{ route('attendee.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @elseif ($user->account_type ==="NSM")
+                     <a href="{{ route('nsm.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @elseif ($user->account_type ==="Customer")
+                     <a href="{{ route('customer.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @elseif ($user->account_type ==="Admin")
+                     <a href="{{ route('admin.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
+                     @endif
+                     </td>
               </tr>
                @endforeach
                     

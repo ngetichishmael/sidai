@@ -308,6 +308,12 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('orders/items/{order_code}', ['uses' => 'app\ReportsController@preorderitems', 'as' => 'product.items']);
    Route::get('orders/vansaleitems/{order_code}', ['uses' => 'app\ReportsController@vansaleitems', 'as' => 'vansale.items']);
    Route::get('orders/deliveryitems/{order_code}', ['uses' => 'app\ReportsController@deliveryitems', 'as' => 'delivery.items']);
+   Route::get('reports/tsr/details', ['uses' => 'app\ReportsController@tsr', 'as' => 'tsr.details']);
+   Route::get('reports/rsm/details', ['uses' => 'app\ReportsController@rsm', 'as' => 'rsm.details']);
+   Route::get('reports/shop-attendee/details', ['uses' => 'app\ReportsController@shopattendee', 'as' => 'attendee.details']);
+   Route::get('reports/nsm/details', ['uses' => 'app\ReportsController@nsm', 'as' => 'nsm.details']);
+   Route::get('reports/customers/details', ['uses' => 'app\ReportsController@customer', 'as' => 'customer.details']);
+   Route::get('reports/admin/details', ['uses' => 'app\ReportsController@admin', 'as' => 'admin.details']);
 
    //getting subregions
    Route::get('/get-subregions/{regionId}', 'app\warehousingController@getByRegion')->name('get-subregions');;
@@ -332,6 +338,19 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('warehousing/store', ['uses' => 'app\warehousingController@store', 'as' => 'warehousing.store']);
    Route::get('warehousing/{code}/edit', ['uses' => 'app\warehousingController@edit', 'as' => 'warehousing.edit']);
    Route::post('warehousing/{code}/update', ['uses' => 'app\warehousingController@update', 'as' => 'warehousing.update']);
+
+   //editing sales targets
+   Route::get('target/sales/edit/{code}',['uses'=>'app\Target\SalesController@edit', 'as' => 'salestarget.edit']);
+   Route::post('target/sales/update/{code}',['uses'=>'app\Target\SalesController@update', 'as' => 'salestarget.update']);
+   //edits for visits targets
+   Route::get('target/visits/edit/{code}',['uses'=>'app\Target\VisitsController@edit', 'as' => 'visitstarget.edit']);
+   Route::post('target/visits/update/{code}',['uses'=>'app\Target\VisitsController@update', 'as' => 'visitstarget.update']);
+   //edits for leads targets
+   Route::get('target/leads/edit/{code}',['uses'=>'app\Target\LeadsController@edit', 'as' => 'leadstarget.edit']);
+   Route::post('target/leads/update/{code}',['uses'=>'app\Target\LeadsController@update', 'as' => 'leadstarget.update']);
+   //edits for orders targets
+   Route::get('target/orders/edit/{code}',['uses'=>'app\Target\OrdersController@edit', 'as' => 'orderstarget.edit']);
+   Route::post('target/orders/update/{code}',['uses'=>'app\Target\OrdersController@update', 'as' => 'orderstarget.update']);
 
    /* ===  inventory === */
 

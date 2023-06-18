@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\app\Target;
 
-use App\Http\Controllers\Controller;
+use App\Models\VisitsTarget;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class VisitsController extends Controller
 {
@@ -55,9 +57,10 @@ class VisitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($code)
     {
-        //
+        $edit = VisitsTarget::where('user_code', $code)->first();
+        return view('app.Targets.visitsedit',['edit'=>$edit]);
     }
 
     /**
@@ -67,9 +70,19 @@ class VisitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $code)
     {
-        //
+        $this->validate($request,[
+            'target' => 'required',
+            'deadline'=> 'required'
+        ]);
+        $updatesales = VisitsTarget::where('user_code',$code)->first();
+        $updatesales->VisitsTarget = $request->target;
+        $updatesales->Deadline = $request->deadline;
+        $updatesales->save();
+
+        Session::flash('success','Visits Target Updated!');
+        return redirect()->route('visit.target');
     }
 
     /**

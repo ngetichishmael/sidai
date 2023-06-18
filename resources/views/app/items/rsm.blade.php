@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','Distributors reports')
+@section('title','rsm')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Distributors | Reports</h2>
+               <h2 class="content-header-title float-start mb-0">RSM | Details</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -27,24 +27,24 @@
                  <thead>
                     <tr>
                        <th>#</th>
-                       <th>Name of Distributor</th>
-                       <th>Number of Orders</th>
-                       <th>Number of Assigned Orders</th>
+                       <th>User Name</th>
+                       <th>No of Orders</th>
                        <th>Region</th>
-                       <th>Route</th>
+                       <th>Subregion</th>
                     </tr>
                  </thead>
                  <tbody>
-                    @foreach ($distributors as $distributor)
-                    <tr>
-                     <td>{{ $count++ }}</td>
-                     <td>{{ $distributor->Customer->customer_name }}</td>
+                  @foreach ($rsms as $key=>$rsm)
+                  <tr>
+                     <td>{{ $key+1 }}</td>
+                     <td>{{ $rsm->name }}</td>
                      <td></td>
-                     <td></td>
-                     <td>{{ $distributor->Customer->Region->name??'' }}</td>
-                     <td>{{ $distributor->Customer->Route->name??'' }}</td>
-                 </tr> 
-                    @endforeach
+                     <td>{{ $rsm->Region->name??'' }}</td>
+                     <td>{{ $rsm->Subregion->name??'' }}</td>
+                 </tr>
+                  @endforeach
+                   
+                    
                  </tbody>
               </table>
            </div>
