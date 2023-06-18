@@ -2,10 +2,10 @@
     <div class="mb-1 row">
         <div class="col-md-3">
             <label for="">Filter By Region</label>
-            <select wire:model.prevent="region" class="form-control">`
+            <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region->id }}">{{ $region->name }}</option> 
+                    <option value="{{ $region->name }}">{{ $region->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -14,9 +14,9 @@
             <select wire:model="group" class="form-control">
                 <option value="" selected>select</option>
                 @foreach ($groups as $group)
-                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option> 
+                    <option value="{{ $group->group_name }}">{{ $group->group_name }}</option>
                 @endforeach
-                
+
             </select>
         </div>
         <div class="col-md-3">
@@ -43,7 +43,6 @@
                         <th>Name</th>
                         <th>number</th>
                         <th>Region</th>
-                        <th>Town</th>
                         <th>Customer Type</th>
                         <th>Created By</th>
                         <th>Created Date</th>
@@ -58,11 +57,11 @@
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
 
-                            <td>
-                                {!! $contact->Area->Subregion->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->Area->name ?? '' !!}
+                            <td class="cell-fit">
+                                {!! $contact->Area->Subregion->Region->name ?? '' !!},
+                                {!! $contact->Area->Subregion->name ?? '' !!},
+                                {!! $contact->Area->name ?? '' !!},
+
                             </td>
                             <td>{!! $contact->customer_type !!}</td>
                             <td>
