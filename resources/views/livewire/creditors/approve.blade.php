@@ -20,19 +20,22 @@
             <div class="card-datatable table-responsive">
                 <table class="table table-striped table-bordered">
                     <thead>
-                        <th width="1%">#</th>
-                        <th>Name</th>
-                        <th>number</th>
-                        <th>Zone</th>
-                        <th>Region</th>
-                        <th>Route</th>
-                        <th>Created By</th>
-                        <th>Created Date</th>
-                        <th>Order</th>
-{{--                        <th width="15%">Action</th>--}}
-                    <th>Status</th>
+                    <th width="1%">#</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Region</th>
+                    <th>Sub-region</th>
+                    <th>Route</th>
+                    <th>Created By</th>
+                    <th>Date</th>
+                    <th width="15%">Action</th>
                     </thead>
                     <tbody>
+                    @if ($contacts->isEmpty())
+                       <tr>
+                          <td colspan="9" style="align-content: center">No creditors waiting approval found</td>
+                       </tr>
+                    @else
                         @foreach ($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
@@ -40,10 +43,10 @@
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
                             <td>
-                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
+                                {!! $contact->Region->name ?? ' ' !!}
                             </td>
                             <td>
-                                {!! $contact->Area->Subregion->name ?? '' !!}
+                                {!! $contact->Subregion->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
@@ -61,18 +64,19 @@
 {{--                                    class="btn btn-sm btn-primary">Edit</a>--}}
 {{--                            </td>--}}
                             <td>
-                                @if ($contact->approval === 'Approved')
-                                    <button wire:click.prevent="deactivate({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-success btn-sm">Approved</button>
-                                @else
+                                @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2)
+                                    <button wire:click.prevent="approveCreditor({{ $contact->id }})"
+                                        onclick="confirm('Are you sure you want to approve this customer to be a creditor?')||event.stopImmediatePropagation()"
+                                        type="button" class="btn btn-success btn-sm">Approve</button>
+                               @elseif ($contact->creditor_approved === 1)
                                     <button wire:click.prevent="activate({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-danger btn-sm">Pending</button>
+                                        onclick="confirm('Are you sure you want to disapprove this customer from list of creditors?')||event.stopImmediatePropagation()"
+                                        type="button" class="btn btn-danger btn-sm">Disapprove</button>
                                 @endif
                             </td>
                             </tr>
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
 

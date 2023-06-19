@@ -4,6 +4,7 @@
   'brands.index' => 'App\\Http\\Livewire\\Brands\\Index',
   'checkin.index' => 'App\\Http\\Livewire\\Checkin\\index',
   'comment.dashboard' => 'App\\Http\\Livewire\\Comment\\Dashboard',
+  'creditors.approve' => 'App\\Http\\Livewire\\Creditors\\Approve',
   'creditors.dashboard' => 'App\\Http\\Livewire\\Creditors\\Dashboard',
   'customer-group.customergroup' => 'App\\Http\\Livewire\\CustomerGroup\\Customergroup',
   'customers.dashboard' => 'App\\Http\\Livewire\\Customers\\Dashboard',
