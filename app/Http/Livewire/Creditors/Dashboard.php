@@ -24,7 +24,7 @@ class Dashboard extends Component
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
          ->where('is_creditor', '=',1)
          ->where('creditor_approved', '=',1)
-         ->search($searchTerm)
+//         ->search($searchTerm)
 //         ->where('customer_type', 'LIKE','creditor')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
