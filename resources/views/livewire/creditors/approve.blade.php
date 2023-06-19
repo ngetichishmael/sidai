@@ -52,6 +52,9 @@
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
                             <td>
+                                {!! $contact->id ?? '' !!}
+                            </td>
+                            <td>
                                 {!! $contact->user->name ?? '' !!}
                             </td>
                             <td>
