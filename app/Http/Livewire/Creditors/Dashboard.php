@@ -29,7 +29,9 @@ class Dashboard extends Component
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
          return view('livewire.creditors.dashboard', [
-            'contacts' => $this->customers()
+            'contacts' => $contacts,
+            'regions' => $this->region(),
+            'groups' => $this->groups()
          ]);
    }
    public function customers()
