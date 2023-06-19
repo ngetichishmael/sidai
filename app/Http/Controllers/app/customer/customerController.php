@@ -91,7 +91,6 @@ class customerController extends Controller
    }
    public function creditordetails($id)
    {
-      dd($id);
       $customer = customers::find($id);
       return view('app.creditors.show', ['customer' => $customer]);
    }
