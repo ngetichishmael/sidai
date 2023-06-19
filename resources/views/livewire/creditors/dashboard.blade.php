@@ -5,7 +5,7 @@
             <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region->id }}">{{ $region->name }}</option>
+                <option value="{{ $region->name }}">{{ $region->name }}</option>
                 @endforeach
             </select>
         </div>
