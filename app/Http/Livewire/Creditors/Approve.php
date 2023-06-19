@@ -21,14 +21,11 @@ class Approve extends Component
     public function render()
     {
        $searchTerm = '%' . $this->search . '%';
-       $contacts = customers::where('is_creditor', 1)
-          ->where('creditor_approved', 0)
+       $contacts = customers::where('is_creditor', 'LIKE',1)->where('creditor_approved', 'LIKE',0)
            ->with('Area.Subregion.Region', 'Creator')
-          ->when($this->search, function ($query) use ($searchTerm) {
-             $query->search($searchTerm);
-          })
+          ->search($searchTerm)
           ->orderBy('id', 'DESC')
-          ->simplePaginate($this->perPage);
+          ->paginate($this->perPage);
        return view('livewire.creditors.approve', [
           'contacts' => $contacts,
           'regions' =>$this->region(),
