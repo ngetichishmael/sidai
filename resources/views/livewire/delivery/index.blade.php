@@ -41,9 +41,9 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <th width="1%">#</th>
-                        <th>OrderID</th>
                         <th>Customer</th>
-                        <th>Region</th>
+                        <th>OrderID</th>
+                        <th>Sub-Region</th>
                         <th>Route</th>
                         <th>Sales Agents</th>
                         <th>Date</th>
@@ -55,19 +55,17 @@
                             @foreach ($deliveries as $count => $deliver)
                         <tr>
                             <td>{!! $count + 1 !!}</td>
-                            <td>
-                                {!! $deliver->order_code ?? '' !!}
-                            </td>
-                            <td title="{{ $deliver->Customer->customer_name ?? null }}">
-                                {{ Str::limit($deliver->Customer->customer_name ?? null, 20) }}</td>
-                            <td title="{{ $deliver->Customer->Area->Subregion->name ?? null }}">
+                           <td title="{{ $deliver->Customer->customer_name ?? null }}">{{ Str::limit($deliver->Customer->customer_name ?? null, 20) }}</td>
+                           <td>{!! $deliver->order_code ?? '' !!}</td>
+                           <td title="{{ $deliver->Customer->Area->Subregion->name ?? null }}">
                                 {{ Str::limit($deliver->Customer->Area->Subregion->name ?? null, 20) }}</td>
                             <td title="{{ $deliver->Customer->Area->Subregion->name ?? null }}">
                                 {{ Str::limit($deliver->Customer->Area->name ?? null, 20) }}</td>
                             <td>{!! $deliver->User->name !!}</td>
+                           <td>{!! $deliver->updated_at !!}</td>
                            <td class="{{ $deliver->delivery_status === 'Delivered' ? 'text-green' : ($deliver->delivery_status === 'Partial delivery' ? 'text-blue' : '') }}">
                               {{ $deliver->delivery_status }}</td>
-                           <td>{!! $deliver->updated_at !!}</td>
+
 {{--                            <td><a href="" class="badge {!! $deliver->delivery_status !!}"--}}
 {{--                                    style="color: rgb(2, 66, 100);">{!! $deliver->delivery_status !!}</a></td>--}}
                             <td><a href="{!! route('delivery.details', $deliver->order_code, $deliver->User->name) !!}" class="btn btn-sm btn-success">View</a></td>
