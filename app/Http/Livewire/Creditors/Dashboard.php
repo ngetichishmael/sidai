@@ -20,7 +20,7 @@ class Dashboard extends Component
     public ?string $regional = null;
    public function render()
    {
-      
+
          return view('livewire.creditors.dashboard', [
             'contacts' => $this->customers(),
             'regions' => $this->region(),
@@ -64,9 +64,16 @@ class Dashboard extends Component
    public function approveCreditor($id)
    {
       customers::whereId($id)->update(
-         ['approval' => "Suspended"]
+         ['creditor_approved' => 1 ]
       );
-      return redirect()->to('/customer');
+      return redirect()->to('/creditors');
+   }
+   public function dissaproveCreditor($id)
+   {
+      customers::whereId($id)->update(
+         ['creditor_approved' => 2 ]
+      );
+      return redirect()->to('/creditors');
    }
    public function activate($id)
    {
