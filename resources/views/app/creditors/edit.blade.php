@@ -121,7 +121,7 @@
                                     <select wire:model='region' class="form-control" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}"
+                                            <option value="{{ $region->id  ?? ''}}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
                                                 {{ $region->name }}
                                             </option>
@@ -134,7 +134,7 @@
                                     <select wire:model='regions'class="form-control" name="region">
                                         <option value="">Region</option>
                                         @foreach ($subregions as $subregion)
-                                            <option value="{{ $subregion->id }}"
+                                            <option value="{{ $subregion->id ?? ''}}"
                                                 @if ($subregion->id == $customer->subregion_id) selected @endif>{{ $subregion->name }}
                                             </option>
                                         @endforeach
