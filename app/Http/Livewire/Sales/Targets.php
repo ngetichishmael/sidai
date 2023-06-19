@@ -10,23 +10,34 @@ use Livewire\Component;
 class Targets extends Component
 {
    public $Targets;
-   public $QPTargets;
    public $users;
    public $countTargets = true;
+   public $selectedAccountType;
    public function mount()
    {
 
       $today = Carbon::now();
       $lastDayofMonth =  Carbon::parse($today)->endOfMonth()->toDateString();
-      $this->users = User::where('account_type', 'Sales')->get();
-      $this->QPTargets = SalesTarget::all();
+      $this->users  = User::whereNotIn('account_type', ['Customer','Admin'])->get();
+      $this->loadUsers();
       $this->fill([
          'Targets' => collect([
             ['primarykey' => '', 'deadline' => $lastDayofMonth]
          ]),
       ]);
    }
-
+   public function loadUsers()
+   {
+      if ($this->selectedAccountType && $this->selectedAccountType !== 'ALL') {
+         $this->users = User::where('account_type', $this->selectedAccountType)->get();
+      } else {
+         $this->users = [];
+      }
+   }
+   public function updatedSelectedAccountType()
+   {
+      $this->loadUsers();
+   }
    public function addTargets()
    {
       $this->Targets->push(new SalesTarget());
@@ -42,8 +53,8 @@ class Targets extends Component
    }
    public function submit()
    {
-      $today = Carbon::now(); //Current Date and Time
 
+      $today = Carbon::now();
       $lastDayofMonth =    Carbon::parse($today)->endOfMonth()->toDateString();
       $this->validate([
          'Targets.*.primarykey' => 'required',
@@ -52,7 +63,12 @@ class Targets extends Component
       ]);
       foreach ($this->Targets as $value) {
          if ($value["primarykey"] === 'ALL') {
-            $users = User::where('account_type', 'Sales')->get();
+            if ($this->selectedAccountType && $this->selectedAccountType !== 'ALL') {
+               $users = User::where('account_type', $this->selectedAccountType)->get();
+            } else {
+               $users = User::whereNotIn('account_type', ['Customer', 'Admin'])->get();
+            }
+
             foreach ($users as $user) {
                SalesTarget::updateOrCreate(
                   [
@@ -70,16 +86,18 @@ class Targets extends Component
                   'user_code' => $value["primarykey"],
                ],
                [
-                  'Deadline' =>  $value['deadline'] ?? $lastDayofMonth,
+                  'Deadline' => $value['deadline'] ?? $lastDayofMonth,
                   'SalesTarget' => $value['Target']
                ]
             );
          }
       }
+
       return redirect()->to('/target/sales');
    }
    public function render()
    {
-      return view('livewire.sales.targets');
+      $account_types = User::whereNotIn('account_type', ['customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
+      return view('livewire.sales.targets',['account_types'=>$account_types]);
    }
 }

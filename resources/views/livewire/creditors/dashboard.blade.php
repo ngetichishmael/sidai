@@ -2,10 +2,18 @@
     <div class="mb-1 row">
         <div class="col-md-3">
             <label for="">Filter By Region</label>
-            <select wire:model="region" class="form-control">`
+            <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region->id }}">{{ $region->name }}</option> 
+<<<<<<< HEAD
+<<<<<<< HEAD
+                    <option value="{{ $region->name }}">{{ $region->name }}</option>
+=======
+                <option value="{{ $region->id }}">{{ $region->name }}</option>
+>>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
+=======
+                <option value="{{ $region->name }}">{{ $region->name }}</option>
+>>>>>>> 236af8a84f2694a592be4c0c2e7440089e18ba6b
                 @endforeach
             </select>
         </div>
@@ -14,9 +22,9 @@
             <select wire:model="group" class="form-control">
                 <option value="" selected>select</option>
                 @foreach ($groups as $group)
-                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option> 
+                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option>
                 @endforeach
-                
+
             </select>
         </div>
         <div class="col-md-3">
@@ -42,10 +50,10 @@
                         <th width="1%">#</th>
                         <th>Name</th>
                         <th>Phone Number</th>
+                        <th>Region</th>
+                        <th>Sub-region</th>
                         <th>Route</th>
-                        <th>Payment Deadline</th>
-                        <th>Total Amount</th>
-                        <th>Paid Amount</th>
+                        <th>Created By</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
@@ -56,10 +64,10 @@
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
                             <td>
-                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
+                                {!! $contact->Region->name ?? ' ' !!}
                             </td>
                             <td>
-                                {!! $contact->Area->Subregion->name ?? '' !!}
+                                {!! $contact->Subregion->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
@@ -72,16 +80,14 @@
                                 <a href="{{ route('creditors.details', $contact->id) }}"
                                     class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm" style="background-color: #B6121B;color:white">Edit</a>
+                                    class="btn btn-sm" style="background-color: #B6121B; color:white">Edit</a>
                             </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 
-                <div class="mt-1">
-                    {{ $contacts->links() }}
-                </div>
+               
             </div>
         </div>
     </div>

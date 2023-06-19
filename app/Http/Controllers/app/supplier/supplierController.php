@@ -45,7 +45,7 @@ class supplierController extends Controller
       $primary->name = $request->name;
       $primary->phone_number = $request->phone_number;
       $primary->telephone = $request->telephone;
-      $primary->status = $request->status;
+      $primary->status = "Active";
       $primary->business_code = Auth::user()->business_code;
       $primary->save();
 

@@ -19,35 +19,52 @@
                         <tbody>
                             @foreach ($Targets as $index => $target)
                                 <tr class="col-12">
+{{--                                   <td>--}}
+{{--                                      <label for="fp-date-time">Account type</label>--}}
+{{--                                      <select name="account_type" class="form-control select" id="account_type" required>--}}
+{{--                                         <option value=""> -- Choose User Type -- </option>--}}
+{{--                                         @foreach ($account_types as $account)--}}
+{{--                                            <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>--}}
+{{--                                         @endforeach--}}
+{{--                                      </select>--}}
+{{--                                   </td>--}}
+{{--                                   <td>--}}
+
+{{--                                   <td>--}}
+{{--                                      <label for="fp-date-time">Sales Person</label>--}}
+{{--                                      <select wire:model.prevent="Targets.{{ $index }}.primarykey" id="user" class="form-control select2 @error('targets.{{ $index }}.primarykey') border border-danger @enderror">--}}
+{{--                                         <option value=""> -- Choose Sales Person -- </option>--}}
+{{--                                         <option value="ALL">ALL</option>--}}
+{{--                                      </select>--}}
+{{--                                      @error('targets.{{ $index }}.primarykey')--}}
+{{--                                      <span class="error">{{ $message }}</span>--}}
+{{--                                      @enderror--}}
+{{--                                   </td>--}}
                                    <td>
                                       <label for="fp-date-time">Account type</label>
-                                      <select name="account_type" class="form-control select" id="account_type" required>
+                                      <select name="account_type" class="form-control select" id="account_type" required wire:model="selectedAccountType">
                                          <option value=""> -- Choose User Type -- </option>
                                          @foreach ($account_types as $account)
                                             <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
                                          @endforeach
                                       </select>
                                    </td>
-                                    <td>
-                                        <label for="fp-date-time">Sales Person</label>
-                                        <select wire:model="Targets.{{ $index }}.primarykey" id="user"
-                                                class="form-control select2
-                                           @error('Targets.{{ $index }}.primarykey')
-                                           border border-danger
-                                           @enderror ">
-                                            <option value=""> -- Choose Sales Person -- </option>
-                                            <option value="ALL">ALL</option>
-{{--                                            @foreach ($users as $user)--}}
-{{--                                                <option value="{{ $user->user_code }}">--}}
-{{--                                                    {{ $user->name }}--}}
-{{--                                                </option>--}}
-{{--                                            @endforeach--}}
-                                            </select>
-                                        @error('Targets.{{ $index }}.primarykey')
-                                            <span class="error">{{ $message }}</span>
-                                        @enderror
-                                    </td>
-                                    <td>
+                                   <td>
+                                      <label for="fp-date-time">Sales Person</label>
+                                      <select wire:model.prevent="Targets.{{ $index }}.primarykey" id="user" class="form-control select2 @error('targets.{{ $index }}.primarykey') border border-danger @enderror">
+                                         <option value=""> -- Choose Sales Person -- </option>
+                                         <option value="ALL">ALL</option>
+                                         @foreach ($users as $user)
+                                            <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
+                                         @endforeach
+                                      </select>
+                                      @error('targets.{{ $index }}.primarykey')
+                                      <span class="error">{{ $message }}</span>
+                                      @enderror
+                                   </td>
+
+
+                                   <td>
                                         <label for="fp-date-time">Targets</label>
                                         <input type="number" class="form-control"
                                             wire:model.prevent="Targets.{{ $index }}.Target" />
@@ -119,7 +136,7 @@
                success: function(data) {
                   $('#user').empty();
                   $('#user').append('<option value="">Choose Sales Person</option>');
-                  $('#user').append('<option value="ALL">All</option>');
+                  $('#user').append('<option value="ALL">ALL</option>');
                   data.users.forEach(function(user) {
                      $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
                   });
@@ -134,5 +151,4 @@
          }
       });
    });
-
 </script>
