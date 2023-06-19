@@ -22,10 +22,10 @@ class Dashboard extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
+         ->where('is_creditor', '=','1')
+         ->where('creditor_approved', '=','1')
          ->search($searchTerm)
 //         ->where('customer_type', 'LIKE','creditor')
-         ->where('is_creditor', 'LIKE','1')
-         ->where('creditor_approved', 'LIKE','1')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
          return view('livewire.creditors.dashboard', [

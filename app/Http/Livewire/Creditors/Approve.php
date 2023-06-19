@@ -22,9 +22,9 @@ class Approve extends Component
     {
        $searchTerm = '%' . $this->search . '%';
        $contacts = customers::with('Area.Subregion.Region', 'Creator')
+          ->where('is_creditor', '=','1')
+          ->where('creditor_approved', '=','0')
           ->search($searchTerm)
-          ->where('is_creditor', 'LIKE','1')
-          ->where('creditor_approved', 'LIKE','0')
           ->orderBy('id', 'DESC')
           ->paginate($this->perPage);
        return view('livewire.creditors.approve', [
