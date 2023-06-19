@@ -21,6 +21,7 @@ class Dashboard extends Component
    public function render()
    {
 <<<<<<< HEAD
+<<<<<<< HEAD
       
 =======
       $searchTerm = '%' . $this->search . '%';
@@ -32,6 +33,9 @@ class Dashboard extends Component
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
 >>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
+=======
+
+>>>>>>> 236af8a84f2694a592be4c0c2e7440089e18ba6b
          return view('livewire.creditors.dashboard', [
             'contacts' => $this->customers(),
             'regions' => $this->region(),
