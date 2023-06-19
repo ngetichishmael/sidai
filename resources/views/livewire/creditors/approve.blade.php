@@ -33,7 +33,7 @@
                     <tbody>
                     @if ($contacts->isEmpty())
                        <tr>
-                          <td colspan="9" style="align-content: center">No creditors waiting approval found</td>
+                          <td colspan="9" class="text-center align-middle">No creditors waiting approval found</td>
                        </tr>
                     @else
                         @foreach ($contacts as $count => $contact)

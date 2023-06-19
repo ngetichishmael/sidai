@@ -158,28 +158,28 @@
                        </div>
                     </div>
                     <div class="media">
-                       <div class="mr-1 rounded avatar bg-light-primary">
+                       <div class="mr-1 rounded avatar bg-light-primary d-flex align-items-center">
                           <div class="avatar-content">
                              <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
                           </div>
-                       </div>
-                       <div class="media-body">
-                          <h6 class="mb-0">{{ date_format(now(), 'D, F, Y') }}</h6>
-                          <small>8:AM to 5:PM</small>
+                          <div class="pl-3">
+                             <h6 class="mb-0">{{ date_format(now(), 'D, F, Y') }}</h6>
+                             <small>8:AM to 5:PM</small>
+                          </div>
                        </div>
                     </div>
-                    <div class="mt-2 media">
-                       <div class="mr-1 rounded avatar bg-light-primary">
+                    <div class="mt-2 media " style="background: white;">
+                       <div class="mr-1 rounded avatar bg-light-primary align-items-center">
                           <div class="avatar-content">
                              <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
                           </div>
-                       </div>
-                       <div class="media-body">
+
+                       <div class="media-body pl-3">
                           <h6 class="mb-0"> </h6>
-                          <small>Nairobi, Kenya</small>
+                          <small class="ml-2">Nairobi, Kenya</small>
                        </div>
                     </div>
-
+                    </div>
                  </div>
               </div>
            </div>
