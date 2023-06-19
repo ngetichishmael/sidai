@@ -87,7 +87,12 @@ class ordersController extends Controller
       $id = $Customer_id->customerID;
       $test = customers::where('id', $id)->first();
       $payment = order_payments::where('order_id', $order->order_code)->first();
-      return view('app.orders.pendingdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+      $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+         ->orWhereNull('status')
+         ->orWhere('status', '')
+         ->orderby('name', 'desc')->get();
+      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
+      return view('app.orders.pendingdetails', compact('order','account_types', 'items', 'test', 'payment', 'distributors', 'sub', 'total'));
    }
 
    //allocation
@@ -97,7 +102,10 @@ class ordersController extends Controller
       $items = Order_items::where('order_code', $order->order_code)->get();
       $users = User::orderby('name', 'desc')->get();
       $warehouses = warehousing::orderby('id', 'desc')->get();
-      $distributors = suppliers::orderby('name', 'desc')->get();
+      $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+         ->orWhereNull('status')
+         ->orWhere('status', '')
+         ->orderby('name', 'desc')->get();
       $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
 
       return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors','account_types'));
@@ -148,7 +156,7 @@ class ordersController extends Controller
             Session::flash('success', 'Order allocated to distributor ' . $distributor->name);
             return redirect()->route('orders.pendingorders');
          }else{
-            Session::flash('error', 'Something went wrong, Order could not be allocated to disrtibutor');
+            Session::flash('error', 'Something went wrong, Order could not be allocated to distributor');
             return redirect()->route('orders.pendingorders');
          }
       }
@@ -225,6 +233,120 @@ class ordersController extends Controller
       $activityLog->save();
       Session::flash('success', 'Delivery created and orders allocated to a user');
       return redirect()->route('orders.pendingorders');
+   }
+   public function reAllocateOrders(Request $request)
+   {
+      $this->validate($request, [
+         'user' => 'required',
+      ]);
+      return redirect()->route('orders.pendingdeliveries')->with("Cannot re-allocate at the moment");
+      $supplierID = null;
+      $totalSum=0;
+      if ($request->account_type === "distributors") {
+         $distributor = suppliers::find($request->user);
+         if ($distributor) {
+            for ($i = 0; $i < count($request->allocate); $i++) {
+               $pricing = product_price::whereId($request->item_code[$i])->first();
+               $totalSum += $request->price[$i];
+               Order_items::where('productID', $request->item_code[$i])
+                  ->where('order_code', $request->order_code)
+                  ->update([
+                     "requested_quantity" => $request->requested[$i],
+                     "allocated_quantity" => $request->allocate[$i],
+                     "allocated_subtotal" => $request->price[$i],
+                     "allocated_totalamount" => $request->price[$i],
+                  ]);
+            }
+            $supplierID = $distributor->id;
+            Orders::where('order_code', $request->order_code)
+               ->update([
+                  "supplierID" => $supplierID,
+                  "price_total" =>$totalSum,
+                  "Balance" =>$totalSum,
+               ]);
+
+            $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Re-allocate an order to a Distributor';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Order Re-allocation';
+            $activityLog->action = 'Order Re-allocated to distributor' . $distributor->name . ' ';
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = "";
+            $activityLog->save();
+            Session::flash('success', 'Order allocated to distributor ' . $distributor->name);
+            return redirect()->route('orders.pendingdeliveries');
+         }else{
+            Session::flash('error', 'Something went wrong, Order could not be re-allocated to distributor');
+            return redirect()->route('orders.pendingdeliveries');
+         }
+      }
+
+      $delivery = Delivery::updateOrCreate(
+         [
+            "business_code" => Str::random(20),
+            "customer" => $request->customer,
+            "order_code" => $request->order_code
+         ],
+         [
+            "delivery_code" => Str::random(20),
+            "allocated" => $request->user,
+            "delivery_note" => $request->note,
+            "delivery_status" => "Waiting acceptance",
+            "created_by" => Auth::user()->user_code
+         ]
+      );
+      for ($i = 0; $i < count($request->allocate); $i++) {
+         $pricing = product_price::whereId($request->item_code[$i])->first();
+         $totalSum += $request->price[$i];
+         Delivery_items::updateOrCreate(
+            [
+               "business_code" => Auth::user()->business_code,
+               "delivery_code" => $delivery->delivery_code,
+               "productID" => $request->item_code[$i],
+            ],
+            [
+               "selling_price" => $pricing->selling_price,
+               "sub_total" => $request->price[$i],
+//               "total_amount" => $pricing->selling_price * $request->allocate[$i],
+               "total_amount" => $request->price[$i],
+               "product_name" => $request->product[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "delivery_item_code" => Str::random(20),
+               "requested_quantity" => $request->requested[$i],
+               "created_by" => Auth::user()->user_code
+            ]
+         );
+
+         Order_items::where('productID', $request->item_code[$i])
+            ->where('order_code', $request->order_code)
+            ->update([
+               "requested_quantity" => $request->requested[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "allocated_subtotal" => $request->price[$i],
+               "allocated_totalamount" => $request->price[$i],
+            ]);
+      }
+
+      Orders::where('order_code', $request->order_code)
+         ->update([
+            "order_status" => "Waiting acceptance",
+            "price_total" =>$totalSum,
+            "Balance" =>$totalSum,
+         ]);
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Re-Allocate an order to a User';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order Re-Allocation';
+      $activityLog->action = 'Order re-allocated to user '. $request->name. ' Role '.$request->account_type.' ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+      Session::flash('success', 'Orders re-allocated to a user');
+      return redirect()->route('orders.pendingdeliveries');
    }
    public function delivery(Request $request)
    {

@@ -11,9 +11,8 @@
                <h2 class="content-header-title float-start mb-0">Pending Deliveries </h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                     <li class="breadcrumb-item"><a href="#">Pending Deliveries</a></li>
-                     <li class="breadcrumb-item active">List</li>
+                     <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
+                     <li class="breadcrumb-item active"><a href="#">Pending Deliveries List</a></li>
                   </ol>
                </div>
             </div>
