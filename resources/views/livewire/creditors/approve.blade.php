@@ -64,7 +64,7 @@
 {{--                                    class="btn btn-sm btn-primary">Edit</a>--}}
 {{--                            </td>--}}
                             <td>
-                                @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2)
+                                @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2 || @empty($contact->creditor_approved) )
                                     <button wire:click.prevent="approveCreditor({{ $contact->id }})"
                                         onclick="confirm('Are you sure you want to approve this customer to be a creditor?')||event.stopImmediatePropagation()"
                                         type="button" class="btn btn-success btn-sm">Approve</button>
