@@ -17,7 +17,7 @@ class LineChart extends Component
    }
    public function getGraphData()
    {
-      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
+      $sidai = suppliers::where('name', 'LIKE', '%sidai%')->first();
       $months = [
          1 => 'January',
          2 => 'February',
@@ -36,15 +36,14 @@ class LineChart extends Component
       $preOrderCounts = Orders::where('order_type', 'Pre Order')
          ->whereIn('supplierID', [$sidai->id, '', null])
          ->where('order_status', 'DELIVERED')
-         ->whereYear('created_at', '=', date('Y'))
-         ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
 
-      $deliveryCounts = Orders::whereIn('order_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
+      $deliveryCounts = Orders::where('order_status', 'LIKE', '%deliver%')
          ->whereYear('created_at', '=', date('Y'))
-         ->selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
