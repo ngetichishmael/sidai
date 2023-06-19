@@ -69,9 +69,9 @@
                                 <td>{{ $count + 1 }}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 20) }}</td>
-                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
-                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>
-                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
+                                <td title="{{ $order->Customer->Region->name ?? null }}">
+                                    {{ Str::limit($order->Customer->Region->name ?? null, 20) }}</td>
+                                <td title="{{ $order->Customer->Area->name ?? null }}">
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>

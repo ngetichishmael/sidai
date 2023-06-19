@@ -1,5 +1,5 @@
-<div class="mt-5" >
-   <section class="app-user-list" style="padding-top: 20%" id="vansalesSection">
+<div class="mt-0" >
+   <section class="app-user-list" id="vansalesSection">
       <div class="card">
          <h5 class="card-header">Total Vansales</h5>
          <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
@@ -202,9 +202,9 @@
                <thead class="thead-light">
                <tr>
                   <th>ID</th>
+                  <th>Distributor</th>
                   <th>Order Code</th>
                   <th>Customer</th>
-                  <th>Distributor</th>
                   <th>Balance </th>
                   <th>Payment Status</th>
                   <th>Date</th>
@@ -214,9 +214,9 @@
                @forelse ($orderfullmentbydistributorspage as $key=>$sale)
                   <tr>
                      <td>{{ $key + 1 }}</td>
+                     <td>{{ $sale->distributor()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->order_code }}</td>
                      <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
-                     <td>{{ $sale->distributor()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->balance }}</td>
                      <td>{{ $sale->payment_status }}</td>
                      <td>{{ $sale->updated_at }}</td>
@@ -313,14 +313,14 @@
             <table class="table">
                <thead class="thead-light">
                <tr>
+                  <td>#</td>
                   <th>Name</th>
                   <th>Phone</th>
                   <th>Email</th>
                   <th>Region</th>
                   <th>Account Type</th>
-                  {{--                        <th>Added By</th>--}}
                   <th>Status</th>
-                  <th>Added On</th>
+                  <th>Date</th>
                </tr>
                </thead>
                <tbody>
@@ -331,6 +331,7 @@
                      <td>{{ $sale->phone_number ?? ''}}</td>
                      <td>{{ $sale->email ?? ''}}</td>
                      <td>{{ $sale->Region->name ?? ''}}</td>
+                     <td>{{ $sale->account_type ?? ''}}</td>
                      <td>{{ $sale->status }}</td>
                      <td>{{ $sale->created_at }}</td>
                   </tr>
@@ -371,8 +372,11 @@
                <thead class="thead-light">
                <tr>
                   <th>ID</th>
+                  <th>Order Code</th>
                   <th>Customer Name</th>
+                  <th>Created By </th>
                   <th>Balance </th>
+                  <th>Status</th>
                   <th>Date</th>
                </tr>
                </thead>
@@ -381,8 +385,8 @@
                   <tr>
                      <td>{{ $key + 1 }}</td>
                      <td>{{ $sale->order_code }}</td>
-                     <td>{{ $sale->user()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
+                     <td>{{ $sale->user()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->balance }}</td>
                      <td>{{ $sale->payment_status }}</td>
                      <td>{{ $sale->updated_at }}</td>

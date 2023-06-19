@@ -26,7 +26,7 @@ class usersController extends Controller
    }
    public function getDistributors(Request $request)
    {
-      $distributors = suppliers::whereIn('status', ['Active', 'active'])
+      $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
          ->orWhereNull('status')
          ->orWhere('status', '')
          ->get();

@@ -42,7 +42,7 @@
                                         <label for="first-name-column">Customer Names</label>
                                         <input type="text" id="first-name-column" class="form-control"
                                             placeholder="Customer Name" name="customer_name"
-                                            value="{{ $customer->customer_name }}" />
+                                            value="{{ $customer->customer_name ?? '' }}" />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -66,8 +66,8 @@
                                             value="{{ $customer->telephone }}" name="telephone" />
                                     </div>
                                 </div>
-                                
-                               
+
+
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
@@ -158,7 +158,8 @@
                             <div class="row">
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn" style="background-color: #B6121B;color:white">Update</button>
-                                <a href="{{ route('customer') }}" class="btn btn-outline-secondary">Cancel</a>
+                                <a href="{{ route('creditors') }}" class="btn btn-outline-secondary">Cancel</a>
+                            </div>
                             </div>
                         </form>
                     </div>

@@ -5,7 +5,7 @@
             <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region->name }}">{{ $region->name }}</option>
+                <option value="{{ $region->id }}">{{ $region->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -52,9 +52,9 @@
                         @foreach ($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
-                                {!! $contact->customer_name !!}
+                                {!! $contact->customer_name ?? '' !!}
                             </td>
-                            <td>{!! $contact->phone_number !!}</td>
+                            <td>{!! $contact->phone_number ?? "" !!}</td>
                             <td>
                                 {!! $contact->Region->name ?? ' ' !!}
                             </td>
@@ -79,7 +79,7 @@
                     </tbody>
                 </table>
 
-               
+
             </div>
         </div>
     </div>
