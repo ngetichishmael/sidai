@@ -96,6 +96,11 @@
                 </div>
             </div>
         </div>
+       <div class="row">
+          <div class="my-1 col-sm-12 offset-sm-3">
+             <a href="{{ route('creditors') }}" class="btn btn-outline-danger"> Back </a>
+          </div>
+       </div>
     </section>
     <!-- Basic Floating Label Form section end -->
 @endsection

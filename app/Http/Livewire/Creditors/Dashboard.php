@@ -15,7 +15,7 @@ class Dashboard extends Component
     use WithPagination;
     public $group = null;
     protected $paginationTheme = 'bootstrap';
-    public $perPage = 10;
+    public $perPage = 25;
     public ?string $search = null;
     public ?string $regional = null;
    public function render()
@@ -38,7 +38,7 @@ class Dashboard extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $regionTerm = '%' . $this->regional . '%';
-      $aggregate = customers::join('areas', 'customers.route_code', '=', 'areas.id')
+      $aggregate = customers::join('areas', 'customers.route', '=', 'areas.id')
          ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
          ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
          ->where('regions.name', 'like', $regionTerm)
