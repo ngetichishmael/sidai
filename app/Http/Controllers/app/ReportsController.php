@@ -18,162 +18,151 @@ use App\Models\products\product_information;
 
 class ReportsController extends Controller
 {
-     public $perPage = 50;
-    public function preorders()
-    {
-        $count =1;
-        $preorders = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Pre Order')->get();
-         return view('app.Reports.preorders',['preorders' => $preorders,'count'=>$count]);
+   public $perPage = 50;
+   public function preorders()
+   {
+      $count = 1;
+      $preorders = Orders::with('User', 'Customer')->where('order_status', 'Pending Delivery')->where('order_type', 'Pre Order')->get();
+      return view('app.Reports.preorders', ['preorders' => $preorders, 'count' => $count]);
+   }
+   public function preorderitems($order_code)
+   {
+      $items = Order_items::where('order_code', $order_code)->get();
+      return view('app.items.preorder', ['items' => $items]);
+   }
+   public function vansaleitems($order_code)
+   {
+      $items = Order_items::where('order_code', $order_code)->get();
+      return view('app.items.vansale', ['items' => $items]);
+   }
+   public function deliveryitems($order_code)
+   {
+      $items = Order_items::where('order_code', $order_code)->get();
+      return view('app.items.delivery', ['items' => $items]);
+   }
+   public function tsr()
+   {
+      $tsrs = User::where('account_type', 'TSR')->get();
+      return view('app.items.tsr', ['tsrs' => $tsrs]);
+   }
+   public function customer()
+   {
+      $customers = customers::with(['Area', 'Area.Subregion', 'Area.Subregion.Region'])
+         ->select('customers.customer_name', DB::raw('COUNT(orders.order_code) AS number_of_orders'), 'areas.name AS area_name', 'subregions.name AS subregion_name', 'regions.name AS region_name')
+         ->leftJoin('orders', 'customers.id', '=', 'orders.customerID')
+         ->leftJoin('order_items', 'orders.order_code', '=', 'order_items.order_code')
+         ->leftJoin('areas', 'customers.route_code', '=', 'areas.id')
+         ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+         ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+         ->groupBy('customers.customer_name', 'areas.name', 'subregions.name', 'regions.name')
+         ->get();
+      return view('app.items.customer', ['customers' => $customers]);
+   }
+   public function admin()
+   {
+      $admins = User::where('account_type', 'Admin')->get();
+      return view('app.items.admin', ['admins' => $admins]);
+   }
+   public function rsm()
+   {
+      $rsms = User::where('account_type', 'RSM')->get();
+      return view('app.items.rsm', ['rsms' => $rsms]);
+   }
+   public function nsm()
+   {
+      $nsms = User::where('account_type', 'NSM')->get();
+      return view('app.items.nsm', ['nsms' => $nsms]);
+   }
+   public function shopattendee()
+   {
+      $attendee = User::where('account_type', 'Shop-Attendee')->get();
+      return view('app.items.attendee', ['attendee' => $attendee]);
+   }
+   public function vansales()
+   {
+      $count = 1;
+      $vansales = Orders::with('User', 'Customer')->where('order_status', 'Pending Delivery')->where('order_type', 'Van sales')->get();
+      return view('app.Reports.vansales', ['vansales' => $vansales, 'count' => $count]);
+   }
+   public function delivery()
+   {
+      $count = 1;
+      $deliveries = Orders::with('User', 'Customer')->where('order_status', 'Delivered')->get();
+      return view('app.Reports.delivery', ['deliveries' => $deliveries, 'count' => $count]);
+   }
+   public function supplier()
+   {
+      return view('app.Reports.supplier');
+   }
+   public function payments()
+   {
+      return view('app.Reports.payments');
+   }
+   public function users()
+   {
+      $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))
+         ->groupBy('account_type')
+         ->get();
+      return view('app.Reports.users', ['usercount' => $usercount]);
+   }
 
-    }
-    public function preorderitems($order_code)
-    {
-      $items = Order_items::where('order_code',$order_code)->get();
-      return view('app.items.preorder',['items'=>$items]);
+   public function warehouse()
+   {
+      $count = 1;
+      $warehouses = warehousing::whereNotNull('warehouse_code')->get();
+      return view('app.Reports.warehouse', ['warehouses' => $warehouses, 'count' => $count]);
+   }
+   public function distributor()
+   {
+      $count = 1;
+      $distributors = Orders::with('User', 'Customer')->where('supplierID', '!=', '1')->where('supplierID', '!=', 'NULL')->get();
+      return view('app.Reports.distributor', ['distributors' => $distributors, 'count' => $count]);
+   }
+   public function regional()
+   {
+      $regions = Region::all();
+      $count = 1;
+      return view('app.Reports.regional', ['regions' => $regions, 'count' => $count]);
+   }
+   public function inventory()
+   {
+      $warehouses = warehousing::whereNotNull('warehouse_code')->distinct('name')->get();
+      $count = 1;
+      return view('app.Reports.inventory', ['warehouses' => $warehouses, 'count' => $count]);
+   }
 
-    }
-    public function vansaleitems($order_code)
-    {
-      $items = Order_items::where('order_code',$order_code)->get();
-      return view('app.items.vansale',['items'=>$items]);
-
-    }
-    public function deliveryitems($order_code)
-    {
-      $items = Order_items::where('order_code',$order_code)->get();
-      return view('app.items.delivery',['items'=>$items]);
-
-    }
-    public function tsr()
-    {
-      $tsrs = User::where('account_type','TSR')->get();
-      return view('app.items.tsr',['tsrs'=>$tsrs]);
-
-    }
-    public function customer()
-    {
-      $customers = User::where('account_type','Customer')->get();
-      return view('app.items.customer',['customers'=>$customers]);
-
-    }
-    public function admin()
-    {
-      $admins = User::where('account_type','Admin')->get();
-      return view('app.items.admin',['admins'=>$admins]);
-
-    }
-    public function rsm()
-    {
-      $rsms = User::where('account_type','RSM')->get();
-      return view('app.items.rsm',['rsms'=>$rsms]);
-
-    }
-    public function nsm()
-    {
-      $nsms = User::where('account_type','NSM')->get();
-      return view('app.items.nsm',['nsms'=>$nsms]);
-
-    }
-    public function shopattendee()
-    {
-      $attendee = User::where('account_type','Shop-Attendee')->get();
-      return view('app.items.attendee',['attendee'=>$attendee]);
-
-    }
-    public function vansales()
-    {
-          $count =1;
-          $vansales = Orders::with('User','Customer')->where('order_status', 'Pending Delivery')->where('order_type','Van sales')->get();
-         return view('app.Reports.vansales',['vansales'=>$vansales,'count'=>$count]);
-
-    }
-    public function delivery()
-    {
-     $count =1;
-     $deliveries = Orders::with('User','Customer')->where('order_status', 'Delivered')->get();
-    return view('app.Reports.delivery',['deliveries'=>$deliveries,'count'=>$count]);
-
-    }
-    public function supplier()
-    {
-    return view('app.Reports.supplier');
-
-    }
-    public function payments()
-    {
-    return view('app.Reports.payments');
-
-    }
-    public function users()
-    {
-     $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))
-     ->groupBy('account_type')
-     ->get();
-         return view('app.Reports.users',['usercount'=>$usercount]);
-
-    }
-
-    public function warehouse()
-    {$count =1;
-     $warehouses = warehousing::whereNotNull('warehouse_code')->get();
-    return view('app.Reports.warehouse',['warehouses'=>$warehouses,'count'=>$count]);
-
-    }
-    public function distributor()
-    {
-     $count =1;
-     $distributors = Orders::with('User','Customer')->where('supplierID','!=', '1')->where('supplierID','!=','NULL')->get();
-         return view('app.Reports.distributor',['distributors'=>$distributors,'count'=>$count]);
-
-    }
-    public function regional()
-    {
-     $regions = Region::all();
-     $count =1;
-     return view('app.Reports.regional',['regions'=>$regions,'count'=>$count]);
-
-    }
-    public function inventory()
-    {
-     $warehouses= warehousing::whereNotNull('warehouse_code')->distinct('name')->get();
-     $count=1;
-         return view('app.Reports.inventory',['warehouses'=>$warehouses,'count'=>$count]);
-    }
-
-    public function products($code)
-    {
-     $count=1;
-     $warehouse= warehousing::where('warehouse_code',$code)->first();
-     $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
-         return view('app.Reports.inventory',['warehouses'=>$warehouse,'count'=>$count,'products'=>$products]);
-    }
-    public function subregions($id)
-    {
-     $subregions = Subregion::where('region_id',$id)->get();
-     $count =1;
-         return view('app.territories.subregions',['subregions'=>$subregions,'count'=>$count]);
-    }
-    public function routes($id)
-    {
-     $routes = Area::where('subregion_id',$id)->get();
-     $count =1;
-         return view('app.territories.routes',['routes' =>$routes,'count'=>$count]);
-    }
-    public function customers($id)
-    {
-     $customers = customers::where('route',$id)->get();
-     $count = 1;
-     return view('app.territories.customers',['count'=>$count,'customers'=>$customers]);
-    }
-    public function productreport($code)
-    {
-     $warehouse= warehousing::where('warehouse_code',$code)->first();
+   public function products($code)
+   {
+      $count = 1;
+      $warehouse = warehousing::where('warehouse_code', $code)->first();
+      $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
+      return view('app.Reports.inventory', ['warehouses' => $warehouse, 'count' => $count, 'products' => $products]);
+   }
+   public function subregions($id)
+   {
+      $subregions = Subregion::where('region_id', $id)->get();
+      $count = 1;
+      return view('app.territories.subregions', ['subregions' => $subregions, 'count' => $count]);
+   }
+   public function routes($id)
+   {
+      $routes = Area::where('subregion_id', $id)->get();
+      $count = 1;
+      return view('app.territories.routes', ['routes' => $routes, 'count' => $count]);
+   }
+   public function customers($id)
+   {
+      $customers = customers::where('route', $id)->get();
+      $count = 1;
+      return view('app.territories.customers', ['count' => $count, 'customers' => $customers]);
+   }
+   public function productreport($code)
+   {
+      $warehouse = warehousing::where('warehouse_code', $code)->first();
       if (!empty($warehouse)) {
          $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
          session(['warehouse_code' => $warehouse->warehouse_code]);
-         return view('app.products.productreport',['warehouse'=>$warehouse,'products'=>$products]);
+         return view('app.products.productreport', ['warehouse' => $warehouse, 'products' => $products]);
       }
-
-    }
-
+   }
 }
