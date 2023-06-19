@@ -17,14 +17,27 @@
                             @foreach ($requisitions as $count => $requisition)
                                 <tr>
                                     <td>{!! $count + 1 !!}</td>
-                                    <td>{!! $requisition->sales_person ?? '' !!}</td>
-                                    @if ($requisition->status === 'approved')
-                                        <td style="color: #78be6f"> Approved</td>
-                                    @elseif ($requisition->status === 'Waiting Approval')
-                                        <td style="color: #f5b747">Waiting Approval</td>
-                                    @elseif ($requisition->status === 'Disapproved')
-                                        <td style="color: #fd6b37">Disapproved</td>
-                                    @endif
+                                    <td>{{ $requisition->User->name ?? '' }}</td>
+                                    @isset($requisition->requisition_products_count, $requisition->approved_requisition_products_count)
+                                        @php
+                                            $percentage = ($requisition->approved_requisition_products_count / $requisition->requisition_products_count) * 100;
+                                            $data = $requisition->approved_requisition_products_count . '/' . $requisition->requisition_products_count;
+                                        @endphp
+
+                                        @if ($requisition->requisition_products_count === $requisition->approved_requisition_products_count)
+                                            <td style="color: #78be6f">{{ $data }} Approved</td>
+                                        @elseif ($percentage >= 75)
+                                            <td style="color: #78be6f">{{ $data }} High Approval</td>
+                                        @elseif ($percentage >= 50)
+                                            <td style="color: #f5b747">{{ $data }} Moderate Approval</td>
+                                        @elseif ($percentage > 0)
+                                            <td style="color: #fd6b37">{{ $data }} Low Approval</td>
+                                        @else
+                                            <td style="color: #B6121B">{{ $data }}</td>
+                                        @endif
+                                    @endisset
+
+
 
                                     <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
                                     <td>

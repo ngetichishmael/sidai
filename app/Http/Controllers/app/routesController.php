@@ -38,7 +38,7 @@ class routesController extends Controller
    public function create()
    {
       $customers = customers::where('business_code', Auth::user()->business_code)->pluck('customer_name', 'id');
-      $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'Shop-Attendee')->pluck('name', 'id');
+      $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'RSM')->pluck('name', 'id');
 
 
       return view('app.routes.create', ['customers' => $customers, 'salesPeople' => $salesPeople]);
@@ -72,20 +72,20 @@ class routesController extends Controller
       $route->save();
       $customers = customers::where('route', $request->route_id)->pluck('id');
 
-
-
       //save customers
       $customersCount = count($customers);
       if ($customersCount > 0) {
+         $customerIDs = $customers->toArray();
          for ($i = 0; $i < $customersCount; $i++) {
             $customer = new Route_customer;
             $customer->business_code  = Auth::user()->business_code;
             $customer->routeID = $code;
-            $customer->customerID = $customers[$i];
+            $customer->customerID = $customerIDs[$i];
             $customer->created_by = Auth::user()->user_code;
             $customer->save();
          }
       }
+
 
       //save sales person
       $salescount = count(collect($request->sales_persons));

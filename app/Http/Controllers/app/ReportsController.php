@@ -44,6 +44,42 @@ class ReportsController extends Controller
       return view('app.items.delivery',['items'=>$items]);
 
     }
+    public function tsr()
+    {
+      $tsrs = User::where('account_type','TSR')->get();
+      return view('app.items.tsr',['tsrs'=>$tsrs]);
+
+    }
+    public function customer()
+    {
+      $customers = User::where('account_type','Customer')->get();
+      return view('app.items.customer',['customers'=>$customers]);
+
+    }
+    public function admin()
+    {
+      $admins = User::where('account_type','Admin')->get();
+      return view('app.items.admin',['admins'=>$admins]);
+
+    }
+    public function rsm()
+    {
+      $rsms = User::where('account_type','RSM')->get();
+      return view('app.items.rsm',['rsms'=>$rsms]);
+
+    }
+    public function nsm()
+    {
+      $nsms = User::where('account_type','NSM')->get();
+      return view('app.items.nsm',['nsms'=>$nsms]);
+
+    }
+    public function shopattendee()
+    {
+      $attendee = User::where('account_type','Shop-Attendee')->get();
+      return view('app.items.attendee',['attendee'=>$attendee]);
+
+    }
     public function vansales()
     {
           $count =1;
@@ -60,9 +96,7 @@ class ReportsController extends Controller
     }
     public function supplier()
     {
-     $count =1;
-     $suppliers = Orders::with('User','Customer')->where('order_status', 'Delivered')->get();
-    return view('app.Reports.supplier',['suppliers'=>$suppliers,'count'=>$count]);
+    return view('app.Reports.supplier');
 
     }
     public function payments()

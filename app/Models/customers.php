@@ -3,15 +3,17 @@
 namespace App\Models;
 
 use App\Models\customer\checkin;
+use App\Traits\Regional;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\DB;
 
 class customers extends Model
 {
-   use searchable;
+   use searchable, Regional;
    protected $table = 'customers';
    protected $guarded = [
       ''
@@ -24,20 +26,19 @@ class customers extends Model
       'Area.Subregion.name',
       'Area.Subregion.Region.name',
    ];
+   protected $regional = [
+      'Area.Subregion.Region.name',
+   ];
    // Relationship with orders
    public function orders()
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
-   //   public function number_visited()
-   //   {
-   //      return $this->hasMany(Checkin::class, 'customer_id', 'id')->select(\DB::raw('count(*) as counts'))->groupBy('customer_id');
-   //   }
 
    public function number_visited()
    {
       return $this->hasMany(Checkin::class, 'customer_id', 'id')
-         ->select(\DB::raw('customer_id, count(*) as counts'))
+         ->select(DB::raw('customer_id, count(*) as counts'))
          ->groupBy('customer_id');
    }
 

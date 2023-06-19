@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StockRequisition extends Model
 {
-    use HasFactory;
-    protected $table = "stock_requisitions";
+   use HasFactory;
+   protected $table = "stock_requisitions";
    protected $guarded = [''];
    /**
     * Get all of the RequisitionProducts for the StockRequisition
@@ -19,7 +19,11 @@ class StockRequisition extends Model
     */
    public function RequisitionProducts(): HasMany
    {
-       return $this->hasMany(RequisitionProduct::class, 'requisition_id');
+      return $this->hasMany(RequisitionProduct::class, 'requisition_id');
+   }
+   public function ApprovedRequisitionProducts(): HasMany
+   {
+      return $this->hasMany(RequisitionProduct::class, 'requisition_id')->where('approval', 1);
    }
    /**
     * Get the user that owns the StockRequisition
@@ -28,6 +32,6 @@ class StockRequisition extends Model
     */
    public function user(): BelongsTo
    {
-       return $this->belongsTo(User::class, 'sales_person','user_code');
+      return $this->belongsTo(User::class, 'user_id', 'id');
    }
 }
