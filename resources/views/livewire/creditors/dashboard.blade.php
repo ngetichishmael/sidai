@@ -5,15 +5,7 @@
             <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <option value="{{ $region->name }}">{{ $region->name }}</option>
-=======
                 <option value="{{ $region->id }}">{{ $region->name }}</option>
->>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
-=======
-                <option value="{{ $region->name }}">{{ $region->name }}</option>
->>>>>>> 236af8a84f2694a592be4c0c2e7440089e18ba6b
                 @endforeach
             </select>
         </div>
@@ -87,7 +79,7 @@
                     </tbody>
                 </table>
 
-               
+
             </div>
         </div>
     </div>

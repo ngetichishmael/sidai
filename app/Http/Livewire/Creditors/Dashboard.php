@@ -20,10 +20,6 @@ class Dashboard extends Component
     public ?string $regional = null;
    public function render()
    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-      
-=======
       $searchTerm = '%' . $this->search . '%';
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
@@ -32,10 +28,6 @@ class Dashboard extends Component
          ->where('creditor_approved', 'LIKE','1')
          ->orderBy('id', 'DESC')
          ->paginate($this->perPage);
->>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
-=======
-
->>>>>>> 236af8a84f2694a592be4c0c2e7440089e18ba6b
          return view('livewire.creditors.dashboard', [
             'contacts' => $this->customers(),
             'regions' => $this->region(),
