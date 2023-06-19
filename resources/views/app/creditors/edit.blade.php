@@ -42,7 +42,7 @@
                                         <label for="first-name-column">Customer Names</label>
                                         <input type="text" id="first-name-column" class="form-control"
                                             placeholder="Customer Name" name="customer_name"
-                                            value="{{ $customer->customer_name }}" />
+                                            value="{{ $customer->customer_name ?? '' }}" />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -66,8 +66,8 @@
                                             value="{{ $customer->telephone }}" name="telephone" />
                                     </div>
                                 </div>
-                                
-                               
+
+
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>

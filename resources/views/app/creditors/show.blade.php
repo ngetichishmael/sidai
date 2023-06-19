@@ -25,12 +25,12 @@
                         <h4 class="card-title">Creditor</h4>
                     </div>
                     <div class="card-body">
-                        
+
                             <div class="row">
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <h4>Customers Name:</h4>
-                                        <p style="color:black">{{ $customer->customer_name }}</p>
+                                        <p style="color:black">{{ $customer->customer_name ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -51,7 +51,7 @@
                                         <p style="color:black">{{ $customer->address ?? 'N/A' }}</p>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <h4>Customer Group:</h4>
@@ -91,7 +91,7 @@
 
 
                             </div>
-                            
+
                     </div>
                 </div>
             </div>
