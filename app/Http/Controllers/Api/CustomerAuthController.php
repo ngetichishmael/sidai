@@ -100,26 +100,6 @@ class CustomerAuthController extends Controller
 
       $image_path = $request->file('image')->store('image', 'public');
       $account = Str::random(20);
-      customers::create([
-         'customer_name' => $request->customer_name,
-         'account' => $account,
-         'approval' => "Approved",
-         'address' => $request->Address,
-         'country' => "Kenya",
-         'latitude' => $request->Latitude,
-         'longitude' => $request->Longitude,
-         'contact_person' => $request->ContactPerson,
-         'phone_number' => $request->phone_number,
-         'Telephone' => $request->phone_number,
-         'customer_group' => $request->CustomerLevel,
-         'route' => $request->Address,
-         'status' => "Active",
-         'email' => $request->email,
-         'image' => $image_path,
-         'business_code' => $account,
-         'created_by' => $account,
-         'updated_by' => $account,
-      ]);
       User::create([
          'user_code' => $account,
          'name' => $request->customer_name,
@@ -130,7 +110,37 @@ class CustomerAuthController extends Controller
          'location' => $request->Address,
          'account_type' => "Customer",
          'status' => "Active",
+         'region_id'=> $request->region_id,
       ]);
+
+
+      $subregion=Subregion::where('region_id', $request->region_id ?? Auth::user()->region_id)->first();
+
+      customers::create([
+         'customer_name' => $request->customer_name,
+         'account' => $account,
+         'user_code' => $account,
+         'approval' => "Approved",
+         'address' => $request->Address,
+         'country' => "Kenya",
+         'latitude' => $request->Latitude,
+         'longitude' => $request->Longitude,
+         'contact_person' => $request->ContactPerson,
+         'phone_number' => $request->phone_number,
+         'Telephone' => $request->phone_number,
+         'customer_group' => $request->CustomerLevel,
+         'route' => $request->Address ?? $request->route,
+         'route_code' => $request->Address ?? $request->route,
+         'status' => "Active",
+         'email' => $request->email,
+         'region_id'=> $request->region_id,
+         'subregion_id'=> $subregion,
+         'image' => $image_path,
+         'business_code' => $account,
+         'created_by' => $account,
+         'updated_by' => $account,
+      ]);
+
       $user = User::where('phone_number', $request->phone_number)->firstOrFail();
 
       $token = $user->createToken('auth_token')->plainTextToken;

@@ -262,6 +262,8 @@ public function groups(){
       $image_path = $request->file('image')->store('image', 'public');
       $emailData = $request->email !== null ? $request->email : $request->customer_name.$random.'@gmail.com';
       $random=Str::random(10);
+      $route=Subregion::where('id', $request->route)->first();
+      $subregion=Subregion::where('id', $route->subregion_id)->first();
       $user = new User();
       $user->name = $request->customer_name;
       $user->email=$emailData;
@@ -271,12 +273,11 @@ public function groups(){
       $user->account_type= "Customer";
       $user->email_verified_at =Carbon::now();
       $user->status="Active";
-      $user->region_id= $request->region_id ?? Auth::user()->region_id;
+      $user->region_id= $subregion->route ?? Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = Hash::make("password");
       $user->save();
 
-      $subregion=Subregion::where('region_id', $request->region_id ?? Auth::user()->region_id)->first();
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
       $customer->contact_person = $request->contact_person;
@@ -288,11 +289,11 @@ public function groups(){
       $customer->longitude = $request->longitude;
       $customer->business_code = $request->business_code;
       $customer->created_by = $request->user()->user_code;
-      $customer->route_code = $request->route_code;
-      $customer->route = $request->route_code;
+      $customer->route_code = $request->route;
+      $customer->route = $request->route;
       $customer->customer_group = $request->customer_group;
       $customer->price_group = $request->outlet;
-      $customer->region_id = $request->region_id ?? Auth::user()->region_id;
+      $customer->region_id = $subregion->region_id;
       $customer->subregion_id = $subregion;
       $customer->unit_id = $request->route_code;
       $customer->image = $image_path;
