@@ -253,7 +253,6 @@ class warehousingController extends Controller
    {
       $this->validate($request, [
          'name' => 'required',
-         'phone_number' => 'required',
       ]);
 
       //check if has main
@@ -267,15 +266,10 @@ class warehousingController extends Controller
       $warehouse = warehousing::where('business_code', Auth::user()->business_code)->where('warehouse_code', $code)->first();
       $warehouse->business_code = Auth::user()->business_code;
       $warehouse->name = $request->name;
-      $warehouse->country = $request->country;
-      $warehouse->city = $request->city;
-      $warehouse->location = $request->location;
-      $warehouse->phone_number = $request->phone_number;
-      $warehouse->email = $request->email;
-      $warehouse->longitude = $request->longitude;
-      $warehouse->latitude = $request->latitude;
-      $warehouse->status = $request->status;
-      $warehouse->is_main = $request->is_main;
+      $warehouse->region_id = $request->region_id ?? $warehouse->region_id;
+      $warehouse->subregion_id = $request->subregion_id ?? $warehouse->subregion_id;
+      $warehouse->status = $request->status ?? $warehouse->status;
+      $warehouse->is_main = $request->is_main ?? $warehouse->is_main;
       $warehouse->updated_by = Auth::user()->user_code;
       $warehouse->save();
 
@@ -291,7 +285,7 @@ class warehousingController extends Controller
       $activityLog->ip_address ="";
       $activityLog->save();
 
-      return redirect()->back();
+      return redirect()->route('warehousing.index');
    }
 
    /**

@@ -44,6 +44,13 @@ class Dashboard extends Component
       );
       return redirect()->to('/customer');
    }
+   public function approveCreditor($id)
+   {
+      customers::whereId($id)->update(
+         ['approval' => "Suspended"]
+      );
+      return redirect()->to('/customer');
+   }
    public function activate($id)
    {
       customers::whereId($id)->update(

@@ -109,8 +109,49 @@ class ordersController extends Controller
       $this->validate($request, [
          'user' => 'required',
 //         'warehouse' => 'required',
-
       ]);
+      $supplierID = null;
+      $totalSum=0;
+      if ($request->account_type === "distributors") {
+         $distributor = suppliers::find($request->user);
+         if ($distributor) {
+            for ($i = 0; $i < count($request->allocate); $i++) {
+               $pricing = product_price::whereId($request->item_code[$i])->first();
+               $totalSum += $request->price[$i];
+               Order_items::where('productID', $request->item_code[$i])
+                  ->where('order_code', $request->order_code)
+                  ->update([
+                     "requested_quantity" => $request->requested[$i],
+                     "allocated_quantity" => $request->allocate[$i],
+                     "allocated_subtotal" => $request->price[$i],
+                     "allocated_totalamount" => $request->price[$i],
+                  ]);
+            }
+            $supplierID = $distributor->id;
+            Orders::where('order_code', $request->order_code)
+               ->update([
+                  "supplierID" => $supplierID,
+                  "price_total" =>$totalSum,
+                  "Balance" =>$totalSum,
+               ]);
+
+            $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Allocate an order to a Distributor';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Order Allocation';
+            $activityLog->action = 'Order allocated to distributor' . $distributor->name . ' ';
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = "";
+            $activityLog->save();
+            Session::flash('success', 'Order allocated to distributor ' . $distributor->name);
+            return redirect()->route('orders.pendingorders');
+         }else{
+            Session::flash('error', 'Something went wrong, Order could not be allocated to disrtibutor');
+            return redirect()->route('orders.pendingorders');
+         }
+      }
 
       $delivery = Delivery::updateOrCreate(
          [
@@ -126,7 +167,6 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
-      $totalSum=0;
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
          $totalSum += $request->price[$i];

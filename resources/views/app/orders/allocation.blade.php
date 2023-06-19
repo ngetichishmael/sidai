@@ -131,13 +131,28 @@
             <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
        $(document).ready(function() {
           $('#account_type').on('change', function() {
              var accountType = $(this).val();
-             if (accountType) {
+             if (accountType === 'distributors') {
+                $.ajax({
+                   url: '{{ route('get.distributors') }}',
+                   type: 'GET',
+                   success: function(data) {
+                      $('#user').empty();
+                      $('#user').append('<option value="">Choose a Distributor</option>');
+                      data.users.forEach(function(distributor) {
+                         $('#user').append('<option value="' + distributor.id + '">' + distributor.name + '</option>');
+                      });
+                   },
+                   error: function() {
+                      console.log('Error occurred during AJAX request.');
+                   }
+                });
+             } else if (accountType) {
                 $.ajax({
                    url: '{{ route('get.users') }}',
                    type: 'GET',
@@ -159,7 +174,6 @@
              }
           });
        });
-
     </script>
 
 @endsection
