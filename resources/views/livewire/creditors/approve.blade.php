@@ -26,6 +26,7 @@
                     <th>Region</th>
                     <th>Sub-region</th>
                     <th>Route</th>
+                    <th>id</th>
                     <th>Created By</th>
                     <th>Date</th>
                     <th width="15%">Action</th>

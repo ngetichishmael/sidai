@@ -45,6 +45,7 @@
                         <th>Region</th>
                         <th>Sub-region</th>
                         <th>Route</th>
+                        <td>id</td>
                         <th>Created By</th>
                         <th width="15%">Action</th>
                     </thead>
@@ -65,14 +66,17 @@
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
                             <td>
+                                {!! $contact->id ?? '' !!}
+                            </td>
+                            <td>
                                 {!! $contact->Creator->name ?? '' !!}
                             </td>
 
                             <td>
                                 <a href="{{ route('creditors.details', $contact->id) }}"
-                                    class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
+                                    class="btn btn-sm" style="background-color: #B6121B;color:white"> {{$contact->id}} View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
-                                    class="btn btn-sm" style="background-color: #B6121B; color:white">Edit</a>
+                                    class="btn btn-sm" style="background-color: #B6121B; color:white">{{$contact->id}} Edit</a>
                             </td>
                             </tr>
                         @endforeach
