@@ -39,9 +39,9 @@
                         @foreach ($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
-                                {!! $contact->customer_name !!}
+                                {!! $contact->customer_name ?? '' !!}
                             </td>
-                            <td>{!! $contact->phone_number !!}</td>
+                            <td>{!! $contact->phone_number ?? ''!!}</td>
                             <td>
                                 {!! $contact->Region->name ?? ' ' !!}
                             </td>
@@ -52,7 +52,7 @@
                                 {!! $contact->Area->name ?? '' !!}
                             </td>
                             <td>
-                                {!! $contact->Creator->name ?? '' !!}
+                                {!! $contact->user->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->created_at ?? '' !!}
