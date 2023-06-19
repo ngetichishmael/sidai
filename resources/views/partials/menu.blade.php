@@ -90,10 +90,10 @@
                 <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}">
                   <span class="menu-item text-truncate">Creditors</span></a>
                 </li>
-               <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('creditors') }}">
+               <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('approveCreditors') }}">
                   <span class="menu-item text-truncate">Approve Creditors</span></a>
                 </li>
-                
+
                 <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('groupings') }}">
                   <span class="menu-item text-truncate">Customer Groups</span></a>
                </li>
@@ -345,13 +345,13 @@
               <ul class="menu-content">
                  <li style="padding-left: 50px">
                     <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
-                      
+
                        <span class="menu-item text-truncate">Survey</span>
                     </a>
                  </li>
                  <li style="padding-left: 50px">
                     <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
-                      
+
                        <span class="menu-item text-truncate">Responses</span>
                     </a>
                  </li>

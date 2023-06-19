@@ -46,6 +46,10 @@ class customerController extends Controller
    {
       return view('app.creditors.index');
    }
+   public function approveCreditors()
+   {
+      return view('app.creditors.approve');
+   }
    public function show()
    {
       return view('app.customers.index');
@@ -359,5 +363,5 @@ $region=
       $accounts = customers::where('businessID', FacadesAuth::user()->business_code)->orderby('id', 'desc')->get(['id', 'customer_name as text']);
       return ['results' => $accounts];
    }
-   
+
 }

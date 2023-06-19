@@ -18,7 +18,7 @@ class Targets extends Component
 
       $today = Carbon::now();
       $lastDayofMonth =  Carbon::parse($today)->endOfMonth()->toDateString();
-      $this->users = User::where('account_type', 'Sales')->get();
+      $this->users = User::whereNotIn('account_type', ['Admin','Customer'])->get();
       $this->QPTargets = SalesTarget::all();
       $this->fill([
          'Targets' => collect([

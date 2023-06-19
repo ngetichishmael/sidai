@@ -5,7 +5,11 @@
             <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
+<<<<<<< HEAD
                     <option value="{{ $region->name }}">{{ $region->name }}</option>
+=======
+                <option value="{{ $region->id }}">{{ $region->name }}</option>
+>>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
                 @endforeach
             </select>
         </div>
@@ -14,9 +18,9 @@
             <select wire:model="group" class="form-control">
                 <option value="" selected>select</option>
                 @foreach ($groups as $group)
-                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option> 
+                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option>
                 @endforeach
-                
+
             </select>
         </div>
         <div class="col-md-3">
@@ -42,10 +46,10 @@
                         <th width="1%">#</th>
                         <th>Name</th>
                         <th>Phone Number</th>
+                        <th>Region</th>
+                        <th>Sub-region</th>
                         <th>Route</th>
-                        <th>Payment Deadline</th>
-                        <th>Total Amount</th>
-                        <th>Paid Amount</th>
+                        <th>Created By</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
@@ -56,10 +60,10 @@
                             </td>
                             <td>{!! $contact->phone_number !!}</td>
                             <td>
-                                {!! $contact->Area->Subregion->Region->name ?? ' ' !!}
+                                {!! $contact->Region->name ?? ' ' !!}
                             </td>
                             <td>
-                                {!! $contact->Area->Subregion->name ?? '' !!}
+                                {!! $contact->Subregion->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}

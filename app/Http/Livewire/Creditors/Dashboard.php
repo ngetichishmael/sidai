@@ -20,7 +20,18 @@ class Dashboard extends Component
     public ?string $regional = null;
    public function render()
    {
+<<<<<<< HEAD
       
+=======
+      $searchTerm = '%' . $this->search . '%';
+      $contacts = customers::with('Area.Subregion.Region', 'Creator')
+         ->search($searchTerm)
+//         ->where('customer_type', 'LIKE','creditor')
+         ->where('is_creditor', 'LIKE','1')
+         ->where('creditor_approved', 'LIKE','1')
+         ->orderBy('id', 'DESC')
+         ->paginate($this->perPage);
+>>>>>>> 86ee0cd7ff3c288f2c576db6685397427ee6c407
          return view('livewire.creditors.dashboard', [
             'contacts' => $this->customers(),
             'regions' => $this->region(),
@@ -60,6 +71,20 @@ class Dashboard extends Component
          ['approval' => "Suspended"]
       );
       return redirect()->to('/customer');
+   }
+   public function approveCreditor($id)
+   {
+      customers::whereId($id)->update(
+         ['creditor_approved' => 1 ]
+      );
+      return redirect()->to('/creditors');
+   }
+   public function dissaproveCreditor($id)
+   {
+      customers::whereId($id)->update(
+         ['creditor_approved' => 2 ]
+      );
+      return redirect()->to('/creditors');
    }
    public function activate($id)
    {

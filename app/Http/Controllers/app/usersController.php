@@ -26,12 +26,13 @@ class usersController extends Controller
    }
    public function getDistributors(Request $request)
    {
-      $accountType = $request->input('account_type');
-      $users = suppliers::where('account_type', $accountType)->get();
+      $distributors = suppliers::whereIn('status', ['Active', 'active'])
+         ->orWhereNull('status')
+         ->orWhere('status', '')
+         ->get();
 
-      return response()->json(['users' => $users]);
+      return response()->json(['users' => $distributors]);
    }
-
    //list
    public function list()
    {
@@ -325,12 +326,12 @@ class usersController extends Controller
 
       return redirect()->back();
    }
-   public function destroy($id)
-   {
-      User::where('id', $id)->delete();
-      Session()->flash('success', 'User deleted Successfully');
-      return redirect()->route('users.index');
-   }
+//   public function destroy($id)
+//   {
+//      User::where('id', $id)->delete();
+//      Session()->flash('success', 'User deleted Successfully');
+//      return redirect()->route('users.index');
+//   }
    public function import()
    {
       abort(403, "This action is Limited to Admin Only");
