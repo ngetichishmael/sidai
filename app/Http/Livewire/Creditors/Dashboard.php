@@ -21,13 +21,14 @@ class Dashboard extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $contacts = customers::with('Area.Subregion.Region', 'Creator')
-         ->where('is_creditor', '=',1)
-         ->where('creditor_approved', '=',1)
-         ->search($searchTerm)
-//         ->where('customer_type', 'LIKE','creditor')
+      $contacts = customers::where('is_creditor', 1)
+         ->where('creditor_approved', 1)
+         ->with('Area.Subregion.Region', 'Creator')
+         ->when($this->search, function ($query) use ($searchTerm) {
+            $query->search($searchTerm);
+         })
          ->orderBy('id', 'DESC')
-         ->paginate($this->perPage);
+         ->simplePaginate($this->perPage);
          return view('livewire.creditors.dashboard', [
             'contacts' => $contacts,
             'regions' => $this->region(),

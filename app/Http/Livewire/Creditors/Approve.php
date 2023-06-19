@@ -21,21 +21,24 @@ class Approve extends Component
     public function render()
     {
        $searchTerm = '%' . $this->search . '%';
-       $contacts = customers::with('Area.Subregion.Region', 'Creator')
-          ->where('is_creditor', 'LIKE',1)
-          ->where('creditor_approved', 'LIKE',0)
-          ->search($searchTerm)
+       $contacts = customers::where('is_creditor', 1)
+          ->where('creditor_approved', 0)
+           ->with('Area.Subregion.Region', 'Creator')
+          ->when($this->search, function ($query) use ($searchTerm) {
+             $query->search($searchTerm);
+          })
           ->orderBy('id', 'DESC')
-          ->paginate($this->perPage);
+          ->simplePaginate($this->perPage);
        return view('livewire.creditors.approve', [
           'contacts' => $contacts,
           'regions' =>$this->region(),
           'groups' =>$this->groups()
        ]);
-    }public function export()
-{
+    }
+    public function export()
+      {
    return Excel::download(new ExportsCustomers, 'customers.xlsx');
-}
+      }
    public function deactivate($id)
    {
       customers::whereId($id)->update(
