@@ -22,8 +22,8 @@ class Dashboard extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $contacts = customers::with('Area.Subregion.Region', 'Creator')
-         ->where('is_creditor', '=','1')
-         ->where('creditor_approved', '=','1')
+         ->where('is_creditor', '=',1)
+         ->where('creditor_approved', '=',1)
          ->search($searchTerm)
 //         ->where('customer_type', 'LIKE','creditor')
          ->orderBy('id', 'DESC')
