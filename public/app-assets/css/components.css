@@ -672,6 +672,7 @@ footer.footer-border {
 
 .main-menu.menu-light .navigation>li>a {
    margin: 0 15px;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li>a .label {
@@ -710,11 +711,13 @@ footer.footer-border {
 
 .main-menu.menu-light .navigation>li:not(.open)>ul {
    display: none;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li:not(.open)>ul .active {
    background: transparent;
    box-shadow: none;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li.active {
@@ -727,7 +730,6 @@ footer.footer-border {
    box-shadow: 0 0 10px 1px rgb(241 132 33);
    color: #fff;
    font-weight: 400;
-   font-size: small;
    border-radius: 4px;
 }
 

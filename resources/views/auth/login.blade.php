@@ -9,17 +9,18 @@
 <body>
     <div class="dashboard-landing">
         <div class="left-side">
-            <nav>
-                <img src={{ asset('app-assets/images/sidaiweblogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" />
-            </nav>
+            
             <img src="{{ asset('app-assets/images/loginpage.svg') }}" alt="" class="img-fluid">
-            <h1 class="title" style="color: #fd6b37">Sidai</h1>
+            
         </div>
         <div class="right-side">
             <div class="login-fields">
                 <!-- Login v1 -->
                 <div>
+                    
                     <div class="card-body">
+                            <img src={{ asset('app-assets/images/sidaiweblogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" />
+                        
                         <h4 class="mb-1 card-title">Welcome to Sidai! 👋</h4>
                         <p class="mb-2 card-text">Please sign-in to your account</p>
                         <form class="mt-2 auth-login-form" action="{{ route('login') }}" method="POST">

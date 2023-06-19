@@ -30,7 +30,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <h4>Customers Name:</h4>
-                                        <p style="color:black">{{ $customer->customer_name }}</p>
+                                        <p style="color:black">{{ $customer->customer_name??'N/A'}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -79,7 +79,7 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <h4>Created At:</h4>
-                                        <p style="color:black">{{ $customer->created_at->format('jS F Y') ?? 'N/A' }}</p>
+                                        <p style="color:black">{{ $customer->created_at??'N/A' }}</p>
                                     </div>
                                 </div>
 
