@@ -2,10 +2,10 @@
     <div class="mb-1 row">
         <div class="col-md-3">
             <label for="">Filter By Region</label>
-            <select wire:model="region" class="form-control">`
+            <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
                 @foreach ($regions as $region)
-                <option value="{{ $region->id }}">{{ $region->name }}</option> 
+                    <option value="{{ $region->name }}">{{ $region->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -79,9 +79,7 @@
                     </tbody>
                 </table>
 
-                <div class="mt-1">
-                    {{ $contacts->links() }}
-                </div>
+               
             </div>
         </div>
     </div>
