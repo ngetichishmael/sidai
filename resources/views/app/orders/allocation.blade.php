@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <label for="">Quantity</label>
                                     <input type="text" name="requested[]" value="{!! $item->quantity !!}"
-                                        class="form-control" readonly>
+                                           class="form-control" style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
                                 </div>
                             </div><div class="col-md-2">
                                 <div class="form-group">
@@ -111,7 +111,7 @@
                            <div class="col-md-2">
                               <div class="form-group">
                                  <label for="">Updated Price</label>
-                                 <input type="number" name="price[]" class="form-control" required readonly>
+                                 <input type="number" name="price[]" class="form-control" style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
                               </div>
                            </div>
 

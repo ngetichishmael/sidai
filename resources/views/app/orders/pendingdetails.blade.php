@@ -129,7 +129,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Orders</a></li>
+                            <li class="breadcrumb-item"><a href="{!! route('orders.pendingdeliveries') !!}">Pending Orders</a></li>
                             <li class="breadcrumb-item active">{!! $order->order_code !!}</li>
                             <li class="breadcrumb-item active">Details</li>
                         </ol>
@@ -140,7 +140,7 @@
     </div>
     @include('partials._messages')
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
                     <div class="row">
@@ -180,8 +180,6 @@
                     </div>
 
                     <div class="">
-
-
                         <div class="table-responsive">
                             <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                                 <thead>
@@ -232,14 +230,14 @@
 {{--                                    </div>--}}
 {{--                                </div>--}}
 
-                                <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="row my-2 align-items-center bgc-primary-l3 p-2 font-bold">
                                     <div class="col-7 text-right">
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                       <span>------------</span>
+                                       <span>-----------</span>
                                        </br>
-                                        <span class="text-150 text-success-d3 opacity-2"> {!! $total->sum('allocated_totalamount') !!}</span>
+                                        <span class="text-150 text-success-d3 opacity-2 "> {!! $total->sum('allocated_totalamount') !!}</span>
                                     </div>
                                 </div>
                             </div>
@@ -247,72 +245,148 @@
 
                         <hr />
                        <br/>
-                       <h2 class="content-header-title float-start mb-0">Unallocated Items</h2>
-                       <div class="table-responsive">
-                          <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
-                             <thead>
-                             <tr class="text-black">
-                                <th class="opacity-2">#</th>
-                                <th>Description</th>
-                                <th>Qty</th>
-                                <th>Unit Price</th>
-                                <th width="140">Amount</th>
-                             </tr>
-                             </thead>
+                   <form class="row " action="{!! route('order.create.reallocateorders') !!}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <h2 class="content-header-title float-start mb-0">Unallocated Items</h2>
+                      <input type="hidden" name="order_code" value="{!! $order->order_code !!}">
+                      <input type="hidden" name="customer" value="{!! $order->customerID !!}">
+                      <div class="col-md-12">
 
-                             <tbody class="text-95 text-secondary-d3">
-                             @foreach ($items as $count => $item)
-                                @if ((int)$item->allocated_quantity < (int)$item->quantity )
-                                <tr>
-                                   <td>{!! $count + 1 !!}</td>
-                                   <td>{!! $item->product_name !!}</td>
-                                   <td>{!! ((int)$item->quantity) - ((int)$item->allocated_quantity)!!}</td>
-                                   <td class="text-95">{!! $item->selling_price !!}</td>
-                                   <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
-                                </tr>
-                                @endif
-                             @endforeach
-                             </tbody>
-                          </table>
-                       </div>
-                       @if ((int)$item->allocated_quantity < (int)$item->quantity )
-                       <div><center>
-                             <a href="#" class="btn btn-primary"> Allocate</a>
-                          </center></div>
-                       @endif
+                         <div class="mt-2 card">
+                            <div class="card-body">
+                               <h4>Items</h4>
+                               <hr>
+                               @foreach ($items as $key => $item)
+                                  @if ((int)$item->allocated_quantity < (int)$item->quantity )
+                                  <input type="hidden" name="item_code[]" value="{!! $item->productID !!}">
+                                  <div class="mb-1 row mt-2">
+                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                           <label for="">Product</label>
+                                           <input type="text" name="product[]"value="{!! $item->product_name !!}"
+                                                  class="form-control" readonly>
+                                        </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                           <label for="">Quantity</label>
+                                           <input type="text" name="requested[]" value="{!! ((int)$item->quantity) - ((int)$item->allocated_quantity)!!}"
+                                                  class="form-control" readonly>
+                                        </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                           <label for="">Total Price</label>
+                                           <input type="text" value="{!! $item->selling_price * (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}"
+                                                  class="form-control" style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
+                                        </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                           <label for="">Allocate</label>
+                                           <input type="number" name="allocate[]" class="form-control" placeholder="max {!! (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}" max="{!!(((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}" required oninput="calculatePrice(this, {!! $item->selling_price !!})">
+                                        </div>
+                                     </div>
+                                     <div class="col-md-2">
+                                        <div class="form-group">
+                                           <label for="">Updated Price</label>
+                                           <input type="number" name="price[]" class="form-control" style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
+                                        </div>
+                                     </div>
+                                  </div>
+                                     <script>
+                                        function calculatePrice(input, sellingPrice) {
+                                           const allocatedQuantity = input.value;
+                                           const totalPrice = allocatedQuantity * sellingPrice;
+                                           const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
+                                           priceInput.value = totalPrice;
+                                        }
+                                     </script>
+                                     @endif
+                               @endforeach
+                            </div>
+                         </div>
+                      </div>
+                         <hr/>
+                         <div class="card">
+                            <div class="card-body">
+                               <div class="row">
+                                  <div class="form-group col-md-4">
+                                     <label for="">Re-assign Stock To</label>
+                                     <select name="account_type" class="form-control select" id="account_type" required>
+                                        <option value="">Choose User Type</option>
+                                        @foreach ($account_types as $account)
+                                           <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                                        @endforeach
+                                        <option value="distributors">Distributors</option>
+                                     </select>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                     <label for="">Choose User</label>
+                                     <select name="user" class="form-control select2" id="user" required>
+                                        <option value=""></option>
+                                     </select>
+                                  </div>
+                                  <div class="form-group col-md-4 ml-3">
+                                     <label for="noteText">Note</label>
+                                     <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="mb-1 col-md-3 mr-0">
+                            <button class="mt-1 btn btn-success bt-md" type="submit">Re-allocate order items</button>
+                            </div>
+                         </div>
+
+                   </form>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-{{--            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Delivery</a></center>--}}
-            @if ($payment)
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> {!! $payment->amount !!} <br>
-                            <b>Payment Date:</b> {!! $payment->payment_date !!}<br>
-                            <b>Payment Method:</b> {!! $payment->payment_method !!}<br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @else
-                <div class="card">
-                    <div class="card-header">Order Payments</div>
-                    <div class="card-body">
-                        <h6>
-                            <b>Amount:</b> N/A <br>
-                            <b>Payment Date:</b> N/A <br>
-                            <b>Payment Method:</b> N/A <br>
-                        </h6>
-                        <hr>
-                    </div>
-                </div>
-            @endif
-        </div>
     </div>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <script>
+          $(document).ready(function() {
+             $('#account_type').on('change', function() {
+                var accountType = $(this).val();
+                if (accountType === 'distributors') {
+                   $.ajax({
+                      url: '{{ route('get.distributors') }}',
+                      type: 'GET',
+                      success: function(data) {
+                         $('#user').empty();
+                         $('#user').append('<option value="">Choose a Distributor</option>');
+                         data.users.forEach(function(distributor) {
+                            $('#user').append('<option value="' + distributor.id + '">' + distributor.name + '</option>');
+                         });
+                      },
+                      error: function() {
+                         console.log('Error occurred during AJAX request.');
+                      }
+                   });
+                } else if (accountType) {
+                   $.ajax({
+                      url: '{{ route('get.users') }}',
+                      type: 'GET',
+                      data: { account_type: accountType },
+                      success: function(data) {
+                         $('#user').empty();
+                         $('#user').append('<option value="">Choose a User</option>');
+                         data.users.forEach(function(user) {
+                            $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
+                         });
+                      },
+                      error: function() {
+                         console.log('Error occurred during AJAX request.');
+                      }
+                   });
+                } else {
+                   $('#user').empty();
+                   $('#user').append('<option value="">Choose User</option>');
+                }
+             });
+          });
+       </script>
 @endsection
 {{-- page scripts --}}
 @section('script')

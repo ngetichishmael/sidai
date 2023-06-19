@@ -158,7 +158,7 @@
                        </div>
                     </div>
                     <div class="media">
-                       <div class="mr-1 rounded avatar bg-light-primary d-flex align-items-center">
+                       <div class="mr-1 rounded avatar d-flex bg-light-primary align-items-center">
                           <div class="avatar-content">
                              <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
                           </div>
@@ -168,7 +168,7 @@
                           </div>
                        </div>
                     </div>
-                    <div class="mt-2 media " style="background: white;">
+                    <div class="media mt-2">
                        <div class="mr-1 rounded avatar bg-light-primary align-items-center">
                           <div class="avatar-content">
                              <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
