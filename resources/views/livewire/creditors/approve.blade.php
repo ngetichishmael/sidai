@@ -26,7 +26,6 @@
                     <th>Region</th>
                     <th>Sub-region</th>
                     <th>Route</th>
-                    <th>id</th>
                     <th>Created By</th>
                     <th>Date</th>
                     <th width="15%">Action</th>
@@ -51,9 +50,6 @@
                             </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->id ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->user->name ?? '' !!}
