@@ -29,6 +29,10 @@ class routesController extends Controller
    {
       return view('app.routes.index');
    }
+   public function individual()
+   {
+      return view('app.routes.individual');
+   }
 
    /**
     * Show the form for creating a new resource.

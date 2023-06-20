@@ -320,6 +320,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('/get-subregions/{regionId}', 'app\warehousingController@getByRegion')->name('get-subregions');;
    /* === Route Scheduling === */
    Route::get('routes', ['uses' => 'app\routesController@index', 'as' => 'routes.index']);
+   Route::get('routes/individual', ['uses' => 'app\routesController@individual', 'as' => 'routes.individual']);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);
    Route::post('routes/store', ['uses' => 'app\routesController@store', 'as' => 'routes.store']);
    Route::get('routes/{code}/update', ['uses' => 'app\routesController@update', 'as' => 'routes.update']);
