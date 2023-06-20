@@ -85,6 +85,15 @@ class UsersController extends Controller
          "data" => "UNAUTHORIZED USER!!!",
       ]);
    }
+   public function accountTypes()
+   {
+         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $account_types,
+         ]);
+   }
    public function suspendUser(Request $request)
    {
       $suspension = User::where('user_code', $request->user_code)->update([
