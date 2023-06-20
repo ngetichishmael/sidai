@@ -171,7 +171,7 @@
                     </div>
                     <div class="media mt-2" style="background: white">
                        <div class="mr-1 rounded avatar align-items-center" style="background: white">
-                          <div class="avatar-content" style="background: white">
+                          <div class="avatar-content">
                              <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
                           </div>
                           &nbsp;&nbsp;&nbsp;
