@@ -157,26 +157,27 @@
                           <p class="mb-0 card-text">Tunza Mifugo Yako</p>
                        </div>
                     </div>
-                    <div class="media">
-                       <div class="mr-1 rounded avatar d-flex bg-light-primary align-items-center">
-                          <div class="avatar-content">
-                             <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                    <div class="media" style="background: white">
+                       <div class="mr-1 rounded avatar d-flex align-items-center" style="background: white">
+                          <div class="avatar-content" style="background: white">
+                             <i data-feather="calendar" class="avatar-icon font-medium-3" style="color: #4883ee;"></i>
                           </div>
-                          <div class="pl-3">
-                             <h6 class="mb-0">{{ date_format(now(), 'D, F, Y') }}</h6>
-                             <small>8:AM to 5:PM</small>
+                          &nbsp;&nbsp;&nbsp;
+                          <div class="pl-3" style="background: white">
+                             <h6 class="mb-0" style="color: gray;">{{ date_format(now(), 'D, F, Y') }}</h6>
+                             <small style="color: darkgray;">8:AM to 5:PM</small>
                           </div>
                        </div>
                     </div>
-                    <div class="media mt-2">
-                       <div class="mr-1 rounded avatar bg-light-primary align-items-center">
+                    <div class="media mt-2" style="background: white">
+                       <div class="mr-1 rounded avatar align-items-center" style="background: white">
                           <div class="avatar-content">
                              <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
                           </div>
-
-                       <div class="media-body pl-3">
-                          <h6 class="mb-0"> </h6>
-                          <small class="ml-2">Nairobi, Kenya</small>
+                          &nbsp;&nbsp;&nbsp;
+                       <div class="media-body pl-3" style="background: white;">
+                          <h6 class="mb-0" style="background: white;"> </h6>
+                          <small style="background: white; color: darkgrey">Nairobi, Kenya</small>
                        </div>
                     </div>
                     </div>

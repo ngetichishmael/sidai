@@ -57,7 +57,7 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->phone_number !!}</td>
+                            <td>{!! $contact->customer_number !!}</td>
 
                             <td class="cell-fit">
                                 {!! $contact->Area->Subregion->Region->name ?? '' !!}
@@ -66,7 +66,7 @@
                             <td>{!! $contact->Area->name ?? '' !!}</td>
                             <td>{!! $contact->customer_type !!}</td>
                             <td>
-                                {!! $contact->Creator->name ?? '' !!}
+                                {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}

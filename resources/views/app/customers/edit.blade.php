@@ -88,7 +88,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                {{-- <div class="col-md-6 col-12">
                                     <label>Pricing Category</label>
                                     <select class="form-control" name="pricing_category">
                                         <option value="">Pricing Category</option>
@@ -100,7 +100,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>

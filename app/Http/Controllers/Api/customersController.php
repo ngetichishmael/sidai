@@ -100,7 +100,8 @@ class customersController extends Controller
 public function RequestToBeCreditor(Request $request){
    $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
-      customers::whereId($customer->id)->update([ 'is_creditor'=>1]);
+      customers::whereId($customer->id)->update([ 'is_creditor'=>1,
+         'creditor_approved' => 0 ]);
       return response()->json([
          "success" => true,
          "message" => "Request to be a Creditor Received Successfully",

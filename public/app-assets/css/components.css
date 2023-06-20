@@ -759,10 +759,12 @@ footer.footer-border {
 
 .main-menu.menu-light .navigation>li ul li>a {
    padding: 10px 15px 10px 20px;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li ul li ul a {
    padding: 10px 15px 10px 53px;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li ul .has-sub:not(.open)>ul {
@@ -797,7 +799,7 @@ footer.footer-border {
 }
 
 .main-menu.menu-light .navigation>li ul .active {
-   background: linear-gradient(118deg, #B6121B, orangered);
+   background: linear-gradient(118deg, orange, orange);
    box-shadow: 0 0 10px 1px #B6121B;
    7);
    */ border-radius: 4px;

@@ -44,6 +44,7 @@
   'regionselect.dynamicselect' => 'App\\Http\\Livewire\\Regionselect\\Dynamicselect',
   'routes.customerselect' => 'App\\Http\\Livewire\\Routes\\Customerselect',
   'routes.index' => 'App\\Http\\Livewire\\Routes\\index',
+  'routes.individual' => 'App\\Http\\Livewire\\Routes\\individual',
   'sales.targets' => 'App\\Http\\Livewire\\Sales\\Targets',
   'supplier.dashboard' => 'App\\Http\\Livewire\\Supplier\\Dashboard',
   'supplier.index' => 'App\\Http\\Livewire\\Supplier\\index',

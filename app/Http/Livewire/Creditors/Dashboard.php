@@ -21,7 +21,7 @@ class Dashboard extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $contacts = customers::where('is_creditor', '=',1)->where('creditor_approved', '=',1)
+      $contacts = customers::where('is_creditor', 1)->where('creditor_approved', 1)
          ->with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
 //         ->where('customer_type', 'LIKE','creditor')
@@ -37,7 +37,17 @@ class Dashboard extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $regionTerm = '%' . $this->regional . '%';
-      $aggregate = customers::join('areas', 'customers.route', '=', 'areas.id')
+      $aggregate = customers::select(
+         'customers.customer_name as customer_name',
+         'customers.phone_number as customer_number',
+         'regions.name as region_name',
+         'subregions.name as subregion_name',
+         'areas.name as area_name',
+         'customers.customer_type as customer_type',
+         'customers.id as id',
+         'customers.created_at as created_at'
+      )
+         ->join('areas', 'customers.route_code', '=', 'areas.id')
          ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
          ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
          ->where('regions.name', 'like', $regionTerm)
@@ -45,7 +55,7 @@ class Dashboard extends Component
             $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
-         ->where('customer_type', 'normal')
+         ->where('customer_type', 'creditor')
          ->get();
 
       return $aggregate;
