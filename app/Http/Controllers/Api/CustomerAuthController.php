@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\activity_log;
+use App\Models\Region;
+use App\Models\Routes;
+use App\Models\Subregion;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -97,24 +100,25 @@ class CustomerAuthController extends Controller
             403
          );
       }
-
+      $rand=Str::random(3);
       $image_path = $request->file('image')->store('image', 'public');
       $account = Str::random(20);
+      $route=Routes::where('id', $request->route_code)->first();
+      $subregion=Subregion::where('id', $route->subregion_id)->first();
+      $region=Region::where('id', $subregion->region_id)->first();
+
       User::create([
          'user_code' => $account,
          'name' => $request->customer_name,
-         'email' => $request->email ?? $request->phone_number . '@gmail.com',
+         'email' => $request->email ?? $request->customer_name.$rand.'@gmail.com',
          'password' => Hash::make($request->phone_number),
          'business_code' => $account,
          'phone_number' => $request->phone_number,
          'location' => $request->Address,
          'account_type' => "Customer",
          'status' => "Active",
-         'region_id'=> $request->region_id,
+         'region_id'=> $region->id,
       ]);
-
-
-      $subregion=Subregion::where('region_id', $request->region_id ?? Auth::user()->region_id)->first();
 
       customers::create([
          'customer_name' => $request->customer_name,
@@ -129,12 +133,12 @@ class CustomerAuthController extends Controller
          'phone_number' => $request->phone_number,
          'Telephone' => $request->phone_number,
          'customer_group' => $request->CustomerLevel,
-         'route' => $request->Address ?? $request->route,
-         'route_code' => $request->Address ?? $request->route,
+         'route' => $request->route_code,
+         'route_code' => $request->route_code,
          'status' => "Active",
          'email' => $request->email,
-         'region_id'=> $request->region_id,
-         'subregion_id'=> $subregion,
+         'region_id'=> $region->id,
+         'subregion_id'=> $subregion->id,
          'image' => $image_path,
          'business_code' => $account,
          'created_by' => $account,
