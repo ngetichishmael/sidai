@@ -21,7 +21,7 @@ class Dashboard extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $contacts = customers::where('is_creditor', 1)->where('creditor_approved', 1)
+      $contacts = customers::where('is_creditor', 1)->where('creditor_status', 'approved')
          ->with('Area.Subregion.Region', 'Creator')
          ->search($searchTerm)
 //         ->where('customer_type', 'LIKE','creditor')

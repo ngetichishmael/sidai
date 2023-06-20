@@ -100,8 +100,8 @@ class customersController extends Controller
 public function RequestToBeCreditor(Request $request){
    $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
-      customers::whereId($customer->id)->update([ 'is_creditor'=>1,
-         'creditor_approved' => 0 ]);
+      customers::whereId($customer->id)->update([ 'is_creditor'=> 1,
+         'creditor_status' => "waiting_approval" ]);
       return response()->json([
          "success" => true,
          "message" => "Request to be a Creditor Received Successfully",
@@ -118,7 +118,7 @@ public function creditorStatus(Request $request){
       return response()->json([
          "success" => true,
          "message" => "Customer Status",
-         "data"=>$customer->is_creditor,
+         "data"=>$customer->creditor_status,
       ], 200);
    }
    return response()->json([
@@ -186,9 +186,6 @@ public function groups(){
 
          ]
       );
-
-
-
       return response()->json([
          "success" => true,
          "message" => "Updated customer profile",
@@ -271,7 +268,7 @@ public function groups(){
          'business_code' =>$request->business_code,
          'password' => Hash::make("password")
       ]);
-      $customer = customers::create([
+     customers::create([
          'customer_name' => $request->customer_name,
          'contact_person' => $request->contact_person,
          'phone_number' => $request->phone_number,

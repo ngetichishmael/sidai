@@ -106,7 +106,7 @@ class checkinController extends Controller
          ->where('Type', 'Individual')
          ->where('start_date', '<', $today)
          ->where('end_date', '>', $today)
-         ->pluck('route_code');
+         ->pluck('route');
       $checkerAdmin = Routes::with([
          'RouteSales' => function ($query) use ($user_id) {
             $query->where('userID', $user_id);
@@ -115,7 +115,7 @@ class checkinController extends Controller
          ->where('Type', 'Assigned')
          ->where('start_date', '<', $today)
          ->where('end_date', '>', $today)
-         ->pluck('route_code');
+         ->pluck('route');
       if (count($checkerSelf) > 0) {
          $route_customer = Route_customer::where('customerID', $customer_id)->whereIn('routeID', $checkerSelf)->get();
          if (count($route_customer) > 0) {
