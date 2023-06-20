@@ -389,7 +389,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('orders/{code}/details', ['uses' => 'app\ordersController@details', 'as' => 'orders.details']);
    Route::get('orders/{code}/pendingdetails', ['uses' => 'app\ordersController@pendingdetails', 'as' => 'orders.pendingdetails']);
    Route::get('orders/{code}/distributorsdetails', ['uses' => 'app\ordersController@distributordetails', 'as' => 'orders.distributorsdetails']);
-   Route::get('orders/{code}/distributorschangeStatus', ['uses' => 'app\ordersController@distributorschangeStatus', 'as' => 'orders.distributorschangeStatus']);
+   Route::post('orders/{code}/distributorschangeStatus', ['uses' => 'app\ordersController@distributorschangeStatus', 'as' => 'orders.distributorschangeStatus']);
    Route::get('orders/customer/{id}', ['uses' => 'app\ordersController@makeOrder', 'as' => 'make.orders']);
    Route::get('orders/{code}/delivery/allocation', ['uses' => 'app\ordersController@allocation', 'as' => 'orders.delivery.allocation']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@delivery', 'as' => 'order.create.delivery']);
