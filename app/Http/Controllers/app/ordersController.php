@@ -336,18 +336,21 @@ class ordersController extends Controller
             ]
          );
 
-         $stocked = product_inventory::where('productID', $value["productID"])->first();
+         $stocked = product_inventory::where('productID', $request->item_code[$i])->first();
+         $order = Orders::where('order_code', $request->order_code)->first();
          info($stocked);
          $itemchecker = items::create([
             'business_code' => $business_code,
             'allocation_code' => $random,
-            'product_code' => $value["productID"],
+            'product_code' => $request->item_code[$i],
             'current_qty' => $stocked["current_stock"],
-            'allocated_qty' => $value["qty"],
-            'image' => $image_path,
+            'allocated_qty' => $request->allocate[$i],
             'returned_qty' => 0,
             'created_by' => $user_code,
             'updated_by' => $user_code,
+         ]);
+         items::where('order_code', $request->order_code)->update([
+            'returned_qty' => $request->allocate[$i],
          ]);
 
          Order_items::create([
