@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,11 +88,18 @@ class UsersController extends Controller
    }
    public function accountTypes()
    {
+      $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+      ->orWhereNull('status')
+      ->orWhere('status', '')
+      ->orderby('name', 'desc')->get();
          $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
-            "data" => $account_types,
+            "data" => [
+      "account_types" => $account_types,
+      "distributors" => $distributors,
+   ],
          ]);
    }
    public function suspendUser(Request $request)
