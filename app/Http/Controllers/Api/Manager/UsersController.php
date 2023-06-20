@@ -87,7 +87,7 @@ class UsersController extends Controller
    }
    public function accountTypes()
    {
-         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
+         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
