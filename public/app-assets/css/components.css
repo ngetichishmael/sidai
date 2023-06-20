@@ -797,7 +797,7 @@ footer.footer-border {
 }
 
 .main-menu.menu-light .navigation>li ul .active {
-   background: linear-gradient(118deg, #B6121B, orangered);
+   background: linear-gradient(118deg, orange, orange);
    box-shadow: 0 0 10px 1px #B6121B;
    7);
    */ border-radius: 4px;
