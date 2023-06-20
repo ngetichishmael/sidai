@@ -7,6 +7,7 @@ use App\Models\customers;
 use Livewire\Component;
 use App\Models\Region;
 use App\Models\customer_group;
+use App\Models\User;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -30,7 +31,17 @@ class Dashboard extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       $regionTerm = '%' . $this->regional . '%';
-      $aggregate = customers::join('areas', 'customers.route_code', '=', 'areas.id')
+      $aggregate = customers::select(
+         'customers.customer_name as customer_name',
+         'customers.phone_number as customer_number',
+         'regions.name as region_name',
+         'subregions.name as subregion_name',
+         'areas.name as area_name',
+         'customers.customer_type as customer_type',
+         'customers.id as id',
+         'customers.created_at as created_at'
+      )
+         ->join('areas', 'customers.route_code', '=', 'areas.id')
          ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
          ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
          ->where('regions.name', 'like', $regionTerm)
@@ -48,6 +59,12 @@ class Dashboard extends Component
       // dd($this->regional);
       $this->search = null;
       $this->render();
+   }
+   public function creator($id)
+   {
+      $user_code = customers::whereId($id)->pluck('created_by')->implode('');
+      $user = User::where('user_code', $user_code)->pluck('name')->implode('');
+      return $user;
    }
    public function export()
    {
