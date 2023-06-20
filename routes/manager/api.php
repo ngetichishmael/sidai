@@ -33,8 +33,11 @@ Route::group(['namespace' => 'Api'], function () {
    Route::middleware(['auth:sanctum'])->group(function () {
       Route::get('/manager/customers', [CustomerController::class, 'getCustomers']);
       Route::get('/manager/users', [UsersController::class, 'getUsers']);
+      Route::get('/manager/account_types', [UsersController::class, 'accountTypes']);
       Route::get('/manager/users/list', [UsersController::class, 'usersList']);
       Route::post('/manager/send/notification', [SendNotificationController::class, 'receiveNotification']);
+
+
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
