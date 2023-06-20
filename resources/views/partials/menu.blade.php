@@ -213,25 +213,25 @@
               <a class="d-flex align-items-center" href="#">
                  <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
               </a>
+              <ul class="menu-content">
    @if(Auth::check() && Auth::user()->account_type == "Admin")
-<ul class="menu-content">
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}">
-   <span class="menu-item text-truncate">NSM</span></a>
-  </li>
-   @endif
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('rsm') !!}">
-   <span class="menu-item text-truncate">RSM</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('tsr') !!}">
-   <span class="menu-item text-truncate">TSR</span></a>
-  </li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}">
+ <span class="menu-item text-truncate">NSM</span></a>
+</li>
+                 @endif
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('rsm') !!}">
+ <span class="menu-item text-truncate">RSM</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('tsr') !!}">
+ <span class="menu-item text-truncate">TSR</span></a>
+</li>
 
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}">
-   <span class="menu-item text-truncate">Shop Attendee</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('td') !!}">
-   <span class="menu-item text-truncate">TD</span></a>
-  </li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}">
+ <span class="menu-item text-truncate">Shop Attendee</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('td') !!}">
+ <span class="menu-item text-truncate">TD</span></a>
+</li>
 </ul>
 
 </li>
@@ -249,82 +249,82 @@
 {{--           </li>--}}
 <li class="nav-item {!! Nav::isResource('target') !!}">
 <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
-     class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
+   class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
 <ul class="menu-content">
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {{ route('sales.target') }}">
-   <span class="menu-item text-truncate">Sales</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('visit.target') }}">
-   <span class="menu-item text-truncate">Visits</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('leads.target') }}">
-   <span class="menu-item text-truncate">Leads</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('order.target') }}">
-   <span class="menu-item text-truncate">Orders</span></a>
-  </li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {{ route('sales.target') }}">
+ <span class="menu-item text-truncate">Sales</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('visit.target') }}">
+ <span class="menu-item text-truncate">Visits</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('leads.target') }}">
+ <span class="menu-item text-truncate">Leads</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{{ route('order.target') }}">
+ <span class="menu-item text-truncate">Orders</span></a>
+</li>
 </ul>
 </li>
 @endif
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
 <li class="nav-item {!! Nav::isResource('reports') !!}">
 <a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span
-     class="menu-title text-truncate" data-i18n="Invoice"> Reports</span></a>
+   class="menu-title text-truncate" data-i18n="Invoice"> Reports</span></a>
 <ul class="menu-content">
- <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.reports') !!}">
-   <span class="menu-item text-truncate">All Reports</span></a>
- </li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.reports') !!}">
+ <span class="menu-item text-truncate">All Reports</span></a>
+</li>
 </ul>
 </li>
 @endif
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
 <li class="nav-item {!! Nav::isResource('regions') !!}">
 <a class="d-flex align-items-center" href="#"><i data-feather="map-pin"></i><span
-     class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
+   class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
 <ul class="menu-content">
-  <li style="padding-left: 50px">
-     <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
-        href="{{ route('regions') }}"><span
-           class="menu-item text-truncate">Regions</span></a></li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
-         href="{{ route('subregions') }}"><span
-           class="menu-item text-truncate">Sub Regions</span></a>
-  </li>
-  <li style="padding-left: 50px"><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}">
-   <span class="menu-item text-truncate">Routes</span></a>
-  </li>
+<li style="padding-left: 50px">
+   <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
+      href="{{ route('regions') }}"><span
+         class="menu-item text-truncate">Regions</span></a></li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
+       href="{{ route('subregions') }}"><span
+         class="menu-item text-truncate">Sub Regions</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}" href="{{ route('areas') }}">
+ <span class="menu-item text-truncate">Routes</span></a>
+</li>
 
-  <li class="nav-item {!! Nav::isResource('maps') !!}">
-     <a class="d-flex align-items-center" href="#"><span
-           class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
-     <ul class="menu-content">
-        <li class="nav-item {!! Nav::isResource('maps') !!}">
-           <a class="d-flex align-items-center" href="{!! route('maps') !!}">
-              <span class="menu-title text-truncate" data-i18n="Todo">
-                 Maps</span>
-           </a>
-        </li>
-        <li class="nav-item {!! Nav::isResource('current-information') !!}">
-           <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
-              <span class="menu-title text-truncate" data-i18n="Todo">
-                 Sales Agents</span>
-           </a>
-        </li>
-     </ul>
-  </li>
+<li class="nav-item {!! Nav::isResource('maps') !!}">
+   <a class="d-flex align-items-center" href="#"><span
+         class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
+   <ul class="menu-content">
+      <li class="nav-item {!! Nav::isResource('maps') !!}">
+         <a class="d-flex align-items-center" href="{!! route('maps') !!}">
+            <span class="menu-title text-truncate" data-i18n="Todo">
+               Maps</span>
+         </a>
+      </li>
+      <li class="nav-item {!! Nav::isResource('current-information') !!}">
+         <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
+            <span class="menu-title text-truncate" data-i18n="Todo">
+               Sales Agents</span>
+         </a>
+      </li>
+   </ul>
+</li>
 </ul>
 </li>
 <li class="nav-item {!! Nav::isResource('routes') !!}">
 <a class="d-flex align-items-center" href="">
-  <i data-feather='map'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
-     Scheduling</span>
+<i data-feather='map'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
+   Scheduling</span>
 </a>
 <ul class="menu-content">
 <li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {!! route('routes.index') !!}">
- <span class="menu-item text-truncate">Assigned</span></a>
+<span class="menu-item text-truncate">Assigned</span></a>
 </li>
 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('routes.individual') !!}">
- <span class="menu-item text-truncate">Individual</span></a>
+<span class="menu-item text-truncate">Individual</span></a>
 </li>
 </ul>
 </li>
@@ -332,7 +332,7 @@
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
 <li class="nav-item {!! Nav::isResource('notification') !!}">
 <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
-     class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
+   class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
 {{--                <ul class="menu-content">--}}
 {{--                    <li><a class="d-flex align-items-center" href="{{ route('CustomerNotification') }}"><i--}}
 {{--                                data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a></li>--}}
@@ -340,8 +340,8 @@
 {{--                                data-feather="user-check"></i><span class="menu-item text-truncate">Users</span></a>--}}
 {{--                    </li>--}}
 {{-- <li><a class="d-flex align-items-center" href="{{ route('AllNotification') }}"><i
-           data-feather="user-check"></i><span class="menu-item text-truncate">All
-           Notifications</span></a>
+         data-feather="user-check"></i><span class="menu-item text-truncate">All
+         Notifications</span></a>
 </li> --}}
 {{--                </ul>--}}
 </li>
@@ -349,21 +349,21 @@
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
 <li class="nav-item {!! Nav::isResource('survey') !!}">
 <a class="d-flex align-items-center" href="#">
-  <i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
+<i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
 </a>
 <ul class="menu-content">
-  <li style="padding-left: 50px">
-     <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
+<li style="padding-left: 50px">
+   <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
 
-        <span class="menu-item text-truncate">Survey</span>
-     </a>
-  </li>
-  <li style="padding-left: 50px">
-     <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
+      <span class="menu-item text-truncate">Survey</span>
+   </a>
+</li>
+<li style="padding-left: 50px">
+   <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
 
-        <span class="menu-item text-truncate">Responses</span>
-     </a>
-  </li>
+      <span class="menu-item text-truncate">Responses</span>
+   </a>
+</li>
 </ul>
 </li>
 {{--            <li class="nav-item {!! Nav::isResource('settings') !!}">--}}
@@ -377,7 +377,7 @@
 {{--        </li>--}}
 <li class="nav-item {!! Nav::isResource('activity')!!}">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
-  <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
+<i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
 </a>
 </li>
 @endif

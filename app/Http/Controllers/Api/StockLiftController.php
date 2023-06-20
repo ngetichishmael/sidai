@@ -58,23 +58,23 @@ class StockLiftController extends Controller
                'created_by' => $user_code,
                'updated_by' => $user_code,
             ]);
-            info("itemchecker");
-            info($itemchecker);
+//            info("itemchecker");
+//            info($itemchecker);
          } else {
 
             $inventoryallocation = DB::table('inventory_allocated_items')
                ->where('product_code', $value["productID"])
                ->increment('allocated_qty', $value["qty"]);
 
-            info("inventory_allocated_items");
-            info($inventoryallocation);
+//            info("inventory_allocated_items");
+//            info($inventoryallocation);
          }
          $producting = DB::table('product_inventory')
             ->where('productID', $value["productID"])
             ->decrement('current_stock', $value["qty"]);
 
-         info("Product inventory");
-         info($producting);
+//         info("Product inventory");
+//         info($producting);
       }
       $checkeddd = allocations::create([
          "business_code" => $business_code,
@@ -82,7 +82,7 @@ class StockLiftController extends Controller
          "sales_person" => $user_code,
          "status" => "Waiting acceptance",
          "created_by" => $user_code,
-         "created_by" => $user_code,
+         "updated_by" => $user_code,
 
       ]);
       return response()->json([

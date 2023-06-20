@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Pending Delivery')
+@section('title', 'Pending Payments')
 
 {{-- content section --}}
 @section('content')
