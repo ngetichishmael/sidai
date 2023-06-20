@@ -67,7 +67,7 @@ class UsersController extends Controller
             ->orWhereNull('status')
             ->orWhere('status', '')
             ->orderby('name', 'desc')->get();
-         $users =User::where('region_id', $request->user()->region_id)
+         $users =User::whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->where('region_id', $request->user()->region_id)
                ->select('name', 'user_code','account_type')->get();
          return response()->json([
             "success" => true,
@@ -80,7 +80,7 @@ class UsersController extends Controller
             ->orWhereNull('status')
             ->orWhere('status', '')
             ->orderby('name', 'desc')->get();
-         $users = User::select('name', 'user_code', 'account_type')->get();
+         $users = User::whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->select('name', 'user_code', 'account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
