@@ -104,7 +104,7 @@ public function RequestToBeCreditor(Request $request){
          customers::whereId($customer->id)->update([ 'is_creditor'=> 1]);
          return response()->json([
             "success" => false,
-            "message" => "Request already sent",
+            "message" => "Request already sent, status is ".$customer->creditor_status,
          ], 200);
       }
       customers::whereId($customer->id)->update([ 'is_creditor'=> 1,

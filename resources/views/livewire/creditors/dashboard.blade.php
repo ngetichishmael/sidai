@@ -56,13 +56,13 @@
                             </td>
                             <td>{!! $contact->phone_number ?? "" !!}</td>
                             <td>
-                                {!! $contact->Region->name ?? ' ' !!}
+                               {!! $contact->Area->Subregion->Region->name ?? $contact->Region->name ?? ' ' !!}
                             </td>
                             <td>
-                                {!! $contact->Subregion->name ?? '' !!}
+                               {!! $contact->Area->Subregion->name ?? $contact->Subregion->name ?? '' !!}
                             </td>
                             <td>
-                                {!! $contact->Area->name ?? '' !!}
+                               {!! $contact->Area->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Creator->name ?? '' !!}

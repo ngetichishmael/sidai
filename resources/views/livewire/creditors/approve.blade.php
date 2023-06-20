@@ -43,10 +43,10 @@
                             </td>
                             <td>{!! $contact->phone_number ?? ''!!}</td>
                             <td>
-                                {!! $contact->Region->name ?? ' ' !!}
+                                {!! $contact->Area->Subregion->Region->name ?? $contact->Region->name ?? ' ' !!}
                             </td>
                             <td>
-                                {!! $contact->Subregion->name ?? '' !!}
+                                {!! $contact->Area->Subregion->name ?? $contact->Subregion->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->Area->name ?? '' !!}
@@ -66,11 +66,11 @@
                             <td>
                                 @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2 || @empty($contact->creditor_approved) )
                                     <button wire:click.prevent="approveCreditor({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to approve this customer to be a creditor?')||event.stopImmediatePropagation()"
+                                        onclick="confirm('Are you sure you want to APPROVE this customer to be a creditor?')||event.stopImmediatePropagation()"
                                         type="button" class="btn btn-success btn-sm">Approve</button>
                                @elseif ($contact->creditor_approved === 1)
-                                    <button wire:click.prevent="activate({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to disapprove this customer from list of creditors?')||event.stopImmediatePropagation()"
+                                    <button wire:click.prevent="disapproveCreditor({{ $contact->id }})"
+                                        onclick="confirm('Are you sure you want to DISAPPROVE this customer from list of creditors?')||event.stopImmediatePropagation()"
                                         type="button" class="btn btn-danger btn-sm">Disapprove</button>
                                 @endif
                             </td>
