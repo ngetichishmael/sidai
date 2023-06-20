@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\app;
 
 use App\Models\activity_log;
+use App\Models\Cart;
+use App\Models\inventory\allocations;
 use App\Models\inventory\items;
+use App\Models\Orders as Order;
+use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
@@ -12,6 +16,7 @@ use App\Models\Delivery;
 use App\Models\customers;
 use App\Models\Order_items;
 use App\Models\warehousing;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Delivery_items;
@@ -270,7 +275,7 @@ class ordersController extends Controller
                ->update([
                   "supplierID" => $supplierID,
                   "price_total" =>$totalSum,
-                  "Balance" =>$totalSum,
+                  "balance" =>$totalSum,
                ]);
 
             $random = Str::random(20);
@@ -290,12 +295,6 @@ class ordersController extends Controller
             return redirect()->route('orders.pendingdeliveries');
          }
       }
-      Orders::where('order_code', $request->order_code)
-         ->update([
-            "order_status" => "Waiting acceptance",
-            "price_total" =>$totalSum,
-            "Balance" =>$totalSum,
-         ]);
 
       $delivery = Delivery::updateOrCreate(
          [
@@ -314,6 +313,7 @@ class ordersController extends Controller
       $user_code = $request->user()->user_code;
       $business_code = $request->user()->business_code;
       $random = Str::random(20);
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
          $totalSum += $request->price[$i];
@@ -335,39 +335,62 @@ class ordersController extends Controller
                "created_by" => Auth::user()->user_code
             ]
          );
-
-         $stocked = product_inventory::where('productID', $request->item_code[$i])->first();
-         $order = Orders::where('order_code', $request->order_code)->first();
-         info($stocked);
-         $itemchecker = items::create([
-            'business_code' => $business_code,
-            'allocation_code' => $random,
-            'product_code' => $request->item_code[$i],
-            'current_qty' => $stocked["current_stock"],
-            'allocated_qty' => $request->allocate[$i],
-            'returned_qty' => 0,
-            'created_by' => $user_code,
-            'updated_by' => $user_code,
-         ]);
-         items::where('order_code', $request->order_code)->update([
-            'returned_qty' => $request->allocate[$i],
-         ]);
-
+         $product = product_information::whereId($request->item_code[$i])->first();
+         Cart::updateOrCreate(
+            [
+               'checkin_code' => Str::random(20),
+               "order_code" => $random,
+            ],
+            [
+               'productID' => $request->item_code[$i],
+               "product_name" => $request->product[$i],
+               "qty" => $request->allocate[$i],
+               "price" =>  $pricing->selling_price,
+               "amount" => $request->price[$i],
+               "total_amount" => $request->price[$i],
+               "userID" => $user_code,
+            ]
+         );
+         Order::updateOrCreate(
+            [
+               'order_code' => $random,
+            ],
+            [
+               'user_code' => $user_code,
+               'customerID' => $request->customer,
+               'price_total' => $request->product[$i],
+               'balance' => $request->product[$i],
+               'order_status' => 'Waiting Acceptance',
+               'payment_status' => 'Pending Payment',
+               'qty' => $request->allocate[$i],
+               'supplierID'=>$sidai->id ?? 1,
+               'discount' => $items["discount"] ?? "0",
+               'reallocated_from_order' => $request->order_code,
+               'order_type' => 'Pre Order',
+               'delivery_date' => now(),
+               'business_code' => $user_code,
+               'updated_at' => now(),
+            ]
+         );
          Order_items::create([
-               "requested_quantity" => $request->requested[$i],
-               "allocated_quantity" => $request->allocate[$i],
-               "allocated_subtotal" => $request->price[$i],
-               "allocated_totalamount" => $request->price[$i],
-            'business_code' => $business_code,
-            'allocation_code' => $random,
-            'product_code' => $value["productID"],
-            'current_qty' => $stocked["current_stock"],
-            'allocated_qty' => $value["qty"],
-            'image' => $image_path,
-            'returned_qty' => 0,
-            'created_by' => $user_code,
-            'updated_by' => $user_code,
-            ]);
+            'order_code' => $random,
+            'productID' => $request->item_code[$i],
+            "product_name" => $request->product[$i],
+            "sub_total" => $request->price[$i],
+            "total_amount" => $request->price[$i],
+            "allocated_quantity" => $request->allocate[$i],
+            'quantity' => $request->allocate[$i],
+            'selling_price' => $pricing->selling_price,
+            'discount' => 0,
+            'taxrate' => 0,
+            'taxvalue' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+         ]);
+
+         DB::table('orders_targets')
+            ->where('user_code', $user_code)
+            ->increment('AchievedOrdersTarget', $request->allocate[$i]);
       }
       $random = Str::random(20);
       $activityLog = new activity_log();
@@ -379,7 +402,7 @@ class ordersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
       $activityLog->save();
-      Session::flash('success', 'Orders re-allocated to a user');
+      Session::flash('success', 'Orders re-allocated to the user');
       return redirect()->route('orders.pendingdeliveries');
    }
    public function delivery(Request $request)

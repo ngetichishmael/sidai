@@ -16,14 +16,14 @@
            data: {
                labels: labels,
                datasets: [{
-                       label: 'Pre Orders',
+                       label: 'Deliveries',
                        data: preOrderCounts,
                        borderColor: 'rgb(255,69,0)',
                        // backgroundColor: 'rgba(255, 69, 0, 0.2)',
                        fill: false
                    },
                    {
-                       label: 'Deliveries',
+                       label: 'Pre Orders',
                        data: deliveryCounts,
                        borderColor: 'rgb(21,116,239)',
                        // backgroundColor: 'rgba(243,75,84,0.3)',

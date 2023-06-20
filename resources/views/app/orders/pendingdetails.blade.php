@@ -278,7 +278,7 @@
                                      <div class="col-md-2">
                                         <div class="form-group">
                                            <label for="">Total Price</label>
-                                           <input type="text" value="{!! $item->selling_price * (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}"
+                                           <input type="text" name="total" value="{!! $item->selling_price * (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}"
                                                   class="form-control" style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
                                         </div>
                                      </div>
