@@ -22,9 +22,7 @@
                         <th width="1%">#</th>
                         <th>Name</th>
                         <th>Status</th>
-                        <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,9 +31,7 @@
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->name !!}</td>
                             <td>{!! $route->status !!}</td>
-                            <td>{!! $route->start_date !!}</td>
                             <td>{!! $route->end_date !!}</td>
-                            <td><a href="" class="btn btn-sm" style="background-color: brown;color:white">Edit</a></td>
                         </tr>
                     @endforeach
                 </tbody>
