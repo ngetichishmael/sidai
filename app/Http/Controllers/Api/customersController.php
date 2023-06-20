@@ -254,7 +254,7 @@ public function groups(){
 
       $image_path = $request->file('image')->store('image', 'public');
       $emailData = $request->email ?? $request->customer_name . Str::random(3) . '@gmail.com';
-      $route = Routes::with('subregion.region')->find($request->route_code);
+      $route = Area::with('subregion.region')->find($request->route_code);
       $user = User::create([
          'name' => $request->customer_name,
          'email' => $emailData,

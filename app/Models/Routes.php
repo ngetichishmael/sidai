@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Routes extends Model
 {
-   protected $table = 'areas';
+   protected $table = 'routes';
    protected $guarded = [];
    /**
     * Get all of the RouteSales for the Routes
