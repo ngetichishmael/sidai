@@ -64,6 +64,7 @@ class UsersController extends Controller
          $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
             ->orWhereNull('status')
             ->orWhere('status', '')
+            ->select('id','name','category')
             ->orderby('name', 'desc')->get();
          return response()->json([
             "success" => true,
