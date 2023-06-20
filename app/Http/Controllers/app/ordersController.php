@@ -91,7 +91,7 @@ class ordersController extends Controller
          ->orWhereNull('status')
          ->orWhere('status', '')
          ->orderby('name', 'desc')->get();
-      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
       return view('app.orders.pendingdetails', compact('order','account_types', 'items', 'test', 'payment', 'distributors', 'sub', 'total'));
    }
 
@@ -106,7 +106,7 @@ class ordersController extends Controller
          ->orWhereNull('status')
          ->orWhere('status', '')
          ->orderby('name', 'desc')->get();
-      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
 
       return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors','account_types'));
    }
