@@ -60,32 +60,34 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
-      $accountType = $request->input('account_type');
-
-      if ($request->account_type == 'RSM' || 'rsm') {
+      if($request->input('account_type') !=null && $request->input('account_type') =='distributors'){
          $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
             ->orWhereNull('status')
             ->orWhere('status', '')
             ->orderby('name', 'desc')->get();
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $distributors,
+            ]);
+      }
+      $accountType = $request->input('account_type');
+
+      if ($request->account_type == 'RSM' || 'rsm') {
+
          $users =User::where('account_type',$accountType )->whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->where('region_id', $request->user()->region_id)
                ->select('name', 'user_code','account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
-            "users" => $users,
-            'distrubutors'=>$distributors
+            "data" => $users,
          ]);
       }else if ($request->account_type == 'NMS' || 'nsm'){
-         $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
-            ->orWhereNull('status')
-            ->orWhere('status', '')
-            ->orderby('name', 'desc')->get();
          $users = User::where('account_type',$accountType )->whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->select('name', 'user_code', 'account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
-            "users" => $users,
-            "distrubtors"=>$distributors
+            "data" => $users,
          ]);
       }
       return response()->json([
