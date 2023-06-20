@@ -2,26 +2,26 @@
     use Illuminate\Support\Str;
 @endphp
 <div>
-   <div class="col-xl-12 col-md-12 col-12">
-      <div class="card">
-         <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
-            <div class="col-md-4">
-               <div class="form-group">
-                  <label for="fromDate">From:</label>
-                  <input type="date" id="fromDate" wire:model="fromDate"
-                         name="startDate" type="date" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
-               </div>
+    <div class="col-xl-12 col-md-12 col-12">
+        <div class="card">
+            <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="fromDate">From:</label>
+                        <input type="date" id="fromDate" wire:model="fromDate" name="startDate" type="date"
+                            class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="validationTooltip01">End Date</label>
+                        <input type="date" id="toDate" wire:model="toDate" name="endDate" type="date"
+                            class="form-control" placeholder="YYYY-MM-DD HH:MM" required />
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-               <div class="form-group">
-                  <label for="validationTooltip01">End Date</label>
-                  <input type="date" id="toDate" wire:model="toDate" name="endDate" type="date" class="form-control"
-                         placeholder="YYYY-MM-DD HH:MM" required />
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+        </div>
+    </div>
     <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50">
         <div class="col-md-6">
             <label for="">Search</label>
@@ -59,11 +59,10 @@
                         <th>Amount</th>
                         <th>Balance</th>
                         <th>Date</th>
-                       <th>Actions</th>
+                        <th>Actions</th>
                     </thead>
                     <tbody>
                         @foreach ($orders as $count => $order)
-
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
@@ -77,29 +76,30 @@
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
                                 <td>{{ number_format($order->Order->price_total) }}</td>
                                 <td>{{ number_format($order->Order->balance) }}</td>
-{{--                               <td>{{$order->Order->qty}}</td>--}}
-                               <td>{{ $order->created_at }}</td>
-{{--                                <td>{{ $order->order_status }}</td>--}}
-
-                               <td>
-                                  <div class="dropdown">
-                                     <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i data-feather='settings'></i>
-                                     </button>
-                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{!! route('orders.pendingdetails', $order->order_code) !!}">View</a>
-                                        @if ($order->order_status === 'CANCELLED')
-                                           <a wire:click.prevent="activate({{ $order->id }})"
-                                              onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                              type="button" class="dropdown-item btn btn-sm" style="color: lightgreen">Reinstate</a>
-                                        @else
-                                           <a wire:click.prevent="deactivate({{ $order->id }})"
-                                              onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                              type="button" class="dropdown-item btn btn-sm" style="color: orangered">Cancel</a>
-                                        @endif
-                                     </div>
-                                  </div>
-                               </td>
+                                <td>{{ $order->created_at }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            <i data-feather='settings'></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="{!! route('orders.pendingdetails', $order->order_code) !!}">View</a>
+                                            @if ($order->order_status === 'CANCELLED')
+                                                <a wire:click.prevent="activate({{ $order->id }})"
+                                                    onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"
+                                                    type="button" class="dropdown-item btn btn-sm"
+                                                    style="color: lightgreen">Reinstate</a>
+                                            @else
+                                                <a wire:click.prevent="deactivate({{ $order->id }})"
+                                                    onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"
+                                                    type="button" class="dropdown-item btn btn-sm"
+                                                    style="color: orangered">Cancel</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
 
                             </tr>
                         @endforeach
