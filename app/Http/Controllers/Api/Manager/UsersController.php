@@ -98,16 +98,20 @@ class UsersController extends Controller
    public function accountTypes()
    {
          $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])
+         ->select('account_type')
+         ->groupBy('account_type')
+         ->get()
+         ->pluck('account_type')
+         ->toArray();
 
-      $account_types_with_string = $account_types->map(function ($type) {
-         return $type->account_type . ' Distributors';
-      });
+      $account_types[] = 'Distributors';
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+      "account_types" => $account_types,
 
-      return response()->json([
-         "success" => true,
-         "status" => 200,
-         "account_types" => $account_types_with_string,
-      ]);
+         ]);
    }
    public function distributors()
    {
