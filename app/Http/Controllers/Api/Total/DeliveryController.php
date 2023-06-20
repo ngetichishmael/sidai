@@ -18,8 +18,8 @@ class DeliveryController extends Controller
    public function partialDelivery(Request $request, $delivery_code)
    {
       $validator = Validator::make($request, [
-         '*.PlotNumber' => 'qty',
-         '*.PlotNumber' => 'productID',
+         '*.qty' => 'required',
+         '*.productID' => 'required',
       ]);
       if ($validator->fails()) {
          return response()->json([
