@@ -77,7 +77,7 @@
 {{--                            Stock</span></a></li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
               <li class="nav-item {!! Nav::isRoute('customer') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -119,7 +119,7 @@
 {{--               </li>--}}
 {{--            </ul>--}}
 {{--        </li>--}}
- @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+ @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
            <li class="nav-item {!! Nav::isResource('orders') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -208,7 +208,7 @@
 {{--                <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>--}}
 {{--            </a>--}}
 {{--        </li>--}}
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM")
            <li class="nav-item {!! Nav::isResource('users') !!}">
               <a class="d-flex align-items-center" href="#">
                  <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
@@ -265,7 +265,7 @@
               </ul>
            </li>
            @endif
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
         <li class="nav-item {!! Nav::isResource('reports') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice"> Reports</span></a>
@@ -276,7 +276,7 @@
             </ul>
         </li>
            @endif
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
            <li class="nav-item {!! Nav::isResource('regions') !!}">
               <a class="d-flex align-items-center" href="#"><i data-feather="map-pin"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
@@ -328,7 +328,7 @@
             </ul>
            </li>
            @endif
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
            <li class="nav-item {!! Nav::isResource('notification') !!}">
               <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
@@ -345,7 +345,7 @@
               {{--                </ul>--}}
            </li>
            @endif
-           @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
            <li class="nav-item {!! Nav::isResource('survey') !!}">
               <a class="d-flex align-items-center" href="#">
                  <i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
