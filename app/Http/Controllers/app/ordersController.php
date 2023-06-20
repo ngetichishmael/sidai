@@ -117,6 +117,12 @@ class ordersController extends Controller
 
       return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors','account_types'));
    }
+   public function distributorschangeStatus($code)
+   {
+      $order = Orders::where('order_code', $code)->first();
+      Session::flash('success', 'Order Status Updated Successful ');
+      return redirect()->back();
+   }
 
    //create delivery
    public function allocateOrders(Request $request)
