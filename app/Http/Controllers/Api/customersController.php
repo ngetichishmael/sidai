@@ -100,8 +100,10 @@ class customersController extends Controller
 public function RequestToBeCreditor(Request $request){
    $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
-      if ($customer->is_creditor === 1){
-         customers::whereId($customer->id)->update([ 'is_creditor'=> 1]);
+      if ($customer->is_creditor === 1) {
+         if ($customer->creditor_status === 0){
+            customers::whereId($customer->id)->update(['is_creditor' => 1, 'creditor_status' => "waiting_approval"]);
+      }
          return response()->json([
             "success" => false,
             "message" => "Request already sent, status is ".$customer->creditor_status,
