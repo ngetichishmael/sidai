@@ -19,7 +19,11 @@
                 <div>
                     
                     <div class="card-body">
-                            <img src={{ asset('app-assets/images/sidaiweblogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" />
+                        <div style="display: flex; justify-content:center">
+                            <img src={{ asset('app-assets/images/sidaiweblogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" style="" />
+                          </div>
+                            
+                            <br><br><br><br>
                         
                         <h4 class="mb-1 card-title">Welcome to Sidai! 👋</h4>
                         <p class="mb-2 card-text">Please sign-in to your account</p>
@@ -63,7 +67,7 @@
                                     <small>Forgot Password?</small>
                                 </a>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                            <button type="submit" class="btn w-100" tabindex="4" style="background-color: brown;color:white">Sign in</button>
                         </form>
                     </div>
                 </div>

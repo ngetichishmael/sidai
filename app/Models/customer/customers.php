@@ -3,6 +3,7 @@
 namespace App\Models\customer;
 
 use App\Models\Area;
+use App\Models\Delivery_items;
 use App\Models\Order_items;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -24,10 +25,18 @@ class customers extends Model
       return $this->belongsTo(Area::class, 'route_code', 'id');
    }
    public function customers()
-{
-    return $this->hasMany(Order_items::class);
-}
-   
+   {
+      return $this->hasMany(Order_items::class);
+   }
+   /**
+    * Get all of the delivery_items for the customers
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function delivery_items(): HasMany
+   {
+      return $this->hasMany(Delivery_items::class, 'customer', 'local_key');
+   }
    public function scopeToday($query)
    {
       $query->where('updated_at', Carbon::today());

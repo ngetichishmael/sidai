@@ -43,6 +43,8 @@
                         <th>Name</th>
                         <th>number</th>
                         <th>Region</th>
+                        <th>Subregion</th>
+                        <th>Town</th>
                         <th>Customer Type</th>
                         <th>Created By</th>
                         <th>Created Date</th>
@@ -55,17 +57,16 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->phone_number !!}</td>
+                            <td>{!! $contact->customer_number !!}</td>
 
                             <td class="cell-fit">
-                                {!! $contact->Area->Subregion->Region->name ?? '' !!},
-                                {!! $contact->Area->Subregion->name ?? '' !!},
-                                {!! $contact->Area->name ?? '' !!},
-
+                                {!! $contact->Area->Subregion->Region->name ?? '' !!}
                             </td>
+                            <td>{!! $contact->Area->Subregion->name ?? '' !!}</td>
+                            <td>{!! $contact->Area->name ?? '' !!}</td>
                             <td>{!! $contact->customer_type !!}</td>
                             <td>
-                                {!! $contact->Creator->name ?? '' !!}
+                                {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
