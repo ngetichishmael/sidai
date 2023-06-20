@@ -759,10 +759,12 @@ footer.footer-border {
 
 .main-menu.menu-light .navigation>li ul li>a {
    padding: 10px 15px 10px 20px;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li ul li ul a {
    padding: 10px 15px 10px 53px;
+   font-size: 10px;
 }
 
 .main-menu.menu-light .navigation>li ul .has-sub:not(.open)>ul {
