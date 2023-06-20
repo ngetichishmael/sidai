@@ -11,10 +11,23 @@ use App\Models\Orders;
 use App\Models\products\product_price;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Validator;
+
 class DeliveryController extends Controller
 {
    public function partialDelivery(Request $request, $delivery_code)
    {
+      $validator = Validator::make($request, [
+         '*.PlotNumber' => 'qty',
+         '*.PlotNumber' => 'productID',
+      ]);
+      if ($validator->fails()) {
+         return response()->json([
+            'success' => false,
+            'message' => 'Validation error',
+            'errors' => $validator->errors()
+         ], 422);
+      }
       $user_code = $request->user()->user_code;
       $requests = $request->collect();
 
