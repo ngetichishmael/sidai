@@ -23,7 +23,7 @@ class Approve extends Component
        $searchTerm = '%' . $this->search . '%';
        $contacts = customers::where('is_creditor', 1)->where('creditor_status', 'waiting_approval')
            ->with('Area.Subregion.Region', 'Creator')
-          ->search($searchTerm)
+//          ->search($searchTerm)
           ->orderBy('id', 'DESC')
           ->paginate($this->perPage);
        return view('livewire.creditors.approve', [
