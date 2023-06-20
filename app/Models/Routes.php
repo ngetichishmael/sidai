@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Routes extends Model
 {
-   protected $table = 'routes';
+   protected $table = 'areas';
    protected $guarded = [];
    /**
     * Get all of the RouteSales for the Routes
@@ -17,5 +17,9 @@ class Routes extends Model
    public function RouteSales(): HasMany
    {
       return $this->hasMany(Route_sales::class, 'routeID', 'route_code');
+   }
+   public function subregion()
+   {
+      return $this->belongsTo(Subregion::class, 'subregion_id');
    }
 }
