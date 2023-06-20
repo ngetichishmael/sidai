@@ -180,8 +180,6 @@
                     </div>
 
                     <div class="">
-
-
                         <div class="table-responsive">
                             <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                                 <thead>
@@ -248,7 +246,12 @@
                 </div>
             </div>
         </div>
-    </div>
+       <div class="col-md-3 mt-4">
+          <h6 class="mt-3 mb-3">Tracking Distributor Order Status</h6>
+          <span class="mt-1 mb-1">Current Status:  <span style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span></span>
+          <center><a href="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" class="btn btn-block btn-warning mb-2 mt-2">Change Order Status</a></center>
+       </div>
+       </div>
     <div class="row">
           <div class="col-md-5 ml-5">
              <a href="{{ url()->previous() }}" class="btn btn-info mb-2" style="align-content: center" >&nbsp; Back &nbsp; </a>
