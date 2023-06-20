@@ -21,7 +21,7 @@ class Approve extends Component
     public function render()
     {
        $searchTerm = '%' . $this->search . '%';
-       $contacts = customers::where('is_creditor', 'LIKE',1)->where('creditor_approved', 'LIKE',0)
+       $contacts = customers::where('is_creditor', 1)->where('creditor_approved', 0)
            ->with('Area.Subregion.Region', 'Creator')
           ->search($searchTerm)
           ->orderBy('id', 'DESC')
@@ -46,14 +46,20 @@ class Approve extends Component
    public function approveCreditor($id)
    {
       customers::whereId($id)->update(
-         ['creditor_approved' => 1 ]
+         ['creditor_approved' => 1 ,
+            'customer_type' => 'creditor',
+            'is_creditor' => 1
+         ]
       );
       return redirect()->to('/approveCreditors');
    }
    public function dissaproveCreditor($id)
    {
       customers::whereId($id)->update(
-         ['creditor_approved' => 2 ]
+         ['creditor_approved' => 2,
+            'customer_type' => 'creditor',
+            'is_creditor' => 1
+         ]
       );
       return redirect()->to('/approveCreditors');
    }

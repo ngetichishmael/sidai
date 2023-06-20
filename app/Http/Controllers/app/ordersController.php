@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\app;
 
 use App\Models\activity_log;
+use App\Models\Cart;
+use App\Models\inventory\allocations;
+use App\Models\inventory\items;
+use App\Models\Orders as Order;
+use App\Models\products\product_information;
+use App\Models\products\product_inventory;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\Orders;
@@ -10,6 +16,7 @@ use App\Models\Delivery;
 use App\Models\customers;
 use App\Models\Order_items;
 use App\Models\warehousing;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Delivery_items;
@@ -91,7 +98,7 @@ class ordersController extends Controller
          ->orWhereNull('status')
          ->orWhere('status', '')
          ->orderby('name', 'desc')->get();
-      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
       return view('app.orders.pendingdetails', compact('order','account_types', 'items', 'test', 'payment', 'distributors', 'sub', 'total'));
    }
 
@@ -106,7 +113,7 @@ class ordersController extends Controller
          ->orWhereNull('status')
          ->orWhere('status', '')
          ->orderby('name', 'desc')->get();
-      $account_types = User::whereNotIn('account_type', ['customer', 'sales'])->groupBy('account_type')->get();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
 
       return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors','account_types'));
    }
@@ -120,6 +127,7 @@ class ordersController extends Controller
       ]);
       $supplierID = null;
       $totalSum=0;
+      $quantity=0;
       if ($request->account_type === "distributors") {
          $distributor = suppliers::find($request->user);
          if ($distributor) {
@@ -213,14 +221,19 @@ class ordersController extends Controller
 //               ]);
 //         }else{
 //         }
+         $quantity +=1;
       }
 
-      Orders::where('order_code', $request->order_code)
-         ->update([
+      $order = Orders::where('order_code', $request->order_code)->first();
+      if ($order) {
+         $order->update([
             "order_status" => "Waiting acceptance",
-            "price_total" =>$totalSum,
-            "Balance" =>$totalSum,
+            "price_total" => $totalSum,
+            "balance" => $totalSum,
+            "initial_total_price" => $order->price_total,
+            "updated_qty" => $quantity,
          ]);
+      }
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Allocate an order to a User';
@@ -239,8 +252,8 @@ class ordersController extends Controller
       $this->validate($request, [
          'user' => 'required',
       ]);
-      return redirect()->route('orders.pendingdeliveries')->with("Cannot re-allocate at the moment");
       $supplierID = null;
+      $order_code = Str::random(20);
       $totalSum=0;
       if ($request->account_type === "distributors") {
          $distributor = suppliers::find($request->user);
@@ -262,7 +275,7 @@ class ordersController extends Controller
                ->update([
                   "supplierID" => $supplierID,
                   "price_total" =>$totalSum,
-                  "Balance" =>$totalSum,
+                  "balance" =>$totalSum,
                ]);
 
             $random = Str::random(20);
@@ -287,7 +300,7 @@ class ordersController extends Controller
          [
             "business_code" => Str::random(20),
             "customer" => $request->customer,
-            "order_code" => $request->order_code
+            "order_code" => $order_code
          ],
          [
             "delivery_code" => Str::random(20),
@@ -297,6 +310,10 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
+      $user_code = $request->user()->user_code;
+      $business_code = $request->user()->business_code;
+      $random = Str::random(20);
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
          $totalSum += $request->price[$i];
@@ -318,23 +335,63 @@ class ordersController extends Controller
                "created_by" => Auth::user()->user_code
             ]
          );
-
-         Order_items::where('productID', $request->item_code[$i])
-            ->where('order_code', $request->order_code)
-            ->update([
-               "requested_quantity" => $request->requested[$i],
-               "allocated_quantity" => $request->allocate[$i],
-               "allocated_subtotal" => $request->price[$i],
-               "allocated_totalamount" => $request->price[$i],
-            ]);
-      }
-
-      Orders::where('order_code', $request->order_code)
-         ->update([
-            "order_status" => "Waiting acceptance",
-            "price_total" =>$totalSum,
-            "Balance" =>$totalSum,
+         $product = product_information::whereId($request->item_code[$i])->first();
+         Cart::updateOrCreate(
+            [
+               'checkin_code' => Str::random(20),
+               "order_code" => $random,
+            ],
+            [
+               'productID' => $request->item_code[$i],
+               "product_name" => $request->product[$i],
+               "qty" => $request->allocate[$i],
+               "price" =>  $pricing->selling_price,
+               "amount" => $request->price[$i],
+               "total_amount" => $request->price[$i],
+               "userID" => $user_code,
+            ]
+         );
+         Order::updateOrCreate(
+            [
+               'order_code' => $random,
+            ],
+            [
+               'user_code' => $user_code,
+               'customerID' => $request->customer,
+               'price_total' => $request->product[$i],
+               'balance' => $request->product[$i],
+               'order_status' => 'Waiting Acceptance',
+               'payment_status' => 'Pending Payment',
+               'qty' => $request->allocate[$i],
+               'supplierID'=>$sidai->id ?? 1,
+               'discount' => $items["discount"] ?? "0",
+               'reallocated_from_order' => $request->order_code,
+               'order_type' => 'Pre Order',
+               'delivery_date' => now(),
+               'business_code' => $user_code,
+               'updated_at' => now(),
+            ]
+         );
+         Order_items::create([
+            'order_code' => $random,
+            'productID' => $request->item_code[$i],
+            "product_name" => $request->product[$i],
+            "sub_total" => $request->price[$i],
+            "total_amount" => $request->price[$i],
+            "allocated_quantity" => $request->allocate[$i],
+            'quantity' => $request->allocate[$i],
+            'selling_price' => $pricing->selling_price,
+            'discount' => 0,
+            'taxrate' => 0,
+            'taxvalue' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
          ]);
+
+         DB::table('orders_targets')
+            ->where('user_code', $user_code)
+            ->increment('AchievedOrdersTarget', $request->allocate[$i]);
+      }
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Re-Allocate an order to a User';
@@ -345,7 +402,7 @@ class ordersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
       $activityLog->save();
-      Session::flash('success', 'Orders re-allocated to a user');
+      Session::flash('success', 'Orders re-allocated to the user');
       return redirect()->route('orders.pendingdeliveries');
    }
    public function delivery(Request $request)

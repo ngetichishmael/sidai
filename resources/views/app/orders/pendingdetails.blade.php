@@ -256,6 +256,7 @@
                             <div class="card-body">
                                <h4>Items</h4>
                                <hr>
+
                                @foreach ($items as $key => $item)
                                   @if ((int)$item->allocated_quantity < (int)$item->quantity )
                                   <input type="hidden" name="item_code[]" value="{!! $item->productID !!}">
@@ -277,7 +278,7 @@
                                      <div class="col-md-2">
                                         <div class="form-group">
                                            <label for="">Total Price</label>
-                                           <input type="text" value="{!! $item->selling_price * (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}"
+                                           <input type="text" name="total" value="{!! $item->selling_price * (((int)$item->quantity) - ((int)$item->allocated_quantity)) !!}"
                                                   class="form-control" style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
                                         </div>
                                      </div>
@@ -304,11 +305,18 @@
                                      </script>
                                      @endif
                                @endforeach
+                               @if ($items->isEmpty())
+                                  <div class="col-md-12 ml-5">
+                                     <div class="form-group">
+                                        <label for="">No unallocated Items for this order...</label>
+                                     </div>
+                                  </div>
+                               @endif
                             </div>
                          </div>
                       </div>
                          <hr/>
-                         <div class="card">
+                         <div id="myDiv" style="display: none;" class="card">
                             <div class="card-body">
                                <div class="row">
                                   <div class="form-group col-md-4">
@@ -337,7 +345,6 @@
                             <button class="mt-1 btn btn-success bt-md" type="submit">Re-allocate order items</button>
                             </div>
                          </div>
-
                    </form>
                     </div>
                 </div>
@@ -346,6 +353,7 @@
     </div>
        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
        <script>
+          document.getElementById("myDiv").style.display = "block";
           $(document).ready(function() {
              $('#account_type').on('change', function() {
                 var accountType = $(this).val();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,20 +60,31 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
+      if($request->input('account_type') !=null && $request->input('account_type') =='distributors'){
+         $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+            ->orWhereNull('status')
+            ->orWhere('status', '')
+            ->select('id','name','category')
+            ->orderby('name', 'desc')->get();
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $distributors,
+            ]);
+      }
+      $accountType = $request->input('account_type');
+
       if ($request->account_type == 'RSM' || 'rsm') {
-         $users =
-            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
-               ->where('region_id', $request->user()->region_id)
-               ->pluck('name', 'user_code','account_type');
+
+         $users =User::where('account_type',$accountType )->whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->where('region_id', $request->user()->region_id)
+               ->select('name', 'user_code','account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
             "data" => $users,
          ]);
       }else if ($request->account_type == 'NMS' || 'nsm'){
-         $users =
-            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
-               ->pluck('name', 'user_code', 'account_type');
+         $users = User::where('account_type',$accountType )->whereNotIn('account_type', ['Customer', 'Admin'])->where('status', 'Active')->select('name', 'user_code', 'account_type')->get();
          return response()->json([
             "success" => true,
             "status" => 200,
@@ -84,6 +96,36 @@ class UsersController extends Controller
          "status" => 401,
          "data" => "UNAUTHORIZED USER!!!",
       ]);
+   }
+   public function accountTypes()
+   {
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])
+         ->select('account_type')
+         ->groupBy('account_type')
+         ->get()
+         ->pluck('account_type')
+         ->toArray();
+
+      $account_types[] = 'Distributors';
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+      "account_types" => $account_types,
+
+         ]);
+   }
+   public function distributors()
+   {
+      $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+      ->orWhereNull('status')
+      ->orWhere('status', '')
+      ->orderby('name', 'desc')->get();
+      return response()->json([
+            "success" => true,
+            "status" => 200,
+      "distributors" => $distributors,
+
+         ]);
    }
    public function suspendUser(Request $request)
    {
