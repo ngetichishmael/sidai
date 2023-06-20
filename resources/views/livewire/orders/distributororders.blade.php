@@ -66,7 +66,7 @@
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
-                               <td>{{ $order->distributor->name ?? ''}}</td>
+                               <td>{{ $order->distributor->name ?? $order->distributor->id ?? ''}}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 30) }}</td>
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
