@@ -111,11 +111,23 @@ public function RequestToBeCreditor(Request $request){
       }
       customers::whereId($customer->id)->update([ 'is_creditor'=> 1,
          'creditor_status' => "waiting_approval" ]);
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Creditor Request';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Requesting Creditor Approval on mobile';
+      $activityLog->action = 'User '.auth()->user()->name.' requested on behalf of  customer '. $customer->customer_name.' to become sidai creditor';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "message" => "Request to be a Creditor Received Successfully",
       ], 200);
    }
+
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
@@ -277,7 +289,7 @@ public function groups(){
          'business_code' =>$request->business_code,
          'password' => Hash::make("password")
       ]);
-     customers::create([
+     $customer=customers::create([
          'customer_name' => $request->customer_name,
          'contact_person' => $request->contact_person,
          'phone_number' => $request->phone_number,
@@ -297,7 +309,16 @@ public function groups(){
          'unit_id' => $request->route_code,
          'image' => $image_path
       ]);
-
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Adding customer information';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Customer information added on mobile';
+      $activityLog->action = 'User '.auth()->user()->name.' added customer '. $customer->customer_name.' information';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "status" => 200,
