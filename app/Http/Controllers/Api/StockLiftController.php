@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
 use App\Models\inventory\allocations;
 use App\Models\inventory\items;
@@ -16,81 +17,47 @@ class StockLiftController extends Controller
 {
    public function index(Request $request)
    {
-      $user_code = $request->user()->user_code;
-      $business_code = $request->user()->business_code;
+      $user = $request->user();
+      $user_code = $user->user_code;
+      $business_code = $user->business_code;
       $random = Str::random(20);
       info("Stock Lift");
-      $json = $request->products;
-      $data = json_decode($json, true);
-
-      $validator           =  Validator::make($request->all(), [
+      $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);
 
       if ($validator->fails()) {
-         return response()->json(
-            [
-               "status" => 401,
-               "message" => "validation_error",
-               "errors" => $validator->errors()
-            ],
-            403
-         );
+         return response()->json([
+            "status" => 401,
+            "message" => "validation_error",
+            "errors" => $validator->errors()
+         ], 403);
       }
 
       $image_path = $request->file('image')->store('image', 'public');
+
+      $data = json_decode($request->products, true);
+      $productIDs = array_column($data, 'productID');
+      $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
+
       foreach ($data as $value) {
-         $stock = items::where('product_code', $value["productID"])
-            ->where('created_by', $user_code)
-            ->pluck('product_code')
-            ->implode('');
-         if ($stock == null) {
-            $stocked = product_inventory::where('productID', $value["productID"])->first();
-            info($stocked);
-            $itemchecker = items::create([
-               'business_code' => $business_code,
-               'allocation_code' => $random,
-               'product_code' => $value["productID"],
-               'current_qty' => $stocked["current_stock"],
-               'allocated_qty' => $value["qty"],
-               'image' => $image_path,
-               'returned_qty' => 0,
-               'created_by' => $user_code,
-               'updated_by' => $user_code,
-            ]);
-//            info("itemchecker");
-//            info($itemchecker);
-         } else {
-
-            $inventoryallocation = DB::table('inventory_allocated_items')
-               ->where('product_code', $value["productID"])
-               ->increment('allocated_qty', $value["qty"]);
-
-//            info("inventory_allocated_items");
-//            info($inventoryallocation);
-         }
-         $producting = DB::table('product_inventory')
-            ->where('productID', $value["productID"])
-            ->decrement('current_stock', $value["qty"]);
-
-//         info("Product inventory");
-//         info($producting);
+         $stocked = $stockedProducts->get($value['productID']);
+         (new StockLiftHelper())(
+            $user_code,
+            $business_code,
+            $value,
+            $image_path,
+            $random,
+            $stocked
+         );
       }
-      $checkeddd = allocations::create([
-         "business_code" => $business_code,
-         "allocation_code" => $random,
-         "sales_person" => $user_code,
-         "status" => "Waiting acceptance",
-         "created_by" => $user_code,
-         "updated_by" => $user_code,
-
-      ]);
       return response()->json([
          "success" => true,
          "message" => "All Available Product Information",
-         "Result"    => "Successful"
+         "Result" => "Successful"
       ]);
    }
+
    public function show(Request $request)
    {
       $query = DB::select('SELECT
