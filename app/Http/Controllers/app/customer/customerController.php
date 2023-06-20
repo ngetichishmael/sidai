@@ -91,7 +91,7 @@ class customerController extends Controller
    }
    public function creditordetails($id)
    {
-      $customer = Customers::find($id);
+      $customer = customers::find($id);
       return view('app.creditors.show', ['customer' => $customer]);
    }
 
@@ -230,7 +230,7 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-      $subregion_id = Area::whereId($customer->zone_id)->pluck('subregion_id')->implode('');
+      $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
       $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
       $customer->update([
          'subregion_id' => $subregion_id,
@@ -251,7 +251,7 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-      $subregion_id = Area::whereId($customer->zone_id)->pluck('subregion_id')->implode('');
+      $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
       $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
       $customer->update([
          'subregion_id' => $subregion_id,
@@ -322,7 +322,7 @@ $region=
       $customer->customer_group = $request->customer_group ?? $customer->customer_group;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
       $customer->route = $request->route ?? $customer->route;
-      $customer->route_code = $request->territory ?? $customer->territory;
+      $customer->route_code = $request->territory ?? $customer->route;
       $customer->zone_id = $request->territory ?? $customer->territory;
       $customer->branch = $request->branch ?? $customer->branch;
       $customer->email = $request->email ?? $customer->email;
