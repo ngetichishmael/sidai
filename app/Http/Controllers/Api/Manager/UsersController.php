@@ -60,24 +60,33 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
+      $accountType = $request->input('account_type');
       if ($request->account_type == 'RSM' || 'rsm') {
-         $users =
-            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
+         $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+            ->orWhereNull('status')
+            ->orWhere('status', '')
+            ->orderby('name', 'desc')->get();
+
+         $users =User::where('account_type', $accountType)->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
                ->where('region_id', $request->user()->region_id)
                ->pluck('name', 'user_code','account_type');
          return response()->json([
             "success" => true,
             "status" => 200,
-            "data" => $users,
+            "users" => $users,
+            'distrubutors'=>$distributors
          ]);
       }else if ($request->account_type == 'NMS' || 'nsm'){
-         $users =
-            User::whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])
-               ->pluck('name', 'user_code', 'account_type');
+         $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+            ->orWhereNull('status')
+            ->orWhere('status', '')
+            ->orderby('name', 'desc')->get();
+         $users = User::where('account_type', $accountType)->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->pluck('name', 'user_code', 'account_type');
          return response()->json([
             "success" => true,
             "status" => 200,
-            "data" => $users,
+            "users" => $users,
+            "distrubtors"=>$distributors
          ]);
       }
       return response()->json([
@@ -88,18 +97,25 @@ class UsersController extends Controller
    }
    public function accountTypes()
    {
+         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
+      return response()->json([
+            "success" => true,
+            "status" => 200,
+      "account_types" => $account_types .'Distributors',
+
+         ]);
+   }
+   public function distributors()
+   {
       $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
       ->orWhereNull('status')
       ->orWhere('status', '')
       ->orderby('name', 'desc')->get();
-         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->select('account_type')->groupBy('account_type')->get();
-         return response()->json([
+      return response()->json([
             "success" => true,
             "status" => 200,
-            "data" => [
-      "account_types" => $account_types,
       "distributors" => $distributors,
-   ],
+
          ]);
    }
    public function suspendUser(Request $request)
