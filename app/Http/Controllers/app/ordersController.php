@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\app;
 
 use App\Models\activity_log;
+use App\Models\inventory\items;
+use App\Models\products\product_inventory;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\Orders;
@@ -120,6 +122,7 @@ class ordersController extends Controller
       ]);
       $supplierID = null;
       $totalSum=0;
+      $quantity=0;
       if ($request->account_type === "distributors") {
          $distributor = suppliers::find($request->user);
          if ($distributor) {
@@ -213,14 +216,19 @@ class ordersController extends Controller
 //               ]);
 //         }else{
 //         }
+         $quantity +=1;
       }
 
-      Orders::where('order_code', $request->order_code)
-         ->update([
+      $order = Orders::where('order_code', $request->order_code)->first();
+      if ($order) {
+         $order->update([
             "order_status" => "Waiting acceptance",
-            "price_total" =>$totalSum,
-            "Balance" =>$totalSum,
+            "price_total" => $totalSum,
+            "balance" => $totalSum,
+            "initial_total_price" => $order->price_total,
+            "updated_qty" => $quantity,
          ]);
+      }
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Allocate an order to a User';
@@ -239,8 +247,8 @@ class ordersController extends Controller
       $this->validate($request, [
          'user' => 'required',
       ]);
-      return redirect()->route('orders.pendingdeliveries')->with("Cannot re-allocate at the moment");
       $supplierID = null;
+      $order_code = Str::random(20);
       $totalSum=0;
       if ($request->account_type === "distributors") {
          $distributor = suppliers::find($request->user);
@@ -282,12 +290,18 @@ class ordersController extends Controller
             return redirect()->route('orders.pendingdeliveries');
          }
       }
+      Orders::where('order_code', $request->order_code)
+         ->update([
+            "order_status" => "Waiting acceptance",
+            "price_total" =>$totalSum,
+            "Balance" =>$totalSum,
+         ]);
 
       $delivery = Delivery::updateOrCreate(
          [
             "business_code" => Str::random(20),
             "customer" => $request->customer,
-            "order_code" => $request->order_code
+            "order_code" => $order_code
          ],
          [
             "delivery_code" => Str::random(20),
@@ -297,6 +311,9 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
+      $user_code = $request->user()->user_code;
+      $business_code = $request->user()->business_code;
+      $random = Str::random(20);
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
          $totalSum += $request->price[$i];
@@ -319,22 +336,36 @@ class ordersController extends Controller
             ]
          );
 
-         Order_items::where('productID', $request->item_code[$i])
-            ->where('order_code', $request->order_code)
-            ->update([
+         $stocked = product_inventory::where('productID', $value["productID"])->first();
+         info($stocked);
+         $itemchecker = items::create([
+            'business_code' => $business_code,
+            'allocation_code' => $random,
+            'product_code' => $value["productID"],
+            'current_qty' => $stocked["current_stock"],
+            'allocated_qty' => $value["qty"],
+            'image' => $image_path,
+            'returned_qty' => 0,
+            'created_by' => $user_code,
+            'updated_by' => $user_code,
+         ]);
+
+         Order_items::create([
                "requested_quantity" => $request->requested[$i],
                "allocated_quantity" => $request->allocate[$i],
                "allocated_subtotal" => $request->price[$i],
                "allocated_totalamount" => $request->price[$i],
+            'business_code' => $business_code,
+            'allocation_code' => $random,
+            'product_code' => $value["productID"],
+            'current_qty' => $stocked["current_stock"],
+            'allocated_qty' => $value["qty"],
+            'image' => $image_path,
+            'returned_qty' => 0,
+            'created_by' => $user_code,
+            'updated_by' => $user_code,
             ]);
       }
-
-      Orders::where('order_code', $request->order_code)
-         ->update([
-            "order_status" => "Waiting acceptance",
-            "price_total" =>$totalSum,
-            "Balance" =>$totalSum,
-         ]);
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Re-Allocate an order to a User';

@@ -100,7 +100,8 @@ class customerController extends Controller
       $c=Customers::whereId($id)->update(
          [
             'customer_type' => 'creditor',
-            'creditor_approved' => '1'
+            'creditor_approved' => 1,
+            'is_creditor' => 1,
          ]
       );
       Session::flash('success', 'Customer successfully Approved');
