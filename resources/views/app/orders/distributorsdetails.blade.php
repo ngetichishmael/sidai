@@ -248,11 +248,23 @@
         </div>
        <div class="col-md-3 mt-4">
           <h6 class="mt-3 mb-3">Tracking Distributor Order Status</h6>
-          <span class="mt-1 mb-1">Current Status:  <span style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span></span>
-          <center><a href="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" class="btn btn-block btn-warning mb-2 mt-2">Change Order Status</a></center>
+          <span class="mt-1 mb-1">Current Status: <span id="currentStatus" style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span></span>
+          <center>
+             <form id="statusForm" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
+                @csrf
+                <select id="orderStatus" name="order_status" class="form-control mb-2 mt-2" required>
+                   <option value="Pending Delivery">Pending Order</option>
+                   <option value="Waiting Acceptance">Waiting Acceptance</option>
+{{--                   <option value="Accepted">Shipped</option>--}}
+                   <option value="Delivered">Delivered</option>
+                   <option value="Cancelled">Cancelled</option>
+                </select>
+                <button type="submit" class="btn btn-block btn-warning">Change Order Status</button>
+             </form>
+          </center>
        </div>
-       </div>
-    <div class="row">
+
+       <div class="row">
           <div class="col-md-5 ml-5">
              <a href="{{ url()->previous() }}" class="btn btn-info mb-2" style="align-content: center" >&nbsp; Back &nbsp; </a>
        </div>
