@@ -64,7 +64,7 @@ class DeliveryController extends Controller
             ->pluck('allocated_quantity')
             ->first();
          info('6');
-         $itemsToUpdate[] = [
+         $itemsToUpdate = [
             'product_code' => $productID,
             'created_by' => $user_code
          ];
@@ -84,7 +84,7 @@ class DeliveryController extends Controller
          info($itemsData);
 
          items::updateOrCreate(
-            ['product_code' => $itemsToUpdate['product_code'], 'created_by' => $itemsToUpdate['created_by']],
+            $itemsToUpdate,
             $itemsData
          );
 
