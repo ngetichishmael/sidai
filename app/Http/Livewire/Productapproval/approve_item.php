@@ -91,7 +91,7 @@ class approve_item extends Component
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect('/warehousing/approve/'.$id);
+      return redirect('/warehousing/approve/'.$re->id);
    }
    public function disapprove($id)
    {
@@ -118,6 +118,6 @@ class approve_item extends Component
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect('/warehousing/approve/'.$id);
+      return redirect('/warehousing/approve/'.$re->id);
    }
 }
