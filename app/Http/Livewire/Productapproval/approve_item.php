@@ -68,7 +68,6 @@ class approve_item extends Component
 
    public function approve($id)
    {
-      dump($id);
       $re=RequisitionProduct::whereId($id)->update(
          [
             'approval' => 1
@@ -92,7 +91,7 @@ class approve_item extends Component
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect('/warehousing/approve/'.$this->id);
+      return redirect('/warehousing/approve/'.$this->requisition_id);
    }
    public function disapprove($id)
    {
@@ -119,6 +118,6 @@ class approve_item extends Component
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect('/warehousing/approve/'.$re->id);
+      return redirect('/warehousing/approve/'.$this->requisition_id);
    }
 }

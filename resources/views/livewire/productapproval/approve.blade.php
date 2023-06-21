@@ -69,11 +69,11 @@
                                         <td>{!! $product->ProductInformation->sku_code !!}</td>
                                         <td>
                                             @if ($product->approval == 0)
-                                                <a wire:click.prevent="approve({{ $product->id }})"
+                                                <a wire:click.prevent="approve({{ $product->id }}, {{ $requisition_id }})"
                                                     onclick="confirm('Are you sure you want to APPROVE This Requisition `{{ $product->ProductInformation->product_name }}`')||event.stopImmediatePropagation()"
                                                     type="button" class="btn btn-success btn-sm">Approve</a>
                                             @else
-                                                <a wire:click.prevent="disapprove({{ $product->id }})"
+                                                <a wire:click.prevent="disapprove({{ $product->id }}, {{ $requisition_id }})"
                                                     onclick="confirm('Are you sure you want to DISAPPROVE This Requisition `{{ $product->ProductInformation->product_name }}`')||event.stopImmediatePropagation()"
                                                     type="button" class="btn btn-danger btn-sm">Disapprove</a>
                                             @endif
