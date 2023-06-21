@@ -402,7 +402,8 @@ class productController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = '';
       $activityLog->save();
-      return redirect()->back();
+
+      return redirect()->route('/warehousing/approve/'.$requisition_id);
 
    }
 
