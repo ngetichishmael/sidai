@@ -13,6 +13,7 @@ use App\Models\customer\customers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Order_items;
+use App\Models\order_payments;
 use Illuminate\Support\Facades\Auth;
 use App\Models\products\product_information;
 
@@ -97,6 +98,13 @@ class ReportsController extends Controller
    public function payments()
    {
       return view('app.Reports.payments');
+   }
+   public function paymentsDetails($id)
+   {
+      $order = Orders::whereId($id)->pluck('order_code')->implode('');
+      return view('app.Reports.details', [
+         'order_code' => $order
+      ]);
    }
    public function users()
    {

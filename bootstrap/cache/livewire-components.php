@@ -42,6 +42,8 @@
   'productapproval.approve_item' => 'App\\Http\\Livewire\\Productapproval\\approve_item',
   'products.products' => 'App\\Http\\Livewire\\Products\\Products',
   'regionselect.dynamicselect' => 'App\\Http\\Livewire\\Regionselect\\Dynamicselect',
+  'reports.payment-details' => 'App\\Http\\Livewire\\Reports\\PaymentDetails',
+  'reports.payments' => 'App\\Http\\Livewire\\Reports\\Payments',
   'routes.customerselect' => 'App\\Http\\Livewire\\Routes\\Customerselect',
   'routes.index' => 'App\\Http\\Livewire\\Routes\\index',
   'routes.individual' => 'App\\Http\\Livewire\\Routes\\individual',
