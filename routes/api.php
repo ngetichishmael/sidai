@@ -91,6 +91,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('checkin/{checkinCode}/cart/{id}/delete', ['uses' => 'checkinController@cart_delete', 'as' => 'checkin.cart.delete']);
 
    Route::get('checkin/{checkinCode}/orders', ['uses' => 'checkinController@orders', 'as' => 'checkin.orders']);
+   Route::get('checkin/userOrders', ['uses' => 'checkinController@userOrders', 'as' => 'checkin.userOrders']);
 
    Route::post('checkin/{checkinCode}/order/edit/reason', ['uses' => 'checkinController@order_edit_reason', 'as' => 'checkin.order.edit.reason']);
    Route::get('checkin/{checkinCode}/order/{orderID}/edit', ['uses' => 'checkinController@order_edit', 'as' => 'checkin.order.edit']);
