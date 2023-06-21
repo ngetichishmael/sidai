@@ -48,12 +48,12 @@ Route::group(['namespace' => 'Api'], function () {
 
 //   Route::post('/messages', 'ChatController@sendMessage');
 
-
-   Route::get('customers/order/{orderCode}/details', 'customersController@order_details')->middleware('auth:sanctum');
-   Route::get('customers/{customerID}/new-order/', 'customersController@new_order')->middleware('auth:sanctum');
+   Route::middleware(['auth:sanctum'])->group(function () {
+   Route::get('customers/order/{orderCode}/details', 'customersController@order_details');
+   Route::get('customers/{customerID}/new-order/', 'customersController@new_order');
 
    //products
-   Route::get('products/{businessCode}', 'productsController@index')->middleware('auth:sanctum');
+   Route::get('products/{businessCode}', 'productsController@index');
 
    //product categories
    Route::get('products/categories/{businessCode}', 'productCategoriesController@index');
@@ -62,15 +62,15 @@ Route::group(['namespace' => 'Api'], function () {
    //deliveries
    Route::get('deliveries/{businessCode}/{userCode}', 'deliveryController@index');
    Route::get('delivery/{code}/{businessCode}/details', 'deliveryController@details');
-   Route::post('/accept/delivery', 'deliveryController@acceptDelivery')->middleware('auth:sanctum');
-   Route::post('/reject/delivery', 'deliveryController@rejectDelivery')->middleware('auth:sanctum');
+   Route::post('/accept/delivery', 'deliveryController@acceptDelivery');
+   Route::post('/reject/delivery', 'deliveryController@rejectDelivery');
 
    //customer checking
    Route::post('customer/checkin/session', ['uses' => 'checkinController@create_checkin_session']);
    Route::get('customer/{CustomerCode}/checkin', ['uses' => 'checkinController@checkin', 'as' => 'customer.checkin']);
    Route::get('checkin/{checkinCode}/stock', ['uses' => 'checkinController@stock', 'as' => 'checkin.stock']);
    Route::get('checkin/{checkinCode}/out', ['uses' => 'checkinController@checkout', 'as' => 'check.out']);
-
+   });
 
 
    // Route::post('checkin/{checkinCode}/add-to-cart',['uses' => 'checkinController@add_to_cart','as' => 'add.to.cart']);
@@ -84,20 +84,20 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('checkin/newsales/{checkinCode}/{random}/{distributor}/add-to-cart', 'CheckingSaleOrderController@NewSales')->middleware('auth:sanctum');
 
 
+   Route::middleware(['auth:sanctum'])->group(function () {
 
+      Route::get('checkin/{checkinCode}/cart', ['uses' => 'checkinController@cart', 'as' => 'checkin.cart']);
+      Route::post('checkin/{checkinCode}/order-save', ['uses' => 'checkinController@save_order', 'as' => 'checkin.order.save']);
+      Route::get('checkin/{checkinCode}/cart/{id}/delete', ['uses' => 'checkinController@cart_delete', 'as' => 'checkin.cart.delete']);
 
-   Route::get('checkin/{checkinCode}/cart', ['uses' => 'checkinController@cart', 'as' => 'checkin.cart']);
-   Route::post('checkin/{checkinCode}/order-save', ['uses' => 'checkinController@save_order', 'as' => 'checkin.order.save']);
-   Route::get('checkin/{checkinCode}/cart/{id}/delete', ['uses' => 'checkinController@cart_delete', 'as' => 'checkin.cart.delete']);
+      Route::get('checkin/{checkinCode}/orders', ['uses' => 'checkinController@orders', 'as' => 'checkin.orders']);
+      Route::get('checkin/userOrders', ['uses' => 'checkinController@userOrders', 'as' => 'checkin.userOrders']);
 
-   Route::get('checkin/{checkinCode}/orders', ['uses' => 'checkinController@orders', 'as' => 'checkin.orders']);
-   Route::get('checkin/userOrders', ['uses' => 'checkinController@userOrders', 'as' => 'checkin.userOrders']);
-
-   Route::post('checkin/{checkinCode}/order/edit/reason', ['uses' => 'checkinController@order_edit_reason', 'as' => 'checkin.order.edit.reason']);
-   Route::get('checkin/{checkinCode}/order/{orderID}/edit', ['uses' => 'checkinController@order_edit', 'as' => 'checkin.order.edit']);
-   Route::post('checkin/{checkinCode}/order/{itemID}/update', ['uses' => 'checkinController@order_update', 'as' => 'checkin.order.update']);
-   Route::get('checkin/{checkinCode}/order/{itemID}/delete/item', ['uses' => 'checkinController@order_delete_item', 'as' => 'checkin.order.delete.item']);
-   Route::post('checkin/checkinCode/cancel', ['uses' => 'checkinController@order_cancellation', 'as' => 'checkin.order.cancellation']);
+      Route::post('checkin/{checkinCode}/order/edit/reason', ['uses' => 'checkinController@order_edit_reason', 'as' => 'checkin.order.edit.reason']);
+      Route::get('checkin/{checkinCode}/order/{orderID}/edit', ['uses' => 'checkinController@order_edit', 'as' => 'checkin.order.edit']);
+      Route::post('checkin/{checkinCode}/order/{itemID}/update', ['uses' => 'checkinController@order_update', 'as' => 'checkin.order.update']);
+      Route::get('checkin/{checkinCode}/order/{itemID}/delete/item', ['uses' => 'checkinController@order_delete_item', 'as' => 'checkin.order.delete.item']);
+      Route::post('checkin/checkinCode/cancel', ['uses' => 'checkinController@order_cancellation', 'as' => 'checkin.order.cancellation']);
 
 
    Route::get('checkin/{checkinCode}/visits', ['uses' => 'checkinController@visits', 'as' => 'checkin.visits']);
@@ -112,7 +112,8 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('allocation/history/{user_code}', ['uses' => 'checkinController@allocation_history', 'as' => 'checkin.allocation.history']);
 
    Route::post('/test/notifications', [NotificationController::class, 'sendFirebaseNotification']);
-   Route::get('/customer/notifications', [NotificationController::class, 'getCustomerNotification'])->middleware('auth:sanctum');
+   Route::get('/customer/notifications', [NotificationController::class, 'getCustomerNotification']);
+   });
    /*
    |--------------------------------------------------------------------------
    | Authentication
