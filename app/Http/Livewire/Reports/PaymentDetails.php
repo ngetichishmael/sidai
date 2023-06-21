@@ -30,4 +30,13 @@ class PaymentDetails extends Component
          'order_details' => $order_details
       ]);
    }
+   public function pluckLastPart($string )
+   {
+      $prefix = "PaymentMethods.";
+      if (strpos($string, $prefix) === 0) {
+         return substr($string, strlen($prefix));
+      } else {
+         return $string;
+      }
+   }
 }
