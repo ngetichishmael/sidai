@@ -24,8 +24,10 @@
                                     <td>{{ $order->total_payment }}</td>
                                     <td>{{ $order->customer_type }}</td>
                                     <td>{{ $order->created_at }}</td>
-                                    <td><a href="#" class="btn btn-sm"
-                                            style="background-color: #B6121B;color:white">View</a></td>
+                                    <td><a href="{{ route('paymentsdetails.reports', [
+                                        'id' => $order->id,
+                                    ]) }}"
+                                            class="btn btn-sm" style="background-color: #B6121B;color:white">View</a></td>
                                 </tr>
                             @endforeach
 

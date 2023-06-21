@@ -193,7 +193,7 @@
                     (Auth::check() && Auth::user()->account_type == 'NSM') ||
                     (Auth::check() && Auth::user()->account_type == 'RSM') ||
                     (Auth::check() && Auth::user()->account_type == 'Shop-Attendee'))
-                <li class="nav-item {{ Nav::isResource('users.reports') }}">
+                <li class=" nav-item {!! Nav::isRoute('*.reports') !!}">
                     <a class="d-flex align-items-center" href="{{ route('users.reports') }}"><i
                             data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                             All Reports</span></a>

@@ -22,13 +22,6 @@ class Payments extends Component
       )
          ->join('customers', 'orders.customerID', '=', 'customers.id')
          ->leftJoin('order_payments', 'orders.order_code', '=', 'order_payments.order_id')
-         ->groupBy(
-            'orders.id',
-            'customers.customer_name',
-            'orders.order_code',
-            'customers.customer_type',
-            'orders.created_at'
-         )
          ->get();
       return view('livewire.reports.payments', [
          'orders' => $orders
