@@ -48,7 +48,7 @@ class approve_item extends Component
          );
       }
 
-      return redirect('/warehousing/approve/'.$this->requisition_id);
+      return redirect()->back();
    }
 
    public function disapproveSelected()
@@ -65,7 +65,7 @@ class approve_item extends Component
          );
       }
 
-      return redirect('/warehousing/approve/'.$this->requisition_id);
+      return redirect()->back();
    }
 
    public function submitApproval()
