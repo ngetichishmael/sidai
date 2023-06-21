@@ -27,11 +27,10 @@ class approve_item extends Component
    public $selectedItems = [];
 
    public function submitApproval()
-   { dd($this->selectedItems);
+   {
       foreach ($this->selectedItems as $itemId) {
          $this->approvestock($itemId);
       }
-
       $this->selectedItems = [];
 
       session()->flash('success', 'Selected products successfully approved!');
@@ -69,7 +68,7 @@ class approve_item extends Component
 
    public function approve($id)
    {
-      RequisitionProduct::whereId($id)->update(
+      $re=RequisitionProduct::whereId($id)->update(
          [
             'approval' => 1
          ]
@@ -81,12 +80,22 @@ class approve_item extends Component
             $product->quantity
          );
       }
+      $random=rand(0, 9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Stock Approval';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Stock Approved ';
+      $activityLog->action = 'Stock requisition '.$re.' Successfully Approved by '.auth()->user()->name;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = '';
+      $activityLog->save();
 
-      return redirect('/warehousing/all/stock-requisition');
+      return redirect('/warehousing/approve/'.$id);
    }
    public function disapprove($id)
    {
-      RequisitionProduct::whereId($id)->update(
+      $re=RequisitionProduct::whereId($id)->update(
          [
             'approval' => 0
          ]
@@ -98,7 +107,17 @@ class approve_item extends Component
             $product->quantity
          );
       }
+      $random=rand(0, 9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Stock Disapproval';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Stock Disapproved ';
+      $activityLog->action = 'Stock requisition '.$re.' Successfully Disapproved by'.auth()->user()->name;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = '';
+      $activityLog->save();
 
-      return redirect('/warehousing/all/stock-requisition');
+      return redirect('/warehousing/approve/'.$id);
    }
 }
