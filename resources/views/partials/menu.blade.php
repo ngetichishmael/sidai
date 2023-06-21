@@ -221,6 +221,7 @@
                                 <span class="menu-item text-truncate">Routes</span></a>
                         </li>
 
+<<<<<<< HEAD
                         <li class="nav-item {!! Nav::isResource('maps') !!}">
                             <a class="d-flex align-items-center" href="#"><span
                                     class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
@@ -279,6 +280,45 @@
                     <ul class="menu-content">
                         <li style="padding-left: 50px">
                             <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
+=======
+                            <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><span class="menu-item text-truncate">Approve Stock</span></a></li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('supplier') !!}">
+                     <span class="menu-item text-truncate">Distributors</span></a>
+                    </li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><span class="menu-item text-truncate">Pricing</span></a>
+                  </li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('product.category') !!}">
+                     <span class="menu-item text-truncate">Categories</span></a>
+                    </li>
+                    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('product.brand') !!}">
+                     <span class="menu-item text-truncate">Brands</span></a>
+                    </li>
+            </ul>
+        </li>
+           @endif
+{{--        <li class="nav-item {!! Nav::isResource('users') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="{!! route('users.index') !!}">--}}
+{{--                <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>--}}
+{{--            </a>--}}
+{{--        </li>--}}
+           @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM")
+           <li class="nav-item {!! Nav::isResource('users') !!}">
+              <a class="d-flex align-items-center" href="#">
+                 <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo"> Users</span>
+              </a>
+              <ul class="menu-content">
+   @if(Auth::check() && Auth::user()->account_type == "Admin")
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('users.nsm') !!}">
+ <span class="menu-item text-truncate">NSM</span></a>
+</li>
+                 @endif
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('rsm') !!}">
+ <span class="menu-item text-truncate">RSM</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('tsr') !!}">
+ <span class="menu-item text-truncate">TSR</span></a>
+</li>
+>>>>>>> 0630f8169b2cac88ce2aaffb94e9b8734048365f
 
                                 <span class="menu-item text-truncate">Survey</span>
                             </a>

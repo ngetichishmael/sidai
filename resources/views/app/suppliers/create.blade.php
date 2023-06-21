@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','Add Supplier')
+@section('title','Add Distributor')
 {{-- page styles --}}
 @section('stylesheet')
 <script type="text/javascript">
@@ -18,11 +18,11 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Suppliers</h2>
+               <h2 class="content-header-title float-start mb-0">Distributors</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                     <li class="breadcrumb-item"><a href="#">Suppliers</a></li>
+                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                     <li class="breadcrumb-item"><a href="{{route('supplier')}}">Distributors</a></li>
                      <li class="breadcrumb-item active">Create</li>
                   </ol>
                </div>
@@ -36,8 +36,8 @@
 		<div class="card card-default">
          <div class="card-body row">
             <div class="form-group col-md-6 mt-1">
-               {!! Form::label('Supplier', 'Supplier Name', array('class'=>'control-label')) !!}
-               {!! Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Supplier Name')) !!}
+               {!! Form::label('Supplier', 'Distributor Name', array('class'=>'control-label')) !!}
+               {!! Form::text('name', null, array('class' => 'form-control', 'placeholder' => 'Distributor Name')) !!}
             </div>
             <div class="form-group col-md-6 mt-1">
                {!! Form::label('Email', 'Email', array('class'=>'control-label')) !!}
