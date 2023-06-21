@@ -27,9 +27,8 @@ class approve_item extends Component
    public $selectedItems = [];
 
    public function submitApproval()
-   {
+   { dd($this->selectedItems);
       foreach ($this->selectedItems as $itemId) {
-         dd(number_format($this->selectedItems));
          $this->approvestock($itemId);
       }
 
