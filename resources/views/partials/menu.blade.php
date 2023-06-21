@@ -147,19 +147,6 @@
               </li>
            </ul>
         </li>
-
-{{--        <li class="nav-item {!! Nav::isResource('deliver') !!}">--}}
-{{--            <a class="d-flex align-items-center" href="{!! route('delivery.index') !!}">--}}
-{{--                <i data-feather='truck'></i><span class="menu-title text-truncate" data-i18n="Todo">--}}
-{{--                    Deliveries</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-        {{-- <li class="nav-item">
-            <a class="d-flex align-items-center" href="#">
-                <i data-feather='calendar'></i><span class="menu-title text-truncate" data-i18n="Todo"> Scheduled
-                    visits</span>
-            </a>
-        </li> --}}
         <li class="nav-item {!! Nav::isRoute('payment') !!}">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="credit-card"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -225,7 +212,6 @@
 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('tsr') !!}">
  <span class="menu-item text-truncate">TSR</span></a>
 </li>
-
 <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('shop-attendee') !!}">
  <span class="menu-item text-truncate">Shop Attendee</span></a>
 </li>
@@ -235,18 +221,6 @@
 </ul>
 
 </li>
-{{--           <li class="nav-item {!! Nav::isResource('supplier') !!}">--}}
-{{--              <a class="d-flex align-items-center" href="#"><i data-feather='briefcase'></i><span--}}
-{{--                    class="menu-title text-truncate" data-i18n="Invoice">Distributors</span></a>--}}
-{{--              <ul class="menu-content">--}}
-{{--                 <li><a class="d-flex align-items-center" href="{!! route('supplier') !!}"><i--}}
-{{--                          data-feather="circle"></i><span class="menu-item text-truncate">Suppliers</span></a>--}}
-{{--                 </li>--}}
-{{--                 <li><a class="d-flex align-items-center" href="{!! route('supplier.category.index') !!}"><i--}}
-{{--                          data-feather="circle"></i><span class="menu-item text-truncate">Categories</span></a>--}}
-{{--                 </li>--}}
-{{--              </ul>--}}
-{{--           </li>--}}
 <li class="nav-item {!! Nav::isResource('target') !!}">
 <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
    class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
