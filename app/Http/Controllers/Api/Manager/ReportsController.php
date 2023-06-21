@@ -138,8 +138,7 @@ class ReportsController extends Controller
          'success' => true,
          "message" => "Van Sales for last month",
          'data' => Orders::where('order_type', 'Van sales')->lastMonth()->get(),
-      ]);php artisan websockets:generate-ssl
-
+      ]);
    }
    public function preOrderToday()
    {
