@@ -51,7 +51,7 @@ class approve_item extends Component
       $activityLog->activity = 'Stock Approval';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Stock Approved ';
-      $activityLog->action = 'Product '.$approveproduct->product_name .' Successfully Approved  ';
+      $activityLog->action = 'Stock requisition '.$requisition_products->product_name .' Successfully Approved  ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address = '';
