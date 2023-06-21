@@ -97,7 +97,7 @@ class deliveryController extends Controller
                   'business_code' => $business_code,
                   'allocation_code' => $random,
                   'current_qty' => $delivery->allocated_quantity,
-                  'allocated_qty' => $delivery->requested_quantity,
+                  'allocated_qty' => $delivery->allocated_quantity,
                   'image' => $delivery->delivery_code,
                   'returned_qty' => 0,
                   'created_by' => $user_code,
@@ -105,10 +105,10 @@ class deliveryController extends Controller
                ]
             );
             items::where('product_code', $delivery->productID)
-               ->increment('allocated_qty', $delivery->requested_quantity);
+               ->increment('allocated_qty', $delivery->allocated_quantity);
 
             product_inventory::where('productID', $delivery->productID)
-               ->decrement('current_stock', $delivery->requested_quantity);
+               ->decrement('current_stock', $delivery->allocated_quantity);
             allocations::updateOrCreate(
                [
                   "allocation_code" => $random,
