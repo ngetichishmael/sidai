@@ -29,8 +29,11 @@
                        <th>#</th>
                        <th>Order ID</th>
                        <th>Customer Name</th>
-                       <th>User Name</th>
-                       <th>User Type</th>
+                       <th>Sales Rep</th>
+                       <th>Region</th>
+                       <th>Sub Region</th>
+                       <th>Status</th>
+                       <th>Created Date</th>
                        <th>Action</th>
                     </tr>
                  </thead>
@@ -41,7 +44,10 @@
                         <td>{{ $preorder->order_code }}</td>
                         <td>{{ $preorder->Customer->customer_name??'' }}</td>
                         <td>{{ $preorder->User->name??'' }}</td>
-                        <td>{{ $preorder->User->account_type??'' }}</td>
+                        <td>{{ $preorder->Customer->Region->name??'' }}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ $preorder->created_at->format('d/m/Y')??'' }}</td>
                         <td><a href="{{ URL('orders/items/'.$preorder->order_code) }}" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                     </tr>
                         

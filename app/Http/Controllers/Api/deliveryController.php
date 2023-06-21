@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\customer\customers;
-use App\Models\Delivery;
-use App\Models\Delivery_items;
 use App\Models\Orders;
+use App\Models\Delivery;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Delivery_items;
+use App\Models\inventory\items;
+use App\Models\customer\customers;
+use App\Http\Controllers\Controller;
+use App\Models\inventory\allocations;
+use App\Models\products\product_inventory;
 
 /**
  * @group Deliveries
@@ -52,7 +56,6 @@ class deliveryController extends Controller
       $items = Delivery_items::join('product_information', 'product_information.id', '=', 'delivery_items.productID')
          ->where('delivery_code', $delivery_code)
          ->where('product_information.business_code', $businessCode)
-         //                           ->select('allocated_quantity','item_condition')
          ->get();
       $customer = customers::where('id', $order->customerID)->first();
 
@@ -68,6 +71,10 @@ class deliveryController extends Controller
    }
    public function acceptDelivery(Request $request)
    {
+      $user = $request->user();
+      $user_code = $user->user_code;
+      $business_code = $user->business_code;
+      $random = Str::random(20);
       $data = $request->all();
 
       foreach ($data as $value) {
@@ -76,6 +83,45 @@ class deliveryController extends Controller
             'Note' => $value["note"],
             'updated_by' => $request->user()->user_code,
          ]);
+         $delivery_items = Delivery_items::where(
+            'delivery_code',
+            $value["delivery_code"]
+         )->get();
+         foreach ($delivery_items as $delivery) {
+            items::updateOrCreate(
+               [
+                  'product_code' => $delivery->productID,
+                  'created_by' => $user_code
+               ],
+               [
+                  'business_code' => $business_code,
+                  'allocation_code' => $random,
+                  'current_qty' => $delivery->allocated_quantity,
+                  'allocated_qty' => $value['qty'],
+                  'image' => $delivery->delivery_code,
+                  'returned_qty' => 0,
+                  'created_by' => $user_code,
+                  'updated_by' => $user_code
+               ]
+            );
+            items::where('product_code', $value['productID'])
+               ->increment('allocated_qty', $value['qty']);
+
+            product_inventory::where('productID', $value['productID'])
+               ->decrement('current_stock', $value['qty']);
+            allocations::updateOrCreate(
+               [
+                  "allocation_code" => $random,
+                  "sales_person" => $user_code
+               ],
+               [
+                  "business_code" => $business_code,
+                  "status" => "Waiting acceptance",
+                  "created_by" => $user_code,
+                  "updated_by" => $user_code
+               ]
+            );
+         }
       }
       return response()->json(
          [

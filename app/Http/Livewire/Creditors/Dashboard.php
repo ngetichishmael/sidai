@@ -56,6 +56,7 @@ class Dashboard extends Component
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
          ->where('customer_type', 'creditor')
+         ->orderBy('id','desc')
          ->get();
 
       return $aggregate;

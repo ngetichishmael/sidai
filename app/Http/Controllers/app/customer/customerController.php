@@ -150,6 +150,8 @@ class customerController extends Controller
       $customer->price_group = $request->price_group;
       $customer->customer_group = $request->customer_group;
       $customer->route = $request->route;
+      $customer->region_id = $request->route;
+      $customer->subregion_id = $request->route;
       $customer->route_code = $request->route;
       $customer->zone_id = $request->route;
       $customer->status = "Active";

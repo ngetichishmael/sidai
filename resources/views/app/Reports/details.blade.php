@@ -8,7 +8,7 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">Payments for Orders | Reports</h2>
+                    <h2 class="content-header-title float-start mb-0">Payments for Details | Reports</h2>
                     <div class="breadcrumb-wrapper">
 
                     </div>
@@ -17,7 +17,9 @@
         </div>
     </div>
     @include('partials._messages')
-    @livewire('reports.payments')
+    @livewire('reports.payment-details', [
+        'order_code' => $order_code,
+    ])
 @endsection
 @section('script')
 
