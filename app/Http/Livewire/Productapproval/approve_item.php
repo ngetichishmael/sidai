@@ -45,6 +45,7 @@ class approve_item extends Component
       foreach ($requisition_products as $requisition_product) {
          try {
             $approveproduct = product_information::findOrFail($requisition_product);
+            dd($approveproduct, $itemId, $requisition_products);
             $approveproduct->is_approved = "Yes";
             $approveproduct->save();
          } catch (\Exception $e) {
