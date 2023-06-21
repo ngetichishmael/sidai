@@ -12,6 +12,7 @@
             <center>
                 <a href="{!! route('supplier.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Add Supplier</a>
                 <a href="{{ route('supplier.import.index') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">Import Suppliers</a>
+                <a href="{{ route('supplier.archive.view') }}" class="btn btn-sm" style="background-color: #fd6b37;color:white">View Archive</a>
             </center>
         </div>
     </div>
