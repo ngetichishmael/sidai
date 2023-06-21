@@ -29,8 +29,10 @@ class approve_item extends Component
    public function submitApproval()
    {
       foreach ($this->selectedItems as $itemId) {
+         dump($itemId);
          $this->approvestock($itemId);
       }
+
       $this->selectedItems = [];
 
       session()->flash('success', 'Selected products successfully approved!');
