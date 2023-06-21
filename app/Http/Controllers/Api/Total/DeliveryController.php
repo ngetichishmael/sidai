@@ -78,6 +78,9 @@ class DeliveryController extends Controller
             'created_by' => $user_code,
             'updated_by' => $user_code
          ];
+         info($itemsToUpdate);
+         info("Updated");
+         info($itemsData);
          items::updateOrCreate($itemsToUpdate, $itemsData);
 
          $productIDs[] = $productID;
