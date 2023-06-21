@@ -190,7 +190,7 @@
 
                             <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('inventory.approval') !!}"><span class="menu-item text-truncate">Approve Stock</span></a></li>
                     <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('supplier') !!}">
-                     <span class="menu-item text-truncate">Suppliers</span></a>
+                     <span class="menu-item text-truncate">Distributors</span></a>
                     </li>
                     <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}" href="{{ route('pricing') }}"><span class="menu-item text-truncate">Pricing</span></a>
                   </li>

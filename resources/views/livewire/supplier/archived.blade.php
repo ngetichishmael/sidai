@@ -29,6 +29,13 @@
                </td>
             </tr>
          @endforeach
+         @if(empty($suppliers))
+            <div>
+               <tr>
+                  <td colspan="6"> No Archived Distributor Found ...</td>
+               </tr>
+            </div>
+         @endif
          </tbody>
       </table>
 
