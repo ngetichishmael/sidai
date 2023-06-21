@@ -24,7 +24,34 @@ class approve_item extends Component
    }
 
 
-   public $selectedItems = [];
+   public $selectedProducts = [];
+
+// Modify the approve and disapprove methods to handle multiple product IDs
+   public function approve()
+   {
+      foreach ($this->selectedProducts as $productId) {
+         $requisitionProduct = RequisitionProduct::find($productId);
+         $requisitionProduct->update(['approval' => 1]);
+
+         // Decrement current stock
+         product_inventory::whereId($requisitionProduct->product_id)->decrement('current_stock', $requisitionProduct->quantity);
+      }
+
+      return redirect('/warehousing/approve/'.$this->requisition_id);
+   }
+
+   public function disapprove()
+   {
+      foreach ($this->selectedProducts as $productId) {
+         $requisitionProduct = RequisitionProduct::find($productId);
+         $requisitionProduct->update(['approval' => 0]);
+
+         // Increment current stock
+         product_inventory::whereId($requisitionProduct->product_id)->increment('current_stock', $requisitionProduct->quantity);
+      }
+
+      return redirect('/warehousing/approve/'.$this->requisition_id);
+   }
 
    public function submitApproval()
    {
@@ -66,58 +93,37 @@ class approve_item extends Component
 
 
 
-   public function approve($id)
-   {
-      $re=RequisitionProduct::whereId($id)->update(
-         [
-            'approval' => 1
-         ]
-      );
-      $products = RequisitionProduct::whereId($this->product_id)->get();
-      foreach ($products as $product) {
-         product_inventory::whereId($this->product_id)->decrement(
-            'current_stock',
-            $product->quantity
-         );
-      }
-      $random=rand(0, 9999);
-      $activityLog = new activity_log();
-      $activityLog->activity = 'Stock Approval';
-      $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Stock Approved ';
-      $activityLog->action = 'Stock requisition '.$re.' Successfully Approved by '.auth()->user()->name;
-      $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
-      $activityLog->ip_address = '';
-      $activityLog->save();
-
-      return redirect('/warehousing/approve/'.$this->requisition_id);
-   }
-   public function disapprove($id)
-   {
-      $re=RequisitionProduct::whereId($id)->update(
-         [
-            'approval' => 0
-         ]
-      );
-      $products = RequisitionProduct::whereId($this->product_id)->get();
-      foreach ($products as $product) {
-         product_inventory::whereId($this->product_id)->increment(
-            'current_stock',
-            $product->quantity
-         );
-      }
-      $random=rand(0, 9999);
-      $activityLog = new activity_log();
-      $activityLog->activity = 'Stock Disapproval';
-      $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Stock Disapproved ';
-      $activityLog->action = 'Stock requisition '.$re.' Successfully Disapproved by'.auth()->user()->name;
-      $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
-      $activityLog->ip_address = '';
-      $activityLog->save();
-
-      return redirect('/warehousing/approve/'.$this->requisition_id);
-   }
+//   public function approve($id)
+//   {
+//      $re=RequisitionProduct::whereId($id)->update(
+//         [
+//            'approval' => 1
+//         ]
+//      );
+//      $products = RequisitionProduct::whereId($this->product_id)->get();
+//      foreach ($products as $product) {
+//         product_inventory::whereId($this->product_id)->decrement(
+//            'current_stock',
+//            $product->quantity
+//         );
+//      }
+//
+//      return redirect('/warehousing/approve/'.$this->requisition_id);
+//   }
+//   public function disapprove($id)
+//   {
+//      $re=RequisitionProduct::whereId($id)->update(
+//         [
+//            'approval' => 0
+//         ]
+//      );
+//      $products = RequisitionProduct::whereId($this->product_id)->get();
+//      foreach ($products as $product) {
+//         product_inventory::whereId($this->product_id)->increment(
+//            'current_stock',
+//            $product->quantity
+//         );
+//      }
+//      return redirect('/warehousing/approve/'.$this->requisition_id);
+//   }
 }
