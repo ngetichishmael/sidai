@@ -82,7 +82,11 @@ class DeliveryController extends Controller
          info($itemsToUpdate);
          info("Updated");
          info($itemsData);
-         items::updateOrCreate(['product_code' => $productID, 'created_by' => $user_code], $itemsData);
+
+         items::updateOrCreate(
+            ['product_code' => $itemsToUpdate['product_code'], 'created_by' => $itemsToUpdate['created_by']],
+            $itemsData
+         );
 
          $productIDs[] = $productID;
          $total += product_price::whereId($productID)->pluck('buying_price')->first() * $qty;
