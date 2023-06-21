@@ -46,6 +46,7 @@
   'routes.index' => 'App\\Http\\Livewire\\Routes\\index',
   'routes.individual' => 'App\\Http\\Livewire\\Routes\\individual',
   'sales.targets' => 'App\\Http\\Livewire\\Sales\\Targets',
+  'supplier.archived' => 'App\\Http\\Livewire\\Supplier\\Archived',
   'supplier.dashboard' => 'App\\Http\\Livewire\\Supplier\\Dashboard',
   'supplier.index' => 'App\\Http\\Livewire\\Supplier\\index',
   'survery.dashboard' => 'App\\Http\\Livewire\\Survery\\Dashboard',

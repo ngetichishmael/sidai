@@ -163,6 +163,9 @@ Route::group(['middleware' => ['verified']], function () {
    // Route::post('supplier/{id}/update', ['uses' => 'app\supplier\supplierController@update', 'as' => 'supplier.update']);
    // Route::get('supplier/{id}/show', ['uses' => 'app\supplier\supplierController@show', 'as' => 'supplier.show']);
     Route::get('supplier/{id}/archive', ['uses' => 'app\supplier\supplierController@archive', 'as' => 'supplier.archive']);
+    Route::get('supplier/{id}/activate', ['uses' => 'app\supplier\supplierController@activate', 'as' => 'supplier.activate']);
+   Route::get('supplier/archive/view', ['uses' => 'app\supplier\supplierController@archiveView', 'as' => 'supplier.archive.view']);
+
    // Route::get('delete-supplier-person/{id}', ['uses' => 'app\supplier\supplierController@delete_contact_person', 'as' => 'supplier.vendor.person']);
    // Route::get('supplier/{id}/trash', ['uses' => 'app\supplier\supplierController@trash', 'as' => 'vendor.trash.update']);
    // Route::get('supplier/download/import/sample/', ['uses' => 'app\supplier\ImportController@download_import_sample', 'as' => 'supplier.download.sample.import']);
