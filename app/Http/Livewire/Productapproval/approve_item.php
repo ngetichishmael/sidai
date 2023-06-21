@@ -42,14 +42,16 @@ class approve_item extends Component
    public function approvestock($itemId)
    {
       $requisition_products = RequisitionProduct::where('requisition_id', $itemId)->get();
-
       foreach ($requisition_products as $requisition_product) {
-         $approveproduct = product_information::whereId($requisition_product)->first();
-         if ($approveproduct) {
+         try {
+            $approveproduct = product_information::findOrFail($requisition_product);
             $approveproduct->is_approved = "Yes";
             $approveproduct->save();
+         } catch (\Exception $e) {
+            dd($e->getMessage());
          }
       }
+
       $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Stock Approval';
