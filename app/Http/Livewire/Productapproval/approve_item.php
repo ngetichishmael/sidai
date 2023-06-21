@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Productapproval;
 
+use App\Models\activity_log;
+use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
@@ -20,6 +22,44 @@ class approve_item extends Component
          'products' => $products,
       ]);
    }
+
+
+   public $selectedItems = [];
+
+   public function submitApproval()
+   {
+      foreach ($this->selectedItems as $itemId) {
+         $this->approvestock($itemId);
+      }
+      $this->selectedItems = [];
+
+      session()->flash('success', 'Selected products successfully approved!');
+
+      return redirect()->route('inventory.approval');
+
+   }
+   public function approvestock($itemId)
+   {
+      $requisition_products = RequisitionProduct::where('requisition_id',$itemId)->get();
+      foreach ($requisition_products as $requisition_product){
+         $approveproduct = product_information::whereId($requisition_product)->first();
+         $approveproduct->is_approved = "Yes";
+         $approveproduct->save();
+      }
+      $random=rand(0, 9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Stock Approval';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Stock Approved ';
+      $activityLog->action = 'Product '.$approveproduct->product_name .' Successfully Approved  ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = '';
+      $activityLog->save();
+   }
+
+
+
    public function approve($id)
    {
       RequisitionProduct::whereId($id)->update(
