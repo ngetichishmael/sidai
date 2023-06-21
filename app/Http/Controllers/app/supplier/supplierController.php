@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\app\supplier;
 
+use App\Models\activity_log;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\suppliers\suppliers;
 use App\Models\suppliers\category;
 use App\Models\country;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class supplierController extends Controller
 {
@@ -49,6 +51,16 @@ class supplierController extends Controller
       $primary->business_code = Auth::user()->business_code;
       $primary->save();
 
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Archive Distributor';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Adding Distributor to Sidai';
+      $activityLog->action = 'User '. $request->user()->name. ' Role '.$request->user()->account_type.' added '. $primary->name .' Successfully';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       Session()->flash('success', 'Supplier has been successfully Added');
 
       return redirect()->route('supplier.index');
@@ -76,12 +88,43 @@ class supplierController extends Controller
       $edit->email = $request->email;
       $edit->name = $request->name;
       $edit->phone_number = $request->phone_number;
-      $edit->telephone = $request->telephone;
-      $edit->status = $request->status;
-      $edit->business_code = Auth::user()->business_code;
+      $edit->telephone = $request->telephone ?? $edit->telephone;
+      $edit->status = $request->status ?? $edit->status ;
       $edit->save();
 
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Add Distributor';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'updating Distributor to Sidai';
+      $activityLog->action = 'User '. $request->user()->name. ' Role '.$request->user()->account_type.' updated '. $edit->name .' Successfully';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       Session()->flash('success', 'Supplier has been successfully updated');
+
+      return redirect()->back();
+   }
+   public function archive(Request $request, $id)
+   {
+
+      $edit = suppliers::where('id', $id)->first();
+      $edit->status = "Inactive";
+      $edit->save();
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Archive Distributor';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Adding Distributor to archive';
+      $activityLog->action = 'User '. $request->user()->name. ' Role '.$request->user()->account_type.' archived '. $edit->name .' Successfully';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+
+      Session()->flash('success', 'Supplier has been successfully archived');
 
       return redirect()->back();
    }

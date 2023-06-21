@@ -152,6 +152,7 @@ Route::group(['middleware' => ['verified']], function () {
       'show' => 'supplier.show',
       'edit' => 'supplier.edit',
       'destroy' => 'supplier.destroy',
+      'archive' => 'supplier.archive',
       'create' => 'supplier.create',
       'store' => 'supplier.store',
    ]);
