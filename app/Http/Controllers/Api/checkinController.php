@@ -401,7 +401,7 @@ class checkinController extends Controller
       return response()->json([
          "success" => true,
          "message" => "All your Orders",
-         "data" => $orders,
+         "Data" => $orders,
       ]);
    }
 
