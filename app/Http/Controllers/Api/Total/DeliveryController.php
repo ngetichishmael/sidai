@@ -21,7 +21,7 @@ class DeliveryController extends Controller
 {
    public function partialDelivery(Request $request, $delivery_code)
    {
-      $validator = Validator::make($request, [
+      $validator = Validator::make($request->all(), [
          '*.qty' => 'required',
          '*.productID' => 'required',
       ]);
