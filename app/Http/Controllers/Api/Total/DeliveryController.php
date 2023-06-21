@@ -82,12 +82,12 @@ class DeliveryController extends Controller
          info($itemsToUpdate);
          info("Updated");
          info($itemsData);
-         items::updateOrCreate($itemsToUpdate, $itemsData);
+         items::updateOrCreate(['product_code' => $productID, 'created_by' => $user_code], $itemsData);
 
          $productIDs[] = $productID;
          $total += product_price::whereId($productID)->pluck('buying_price')->first() * $qty;
       }
-
+      info('7');
       items::whereIn('product_code', $productIDs)->increment('allocated_qty', 'qty');
 
       product_inventory::whereIn('productID', $productIDs)->decrement('current_stock', 'qty');
