@@ -29,7 +29,6 @@ class approve_item extends Component
    public function submitApproval()
    {
       foreach ($this->selectedItems as $itemId) {
-         dump($itemId);
          $this->approvestock($itemId);
       }
 
@@ -42,11 +41,14 @@ class approve_item extends Component
    }
    public function approvestock($itemId)
    {
-      $requisition_products = RequisitionProduct::where('requisition_id',$itemId)->get();
-      foreach ($requisition_products as $requisition_product){
+      $requisition_products = RequisitionProduct::where('requisition_id', $itemId)->get();
+
+      foreach ($requisition_products as $requisition_product) {
          $approveproduct = product_information::whereId($requisition_product)->first();
-         $approveproduct->is_approved = "Yes";
-         $approveproduct->save();
+         if ($approveproduct) {
+            $approveproduct->is_approved = "Yes";
+            $approveproduct->save();
+         }
       }
       $random=rand(0, 9999);
       $activityLog = new activity_log();

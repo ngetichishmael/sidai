@@ -22,8 +22,13 @@
                               <td>{!! $product->quantity !!}</td>
                               <td>{!! $product->ProductInformation->sku_code !!}</td>
                               <td>
+                                 @if ($product->approval == 0)
                                  <input type="checkbox" wire:model="selectedItems"
                                         value="{{ $product->id }}">
+                                 @else
+                                    <input type="checkbox" wire:model="selectedItems"
+                                           value="{{ $product->id }}" checked>
+                                 @endif
                               </td>
                            </tr>
                         @endforeach
