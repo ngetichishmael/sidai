@@ -92,9 +92,9 @@ class DeliveryController extends Controller
          $total += product_price::whereId($productID)->pluck('buying_price')->first() * $qty;
       }
       info('7');
-      items::whereIn('product_code', $productIDs)->increment('allocated_qty', 'qty');
+      items::whereIn('product_code', $productIDs)->increment('allocated_qty', (int)$qty);
+      product_inventory::whereIn('productID', $productIDs)->decrement('current_stock', (int) $qty);
 
-      product_inventory::whereIn('productID', $productIDs)->decrement('current_stock', 'qty');
 
       $allocationData = [
          "allocation_code" => $random,
