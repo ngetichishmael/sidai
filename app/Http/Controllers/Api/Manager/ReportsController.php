@@ -146,7 +146,7 @@ class ReportsController extends Controller
          'status' => 200,
          'success' => true,
          "message" => "Preorder for today",
-         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItem',
+         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItems',
             'Customer'=>function ($query) { $query->select('id','customer_name', 'user_code');
             }])->today()->get(),
       ]);
@@ -157,7 +157,7 @@ class ReportsController extends Controller
          'status' => 200,
          'success' => true,
          "message" => "Preorder for last week",
-         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItem',
+         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItems',
             'Customer'=>function ($query) { $query->select('id','customer_name', 'user_code');
             }])->lastWeek()->get(),
       ]);
@@ -168,7 +168,7 @@ class ReportsController extends Controller
          'status' => 200,
          'success' => true,
          "message" => "Preorder for last month",
-         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItem',
+         'data' => Orders::where('order_type', 'Pre Order')->with(['OrderItems',
             'Customer'=>function ($query) { $query->select('id','customer_name', 'user_code');
             }])->lastMonth()->get()
       ]);
