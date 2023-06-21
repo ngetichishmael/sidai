@@ -383,7 +383,20 @@ class productController extends Controller
 
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
    }
+   public $selectedItems = [];
 
+   public function submitApproval()
+   {
+      foreach ($this->selectedItems as $itemId) {
+         $this->approvestock($itemId);
+      }
+      $this->selectedItems = [];
+
+      session()->flash('success', 'Selected products successfully approved!');
+
+      return redirect()->route('inventory.approval');
+
+   }
    public function approvestock($requisition_id){
       $requisition_products = RequisitionProduct::where('requisition_id',$requisition_id)->get();
       foreach ($requisition_products as $requisition_product){
@@ -391,7 +404,6 @@ class productController extends Controller
          $approveproduct->is_approved = "Yes";
          $approveproduct->save();
       }
-      session()->flash('success', 'Product successfully Approved !');
       $random=rand(0, 9999);
       $activityLog = new activity_log();
       $activityLog->activity = 'Stock Approval';
@@ -402,7 +414,6 @@ class productController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = '';
       $activityLog->save();
-      return redirect()->to('/warehousing/approve/'.$requisition_id);
    }
 
 
