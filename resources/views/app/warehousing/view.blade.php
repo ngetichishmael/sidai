@@ -11,8 +11,8 @@
                <h2 class="content-header-title float-start mb-0">Edit Warehouse </h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                     <li class="breadcrumb-item"><a href="#">Warehouse</a></li>
+                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                     <li class="breadcrumb-item"><a href="{{route('warehousing.index')}}">Warehouses</a></li>
                      <li class="breadcrumb-item active">Edit</li>
                   </ol>
                </div>

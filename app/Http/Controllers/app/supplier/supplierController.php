@@ -23,6 +23,10 @@ class supplierController extends Controller
    {
       return view('app.suppliers.index');
    }
+   public function archiveView()
+   {
+      return view('app.suppliers.archived');
+   }
    public function show()
    {
       return view('app.suppliers.index');
@@ -119,6 +123,28 @@ class supplierController extends Controller
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Adding Distributor to archive';
       $activityLog->action = 'User '. $request->user()->name. ' Role '.$request->user()->account_type.' archived '. $edit->name .' Successfully';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+
+      Session()->flash('success', 'Supplier has been successfully archived');
+
+      return redirect()->back();
+   }
+   public function activate(Request $request, $id)
+   {
+
+      $edit = suppliers::where('id', $id)->first();
+      $edit->status = "Active";
+      $edit->save();
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Unarchived Distributor';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Removed Distributor from archive';
+      $activityLog->action = 'User '. $request->user()->name. ' Role '.$request->user()->account_type.' unarchived '. $edit->name .' Successfully';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address ="";
