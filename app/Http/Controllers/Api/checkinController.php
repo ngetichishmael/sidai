@@ -393,6 +393,18 @@ class checkinController extends Controller
          "orders" => $orders,
       ]);
    }
+   public function userOrders(Request $request)
+   {
+
+      $orders = Orders::where('user_code', $request->user()->user_code)
+         ->orderby('orders.id', 'desc')
+         ->get();
+      return response()->json([
+         "success" => true,
+         "message" => "All your Orders",
+         "orders" => $orders,
+      ]);
+   }
 
 
    /**

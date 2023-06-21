@@ -21,9 +21,9 @@ class Approve extends Component
     public function render()
     {
        $searchTerm = '%' . $this->search . '%';
-       $contacts = customers::where('is_creditor', 1)->where('creditor_approved', 0)
+       $contacts = customers::where('is_creditor', 1)->where('creditor_status', 'waiting_approval')
            ->with('Area.Subregion.Region', 'Creator')
-          ->search($searchTerm)
+//          ->search($searchTerm)
           ->orderBy('id', 'DESC')
           ->paginate($this->perPage);
        return view('livewire.creditors.approve', [
@@ -46,7 +46,7 @@ class Approve extends Component
    public function approveCreditor($id)
    {
       customers::whereId($id)->update(
-         ['creditor_approved' => 1 ,
+         ['creditor_status' => "approved",
             'customer_type' => 'creditor',
             'is_creditor' => 1
          ]
@@ -56,7 +56,7 @@ class Approve extends Component
    public function dissaproveCreditor($id)
    {
       customers::whereId($id)->update(
-         ['creditor_approved' => 2,
+         ['creditor_status' => "disapproved",
             'customer_type' => 'creditor',
             'is_creditor' => 1
          ]

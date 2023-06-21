@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CustomerResource;
 use App\Http\Resources\OrderResource;
 use App\Http\Resources\UserResource;
+use App\Models\activity_log;
 use App\Models\customers;
 use App\Models\inventory\items;
 use App\Models\Orders;
@@ -91,6 +92,16 @@ class OrdersController extends Controller
       Orders::where('order_code', $order_code)->update([
          'user_code'=>$sales_person
       ]);
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Manager order allocation';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Allocate orders';
+      $activityLog->action = 'Manager '.auth()->user()->name.' allocated order '.$order_code.' to '.$sales_person . ' of customer '.$customerID;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "message" => "Orders allocated successfully",

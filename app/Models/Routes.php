@@ -18,4 +18,8 @@ class Routes extends Model
    {
       return $this->hasMany(Route_sales::class, 'routeID', 'route_code');
    }
+   public function subregion()
+   {
+      return $this->belongsTo(Subregion::class, 'subregion_id');
+   }
 }

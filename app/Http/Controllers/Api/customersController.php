@@ -100,13 +100,34 @@ class customersController extends Controller
 public function RequestToBeCreditor(Request $request){
    $customer = customers::where('id', $request->customer_id)->first();
    if ($customer){
-      customers::whereId($customer->id)->update([ 'is_creditor'=>1,
-         'creditor_approved' => 0 ]);
+      if ($customer->is_creditor === 1) {
+         if ($customer->creditor_status == 0 || $customer->creditor_status == null || $customer->creditor_status == 1){
+            customers::whereId($customer->id)->update(['is_creditor' => 1, 'creditor_status' => "waiting_approval"]);
+      }
+         return response()->json([
+            "success" => false,
+            "message" => "Request already sent, status is ".$customer->creditor_status,
+         ], 200);
+      }
+      customers::whereId($customer->id)->update([ 'is_creditor'=> 1,
+         'creditor_status' => "waiting_approval" ]);
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Creditor Request';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Requesting Creditor Approval on mobile';
+      $activityLog->action = 'User '.auth()->user()->name.' requested on behalf of  customer '. $customer->customer_name.' to become sidai creditor';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "message" => "Request to be a Creditor Received Successfully",
       ], 200);
    }
+
    return response()->json([
       "success" => false,
       "message" => "Customer Not found"
@@ -118,7 +139,7 @@ public function creditorStatus(Request $request){
       return response()->json([
          "success" => true,
          "message" => "Customer Status",
-         "data"=>$customer->is_creditor,
+         "data"=>$customer->creditor_status,
       ], 200);
    }
    return response()->json([
@@ -186,9 +207,6 @@ public function groups(){
 
          ]
       );
-
-
-
       return response()->json([
          "success" => true,
          "message" => "Updated customer profile",
@@ -236,13 +254,87 @@ public function groups(){
    }
    public function add_customer(Request $request)
    {
+      $validator = Validator::make($request->all(), [
+         "customer_name"   => "required|unique:customers",
+         "contact_person"  => "required",
+         "business_code"   => "required",
+         "phone_number"    => "required|unique:customers",
+         "email"           => "nullable|unique:users",
+         "latitude"        => "required",
+         "longitude"       => "required",
+         "image"           => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+      ]);
+
+      if ($validator->fails()) {
+         return response()->json([
+            "status" => 401,
+            "message" => "validation_error",
+            "errors" => $validator->errors()
+         ], 403);
+      }
+
+      $image_path = $request->file('image')->store('image', 'public');
+      $emailData = $request->email ?? $request->customer_name . Str::random(3) . '@gmail.com';
+      $route = Area::with('subregion.region')->find($request->route_code);
+      $user = User::create([
+         'name' => $request->customer_name,
+         'email' => $emailData,
+         'user_code' => Str::random(20),
+         'phone_number' => $request->phone_number,
+         'gender' => $request->gender,
+         'account_type' => "Customer",
+         'email_verified_at' => Carbon::now(),
+         'status' => "Active",
+         'region_id' => optional($route->subregion->region)->id,
+         'business_code' =>$request->business_code,
+         'password' => Hash::make("password")
+      ]);
+     $customer=customers::create([
+         'customer_name' => $request->customer_name,
+         'contact_person' => $request->contact_person,
+         'phone_number' => $request->phone_number,
+         'user_code' => $user->user_code,
+         'email' => $emailData,
+         'address' => $request->address,
+         'latitude' => $request->latitude,
+         'longitude' => $request->longitude,
+         'business_code' => $request->business_code,
+         'created_by' => $request->user()->user_code,
+         'route_code' => $request->route_code,
+         'route' => $request->route_code,
+         'customer_group' => $request->outlet,
+         'price_group' => $request->outlet,
+         'region_id' => optional($route->subregion->region)->id,
+         'subregion_id' => optional($route->subregion)->id,
+         'unit_id' => $request->route_code,
+         'image' => $image_path
+      ]);
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Adding customer information';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Customer information added on mobile';
+      $activityLog->action = 'User '.auth()->user()->name.' added customer '. $customer->customer_name.' information';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "message" => "Customer added successfully",
+      ]);
+   }
+
+   public function add_customer2(Request $request)
+   {
       //   $user_code = $request->user()->user_code;
       $validator           =  Validator::make($request->all(), [
          "customer_name"   => "required|unique:customers",
          "contact_person"  => "required",
          "business_code"   => "required",
          "phone_number"    => "required|unique:customers",
-         "email" => "nullable|unique:users",
+         "email"           => "nullable|unique:users",
          "latitude"        => "required",
          "longitude"       => "required",
          "image" => 'required|image|mimes:jpg,png,jpeg,gif,svg',
@@ -259,12 +351,14 @@ public function groups(){
             403
          );
       }
+
       $random=Str::random(3);
       $image_path = $request->file('image')->store('image', 'public');
       $emailData = $request->email !== null ? $request->email : $request->customer_name.$random.'@gmail.com';
-      $random=Str::random(10);
-      $route=Subregion::where('id', $request->route)->first();
+      $random=Str::random(20);
+      $route=Routes::where('id', $request->route_code)->first();
       $subregion=Subregion::where('id', $route->subregion_id)->first();
+      $region=Region::where('id', $subregion->region_id)->first();
       $user = new User();
       $user->name = $request->customer_name;
       $user->email=$emailData;
@@ -274,7 +368,7 @@ public function groups(){
       $user->account_type= "Customer";
       $user->email_verified_at =Carbon::now();
       $user->status="Active";
-      $user->region_id= $subregion->route ?? Auth::user()->region_id;
+      $user->region_id= $region->id ?? Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
       $user->password = Hash::make("password");
       $user->save();
@@ -290,12 +384,12 @@ public function groups(){
       $customer->longitude = $request->longitude;
       $customer->business_code = $request->business_code;
       $customer->created_by = $request->user()->user_code;
-      $customer->route_code = $request->route;
-      $customer->route = $request->route;
-      $customer->customer_group = $request->customer_group;
+      $customer->route_code = $request->route_code;
+      $customer->route = $request->route_code;
+      $customer->customer_group = $request->outlet;
       $customer->price_group = $request->outlet;
-      $customer->region_id = $subregion->region_id;
-      $customer->subregion_id = $subregion;
+      $customer->region_id = $region->id;
+      $customer->subregion_id = $subregion->id;
       $customer->unit_id = $request->route_code;
       $customer->image = $image_path;
       $customer->save();
