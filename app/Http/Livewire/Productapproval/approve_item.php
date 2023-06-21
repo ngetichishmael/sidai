@@ -40,7 +40,7 @@ class approve_item extends Component
 
    }
    public function approvestock($itemId)
-   {
+   { dd($itemId);
       $requisition_products = RequisitionProduct::where('requisition_id', $itemId)->get();
       foreach ($requisition_products as $requisition_product) {
          try {
