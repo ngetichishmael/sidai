@@ -1,12 +1,12 @@
-<!-- Add a form to wrap the table and checkboxes -->
-<form wire:submit.prevent="approve" method="POST">
-   <div>
-      <div class="row">
-         <div class="col-md-12">
-            <div class="pt-0 card-datatable table-responsive">
-               <div class="card">
-                  <div class="card-header"> Stock Requisition Items</div>
-                  <div class="card-body">
+<div>
+   <div class="row">
+      <div class="col-md-12">
+         <div class="pt-0 card-datatable table-responsive">
+            <div class="card">
+               <div class="card-header"> Stock Requisition Items</div>
+               <div class="card-body">
+                  <form wire:submit.prevent="approveSelected" class="mb-3">
+                     @csrf
                      <table class="table table-bordered table-striped">
                         <thead>
                         <th>#</th>
@@ -23,20 +23,26 @@
                               <td>{!! $product->quantity !!}</td>
                               <td>{!! $product->ProductInformation->sku_code !!}</td>
                               <td>
-                                 <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}">
+                                 @if ($product->approval == 0)
+                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}">
+                                 @endif
                               </td>
                            </tr>
                         @endforeach
                         </tbody>
                      </table>
-                  </div>
+                     <button type="submit" class="btn btn-success btn-sm">Approve Selected</button>
+                  </form>
+                  <form wire:submit.prevent="disapproveSelected" class="mb-3">
+                     @csrf
+                     <button type="submit" class="btn btn-danger btn-sm">Disapprove Selected</button>
+                  </form>
                </div>
             </div>
          </div>
       </div>
    </div>
-   <button type="submit" class="btn btn-success btn-sm">Approve Selected and go back</button>
-</form>
+</div>
 
 
 

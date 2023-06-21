@@ -22,37 +22,47 @@ class approve_item extends Component
          'products' => $products,
       ]);
    }
-   public $requisition_id;
-
-   public function mount($requisitionId)
-   {
-      $this->requisition_id = $requisitionId;
-   }
 
    public $selectedProducts = [];
 
-// Modify the approve and disapprove methods to handle multiple product IDs
-   public function approve()
-   { dd($this->requisition_id);
-      foreach ($this->selectedProducts as $productId) {
-         $requisitionProduct = RequisitionProduct::find($productId);
-         $requisitionProduct->update(['approval' => 1]);
+   public function toggleProduct($productId)
+   {
+      if (in_array($productId, $this->selectedProducts)) {
+         $this->selectedProducts = array_diff($this->selectedProducts, [$productId]);
+      } else {
+         $this->selectedProducts[] = $productId;
+      }
+   }
 
-         // Decrement current stock
-         product_inventory::whereId($requisitionProduct->product_id)->decrement('current_stock', $requisitionProduct->quantity);
+   public function approveSelected()
+   {
+      foreach ($this->selectedProducts as $productId) {
+         $requisitionProduct = RequisitionProduct::findOrFail($productId);
+         $requisitionProduct->update([
+            'approval' => 1
+         ]);
+
+         product_inventory::whereId($requisitionProduct->product_id)->decrement(
+            'current_stock',
+            $requisitionProduct->quantity
+         );
       }
 
       return redirect('/warehousing/approve/'.$this->requisition_id);
    }
 
-   public function disapprove()
-   {dd($this->requisition_id);
+   public function disapproveSelected()
+   {
       foreach ($this->selectedProducts as $productId) {
-         $requisitionProduct = RequisitionProduct::find($productId);
-         $requisitionProduct->update(['approval' => 0]);
+         $requisitionProduct = RequisitionProduct::findOrFail($productId);
+         $requisitionProduct->update([
+            'approval' => 0
+         ]);
 
-         // Increment current stock
-         product_inventory::whereId($requisitionProduct->product_id)->increment('current_stock', $requisitionProduct->quantity);
+         product_inventory::whereId($requisitionProduct->product_id)->increment(
+            'current_stock',
+            $requisitionProduct->quantity
+         );
       }
 
       return redirect('/warehousing/approve/'.$this->requisition_id);
