@@ -33,7 +33,7 @@
                         @endforeach
                         </tbody>
                      </table>
-                     <button type="submit" class="btn btn-success btn-sm ml-3">Approve Selected</button>
+                     <button type="submit" class="btn btn-success btn-sm mt-3">Approve Selected</button>
                   </form>
                   <form wire:submit.prevent="disapproveSelected" >
                      @csrf
