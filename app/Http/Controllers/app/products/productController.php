@@ -403,7 +403,8 @@ class productController extends Controller
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect('/warehousing/approve/'.$requisition_id);
+      echo '<script>window.location.href = window.location.href;</script>';
+      exit;
 
    }
 
