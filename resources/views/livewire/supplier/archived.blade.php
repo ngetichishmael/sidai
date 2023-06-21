@@ -32,7 +32,7 @@
          @if(empty($supplier))
             <div>
                <tr>
-                  <td colspan="6"> No Archived Distributor Found ...</td>
+                  <td colspan="6" class="align-content-center"> No Archived Distributor Found ...</td>
                </tr>
             </div>
          @endif
