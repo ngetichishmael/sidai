@@ -29,6 +29,7 @@ class approve_item extends Component
    public function submitApproval()
    {
       foreach ($this->selectedItems as $itemId) {
+         dd(number_format($this->selectedItems));
          $this->approvestock($itemId);
       }
 
@@ -40,8 +41,8 @@ class approve_item extends Component
 
    }
    public function approvestock($itemId)
-   { dd($itemId);
-      $requisition_products = RequisitionProduct::where('requisition_id', $itemId)->get();
+   {
+      $requisition_products = RequisitionProduct::where('requisition_id', number_format($itemId))->get();
       foreach ($requisition_products as $requisition_product) {
          try {
             $approveproduct = product_information::findOrFail($requisition_product);
