@@ -25,17 +25,19 @@
                               <td>
                                  @if ($product->approval == 0)
                                     <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}">
+                                 @else
+                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}" checked>
                                  @endif
                               </td>
                            </tr>
                         @endforeach
                         </tbody>
                      </table>
-                     <button type="submit" class="btn btn-success btn-sm">Approve Selected</button>
+                     <button type="submit" class="btn btn-success btn-sm ml-3">Approve Selected</button>
                   </form>
-                  <form wire:submit.prevent="disapproveSelected" class="mb-3">
+                  <form wire:submit.prevent="disapproveSelected" >
                      @csrf
-                     <button type="submit" class="btn btn-danger btn-sm">Disapprove Selected</button>
+                     <button type="submit" class="btn btn-danger btn-sm ml-5">Disapprove Selected</button>
                   </form>
                </div>
             </div>
