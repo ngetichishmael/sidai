@@ -60,18 +60,6 @@ class UsersController extends Controller
    }
    public function usersList(Request $request)
    {
-      if($request->input('account_type') !=null && $request->input('account_type') =='distributors'){
-         $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
-            ->orWhereNull('status')
-            ->orWhere('status', '')
-            ->select('id','name','category')
-            ->orderby('name', 'desc')->get();
-         return response()->json([
-            "success" => true,
-            "status" => 200,
-            "data" => $distributors,
-            ]);
-      }
       $accountType = $request->input('account_type');
 
       if ($request->account_type == 'RSM' || 'rsm') {
