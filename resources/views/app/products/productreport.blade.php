@@ -31,6 +31,7 @@
                        <th>Wholesale Price</th>
                        <th>Retail Price</th>
                        <th>Distributor Price</th>
+                       <th>Quantity</th>
                        <th>Sku Code</th>
                        <th>Status</th>
                     </tr>
@@ -51,6 +52,7 @@
                     <td>
                      {{ number_format((float) $product->ProductPrice()->pluck('distributor_price')->implode('')) }}
                     </td>
+                    <td></td>
                      <td></td>
                      @if ($product->Inventory()->pluck('current_stock')->implode('')>1)
                            <td><button class="btn btn-success btn-sm">{{'Available' }}</button></td>
