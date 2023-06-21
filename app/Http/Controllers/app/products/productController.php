@@ -402,8 +402,7 @@ class productController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = '';
       $activityLog->save();
-
-      return redirect()->route('inventory.approval');
+      return redirect()->back();
 
    }
 
