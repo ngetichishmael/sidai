@@ -36,6 +36,7 @@ class StockRequisitionController extends Controller
       $stockRequisition = StockRequisition::create(
          [
             "sales_person"=>$request->user()->user_code,
+            "user_id"=>$request->user()->id,
             "requisition_date"=>Carbon::now(),
             "status"=>"Waiting Approval",
 
@@ -50,19 +51,8 @@ class StockRequisitionController extends Controller
       }
       return response()->json("Stock requisition request successful", 201);
    }
-
-//   public function show(StockRequisition $stockRequisition)
-//   {
-//      $stockRequisition->load('requisitionProducts');
-//      return response()->json([$stockRequisition], 200);
-//   }
    public function show(Request $request)
    {
-//      $stockRequisition=StockRequisition::with('RequisitionProducts')
-//         ->where('sales_person', $request->user()->user_code)
-//         ->get();
-//      return response()->json(["data"=>$stockRequisition], 200);
-
       $stockRequisition = StockRequisition::with('RequisitionProducts')
          ->where('sales_person', $request->user()->user_code)
          ->get();
