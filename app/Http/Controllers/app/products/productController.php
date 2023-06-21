@@ -397,8 +397,9 @@ class productController extends Controller
       return redirect()->route('inventory.approval');
 
    }
-   public function approvestock($requisition_id){
-      $requisition_products = RequisitionProduct::where('requisition_id',$requisition_id)->get();
+   public function approvestock($itemId)
+   {
+      $requisition_products = RequisitionProduct::where('requisition_id',$itemId)->get();
       foreach ($requisition_products as $requisition_product){
          $approveproduct = product_information::whereId($requisition_product)->first();
          $approveproduct->is_approved = "Yes";
