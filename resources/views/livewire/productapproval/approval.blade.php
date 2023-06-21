@@ -16,9 +16,8 @@
                         <tbody>
                             @foreach ($requisitions as $count => $requisition)
                                 <tr>
-                                   @dd($requisition)
                                     <td>{!! $count + 1 !!}</td>
-                                    <td>{{ $requisition->user() ?? '' }}</td>
+                                    <td>{{ $requisition->user->name ?? '' }}</td>
                                     @isset($requisition->requisition_products_count, $requisition->approved_requisition_products_count)
                                         @php
                                             $percentage = ($requisition->approved_requisition_products_count / $requisition->requisition_products_count) * 100;
