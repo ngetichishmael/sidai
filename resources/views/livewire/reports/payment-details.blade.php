@@ -135,7 +135,7 @@
                                             <td>{!! $count + 1 !!}</td>
                                             <td>{!! $item->product_name !!}</td>
                                             <td>{!! $item->order_code !!}</td>
-                                            <td class="text-95">{!! $item->payment_method !!}</td>
+                                            <td class="text-95">{{ $this->pluckLastPart($item->payment_method) }}</td>
                                             <td class="text-secondary-d2">ksh{!! $item->amount !!}</td>
                                         </tr>
                                     @endforeach
