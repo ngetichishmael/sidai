@@ -51,6 +51,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/order/approval', [OrdersController::class, 'orderApproval']);
       Route::post('/manager/order/disapproval', [OrdersController::class, 'orderDisapproval']);
       Route::post('/manager/allocation/allocate', [OrdersController::class, 'allocateOrders']);
+      Route::post('/manager/orders/allocation', [OrdersController::class, 'allocateOrders2']);
 
       Route::get('/manager/orders/transaction', [OrdersController::class, 'transaction'])->name('manager.transaction');
       Route::post('/manager/orders/custom/transaction', [OrdersController::class, 'customTransaction']);
