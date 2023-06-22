@@ -170,7 +170,7 @@ class OrdersController extends Controller
                "product_name" => $details->product_name,
                "allocated_quantity" => $product['allocated_quantity'],
                "delivery_item_code" => Str::random(20),
-               "requested_quantity" => $orderitems,
+               "requested_quantity" => $orderitems->quantity,
                "created_by" => Auth::user()->user_code
             ]
          );
@@ -178,7 +178,7 @@ class OrdersController extends Controller
          Order_items::where('productID', $product['product_id'])
             ->where('order_code', $request->order_code)
             ->update([
-               "requested_quantity" => $orderitems,
+               "requested_quantity" => $orderitems->quantity,
                "allocated_quantity" => $product['allocated_quantity'],
                "allocated_subtotal" => $subtotal,
                "allocated_totalamount" => $totalSum,
