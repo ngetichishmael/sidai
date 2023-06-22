@@ -22,9 +22,7 @@ class ReportsController extends Controller
    public $perPage = 50;
    public function preorders()
    {
-      $count = 1;
-      $preorders = Orders::with('User', 'Customer')->where('order_type', 'Pre Order')->get();
-      return view('app.Reports.preorders', ['preorders' => $preorders, 'count' => $count]);
+      return view('app.Reports.preorders');
    }
    public function preorderitems($order_code)
    {
@@ -81,15 +79,11 @@ class ReportsController extends Controller
    }
    public function vansales()
    {
-      $count = 1;
-      $vansales = Orders::with('User', 'Customer')->where('order_status', 'Pending Delivery')->where('order_type', 'Van sales')->get();
-      return view('app.Reports.vansales', ['vansales' => $vansales, 'count' => $count]);
+      return view('app.Reports.vansales');
    }
    public function delivery()
    {
-      $count = 1;
-      $deliveries = Orders::with('User', 'Customer')->where('order_status', 'Delivered')->get();
-      return view('app.Reports.delivery', ['deliveries' => $deliveries, 'count' => $count]);
+      return view('app.Reports.delivery');
    }
    public function supplier()
    {
@@ -124,27 +118,23 @@ class ReportsController extends Controller
 
    public function warehouse()
    {
-      $count = 1;
-      $warehouses = warehousing::whereNotNull('warehouse_code')->get();
-      return view('app.Reports.warehouse', ['warehouses' => $warehouses, 'count' => $count]);
+      return view('app.Reports.warehouse');
    }
    public function distributor()
    {
-      $count = 1;
-      $distributors = Orders::with('User', 'Customer')->where('supplierID', '!=', '1')->where('supplierID', '!=', 'NULL')->get();
-      return view('app.Reports.distributor', ['distributors' => $distributors, 'count' => $count]);
+      return view('app.Reports.distributor');
    }
    public function regional()
    {
-      $regions = Region::all();
-      $count = 1;
-      return view('app.Reports.regional', ['regions' => $regions, 'count' => $count]);
+      return view('app.Reports.regional');
    }
    public function inventory()
    {
-      $warehouses = warehousing::whereNotNull('warehouse_code')->distinct('name')->get();
-      $count = 1;
-      return view('app.Reports.inventory', ['warehouses' => $warehouses, 'count' => $count]);
+      return view('app.Reports.inventory');
+   }
+   public function clients()
+   {
+      return view('app.Reports.customers');
    }
 
    public function products($code)
@@ -172,6 +162,7 @@ class ReportsController extends Controller
       $count = 1;
       return view('app.territories.customers', ['count' => $count, 'customers' => $customers]);
    }
+   
    public function productreport($code)
    {
       $warehouse = warehousing::where('warehouse_code', $code)->first();

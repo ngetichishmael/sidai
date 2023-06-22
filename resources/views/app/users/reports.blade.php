@@ -62,6 +62,8 @@
                                 <a href="{{ route('visitation.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'Target Reports')
                                 <a href="{{ route('target.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                @elseif($report == 'Customers Report')
+                                <a href="{{ route('clients.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                             @endif
                           </div>
                        </td>
