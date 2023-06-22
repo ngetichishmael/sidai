@@ -165,7 +165,7 @@ class OrdersController extends Controller
          $orderitems=Order_items::where('order_code', $request->order_code)->get();
          $subtotal = $pricing->selling_price * $product['allocated_quantity'];
          $totalSum += $subtotal;
-         dump("order ".$order, "orderitem ".$orderitems,"pricing ".$pricing, "details ".$details);
+         dump("order ".$order, "orderitem ".$orderitems->quantity,"pricing ".$pricing->selling_price, "details ".$details->product_name);
          if ($orderitems) {
 
          Delivery_items::updateOrCreate(
@@ -186,15 +186,6 @@ class OrdersController extends Controller
                "created_by" => Auth::user()->user_code
             ]
          );
-         }else{
-            Delivery::destroy($delivery->delivery_code);
-            return response()->json([
-               "success" => false,
-               "status"=> 409,
-               "message" => "Something went wrong, Order could not be allocated to user",
-               "Result"    => "Unsuccessful"
-            ], 409);
-         }
          Order_items::where('productID', $product['product_id'])
             ->where('order_code', $request->order_code)
             ->update([
@@ -212,6 +203,15 @@ class OrdersController extends Controller
 //         }else{
 //         }
          $quantity +=1;
+         }else{
+            Delivery::destroy($delivery->delivery_code);
+            return response()->json([
+               "success" => false,
+               "status"=> 409,
+               "message" => "Something went wrong, Order could not be allocated to user",
+               "Result"    => "Unsuccessful"
+            ], 409);
+         }
       }
 
 
