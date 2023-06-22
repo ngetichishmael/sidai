@@ -20,7 +20,7 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
-                        <th>Name</th>
+                        <th>Sales Person</th>
                         <th>Status</th>
                         <th>End Date</th>
                     </tr>

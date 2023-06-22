@@ -23,7 +23,7 @@ class ReportsController extends Controller
    public function preorders()
    {
       $count = 1;
-      $preorders = Orders::with('User', 'Customer')->where('order_status', 'Pending Delivery')->where('order_type', 'Pre Order')->get();
+      $preorders = Orders::with('User', 'Customer')->where('order_type', 'Pre Order')->get();
       return view('app.Reports.preorders', ['preorders' => $preorders, 'count' => $count]);
    }
    public function preorderitems($order_code)
@@ -94,6 +94,14 @@ class ReportsController extends Controller
    public function supplier()
    {
       return view('app.Reports.supplier');
+   }
+   public function visitations()
+   {
+      return view('app.Reports.visitation');
+   }
+   public function target()
+   {
+      return view('app.Reports.target');
    }
    public function payments()
    {
