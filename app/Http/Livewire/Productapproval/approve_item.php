@@ -36,6 +36,7 @@ class approve_item extends Component
 
    public function approveSelected()
    {
+      if (!empty($selectedProducts)) {
       foreach ($this->selectedProducts as $productId) {
          $requisitionProduct = RequisitionProduct::findOrFail($productId);
          $requisitionProduct->update([
@@ -47,25 +48,34 @@ class approve_item extends Component
             $requisitionProduct->quantity
          );
       }
-
-      return redirect()->back();
+      }else{
+         return redirect('warehousing/all/stock-requisition');
+      }
+      session()->flash('success', 'Products successfully Approved!');
+      return redirect('warehousing/all/stock-requisition');
    }
 
    public function disapproveSelected()
    {
-      foreach ($this->selectedProducts as $productId) {
-         $requisitionProduct = RequisitionProduct::findOrFail($productId);
-         $requisitionProduct->update([
-            'approval' => 0
-         ]);
 
-         product_inventory::whereId($requisitionProduct->product_id)->increment(
-            'current_stock',
-            $requisitionProduct->quantity
-         );
+      if (!empty($selectedProducts)) {
+         foreach ($this->selectedProducts as $productId) {
+            $requisitionProduct = RequisitionProduct::findOrFail($productId);
+            $requisitionProduct->update([
+               'approval' => 0
+            ]);
+
+            product_inventory::whereId($requisitionProduct->product_id)->increment(
+               'current_stock',
+               $requisitionProduct->quantity
+            );
+         }
+      }else{
+         return redirect('warehousing/all/stock-requisition');
       }
-
-      return redirect()->back();
+      session()->flash('success', 'Products successfully dissapproved!');
+      return redirect('warehousing/all/stock-requisition');
+//      return redirect()->back();
    }
 
    public function submitApproval()

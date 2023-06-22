@@ -163,7 +163,7 @@ class OrdersController extends Controller
          $details=product_information::whereId($product['product_id'])->first();
 //         $totalSum += $pricing->selling_price * $product['allocated_quantity'];
          $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
-         $subtotal = $pricing->selling_price * $product['allocated_quantity'];
+         $subtotal = ($pricing->selling_price * $product['allocated_quantity']);
          $totalSum += $subtotal;
          //dump("order ".$order, "orderitem ".$orderitems->quantity,"pricing ".$pricing->selling_price, "details ".$details->product_name);
          if ($orderitems) {
