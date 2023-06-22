@@ -17,7 +17,7 @@ class AuthenticationController extends Controller
       //(!Auth::attempt(['email' => $request->email, 'password' => $request->password], true))
       if (!Auth::attempt(
          [
-            'email' => $request->email,
+            'phone_number' => $request->email,
             'password' => $request->password,
             'account_type' =>['RSM','NSM']
          ],
