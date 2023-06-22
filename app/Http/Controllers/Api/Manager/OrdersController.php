@@ -158,12 +158,14 @@ class OrdersController extends Controller
          ]
       );
       foreach ($request->products as $product)  {
+
          $pricing = product_price::where('productID', $product['product_id'])->first();
          $details=product_information::whereId($product['product_id'])->first();
 //         $totalSum += $pricing->selling_price * $product['allocated_quantity'];
          $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
          $subtotal = $pricing->selling_price * $product['allocated_quantity'];
          $totalSum += $subtotal;
+         dump("order ".$order, "orderitem ".$orderitems,"pricing ".$pricing, "details ".$details);
          if ($orderitems) {
 
          Delivery_items::updateOrCreate(
@@ -188,7 +190,7 @@ class OrdersController extends Controller
             Delivery::destroy($delivery->delivery_code);
             return response()->json([
                "success" => false,
-               "message" => "Something went wrong, Order could not be allocated to distributor",
+               "message" => "Something went wrong, Order could not be allocated to user",
                "Result"    => "Unsuccessful"
             ], 409);
          }
