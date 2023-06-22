@@ -91,16 +91,24 @@ class OrdersController extends Controller
             foreach ($request->products as $product){
                $pricing = product_price::where('productID', $product['product_id'])->first();
                $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
-               $subtotal = $pricing->selling_price * $product['allocated_quantity'];
-               $totalSum += $subtotal;
-               Order_items::where('productID', $product['product_id'])
-                  ->where('order_code', $request->order_code)
-                  ->update([
-                     "requested_quantity" => $orderitems->quantity,
-                     "allocated_quantity" => $product['allocated_quantity'],
-                     "allocated_subtotal" => $subtotal,
-                     "allocated_totalamount" => $totalSum,
-                  ]);
+               if ($orderitems) {
+                  $subtotal = $pricing->selling_price * $product['allocated_quantity'];
+                  $totalSum += $subtotal;
+                  Order_items::where('productID', $product['product_id'])
+                     ->where('order_code', $request->order_code)
+                     ->update([
+                        "requested_quantity" => $orderitems->quantity,
+                        "allocated_quantity" => $product['allocated_quantity'],
+                        "allocated_subtotal" => $subtotal,
+                        "allocated_totalamount" => $totalSum,
+                     ]);
+               }else{
+                     return response()->json([
+                        "success" => false,
+                        "message" => "Something went wrong, Order could not be allocated to distributor",
+                        "Result"    => "Unsuccessful"
+                     ], 409);
+               }
             }
             $supplierID = $distributor->id;
             Orders::where('order_code', $request->order_code)
@@ -156,6 +164,8 @@ class OrdersController extends Controller
          $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
          $subtotal = $pricing->selling_price * $product['allocated_quantity'];
          $totalSum += $subtotal;
+         if ($orderitems) {
+
          Delivery_items::updateOrCreate(
             [
                "business_code" => Auth::user()->business_code,
@@ -174,7 +184,14 @@ class OrdersController extends Controller
                "created_by" => Auth::user()->user_code
             ]
          );
-
+         }else{
+            Delivery::destroy($delivery->delivery_code);
+            return response()->json([
+               "success" => false,
+               "message" => "Something went wrong, Order could not be allocated to distributor",
+               "Result"    => "Unsuccessful"
+            ], 409);
+         }
          Order_items::where('productID', $product['product_id'])
             ->where('order_code', $request->order_code)
             ->update([

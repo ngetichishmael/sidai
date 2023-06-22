@@ -189,6 +189,7 @@
                                         <th class="opacity-2">#</th>
                                         <th>Description</th>
                                         <th>Qty</th>
+                                        <th>ID</th>
                                         <th>Unit Price</th>
                                         <th width="140">Amount</th>
                                     </tr>
@@ -199,6 +200,7 @@
                                         <tr>
                                             <td>{!! $count + 1 !!}</td>
                                             <td>{!! $item->product_name !!}</td>
+                                            <td>{!! $item->id!!}</td>
                                             <td>{!! $item->quantity !!}</td>
                                             <td class="text-95">ksh{!! $item->selling_price !!}</td>
                                             <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
