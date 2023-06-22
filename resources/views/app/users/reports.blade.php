@@ -77,9 +77,9 @@
                                 @elseif($report == 'Warehouse Report')
                                 <a href="{{ route('warehouse.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'Visitation Reports')
-                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                <a href="{{ route('visitation.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                                 @elseif($report == 'Target Reports')
-                                <a href="" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
+                                <a href="{{ route('target.reports') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">View </a>
                             @endif
                           </div>
                        </td>

@@ -7,7 +7,7 @@
    <div class="content-header row">
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
-            <div class="col-12">
+            <div class="col-8">
                <h2 class="content-header-title float-start mb-0">Pre Orders | Reports</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
@@ -15,6 +15,13 @@
                   </ol>
                </div>
             </div>
+            <div class="col-md-3">
+               <button type="button" class="btn btn-icon btn-outline-success" wire:click=""
+                   wire:loading.attr="disabled" data-toggle="tooltip" data-placement="top" title="Export Excel">
+                   <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
+                       data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
+               </button>
+           </div>
          </div>
       </div>
    </div>
@@ -44,9 +51,9 @@
                         <td>{{ $preorder->order_code }}</td>
                         <td>{{ $preorder->Customer->customer_name??'' }}</td>
                         <td>{{ $preorder->User->name??'' }}</td>
-                        <td>{{ $preorder->Customer->Region->name??'' }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $preorder->User->Region->name??'' }}</td>
+                        <td>{{ $preorder->User->Subregion->name??'' }}</td>
+                        <td>{{ $preorder->order_status ??'' }}</td>
                         <td>{{ $preorder->created_at->format('d/m/Y')??'' }}</td>
                         <td><a href="{{ URL('orders/items/'.$preorder->order_code) }}" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                     </tr>
