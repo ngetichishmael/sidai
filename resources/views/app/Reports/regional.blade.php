@@ -19,33 +19,7 @@
       </div>
    </div>
    @include('partials._messages')
-   <div class="row">
-    <div class="col-md-8">
-        <div class="card card-inverse">
-           <div class="card-body">
-              <table id="data-table-default" class="table table-striped table-bordered">
-                 <thead>
-                    <tr>
-                       <th>#</th>
-                       <th>Region</th>
-                       <th>Action</th>
-                    </tr>
-                 </thead>
-                 <tbody>
-                  @foreach ($regions as $region)
-                  <tr>
-                     <td>{{ $count++ }}</td>
-                     <td>{{ $region->name }}</td>
-                     <td><a href="{{ route('subregion.reports',['id'=>$region->id]) }}" class="btn sm" style="background-color: brown;color:white">View</a></td>
-                 </tr>
-                  @endforeach
-                    
-                 </tbody>
-              </table>
-           </div>
-        </div>
-     </div>
-   </div>
+   @livewire('regional.index')
 @endsection
 {{-- page scripts --}}
 @section('script')
