@@ -403,7 +403,7 @@ class productController extends Controller
       $activityLog->ip_address = '';
       $activityLog->save();
 
-      return redirect()->route('inventory.approval');
+      return redirect('/warehousing/approve/'.$requisition_id);
 
    }
 

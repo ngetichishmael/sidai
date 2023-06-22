@@ -13,7 +13,7 @@ class Approval extends Component
    public $perPage = 10;
    public function render()
    {
-      $requisitions = StockRequisition::withCount('RequisitionProducts', 'ApprovedRequisitionProducts')->paginate($this->perPage);
+      $requisitions = StockRequisition::with('user')->withCount('RequisitionProducts', 'ApprovedRequisitionProducts') ->orderBy('id', 'DESC')->paginate($this->perPage);
 
       return view('livewire.productapproval.approval', compact('requisitions'));
    }

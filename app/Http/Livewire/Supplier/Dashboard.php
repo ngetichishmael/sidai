@@ -13,9 +13,9 @@ class Dashboard extends Component
  protected $paginationTheme = 'bootstrap';
     public function render()
     {
-      $suppliers = suppliers::where('suppliers.business_code',Auth()->user()->business_code)
+      $suppliers = suppliers::where('status', 'Active')
 							->OrderBy('suppliers.id','DESC')
-							->paginate(7);
+							->paginate(15);
         return view('livewire.supplier.dashboard',compact('suppliers'));
     }
 }

@@ -1,3 +1,4 @@
+
 <div class="card card-default">
     <div class="card-body">
         <table class="table table-striped table-bordered">
@@ -24,13 +25,20 @@
                                 <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-sm" style="background-color: #B6121B;color:white">
                                     <span>Edit</span>
                                 </a>
-                                <a href="{!! route('supplier.destroy', $supplier->id) !!}" class="btn btn-sm delete" style="background-color: #db0610;color:white">
-                                    <span>Delete</span>
+                                <a href="{!! route('supplier.archive', $supplier->id) !!}" class="btn btn-sm delete" style="background-color: #db0610;color:white">
+                                    <span>Archive</span>
                                 </a>
                             </div>
                         </td>
                     </tr>
                 @endforeach
+                @if(empty($suppliers))
+                   <div>
+                      <tr>
+                         <td colspan="6"> No Distributor(s) Found ...</td>
+                      </tr>
+                   </div>
+                @endif
             </tbody>
         </table>
 

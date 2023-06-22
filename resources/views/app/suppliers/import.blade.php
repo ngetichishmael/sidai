@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Import Warehouse')
+@section('title', 'Import Distributors')
 
 
 {{-- content section --}}
@@ -10,7 +10,7 @@
             <div class="card card-default">
                 <div class="card-body">
                     <div class="row">
-                        <h4>Upload Suppliers</h4>
+                        <h4>Upload Distributors</h4>
                         <div class="col-md-4 mtop15">
                             <form action="{{ route('supplier.import') }}" id="import_form" enctype="multipart/form-data"
                                 method="post" accept-charset="utf-8">
