@@ -8,13 +8,20 @@ use App\Http\Resources\OrderResource;
 use App\Http\Resources\UserResource;
 use App\Models\activity_log;
 use App\Models\customers;
+use App\Models\Delivery;
+use App\Models\Delivery_items;
 use App\Models\inventory\items;
+use App\Models\Order_items;
 use App\Models\Orders;
+use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -65,9 +72,179 @@ class OrdersController extends Controller
          ),
       ]);
    }
+   public function allocateOrders2(Request $request)
+   {
+      $this->validate($request, [
+         'account_type' => 'required',
+         'order_code' => 'required',
+         'products' => 'required',
+//         'warehouse' => 'required',
+      ]);
+      $supplierID = null;
+      $totalSum=0;
+      $quantity=0;
+      $order = Orders::where('order_code', $request->order_code)->first();
+
+      if ($request->account_type === "distributors") {
+         $distributor = suppliers::find($request->distributor_id);
+         if ($distributor) {
+            foreach ($request->products as $product){
+               $pricing = product_price::where('productID', $product['product_id'])->first();
+               $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
+               if ($orderitems) {
+                  $subtotal = $pricing->selling_price * $product['allocated_quantity'];
+                  $totalSum += $subtotal;
+                  Order_items::where('productID', $product['product_id'])
+                     ->where('order_code', $request->order_code)
+                     ->update([
+                        "requested_quantity" => $orderitems->quantity,
+                        "allocated_quantity" => $product['allocated_quantity'],
+                        "allocated_subtotal" => $subtotal,
+                        "allocated_totalamount" => $totalSum,
+                     ]);
+               }else{
+                     return response()->json([
+                        "success" => false,
+                        "message" => "Something went wrong, Order could not be allocated to distributor",
+                        "Result"    => "Unsuccessful"
+                     ], 409);
+               }
+            }
+            $supplierID = $distributor->id;
+            Orders::where('order_code', $request->order_code)
+               ->update([
+                  "supplierID" => $supplierID,
+                  "price_total" =>$totalSum,
+                  "balance" =>$totalSum,
+               ]);
+
+            $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Allocate an order to a Distributor';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Order Allocation';
+            $activityLog->action = 'Order allocated to distributor' . $distributor->name . ' ';
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = "";
+            $activityLog->save();
+            return response()->json([
+               "success" => true,
+               "message" => "Orders allocated to the distributor successfully",
+               "Result"    => "Successful"
+            ], 200);
+         }else{
+            Session::flash('error', 'Something went wrong, Order could not be allocated to distributor');
+            return response()->json([
+               "success" => false,
+               "message" => "Something went wrong, Order could not be allocated to distributor",
+               "Result"    => "Unsuccessful"
+            ], 200);
+         }
+      }
+
+      $delivery = Delivery::updateOrCreate(
+         [
+            "business_code" => Str::random(20),
+            "customer" => $order->customerID,
+            "order_code" => $request->order_code
+         ],
+         [
+            "delivery_code" => Str::random(20),
+            "allocated" => $request->user_code,
+            "delivery_note" => $request->note,
+            "delivery_status" => "Waiting acceptance",
+            "created_by" => Auth::user()->user_code
+         ]
+      );
+      foreach ($request->products as $product)  {
+
+         $pricing = product_price::where('productID', $product['product_id'])->first();
+         $details=product_information::whereId($product['product_id'])->first();
+//         $totalSum += $pricing->selling_price * $product['allocated_quantity'];
+         $orderitems=Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
+         $subtotal = $pricing->selling_price * $product['allocated_quantity'];
+         $totalSum += $subtotal;
+         //dump("order ".$order, "orderitem ".$orderitems->quantity,"pricing ".$pricing->selling_price, "details ".$details->product_name);
+         if ($orderitems) {
+
+         Delivery_items::updateOrCreate(
+            [
+               "business_code" => Auth::user()->business_code,
+               "delivery_code" => $delivery->delivery_code,
+               "productID" => $product['product_id'],
+            ],
+            [
+               "selling_price" => $pricing->selling_price,
+               "sub_total" => $subtotal,
+               "total_amount" => $totalSum,
+//               "total_amount" => $request->price[$i],
+               "product_name" => $details->product_name,
+               "allocated_quantity" => $product['allocated_quantity'],
+               "delivery_item_code" => Str::random(20),
+               "requested_quantity" => $orderitems->quantity,
+               "created_by" => Auth::user()->user_code
+            ]
+         );
+         Order_items::where('productID', $product['product_id'])
+            ->where('order_code', $request->order_code)
+            ->update([
+               "requested_quantity" => $orderitems->quantity,
+               "allocated_quantity" => $product['allocated_quantity'],
+               "allocated_subtotal" => $subtotal,
+               "allocated_totalamount" => $totalSum,
+            ]);
+
+//         if ($request->product[$i] < $request->allocate[$i]) {
+//            Orders::where('order_code', $request->order_code)
+//               ->update([
+//                  "order_status" => "Partial delivery"
+//               ]);
+//         }else{
+//         }
+         $quantity +=1;
+         }else{
+            Delivery::destroy($delivery->delivery_code);
+            return response()->json([
+               "success" => false,
+               "status"=> 409,
+               "message" => "Something went wrong, Order could not be allocated to user",
+               "Result"    => "Unsuccessful"
+            ], 409);
+         }
+      }
+
+
+      if ($order) {
+         $order->update([
+            "order_status" => "Waiting acceptance",
+            "price_total" => $totalSum,
+            "balance" => $totalSum,
+            "initial_total_price" => $order->price_total,
+            "updated_qty" => $quantity,
+         ]);
+      }
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Allocate an order to a User';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order Allocation';
+      $activityLog->action = 'Order allocated to user '. $request->user_code. ' Role '.$request->account_type.'';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+
+      return response()->json([
+         "success" => true,
+         "message" => "Orders allocated successfully",
+         "Result"    => "Successful"
+      ], 200);
+
+   }
    public function allocateOrders(Request $request){
       $random = Str::random(20);
-      info("Manager allocate orders");
+//      info("Manager allocate orders");
       $json = $request->products;
       $data = json_decode($json, true);
       $validator           =  Validator::make($request->all(), [
@@ -104,7 +281,7 @@ class OrdersController extends Controller
       $activityLog->save();
       return response()->json([
          "success" => true,
-         "message" => "Orders allocated successfully",
+         "message" => "Orders allocated to the user successfully",
          "Result"    => "Successful"
       ], 200);
 

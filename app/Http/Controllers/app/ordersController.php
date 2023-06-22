@@ -158,7 +158,7 @@ class ordersController extends Controller
                ->update([
                   "supplierID" => $supplierID,
                   "price_total" =>$totalSum,
-                  "Balance" =>$totalSum,
+                  "balance" =>$totalSum,
                ]);
 
             $random = Str::random(20);

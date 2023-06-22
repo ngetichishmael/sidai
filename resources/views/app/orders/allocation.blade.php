@@ -15,7 +15,7 @@
                     <h2 class="mb-0 content-header-title float-start">Order Details | Assign Order</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Orders</a></li>
                             <li class="breadcrumb-item active">{!! $order->order_code !!}</li>
                             <li class="breadcrumb-item active">Assign Order</li>

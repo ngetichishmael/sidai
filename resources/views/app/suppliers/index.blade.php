@@ -11,7 +11,7 @@
         <div class="col-md-4">
             <center>
                 <a href="{!! route('supplier.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Add Distributors</a>
-                <a href="{{ route('supplier.import.index') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">Import Distributors</a>
+                <a href="{{ route('supplier.import.index') }}" class="btn btn-sm" style="background-color: #B6121B;color:white">Distributors</a>
                 <a href="{{ route('supplier.archive.view') }}" class="btn btn-sm" style="background-color: #fd6b37;color:white">View Archived</a>
             </center>
         </div>
