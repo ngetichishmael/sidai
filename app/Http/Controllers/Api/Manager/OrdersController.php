@@ -76,6 +76,8 @@ class OrdersController extends Controller
    {
       $this->validate($request, [
          'account_type' => 'required',
+         'order_code' => 'required',
+         'products' => 'required',
 //         'warehouse' => 'required',
       ]);
       $supplierID = null;
