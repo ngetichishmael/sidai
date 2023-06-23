@@ -110,10 +110,7 @@ class ReportsController extends Controller
    }
    public function users()
    {
-      $usercount = User::whereNotNull('user_code')->select('account_type', DB::raw('COUNT(*) as count'))
-         ->groupBy('account_type')
-         ->get();
-      return view('app.Reports.users', ['usercount' => $usercount]);
+      return view('app.Reports.users');
    }
 
    public function warehouse()

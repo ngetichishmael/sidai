@@ -80,23 +80,7 @@ class usersController extends Controller
 
    public function reports()
    {
-      $reports = [
-            "Preorder Report",
-            "Vansale Report",
-            "Delivery Report",
-            "Sidai Users Report",
-            "Customers Report",
-            "Warehouse Report",
-            "Distributors Report",
-            "Regional Report",
-            "Suppliers Report",
-            "Payments Report",
-            "Inventory Report",
-            "Visitation Reports",
-            "Target Reports"
-      ];
-      $count = 1;
-      return view('app.users.reports', compact('reports','count'));
+      return view('app.users.reports');
    }
 
    //create
