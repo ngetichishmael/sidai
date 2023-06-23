@@ -5,7 +5,7 @@
             <div class="card">
                <div class="card-header"> Stock Requisition Items</div>
                <div class="card-body">
-                  <form wire:submit.prevent="approveSelected" class="mb-3">
+                  <form method="post" action="{{ route('approvestock') }}">
                      @csrf
                      <table class="table table-bordered table-striped">
                         <thead>
@@ -23,32 +23,73 @@
                               <td>{!! $product->quantity !!}</td>
                               <td>{!! $product->ProductInformation->sku_code !!}</td>
                               <td>
-                                 @if ($product->approval == 0)
-                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}">
-                                 @else
-                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}" checked>
-                                 @endif
+                                 <input type="checkbox" name="selected_products[]" value="{{ $product->id }}">
                               </td>
                            </tr>
                         @endforeach
                         </tbody>
                      </table>
-                     <center>
-                     <button type="submit" class="btn btn-success btn-sm mt-3">Approve Selected</button>
-                     </center>
+                     <button type="submit" class="btn btn-success">Approve Selected</button>
                   </form>
-                  <center>
-                     <form wire:submit.prevent="disapproveSelected" >
-                        @csrf
-                        <button type="submit" class="btn btn-danger btn-sm ml-5">Disapprove Selected</button>
-                     </form>
-                  </center>
                </div>
             </div>
          </div>
       </div>
    </div>
 </div>
+
+
+{{--<div>--}}
+{{--   <div class="row">--}}
+{{--      <div class="col-md-12">--}}
+{{--         <div class="pt-0 card-datatable table-responsive">--}}
+{{--            <div class="card">--}}
+{{--               <div class="card-header"> Stock Requisition Items</div>--}}
+{{--               <div class="card-body">--}}
+{{--                  <form wire:submit.prevent="approveSelected" class="mb-3">--}}
+{{--                     @csrf--}}
+{{--                     <table class="table table-bordered table-striped">--}}
+{{--                        <thead>--}}
+{{--                        <th>#</th>--}}
+{{--                        <th>Product Name</th>--}}
+{{--                        <th>Quantity</th>--}}
+{{--                        <th>SKU Code</th>--}}
+{{--                        <th>Action</th>--}}
+{{--                        </thead>--}}
+{{--                        <tbody>--}}
+{{--                        @foreach ($products as $count => $product)--}}
+{{--                           <tr>--}}
+{{--                              <td>{!! $count + 1 !!}</td>--}}
+{{--                              <td>{!! $product->ProductInformation->product_name !!}</td>--}}
+{{--                              <td>{!! $product->quantity !!}</td>--}}
+{{--                              <td>{!! $product->ProductInformation->sku_code !!}</td>--}}
+{{--                              <td>--}}
+{{--                                 @if ($product->approval == 0)--}}
+{{--                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}">--}}
+{{--                                 @else--}}
+{{--                                    <input type="checkbox" wire:model="selectedProducts" value="{{ $product->id }}" checked>--}}
+{{--                                 @endif--}}
+{{--                              </td>--}}
+{{--                           </tr>--}}
+{{--                        @endforeach--}}
+{{--                        </tbody>--}}
+{{--                     </table>--}}
+{{--                     <center>--}}
+{{--                     <button type="submit" class="btn btn-success btn-sm mt-3">Approve Selected</button>--}}
+{{--                     </center>--}}
+{{--                  </form>--}}
+{{--                  <center>--}}
+{{--                     <form wire:submit.prevent="disapproveSelected" >--}}
+{{--                        @csrf--}}
+{{--                        <button type="submit" class="btn btn-danger btn-sm ml-5">Disapprove Selected</button>--}}
+{{--                     </form>--}}
+{{--                  </center>--}}
+{{--               </div>--}}
+{{--            </div>--}}
+{{--         </div>--}}
+{{--      </div>--}}
+{{--   </div>--}}
+{{--</div>--}}
 
 
 
