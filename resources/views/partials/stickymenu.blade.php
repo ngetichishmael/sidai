@@ -28,6 +28,9 @@
                         <td><a href="{{ route('warehouse.reports') }}" style="color: black">Warehouse Report</a></td>
                        </tr>
                        <tr>
+                        <td><a href="{{ route('regional.reports') }}" style="color: black">Regional Report</a></td>
+                       </tr>
+                       <tr>
                         <td><a href="{{ route('visitation.reports') }}" style="color: black">Visitation Report</a></td>
                        </tr>
                        <tr>
