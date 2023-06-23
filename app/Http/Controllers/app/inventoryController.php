@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\app;
 
 use App\Helpers\StockLiftHelper;
+use App\Models\inventory\items;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use Illuminate\Support\Str;
@@ -54,33 +55,40 @@ class inventoryController extends Controller
       $user_code = $user->user_code;
       $business_code = $user->business_code;
       $random = Str::random(20);
-      $productIDs = array_column($selectedProducts, 'productID');
-      $image_path = null;
-      $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
       foreach ($selectedProducts as $productId) {
          $product = RequisitionProduct::find($productId);
 
          if ($product) {
             if ($request->has('approve')) {
                $product->update(['approval' => 1]);
-               $value=$productId;
-                  $stocked = $productId;
-                  (new StockLiftHelper())(
-                     $user_code,
-                     $business_code,
-                     $value,
-                     $image_path,
-                     $random,
-                     $stocked
-                  );
+               $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
+               $value = [
+                  'productID' => $product->id,
+                  'qty' => $product->quantity,
+               ];
+
+               $stocked = product_inventory::find($product->id);
+               (new StockLiftHelper())(
+                  $user_code,
+                  $business_code,
+                  $value,
+                  $image_path,
+                  $random,
+                  $stocked
+               );
             } elseif ($request->has('disapprove')) {
                $product->update(['approval' => 0]);
-               product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
+                  items::where('product_code', $product->productID)
+                  ->dencrement('allocated_qty', $product->quantity);
+
+               product_inventory::where('productID', $product->productID)
+                  ->increment('current_stock', $product->quantity);
+               //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
             }
          }
       }
       session()->flash('success','Allocated products to sales person');
-      return redirect('/warehousing/approve/'.$product->requisition_id);
+      return redirect('warehousing/all/stock-requisition');
    }
 
    public function handleApproval2(Request $request)
