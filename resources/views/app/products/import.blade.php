@@ -60,13 +60,13 @@
             <h4 class="card-title">Upload Items</h4>
             <div class="row">
                 <div class="col-md-4 mtop15">
-                    <form action="{!! route('products.post.import') !!}" id="import_form" enctype="multipart/form-data" method="post"
+                    <form action="{!! route('products.post.imports') !!}" id="import_form" enctype="multipart/form-data" method="post"
                         accept-charset="utf-8">
                         @csrf
                         <input type="hidden" name="clients_import" value="true">
                         <div class="mb-2 form-group form-group-default">
                             <label for="file_csv" class="control-label text-danger">
-                                <small class="req text-danger">* </small>Choose CSV File
+                                <small class="req text-danger">*</small>Choose CSV File
                             </label>
                             <input type="file" name="upload_import"
                                 accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required />

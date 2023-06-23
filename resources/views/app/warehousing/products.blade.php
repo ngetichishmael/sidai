@@ -13,17 +13,8 @@
          <div class="col-md-4">
             <center>
                <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
-{{--               <form action="{!! route('products.upload') !!}" method="POST" enctype="multipart/form-data">--}}
-{{--                  @csrf--}}
-{{--                  <label for="excel_file">Upload File:</label>--}}
-{{--                  <input type="file" name="excel_file" id="excel_file" style="display: none;">--}}
-{{--                  <button type="button" id="upload_button">Import Products</button>--}}
-{{--                  <script>--}}
-{{--                     document.getElementById('upload_button').addEventListener('click', function() {--}}
-{{--                        document.getElementById('excel_file').click();--}}
-{{--                     });--}}
-{{--                  </script>--}}
-{{--               </form>--}}
+               <a href="{!! route('products.import') !!}" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i> Import Products</a>
+
             </center>
          </div>
       @endif
