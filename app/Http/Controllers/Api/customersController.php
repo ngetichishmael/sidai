@@ -594,7 +594,7 @@ public function groups(){
     **/
    public function order_details($orderCode)
    {
-      $order = Orders::where('order_code', $orderCode)->first();
+      $order = Orders::where('order_code', $orderCode)->with('customer', 'distributor')->first();
       $items =  Order_items::where('order_code', $orderCode)->get();
       $orders =  Cart::where('order_code', $orderCode)->get();
       $payment = order_payments::where('order_id', $orderCode)->get();
@@ -604,7 +604,7 @@ public function groups(){
          "message"  => "Customer orders",
          "order_items" => $orders,
          "items" => $items,
-         "Data" => $order->with('distributor', 'Customer'),
+         "Data" => $order,
          "Payment" => $payment
       ]);
    }
