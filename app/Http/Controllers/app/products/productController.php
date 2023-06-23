@@ -167,15 +167,16 @@ class productController extends Controller
       for ($i = 2; $i < count($rows); $i++) {
          $row = $rows[$i];
 
-         $skuCode = (string) $row[0];
-         $batchCode = (string) $row[0];
-         $category = (string) $row[2];
-         $units = (string) $row[3];
-         $measure = (string) $row[3];
-         $productName = (string) $row[4];
-         $distributorPrice = (float) str_replace(',', '', $row[5]);
-         $buyingPrice = (float) str_replace(',', '', $row[6]);
-         $sellingPrice = (float) str_replace(',', '', $row[7]);
+         if (!empty(array_filter($row))) {
+            $skuCode = (string) $row[0];
+            $batchCode = (string) $row[0];
+            $category = (string) $row[2];
+            $units = (string) $row[3];
+            $measure = (string) $row[3];
+            $productName = (string) $row[4];
+            $distributorPrice = (float) str_replace(',', '', $row[5]);
+            $buyingPrice = (float) str_replace(',', '', $row[6]);
+            $sellingPrice = (float) str_replace(',', '', $row[7]);
 
          $product = new product_information;
          $product->product_name = $productName;
@@ -227,6 +228,7 @@ class productController extends Controller
             'business_code' => Auth::user()->business_code,
          ]
          );
+      }
       }
 
       session()->flash('success', 'Products imported successfully.');
