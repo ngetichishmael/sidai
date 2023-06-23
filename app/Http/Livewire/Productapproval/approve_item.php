@@ -33,6 +33,26 @@ class approve_item extends Component
          $this->selectedProducts[] = $productId;
       }
    }
+   public function approvestock(Request $request)
+   {
+      $selectedProducts = $request->input('selected_products');
+
+      if (!empty($selectedProducts)) {
+         foreach ($selectedProducts as $productId) {
+            $approveProduct = product_information::where('id', $productId)->first();
+            if ($approveProduct) {
+               $approveProduct->is_approved = "Yes";
+               $approveProduct->save();
+            }
+         }
+         session()->flash('success', 'Products successfully Approved!');
+      } else {
+         session()->flash('error', 'Please select at least one product to approve!');
+      }
+
+      return redirect()->back();
+   }
+
 
    public function approveSelected()
    {
@@ -90,7 +110,7 @@ class approve_item extends Component
       return redirect()->route('inventory.approval');
 
    }
-   public function approvestock($itemId)
+   public function approvestock2($itemId)
    {
       $requisition_products = RequisitionProduct::where('requisition_id', number_format($itemId))->get();
       foreach ($requisition_products as $requisition_product) {

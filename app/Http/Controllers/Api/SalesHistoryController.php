@@ -56,7 +56,7 @@ class SalesHistoryController extends Controller
    }
    public function preorder($shopID)
    {
-      $query = Orders::where("order_type", 'Pre order')
+      $query = Orders::where("order_type", 'Pre Order')
          ->where('customerID', $shopID)
          ->get();
       return response()->json([
