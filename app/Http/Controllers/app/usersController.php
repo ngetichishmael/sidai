@@ -85,6 +85,7 @@ class usersController extends Controller
             "Vansale Report",
             "Delivery Report",
             "Sidai Users Report",
+            "Customers Report",
             "Warehouse Report",
             "Distributors Report",
             "Regional Report",

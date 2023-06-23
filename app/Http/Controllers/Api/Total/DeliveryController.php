@@ -37,10 +37,10 @@ class DeliveryController extends Controller
       $business_code = $request->user()->business_code;
       $user_code = $request->user()->user_code;
       $requests = $request->collect();
-//      info('1');
+
       $delivery = Delivery::where('delivery_code', $delivery_code)->first();
       $order_code = $delivery->order_code;
-//      info('2');
+
       $deliveryUpdates = [
          'delivery_status' => "Partial delivery",
          "delivered_time" => now(),
@@ -48,22 +48,22 @@ class DeliveryController extends Controller
          "accept_allocation" => "partially delivered",
          "updated_by" => $user_code,
       ];
-//      info('3');
       Delivery::where('delivery_code', $delivery_code)->update($deliveryUpdates);
 
       $total = 0;
       $itemsToUpdate = [];
       $productIDs = [];
-//      info('4');
       foreach ($requests as $value) {
          $productID = $value['productID'];
          $qty = $value['qty'];
-//         info('5');
+
          $allocatedQty = Delivery_items::where('productID', $productID)
             ->where('delivery_code', $delivery_code)
             ->pluck('allocated_quantity')
             ->first();
+
 //         info('6');
+
          $itemsToUpdate = [
             'product_code' => $productID,
             'created_by' => $user_code
@@ -79,9 +79,11 @@ class DeliveryController extends Controller
             'created_by' => $user_code,
             'updated_by' => $user_code
          ];
+
 //         info($itemsToUpdate);
 //         info("Updated");
 //         info($itemsData);
+
 
          items::updateOrCreate(
             $itemsToUpdate,
@@ -91,8 +93,9 @@ class DeliveryController extends Controller
          $productIDs[] = $productID;
          $total += product_price::whereId($productID)->pluck('buying_price')->first() * $qty;
       }
-//      info('7');
-      items::whereIn('product_code', $productIDs)->increment('allocated_qty', (int)$qty);
+
+      // items::whereIn('product_code', $productIDs)->increment('allocated_qty', (int)$qty);
+
       product_inventory::whereIn('productID', $productIDs)->decrement('current_stock', (int) $qty);
 
 
@@ -114,9 +117,17 @@ class DeliveryController extends Controller
          "item_condition" => $value["item_condition"],
          "note" => $value["note"],
          "created_by" => $user_code,
-         "updated_by" => $user_code
+         "updated_by" => $user_code,
+         "business_code" => $business_code,
       ];
-      Delivery_items::updateOrCreate(["business_code" => $business_code, "delivery_code" => $delivery_code, "productID" => $productID], $deliveryItemsData);
+      $deliveryToUpdate = [
+         "delivery_code" => $delivery_code,
+         "productID" => $productID
+      ];
+      Delivery_items::updateOrCreate(
+         $deliveryToUpdate,
+         $deliveryItemsData
+      );
 
       Order_items::where('productID', $productID)
          ->where('order_code', $order_code)

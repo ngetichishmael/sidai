@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','Delivery reports')
+@section('title','Customers')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-8">
-               <h2 class="content-header-title float-start mb-0">Delivery | Reports</h2>
+               <h2 class="content-header-title float-start mb-0">Customers | Reports</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -26,7 +26,7 @@
       </div>
    </div>
    @include('partials._messages')
-   @livewire('reports.delivery')
+   @livewire('reports.customers')
 @endsection
 {{-- page scripts --}}
 @section('script')
