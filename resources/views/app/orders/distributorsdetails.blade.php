@@ -253,11 +253,21 @@
              <form id="statusForm" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
                 @csrf
                 <select id="orderStatus" name="order_status" class="form-control mb-2 mt-2" required>
-                   <option value="Pending Delivery">Pending Order</option>
-                   <option value="Waiting Acceptance">Waiting Acceptance</option>
-{{--                   <option value="Accepted">Shipped</option>--}}
-                   <option value="Delivered">Delivered</option>
-                   <option value="Cancelled">Cancelled</option>
+                   <option value={{$order->order_status}}>@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</option>
+                   @if(strtolower($order->order_status) == "pending delivery")
+                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                      <option value="Not Delivered" id="nd">Not Delivered</option>
+                   @elseif(strtolower($order->order_status) == "complete delivery")
+
+                   @elseif(strtolower($order->order_status) == "partially delivered")
+
+                   @elseif(strtolower($order->order_status) == "not delivered")
+
+                   @endif
+                   <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                   <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                   <option value="Not Delivered" id="nd">Not Delivered</option>
                 </select>
                 <button type="submit" class="btn btn-block btn-warning">Change Order Status</button>
              </form>

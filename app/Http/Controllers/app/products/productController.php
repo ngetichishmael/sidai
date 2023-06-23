@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class productController extends Controller
 {
@@ -148,6 +149,100 @@ class productController extends Controller
 
 
    }
+
+   public function importProducts(Request $request)
+   {
+      $this->validate($request, [
+         'upload_import' => 'required',
+      ]);
+      $code= session('warehouse_code');
+      $product_code = Str::random(20);
+      $filePath = $request->file('upload_import')->path();
+
+      $spreadsheet = IOFactory::load($filePath);
+      $worksheet = $spreadsheet->getActiveSheet();
+      $rows = $worksheet->toArray();
+
+      // Skip the first two rows as they contain headers
+      for ($i = 2; $i < count($rows); $i++) {
+         $row = $rows[$i];
+
+         $skuCode = (string) $row[0];
+         $batchCode = (string) $row[0];
+         $category = (string) $row[2];
+         $units = (string) $row[3];
+         $measure = (string) $row[3];
+         $productName = (string) $row[4];
+         $distributorPrice = (float) str_replace(',', '', $row[5]);
+         $buyingPrice = (float) str_replace(',', '', $row[6]);
+         $sellingPrice = (float) str_replace(',', '', $row[7]);
+
+         $product = new product_information;
+         $product->product_name = $productName;
+         $product->url = Str::slug($productName);
+         $product->sku_code = $skuCode;
+         $product->batch_code = $batchCode;
+         $product->category = $category;
+         $product->units = $units;
+         $product->measure = $measure;
+         $product->warehouse_code = $code;
+         $product->image = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
+         $product->active = "Active";
+         $product->status = "Active";
+         $product->track_inventory = 'Yes';
+         $product->business_code = Auth::user()->business_code;
+         $product->created_by = Auth::user()->user_code;
+         $product->save();
+
+         $productPrice = new product_price;
+         $productPrice -> product_code=$product_code;
+         $productPrice->productID = $product->id;
+         $productPrice->distributor_price = $distributorPrice;
+         $productPrice->buying_price = $buyingPrice;
+         $productPrice->selling_price = $sellingPrice;
+         $productPrice->offer_price = $buyingPrice;
+         $productPrice->setup_fee = $sellingPrice;
+         $productPrice->taxID = "1";
+         $productPrice->tax_rate = "0";
+         $productPrice->default_price = $sellingPrice;
+         $productPrice->business_code = Auth::user()->business_code;
+         $productPrice->created_by = Auth::user()->user_code;
+         $productPrice->save();
+
+         product_inventory::updateOrCreate(
+         [
+
+            'productID' => $product->id,
+         ],
+         [
+            'product_code' => $product_code,
+            'current_stock' => 0,
+            'reorder_point' => 0,
+            'reorder_qty' => 0,
+            'expiration_date' => "None",
+            'default_inventory' => "None",
+            'notification' => 0,
+            'created_by' => Auth::user()->user_code,
+            'updated_by' => Auth::user()->user_code,
+            'business_code' => Auth::user()->business_code,
+         ]
+         );
+      }
+
+      session()->flash('success', 'Products imported successfully.');
+      $random=rand(0,9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Importing Products';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Imported Products';
+      $activityLog->action = 'Products '.$product->product_name .'added in warehouse'.$code;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+      return redirect('/warehousing/'.$code.'/products');
+   }
+
 
 
    public function upload(Request $request)
