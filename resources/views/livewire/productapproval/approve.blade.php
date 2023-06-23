@@ -5,9 +5,8 @@
                 <div class="card">
                     <div class="card-header"> Stock Requisition Items</div>
                     <div class="card-body">
-                       <form action="{{ route('product.approvestock', ['requisition_id' => $requisition_id]) }}" method="post">
-                       @csr
-                          <input type="hidden" name="requisition_id" value="{{ $requisition_id }}">
+                       <form method="POST" action="{{ route('inventory.handleApproval') }}">
+                          @csrf
                           <table class="table table-bordered table-striped">
                             <thead>
                                 <th>#</th>
@@ -23,14 +22,13 @@
                                   <td>{!! $product->ProductInformation->product_name !!}</td>
                                   <td>{!! $product->quantity !!}</td>
                                   <td>{!! $product->ProductInformation->sku_code !!}</td>
-                                  <td>
-                                     <input type="checkbox" name="selected_products[]" value="{{ $product->id }}">
-                                  </td>
+                                  <td><input type="checkbox" name="selected_products[]" value="{{ $product->id }}"></td>
                                </tr>
                             @endforeach
                             </tbody>
-                        </table>
-                       <button type="submit">Submit</button>
+                          </table>
+                          <button type="submit" class=" mt-3 pl-3 btn btn-primary" name="approve">Approve and Continue </button>
+                          <button type="submit" class=" mt-3 pr-3 btn btn-danger" name="disapprove">Disapprove  and Continue</button>
                        </form>
                     </div>
                 </div>

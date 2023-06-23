@@ -604,7 +604,7 @@ public function groups(){
          "message"  => "Customer orders",
          "order_items" => $orders,
          "items" => $items,
-         "Data" => $order,
+         "Data" => $order->with('distributor', 'Customer'),
          "Payment" => $payment
       ]);
    }

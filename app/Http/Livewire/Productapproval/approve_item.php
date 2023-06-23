@@ -24,6 +24,28 @@ class approve_item extends Component
          'requisition_id'=>$this->product_id,
       ]);
    }
+   public function handleApproval(Request $request)
+   {
+      $selectedProducts = $request->input('selected_products', []);
+
+      foreach ($selectedProducts as $productId) {
+         $product = RequisitionProduct::find($productId);
+
+         if ($product) {
+            if ($request->has('approve')) {
+               $product->update(['approval' => 1]);
+               product_inventory::whereId($productId)->decrement('current_stock', $product->quantity);
+            } elseif ($request->has('disapprove')) {
+               $product->update(['approval' => 0]);
+               product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
+            }
+         }
+      }
+
+      return redirect('/warehousing/approve/'.$product->requisition_id);
+   }
+
+
    public function approve(Request $request)
    {
       $selectedProducts = $request->input('selected_products', []);
