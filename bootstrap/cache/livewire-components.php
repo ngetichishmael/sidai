@@ -74,6 +74,7 @@
   'territory.unit.dashboard' => 'App\\Http\\Livewire\\Territory\\Unit\\Dashboard',
   'territory.zone.dashboard' => 'App\\Http\\Livewire\\Territory\\Zone\\Dashboard',
   'territory.index' => 'App\\Http\\Livewire\\Territory\\index',
+  'user.dashboard' => 'App\\Http\\Livewire\\User\\Dashboard',
   'users.index' => 'App\\Http\\Livewire\\Users\\index',
   'users.rsm' => 'App\\Http\\Livewire\\Users\\rsm',
   'users.shopattendee' => 'App\\Http\\Livewire\\Users\\shopattendee',

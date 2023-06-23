@@ -1,3 +1,25 @@
+<div class="row">
+    <div class="card">
+       <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+           <div class="col-md-4">
+               <div class="form-group">
+                   <label for="validationTooltip01">From:</label>
+                   <input wire:model="start" name="startDate" type="date" class="form-control"
+                       id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
+               </div>
+           </div>
+           <div class="col-md-4">
+               <div class="form-group">
+                   <label for="validationTooltip01">To:</label>
+                   <input wire:model="end" name="startDate" type="date" class="form-control"
+                       id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
+               </div>
+           </div>
+       </div>
+       </div>
+       @include('partials.stickymenu')
+       
+<div class="col-md-8">
 <div class="card card-default">
     <div class="card-body">
         <table class="table table-striped table-bordered">
@@ -26,4 +48,5 @@
 
         {{-- <div class="mt-1">{!! $suppliers->links() !!}</div> --}}
     </div>
+</div>
 </div>

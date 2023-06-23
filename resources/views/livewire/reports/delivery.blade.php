@@ -7,12 +7,22 @@
          
       </select>
    </div>
+   <div class="col-md-3">
+      <label for="">Filter By</label>
+      <select wire:model="" class="form-control">`
+          <option value="" selected>select</option>
+          <option value=""></option>
+         
+      </select>
+   </div>
    </div>
    <br>
 <div class="row">
-    <div class="col-md-12">
+   @include('partials.stickymenu')
+    <div class="col-md-8">
         <div class="card card-inverse">
            <div class="card-body">
+            <div class="card-datatable table-responsive">
               <table id="data-table-default" class="table table-striped table-bordered">
                  <thead>
                     <tr>
@@ -38,6 +48,7 @@
                     
                  </tbody>
               </table>
+            </div>
            </div>
         </div>
      </div>
