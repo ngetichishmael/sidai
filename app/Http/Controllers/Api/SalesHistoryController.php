@@ -37,6 +37,7 @@ class SalesHistoryController extends Controller
         orders.order_status,
         orders.payment_status,
         orders.checkin_code,
+        Customer.customer_name,
         orders.order_type,
         orders.created_at
     FROM
@@ -65,7 +66,7 @@ class SalesHistoryController extends Controller
 //                  AND `user_code`=? AND `customerID`=?',
 //         [$vansales, $user_code, $shopID]
 //      );
-      $query = Orders::with('distributor')
+      $query = Orders::with('distributor', 'Customer')
          ->where('order_type', $vansales)
          ->where('user_code', $user_code)
          ->where('customerID', $shopID)
@@ -79,7 +80,7 @@ class SalesHistoryController extends Controller
    public function preorder($shopID)
    {
       $query = Orders::where("order_type", 'Pre Order')
-         ->where('customerID', $shopID)->with('distributor')
+         ->where('customerID', $shopID)->with('distributor', 'Customer')
          ->get();
       return response()->json([
          "success" => true,
