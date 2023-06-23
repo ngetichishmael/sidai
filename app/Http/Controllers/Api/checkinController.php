@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Delivery;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
@@ -16,6 +17,7 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Route_customer;
 use App\Models\Routes;
@@ -287,7 +289,19 @@ class checkinController extends Controller
          "products" => $products,
       ]);
    }
+   public function distributorschangeStatus( Request  $request )
+   {
+      $orderStatus = $request->order_status;
+      $code = $request->order_code;
 
+      Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
+      Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
+
+      return response()->json([
+         "success" => true,
+         "message" => "Distributor Order Status Updated Successfully",
+      ], 200);
+   }
 
    /**
     * Save order
