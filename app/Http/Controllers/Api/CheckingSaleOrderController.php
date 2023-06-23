@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\customer\checkin;
 use App\Models\products\product_information;
@@ -208,6 +209,7 @@ class CheckingSaleOrderController extends Controller
       $user_code = $request->user()->user_code;
       $request = $request->collect();
       $total = 0;
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request as $value) {
          $price_total = $value["qty"] * $value["price"];
          $total += $price_total;
@@ -239,7 +241,7 @@ class CheckingSaleOrderController extends Controller
                'order_status' => 'Pending Delivery',
                'payment_status' => 'Pending Payment',
                'qty' => $value["qty"],
-               'supplierID'=>$distributor,
+               'supplierID'=>$distributor ?? $sidai ?? 1,
                'discount' => $items["discount"] ?? "0",
                'checkin_code' => $checkinCode,
                'order_type' => 'Pre Order',
