@@ -21,7 +21,7 @@ class StockLiftController extends Controller
       $user_code = $user->user_code;
       $business_code = $user->business_code;
       $random = Str::random(20);
-      info("Stock Lift");
+//      info("Stock Lift");
       $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);

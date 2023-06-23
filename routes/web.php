@@ -363,13 +363,14 @@ Route::group(['middleware' => ['verified']], function () {
    /* ===  inventory === */
 
    //stock allocation
+   Route::post('warehousing/approve', ['uses' => 'app\inventoryController@handleApproval', 'as' => 'inventory.handleApproval']);
    Route::get('warehousing/approve/{id}', ['uses' => 'app\inventoryController@approve', 'as' => 'inventory.approve']);
    Route::get('warehousing/inventory/allocated', ['uses' => 'app\inventoryController@allocated', 'as' => 'inventory.allocated']);
    Route::post('inventory/allocate/user', ['uses' => 'app\inventoryController@allocate_user', 'as' => 'inventory.allocate.user']);
    Route::get('inventory/allocate/{code}/items', ['uses' => 'app\inventoryController@allocate_items', 'as' => 'inventory.allocate.items']);
    //stock approval
    Route::get('warehousing/all/stock-requisition', ['uses' => 'app\inventoryController@approval', 'as' => 'inventory.approval']);
-   Route::match(['get', 'post'], 'warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
+   Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
    Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);
