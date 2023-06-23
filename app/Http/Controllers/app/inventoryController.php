@@ -57,15 +57,14 @@ class inventoryController extends Controller
       $productIDs = array_column($selectedProducts, 'productID');
       $image_path = null;
       $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
-
       foreach ($selectedProducts as $productId) {
          $product = RequisitionProduct::find($productId);
 
          if ($product) {
             if ($request->has('approve')) {
                $product->update(['approval' => 1]);
-                  $value= $productId;
-                  $stocked = $stockedProducts->get($value['productID']);
+               $value=$productId;
+                  $stocked = $productId;
                   (new StockLiftHelper())(
                      $user_code,
                      $business_code,
