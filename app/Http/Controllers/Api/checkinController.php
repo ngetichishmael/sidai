@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use App\Models\customer\checkin;
@@ -310,6 +311,7 @@ class checkinController extends Controller
       $cart = Cart::where('checkin_code', $checkinCode)->get();
 
       $orderCode = Helper::generateRandomString(8);
+      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
       $order = new Orders;
       $order->order_code =  $orderCode;
@@ -322,6 +324,7 @@ class checkinController extends Controller
       $order->payment_status = 'Pending Payment';
       $order->qty = $cart->sum('qty');
       $order->order_type = $request->order_type;
+      $order->supplierID = $request->distributor ?? $sidai ?? 1;
       $order->balance = $cart->sum('amount');
       $order->delivery_date = $request->delivery_date;
       $order->reasons_partial_delivery = $request->reasons_partial_delivery;
