@@ -55,6 +55,10 @@ class inventoryController extends Controller
       $user_code = $user->user_code;
       $business_code = $user->business_code;
       $random = Str::random(20);
+      if (empty($selectedProducts)) {
+         session()->flash('Error','Not products selected');
+         return redirect('warehousing/all/stock-requisition');
+      }else{
       foreach ($selectedProducts as $productId) {
          $product = RequisitionProduct::find($productId);
 
@@ -78,13 +82,14 @@ class inventoryController extends Controller
                );
             } elseif ($request->has('disapprove')) {
                $product->update(['approval' => 0]);
-                  items::where('product_code', $product->productID)
+               items::where('product_code', $product->productID)
                   ->dencrement('allocated_qty', $product->quantity);
 
                product_inventory::where('productID', $product->productID)
                   ->increment('current_stock', $product->quantity);
                //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
             }
+         }
          }
       }
       session()->flash('success','Allocated products to sales person');
