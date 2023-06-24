@@ -30,7 +30,7 @@
             <label for=""></label>
             <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search Product">
          </div>
-         @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+         @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
             <div class="col-md-3">
                <label for="">Items Per</label>
                <select wire:model="perPage" class="form-control">`
@@ -53,7 +53,7 @@
                     <th>Retail Price ksh:</th>
                     <th>Current Stock</th>
                     <th>Date</th>
-                    @if(Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+                    @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                      <th>Actions</th>
                   @endif
                 </tr>
@@ -61,7 +61,7 @@
                <tbody>
                @endif
                @foreach($products as $key => $product)
-                  @if((Auth::check() && Auth::user()->account_type == "RSM") || Auth::check() && Auth::user()->account_type == "NSM")
+                  @if((Auth::check() && Auth::user()->account_type == "RSM") || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "Admin" )
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
