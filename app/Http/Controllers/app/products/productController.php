@@ -187,6 +187,7 @@ class productController extends Controller
          $product->units = $units;
          $product->measure = $measure;
          $product->warehouse_code = $code;
+         $product->brand = "Sidai";
          $product->image = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
          $product->active = "Active";
          $product->status = "Active";
@@ -365,12 +366,14 @@ class productController extends Controller
          if ($productInventory) {
             $restockQuantity = $quantities[$key];
             $productInventory->current_stock += $restockQuantity;
+            $productInventory->reorder_qty = $restockQuantity;
             $productInventory->save();
 
             $productSku = new ProductSku();
             $productSku->product_inventory_id = $productInventory->id;
             $productSku->warehouse_code = $information->warehouse_code;
             $productSku->sku_code = $skuCode;
+            $productSku->restocked_quantity = $restockQuantity;
             $productSku->added_by = Auth::user()->user_code;
             $productSku->restocked_by = Auth::user()->user_code;
             $productSku->save();

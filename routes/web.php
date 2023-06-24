@@ -1,8 +1,13 @@
 <?php
 
 use App\Http\Controllers\Api\TestingController;
+use App\Http\Controllers\Chat\SocketsController;
+use BeyondCode\LaravelWebSockets\Apps\AppProvider;
+use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Events\SendMessage;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -438,4 +443,38 @@ Route::group(['middleware' => ['verified']], function () {
    //activity logs
    Route::get('activity', ['uses' => 'ActivityController@index', 'as' => 'activity.index']);
    Route::get('activity/show/{id}', ['uses' => 'ActivityController@show', 'as' => 'activity.show']);
+
+   //chats endpoints
+   Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
+
+   Route::get('socket/index', function (AppProvider $appProvider ){
+      return view('app/chat/index', [
+         "port"=>env("LARAVEL_WEBSOCKETS_PORT"),
+         "host"=>env("LARAVEL_WEBSOCKETS_HOST"),
+         "authEndpoint"=>"/api/socket/connect",
+         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
+         "apps" => $appProvider->all()
+      ]);
+   })->name('socket.index');
+
+//   Route::get('/', function (AppProvider $appProvider) {
+//      return view('chat-app-example', [
+//         "port" => "6001",
+//         "host" => "127.0.0.1",
+//         "authEndpoint" => "/api/sockets/connect",
+//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
+//         "apps" => $appProvider->all()
+//      ]);
+//   });
+
+   Route::post("/chat/send", function(Request $request) {
+      $message = $request->input("message", null);
+      $name = $request->input("name", "Anonymous");
+      $time = (new DateTime(now()))->format(DateTime::ATOM);
+      if ($name == null) {
+         $name = "Anonymous";
+      }
+      SendMessage::dispatch($name, $message, $time);
+   });
+
 });
