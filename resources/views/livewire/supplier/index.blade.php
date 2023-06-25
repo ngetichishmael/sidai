@@ -36,7 +36,10 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $supplier->name }}</td>
                                 <td>{{ $supplier->orders_count }}</td>
-                                <td><a href="" class="btn btn-sm"
+                                <td><a href="{{ route('supplierDetailed.reports', [
+                                    'id' => $supplier->id,
+                                ]) }}"
+                                        class="btn btn-sm"
                                         style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                             </tr>
                         @endforeach
