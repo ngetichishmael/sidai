@@ -1,21 +1,22 @@
 <div class="row">
     <div class="col-md-3">
-        <label for="">Filter By</label>
-        <select wire:model="" class="form-control">`
-            <option value="" selected>select</option>
-            <option value=""></option>
-
-        </select>
+        <label for="validationTooltip01">Start Date</label>
+        <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
+            placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
-        <label for="">Filter By</label>
+        <label for="validationTooltip01">End Date</label>
+        <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
+            placeholder="YYYY-MM-DD HH:MM" required />
+    </div>
+    <div class="col-md-3">
+        <label for="">User Category</label>
         <select wire:model="" class="form-control">`
             <option value="" selected>select</option>
             <option value=""></option>
 
         </select>
     </div>
-
     <div class="col-md-3">
         <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
             data-toggle="tooltip" data-placement="top" title="Export Excel">
@@ -23,6 +24,17 @@
                 data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
         </button>
     </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <label for="">Status</label>
+        <select wire:model="" class="form-control">`
+            <option value="" selected>select</option>
+            <option value=""></option>
+
+        </select>
+    </div>
+</div>
     <br>
     <br>
     <div class="row">
