@@ -289,6 +289,7 @@
                             <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}"
                                 href="{!! route('SurveryResponses') !!}">
 
+<<<<<<< HEAD
                                 <span class="menu-item text-truncate">Responses</span>
                             </a>
                         </li>
@@ -303,4 +304,95 @@
             @endif
         </ul>
     </div>
+=======
+<li class="nav-item {!! Nav::isResource('maps') !!}">
+   <a class="d-flex align-items-center" href="#"><span
+         class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
+   <ul class="menu-content">
+      <li class="nav-item {!! Nav::isResource('maps') !!}">
+         <a class="d-flex align-items-center" href="{!! route('maps') !!}">
+            <span class="menu-title text-truncate" data-i18n="Todo">
+               Maps</span>
+         </a>
+      </li>
+      <li class="nav-item {!! Nav::isResource('current-information') !!}">
+         <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
+            <span class="menu-title text-truncate" data-i18n="Todo">
+               Sales Agents</span>
+         </a>
+      </li>
+   </ul>
+</li>
+</ul>
+</li>
+<li class="nav-item {!! Nav::isResource('routes') !!}">
+<a class="d-flex align-items-center" href="">
+<i data-feather='map'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
+   Scheduling</span>
+</a>
+<ul class="menu-content">
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {!! route('routes.index') !!}">
+<span class="menu-item text-truncate">Assigned</span></a>
+</li>
+<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('routes.individual') !!}">
+<span class="menu-item text-truncate">Individual</span></a>
+</li>
+</ul>
+</li>
+@endif
+@if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+<li class="nav-item {!! Nav::isResource('chats') !!}">
+<a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
+   class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
+{{--                <ul class="menu-content">--}}
+{{--                    <li><a class="d-flex align-items-center" href="{{ route('CustomerNotification') }}"><i--}}
+{{--                                data-feather="users"></i><span class="menu-item text-truncate">Customers</span></a></li>--}}
+{{--                    <li><a class="d-flex align-items-center" href="{{ route('UserNotification') }}"><i--}}
+{{--                                data-feather="user-check"></i><span class="menu-item text-truncate">Users</span></a>--}}
+{{--                    </li>--}}
+{{-- <li><a class="d-flex align-items-center" href="{{ route('AllNotification') }}"><i
+         data-feather="user-check"></i><span class="menu-item text-truncate">All
+         Notifications</span></a>
+</li> --}}
+{{--                </ul>--}}
+</li>
+@endif
+@if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+<li class="nav-item {!! Nav::isResource('survey') !!}">
+<a class="d-flex align-items-center" href="#">
+<i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
+</a>
+<ul class="menu-content">
+<li style="padding-left: 50px">
+   <a class="d-flex align-items-center" href="{!! route('survey.index') !!}">
+
+      <span class="menu-item text-truncate">Survey</span>
+   </a>
+</li>
+<li style="padding-left: 50px">
+   <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
+
+      <span class="menu-item text-truncate">Responses</span>
+   </a>
+</li>
+</ul>
+</li>
+{{--            <li class="nav-item {!! Nav::isResource('settings') !!}">--}}
+{{--            <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span--}}
+{{--                    class="menu-title text-truncate" data-i18n="Invoice"> Settings</span></a>--}}
+{{--            <ul class="menu-content">--}}
+{{--                <li><a class="d-flex align-items-center" href="{!! route('settings.account') !!}"><i--}}
+{{--                            data-feather="circle"></i><span class="menu-item text-truncate">Account</span></a>--}}
+{{--                </li>--}}
+{{--            </ul>--}}
+{{--        </li>--}}
+<li class="nav-item {!! Nav::isResource('activity')!!}">
+<a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
+<i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
+</a>
+</li>
+@endif
+</ul>
+</div>
+>>>>>>> 8089179c3a4d5789888d5af7c262c9b9386028b9
 </div>

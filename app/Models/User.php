@@ -51,7 +51,18 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->hasMany(Chat::class, 'sender_id');
    }
+   use Notifiable;
 
+   // Define the relationships with other models
+   public function messages()
+   {
+      return $this->hasMany(Message::class, 'sender_id');
+   }
+
+   public function latestMessage()
+   {
+      return $this->hasOne(Message::class, 'sender_id')->latest();
+   }
    public function receivedChats()
    {
       return $this->hasMany(Chat::class, 'receiver_id');
