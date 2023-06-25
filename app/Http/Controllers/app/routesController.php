@@ -41,11 +41,12 @@ class routesController extends Controller
     */
    public function create()
    {
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
       $customers = customers::where('business_code', Auth::user()->business_code)->pluck('customer_name', 'id');
       $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'RSM')->pluck('name', 'id');
 
 
-      return view('app.routes.create', ['customers' => $customers, 'salesPeople' => $salesPeople]);
+      return view('app.routes.create', ['customers' => $customers, 'salesPeople' => $salesPeople, 'account_types'=>$account_types]);
    }
 
    /**
