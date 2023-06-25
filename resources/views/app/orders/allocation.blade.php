@@ -137,6 +137,7 @@
        $(document).ready(function() {
           $('#account_type').on('change', function() {
              var accountType = $(this).val();
+             console.log(accountType);
              if (accountType === 'distributors') {
                 $.ajax({
                    url: '{{ route('get.distributors') }}',
@@ -144,12 +145,13 @@
                    success: function(data) {
                       $('#user').empty();
                       $('#user').append('<option value="">Choose a Distributor</option>');
-                      data.users.forEach(function(distributor) {
-                         $('#user').append('<option value="' + distributor.id + '">' + distributor.name + '</option>');
+                      data.users.forEach(function(distributors) {
+                         $('#user').append('<option value="' + distributors.id + '">' + distributors.name + '</option>');
                       });
                    },
                    error: function() {
                       console.log('Error occurred during AJAX request.');
+                      console.log(error);
                    }
                 });
              } else if (accountType) {
