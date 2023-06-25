@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-3">
         <label for="validationTooltip01">End Date</label>
-        <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="end" name="endDate" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
@@ -35,49 +35,55 @@
         </select>
     </div>
 </div>
-    <br>
-    <br>
-    <div class="row">
-        @include('partials.stickymenu')
-        <div class="col-md-10">
-            <div class="card card-inverse">
-                <div class="card-body">
-                    <div class="d-flex flex-row flex-nowrap overflow-auto">
-                        <table id="data-table-default" class="table table-striped table-bordered">
-                            <thead>
+<br>
+<br>
+<div class="row">
+    @include('partials.stickymenu')
+    <div class="col-md-10">
+        <div class="card card-inverse">
+            <div class="card-body">
+                <div class="d-flex flex-row flex-nowrap overflow-auto">
+                    <table id="data-table-default" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order ID</th>
+                                <th>Customer Name</th>
+                                <th>Sales Rep</th>
+                                <th>Region</th>
+                                <th>Sub Region</th>
+                                <th>Status</th>
+                                <th>Created Date</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($preorders as $preorder)
                                 <tr>
-                                    <th>#</th>
-                                    <th>Order ID</th>
-                                    <th>Customer Name</th>
-                                    <th>Sales Rep</th>
-                                    <th>Region</th>
-                                    <th>Sub Region</th>
-                                    <th>Status</th>
-                                    <th>Created Date</th>
-                                    <th>Action</th>
+                                    <td>{{ $count++ }}</td>
+                                    <td>{{ $preorder->order_code }}</td>
+                                    <td>{{ $preorder->Customer->customer_name ?? '' }}</td>
+                                    <td>{{ $preorder->User->name ?? '' }}</td>
+                                    <td>{{ $preorder->User->Region->name ?? '' }}</td>
+                                    <td>{{ $preorder->User->Subregion->name ?? '' }}</td>
+                                    <td>{{ $preorder->order_status ?? '' }}</td>
+                                    <td>{{ $preorder->created_at->format('d/m/Y') ?? '' }}</td>
+                                    <td><a href="{{ URL('orders/items/' . $preorder->order_code) }}" class="btn btn-sm"
+                                            style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($preorders as $preorder)
-                                    <tr>
-                                        <td>{{ $count++ }}</td>
-                                        <td>{{ $preorder->order_code }}</td>
-                                        <td>{{ $preorder->Customer->customer_name ?? '' }}</td>
-                                        <td>{{ $preorder->User->name ?? '' }}</td>
-                                        <td>{{ $preorder->User->Region->name ?? '' }}</td>
-                                        <td>{{ $preorder->User->Subregion->name ?? '' }}</td>
-                                        <td>{{ $preorder->order_status ?? '' }}</td>
-                                        <td>{{ $preorder->created_at->format('d/m/Y') ?? '' }}</td>
-                                        <td><a href="{{ URL('orders/items/' . $preorder->order_code) }}"
-                                                class="btn btn-sm"
-                                                style="background-color: rgb(173, 37, 37);color:white">View</a></td>
-                                    </tr>
-                                @endforeach
 
-                            </tbody>
-                        </table>
-                    </div>
+                            @empty
+                                <tr>
+                                    <x-emptyrow>
+                                        7
+                                    </x-emptyrow>
+                                </tr>
+                            @endforelse
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
