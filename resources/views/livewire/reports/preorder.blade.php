@@ -11,16 +11,15 @@
     </div>
     <div class="col-md-3">
         <label for="">User Category</label>
-        <select wire:model="" class="form-control">`
+        <select wire:model="userCategory" class="form-control">
             <option value="" selected>select</option>
             <option value=""></option>
-
         </select>
     </div>
     <div class="col-md-3">
         <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
             data-toggle="tooltip" data-placement="top" title="Export Excel">
-            <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
+            <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="20" height="20"
                 data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
         </button>
     </div>
@@ -28,10 +27,9 @@
 <div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
-        <select wire:model="" class="form-control">`
+        <select wire:model="status" class="form-control">
             <option value="" selected>select</option>
             <option value=""></option>
-
         </select>
     </div>
 </div>
@@ -71,7 +69,6 @@
                                     <td><a href="{{ URL('orders/items/' . $preorder->order_code) }}" class="btn btn-sm"
                                             style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                                 </tr>
-
                             @empty
                                 <tr>
                                     <x-emptyrow>
@@ -79,10 +76,10 @@
                                     </x-emptyrow>
                                 </tr>
                             @endforelse
-
                         </tbody>
                     </table>
                 </div>
+                <div class="mt-1">{!! $preorders->links() !!}</div>
             </div>
         </div>
     </div>
