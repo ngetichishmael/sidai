@@ -9,14 +9,16 @@ use App\Models\suppliers\suppliers;
 
 class index extends Component
 {
-    public $start = null;
-    public $end = null;
+   public $start = null;
+   public $end = null;
 
    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public function render()
-    {
-        $suppliers = Orders::with('User','Customer')->where('supplierID', '1')->get();
-        return view('livewire.supplier.index',compact('suppliers'));
-    }
+   protected $paginationTheme = 'bootstrap';
+   public function render()
+   {
+      $suppliers = suppliers::withCount('Orders')->paginate(10);
+      return view('livewire.supplier.index', [
+         'suppliers' => $suppliers
+      ]);
+   }
 }

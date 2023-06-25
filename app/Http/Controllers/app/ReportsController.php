@@ -20,14 +20,72 @@ use App\Models\products\product_information;
 class ReportsController extends Controller
 {
    public $perPage = 50;
+   public function vansales()
+   {
+      return view('app.Reports.vansales');
+   }
+   public function delivery()
+   {
+      return view('app.Reports.delivery');
+   }
+   public function supplier()
+   {
+      return view('app.Reports.supplier');
+   }
+   public function visitations()
+   {
+      return view('app.Reports.visitation');
+   }
+   public function target()
+   {
+      return view('app.Reports.target');
+   }
+   public function payments()
+   {
+      return view('app.Reports.payments');
+   }
    public function reports(Request $request)
    {
+      // $routeName = $request->route()->getName();
+      // $middleware = $request->route()->middleware();
+      // dd($middleware);
+
+      // if()
+      // if ($routeName === 'users.reports' && in_array('web', $middleware)) {
+      //    return view('app.users.reports');
+      // }
       return view('app.users.reports');
    }
    public function preorders()
    {
       return view('app.Reports.preorders');
    }
+   public function users()
+   {
+      return view('app.Reports.users');
+   }
+
+   public function warehouse()
+   {
+      return view('app.Reports.warehouse');
+   }
+   public function distributor()
+   {
+      return view('app.Reports.distributor');
+   }
+   public function regional()
+   {
+      return view('app.Reports.regional');
+   }
+   public function inventory()
+   {
+      return view('app.Reports.inventory');
+   }
+   public function clients()
+   {
+      return view('app.Reports.customers');
+   }
+
    public function preorderitems($order_code)
    {
       $items = Order_items::where('order_code', $order_code)->get();
@@ -81,30 +139,6 @@ class ReportsController extends Controller
       $attendee = User::where('account_type', 'Shop-Attendee')->get();
       return view('app.items.attendee', ['attendee' => $attendee]);
    }
-   public function vansales()
-   {
-      return view('app.Reports.vansales');
-   }
-   public function delivery()
-   {
-      return view('app.Reports.delivery');
-   }
-   public function supplier()
-   {
-      return view('app.Reports.supplier');
-   }
-   public function visitations()
-   {
-      return view('app.Reports.visitation');
-   }
-   public function target()
-   {
-      return view('app.Reports.target');
-   }
-   public function payments()
-   {
-      return view('app.Reports.payments');
-   }
    public function paymentsDetails($id)
    {
       $order = Orders::whereId($id)->pluck('order_code')->implode('');
@@ -112,32 +146,6 @@ class ReportsController extends Controller
          'order_code' => $order
       ]);
    }
-   public function users()
-   {
-      return view('app.Reports.users');
-   }
-
-   public function warehouse()
-   {
-      return view('app.Reports.warehouse');
-   }
-   public function distributor()
-   {
-      return view('app.Reports.distributor');
-   }
-   public function regional()
-   {
-      return view('app.Reports.regional');
-   }
-   public function inventory()
-   {
-      return view('app.Reports.inventory');
-   }
-   public function clients()
-   {
-      return view('app.Reports.customers');
-   }
-
    public function products($code)
    {
       $count = 1;
