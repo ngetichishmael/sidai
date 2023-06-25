@@ -5,7 +5,6 @@ namespace App\Http\Controllers\app;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Orders;
-use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
@@ -13,17 +12,58 @@ use App\Models\customer\customers;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Order_items;
-use App\Models\order_payments;
-use Illuminate\Support\Facades\Auth;
 use App\Models\products\product_information;
 
 class ReportsController extends Controller
 {
    public $perPage = 50;
-   public function preorders()
+   public function reports(Request $request)
    {
-      return view('app.Reports.preorders');
+      $routeName = $request->route()->getName();
+      $middleware = $request->route()->middleware();
+
+      if (in_array('web', $middleware)) {
+         switch ($routeName) {
+            case 'users.reports':
+               return view('app.users.reports');
+            case 'preorders.reports':
+               return view('app.Reports.preorders');
+            case 'vansales.reports':
+               return view('app.Reports.vansales');
+            case 'delivery.reports':
+               return view('app.Reports.delivery');
+            case 'sidai.reports':
+               return view('app.Reports.users');
+            case 'warehouse.reports':
+               return view('app.Reports.warehouse');
+            case 'supplier.reports':
+               return view('app.Reports.supplier');
+            case 'visitation.reports':
+               return view('app.Reports.visitation');
+            case 'target.reports':
+               return view('app.Reports.target');
+            case 'payments.reports':
+               return view('app.Reports.payments');
+            case 'distributor.reports':
+               return view('app.Reports.distributor');
+            case 'regional.reports':
+               return view('app.Reports.regional');
+            case 'clients.reports':
+               return view('app.Reports.customers');
+            case 'inventory.reports':
+               return view('app.Reports.inventory');
+            default:
+               return view('app.users.reports');
+         }
+      }
    }
+
+   public function supplierDetails($id)
+   {
+      $orders = Orders::where('SupplierID', $id)->get();
+      dd($orders);
+   }
+
    public function preorderitems($order_code)
    {
       $items = Order_items::where('order_code', $order_code)->get();
@@ -77,30 +117,6 @@ class ReportsController extends Controller
       $attendee = User::where('account_type', 'Shop-Attendee')->get();
       return view('app.items.attendee', ['attendee' => $attendee]);
    }
-   public function vansales()
-   {
-      return view('app.Reports.vansales');
-   }
-   public function delivery()
-   {
-      return view('app.Reports.delivery');
-   }
-   public function supplier()
-   {
-      return view('app.Reports.supplier');
-   }
-   public function visitations()
-   {
-      return view('app.Reports.visitation');
-   }
-   public function target()
-   {
-      return view('app.Reports.target');
-   }
-   public function payments()
-   {
-      return view('app.Reports.payments');
-   }
    public function paymentsDetails($id)
    {
       $order = Orders::whereId($id)->pluck('order_code')->implode('');
@@ -108,32 +124,6 @@ class ReportsController extends Controller
          'order_code' => $order
       ]);
    }
-   public function users()
-   {
-      return view('app.Reports.users');
-   }
-
-   public function warehouse()
-   {
-      return view('app.Reports.warehouse');
-   }
-   public function distributor()
-   {
-      return view('app.Reports.distributor');
-   }
-   public function regional()
-   {
-      return view('app.Reports.regional');
-   }
-   public function inventory()
-   {
-      return view('app.Reports.inventory');
-   }
-   public function clients()
-   {
-      return view('app.Reports.customers');
-   }
-
    public function products($code)
    {
       $count = 1;
@@ -159,7 +149,7 @@ class ReportsController extends Controller
       $count = 1;
       return view('app.territories.customers', ['count' => $count, 'customers' => $customers]);
    }
-   
+
    public function productreport($code)
    {
       $warehouse = warehousing::where('warehouse_code', $code)->first();

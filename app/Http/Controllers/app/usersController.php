@@ -36,13 +36,13 @@ class usersController extends Controller
    //list
    public function list()
    {
-      $lists = User::whereIn('account_type',['NSM','RSM','TD','TSR', 'Shop-Attendee'])
+      $lists = User::whereIn('account_type', ['NSM', 'RSM', 'TD', 'TSR', 'Shop-Attendee'])
          ->distinct('account_type')
          ->whereNotIn('account_type', ['Customer'])
          ->groupBy('account_type')
          ->pluck('account_type');
       $count = 1;
-      return view('app.users.list', compact('lists','count'));
+      return view('app.users.list', compact('lists', 'count'));
    }
    public function nsm()
    {
@@ -78,10 +78,7 @@ class usersController extends Controller
       return view('app.users.import');
    }
 
-   public function reports()
-   {
-      return view('app.users.reports');
-   }
+
 
    //create
    public function create()
@@ -104,41 +101,6 @@ class usersController extends Controller
          "regions" => $regions
       ]);
    }
-   public function sendOTP($number, $code)
-   {
-
-      try {
-         $curl = curl_init();
-
-         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-                "number" : "' . $number . '",
-                "sms" : ' . $code . ',
-                "callBack" : "https://....",
-                "senderName" : "PASANDA"
-          }
-          ',
-            CURLOPT_HTTPHEADER => array(
-               'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
-               'Content-Type: application/json'
-            ),
-         ));
-
-         $response = curl_exec($curl);
-
-         curl_close($curl);
-      } catch (Exception $e) {
-      }
-   }
-
    //store
    public function store(Request $request)
    {
@@ -189,48 +151,16 @@ class usersController extends Controller
             "merchanizing" => $merchanizing,
          ]
       );
-//      try {
-//         $curl = curl_init();
-//
-//         curl_setopt_array($curl, array(
-//            CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
-//            CURLOPT_RETURNTRANSFER => true,
-//            CURLOPT_ENCODING => '',
-//            CURLOPT_MAXREDIRS => 10,
-//            CURLOPT_TIMEOUT => 0,
-//            CURLOPT_FOLLOWLOCATION => true,
-//            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//            CURLOPT_CUSTOMREQUEST => 'POST',
-//            CURLOPT_POSTFIELDS => '{
-//               "number" :  "' . $request->phone_number . '",
-//               "sms" : ' . $code . ',
-//               "callBack" : "https://....",
-//               "senderName" : "PASANDA"
-//         }
-//         ',
-//            CURLOPT_HTTPHEADER => array(
-//               'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
-//               'Content-Type: application/json'
-//            ),
-//         ));
-//
-//         $response = curl_exec($curl);
-//
-//         curl_close($curl);
-//      } catch (Exception $e) {
-//      }
-
       Session()->flash('success', 'User Created Successfully, Default Password is Phone_number');
-      // Redirect::back()->with('message', 'User Created Successfully');
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Adding User';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Creating User';
-      $activityLog->action = 'User '. $request->name. ' Role '.$request->account_type.' Created Successfully';
+      $activityLog->action = 'User ' . $request->name . ' Role ' . $request->account_type . ' Created Successfully';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address = "";
       $activityLog->save();
 
       return redirect()->back();
@@ -304,19 +234,19 @@ class usersController extends Controller
       $activityLog->activity = 'User update';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'User update';
-      $activityLog->action = 'User '.$request->name.' updated';
+      $activityLog->action = 'User ' . $request->name . ' updated';
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address = "";
       $activityLog->save();
 
       return redirect()->back();
    }
-//   public function destroy($id)
-//   {
-//      User::where('id', $id)->delete();
-//      Session()->flash('success', 'User deleted Successfully');
-//      return redirect()->route('users.index');
-//   }
+   //   public function destroy($id)
+   //   {
+   //      User::where('id', $id)->delete();
+   //      Session()->flash('success', 'User deleted Successfully');
+   //      return redirect()->route('users.index');
+   //   }
    public function import()
    {
       abort(403, "This action is Limited to Admin Only");

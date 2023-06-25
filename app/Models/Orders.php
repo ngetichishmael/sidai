@@ -42,6 +42,15 @@ class Orders extends Model
       return $this->hasMany(Order_items::class, 'order_code', 'order_code');
    }
    /**
+    * Get the Supplier that owns the Orders
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+   public function Supplier(): BelongsTo
+   {
+      return $this->belongsTo(User::class, 'supplierID', 'id');
+   }
+   /**
     * Get the User that owns the Orders
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

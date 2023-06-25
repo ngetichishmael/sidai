@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Reports;
 
 use App\Models\Orders;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PaymentsExport;
 
 class Payments extends Component
 {
@@ -26,5 +28,9 @@ class Payments extends Component
       return view('livewire.reports.payments', [
          'orders' => $orders
       ]);
+   }
+   public function export()
+   {
+      return Excel::download(new PaymentsExport, 'Payments.xlsx');
    }
 }

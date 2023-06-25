@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire\Regional;
 
+use App\Exports\RegionalExport;
 use App\Models\User;
 use App\Models\Orders;
 use App\Models\Region;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -23,4 +25,8 @@ class Index extends Component
             'usercount' =>$usercount
         ]);
     }
+    public function export()
+   {
+      return Excel::download(new RegionalExport, 'RegionalReport.xlsx');
+   }
 }
