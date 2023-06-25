@@ -444,7 +444,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('chats/{chat}/messages', 'MessageController@store');
    // routes/web.php
 
-<<<<<<< HEAD
+
    Route::get('socket/index', function (AppProvider $appProvider) {
       return view('app/chat/index', [
          "port" => env("LARAVEL_WEBSOCKETS_PORT"),
@@ -454,20 +454,9 @@ Route::group(['middleware' => ['verified']], function () {
          "apps" => $appProvider->all()
       ]);
    })->name('socket.index');
-=======
    Route::get('/chat', [ChatController::class, 'index'])->name('chat');;
 
 
-//   Route::get('socket/index', function (AppProvider $appProvider ){
-//      return view('app/chat/index', [
-//         "port"=>env("LARAVEL_WEBSOCKETS_PORT"),
-//         "host"=>env("LARAVEL_WEBSOCKETS_HOST"),
-//         "authEndpoint"=>"/api/socket/connect",
-//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-//         "apps" => $appProvider->all()
-//      ]);
-//   })->name('socket.index');
->>>>>>> 8089179c3a4d5789888d5af7c262c9b9386028b9
 
    //   Route::get('/', function (AppProvider $appProvider) {
    //      return view('chat-app-example', [
@@ -479,7 +468,6 @@ Route::group(['middleware' => ['verified']], function () {
    //      ]);
    //   });
 
-<<<<<<< HEAD
    Route::post("/chat/send", function (Request $request) {
       $message = $request->input("message", null);
       $name = $request->input("name", "Anonymous");
@@ -489,16 +477,4 @@ Route::group(['middleware' => ['verified']], function () {
       }
       SendMessage::dispatch($name, $message, $time);
    });
-=======
-//   Route::post("/chat/send", function(Request $request) {
-//      $message = $request->input("message", null);
-//      $name = $request->input("name", "Anonymous");
-//      $time = (new DateTime(now()))->format(DateTime::ATOM);
-//      if ($name == null) {
-//         $name = "Anonymous";
-//      }
-//      SendMessage::dispatch($name, $message, $time);
-//   });
-
->>>>>>> 8089179c3a4d5789888d5af7c262c9b9386028b9
 });
