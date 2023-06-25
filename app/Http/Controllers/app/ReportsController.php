@@ -61,6 +61,7 @@ class ReportsController extends Controller
    public function supplierDetails($id)
    {
       $orders = Orders::where('SupplierID', $id)->get();
+      return view('app.items.supplier', ['orders' => $orders]);
    }
 
    public function preorderitems($order_code)
