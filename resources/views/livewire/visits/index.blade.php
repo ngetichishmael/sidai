@@ -1,22 +1,42 @@
 <div class="row">
-    <div class="card">
-       <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
-           <div class="col-md-4">
-               <div class="form-group">
-                   <label for="validationTooltip01">From:</label>
-                   <input wire:model="start" name="startDate" type="date" class="form-control"
-                       id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-               </div>
-           </div>
-           <div class="col-md-4">
-               <div class="form-group">
-                   <label for="validationTooltip01">To:</label>
-                   <input wire:model="end" name="startDate" type="date" class="form-control"
-                       id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-               </div>
-           </div>
-       </div>
-       </div>
+    <div class="col-md-3">
+        <label for="validationTooltip01">Start Date</label>
+        <input wire:model="start" name="start" type="date" class="form-control" id="validationTooltip01"
+            placeholder="YYYY-MM-DD HH:MM" required />
+    </div>
+    <div class="col-md-3">
+        <label for="validationTooltip01">End Date</label>
+        <input wire:model="end" name="startDate" type="date" class="form-control" id="validationTooltip01"
+            placeholder="YYYY-MM-DD HH:MM" required />
+    </div>
+    <div class="col-md-3">
+        <label for="">User Category</label>
+        <select wire:model="" class="form-control" disabled>`
+            <option value="" selected>select</option>
+            <option value=""></option>
+ 
+        </select>
+    </div>
+    <div class="col-md-3">
+        <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
+            data-toggle="tooltip" data-placement="top" title="Export Excel">
+            <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
+                data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
+        </button>
+    </div>
+ </div>
+ <div class="row">
+    <div class="col-md-3">
+        <label for="">Status</label>
+        <select wire:model="" class="form-control">`
+            <option value="" selected>select</option>
+            <option value=""></option>
+ 
+        </select>
+    </div>
+ </div>
+ <br>
+<div class="row">
        @include('partials.stickymenu')
 
     <div class="col-md-8">
