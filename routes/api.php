@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ReconcilationController;
 use App\Http\Controllers\Api\ReconciledProductsController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\TargetsController;
+use App\Http\Controllers\Chat\SocketsController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*
@@ -237,4 +238,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('/stock/create/request', [StockRequisitionController::class, "store"])->middleware('auth:sanctum');
    Route::post('/stock/cancel', [StockRequisitionController::class, "cancel"])->middleware('auth:sanctum');
    Route::post('/stock/update', [StockRequisitionController::class, "update"])->middleware('auth:sanctum');
+
+   Route::middleware(['auth'])->group(function () {
+   });
+   Route::post('socket/connect', [SocketsController::class, 'connect']);
+
 });

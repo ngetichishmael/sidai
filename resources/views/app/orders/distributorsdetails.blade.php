@@ -259,15 +259,15 @@
                       <option value="Partially Delivered" id="pd">Partially Delivered</option>
                       <option value="Not Delivered" id="nd">Not Delivered</option>
                    @elseif(strtolower($order->order_status) == "complete delivery")
-
+                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
                    @elseif(strtolower($order->order_status) == "partially delivered")
-
+                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
                    @elseif(strtolower($order->order_status) == "not delivered")
-
+                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                      <option value="Not Delivered" id="nd">Not Delivered</option>
                    @endif
-                   <option value="Complete Delivery" id="cd">Complete Delivery</option>
-                   <option value="Partially Delivered" id="pd">Partially Delivered</option>
-                   <option value="Not Delivered" id="nd">Not Delivered</option>
                 </select>
                 <button type="submit" class="btn btn-block btn-warning">Change Order Status</button>
              </form>
