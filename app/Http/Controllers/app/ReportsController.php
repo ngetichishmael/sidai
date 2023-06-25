@@ -61,7 +61,6 @@ class ReportsController extends Controller
    public function supplierDetails($id)
    {
       $orders = Orders::where('SupplierID', $id)->get();
-      dd($orders);
    }
 
    public function preorderitems($order_code)
