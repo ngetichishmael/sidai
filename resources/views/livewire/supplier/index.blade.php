@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-3">
         <label for="validationTooltip01">End Date</label>
-        <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="end" name="startDate" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
