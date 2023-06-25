@@ -167,8 +167,8 @@ Route::group(['middleware' => ['verified']], function () {
    // Route::get('supplier/{id}/edit', ['uses' => 'app\supplier\supplierController@edit', 'as' => 'supplier.edit']);
    // Route::post('supplier/{id}/update', ['uses' => 'app\supplier\supplierController@update', 'as' => 'supplier.update']);
    // Route::get('supplier/{id}/show', ['uses' => 'app\supplier\supplierController@show', 'as' => 'supplier.show']);
-    Route::get('supplier/{id}/archive', ['uses' => 'app\supplier\supplierController@archive', 'as' => 'supplier.archive']);
-    Route::get('supplier/{id}/activate', ['uses' => 'app\supplier\supplierController@activate', 'as' => 'supplier.activate']);
+   Route::get('supplier/{id}/archive', ['uses' => 'app\supplier\supplierController@archive', 'as' => 'supplier.archive']);
+   Route::get('supplier/{id}/activate', ['uses' => 'app\supplier\supplierController@activate', 'as' => 'supplier.activate']);
    Route::get('supplier/archive/view', ['uses' => 'app\supplier\supplierController@archiveView', 'as' => 'supplier.archive.view']);
 
    // Route::get('delete-supplier-person/{id}', ['uses' => 'app\supplier\supplierController@delete_contact_person', 'as' => 'supplier.vendor.person']);
@@ -299,7 +299,7 @@ Route::group(['middleware' => ['verified']], function () {
    //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
 
    //Routes for reports
-   Route::get('reports', ['uses' => 'app\usersController@reports', 'as' => 'users.reports']);
+   Route::get('reports', ['uses' => 'app\ReportsController@reports', 'as' => 'users.reports']);
    Route::get('reports/pre-oders', ['uses' => 'app\ReportsController@preorders', 'as' => 'preorders.reports']);
    Route::get('reports/Van-sales', ['uses' => 'app\ReportsController@vansales', 'as' => 'vansales.reports']);
    Route::get('reports/delivery', ['uses' => 'app\ReportsController@delivery', 'as' => 'delivery.reports']);
@@ -447,27 +447,27 @@ Route::group(['middleware' => ['verified']], function () {
    //chats endpoints
    Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
 
-   Route::get('socket/index', function (AppProvider $appProvider ){
+   Route::get('socket/index', function (AppProvider $appProvider) {
       return view('app/chat/index', [
-         "port"=>env("LARAVEL_WEBSOCKETS_PORT"),
-         "host"=>env("LARAVEL_WEBSOCKETS_HOST"),
-         "authEndpoint"=>"/api/socket/connect",
+         "port" => env("LARAVEL_WEBSOCKETS_PORT"),
+         "host" => env("LARAVEL_WEBSOCKETS_HOST"),
+         "authEndpoint" => "/api/socket/connect",
          "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
          "apps" => $appProvider->all()
       ]);
    })->name('socket.index');
 
-//   Route::get('/', function (AppProvider $appProvider) {
-//      return view('chat-app-example', [
-//         "port" => "6001",
-//         "host" => "127.0.0.1",
-//         "authEndpoint" => "/api/sockets/connect",
-//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-//         "apps" => $appProvider->all()
-//      ]);
-//   });
+   //   Route::get('/', function (AppProvider $appProvider) {
+   //      return view('chat-app-example', [
+   //         "port" => "6001",
+   //         "host" => "127.0.0.1",
+   //         "authEndpoint" => "/api/sockets/connect",
+   //         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
+   //         "apps" => $appProvider->all()
+   //      ]);
+   //   });
 
-   Route::post("/chat/send", function(Request $request) {
+   Route::post("/chat/send", function (Request $request) {
       $message = $request->input("message", null);
       $name = $request->input("name", "Anonymous");
       $time = (new DateTime(now()))->format(DateTime::ATOM);
@@ -476,5 +476,4 @@ Route::group(['middleware' => ['verified']], function () {
       }
       SendMessage::dispatch($name, $message, $time);
    });
-
 });

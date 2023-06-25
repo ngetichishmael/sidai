@@ -20,6 +20,10 @@ use App\Models\products\product_information;
 class ReportsController extends Controller
 {
    public $perPage = 50;
+   public function reports(Request $request)
+   {
+      return view('app.users.reports');
+   }
    public function preorders()
    {
       return view('app.Reports.preorders');
@@ -159,7 +163,7 @@ class ReportsController extends Controller
       $count = 1;
       return view('app.territories.customers', ['count' => $count, 'customers' => $customers]);
    }
-   
+
    public function productreport($code)
    {
       $warehouse = warehousing::where('warehouse_code', $code)->first();
