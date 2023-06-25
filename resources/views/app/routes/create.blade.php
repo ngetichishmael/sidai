@@ -58,10 +58,30 @@
                         <label for="">Add Customer to Route</label>
                         {!! Form::select('customers[]', $customers, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
                     </div> --}}
-                    <div class="form-group col-md-12 mb-1">
-                        <label for="">Add sales people to Route</label>
-                        {!! Form::select('sales_persons[]', $salesPeople, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
+                    <div class="form-group col-md-6 mb-1">
+                        <label for="">Account Type</label>
+                       <select name="account_type" class="form-control select" id="account_type" required>
+                          <option value="">Choose User Type</option>
+                          @foreach ($account_types as $account)
+                             <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                          @endforeach
+                       </select>
                     </div>
+{{--                   <div class="form-group col-md-6 mb-1">--}}
+{{--                        <label for="">Add sales people to Route</label>--}}
+{{--                        {!! Form::select('sales_persons[]', $salesPeople, null, ['class' => 'form-control select2', 'name'=>"user",'id'=>"user",'multiple' => '']) !!}--}}
+{{--                    </div>--}}
+                   <div class="form-group col-md-6 mb-1">
+                      <label for="">Add sales people to Route</label>
+                      {!! Form::select('sales_persons[]', [], null, ['class' => 'form-control select2', 'name' => 'user', 'id' => 'user', 'multiple' => '']) !!}
+                   </div>
+{{--                   <div class="form-group col-md-4">--}}
+{{--                      <label for="">Choose User</label>--}}
+{{--                      <select name="user" class="form-control select2" id="user" required>--}}
+{{--                         <option value=""></option>--}}
+{{--                      </select>--}}
+{{--                   </div>--}}
+
                     <div class="form-group mb-1">
                         <button class="btn" style="background-color: #B6121B;color:white" type="submit">Save Information</button>
                     </div>
@@ -70,6 +90,36 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       $(document).ready(function() {
+          $('#account_type').on('change', function() {
+             var accountType = $(this).val();
+             if (accountType) {
+                $.ajax({
+                   url: '{{ route('get.users') }}',
+                   type: 'GET',
+                   data: { account_type: accountType },
+                   success: function(data) {
+                      $('#user').empty();
+                      $('#user').append('<option value="">Select Sales Person</option>');
+                      data.users.forEach(function(user) {
+                         $('#user').append('<option value="' + user.id + '">' + user.name + '</option>');
+                      });
+                   },
+                   error: function() {
+                      console.log('Error occurred during AJAX request.');
+                   }
+                });
+             } else {
+                $('#user').empty();
+                $('#user').append('<option value="">Select Sales Person</option>');
+             }
+          });
+       });
+    </script>
+
+
 @endsection
 {{-- page scripts --}}
 @section('scripts')
