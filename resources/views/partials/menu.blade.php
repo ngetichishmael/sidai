@@ -304,7 +304,7 @@
 </li>
 @endif
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
-<li class="nav-item {!! route('socket.index') !!}">
+<li class="nav-item {!! Nav::isResource('chats') !!}">
 <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
    class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
 {{--                <ul class="menu-content">--}}

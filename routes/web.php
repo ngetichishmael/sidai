@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TestingController;
+use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\SocketsController;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
@@ -8,17 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Events\SendMessage;
 use Illuminate\Http\Request;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/others.php';
@@ -446,16 +436,22 @@ Route::group(['middleware' => ['verified']], function () {
 
    //chats endpoints
    Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
+   Route::get('chats/{chat}', 'ChatController@show');
+   Route::post('chats/{chat}/messages', 'MessageController@store');
+   // routes/web.php
 
-   Route::get('socket/index', function (AppProvider $appProvider ){
-      return view('app/chat/index', [
-         "port"=>env("LARAVEL_WEBSOCKETS_PORT"),
-         "host"=>env("LARAVEL_WEBSOCKETS_HOST"),
-         "authEndpoint"=>"/api/socket/connect",
-         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-         "apps" => $appProvider->all()
-      ]);
-   })->name('socket.index');
+   Route::get('/chat', [ChatController::class, 'index'])->name('chat');;
+
+
+//   Route::get('socket/index', function (AppProvider $appProvider ){
+//      return view('app/chat/index', [
+//         "port"=>env("LARAVEL_WEBSOCKETS_PORT"),
+//         "host"=>env("LARAVEL_WEBSOCKETS_HOST"),
+//         "authEndpoint"=>"/api/socket/connect",
+//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
+//         "apps" => $appProvider->all()
+//      ]);
+//   })->name('socket.index');
 
 //   Route::get('/', function (AppProvider $appProvider) {
 //      return view('chat-app-example', [
@@ -467,14 +463,14 @@ Route::group(['middleware' => ['verified']], function () {
 //      ]);
 //   });
 
-   Route::post("/chat/send", function(Request $request) {
-      $message = $request->input("message", null);
-      $name = $request->input("name", "Anonymous");
-      $time = (new DateTime(now()))->format(DateTime::ATOM);
-      if ($name == null) {
-         $name = "Anonymous";
-      }
-      SendMessage::dispatch($name, $message, $time);
-   });
+//   Route::post("/chat/send", function(Request $request) {
+//      $message = $request->input("message", null);
+//      $name = $request->input("name", "Anonymous");
+//      $time = (new DateTime(now()))->format(DateTime::ATOM);
+//      if ($name == null) {
+//         $name = "Anonymous";
+//      }
+//      SendMessage::dispatch($name, $message, $time);
+//   });
 
 });
