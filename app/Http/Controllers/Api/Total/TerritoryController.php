@@ -15,8 +15,10 @@ class TerritoryController extends Controller
       return response()->json(
          [
             'status' => 200,
+            'user region'=>$data,
             'message' => 'Regional Data',
             'data' => $data,
+
          ],
          200
       );
