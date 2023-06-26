@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Livewire\Customers\Region;
+use App\Models\activity_log;
 use App\Models\Delivery;
 use App\Models\suppliers\suppliers;
+use App\Notifications\NewOrderNotification;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use App\Models\customer\checkin;
@@ -22,6 +25,7 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Route_customer;
 use App\Models\Routes;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * @group Checkin Api's
@@ -256,9 +260,17 @@ class checkinController extends Controller
             $cart->save();
          }
       }
-
-
-      // Session::flash('success','Product added to order');
+      $customer = customers::where('account', $checkin->account_number)->first();
+      $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Checkin order';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Product added to order';
+            $activityLog->action = 'Product added to order by' . $request->user()->name .  ' for customer ' .$customer->customer_name ?? $checkin->account_number;
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = "";
+            $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -323,8 +335,12 @@ class checkinController extends Controller
 
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
-
-      $orderCode = Helper::generateRandomString(8);
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('region_id', $region->id)->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $orderCode = $regionCode . '-' . $orderNumber;
+//      $orderCode = Helper::generateRandomString(8);
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
       $order = new Orders;
@@ -364,6 +380,21 @@ class checkinController extends Controller
          //delete item
          $cartItem->delete();
       }
+         if ($request->distributor != $sidai->id && $request->distributor !=null ){
+            $usersToNotify = Suppliers::findOrFail($request->distributor);
+               Notification::send($usersToNotify, new NewOrderNotification($order->id));
+         }
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Order created successfully';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order creation';
+      $activityLog->action = 'Order created by' . $request->user()->name . ' order code  '.$orderCode;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = "";
+      $activityLog->save();
 
       return response()->json([
          "success" => true,
