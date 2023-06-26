@@ -12,6 +12,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class index extends Component
 {
+   use WithPagination;
+   public $perPage = 15;
+   public $search = '';
    public $start;
    public $end;
 
@@ -25,6 +28,7 @@ class index extends Component
    }
    public function data()
    {
+      $searchTerm = '%' . $this->search . '%';
       $query = suppliers::withCount('Orders');
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
@@ -37,7 +41,10 @@ class index extends Component
          }
       }
 
-      return $query->paginate(10);
+      return $query->paginate(10)->where(function ($query) use ($searchTerm) {
+         $query->where('name', 'like', $searchTerm)
+            ->orWhere('email', 'like', $searchTerm);
+      });
    }
    public function export()
    {
