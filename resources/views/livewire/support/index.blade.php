@@ -24,7 +24,7 @@
                <tr>
                   <th>User Name</th>
                   <th>Account Type</th>
-                  <th>Subject</th>
+{{--                  <th>Subject</th>--}}
                   <th>Status</th>
                   <th>Time</th>
                   <th>Read</th>
@@ -37,7 +37,7 @@
                   <tr>
                      <td>{{ $ticket->user->name ?? "N/A" }}</td>
                      <td>{{ $ticket->user->account_type ?? "N/A" }}</td>
-                     <td>{{Str::limit( $ticket->subject, 40) }}</td>
+{{--                     <td>{{Str::limit( $ticket->subject, 40) }}</td>--}}
                      <td style="color: {{ $ticket->status == 'open' ? 'orangered' : 'green' }}">
                         Offline
                      </td>
