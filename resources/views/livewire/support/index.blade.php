@@ -39,7 +39,7 @@
                      <td>{{ $ticket->user->account_type ?? "N/A" }}</td>
                      <td>{{Str::limit( $ticket->subject, 40) }}</td>
                      <td style="color: {{ $ticket->status == 'open' ? 'orangered' : 'green' }}">
-                        {{ $ticket->status == 'open' ? 'open' : 'closed' }}
+                        Offline
                      </td>
                      <td>{{ $ticket->created_at->diffForHumans() ?? "N/A" }}</td>
                      <td style="color: {{ $ticket->read == 1 ? 'gray' : 'orangered' }}">
