@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\SocketsController;
+use App\Http\Controllers\SupportTicketController;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use Illuminate\Support\Facades\Auth;
@@ -441,7 +442,7 @@ Route::group(['middleware' => ['verified']], function () {
    //chats endpoints
    Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
    Route::get('chats/{chat}', 'ChatController@show');
-   Route::get('chats/index', [ChatController::class, 'index'])->name('chats.index');
+   Route::get('/chats/index', [ChatController::class, 'index'])->name('chats.index');
    Route::post('chats/{chat}/messages', 'MessageController@store');
    Route::get('/messages/{receiverId}', [ChatController::class, 'messagesIndex'])->name('messages.index');
 
@@ -454,7 +455,6 @@ Route::group(['middleware' => ['verified']], function () {
          "apps" => $appProvider->all()
       ]);
    })->name('socket.index');
-   Route::get('/chat', [ChatController::class, 'index'])->name('chat');;
 
 
 
@@ -477,4 +477,12 @@ Route::group(['middleware' => ['verified']], function () {
       }
       SendMessage::dispatch($name, $message, $time);
    });
+
+   //support
+   Route::get('support', ['uses' => 'SupportTicketController@index', 'as' => 'support.index'])->middleware('auth:sanctum');
+   Route::get('support/{id}', ['uses' => 'SupportTicketController@show', 'as' => 'support.show'])->middleware('auth:sanctum');
+   Route::get('support/update/{id}', ['uses' => 'SupportTicketController@update', 'as' => 'support.update'])->middleware('auth:sanctum');
+   Route::post('/support/{ticketId}/messages/{messageId}/reply', [SupportTicketController::class, 'replyToMessage'])->name('support.reply');
+   Route::get('support/{ticket_id}/messages', ['uses' => 'SupportTicketController@getMessages', 'as' => 'support.getMessages'])->middleware('auth:sanctum');
+
 });
