@@ -3,6 +3,7 @@ import axios from 'axios';
 import Popper from 'popper.js';
 import jQuery from 'jquery';
 import _ from 'lodash';
+import Echo from 'laravel-echo';
 window._ = _;
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -20,6 +21,14 @@ try {
     require('bootstrap');
 } catch (e) {}
 
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+   broadcaster: 'pusher',
+   key: process.env.MIX_PUSHER_APP_KEY,
+   cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+   encrypted: true,
+});
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

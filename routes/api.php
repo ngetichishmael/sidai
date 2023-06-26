@@ -245,11 +245,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('socket/connect', [SocketsController::class, 'connect']);
 
 
-   Route::middleware('auth:sanctum')->group(function () {
-      Route::get('/chats/index', 'ChatController@index');
-      Route::get('/chats/{id}/show', 'ChatController@show');
-      Route::post('/chats/store', 'ChatController@store');
-      Route::post('/chats/{id}/reply', 'ChatController@reply');
-   });
+   Route::get('/chats', [ChatController::class, 'index']);
+   Route::patch('/chats/{id}/read', [ChatController::class, 'markAsRead']);
 
 });
