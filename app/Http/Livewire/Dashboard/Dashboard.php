@@ -89,7 +89,11 @@ class Dashboard extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNull('supplierID')
                ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
+               ->orWhere(function ($subquery) use ($sidai) {
+                  if ($sidai !== null) {
+                     $subquery->where('supplierID', $sidai->id);
+                  }
+               });
          })
          ->whereBetween('updated_at', [$this->start, $this->end])
          ->count();
@@ -101,7 +105,11 @@ class Dashboard extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
-               ->where('supplierID', '!=', $sidai->id);
+               ->orWhere(function ($subquery) use ($sidai) {
+                  if ($sidai !== null) {
+                     $subquery->where('supplierID', $sidai->id);
+                  }
+               });;
          })
          ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
