@@ -54,15 +54,16 @@
                  </tr>
             </thead>
             <tbody>
+                @foreach ($visits as$key=> $visit)
                 <tr>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td><a href="" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
-               </tr>
-               
-               
+                    <td>{{ $key+1 }}</td>
+                    <td>{{ $visit->user_code??'' }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                </tr>
+                @endforeach
                   
                </tbody>
         </table>
