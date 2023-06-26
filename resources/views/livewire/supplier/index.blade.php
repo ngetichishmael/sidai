@@ -1,3 +1,5 @@
+<div>
+   <div class="mb-1 row">
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -35,6 +37,7 @@
         </select>
     </div>
 </div>
+   </div>
 <br>
 <div class="row">
     @include('partials.stickymenu')
@@ -71,3 +74,4 @@
             </div>
         </div>
     </div>
+</div></div>
