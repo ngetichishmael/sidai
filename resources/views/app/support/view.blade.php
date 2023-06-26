@@ -7,10 +7,10 @@
       <div class="row justify-content-center">
          <div class="col-md-8">
             <div style="color: {{ $ticket->status == 'open' ? 'orangered' : 'green' }}">
-           <h2> The current state of the issues is  {{ $ticket->status == 'open' ? 'open' : 'closed' }}</h2>
+{{--           <h2> The current state of the issues is  {{ $ticket->status == 'open' ? 'open' : 'closed' }}</h2>--}}
             </div>
             <div style="margin-left: 90%; width: fit-content; height: fit-content">
-            <a href="{!! route('support.update', ['id' => $ticket->id]) !!}" class="btn btn-warning">{{ $ticket->status == 'open' ? 'Close it' : 'Closed' }}</a>
+{{--            <a href="{!! route('support.update', ['id' => $ticket->id]) !!}" class="btn btn-warning">{{ $ticket->status == 'open' ? 'Close it' : 'Closed' }}</a>--}}
             </div>
             <br/>
             <div class="card">

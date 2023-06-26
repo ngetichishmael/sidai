@@ -1,13 +1,13 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'Support')
+@section('title', 'Chat')
 
 {{-- content section --}}
 @section('content')
    <!-- begin breadcrumb -->
    <div class="mb-2 row">
       <div class="col-md-9">
-         <h2 class="page-header"> Support Messages </h2>
+         <h2 class="page-header"> Messages </h2>
       </div>
       <div class="col-md-3">
       </div>
