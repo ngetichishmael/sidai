@@ -25,7 +25,11 @@ class pendingorders extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
+
       $sidai=suppliers::where('name', 'Sidai')->first();
+      if (!$sidai){
+         $sidai === null;
+      }
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
          ->where(function ($query) use ($sidai) {
