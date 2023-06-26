@@ -67,7 +67,7 @@ class supplierController extends Controller
       $activityLog->save();
       Session()->flash('success', 'Supplier has been successfully Added');
 
-      return redirect()->route('supplier.index');
+      return redirect()->route('supplier');
    }
 
    public function edit($id)
