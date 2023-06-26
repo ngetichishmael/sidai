@@ -10,6 +10,7 @@ use Livewire\WithPagination;
 use Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class distributororders extends Component
 {
    use WithPagination;
@@ -19,6 +20,8 @@ class distributororders extends Component
    public $orderBy = 'orders.id';
    public $orderAsc = false;
    public $customer_name = null;
+   public $statusFilter = '';
+
 
    public $fromDate;
    public $toDate;
@@ -27,7 +30,6 @@ class distributororders extends Component
       $searchTerm = '%' . $this->search . '%';
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
-         ->where('order_status','=', 'Pending Delivery')
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
@@ -42,6 +44,9 @@ class distributororders extends Component
                   $subQuery->where('name', 'like', $searchTerm);
                })
                ;
+         })
+         ->when($this->statusFilter, function ($query) {
+            $query->where('order_status', $this->statusFilter);
          })
          ->when($this->fromDate, function ($query) {
             $query->whereDate('created_at', '>=', $this->fromDate);

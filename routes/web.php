@@ -441,6 +441,7 @@ Route::group(['middleware' => ['verified']], function () {
    //chats endpoints
    Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
    Route::get('chats/{chat}', 'ChatController@show');
+   Route::get('chats/index', [ChatController::class, 'index'])->name('chats.index');
    Route::post('chats/{chat}/messages', 'MessageController@store');
    // routes/web.php
 
