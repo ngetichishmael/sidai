@@ -40,10 +40,11 @@ class StatusUpdatesNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+       return (new MailMessage)
+          ->subject('Updated Order Status Notification')
+          ->line('Your Order Status has been updated to '. $this->status ." by ".$this->user )
+          ->action('View Order', url('/orders/'.$this->orderId))
+          ->line('Thank you for using Sidai!');
     }
 
     /**

@@ -43,8 +43,9 @@ class NewOrderNotification extends Notification
        return (new MailMessage)
           ->subject('New Order Notification')
           ->line('A new order has been placed.')
-          ->action('View Order', url('/orders/'.$this->orderId))
-          ->line('Thank you for using Sidai!');
+          ->action('To View Order, Login to your App')
+          //->action('View Order', url('/orders/'.$this->orderId))
+          ->line('Thank you for using Sidai!, For assistance please reach contact us at CRM@sidai.com or through the ap chat section');
     }
 
     /**
