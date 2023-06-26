@@ -23,7 +23,7 @@
                <thead>
                <tr>
                   <th>User Name</th>
-                  <th>Role</th>
+                  <th>Account Type</th>
                   <th>Subject</th>
                   <th>Status</th>
                   <th>Time</th>
