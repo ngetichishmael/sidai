@@ -6,7 +6,7 @@
             name="name" required>
        <option value="">Select a route</option>
        @foreach($routes as $route)
-          <option value="{{ $route->id }}">{{ $route->name }}</option>
+          <option value="{{ $route->name }}">{{ $route->name }}</option>
        @endforeach
     </select>
         </div>
