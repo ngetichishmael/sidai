@@ -248,4 +248,12 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('/chats', [ChatController::class, 'index']);
    Route::patch('/chats/{id}/read', [ChatController::class, 'markAsRead']);
 
+   //support
+   Route::get('/support/all', 'SupportTicketController@index2')->middleware('auth:sanctum');
+   Route::post('/support/request', 'SupportTicketController@store')->middleware('auth:sanctum');
+   Route::post('support/{ticket_id}/messages/reply', 'SupportTicketController@replyToMessage')->middleware('auth:sanctum');
+   Route::get('support/{ticket_id}/messages', 'SupportTicketController@getMessages')->middleware('auth:sanctum');
+   Route::get('/support/{id}', 'SupportTicketController@show')->middleware('auth:sanctum');
+
+
 });
