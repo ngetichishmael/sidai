@@ -11,7 +11,7 @@ class TerritoryController extends Controller
 {
    public function terriory(Request $request)
    {
-      $data = Region::with('Subregion.Area')->get();
+      $data = Region::where('id',$request->user()->region_id)->with('Subregion.Area')->get();
       return response()->json(
          [
             'status' => 200,
@@ -22,10 +22,10 @@ class TerritoryController extends Controller
       );
    }
 
-   public function routes()
+   public function routes(Request $request)
    {
       // $data = Relationship::where('has_children', '0')->get();
-      $data = Region::with('Subregion.Area')->get();
+      $data = Region::where('id',$request->user()->region_id)->with('Subregion.Area')->get();
       return response()->json(
          [
             'status' => 200,
