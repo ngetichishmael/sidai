@@ -6,7 +6,7 @@
    </div>
    <div class="col-md-3">
        <label for="validationTooltip01">End Date</label>
-       <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
+       <input wire:model="end" name="startDate" type="date" class="form-control" id="validationTooltip01"
            placeholder="YYYY-MM-DD HH:MM" required />
    </div>
    <div class="col-md-3">
@@ -58,10 +58,10 @@
                     <tr>
                      <td>{{ $count++ }}</td>
                      <td>{{ $distributor->Customer->customer_name }}</td>
+                     <td>{{ $distributor->orders_count }}</td>
                      <td></td>
-                     <td></td>
-                     <td>{{ $distributor->Customer->Region->name??'' }}</td>
-                     <td>{{ $distributor->Customer->Route->name??'' }}</td>
+                     <td>{{ $distributor->User->Region->name??'' }}</td>
+                     <td>{{ $distributor->User->Route->name??'' }}</td>
                  </tr> 
                     @endforeach
                  </tbody>

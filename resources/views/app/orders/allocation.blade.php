@@ -148,7 +148,8 @@
                          $('#user').append('<option value="' + distributor.id + '">' + distributor.name + '</option>');
                       });
                    },
-                   error: function() {
+                   error: function($e) {
+                      console.log($e);
                       console.log('Error occurred during AJAX request.');
                    }
                 });

@@ -54,14 +54,17 @@
                  </tr>
             </thead>
             <tbody>
+                @foreach ($targets as$key=> $target)
                 <tr>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td><a href="" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
-               </tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                </tr>
+                @endforeach
+                
                
                
                   

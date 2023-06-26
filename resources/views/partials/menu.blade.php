@@ -323,8 +323,6 @@
       </li>
    </ul>
 </li>
-</ul>
-</li>
 <li class="nav-item {!! Nav::isResource('routes') !!}">
 <a class="d-flex align-items-center" href="">
 <i data-feather='map'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
@@ -339,9 +337,8 @@
 </li>
 </ul>
 </li>
-@endif
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
-<li class="nav-item {!! Nav::isResource('chats') !!}">
+<li class="nav-item {!! route('chats.index') !!}">
 <a class="d-flex align-items-center" href=""><i data-feather="message-circle"></i><span
    class="menu-title text-truncate" data-i18n="Invoice">Chats</span></a>
 {{--                <ul class="menu-content">--}}
@@ -393,6 +390,4 @@
 </li>
 @endif
 </ul>
-</div>
->>>>>>> 8089179c3a4d5789888d5af7c262c9b9386028b9
 </div>

@@ -22,13 +22,26 @@
          </div>
       </div>
    </div>
+      <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
+         <div class="col-md-2">
+            <div>
+               <label for="">Filter By Status: </label>
+               <select wire:model="statusFilter" class="form-control">
+                  <option value="">All Statuses</option>
+                  <option value="Pending Delivery">Pending Orders</option>
+                  <option value="Complete Delivery">Complete Delivery</option>
+                  <option value="Waiting acceptance">Waiting acceptance</option>
+                  <option value="Partially Delivered">Partially Delivered</option>
+               </select>
+            </div>
+         </div></div>
     <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50">
         <div class="col-md-6">
             <label for="">Search</label>
             <input type="text" wire:model="search" class="form-control" placeholder="Enter customer name">
         </div>
         <div class="col-md-2">
-            <label for="">Items Per</label>
+            <label for="">Items Per: </label>
             <select wire:model="perPage" class="form-control">`
                 <option value="10" selected>10</option>
                 <option value="25">25</option>
@@ -78,11 +91,29 @@
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
-{{--                                <td>{{ $order->qty}}</td>--}}
-                               @if($order->order_status == 'Pending Delivery') <td>{{'Pending Order'}}</td>
+                               @php
+                                  $orderStatus = strtolower($order->order_status);
+                               @endphp
+
+                               @if ($orderStatus == 'pending delivery')
+                                  <td class="pending-order">Pending Order</td>
+                               @elseif ($orderStatus == 'complete delivery')
+                                  <td class="delivered-order">{{ $order->order_status }}</td>
+                               @elseif ($orderStatus == 'waiting acceptance')
+                                  <td class="waiting-acceptance">{{ $order->order_status }}</td>
+                               @elseif ($orderStatus == 'partially delivery')
+                                  <td class="partial-delivery">{{ $order->order_status }}</td>
+                               @elseif ($orderStatus == 'not delivered')
+                                  <td class="not-delivered">{{ $order->order_status }}</td>
                                @else
-                               {{ $order->order_status}}
+                                  <td>{{ $order->order_status }}</td>
                                @endif
+
+
+                               {{--                               @if($order->order_status == 'Pending Delivery') <td>{{'Pending Order'}}</td>--}}
+{{--                               @else--}}
+{{--                               {{ $order->order_status}}--}}
+{{--                               @endif--}}
 
 {{--                                <td>{{ $order->order_status }}</td>--}}
 {{--                                <td>--}}
@@ -125,5 +156,26 @@
             {!! $pendingorders->links() !!}
         </div>
     </div>
+   <style>
+      .pending-order {
+         color: orange;
+      }
+
+      .delivered-order {
+         color: green;
+      }
+
+      .waiting-acceptance {
+         color: blue;
+
+      }
+
+      .partial-delivery {
+         color: purple;
+      }
+      .not-delivered {
+         color: orangered;
+      }
+   </style>
     @section('scripts')
     @endsection
