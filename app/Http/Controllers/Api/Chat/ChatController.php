@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Chat;
 
 use App\Http\Controllers\Controller;
+use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,20 +12,20 @@ class ChatController extends Controller
 {
    public function index()
    {
-      $users = User::with('latestMessage')->get();
+      $chats = Chat::where('receiver_id', auth()->id())
+         ->orderBy('created_at', 'desc')
+         ->get();
 
-      return response()->json($users);
+      return response()->json($chats);
    }
 
-   public function show($id)
+   public function markAsRead($id)
    {
-      $user = User::findOrFail($id);
-      $messages = $user->messages()->orderBy('created_at')->get();
+      $chat = Chat::findOrFail($id);
+      $chat->is_read = true;
+      $chat->save();
 
-      return response()->json([
-         'user' => $user,
-         'messages' => $messages,
-      ]);
+      return response()->json(['message' => 'Chat marked as read']);
    }
 
    public function store(Request $request)
