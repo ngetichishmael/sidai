@@ -7,7 +7,6 @@ use App\Models\products\product_information;
 use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\UnitRoute;
-use App\Models\warehousing;
 use App\Models\zone;
 use Illuminate\Http\Request;
 
@@ -27,9 +26,7 @@ class productsController extends Controller
    {
       $route_code = $request->user()->route_code;
       $region_id = Region::whereId($route_code)->first();
-      $region = Region::whereId($request->user()->region_id)->first();
-      $warehouse =warehousing::where('region_id',$region )->first();
-      $products = product_information::where('warehouse_code',$warehouse->warehouse_code )->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',
