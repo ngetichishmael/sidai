@@ -2,6 +2,8 @@
   'activity.dashboard' => 'App\\Http\\Livewire\\Activity\\Dashboard',
   'brands.edit' => 'App\\Http\\Livewire\\Brands\\Edit',
   'brands.index' => 'App\\Http\\Livewire\\Brands\\Index',
+  'chat.chat-list' => 'App\\Http\\Livewire\\Chat\\ChatList',
+  'chat.chat-messages' => 'App\\Http\\Livewire\\Chat\\ChatMessages',
   'checkin.index' => 'App\\Http\\Livewire\\Checkin\\index',
   'comment.dashboard' => 'App\\Http\\Livewire\\Comment\\Dashboard',
   'creditors.approve' => 'App\\Http\\Livewire\\Creditors\\Approve',

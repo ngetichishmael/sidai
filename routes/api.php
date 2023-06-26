@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\ReconciledProductsController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\TargetsController;
 use App\Http\Controllers\Chat\SocketsController;
+use App\Http\Controllers\Chat\ChatController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*
@@ -242,5 +243,13 @@ Route::group(['namespace' => 'Api'], function () {
    Route::middleware(['auth'])->group(function () {
    });
    Route::post('socket/connect', [SocketsController::class, 'connect']);
+
+
+   Route::middleware('auth:sanctum')->group(function () {
+      Route::get('/chats/index', 'ChatController@index');
+      Route::get('/chats/{id}/show', 'ChatController@show');
+      Route::post('/chats/store', 'ChatController@store');
+      Route::post('/chats/{id}/reply', 'ChatController@reply');
+   });
 
 });
