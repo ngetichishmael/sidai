@@ -28,7 +28,7 @@
 <div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
-        <select wire:model="" class="form-control">`
+        <select wire:model="" class="form-control">
             <option value="" selected>select</option>
             <option value=""></option>
 
