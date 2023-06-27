@@ -143,11 +143,9 @@ class AuthController extends Controller
 
       $user = FacadesDB::table('users')->where('phone_number', $number)->get();
 
-      if ($user) {
+      if ($user->isNotEmpty()) {
          try {
-
             $code = rand(100000, 999999);
-
             UserCode::updateOrCreate([
                'user_id' => $user[0]->id,
                'code' => $code
@@ -185,9 +183,9 @@ class AuthController extends Controller
                CURLOPT_CUSTOMREQUEST => 'POST',
                CURLOPT_POSTFIELDS => json_encode(
                   array(
-                     "sender_name" => "PASANDA",
-                     "contact" => $this->number,
-                     "message" => $this->code,
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => $code,
                      "callback" => "https://pasanda.com/sms/callback"
                   )
                ),
@@ -198,8 +196,8 @@ class AuthController extends Controller
             ));
             $response = curl_exec($curl);
             curl_close($curl);
-//            return $response;
-            return response()->json(['data' => $user, 'otp' => $code]);
+            return $response;
+//            return response()->json(['data' => $user, 'otp' => $code]);
 
 
 //            $curl = curl_init();

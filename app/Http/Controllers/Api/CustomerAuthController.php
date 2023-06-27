@@ -173,7 +173,7 @@ class CustomerAuthController extends Controller
 
       $user = DB::table('users')->where('phone_number', $number)->get();
 
-      if ($user) {
+      if ($user->isNotEmpty()) {
          try {
 
             $code = rand(100000, 999999);
@@ -216,9 +216,9 @@ class CustomerAuthController extends Controller
                CURLOPT_CUSTOMREQUEST => 'POST',
                CURLOPT_POSTFIELDS => json_encode(
                   array(
-                     "sender_name" => "PASANDA",
-                     "contact" => $this->number,
-                     "message" => $this->code,
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => $code,
                      "callback" => "https://pasanda.com/sms/callback"
                   )
                ),
@@ -229,11 +229,8 @@ class CustomerAuthController extends Controller
             ));
             $response = curl_exec($curl);
             curl_close($curl);
-//            return $response;
-            return response()->json(['data' => $user, 'otp' => $code]);
-
-
-            return response()->json(['data' => $user, 'otp' => $code]);
+            return $response;
+//            return response()->json(['data' => $user, 'otp' => $code]);
          } catch (ExceptionHandler $e) {
             return response()->json(
                [
