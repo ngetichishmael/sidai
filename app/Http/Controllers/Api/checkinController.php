@@ -384,11 +384,11 @@ class checkinController extends Controller
          //delete item
          $cartItem->delete();
       }
-         if ($request->distributor != 1 && $request->distributor !=null ){
-               $usersToNotify = Suppliers::findOrFail($request->distributor);
-               $orderId = $order->id;
-               Notification::send($usersToNotify, new NewOrderNotification($orderId));
-         }
+//         if ($request->distributor != 1 && $request->distributor !=null ){
+//               $usersToNotify = Suppliers::findOrFail($request->distributor);
+//               $orderId = $order->id;
+//               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+//         }
 
       $ativity_rand= Str::random(20);
       $activityLog = new activity_log();
