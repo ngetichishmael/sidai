@@ -382,7 +382,7 @@ class checkinController extends Controller
       }
          if ($request->distributor != $sidai->id && $request->distributor !=null ){
             $usersToNotify = Suppliers::findOrFail($request->distributor);
-               Notification::send($usersToNotify, new NewOrderNotification($order->id));
+               Notification::send($usersToNotify, new NewOrderNotification($order->id, ));
          }
 
       $random = Str::random(20);

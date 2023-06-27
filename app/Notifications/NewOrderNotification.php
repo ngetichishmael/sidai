@@ -40,6 +40,7 @@ class NewOrderNotification extends Notification
      */
     public function toMail($notifiable)
     {
+
        return (new MailMessage)
           ->subject('New Order Notification')
           ->line('A new order has been placed.')
