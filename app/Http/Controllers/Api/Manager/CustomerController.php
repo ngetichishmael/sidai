@@ -23,10 +23,14 @@ class CustomerController extends Controller
       ]);
 
    }
-   public function getCustomers()
+   public function getCustomers(Request $request)
    {
+      if ($request->user()->account_type ==='RSM') {
+         $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
+            ->where('region_id', Auth::user()->region_id)
+            ->get();
+      }
       $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
-         ->where('region_id', Auth::user()->region_id)
          ->get();
       return response()->json([
          "success" => true,
