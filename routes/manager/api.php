@@ -92,7 +92,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/add/customer', [CustomerController::class, 'addCustomer']);
 
       Route::get('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
-      Route::get('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
+      Route::post('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
 
    });
 });
