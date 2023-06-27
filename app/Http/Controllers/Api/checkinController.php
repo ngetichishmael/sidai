@@ -26,6 +26,7 @@ use App\Models\Route_customer;
 use App\Models\Routes;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 /**
  * @group Checkin Api's
@@ -333,14 +334,14 @@ class checkinController extends Controller
       $checkin = checkin::where('code', $checkinCode)->first();
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
-      $region = Region::where('id', $request->user()->region_id)->first();
-      $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
-      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $orderCode = $regionCode . '-' . $orderNumber;
-      if (empty($orderCode)){
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+//      $orderCode = $regionCode . '-' . $orderNumber;
+//      if (empty($orderCode)){
          $orderCode = Helper::generateRandomString(8);
-      }
+//      }
 
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
@@ -382,8 +383,8 @@ class checkinController extends Controller
          $cartItem->delete();
       }
          if ($request->distributor != 1 && $request->distributor !=null ){
-            $usersToNotify = Suppliers::findOrFail($request->distributor);
-            $orderId = $order->id;
+               $usersToNotify = Suppliers::findOrFail($request->distributor);
+               $orderId = $order->id;
                Notification::send($usersToNotify, new NewOrderNotification($orderId));
          }
 
