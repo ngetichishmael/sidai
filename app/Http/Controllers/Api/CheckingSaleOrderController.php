@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
+use App\Http\Livewire\Customers\Region;
+use App\Models\activity_log;
+use App\Models\Orders;
 use App\Models\suppliers\suppliers;
+use App\Notifications\NewOrderNotification;
 use Illuminate\Http\Request;
 use App\Models\customer\checkin;
 use App\Models\products\product_information;
@@ -11,6 +16,7 @@ use App\Models\Cart;
 use App\Models\customers;
 use App\Models\Order_items;
 use App\Models\Orders as Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -40,6 +46,13 @@ class CheckingSaleOrderController extends Controller
       $checkin = checkin::where('code', $checkinCode)->first();
       $user_code = $request->user()->user_code;
       $total = 0;
+
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+  //     $random = $regionCode . '-' . $orderNumber;
+//      $random = Helper::generateRandomString(8);
       $request = $request->collect();
       foreach ($request as $value) {
          $price_total = $value["qty"] * $value["price"];
@@ -105,6 +118,18 @@ class CheckingSaleOrderController extends Controller
             'updated_at' => now(),
          ]);
       }
+
+      $ativity_rand = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product added to vansale order';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Vansale order';
+      $activityLog->action = 'Vansale order made by' .  auth()->user()->name . ' order code  '.$random;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
+
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
@@ -204,8 +229,16 @@ class CheckingSaleOrderController extends Controller
    // Beginning of NewSales
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
-      // $checkin = customers::whereId($checkinCode)->first();
-
+//       $checkin = customers::whereId($checkinCode)->first();
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+//      $random = $regionCode . '-' . $orderNumber;
+//      if (empty($orderCode)){
+//         $orderCode = Helper::generateRandomString(8);
+//      }
+//      $orderCode = Helper::generateRandomString(8);
       $user_code = $request->user()->user_code;
       $request = $request->collect();
       $total = 0;
@@ -229,7 +262,7 @@ class CheckingSaleOrderController extends Controller
                "userID" => $user_code,
             ]
          );
-         Order::updateOrCreate(
+         $orderId = Order::updateOrCreate(
             [
                'order_code' => $random,
             ],
@@ -241,7 +274,7 @@ class CheckingSaleOrderController extends Controller
                'order_status' => 'Pending Delivery',
                'payment_status' => 'Pending Payment',
                'qty' => $value["qty"],
-               'supplierID'=>$distributor ?? $sidai ?? 1,
+               'supplierID'=>$distributor ?? 1,
                'discount' => $items["discount"] ?? "0",
                'checkin_code' => $checkinCode,
                'order_type' => 'Pre Order',
@@ -269,6 +302,20 @@ class CheckingSaleOrderController extends Controller
             ->where('user_code', $user_code)
             ->increment('AchievedOrdersTarget', $value["qty"]);
       }
+      if ($distributor != 1 && $distributor !=null ){
+         $usersToNotify = Suppliers::findOrFail($distributor);
+         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
+      }
+      $ativity_rand = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product added to order';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'New sales order';
+      $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  '.$random;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "message" => "Product added to order",

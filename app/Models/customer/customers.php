@@ -49,9 +49,17 @@ class customers extends Model
    {
       $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
    }
+   public function scopeLastWeek($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->subWeek(1), Carbon::now()->startOfWeek()]);
+   }
    public function scopeCurrentMonth($query)
    {
       $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+   }
+   public function scopeLastMonth($query)
+   {
+      $query->whereBetween('updated_at', [Carbon::now()->subMonth(1), Carbon::now()->startOfMonth()]);
    }
    public function scopePeriod($query, $start = null, $end = null)
    {

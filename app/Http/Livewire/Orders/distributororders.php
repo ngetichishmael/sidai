@@ -33,7 +33,7 @@ class distributororders extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
-               ->where('supplierID', '!=', $sidai->id);
+               ->where('supplierID', '!=', 1);
          })
          ->where('order_type','=','Pre Order')
          ->where(function ($query) use ($searchTerm) {

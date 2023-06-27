@@ -309,6 +309,10 @@ public function groups(){
          'unit_id' => $request->route_code,
          'image' => $image_path
       ]);
+      DB::table('leads_targets')
+         ->where('user_code', $request->user()->user_code)
+         ->increment('AchievedLeadsTarget');
+
       $random = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Adding customer information';

@@ -34,7 +34,7 @@ class pendingorders extends Component
                   ->orWhere('supplierID', '')
                   ->orWhere(function ($subquery) use ($sidai) {
                      if ($sidai !== null) {
-                        $subquery->where('supplierID', $sidai->id);
+                        $subquery->where('supplierID', 1);
                      }
                   });
          })

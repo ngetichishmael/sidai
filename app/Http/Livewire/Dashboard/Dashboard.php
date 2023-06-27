@@ -76,7 +76,7 @@ class Dashboard extends Component
 
       return Orders::where('order_type', 'Van sales')
          ->whereBetween('updated_at', [$this->start, $this->end])
-         ->whereIn('supplierID', [$sidai->id, '', null])
+         ->whereIn('supplierID', [1, '', null])
          ->where('order_status', 'DELIVERED')
          ->sum('price_total');
    }
@@ -91,7 +91,7 @@ class Dashboard extends Component
                ->orWhere('supplierID', '')
                ->orWhere(function ($subquery) use ($sidai) {
                   if ($sidai !== null) {
-                     $subquery->where('supplierID', $sidai->id);
+                     $subquery->where('supplierID',1);
                   }
                });
          })
@@ -107,7 +107,7 @@ class Dashboard extends Component
                ->where('supplierID', '!=', '')
                ->orWhere(function ($subquery) use ($sidai) {
                   if ($sidai !== null) {
-                     $subquery->where('supplierID', $sidai->id);
+                     $subquery->where('supplierID',1);
                   }
                });;
          })
@@ -124,7 +124,7 @@ class Dashboard extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNotNull('supplierID')
                ->where('supplierID', '!=', '')
-               ->where('supplierID', '!=', $sidai->id);
+               ->where('supplierID', '!=',1);
          })
          ->where('order_type', 'Pre Order')
          ->whereBetween('updated_at', [$this->start, $this->end])
@@ -140,7 +140,7 @@ class Dashboard extends Component
             $query->whereHas('Order', function ($subQuery) use ($sidai) {
                $subQuery->whereNull('supplierID')
                   ->where('supplierID', '=', '')
-                  ->where('supplierID', '=', $sidai->id);
+                  ->where('supplierID', '=',1);
             })->whereHas('Order', function ($subQuery) {
                $subQuery->where('order_type', 'Pre Order');
             });
@@ -189,7 +189,7 @@ class Dashboard extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNull('supplierID')
                ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
+               ->orWhere('supplierID',1);
          })
          ->whereBetween('created_at', [$this->start, $this->end])
          ->where('order_status', 'DELIVERED')
@@ -204,7 +204,7 @@ class Dashboard extends Component
          ->where(function ($query) use ($sidai) {
             $query->whereNull('supplierID')
                ->orWhere('supplierID', '')
-               ->orWhere('supplierID', $sidai->id);
+               ->orWhere('supplierID',1);
          })->whereBetween('updated_at', [$this->start, $this->end])
          ->paginate($this->perPreorder);
    }
@@ -232,7 +232,7 @@ class Dashboard extends Component
             $query->whereHas('Order', function ($subQuery) use ($sidai) {
                $subQuery->whereNull('supplierID')
                   ->where('supplierID', '=', '')
-                  ->where('supplierID', '=', $sidai->id);
+                  ->where('supplierID', '=',1);
             })->whereHas('Order', function ($subQuery) {
                $subQuery->where('order_type', 'Pre Order');
             });
@@ -279,7 +279,7 @@ class Dashboard extends Component
 //         ->where(function ($query) use ($sidai) {
 //            $query->whereNull('supplierID')
 //               ->orWhere('supplierID', '')
-//               ->orWhere('supplierID', $sidai->id);
+//               ->orWhere('supplierID',1);
 //         })->whereYear('updated_at', '=', date('Y'))
 //         ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
 //         ->groupBy('month')
@@ -296,7 +296,7 @@ class Dashboard extends Component
             $query->whereHas('Order', function ($subQuery) use ($sidai) {
                $subQuery->whereNull('supplierID')
                   ->where('supplierID', '=', '')
-                  ->where('supplierID', '=', $sidai->id);
+                  ->where('supplierID', '=',1);
             })->whereHas('Order', function ($subQuery) {
                $subQuery->where('order_type', 'Pre Order');
             });

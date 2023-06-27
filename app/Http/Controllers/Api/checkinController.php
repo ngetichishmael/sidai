@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Livewire\Customers\Region;
+use App\Models\activity_log;
 use App\Models\Delivery;
 use App\Models\suppliers\suppliers;
+use App\Notifications\NewOrderNotification;
+use App\Notifications;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use App\Models\customer\checkin;
@@ -22,6 +26,8 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Route_customer;
 use App\Models\Routes;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 /**
  * @group Checkin Api's
@@ -256,9 +262,17 @@ class checkinController extends Controller
             $cart->save();
          }
       }
-
-
-      // Session::flash('success','Product added to order');
+      $customer = customers::where('account', $checkin->account_number)->first();
+      $ativity_rand = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Checkin order';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Product added to order';
+            $activityLog->action = 'Product added to order by' . $request->user()->name .  ' for customer ' .$customer->customer_name ?? $checkin->account_number;
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $ativity_rand;
+            $activityLog->ip_address = "";
+            $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -319,18 +333,24 @@ class checkinController extends Controller
 
       //checkin details
       $checkin = checkin::where('code', $checkinCode)->first();
-
-
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+//      $orderCode = $regionCode . '-' . $orderNumber;
+//      dd( $request->user()->region_id);
+//      if (empty($orderCode)){
+         $orderCode = Helper::generateRandomString(8);
+//      }
 
-      $orderCode = Helper::generateRandomString(8);
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
       $order = new Orders;
       $order->order_code =  $orderCode;
-      $order->user_code = Auth::user()->user_code;
-      $order->business_code = Auth::user()->business_code;
+      $order->user_code = $request->user()->user_code;
+      $order->business_code = $request->user()->business_code;
       $order->customerID = $checkin->customer_id;
       $order->checkin_code = $checkinCode;
       $order->price_total = $cart->sum('amount');
@@ -338,7 +358,7 @@ class checkinController extends Controller
       $order->payment_status = 'Pending Payment';
       $order->qty = $cart->sum('qty');
       $order->order_type = $request->order_type;
-      $order->supplierID = $request->distributor ?? $sidai ?? 1;
+      $order->supplierID = $request->distributor ?? 1;
       $order->balance = $cart->sum('amount');
       $order->delivery_date = $request->delivery_date;
       $order->reasons_partial_delivery = $request->reasons_partial_delivery;
@@ -364,6 +384,22 @@ class checkinController extends Controller
          //delete item
          $cartItem->delete();
       }
+         if ($request->distributor != 1 && $request->distributor !=null ){
+               $usersToNotify = Suppliers::findOrFail($request->distributor);
+               $orderId = $order->id;
+               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+         }
+
+      $ativity_rand= Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Order created successfully';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order creation';
+      $activityLog->action = 'Order created by' . $request->user()->name . ' order code  '.$orderCode;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -622,8 +658,9 @@ class checkinController extends Controller
             'product_information.category',
             'product_information.brand',
             'product_information.sku_code',
-            'product_price.buying_price as retailer_price',
-            'product_price.selling_price as wholesale_price',
+            'product_price.selling_price as retailer_price',
+            'product_price.buying_price as wholesale_price',
+            'product_price.distributor_price as distributor_price',
             'inventory_allocated_items.allocation_code',
             'inventory_allocated_items.current_qty',
             'inventory_allocated_items.allocated_qty',
