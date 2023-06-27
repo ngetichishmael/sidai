@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
@@ -233,7 +234,9 @@ class CheckingSaleOrderController extends Controller
       $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
       $random = $regionCode . '-' . $orderNumber;
-
+      if (empty($orderCode)){
+         $orderCode = Helper::generateRandomString(8);
+      }
       $user_code = $request->user()->user_code;
       $request = $request->collect();
       $total = 0;
