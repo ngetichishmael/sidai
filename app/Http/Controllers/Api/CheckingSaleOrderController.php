@@ -44,6 +44,13 @@ class CheckingSaleOrderController extends Controller
       $checkin = checkin::where('code', $checkinCode)->first();
       $user_code = $request->user()->user_code;
       $total = 0;
+
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+       $random = $regionCode . '-' . $orderNumber;
+
       $request = $request->collect();
       foreach ($request as $value) {
          $price_total = $value["qty"] * $value["price"];
@@ -223,7 +230,7 @@ class CheckingSaleOrderController extends Controller
       // $checkin = customers::whereId($checkinCode)->first();
       $region = Region::where('id', $request->user()->region_id)->first();
       $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('region_id', $region->id)->count() + 1;
+      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
       $random = $regionCode . '-' . $orderNumber;
 
