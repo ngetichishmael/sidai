@@ -337,7 +337,7 @@ class checkinController extends Controller
       $cart = Cart::where('checkin_code', $checkinCode)->get();
       $region = Region::where('id', $request->user()->region_id)->first();
       $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('region_id', $region->id)->count() + 1;
+      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
       $orderCode = $regionCode . '-' . $orderNumber;
 //      $orderCode = Helper::generateRandomString(8);
