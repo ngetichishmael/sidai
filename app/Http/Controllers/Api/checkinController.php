@@ -347,8 +347,8 @@ class checkinController extends Controller
       //order
       $order = new Orders;
       $order->order_code =  $orderCode;
-      $order->user_code = Auth::user()->user_code;
-      $order->business_code = Auth::user()->business_code;
+      $order->user_code = $request->user()->user_code;
+      $order->business_code = $request->user()->business_code;
       $order->customerID = $checkin->customer_id;
       $order->checkin_code = $checkinCode;
       $order->price_total = $cart->sum('amount');
