@@ -8,6 +8,7 @@ use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Orders;
 use App\Models\suppliers\suppliers;
+use App\Models\User;
 use App\Models\UserCode;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Contracts\Debug\ExceptionHandler;
@@ -335,18 +336,8 @@ class CheckingSaleOrderController extends Controller
 
    public function sendOTP($number, $order_code)
    {
-
-
-      $user = FacadesDB::table('users')->where('phone_number', $number)->get();
-
-      if ($user->isNotEmpty()) {
+      if ($number->isNotEmpty()) {
          try {
-            $code = rand(100000, 999999);
-            UserCode::updateOrCreate([
-               'user_id' => $user[0]->id,
-               'code' => $code
-            ]);
-
             $curl = curl_init();
 
             $url = 'https://accounts.jambopay.com/auth/token';
@@ -393,38 +384,6 @@ class CheckingSaleOrderController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             return $response;
-//            return response()->json(['data' => $user, 'otp' => $code]);
-
-
-//            $curl = curl_init();
-//
-//            curl_setopt_array($curl, array(
-//               CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
-//               CURLOPT_RETURNTRANSFER => true,
-//               CURLOPT_ENCODING => '',
-//               CURLOPT_MAXREDIRS => 10,
-//               CURLOPT_TIMEOUT => 0,
-//               CURLOPT_FOLLOWLOCATION => true,
-//               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//               CURLOPT_CUSTOMREQUEST => 'POST',
-//               CURLOPT_POSTFIELDS => '{
-//             "number" : "' . $number . '",
-//             "sms" : ' . $code . ',
-//             "callBack" : "https://....",
-//             "senderName" : "PASANDA"
-//       }
-//       ',
-//               CURLOPT_HTTPHEADER => array(
-//                  'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
-//                  'Content-Type: application/json'
-//               ),
-//            ));
-//
-//            $response = curl_exec($curl);
-//
-//            curl_close($curl);
-
-//            return response()->json(['data' => $user, 'otp' => $code]);
          } catch (ExceptionHandler $e) {
             return response()->json(['message' => 'Error occurred while trying to send OTP code']);
          }
