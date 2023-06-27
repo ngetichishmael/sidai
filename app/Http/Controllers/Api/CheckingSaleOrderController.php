@@ -8,6 +8,7 @@ use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Orders;
 use App\Models\suppliers\suppliers;
+use App\Notifications\NewOrderNotification;
 use Illuminate\Http\Request;
 use App\Models\customer\checkin;
 use App\Models\products\product_information;
