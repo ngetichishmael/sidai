@@ -40,7 +40,6 @@ class OrdersController extends Controller
 
    public function allOrders(Request $request)
    {
-
       return response()->json([
          'status' => 200,
          'success' => true,
