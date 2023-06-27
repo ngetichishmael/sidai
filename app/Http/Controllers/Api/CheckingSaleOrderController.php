@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\customer\checkin;
@@ -105,6 +106,18 @@ class CheckingSaleOrderController extends Controller
             'updated_at' => now(),
          ]);
       }
+
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product added to vansale order';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Vansale order';
+      $activityLog->action = 'Vansale order made by' . $request->user()->name . ' order code  '.$random;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = "";
+      $activityLog->save();
+
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
