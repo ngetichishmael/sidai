@@ -331,8 +331,6 @@ class checkinController extends Controller
 
       //checkin details
       $checkin = checkin::where('code', $checkinCode)->first();
-
-
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
       $region = Region::where('id', $request->user()->region_id)->first();
@@ -340,7 +338,10 @@ class checkinController extends Controller
       $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
       $orderCode = $regionCode . '-' . $orderNumber;
-//      $orderCode = Helper::generateRandomString(8);
+      if (empty($orderCode)){
+         $orderCode = Helper::generateRandomString(8);
+      }
+
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
       $order = new Orders;
@@ -354,7 +355,7 @@ class checkinController extends Controller
       $order->payment_status = 'Pending Payment';
       $order->qty = $cart->sum('qty');
       $order->order_type = $request->order_type;
-      $order->supplierID = $request->distributor ?? $sidai ?? 1;
+      $order->supplierID = $request->distributor ?? 1;
       $order->balance = $cart->sum('amount');
       $order->delivery_date = $request->delivery_date;
       $order->reasons_partial_delivery = $request->reasons_partial_delivery;
