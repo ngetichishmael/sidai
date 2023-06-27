@@ -46,12 +46,12 @@ class CheckingSaleOrderController extends Controller
       $user_code = $request->user()->user_code;
       $total = 0;
 
-      $region = Region::where('id', $request->user()->region_id)->first();
-      $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
-      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-       $random = $regionCode . '-' . $orderNumber;
-
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+  //     $random = $regionCode . '-' . $orderNumber;
+//      $random = Helper::generateRandomString(8);
       $request = $request->collect();
       foreach ($request as $value) {
          $price_total = $value["qty"] * $value["price"];
@@ -229,14 +229,15 @@ class CheckingSaleOrderController extends Controller
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
       // $checkin = customers::whereId($checkinCode)->first();
-      $region = Region::where('id', $request->user()->region_id)->first();
-      $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
-      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $random = $regionCode . '-' . $orderNumber;
-      if (empty($orderCode)){
-         $orderCode = Helper::generateRandomString(8);
-      }
+//      $region = Region::where('id', $request->user()->region_id)->first();
+//      $regionCode = strtoupper(substr($region->name, 0, 3));
+//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
+//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+//      $random = $regionCode . '-' . $orderNumber;
+//      if (empty($orderCode)){
+//         $orderCode = Helper::generateRandomString(8);
+//      }
+//      $orderCode = Helper::generateRandomString(8);
       $user_code = $request->user()->user_code;
       $request = $request->collect();
       $total = 0;
