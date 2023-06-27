@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
+use App\Models\Orders;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\customer\checkin;
@@ -219,6 +221,11 @@ class CheckingSaleOrderController extends Controller
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
       // $checkin = customers::whereId($checkinCode)->first();
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('region_id', $region->id)->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $random = $regionCode . '-' . $orderNumber;
 
       $user_code = $request->user()->user_code;
       $request = $request->collect();
@@ -243,7 +250,7 @@ class CheckingSaleOrderController extends Controller
                "userID" => $user_code,
             ]
          );
-         Order::updateOrCreate(
+         $orderId = Order::updateOrCreate(
             [
                'order_code' => $random,
             ],
@@ -255,7 +262,7 @@ class CheckingSaleOrderController extends Controller
                'order_status' => 'Pending Delivery',
                'payment_status' => 'Pending Payment',
                'qty' => $value["qty"],
-               'supplierID'=>$distributor ?? $sidai ?? 1,
+               'supplierID'=>$distributor ?? 1,
                'discount' => $items["discount"] ?? "0",
                'checkin_code' => $checkinCode,
                'order_type' => 'Pre Order',
@@ -283,6 +290,20 @@ class CheckingSaleOrderController extends Controller
             ->where('user_code', $user_code)
             ->increment('AchievedOrdersTarget', $value["qty"]);
       }
+      if ($request->distributor != 1 && $request->distributor !=null ){
+         $usersToNotify = Suppliers::findOrFail($request->distributor);
+         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
+      }
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product added to order';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'New sales order';
+      $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  '.$random;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = "";
+      $activityLog->save();
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
