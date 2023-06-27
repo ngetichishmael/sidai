@@ -60,10 +60,11 @@
                             <td>{!! $contact->customer_number !!}</td>
 
                             <td class="cell-fit">
-                                {!! $contact->Area->Subregion->Region->name ?? $contact->Region->name ??'' !!}
+                                {!! $contact->region_name ?? $contact->Region->name ?? '' !!}
                             </td>
-                            <td>{!! $contact->Area->Subregion->name ?? '' !!}</td>
-                            <td>{!! $contact->Area->name ?? '' !!}</td>
+                            <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
+{{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td>--}}
+                            <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
                             <td>{!! $contact->customer_type !!}</td>
                             <td>
                                 {!! $this->Creator($contact->id) ?? '' !!}

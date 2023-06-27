@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','User Roles')
+@section('title','Account Types')
 
 {{-- content section --}}
 @section('content')
@@ -8,7 +8,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Users Roles List</h2>
+               <h2 class="content-header-title float-start mb-0">Users Account Types List</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -27,7 +27,8 @@
                  <thead>
                     <tr>
                        <th width="1%">#</th>
-                       <th width="20%">User Role</th>
+                       <th width="20%">Account Types</th>
+{{--                       <th width="20%">Number of Users</th>--}}
                        <th class="text-center" width="15.5%">Actions</th>
                     </tr>
                  </thead>
@@ -36,16 +37,21 @@
                     <tr>
                        <td>{!! $count++ !!}</td>
                        <td>{!! $list !!}</td>
+{{--                       <td>{{ count(explode(',', $list)) }}</td>--}}
                        <td>
                           <div class="d-flex" style="gap:20px">
                              @if($list == 'Admin')
                                 <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View</a>
-                            @elseif($list == 'Technical-Sales-Agent')
-                                <a href="{{ route('technical-sales-agent') }}" class="btn btn-info btn-sm">View</a>
-                                @elseif($list == 'Sale-Manager')
-                                <a href="{{ route('sale-manager') }}" class="btn btn-info btn-sm">View </a>
-                                @elseif($list == 'Manager')
-                                <a href="{{ route('manager') }}" class="btn btn-info btn-sm">View</a>
+                            @elseif($list == 'NSM')
+                                <a href="{{ route('users.nsm') }}" class="btn btn-info btn-sm">View</a>
+                                @elseif($list == 'RSM')
+                                <a href="{{ route('rsm') }}" class="btn btn-info btn-sm">View </a>
+                             @elseif($list == 'TSR')
+                                <a href="{{ route('tsr') }}" class="btn btn-info btn-sm">View </a>
+                             @elseif($list == 'TD')
+                                <a href="{{ route('td') }}" class="btn btn-info btn-sm">View </a>
+                                @elseif($list == 'Shop-Attendee')
+                                <a href="{{ route('shop-attendee') }}" class="btn btn-info btn-sm">View</a>
                             @endif
                           </div>
                        </td>
