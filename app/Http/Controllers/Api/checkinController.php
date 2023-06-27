@@ -380,9 +380,10 @@ class checkinController extends Controller
          //delete item
          $cartItem->delete();
       }
-         if ($request->distributor != $sidai->id && $request->distributor !=null ){
+         if ($request->distributor != 1 && $request->distributor !=null ){
             $usersToNotify = Suppliers::findOrFail($request->distributor);
-               Notification::send($usersToNotify, new NewOrderNotification($order->id, ));
+            $orderId = $order->id;
+               Notification::send($usersToNotify, new NewOrderNotification($orderId));
          }
 
       $random = Str::random(20);
