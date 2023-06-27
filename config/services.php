@@ -30,7 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
   'jambopay' =>[
-     'sms_client_id' => env(''),
+     'sms_client_id' => env('ClientId'),
+     'sms_client_secret' => env('ClientSecret'),
      ],
 
 ];
