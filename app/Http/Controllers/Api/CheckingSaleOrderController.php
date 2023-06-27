@@ -228,7 +228,7 @@ class CheckingSaleOrderController extends Controller
    // Beginning of NewSales
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
-       $checkin = customers::whereId($checkinCode)->first();
+//       $checkin = customers::whereId($checkinCode)->first();
 //      $region = Region::where('id', $request->user()->region_id)->first();
 //      $regionCode = strtoupper(substr($region->name, 0, 3));
 //      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
