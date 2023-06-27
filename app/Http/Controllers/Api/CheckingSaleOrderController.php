@@ -118,14 +118,14 @@ class CheckingSaleOrderController extends Controller
          ]);
       }
 
-      $random = Str::random(20);
+      $ativity_rand = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to vansale order';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Vansale order';
       $activityLog->action = 'Vansale order made by' .  auth()->user()->name . ' order code  '.$random;
       $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
+      $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = "";
       $activityLog->save();
 
@@ -228,7 +228,7 @@ class CheckingSaleOrderController extends Controller
    // Beginning of NewSales
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
-      // $checkin = customers::whereId($checkinCode)->first();
+       $checkin = customers::whereId($checkinCode)->first();
 //      $region = Region::where('id', $request->user()->region_id)->first();
 //      $regionCode = strtoupper(substr($region->name, 0, 3));
 //      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
@@ -305,14 +305,14 @@ class CheckingSaleOrderController extends Controller
          $usersToNotify = Suppliers::findOrFail($request->distributor);
          Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
       }
-      $random = Str::random(20);
+      $ativity_rand = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to order';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'New sales order';
       $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  '.$random;
       $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
+      $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = "";
       $activityLog->save();
       return response()->json([
