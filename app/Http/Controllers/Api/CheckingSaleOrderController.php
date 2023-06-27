@@ -301,8 +301,8 @@ class CheckingSaleOrderController extends Controller
             ->where('user_code', $user_code)
             ->increment('AchievedOrdersTarget', $value["qty"]);
       }
-      if ($request->distributor != 1 && $request->distributor !=null ){
-         $usersToNotify = Suppliers::findOrFail($request->distributor);
+      if ($distributor != 1 && $distributor !=null ){
+         $usersToNotify = Suppliers::findOrFail($distributor);
          Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
       }
       $ativity_rand = Str::random(20);
