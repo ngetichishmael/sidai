@@ -115,7 +115,7 @@ class CheckingSaleOrderController extends Controller
       $activityLog->activity = 'Product added to vansale order';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Vansale order';
-      $activityLog->action = 'Vansale order made by' . Auth::user()->name . ' order code  '.$random;
+      $activityLog->action = 'Vansale order made by' .  auth()->user()->name . ' order code  '.$random;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address = "";
