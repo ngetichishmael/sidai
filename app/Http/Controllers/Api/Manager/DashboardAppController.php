@@ -34,8 +34,16 @@ class DashboardAppController extends Controller
       $this_week = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
+      $checking = checkin::select('user_code')->lastWeek()->groupBy('user_code');
+      $last_week = User::joinSub($checking, 'customer_checkin', function ($join) {
+         $join->on('users.user_code', '=', 'customer_checkin.user_code');
+      })->count();
       $checking = checkin::select('user_code')->currentMonth()->groupBy('user_code');
       $month = User::joinSub($checking, 'customer_checkin', function ($join) {
+         $join->on('users.user_code', '=', 'customer_checkin.user_code');
+      })->count();
+      $checking = checkin::select('user_code')->lastMonth()->groupBy('user_code');
+      $last_month = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
       })->count();
       $data = [
@@ -45,7 +53,9 @@ class DashboardAppController extends Controller
             'today' => $today,
             'yesterday' => $yesterday,
             'this_week' => $this_week,
+            'last_week' => $last_week,
             'month' => $month,
+            'last_month' => $last_month,
             "user_count" => $all,
          ],
          'new_customers_visits' => [
