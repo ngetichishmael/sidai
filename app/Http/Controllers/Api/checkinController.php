@@ -262,14 +262,14 @@ class checkinController extends Controller
          }
       }
       $customer = customers::where('account', $checkin->account_number)->first();
-      $random = Str::random(20);
+      $ativity_rand = Str::random(20);
             $activityLog = new activity_log();
             $activityLog->activity = 'Checkin order';
             $activityLog->user_code = auth()->user()->user_code;
             $activityLog->section = 'Product added to order';
             $activityLog->action = 'Product added to order by' . $request->user()->name .  ' for customer ' .$customer->customer_name ?? $checkin->account_number;
             $activityLog->userID = auth()->user()->id;
-            $activityLog->activityID = $random;
+            $activityLog->activityID = $ativity_rand;
             $activityLog->ip_address = "";
             $activityLog->save();
 
@@ -339,6 +339,7 @@ class checkinController extends Controller
 //      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
 //      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
 //      $orderCode = $regionCode . '-' . $orderNumber;
+//      dd( $request->user()->region_id);
 //      if (empty($orderCode)){
          $orderCode = Helper::generateRandomString(8);
 //      }
@@ -388,14 +389,14 @@ class checkinController extends Controller
                Notification::send($usersToNotify, new NewOrderNotification($orderId));
          }
 
-      $random = Str::random(20);
+      $ativity_rand= Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Order created successfully';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Order creation';
       $activityLog->action = 'Order created by' . $request->user()->name . ' order code  '.$orderCode;
       $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $random;
+      $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = "";
       $activityLog->save();
 
