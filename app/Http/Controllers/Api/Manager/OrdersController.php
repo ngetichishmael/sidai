@@ -488,6 +488,18 @@ class OrdersController extends Controller
    }
    public function transaction(Request $request)
    {
+      if ($request->user()->account_type ==='RSM'){
+         return response()->json([
+            'status' => 200,
+            'success' => true,
+            "message" => "Order information for customers",
+            'Data' => OrderResource::collection(
+               Orders::with(['Customer'])->get(),
+            ),
+            'custom'=> $this->customTransaction($request)->getData(),
+         ]);
+      }
+
       return response()->json([
          'status' => 200,
          'success' => true,

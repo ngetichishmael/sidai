@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DeliveriesController;
 use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
@@ -89,6 +90,8 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/assign/visit/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignVisitTarget']);
       Route::post('/manager/assign/order/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignOrderTarget']);
       Route::post('/manager/add/customer', [CustomerController::class, 'addCustomer']);
+
+      Route::get('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
 
    });
 });
