@@ -7,6 +7,7 @@ use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Delivery;
 use App\Models\suppliers\suppliers;
+use App\Models\User;
 use App\Models\UserCode;
 use App\Notifications\NewOrderNotification;
 use App\Notifications;
@@ -718,10 +719,7 @@ class checkinController extends Controller
    public function sendOTP($number, $order_code)
    {
 
-
-      $user = FacadesDB::table('users')->where('phone_number', $number)->get();
-
-      if ($user->isNotEmpty()) {
+      if ($number->isNotEmpty()) {
          try {
             $code = rand(100000, 999999);
             UserCode::updateOrCreate([

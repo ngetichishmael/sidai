@@ -141,7 +141,7 @@ class AuthController extends Controller
    {
 
 
-      $user = FacadesDB::table('users')->where('phone_number', $number)->get();
+      $user = User::where('phone_number', $number)->get();
 
       if ($user->isNotEmpty()) {
          try {
