@@ -55,6 +55,7 @@
   'reports.preorder' => 'App\\Http\\Livewire\\Reports\\Preorder',
   'reports.vansales' => 'App\\Http\\Livewire\\Reports\\Vansales',
   'reports.warehouse' => 'App\\Http\\Livewire\\Reports\\Warehouse',
+  'role.index' => 'App\\Http\\Livewire\\Role\\Index',
   'routes.customerselect' => 'App\\Http\\Livewire\\Routes\\Customerselect',
   'routes.index' => 'App\\Http\\Livewire\\Routes\\index',
   'routes.individual' => 'App\\Http\\Livewire\\Routes\\individual',
