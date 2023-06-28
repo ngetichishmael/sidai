@@ -49,7 +49,6 @@
                                 <th>Customer Name</th>
                                 <th>Sales Rep</th>
                                 <th>Region</th>
-                                <th>Sub Region</th>
                                 <th>Status</th>
                                 <th>Created Date</th>
                                 <th>Action</th>
@@ -62,8 +61,10 @@
                                     <td>{{ $preorder->order_code }}</td>
                                     <td>{{ $preorder->Customer->customer_name ?? '' }}</td>
                                     <td>{{ $preorder->User->name ?? '' }}</td>
-                                    <td>{{ $preorder->User->Region->name ?? '' }}</td>
-                                    <td>{{ $preorder->User->Subregion->name ?? '' }}</td>
+                                    <td class="cell-fit">
+                                        {{ $preorder->Customer->Area->Subregion->name ?? '' }},
+                                        {{ $preorder->User->Region->name ?? '' }}
+                                    </td>
                                     <td>{{ $preorder->order_status ?? '' }}</td>
                                     <td>{{ $preorder->created_at->format('d/m/Y') ?? '' }}</td>
                                     <td><a href="{{ URL('orders/items/' . $preorder->order_code) }}" class="btn btn-sm"
