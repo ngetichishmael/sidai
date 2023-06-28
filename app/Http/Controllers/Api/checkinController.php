@@ -393,7 +393,7 @@ class checkinController extends Controller
             $number =$usersToNotify->phone_number;
             $number =$usersToNotify->phone_number;
             $order_code=$orderCode;
-            sendOTP($number, $order_code);
+            $this->sendOTP($number, $order_code);
 //               $usersToNotify = Suppliers::findOrFail($request->distributor);
 //               $orderId = $order->id;
 //               Notification::send($usersToNotify, new NewOrderNotification($orderId));
@@ -721,6 +721,7 @@ class checkinController extends Controller
 
       if ($number->isNotEmpty()) {
          try {
+
               $curl = curl_init();
 
             $url = 'https://accounts.jambopay.com/auth/token';
@@ -742,6 +743,7 @@ class checkinController extends Controller
 
             $curl = curl_init();
 
+            $message = 'You have a new order '. $order_code .'. Order details sent to your email';
             curl_setopt_array($curl, array(
                CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
                CURLOPT_RETURNTRANSFER => true,
@@ -755,7 +757,7 @@ class checkinController extends Controller
                   array(
                      "sender_name" => "SOKOFLOW",
                      "contact" => $number,
-                     "message" => "You have a new order ". $order_code .'. Order details sent to your email',
+                     "message" => $message,
                      "callback" => "https://pasanda.com/sms/callback"
                   )
                ),
