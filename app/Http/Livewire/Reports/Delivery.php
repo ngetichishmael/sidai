@@ -11,21 +11,21 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Delivery extends Component
 {
-    use WithPagination;
-    protected $paginationTheme = 'bootstrap';
-    public $start;
-    public $end;
-    public function render()
-    {
-        $count = 1;
-        return view('livewire.reports.delivery', [
-            'deliveries' => $this->data(),
-             'count' => $count
-            ]);
-    }
-    public function data()
+   use WithPagination;
+   protected $paginationTheme = 'bootstrap';
+   public $start;
+   public $end;
+   public function render()
    {
-      $query = Orders::with('User', 'Customer')->where('order_status', 'Delivered');
+      $count = 1;
+      return view('livewire.reports.delivery', [
+         'deliveries' => $this->data(),
+         'count' => $count
+      ]);
+   }
+   public function data()
+   {
+      $query = Orders::with('User', 'Customer')->where('order_status', "LIKE", '%Deliver%');
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
@@ -39,7 +39,7 @@ class Delivery extends Component
 
       return $query->paginate(10);
    }
-    public function export()
+   public function export()
    {
       return Excel::download(new DeliveryExport, 'DeliveryReport.xlsx');
    }

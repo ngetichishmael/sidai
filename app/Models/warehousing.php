@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\products\product_information;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class warehousing extends Model
 {
@@ -19,9 +20,18 @@ class warehousing extends Model
       'region.name',
       'subregion.name',
    ];
-   public function manager()
+   /**
+    * Get all of the Products for the warehousing
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+   public function Products(): HasMany
    {
-      return $this->belongsTo(User::class ,'manager', 'user_code');
+      return $this->hasMany(product_information::class, 'warehouse_code', 'warehouse_code');
+   }
+   public function Manager()
+   {
+      return $this->belongsTo(User::class, 'manager', 'user_code');
    }
    public function region()
    {
@@ -29,7 +39,7 @@ class warehousing extends Model
    }
    public function subregion()
    {
-      return $this->belongsTo(Subregion::class ,'subregion_id', 'id' );
+      return $this->belongsTo(Subregion::class, 'subregion_id', 'id');
    }
    public function productInformation()
    {
