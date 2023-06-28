@@ -7,8 +7,11 @@ use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Delivery;
 use App\Models\suppliers\suppliers;
+use App\Models\User;
+use App\Models\UserCode;
 use App\Notifications\NewOrderNotification;
 use App\Notifications;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use App\Models\customer\checkin;
@@ -21,6 +24,7 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Route_customer;
@@ -385,9 +389,14 @@ class checkinController extends Controller
          $cartItem->delete();
       }
          if ($request->distributor != 1 && $request->distributor !=null ){
-               $usersToNotify = Suppliers::findOrFail($request->distributor);
-               $orderId = $order->id;
-               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+            $usersToNotify = Suppliers::findOrFail($request->distributor);
+            $number =$usersToNotify->phone_number;
+            $number =$usersToNotify->phone_number;
+            $order_code=$orderCode;
+            $this->sendOTP($number, $order_code);
+//               $usersToNotify = Suppliers::findOrFail($request->distributor);
+//               $orderId = $order->id;
+//               Notification::send($usersToNotify, new NewOrderNotification($orderId));
          }
 
       $ativity_rand= Str::random(20);
@@ -705,4 +714,67 @@ class checkinController extends Controller
          "message" => "Reason saved",
       ]);
    }
+
+
+   public function sendOTP($number, $order_code)
+   {
+
+      if ($number==null) {
+         try {
+
+              $curl = curl_init();
+
+            $url = 'https://accounts.jambopay.com/auth/token';
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/x-www-form-urlencoded',
+               )
+            );
+
+            curl_setopt($curl, CURLOPT_POSTFIELDS,
+               http_build_query(array('grant_type' => 'client_credentials', 'client_id' => config('services.jambopay.sms_client_id'), 'client_secret' => config('services.jambopay.sms_client_secret'))));
+
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl);
+
+            $token = json_decode($curl_response);
+            curl_close($curl);
+
+            $curl = curl_init();
+
+            $message = 'You have a new order '. $order_code .'. Order details sent to your email';
+            curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS => json_encode(
+                  array(
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => $message,
+                     "callback" => "https://pasanda.com/sms/callback"
+                  )
+               ),
+               CURLOPT_HTTPHEADER => array(
+                  'Content-Type: application/json',
+                  'Authorization: Bearer '.$token->access_token
+               ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            return $response;
+         } catch (ExceptionHandler $e) {
+            return response()->json(['message' => 'Error occurred while trying to send OTP code']);
+         }
+      } else {
+         return response()->json(['message' => 'User is not registered!']);
+      }
+   }
+
 }
