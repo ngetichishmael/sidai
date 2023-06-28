@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Delivery;
+use App\Models\Region;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\UserCode;
@@ -339,15 +339,14 @@ class checkinController extends Controller
       $checkin = checkin::where('code', $checkinCode)->first();
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
-//      $region = Region::where('id', $request->user()->region_id)->first();
-//      $regionCode = strtoupper(substr($region->name, 0, 3));
-//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
-//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-//      $orderCode = $regionCode . '-' . $orderNumber;
-//      dd( $request->user()->region_id);
-//      if (empty($orderCode)){
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $orderCode = $regionCode . '-' . $orderNumber;
+      if (empty($orderCode)){
          $orderCode = Helper::generateRandomString(8);
-//      }
+      }
 
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
@@ -390,7 +389,6 @@ class checkinController extends Controller
       }
          if ($request->distributor != 1 && $request->distributor !=null ){
             $usersToNotify = Suppliers::findOrFail($request->distributor);
-            $number =$usersToNotify->phone_number;
             $number =$usersToNotify->phone_number;
             $order_code=$orderCode;
             $this->sendOTP($number, $order_code);
@@ -769,6 +767,7 @@ class checkinController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             return $response;
+            dump($response);
          } catch (ExceptionHandler $e) {
             return response()->json(['message' => 'Error occurred while trying to send OTP code']);
          }
