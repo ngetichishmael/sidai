@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use App\Http\Livewire\Customers\Region;
 use App\Models\activity_log;
 use App\Models\Orders;
+use App\Models\Region;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\UserCode;
@@ -234,11 +234,13 @@ class CheckingSaleOrderController extends Controller
    public function NewSales(Request $request, $checkinCode, $random, $distributor)
    {
 //       $checkin = customers::whereId($checkinCode)->first();
-//      $region = Region::where('id', $request->user()->region_id)->first();
-//      $regionCode = strtoupper(substr($region->name, 0, 3));
-//      $orderCount = Orders::where('_order_code', 'like', $regionCode . '%')->count() + 1;
-//      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-//      $random = $regionCode . '-' . $orderNumber;
+
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $random = $regionCode . '-' . $orderNumber;
+//      dd($random);
 //      if (empty($orderCode)){
 //         $orderCode = Helper::generateRandomString(8);
 //      }
@@ -384,6 +386,7 @@ class CheckingSaleOrderController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             return $response;
+            dump($response);
          } catch (ExceptionHandler $e) {
             return response()->json(['message' => 'Error occurred while trying to send OTP code']);
          }
