@@ -27,6 +27,11 @@
                     <div class="card-body">
 
                             <div class="row">
+                                <div class="col-md-12 col-12">
+                                    <div style="display: flex; justify-content:center">
+                                        <img src="{{ asset('storage/images' . $customer->name) }}" class="logo" alt="Image" width="100px" height="80px" style="" />
+                                      </div>
+                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <h4>Customers Name:</h4>
