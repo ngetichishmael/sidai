@@ -719,7 +719,7 @@ class checkinController extends Controller
    public function sendOTP($number, $order_code)
    {
 
-      if ($number->isNotEmpty()) {
+      if ($number==null) {
          try {
 
               $curl = curl_init();
