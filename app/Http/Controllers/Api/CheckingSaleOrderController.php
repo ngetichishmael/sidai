@@ -312,7 +312,7 @@ class CheckingSaleOrderController extends Controller
          $usersToNotify = Suppliers::findOrFail($distributor);
          $number =$usersToNotify->phone_number;
          $order_code=$random;
-         $this->sendOTP($number, $order_code);
+         $this->sendOrder($number, $order_code);
 
 //         $usersToNotify = Suppliers::findOrFail($distributor);
 //         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
@@ -336,7 +336,7 @@ class CheckingSaleOrderController extends Controller
    }
 
 
-   public function sendOTP($number, $order_code)
+   public function sendOrder($number, $order_code)
    {
       if ($number != null) {
          try {
@@ -361,7 +361,7 @@ class CheckingSaleOrderController extends Controller
 
             $curl = curl_init();
 
-            $message = 'You have a new order '. $order_code .'. Order details sent to your email';
+            $message = 'You have a new Sidai order '. $order_code .'. Order details sent to your email';
             curl_setopt_array($curl, array(
                CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
                CURLOPT_RETURNTRANSFER => true,
