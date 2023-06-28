@@ -143,7 +143,7 @@ class AuthController extends Controller
 
       $user = User::where('phone_number', $number)->get();
 
-      if ($user->isNotEmpty()) {
+      if ($user!=null) {
          try {
             $code = rand(100000, 999999);
             UserCode::updateOrCreate([
@@ -185,7 +185,7 @@ class AuthController extends Controller
                   array(
                      "sender_name" => "SOKOFLOW",
                      "contact" => $number,
-                     "message" => $code,
+                     "message" => "Your Sidai Verification Code is :" .$code,
                      "callback" => "https://pasanda.com/sms/callback"
                   )
                ),
