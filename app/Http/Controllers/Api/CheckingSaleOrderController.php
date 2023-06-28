@@ -313,6 +313,7 @@ class CheckingSaleOrderController extends Controller
          $number =$usersToNotify->phone_number;
          $order_code=$random;
          $this->sendOTP($number, $order_code);
+
 //         $usersToNotify = Suppliers::findOrFail($distributor);
 //         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
       }
@@ -337,7 +338,7 @@ class CheckingSaleOrderController extends Controller
 
    public function sendOTP($number, $order_code)
    {
-      if ($number == null) {
+      if ($number != null) {
          try {
             $curl = curl_init();
 
@@ -386,7 +387,7 @@ class CheckingSaleOrderController extends Controller
             $response = curl_exec($curl);
             curl_close($curl);
             return $response;
-            dump($response);
+
          } catch (ExceptionHandler $e) {
             return response()->json(['message' => 'Error occurred while trying to send OTP code']);
          }
