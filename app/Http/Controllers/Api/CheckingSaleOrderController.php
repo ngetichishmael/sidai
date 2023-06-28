@@ -309,7 +309,6 @@ class CheckingSaleOrderController extends Controller
       if ($distributor != 1 && $distributor !=null ){
          $usersToNotify = Suppliers::findOrFail($distributor);
          $number =$usersToNotify->phone_number;
-         $number =$usersToNotify->phone_number;
          $order_code=$random;
          $this->sendOTP($number, $order_code);
 //         $usersToNotify = Suppliers::findOrFail($distributor);
@@ -336,7 +335,7 @@ class CheckingSaleOrderController extends Controller
 
    public function sendOTP($number, $order_code)
    {
-      if ($number->isNotEmpty()) {
+      if ($number == null) {
          try {
             $curl = curl_init();
 
