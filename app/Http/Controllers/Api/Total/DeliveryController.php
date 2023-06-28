@@ -62,7 +62,7 @@ class DeliveryController extends Controller
             ->pluck('allocated_quantity')
             ->first();
 
-//         info('6');
+         //         info('6');
 
          $itemsToUpdate = [
             'product_code' => $productID,
@@ -80,9 +80,9 @@ class DeliveryController extends Controller
             'updated_by' => $user_code
          ];
 
-//         info($itemsToUpdate);
-//         info("Updated");
-//         info($itemsData);
+         //         info($itemsToUpdate);
+         //         info("Updated");
+         //         info($itemsData);
 
 
          items::updateOrCreate(
@@ -166,20 +166,24 @@ class DeliveryController extends Controller
             'updated_at' => now(),
          ]);
 
-         Order_items::create([
-            'order_code' => $order_code,
-            'productID' => $productID,
-            'product_name' => $checker->product_name,
-            'quantity' => $checker->quantity - $qty,
-            'sub_total' => ($checker->quantity - $qty) * $checker->ProductPrice->selling_price,
-            'total_amount' => ($checker->quantity - $qty) * $checker->ProductPrice->selling_price,
-            'selling_price' => $checker->price,
-            'discount' => 0,
-            'taxrate' => 0,
-            'taxvalue' => 0,
-            'created_at' => now(),
-            'updated_at' => now(),
-         ]);
+         Order_items::create(
+            [
+               'order_code' => $order_code,
+               'productID' => $productID,
+            ],
+            [
+               'product_name' => $checker->product_name,
+               'quantity' => $checker->quantity - $qty,
+               'sub_total' => ($checker->quantity - $qty) * $checker->ProductPrice->selling_price,
+               'total_amount' => ($checker->quantity - $qty) * $checker->ProductPrice->selling_price,
+               'selling_price' => $checker->price,
+               'discount' => 0,
+               'taxrate' => 0,
+               'taxvalue' => 0,
+               'created_at' => now(),
+               'updated_at' => now(),
+            ]
+         );
       }
 
       return response()->json([
