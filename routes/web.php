@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\SocketsController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SupportTicketController;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
@@ -484,5 +485,11 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('support/update/{id}', ['uses' => 'SupportTicketController@update', 'as' => 'support.update'])->middleware('auth:sanctum');
    Route::post('/support/{ticketId}/messages/{messageId}/reply', [SupportTicketController::class, 'replyToMessage'])->name('support.reply');
    Route::get('support/{ticket_id}/messages', ['uses' => 'SupportTicketController@getMessages', 'as' => 'support.getMessages'])->middleware('auth:sanctum');
-
+//
+   Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+   Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+   Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+   Route::get('/roles/{role}', [RoleController::class, 'show'])->name('roles.show');
+   Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+   Route::put('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
 });
