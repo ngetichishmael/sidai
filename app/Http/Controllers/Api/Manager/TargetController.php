@@ -43,7 +43,7 @@ class TargetController extends Controller
          ],
          [
             'VisitsTarget' => $request->target,
-            'bussiness_code' => $request->user()->business_code,
+//            'bussiness_code' => $request->user()->business_code,
          ]
       );
       return response()->json([
@@ -75,7 +75,7 @@ class TargetController extends Controller
          ],
          [
             'LeadsTarget' => $request->target,
-            'bussiness_code' => $request->user()->business_code,
+//            'bussiness_code' => $request->user()->business_code,
          ]
       );
 
@@ -109,7 +109,7 @@ class TargetController extends Controller
          ],
          [
             'OrdersTarget' => $request->target,
-            'bussiness_code' => $request->user()->business_code,
+//            'bussiness_code' => $request->user()->business_code,
          ]
       );
       return response()->json([
@@ -121,7 +121,7 @@ class TargetController extends Controller
    }
    public function assignSaleTarget(Request $request)
    {
-      $validator           =  Validator::make($request->all(), [
+      $validator =  Validator::make($request->all(), [
          "user_code"   => "required",
          "target"   => "required",
       ]);
@@ -141,7 +141,7 @@ class TargetController extends Controller
          ],
          [
             'SalesTarget' => $request->target,
-            'bussiness_code' => $request->user()->business_code,
+//            'bussiness_code' => $request->user()->business_code,
          ]
       );
       return response()->json([

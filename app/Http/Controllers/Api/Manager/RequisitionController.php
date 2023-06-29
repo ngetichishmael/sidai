@@ -128,6 +128,16 @@ class RequisitionController extends Controller
     {
         //
     }
+    public function approve(Request $request)
+    {
+       $products = RequisitionProduct::where('requisition_id', $request->id)->with('ProductInformation')->get();
+       return response()->json([
+          'status' => 200,
+          'success' => true,
+          "message" => "Requisition products",
+          'data' => $products,
+       ]);
+    }
 
     /**
      * Store a newly created resource in storage.
