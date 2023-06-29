@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\products\ProductSku;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\products\product_information;
@@ -34,5 +35,9 @@ class warehousing extends Model
    public function productInformation()
    {
       return $this->hasMany(product_information::class, 'warehouse_code', 'warehouse_code');
+   }
+   public function ProductSKU()
+   {
+      return $this->hasMany(ProductSku::class, 'sku_code','sku_code');
    }
 }

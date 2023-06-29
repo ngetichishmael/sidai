@@ -29,4 +29,8 @@ class product_information extends Model
    {
       return $this->hasOne(product_inventory::class, 'productID', 'id');
    }
+   public function ProductSKU()
+   {
+      return $this->hasMany(ProductSku::class, 'sku_code','sku_code');
+   }
 }

@@ -17,6 +17,7 @@ use App\Models\RequisitionProduct;
 use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\suppliers;
 use App\Models\tax;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -377,6 +378,10 @@ class productController extends Controller
             $productSku->added_by = Auth::user()->user_code;
             $productSku->restocked_by = Auth::user()->user_code;
             $productSku->save();
+
+            $information->updated_at = now();
+            $information->save();
+
          }
       }
 
