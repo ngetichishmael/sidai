@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
+use App\Http\Controllers\Api\Manager\RequisitionController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
@@ -94,5 +95,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
       Route::post('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
 
+      Route::post('manager/approve/requisitions', [RequisitionController::class ,'handleApproval']);
+      Route::get('manager/requisitions/list', [RequisitionController::class ,'index']);
+      Route::get('manager/requisitions/history', [RequisitionController::class ,'history']);
+      Route::get('manager/approve/{id}',  [RequisitionController::class ,'approve']);
    });
 });
