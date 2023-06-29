@@ -33,14 +33,10 @@ class RoleController extends Controller
       $description = $request->input('description');
       $platform = $request->input('platform');
       $dataType = $request->input('data_type');
-      $region = $request->input('region');
-      $subregion = $request->input('subregion');
-      $area = $request->input('area');
       $role = new Role();
       $role->name = $name;
       $role->display_name = $displayName;
       $role->access_to = $dataType;
-      $role->access_to_id = $region ?? $subregion ?? $area;
       $role->description = $description;
       $role->businessID =  auth()->user()->business_code;
       $role->platform = $platform;
