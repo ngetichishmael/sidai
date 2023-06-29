@@ -56,7 +56,9 @@
                            <td>{{ $role->checkedPlatforms() }}</td>
                            <td>{{ $role->CreatedBy->name ?? '' }}</td>
                            <td>{{ $role->UpdatedBy->name ?? '' }}</td>
-                           <td><a href="#" class="btn btn-sm" style="background-color: #B6121B;color:white">Edit</a></td>
+                           <td><button type="button" class="btn btn-sm" data-toggle="modal" style="background-color: #B6121B;color:white" data-target="#editRoleModal">
+                                 Edit Role
+                              </button></td>
                         </tr>
                      @endforeach
                      </tbody>
@@ -125,20 +127,6 @@
                          'id' => 'data_type_select'
                      ]) !!}
                   </div>
-{{--                  <div id="region_select" class="form-group form-group-default">--}}
-{{--                     {!! Form::label('region', 'Region', ['class' => 'control-label']) !!}--}}
-{{--                     {!! Form::select('region', $regions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
-{{--                  </div>--}}
-
-{{--                  <div id="subregion_select" class="form-group form-group-default">--}}
-{{--                     {!! Form::label('subregion', 'Subregion', ['class' => 'control-label']) !!}--}}
-{{--                     {!! Form::select('subregion', $subregions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
-{{--                  </div>--}}
-
-{{--                  <div id="area_select" class="form-group form-group-default">--}}
-{{--                     {!! Form::label('area', 'Area', ['class' => 'control-label']) !!}--}}
-{{--                     {!! Form::select('area', $areas->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
-{{--                  </div>--}}
                   <div class="mt-4 form-group">
                      <center>
                         <button type="submit" class="btn  submit" style="background-color: #B6121B;color:white"><i data-feather="plus"></i> Add
@@ -157,6 +145,80 @@
          </div>
       </div>
    </div>
+   <!-- Modal -->
+   <div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="editRoleModalLabel">Edit Role</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               {!! Form::open(['route' => ['roles.update', $role->id], 'method' => 'PUT']) !!}
+               @csrf
+               <div class="form-group">
+                  {!! Form::label('name', 'Name') !!}
+                  {!! Form::text('name', $role->name, ['class' => 'form-control', 'placeholder' => 'Enter Role Name']) !!}
+               </div>
+               <div class="form-group">
+                  {!! Form::label('display_name', 'Display Name') !!}
+                  {!! Form::text('display_name', $role->display_name, ['class' => 'form-control', 'placeholder' => 'Enter Display Name']) !!}
+               </div>
+               <div class="form-group">
+                  {!! Form::label('description', 'Description') !!}
+                  {!! Form::text('description', $role->description, ['class' => 'form-control', 'placeholder' => 'Enter Description']) !!}
+               </div>
+               <div class="form-group">
+                  {!! Form::label('platform', 'Platform') !!}
+                  <br>
+                  @foreach([
+                      'Sales App' => 'Sales App',
+                      'Managers App' => 'Managers App',
+                      'Manager Dashboard' => 'Manager Dashboard',
+                      'Shop Attendee Dashboard' => 'Shop Attendee Dashboard',
+                      'Admin' => 'Admin',
+                  ] as $value => $label)
+                     <div class="form-check">
+                        {!! Form::checkbox('platform[]', $value, in_array($value, $role->platform), ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
+                        {!! Form::label('platform_'.$value, $label, ['class' => 'form-check-label']) !!}
+                     </div>
+                  @endforeach
+               </div>
+               <div class="form-group">
+                  {!! Form::label('data_type', 'Type of data') !!}
+                  {!! Form::select('data_type', [
+                      'all' => 'All regions',
+                      'region' => 'Regional Data',
+                      'subregion' => 'Subregional ',
+                      'route' => 'Routes Data',
+                  ], $role->data_type, ['class' => 'form-control']) !!}
+               </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+               </div>
+               {!! Form::close() !!}
+            </div>
+         </div>
+      </div>
+   </div>
+
+   {{--                  <div id="region_select" class="form-group form-group-default">--}}
+   {{--                     {!! Form::label('region', 'Region', ['class' => 'control-label']) !!}--}}
+   {{--                     {!! Form::select('region', $regions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+   {{--                  </div>--}}
+
+   {{--                  <div id="subregion_select" class="form-group form-group-default">--}}
+   {{--                     {!! Form::label('subregion', 'Subregion', ['class' => 'control-label']) !!}--}}
+   {{--                     {!! Form::select('subregion', $subregions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+   {{--                  </div>--}}
+
+   {{--                  <div id="area_select" class="form-group form-group-default">--}}
+   {{--                     {!! Form::label('area', 'Area', ['class' => 'control-label']) !!}--}}
+   {{--                     {!! Form::select('area', $areas->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+   {{--                  </div>--}}
    <script>
       $(document).ready(function() {
          // Hide subregion and area select inputs initially

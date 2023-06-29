@@ -91,7 +91,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/assign/order/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignOrderTarget']);
       Route::post('/manager/add/customer', [CustomerController::class, 'addCustomer']);
 
-      Route::get('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
+      Route::post('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
       Route::post('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
 
    });
