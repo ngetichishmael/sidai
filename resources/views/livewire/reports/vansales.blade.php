@@ -25,15 +25,20 @@
        </button>
    </div>
 </div>
+<br>
 <div class="row">
-   <div class="col-md-3">
-       <label for="">Status</label>
-       <select wire:model="" class="form-control">`
-           <option value="" selected>select</option>
-           <option value=""></option>
-
-       </select>
-   </div>
+    <div class="col-md-3">
+        <label for="">Status</label>
+        <select wire:model="status" class="form-control">
+            <option value="" selected>select</option>
+            <option value=""></option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label for="">Search by name, route, region</label>
+        <input type="text" wire:model="search" class="form-control"
+            placeholder="Enter customer name, email address or phone number">
+    </div>
 </div>
    <br>
 <div class="row">
@@ -61,7 +66,7 @@
                      <td>{{ $vansale->Customer->customer_name??'' }}</td>
                      <td>{{ $vansale->User->name??'' }}</td>
                      <td>{{ $vansale->User->account_type??'' }}</td>
-                     <td><a href="{{ URL('orders/vansaleitems/'.$vansale->order_code) }}" class="btn" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                     <td><a href="{{ URL('orders/vansaleitems/'.$vansale->order_code) }}" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                  </tr>
                   @endforeach
                     
