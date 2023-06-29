@@ -50,9 +50,5 @@ class StockLiftHelper
             "updated_by" => $user_code
          ]
       );
-
-      $usersToNotify=
-         Notification::send($usersToNotify, new NewOrderNotification($order->id, $user_code));
-
    }
 }

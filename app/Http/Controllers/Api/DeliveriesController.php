@@ -35,9 +35,9 @@ class DeliveriesController extends Controller
       if ($customer) {
          $customer_id = $customer->id;
       } else {
-         $customer = User::where('user_code', $customer_code)->first();
-         if ($customer) {
-            $customer_id = customers::where('phone_number', $customer->phone_number)->value('id');
+         $customerd = User::where('user_code', $customer_code)->first();
+         if ($customerd) {
+            $customer_id = customers::where('phone_number', $customerd->phone_number)->value('id');
          } else {
             return response()->json([
                "success" => false,
@@ -48,7 +48,7 @@ class DeliveriesController extends Controller
       }
 
          if ($request->user()->account_type === 'RSM') {
-            $deliveries = Delivery::with(['DeliveryItems', 'Customer', 'Order.distributor', 'Order.customer'])
+            $deliveries = Delivery::with(['DeliveryItems', 'Customer', 'Order.distributor'])
                ->whereHas('Customer', function ($query) use ($customer_id) {
                   $query->where('id', $customer_id);
                })
@@ -57,7 +57,7 @@ class DeliveriesController extends Controller
                })
                ->get();
          } else {
-            $deliveries = Delivery::with(['DeliveryItems', 'Customer', 'Order.distributor', 'Order.customer'])
+            $deliveries = Delivery::with(['DeliveryItems', 'Customer', 'Order.distributor'])
                ->whereHas('Customer', function ($query) use ($customer_id) {
                   $query->where('id', $customer_id);
                })
