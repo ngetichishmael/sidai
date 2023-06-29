@@ -15,6 +15,7 @@ class Preorder extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $search = null;
    public function render()
    {
       $count = 1;

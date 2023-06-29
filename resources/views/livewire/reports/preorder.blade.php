@@ -24,6 +24,7 @@
         </button>
     </div>
 </div>
+<br>
 <div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
@@ -31,6 +32,11 @@
             <option value="" selected>select</option>
             <option value=""></option>
         </select>
+    </div>
+    <div class="col-md-3">
+        <label for="">Search by name, route, region</label>
+        <input type="text" wire:model="search" class="form-control"
+            placeholder="Enter customer name, email address or phone number">
     </div>
 </div>
 <br>
@@ -47,7 +53,7 @@
                                 <th>#</th>
                                 <th>Order ID</th>
                                 <th>Customer Name</th>
-                                <th>Sales Rep</th>
+                                <th>Added by</th>
                                 <th>Region</th>
                                 <th>Status</th>
                                 <th>Created Date</th>

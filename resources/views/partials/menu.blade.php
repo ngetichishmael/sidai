@@ -190,17 +190,7 @@
                     </ul>
                 </li>
             @endif
-            @if (
-                (Auth::check() && Auth::user()->account_type == 'Admin') ||
-                    (Auth::check() && Auth::user()->account_type == 'NSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'RSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'Shop-Attendee'))
-                <li class="nav-item {!! Nav::isResource('reports') !!}">
-                    <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
-                            data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
-                            Reports</span></a>
-                </li>
-            @endif
+           
             @if (
                 (Auth::check() && Auth::user()->account_type == 'Admin') ||
                     (Auth::check() && Auth::user()->account_type == 'NSM') ||
@@ -289,15 +279,17 @@
 </li>
 </ul>
 </li>
-{{--            <li class="nav-item {!! Nav::isResource('settings') !!}">--}}
-{{--            <a class="d-flex align-items-center" href="#"><i data-feather='settings'></i><span--}}
-{{--                    class="menu-title text-truncate" data-i18n="Invoice"> Settings</span></a>--}}
-{{--            <ul class="menu-content">--}}
-{{--                <li><a class="d-flex align-items-center" href="{!! route('settings.account') !!}"><i--}}
-{{--                            data-feather="circle"></i><span class="menu-item text-truncate">Account</span></a>--}}
-{{--                </li>--}}
-{{--            </ul>--}}
-{{--        </li>--}}
+@if (
+    (Auth::check() && Auth::user()->account_type == 'Admin') ||
+        (Auth::check() && Auth::user()->account_type == 'NSM') ||
+        (Auth::check() && Auth::user()->account_type == 'RSM') ||
+        (Auth::check() && Auth::user()->account_type == 'Shop-Attendee'))
+    <li class="nav-item {!! Nav::isResource('reports') !!}">
+        <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
+                data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
+                Reports</span></a>
+    </li>
+@endif
 <li class="nav-item {!! Nav::isResource('activity')!!}">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
 <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
