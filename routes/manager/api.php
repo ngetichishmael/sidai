@@ -95,9 +95,10 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
       Route::post('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
 
-      Route::post('manager/approve/requisitions', [RequisitionController::class ,'handleApproval']);
       Route::get('manager/requisitions/list', [RequisitionController::class ,'index']);
       Route::get('manager/requisitions/history', [RequisitionController::class ,'history']);
-      Route::get('manager/approve/{id}',  [RequisitionController::class ,'approve']);
+      Route::post('manager/approve/{id}',  [RequisitionController::class ,'approve']);
+      Route::post('manager/approve/requisitions', [RequisitionController::class ,'handleApproval']);
+
    });
 });
