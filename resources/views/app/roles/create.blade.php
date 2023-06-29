@@ -41,6 +41,7 @@
                         <th>Initials</th>
                         <th>Role name</th>
                         <th>Data Authorized To Access</th>
+                        <th>Platform</th>
                         <th>Created by</th>
                         <th>Updated by</th>
                         <th>Actions</th>
@@ -52,6 +53,7 @@
                            <td>{{ $role->name }}</td>
                            <td>{{ $role->display_name}}</td>
                            <td>{{ $role->access_to}}</td>
+                           <td>{{ $role->checkedPlatforms() }}</td>
                            <td>{{ $role->CreatedBy->name ?? '' }}</td>
                            <td>{{ $role->UpdatedBy->name ?? '' }}</td>
                            <td><a href="#" class="btn btn-sm" style="background-color: #B6121B;color:white">Edit</a></td>
@@ -96,16 +98,19 @@
                   </div>
                   <div class="form-group form-group-default required mb-1">
                      {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}
-                     {!! Form::select('platform', [
+                     <br>
+                     @foreach([
                          'Sales App' => 'Sales App',
                          'Managers App' => 'Managers App',
                          'Manager Dashboard' => 'Manager Dashboard',
                          'Shop Attendee Dashboard' => 'Shop Attendee Dashboard',
                          'Admin' => 'Admin',
-                     ], null, [
-                         'class' => 'form-control',
-                         'required' => ''
-                     ]) !!}
+                     ] as $value => $label)
+                        <div class="form-check form-check-inline mt-0.9">
+                           {!! Form::checkbox('platform[]', $value, null, ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
+                           {!! Form::label('platform_'.$value, $label, ['class' => 'form-check-label']) !!}
+                        </div>
+                     @endforeach
                   </div>
                   <div class="form-group form-group-default required mb-1">
                      {!! Form::label('data_type', 'Type of data', ['class' => 'control-label']) !!}

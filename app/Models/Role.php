@@ -20,6 +20,32 @@ class Role extends LaratrustRole
    {
       return $this->belongsTo(Area::class, 'access_to_id', 'id');
    }
+   public function checkedPlatforms()
+   {
+      $platforms = [];
+
+      if ($this->sales_app === 'yes') {
+         $platforms[] = 'Sales App';
+      }
+
+      if ($this->managers_app === 'yes') {
+         $platforms[] = 'Managers App';
+      }
+
+      if ($this->manager_dashboard === 'yes') {
+         $platforms[] = 'Manager Dashboard';
+      }
+
+      if ($this->shop_attendee_dashboard === 'yes') {
+         $platforms[] = 'Shop Attendee Dashboard';
+      }
+
+      if ($this->admin === 'yes') {
+         $platforms[] = 'Admin';
+      }
+
+      return implode(', ', $platforms);
+   }
    public function  UpdatedBy(): BelongsTo
    {
       return $this->belongsTo(User::class, 'updated_by', 'id');

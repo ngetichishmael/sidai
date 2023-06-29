@@ -13,17 +13,23 @@ class RoleController extends Controller
    public function create()
    {
       $roles=Role::all();
-      $regions=Region::select('id','name')->get();
-      $subregions=Subregion::select('id','name')->get();
-      $areas=Area::select('id','name')->get();
-      return view('app.roles.create', compact('roles','regions', 'subregions', 'areas'));
+//      $regions=Region::select('id','name')->get();
+//      $subregions=Subregion::select('id','name')->get();
+//      $areas=Area::select('id','name')->get();
+      $platform = [
+         'Sales App' => 'Sales App',
+         'Managers App' => 'Managers App',
+         'Manager Dashboard' => 'Manager Dashboard',
+         'Shop Attendee Dashboard' => 'Shop Attendee Dashboard',
+         'Admin' => 'Admin',
+      ];
+     return view('app.roles.create', compact('roles', 'platform'));
    }
-
    public function store(Request $request)
    {
       $request->validate([
-         'name' => 'required',
-         'display_name' => 'required',
+         'name' => 'required|unique:roles',
+         'display_name' => 'required|unique:roles',
       ]);
       if ($request->input('data_type')== "all"){
          $dataType=0;
@@ -31,7 +37,7 @@ class RoleController extends Controller
       $name = $request->input('name');
       $displayName = $request->input('display_name');
       $description = $request->input('description');
-      $platform = $request->input('platform');
+      $platforms = $request->input('platform');
       $dataType = $request->input('data_type');
       $role = new Role();
       $role->name = $name;
@@ -39,7 +45,11 @@ class RoleController extends Controller
       $role->access_to = $dataType;
       $role->description = $description;
       $role->businessID =  auth()->user()->business_code;
-      $role->platform = $platform;
+      $role->sales_app = in_array('Sales App', $platforms) ? 'yes' : 'no';
+      $role->managers_app = in_array('Managers App', $platforms) ? 'yes' : 'no';
+      $role->manager_dashboard = in_array('Manager Dashboard', $platforms) ? 'yes' : 'no';
+      $role->shop_attendee_dashboard = in_array('Shop Attendee Dashboard', $platforms) ? 'yes' : 'no';
+      $role->admin = in_array('Admin', $platforms) ? 'yes' : 'no';
       $role->created_by = auth()->user()->id;
       $role->updated_by = auth()->user()->id;
       $role->save();
