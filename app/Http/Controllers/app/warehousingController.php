@@ -132,7 +132,7 @@ class warehousingController extends Controller
    {
       $warehouse= warehousing::where('warehouse_code',$code)->first();
       if (!empty($warehouse)) {
-         $products = product_information::with('Inventory', 'ProductPrice')->where('warehouse_code', $code)->paginate($this->perPage);
+         $products = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')->where('warehouse_code', $code)->paginate($this->perPage);
          session(['warehouse_code' => $warehouse->warehouse_code]);
          return view('app.warehousing.products', compact('products', 'warehouse'));
       }

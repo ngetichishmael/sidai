@@ -1,6 +1,6 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title','Account Types')
+@section('title','Roles')
 
 {{-- content section --}}
 @section('content')
@@ -8,12 +8,18 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0">Users Account Types List</h2>
+               <h2 class="content-header-title float-start mb-0">Users Roles List</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+                      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                     <li class="breadcrumb-item active"><a href="/users-Roles">Roles</a></li>
                   </ol>
                </div>
+            </div>
+            <div class="ml-0 pe-0">
+               <center>
+                  <a href="{{ route('roles.create') }}" class="btn btn-small" style="background: #B6121B; color: white">Create Role</a>
+               </center>
             </div>
          </div>
       </div>
@@ -27,9 +33,9 @@
                  <thead>
                     <tr>
                        <th width="1%">#</th>
-                       <th width="20%">Account Types</th>
-{{--                       <th width="20%">Number of Users</th>--}}
-                       <th class="text-center" width="15.5%">Actions</th>
+                       <th>Account Types</th>
+                       <th width="20%">Number of Users</th>
+                       <th>Actions</th>
                     </tr>
                  </thead>
                  <tbody>
@@ -37,7 +43,7 @@
                     <tr>
                        <td>{!! $count++ !!}</td>
                        <td>{!! $list !!}</td>
-{{--                       <td>{{ count(explode(',', $list)) }}</td>--}}
+                       <td>{{ $counts[$list] }}</td>
                        <td>
                           <div class="d-flex" style="gap:20px">
                              @if($list == 'Admin')

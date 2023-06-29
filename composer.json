@@ -65,13 +65,7 @@
       ],
       "post-create-project-cmd": [
          "@php artisan key:generate --ansi"
-      ],
-      "pa": "php artisan",
-      "pao": "php artisan optimize",
-      "pal": "php artisan livewire",
-      "pald": "php artisan livewire:discover",
-      "palp": "php artisan livewire:publish",
-      "cda": "composer dump-autoload"
+      ]
    },
    "extra": {
       "laravel": {
