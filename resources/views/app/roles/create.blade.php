@@ -40,13 +40,13 @@
                      <tr>
                         <th>Initials</th>
                         <th>Role name</th>
-                        <th>Access To</th>
+                        <th>Data Authorized To Access</th>
                         <th>Created by</th>
                         <th>Updated by</th>
                         <th>Actions</th>
                      </tr>
                      </thead>
-                     <tbody>
+                     <tbody class="font-small-3">
                      @foreach ($roles as $key => $role)
                         <tr>
                            <td>{{ $role->name }}</td>
@@ -111,29 +111,29 @@
                      {!! Form::label('data_type', 'Type of data', ['class' => 'control-label']) !!}
                      {!! Form::select('data_type', [
                          'all' => 'All regions',
-                         'region' => 'Region',
-                         'subregion' => 'Subregion',
-                         'route' => 'Route',
+                         'region' => 'Regional Data',
+                         'subregion' => 'Subregional ',
+                         'route' => 'Routes Data',
                      ], null, [
                          'class' => 'form-control',
                          'required' => 'required',
                          'id' => 'data_type_select'
                      ]) !!}
                   </div>
-                  <div id="region_select" class="form-group form-group-default">
-                     {!! Form::label('region', 'Region', ['class' => 'control-label']) !!}
-                     {!! Form::select('region', $regions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
-                  </div>
+{{--                  <div id="region_select" class="form-group form-group-default">--}}
+{{--                     {!! Form::label('region', 'Region', ['class' => 'control-label']) !!}--}}
+{{--                     {!! Form::select('region', $regions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+{{--                  </div>--}}
 
-                  <div id="subregion_select" class="form-group form-group-default">
-                     {!! Form::label('subregion', 'Subregion', ['class' => 'control-label']) !!}
-                     {!! Form::select('subregion', $subregions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
-                  </div>
+{{--                  <div id="subregion_select" class="form-group form-group-default">--}}
+{{--                     {!! Form::label('subregion', 'Subregion', ['class' => 'control-label']) !!}--}}
+{{--                     {!! Form::select('subregion', $subregions->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+{{--                  </div>--}}
 
-                  <div id="area_select" class="form-group form-group-default">
-                     {!! Form::label('area', 'Area', ['class' => 'control-label']) !!}
-                     {!! Form::select('area', $areas->pluck('name', 'id'), null, ['class' => 'form-control']) !!}
-                  </div>
+{{--                  <div id="area_select" class="form-group form-group-default">--}}
+{{--                     {!! Form::label('area', 'Area', ['class' => 'control-label']) !!}--}}
+{{--                     {!! Form::select('area', $areas->pluck('name', 'id'), null, ['class' => 'form-control']) !!}--}}
+{{--                  </div>--}}
                   <div class="mt-4 form-group">
                      <center>
                         <button type="submit" class="btn  submit" style="background-color: #B6121B;color:white"><i data-feather="plus"></i> Add
