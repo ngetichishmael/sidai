@@ -79,10 +79,9 @@
                             {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                         </td>
                         <td>{{ $product->Inventory()->pluck('current_stock')->implode('') }} </td>
-                        <td>{{ $product->ProductPrice->updated_at->format('hms') }}</td>
                         <td>{{ $product->ProductPrice->updated_at->format('d/m/Y') }}</td>
-
-                       <td>
+                        <td>{{ $product->ProductPrice->updated_at->format('H:i:s') }}</td>
+                        <td>
                             <div class="dropdown" >
                              <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <i data-feather="settings"></i>
