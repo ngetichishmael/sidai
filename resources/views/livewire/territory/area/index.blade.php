@@ -25,7 +25,7 @@
     <!-- begin card -->
     <div class="row">
         @livewire('territory.area.dashboard')
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card card-default">
                 <div class="card-body">
                     <div class="card-body">
@@ -37,14 +37,14 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
-                                                <div class="mb-2 col-md-6 col-12">
+                                                <div class="mb-2 col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label for="first-name-column">Route</label>
                                                         <input type="text" id="first-name-column" class="form-control"
                                                             placeholder="Route" name="name" required />
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 col-12">
+                                                <div class="col-md-12 col-12">
                                                     <div class="form-group">
                                                         <label for="select-country">Sub Region</label>
                                                         <select class="form-control select2" id="select-country"
