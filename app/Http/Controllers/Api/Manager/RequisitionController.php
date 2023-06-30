@@ -9,6 +9,7 @@ use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class RequisitionController extends Controller
@@ -137,6 +138,18 @@ class RequisitionController extends Controller
     }
     public function approve(Request $request)
     {
+       $validator           =  Validator::make($request->all(), [
+          "id"   => "required|integer",
+       ]);
+       if ($validator->fails()) {
+          return response()->json(
+             [
+                "status" => 401, "message" => "validation_error",
+                "errors" => $validator->errors()
+             ],
+             403
+          );
+       }
        $products = RequisitionProduct::where('requisition_id', $request->id)->with('ProductInformation')->get();
        return response()->json([
           'status' => 200,
