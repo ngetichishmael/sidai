@@ -14,7 +14,7 @@
         <select wire:model="" class="form-control" disabled>`
             <option value="" selected>select</option>
             <option value=""></option>
- 
+
         </select>
     </div>
     <div class="col-md-3">
@@ -24,55 +24,56 @@
                 data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
         </button>
     </div>
- </div>
- <div class="row">
+</div>
+<div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
         <select wire:model="" class="form-control">`
             <option value="" selected>select</option>
             <option value=""></option>
- 
+
         </select>
     </div>
- </div>
- <br>
+</div>
+<br>
 <div class="row">
-       @include('partials.stickymenu')
-       
-<div class="col-md-8">
-<div class="card card-default">
-    <div class="card-body">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>User Name</th>
-                    <th>User Type</th>
-                    <th>Target</th>
-                    <th>Achieved</th>
-                    <th>Action</th>
-                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($targets as$key=> $target)
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a href="" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
-                </tr>
-                @endforeach
-                
-               
-               
-                  
-               </tbody>
-        </table>
+    @include('partials.stickymenu')
 
-        {{-- <div class="mt-1">{!! $suppliers->links() !!}</div> --}}
+    <div class="col-md-8">
+        <div class="card card-default">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User Name</th>
+                            <th>User Type</th>
+                            <th>Target</th>
+                            <th>Achieved</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($targets as $key => $target)
+                            <tr>
+                                <td>{{ $target->User }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td><a href="" class="btn btn-sm"
+                                        style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                            </tr>
+                        @endforeach
+
+
+
+
+                    </tbody>
+                </table>
+
+                {{-- <div class="mt-1">{!! $suppliers->links() !!}</div> --}}
+            </div>
+        </div>
     </div>
-</div>
-</div>
 </div>
