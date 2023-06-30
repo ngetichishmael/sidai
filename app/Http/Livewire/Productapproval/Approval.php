@@ -1,13 +1,6 @@
 <?php
 
 namespace App\Http\Livewire\Productapproval;
-
-<<<<<<< HEAD
-=======
-use App\Models\products\product_information;
-use App\Models\RequisitionProduct;
-use App\Models\StockRequisition;
->>>>>>> 0a6873d99587e6461e9ea3db504c55f0a11de646
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\StockRequisition;
