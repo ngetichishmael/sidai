@@ -1,4 +1,5 @@
 <div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="pt-0 card-datatable table-responsive">
@@ -7,6 +8,15 @@
                     <div class="card-body">
                        <form method="POST" action="{{ route('inventory.handleApproval') }}">
                           @csrf
+                          <div class="form-group mb-1 mt-2 ml-0 pe-0 col-md-5">
+                             <label for="warehouse" style="color: #d5512d">Warehouse:</label>
+                             <select id="warehouse" class="form-control select2" name="warehouse_code" required>
+                                <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
+                                @foreach($warehouses as $warehouse)
+                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>
+                                @endforeach
+                             </select>
+                          </div>
                           <table class="table table-bordered table-striped">
                             <thead>
                                 <th>#</th>
@@ -27,8 +37,8 @@
                             @endforeach
                             </tbody>
                           </table>
-                          <button type="submit" class=" mt-3 pl-3 btn btn-primary" name="approve">Approve and Continue </button>
-                          <button type="submit" class=" mt-3 pr-3 btn btn-danger" name="disapprove">Disapprove  and Continue</button>
+                          <button type="submit" class=" mt-1 pl-3 btn btn-primary" name="approve">Approve and Continue </button>
+                          <button type="submit" class=" mt-1 pr-3 btn btn-danger" name="disapprove">Disapprove  and Continue</button>
                        </form>
                     </div>
                 </div>
@@ -36,7 +46,7 @@
         </div>
     </div>
 
-
+</div>
 
 
 
