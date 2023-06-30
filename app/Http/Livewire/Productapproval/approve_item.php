@@ -6,7 +6,9 @@ use App\Models\activity_log;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
+use App\Models\status;
 use App\Models\StockRequisition;
+use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Livewire\Component;
 
@@ -18,10 +20,11 @@ class approve_item extends Component
    public function render()
    {
       $products = RequisitionProduct::where('requisition_id', $this->product_id)->with('ProductInformation')->get();
-
+      $warehouses =warehousing::where('status', 'Active')->get();
       return view('livewire.productapproval.approve', [
          'products' => $products,
          'requisition_id'=>$this->product_id,
+         'warehouses'=>$warehouses,
       ]);
    }
    public function handleApproval(Request $request)

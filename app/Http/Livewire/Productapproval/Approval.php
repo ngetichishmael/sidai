@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Productapproval;
 
+use App\Models\products\product_information;
+use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Livewire\Component;
 use Livewire\WithPagination;
