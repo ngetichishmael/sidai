@@ -107,7 +107,6 @@ class RequisitionController extends Controller
 
                   product_inventory::where('productID', $product->productID)
                      ->increment('current_stock', $product->quantity);
-                  //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
                }
             }
          }

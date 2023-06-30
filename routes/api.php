@@ -172,6 +172,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('/reconcile/products', [ReconciledProductsController::class, 'index'])->middleware('auth:sanctum');
    Route::get('/get/targets', [TargetsController::class, 'getSalespersonTarget'])->middleware('auth:sanctum');
 
+      //warehouses
+
+   Route::get('/get/warehouses', [TargetsController::class, 'getSalespersonTarget'])->middleware('auth:sanctum');
 
    /**
     * Reports
