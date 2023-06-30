@@ -52,6 +52,15 @@
                             <option value=""></option>
                          </select>
                       </div>
+                      <div class="form-group ml-0 pe-0 col-md-4">
+                         <label for="warehouse">Warehouse:</label>
+                         <select id="warehouse" class="form-control select2" name="warehouse_code" required>
+                            <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
+                            @foreach($warehouses as $warehouse)
+                               <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>
+                            @endforeach
+                         </select>
+                      </div>
                    <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
