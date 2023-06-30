@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-8">
     <div class="card card-inverse">
         <div class="card-body">
             <div class="card-body">
