@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
+                        <th>Route Name</th>
                         <th>Sales Person</th>
                         <th>Status</th>
                         <th>Start Date</th>
@@ -32,6 +33,7 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->name !!}</td>
+                            <td>{!! $route->User->name ?? "" !!}</td>
                             <td>{!! $route->status !!}</td>
                             <td>{!! $route->start_date !!}</td>
                             <td>{!! $route->end_date !!}</td>

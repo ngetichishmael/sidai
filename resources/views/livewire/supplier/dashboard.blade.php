@@ -1,4 +1,17 @@
-
+<div class="col-md-3">
+   <label for="">Search by name, route, region</label>
+   <input type="text" wire:model="search" class="form-control"
+          placeholder="Enter customer name, email address or phone number">
+</div>
+<div class="col-md-3">
+   <label for="">Items Per</label>
+   <select wire:model="perPage" class="form-control">`
+      <option value="10" selected>10</option>
+      <option value="25">25</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+   </select>
+</div>
 <div class="card card-default">
     <div class="card-body">
         <table class="table table-striped table-bordered">
@@ -9,7 +22,7 @@
                     <th>Email</th>
                     <th>Phone number</th>
                     <th>Date addded</th>
-                    <th width="18%">Action</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,8 +30,8 @@
                     <tr {{-- class="success" --}}>
                         <td>{!! $count + 1 !!}</td>
                         <td>{!! $supplier->name !!}</td>
-                        <td>{!! $supplier->email !!}</td>
-                        <td>{!! $supplier->phone_number !!}</td>
+                       <td>{!! \Illuminate\Support\Str::limit($supplier->email, 25) !!}</td>
+                       <td>{!! $supplier->phone_number !!}</td>
                         <td>{!! date('d F, Y', strtotime($supplier->created_at)) !!}</td>
                         <td>
                             <div class="d-flex" style="gap: 20px">

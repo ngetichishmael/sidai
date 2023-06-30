@@ -5,6 +5,7 @@ namespace App\Http\Controllers\app;
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Area;
+use App\Models\Role;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -37,13 +38,32 @@ class usersController extends Controller
    //list
    public function list()
    {
-      $lists = User::whereIn('account_type', ['NSM', 'RSM', 'TD', 'TSR', 'Shop-Attendee'])
+//      $lists = User::whereIn('account_type', ['NSM', 'RSM', 'TD', 'TSR', 'Shop-Attendee'])
+//         ->distinct('account_type')
+//         ->whereNotIn('account_type', ['Customer'])
+//         ->groupBy('account_type')
+//         ->pluck('account_type');
+//      $counts = User::whereIn('account_type', $lists)
+//         ->select('account_type', \DB::raw('count(*) as total'))
+//         ->groupBy('account_type')
+//         ->pluck('total', 'account_type');
+//      $count=1;
+      $accountTypes = Role::pluck('name')->toArray();
+
+      $lists = User::whereIn('account_type', $accountTypes)
          ->distinct('account_type')
          ->whereNotIn('account_type', ['Customer'])
          ->groupBy('account_type')
          ->pluck('account_type');
+      $counts = User::join('roles', 'users.account_type', '=', 'roles.name')
+         ->whereIn('users.account_type', $accountTypes)
+         ->whereNotIn('users.account_type', ['Customer'])
+         ->groupBy('users.account_type')
+         ->selectRaw('users.account_type, count(*) as count')
+         ->pluck('count', 'users.account_type');
+
       $count = 1;
-      return view('app.users.list', compact('lists', 'count'));
+      return view('app.users.list', compact('lists', 'counts','count'));
    }
    public function nsm()
    {

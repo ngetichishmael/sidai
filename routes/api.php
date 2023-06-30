@@ -16,8 +16,9 @@ use App\Http\Controllers\Api\ReconcilationController;
 use App\Http\Controllers\Api\ReconciledProductsController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\TargetsController;
+use App\Http\Controllers\Api\WarehouseController;
 use App\Http\Controllers\Chat\SocketsController;
-use App\Http\Controllers\Chat\ChatController;
+use App\Http\Controllers\Api\Chat\ChatController;
 use Illuminate\Support\Facades\Route;
 use Knuckles\Scribe\Annotations as Scribe;
 /*
@@ -172,6 +173,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('/reconcile/products', [ReconciledProductsController::class, 'index'])->middleware('auth:sanctum');
    Route::get('/get/targets', [TargetsController::class, 'getSalespersonTarget'])->middleware('auth:sanctum');
 
+      //warehouses
+
+   Route::get('/get/warehouses', [WarehouseController::class, 'index'])->middleware('auth:sanctum');
 
    /**
     * Reports
@@ -245,11 +249,15 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('socket/connect', [SocketsController::class, 'connect']);
 
 
-   Route::middleware('auth:sanctum')->group(function () {
-      Route::get('/chats/index', 'ChatController@index');
-      Route::get('/chats/{id}/show', 'ChatController@show');
-      Route::post('/chats/store', 'ChatController@store');
-      Route::post('/chats/{id}/reply', 'ChatController@reply');
-   });
+   Route::get('/chats', [ChatController::class, 'index']);
+   Route::patch('/chats/{id}/read', [ChatController::class, 'markAsRead']);
+
+   //support
+   Route::get('/support/all', 'SupportTicketController@index2')->middleware('auth:sanctum');
+   Route::post('/support/request', 'SupportTicketController@store')->middleware('auth:sanctum');
+   Route::post('support/{ticket_id}/messages/reply', 'SupportTicketController@replyToMessage')->middleware('auth:sanctum');
+   Route::get('support/{ticket_id}/messages', 'SupportTicketController@getMessages')->middleware('auth:sanctum');
+   Route::get('/support/{id}', 'SupportTicketController@show')->middleware('auth:sanctum');
+
 
 });

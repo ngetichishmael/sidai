@@ -3,8 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Delivery;
+use App\Models\Region;
 use App\Models\suppliers\suppliers;
+use App\Models\User;
+use App\Models\UserCode;
+use App\Notifications\NewOrderNotification;
+use App\Notifications;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use App\Models\customer\customers;
 use App\Models\customer\checkin;
@@ -17,11 +24,14 @@ use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use App\Models\Route_customer;
 use App\Models\Routes;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use mysql_xdevapi\Exception;
 
 /**
  * @group Checkin Api's
@@ -256,9 +266,17 @@ class checkinController extends Controller
             $cart->save();
          }
       }
-
-
-      // Session::flash('success','Product added to order');
+      $customer = customers::where('account', $checkin->account_number)->first();
+      $ativity_rand = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Checkin order';
+            $activityLog->user_code = auth()->user()->user_code;
+            $activityLog->section = 'Product added to order';
+            $activityLog->action = 'Product added to order by' . $request->user()->name .  ' for customer ' .$customer->customer_name ?? $checkin->account_number;
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $ativity_rand;
+            $activityLog->ip_address = "";
+            $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -319,18 +337,23 @@ class checkinController extends Controller
 
       //checkin details
       $checkin = checkin::where('code', $checkinCode)->first();
-
-
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
+      $region = Region::where('id', $request->user()->region_id)->first();
+      $regionCode = strtoupper(substr($region->name, 0, 3));
+      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $orderCode = $regionCode . '-' . $orderNumber;
+      if (empty($orderCode)){
+         $orderCode = Helper::generateRandomString(8);
+      }
 
-      $orderCode = Helper::generateRandomString(8);
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
       $order = new Orders;
       $order->order_code =  $orderCode;
-      $order->user_code = Auth::user()->user_code;
-      $order->business_code = Auth::user()->business_code;
+      $order->user_code = $request->user()->user_code;
+      $order->business_code = $request->user()->business_code;
       $order->customerID = $checkin->customer_id;
       $order->checkin_code = $checkinCode;
       $order->price_total = $cart->sum('amount');
@@ -338,7 +361,7 @@ class checkinController extends Controller
       $order->payment_status = 'Pending Payment';
       $order->qty = $cart->sum('qty');
       $order->order_type = $request->order_type;
-      $order->supplierID = $request->distributor ?? $sidai ?? 1;
+      $order->supplierID = $request->distributor ?? 1;
       $order->balance = $cart->sum('amount');
       $order->delivery_date = $request->delivery_date;
       $order->reasons_partial_delivery = $request->reasons_partial_delivery;
@@ -364,6 +387,26 @@ class checkinController extends Controller
          //delete item
          $cartItem->delete();
       }
+         if ($request->distributor != 1 && $request->distributor !=null ){
+            $usersToNotify = Suppliers::findOrFail($request->distributor);
+            $number =$usersToNotify->phone_number;
+            $order_code=$orderCode;
+            $this->sendOrder($number, $order_code);
+//               $usersToNotify = Suppliers::findOrFail($request->distributor);
+//               $orderId = $order->id;
+//               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+         }
+
+      $ativity_rand= Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Order created successfully';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order creation';
+      $activityLog->action = 'Order created by' . $request->user()->name . ' order code  '.$orderCode;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
 
       return response()->json([
          "success" => true,
@@ -622,8 +665,9 @@ class checkinController extends Controller
             'product_information.category',
             'product_information.brand',
             'product_information.sku_code',
-            'product_price.buying_price as retailer_price',
-            'product_price.selling_price as wholesale_price',
+            'product_price.selling_price as retailer_price',
+            'product_price.buying_price as wholesale_price',
+            'product_price.distributor_price as distributor_price',
             'inventory_allocated_items.allocation_code',
             'inventory_allocated_items.current_qty',
             'inventory_allocated_items.allocated_qty',
@@ -668,4 +712,68 @@ class checkinController extends Controller
          "message" => "Reason saved",
       ]);
    }
+
+
+   public function sendOrder($number, $order_code)
+   {
+
+      if ($number!=null) {
+         try {
+
+              $curl = curl_init();
+
+            $url = 'https://accounts.jambopay.com/auth/token';
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/x-www-form-urlencoded',
+               )
+            );
+
+            curl_setopt($curl, CURLOPT_POSTFIELDS,
+               http_build_query(array('grant_type' => 'client_credentials', 'client_id' => config('services.jambopay.sms_client_id'), 'client_secret' => config('services.jambopay.sms_client_secret'))));
+
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl);
+
+            $token = json_decode($curl_response);
+            curl_close($curl);
+
+            $curl = curl_init();
+
+            $message = 'You have a new Sidai order '. $order_code .'. Order details sent to your email';
+            curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS => json_encode(
+                  array(
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => $message,
+                     "callback" => "https://pasanda.com/sms/callback"
+                  )
+               ),
+               CURLOPT_HTTPHEADER => array(
+                  'Content-Type: application/json',
+                  'Authorization: Bearer '.$token->access_token
+               ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            return $response;
+
+         } catch (ExceptionHandler $e) {
+            return response()->json(['message' => 'Error occurred while trying to send OTP code']);
+         }
+      } else {
+         return response()->json(['message' => 'User is not registered!']);
+      }
+   }
+
 }

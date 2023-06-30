@@ -48,11 +48,12 @@
                 <tr>
                     <th width="1%">#</th>
                     <th>Name</th>
-                    <th>Wholesale Price ksh:</th>
-                    <th>Distributor Price ksh:</th>
-                    <th>Retail Price ksh:</th>
+                    <th>Wholesale Price</th>
+                    <th>Distributor Price</th>
+                    <th>Retail Price</th>
                     <th>Current Stock</th>
                     <th>Date</th>
+                    <th>time</th>
                     @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                      <th>Actions</th>
                   @endif
@@ -78,9 +79,9 @@
                             {{ number_format((float) $product->ProductPrice()->pluck('selling_price')->implode('')) }}
                         </td>
                         <td>{{ $product->Inventory()->pluck('current_stock')->implode('') }} </td>
-                        <td>{{ $product->ProductPrice->created_at->format('d/m/Y') }}</td>
-
-                       <td>
+                        <td>{{ $product->updated_at->format('d/m/Y') }}</td>
+                        <td>{{ $product->updated_at->format('H:i:s') }}</td>
+                        <td>
                             <div class="dropdown" >
                              <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                 <i data-feather="settings"></i>

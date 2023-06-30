@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\DeliveriesController;
 use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
+use App\Http\Controllers\Api\Manager\RequisitionController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
@@ -89,6 +91,14 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/assign/visit/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignVisitTarget']);
       Route::post('/manager/assign/order/target', [\App\Http\Controllers\Api\Manager\TargetController::class, 'assignOrderTarget']);
       Route::post('/manager/add/customer', [CustomerController::class, 'addCustomer']);
+
+      Route::post('/managers/get/deliveries', [DeliveriesController::class, 'getManagersDeliveries']);
+      Route::post('/managers/custom/deliveries', [DeliveriesController::class, 'getManagersCustomDeliveries']);
+
+      Route::get('manager/requisitions/list', [RequisitionController::class ,'index']);
+      Route::get('manager/requisitions/history', [RequisitionController::class ,'history']);
+      Route::post('manager/approve/{id}',  [RequisitionController::class ,'approve']);
+      Route::post('manager/approve/requisitions', [RequisitionController::class ,'handleApproval']);
 
    });
 });

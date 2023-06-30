@@ -141,13 +141,11 @@ class AuthController extends Controller
    {
 
 
-      $user = FacadesDB::table('users')->where('phone_number', $number)->get();
+      $user = User::where('phone_number', $number)->get();
 
-      if ($user) {
+      if ($user!=null) {
          try {
-
             $code = rand(100000, 999999);
-
             UserCode::updateOrCreate([
                'user_id' => $user[0]->id,
                'code' => $code
@@ -155,8 +153,27 @@ class AuthController extends Controller
 
             $curl = curl_init();
 
+            $url = 'https://accounts.jambopay.com/auth/token';
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/x-www-form-urlencoded',
+               )
+            );
+
+            curl_setopt($curl, CURLOPT_POSTFIELDS,
+               http_build_query(array('grant_type' => 'client_credentials', 'client_id' => config('services.jambopay.sms_client_id'), 'client_secret' => config('services.jambopay.sms_client_secret'))));
+
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl);
+
+            $token = json_decode($curl_response);
+            curl_close($curl);
+
+            $curl = curl_init();
+
             curl_setopt_array($curl, array(
-               CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
+               CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
                CURLOPT_RETURNTRANSFER => true,
                CURLOPT_ENCODING => '',
                CURLOPT_MAXREDIRS => 10,
@@ -164,26 +181,56 @@ class AuthController extends Controller
                CURLOPT_FOLLOWLOCATION => true,
                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                CURLOPT_CUSTOMREQUEST => 'POST',
-               CURLOPT_POSTFIELDS => '{
-             "number" : "' . $number . '",
-             "sms" : ' . $code . ',
-             "callBack" : "https://....",
-             "senderName" : "PASANDA"
-       }
-       ',
+               CURLOPT_POSTFIELDS => json_encode(
+                  array(
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => "Your Sidai Verification Code is :" .$code,
+                     "callback" => "https://pasanda.com/sms/callback"
+                  )
+               ),
                CURLOPT_HTTPHEADER => array(
-                  'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
-                  'Content-Type: application/json'
+                  'Content-Type: application/json',
+                  'Authorization: Bearer '.$token->access_token
                ),
             ));
-
             $response = curl_exec($curl);
-
             curl_close($curl);
+            return $response;
+//            return response()->json(['data' => $user, 'otp' => $code]);
 
-            return response()->json(['data' => $user, 'otp' => $code]);
+
+//            $curl = curl_init();
+//
+//            curl_setopt_array($curl, array(
+//               CURLOPT_URL => 'https://prsp.jambopay.co.ke/api/api/org/disburseSingleSms/',
+//               CURLOPT_RETURNTRANSFER => true,
+//               CURLOPT_ENCODING => '',
+//               CURLOPT_MAXREDIRS => 10,
+//               CURLOPT_TIMEOUT => 0,
+//               CURLOPT_FOLLOWLOCATION => true,
+//               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//               CURLOPT_CUSTOMREQUEST => 'POST',
+//               CURLOPT_POSTFIELDS => '{
+//             "number" : "' . $number . '",
+//             "sms" : ' . $code . ',
+//             "callBack" : "https://....",
+//             "senderName" : "PASANDA"
+//       }
+//       ',
+//               CURLOPT_HTTPHEADER => array(
+//                  'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozNywibmFtZSI6IkRldmVpbnQgTHRkIiwiZW1haWwiOiJpbmZvQGRldmVpbnQuY29tIiwibG9jYXRpb24iOiIyMyBPbGVuZ3VydW9uZSBBdmVudWUsIExhdmluZ3RvbiIsInBob25lIjoiMjU0NzQ4NDI0NzU3IiwiY291bnRyeSI6IktlbnlhIiwiY2l0eSI6Ik5haXJvYmkiLCJhZGRyZXNzIjoiMjMgT2xlbmd1cnVvbmUgQXZlbnVlIiwiaXNfdmVyaWZpZWQiOmZhbHNlLCJpc19hY3RpdmUiOmZhbHNlLCJjcmVhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTExLTIzVDEyOjQ5OjU2LjAwMFoifSwiaWF0IjoxNjQ5MzEwNzcxfQ.4y5XYFbC5la28h0HfU6FYFP5a_6s0KFIf3nhr3CFT2I',
+//                  'Content-Type: application/json'
+//               ),
+//            ));
+//
+//            $response = curl_exec($curl);
+//
+//            curl_close($curl);
+
+//            return response()->json(['data' => $user, 'otp' => $code]);
          } catch (ExceptionHandler $e) {
-            return response()->json(['message' => 'Error occured while trying to send OTP code']);
+            return response()->json(['message' => 'Error occurred while trying to send OTP code']);
          }
       } else {
          return response()->json(['message' => 'User is not registered!']);

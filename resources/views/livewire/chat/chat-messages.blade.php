@@ -19,20 +19,17 @@
    </div>
 
    <div>
-      <h2>{{ $user->name }}</h2>
-      <div>
+      @foreach ($messages as $message)
          <div>
-            @foreach ($messages as $message)
-               <div>
-                  <p>{{ $message->content }}</p>
-                  <p>{{ $message->created_at }}</p>
-               </div>
-            @endforeach
+            @if ($message->sender_id === Auth::id())
+               <div class="sent">{{ $message->message }}</div>
+            @else
+               <div class="received">{{ $message->message }}</div>
+            @endif
          </div>
-         <div>
-            <input type="text" wire:model="replyContent">
-            <button wire:click="reply">Reply</button>
-         </div>
-      </div>
+      @endforeach
+
+      <input type="text" wire:model="message">
+      <button wire:click="sendMessage">Send</button>
    </div>
 @endsection

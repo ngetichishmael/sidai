@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\SupportTicket;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -16,20 +19,29 @@ class SupportTicketController extends Controller
       $tickets = SupportTicket::where('customer_code', $customer)->get();
       return response()->json($tickets);
    }
-
    public function index2()
    {
-      $user=Auth::user()->user_code;
-      $tickets = SupportTicket::with('messages')->where('user_code', $user)->get();
-      return response()->json(['success'=>true,'message'=>'subject and associated messages', 'data' => $tickets], 200);
+      $tickets = SupportTicket::with('messages')->paginate(10);
+      $unreadCount = SupportTicket::where('read', 0)->count();
+      return view('app.support.index', compact('tickets', 'unreadCount'));
+   }
+
+   public function index()
+   {
+//      $user=Auth::user()->user_code;
+//      $tickets = SupportTicket::with('messages')->where('user_code', $user)->get();
+//      return response()->json(['data' => $tickets]);
+      $tickets = SupportTicket::with('messages')->paginate(10);
+      $unreadCount = Message::where('read', 0)->count();
+      return view('app.support.index', compact('tickets', 'unreadCount'));
    }
 
    public function store(Request $request)
    {
       $validator = Validator::make($request->all(), [
-         'message' => 'required|string|max:255',
-         'subject' => 'required|string|max:60',
-      ]);
+      'message' => 'required|string|max:255',
+      'subject' => 'required|string|max:60',
+   ]);
 
       if ($validator->fails()) {
          return response()->json(['errors' => $validator->errors()], 422);
@@ -48,13 +60,15 @@ class SupportTicketController extends Controller
       $message->read = 1;
       $message->save();
 
-      return response()->json(['success'=>true,'message'=>'Sent successfully','data' => $ticket], 201);
+      return response()->json(['data' => $ticket]);
    }
 
    public function show($id)
    {
       $ticket = SupportTicket::with('messages')->findOrFail($id);
-      return response()->json(['data' => $ticket]);
+      $user= User::where('user_code',$ticket->user_code)->first();
+//      return response()->json(['data' => $ticket]);
+      return view('app.support.view', compact('ticket', 'user'));
    }
 
    public function update(Request $request, $id)
@@ -62,8 +76,8 @@ class SupportTicketController extends Controller
       $ticket = SupportTicket::findOrFail($id);
       $ticket->status = $request->input('status');
       $ticket->save();
-
-      return response()->json(['data' => $ticket]);
+      $user= User::where('user_code',$ticket->user_code)->first();
+      return view('app.support.view', compact('ticket', 'user'));
    }
 
    public function destroy($id)
@@ -90,28 +104,30 @@ class SupportTicketController extends Controller
 
       return response()->json(['data' => $message]);
    }
-   public function replyToMessage(Request $request, $ticketId)
+   public function replyToMessage(Request $request, $ticketId, $messageId)
    {
+
       $validator = Validator::make($request->all(), [
-         'message' => 'required|string|max:255',
-      ]);
+      'message' => 'required|string|max:255',
+   ]);
 
       if ($validator->fails()) {
          return response()->json(['errors' => $validator->errors()], 422);
       }
 
       $ticket = SupportTicket::findOrFail($ticketId);
-//      $message = Message::findOrFail($messageId);
-
+      $message = Message::findOrFail($messageId);
+      $user= User::where('user_code',$ticket->sender_code)->first();
       $newMessage = new Message();
       $newMessage->ticket_id = $ticket->id;
       $newMessage->sender_code = $request->user()->user_code;
       $newMessage->message = $request->input('message');
-//      $newMessage->parent_id = $message->id;
+      $newMessage->parent_id = $message->id;
       // Mark the original message as read
       $newMessage->read = 1;
       $newMessage->save();
-      return response()->json(['data' => $newMessage]);
+//      return response()->json(['data' => $newMessage]);
+      return view('app.support.view', compact('ticket', 'user'));
    }
 
 

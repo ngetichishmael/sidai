@@ -1,3 +1,6 @@
+<div>
+    {{-- If your happiness depends on money, you will never be happy with yourself. --}}
+</div>
 @extends('layouts.app')
 {{-- page header --}}
 @section('title', 'Customer Groups')
@@ -17,7 +20,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
                             <li class="breadcrumb-item"><a href="#">Customer Groups</a></li>
-                            <li class="breadcrumb-item active"><a href="#">All</a></li>
+                            <li class="breadcrumb-item"><a href="#">All</a></li>
                         </ol>
                     </div>
                 </div>

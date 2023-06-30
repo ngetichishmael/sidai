@@ -4,11 +4,14 @@ namespace App\Http\Livewire\Supplier;
 
 use App\Models\suppliers\suppliers;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Archived extends Component
 {
-use \Livewire\WithPagination;
 protected $paginationTheme = 'bootstrap';
+   use WithPagination;
+   public $perPage = 15;
+   public $search = '';
 public function render()
 {
    $suppliers = suppliers::where('status', 'Inactive')

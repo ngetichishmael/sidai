@@ -11,7 +11,7 @@ class Dashboard extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 40;
+   public $perPage = 20;
    public $sortField = 'id';
    public $sortAsc = true;
    public function render()

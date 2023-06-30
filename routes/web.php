@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\SocketsController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SupportTicketController;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use Illuminate\Support\Facades\Auth;
@@ -293,7 +295,7 @@ Route::group(['middleware' => ['verified']], function () {
       Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
       Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
       Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
-      Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
+      Route::get('reports/kenmeat-users', 'app\ReportsController@reports')->name('sidai.reports');
       Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
       Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
       Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
@@ -441,10 +443,9 @@ Route::group(['middleware' => ['verified']], function () {
    //chats endpoints
    Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
    Route::get('chats/{chat}', 'ChatController@show');
-   Route::get('chats/index', [ChatController::class, 'index'])->name('chats.index');
+   Route::get('/chats/index', [ChatController::class, 'index'])->name('chats.index');
    Route::post('chats/{chat}/messages', 'MessageController@store');
-   // routes/web.php
-
+   Route::get('/messages/{receiverId}', [ChatController::class, 'messagesIndex'])->name('messages.index');
 
    Route::get('socket/index', function (AppProvider $appProvider) {
       return view('app/chat/index', [
@@ -455,7 +456,6 @@ Route::group(['middleware' => ['verified']], function () {
          "apps" => $appProvider->all()
       ]);
    })->name('socket.index');
-   Route::get('/chat', [ChatController::class, 'index'])->name('chat');;
 
 
 
@@ -478,4 +478,18 @@ Route::group(['middleware' => ['verified']], function () {
       }
       SendMessage::dispatch($name, $message, $time);
    });
+
+   //support
+   Route::get('support', ['uses' => 'SupportTicketController@index', 'as' => 'support.index'])->middleware('auth:sanctum');
+   Route::get('support/{id}', ['uses' => 'SupportTicketController@show', 'as' => 'support.show'])->middleware('auth:sanctum');
+   Route::get('support/update/{id}', ['uses' => 'SupportTicketController@update', 'as' => 'support.update'])->middleware('auth:sanctum');
+   Route::post('/support/{ticketId}/messages/{messageId}/reply', [SupportTicketController::class, 'replyToMessage'])->name('support.reply');
+   Route::get('support/{ticket_id}/messages', ['uses' => 'SupportTicketController@getMessages', 'as' => 'support.getMessages'])->middleware('auth:sanctum');
+//
+   Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+   Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+   Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+   Route::get('/roles/{role}', [RoleController::class, 'show'])->name('roles.show');
+   Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
+   Route::put('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
 });
