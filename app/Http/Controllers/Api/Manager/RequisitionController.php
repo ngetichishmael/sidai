@@ -68,6 +68,7 @@ class RequisitionController extends Controller
    {
       $arrayData = [];
       $selectedProducts = $request->input('selected_products', []);
+      $warehouse_code = $request->input('warehouse_code');
       $user = $request->user();
       $user_code = $user->user_code;
       $business_code = $user->business_code;
@@ -77,6 +78,13 @@ class RequisitionController extends Controller
             'status' => 409,
             'success' => false,
             "message" => "Not products selected",
+         ]);
+      }
+        elseif (empty($warehouse_code)) {
+         return response()->json([
+            'status' => 409,
+            'success' => false,
+            "message" => "No Warehouse selected",
          ]);
       }else{
          foreach ($selectedProducts as $productId) {
