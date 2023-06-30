@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\ReconcilationController;
 use App\Http\Controllers\Api\ReconciledProductsController;
 use App\Http\Controllers\Api\ReportsController;
 use App\Http\Controllers\Api\TargetsController;
+use App\Http\Controllers\Api\WarehouseController;
 use App\Http\Controllers\Chat\SocketsController;
 use App\Http\Controllers\Api\Chat\ChatController;
 use Illuminate\Support\Facades\Route;
@@ -172,6 +173,9 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('/reconcile/products', [ReconciledProductsController::class, 'index'])->middleware('auth:sanctum');
    Route::get('/get/targets', [TargetsController::class, 'getSalespersonTarget'])->middleware('auth:sanctum');
 
+      //warehouses
+
+   Route::get('/get/warehouses', [WarehouseController::class, 'index'])->middleware('auth:sanctum');
 
    /**
     * Reports

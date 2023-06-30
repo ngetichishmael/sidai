@@ -9,6 +9,7 @@ use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class RequisitionController extends Controller
@@ -68,6 +69,7 @@ class RequisitionController extends Controller
    {
       $arrayData = [];
       $selectedProducts = $request->input('selected_products', []);
+      $warehouse_code = $request->input('warehouse_code');
       $user = $request->user();
       $user_code = $user->user_code;
       $business_code = $user->business_code;
@@ -77,6 +79,13 @@ class RequisitionController extends Controller
             'status' => 409,
             'success' => false,
             "message" => "Not products selected",
+         ]);
+      }
+        elseif (empty($warehouse_code)) {
+         return response()->json([
+            'status' => 409,
+            'success' => false,
+            "message" => "No Warehouse selected",
          ]);
       }else{
          foreach ($selectedProducts as $productId) {
@@ -107,7 +116,6 @@ class RequisitionController extends Controller
 
                   product_inventory::where('productID', $product->productID)
                      ->increment('current_stock', $product->quantity);
-                  //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
                }
             }
          }
@@ -130,6 +138,18 @@ class RequisitionController extends Controller
     }
     public function approve(Request $request)
     {
+       $validator           =  Validator::make($request->all(), [
+          "id"   => "required|integer",
+       ]);
+       if ($validator->fails()) {
+          return response()->json(
+             [
+                "status" => 401, "message" => "validation_error",
+                "errors" => $validator->errors()
+             ],
+             403
+          );
+       }
        $products = RequisitionProduct::where('requisition_id', $request->id)->with('ProductInformation')->get();
        return response()->json([
           'status' => 200,
