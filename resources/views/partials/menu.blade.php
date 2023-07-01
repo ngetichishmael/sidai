@@ -287,7 +287,7 @@
     <li class="nav-item {!! Nav::isResource('reports') !!}">
         <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
                 data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
-                Reports</span></a>
+                All Reports</span></a>
     </li>
 @endif
 <li class="nav-item {!! Nav::isResource('activity')!!}">
