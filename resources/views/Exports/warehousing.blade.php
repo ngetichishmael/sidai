@@ -7,7 +7,7 @@
         <th>Region</th>
         <th>Subregion</th>
         <th>Quantity</th>
-        <th>No of Allocations</th>
+        {{-- <th>No of Allocations</th> --}}
         <th>Last Re-stock</th>
         
     </tr>
@@ -17,11 +17,11 @@
         <tr>
             <td>{{ $key+1 }}</td>
             <td>{{ $warehouse->name }}</td>
-            <td></td>
+            <td>{{ $warehouse->Manager->name ?? '' }}</td>
             <td>{{ $warehouse->region->name??'' }}</td>
             <td>{{ $warehouse->subregion->name??'' }}</td>
-            <td>{{ $warehouse->product_information_count ??'N/A'}}</td>
-            <td></td>
+            <td>{{ $warehouse->products_count }}</td>
+            {{-- <td></td> --}}
             <td>{{ $warehouse->updated_at->format('d/m/Y') }}</td>
             
         </tr>

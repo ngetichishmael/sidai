@@ -19,7 +19,7 @@
             <td>{{ $preorder->Customer->customer_name??'N/A' }}</td>
             <td>{{ $preorder->User->name??'N/A' }}</td>
             <td>{{ $preorder->User->Region->name??'N/A' }}</td>
-            <td>{{ $preorder->User->Subregion->name??'N/A' }}</td>
+            <td>{{ $preorder->Customer->Area->Subregion->name ?? 'N/A' }}</td>
             <td>{{ $preorder->order_status ??'N/A' }}</td>
             <td>{{ $preorder->created_at->format('d/m/Y')??'' }}</td>
         </tr>
