@@ -48,25 +48,25 @@ class Preorder extends Component
    public function filter(): array
    {
 
-      $array = array();
+      $array = [];
       $user = Auth::user();
       $user_code = $user->route_code;
       if (!$user->account_type === 'RSM') {
          return $array;
       }
       $subregions = Subregion::where('region_id', $user_code)->pluck('id');
-      if (empty($subregions)) {
+      if ($subregions->isEmpty()) {
          return $array;
       }
       $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
-      if (empty($array)) {
+      if ($areas->isEmpty()) {
          return $array;
       }
       $customers = customers::whereIn('route_code', $areas)->pluck('id');
-      if (empty($array)) {
+      if ($customers->isEmpty()) {
          return $array;
       }
-      $array = $customers;
+      return $customers->toArray();
    }
    public function export()
    {

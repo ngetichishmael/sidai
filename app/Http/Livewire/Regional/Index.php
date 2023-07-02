@@ -12,6 +12,7 @@ use App\Models\Area;
 use App\Models\customers;
 use App\Models\Delivery;
 use App\Models\Subregion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -52,6 +53,29 @@ class Index extends Component
       $orders = Orders::whereIn('customerID', $customers)->pluck('order_code');
       $deliveries = Delivery::whereIn('order_code', $orders)->count();
       return $deliveries ?? 0;
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->route_code;
+      if (!$user->account_type === 'RSM') {
+         return $array;
+      }
+      $subregions = Subregion::where('region_id', $user_code)->pluck('id');
+      if ($subregions->isEmpty()) {
+         return $array;
+      }
+      $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
+      if ($areas->isEmpty()) {
+         return $array;
+      }
+      $customers = customers::whereIn('route_code', $areas)->pluck('id');
+      if ($customers->isEmpty()) {
+         return $array;
+      }
+      return $customers->toArray();
    }
    public function export()
    {
