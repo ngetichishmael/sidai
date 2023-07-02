@@ -14,7 +14,7 @@
         <select wire:model="" class="form-control" disabled>`
             <option value="" selected>select</option>
             <option value=""></option>
- 
+
         </select>
     </div>
     <div class="col-md-3">
@@ -24,8 +24,8 @@
                 data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
         </button>
     </div>
- </div>
- <br>
+</div>
+<br>
 <div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
@@ -60,20 +60,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($orders as $key => $order)
+
+                            @forelse ($orders as $key => $order)
+                                @if ($order->id == null)
+                                    <tr>
+                                        <td colspan="7" class="text-center ql-color-red">No data</td>
+                                    </tr>
+                                @else
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $order->order_code }}</td>
+                                        <td>{{ $order->customer_name }}</td>
+                                        <td>{{ $order->total_payment ?? 0 }}</td>
+                                        <td>{{ $order->customer_type }}</td>
+                                        <td>{{ $order->created_at }}</td>
+                                        <td><a href="{{ route('paymentsdetails.reports', [
+                                            'id' => $order->id,
+                                        ]) }}"
+                                                class="btn btn-sm"
+                                                style="background-color: #B6121B;color:white">View</a>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @empty
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $order->order_code }}</td>
-                                    <td>{{ $order->customer_name }}</td>
-                                    <td>{{ $order->total_payment }}</td>
-                                    <td>{{ $order->customer_type }}</td>
-                                    <td>{{ $order->created_at }}</td>
-                                    <td><a href="{{ route('paymentsdetails.reports', [
-                                        'id' => $order->id,
-                                    ]) }}"
-                                            class="btn btn-sm" style="background-color: #B6121B;color:white">View</a></td>
+                                    <td colspan="7">No data</td>
                                 </tr>
-                            @endforeach
+                            @endforelse
 
 
 
