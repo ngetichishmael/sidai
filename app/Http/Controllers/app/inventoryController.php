@@ -83,7 +83,7 @@ class inventoryController extends Controller
             } elseif ($request->has('disapprove')) {
                $product->update(['approval' => 0]);
                items::where('product_code', $product->productID)
-                  ->dencrement('allocated_qty', $product->quantity);
+                  ->decrement('allocated_qty', $product->quantity);
 
                product_inventory::where('productID', $product->productID)
                   ->increment('current_stock', $product->quantity);
