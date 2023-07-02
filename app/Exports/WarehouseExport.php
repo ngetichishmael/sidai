@@ -15,7 +15,7 @@ class WarehouseExport implements FromView
     public function view(): View
     {
          return view('Exports.warehousing', [
-            'warehouses' => warehousing::whereNotNull('warehouse_code')->get()
+            'warehouses' => warehousing::with('manager')->withCount('Products')->whereNotNull('warehouse_code')->get()
          ]);
 
     }
