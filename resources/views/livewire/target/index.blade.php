@@ -41,38 +41,54 @@
 
     <div class="col-md-8">
         <div class="card card-default">
+
             <div class="card-body">
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>User Name</th>
-                            <th>User Type</th>
-                            <th>Target</th>
-                            <th>Achieved</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($targets as $key => $target)
+
+                <div class="card-datatable table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
                             <tr>
-                                <td>{{ $target->User }}</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><a href="" class="btn btn-sm"
-                                        style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                                <th>#</th>
+                                <th>User Name</th>
+                                <th>User Type</th>
+                                <th>Lead Target</th>
+                                <th>Lead Achieved</th>
+                                <th>Sales Target</th>
+                                <th>Sales Achieved</th>
+                                <th>Visit Target</th>
+                                <th>Visit Achieved</th>
+                                <th>Order Target</th>
+                                <th>Order Achieved</th>
+                                <th>Action</th>
                             </tr>
-                        @endforeach
+                        </thead>
+                        <tbody>
+                            @foreach ($targets as $key => $target)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $target->user_name }}</td>
+                                    <td>{{ $target->user_type }}</td>
+                                    <td>{{ $target->leads_target }}</td>
+                                    <td>{{ $target->leads_achieved }}</td>
+                                    <td>{{ $target->sales_target }}</td>
+                                    <td>{{ $target->sales_achieved }}</td>
+                                    <td>{{ $target->visits_target }}</td>
+                                    <td>{{ $target->visits_achieved }}</td>
+                                    <td>{{ $target->orders_target }}</td>
+                                    <td>{{ $target->orders_achieved }}</td>
+                                    <td><a href="" class="btn btn-sm"
+                                            style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                                </tr>
+                            @endforeach
 
 
 
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
 
-                {{-- <div class="mt-1">{!! $suppliers->links() !!}</div> --}}
+                    {{-- <div class="mt-1">{!! $suppliers->links() !!}</div> --}}
+                </div>
             </div>
         </div>
     </div>
