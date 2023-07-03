@@ -18,6 +18,12 @@ class Vansales extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       $count = 1;
@@ -28,7 +34,13 @@ class Vansales extends Component
    }
    public function data()
    {
-      $query = Orders::with('User', 'Customer')->whereIn('customerID', $this->filter())->where('order_type', 'Van sales');
+      $query = Orders::with('User', 'Customer');
+      if (!$this->user->account_type === 'RSM') {
+         $query->whereIn('customerID', $this->filter());
+      }
+
+
+      $query->where('order_type', 'Van sales');
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
@@ -46,7 +58,7 @@ class Vansales extends Component
    {
 
       $array = [];
-      $user = Auth::user();
+      $user = $this->user;
       $user_code = $user->route_code;
       if (!$user->account_type === 'RSM') {
          return $array;

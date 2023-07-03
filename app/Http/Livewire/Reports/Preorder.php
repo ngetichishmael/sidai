@@ -20,6 +20,13 @@ class Preorder extends Component
    public $start;
    public $end;
    public $search = null;
+
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       $count = 1;
@@ -31,7 +38,13 @@ class Preorder extends Component
    }
    public function data()
    {
-      $query = Orders::with('User', 'Customer')->whereIn('customerID', $this->filter())->where('order_type', 'Pre Order');
+      $query = Orders::with('User', 'Customer');
+
+      if ($this->user->account_type === 'RSM') {
+         $query->whereIn('customerID', $this->filter());
+      }
+
+      $query->where('order_type', 'Pre Order');
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
