@@ -22,6 +22,12 @@ class Warehouse extends Component
    public $start;
    public $end;
    use WithPagination;
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       $count = 1;
@@ -53,7 +59,12 @@ class Warehouse extends Component
    public function allocated($warehouse_code)
    {
       $product_informations = product_information::where('warehouse_code', $warehouse_code)->select('id')->get();
-      $order_items = Order_items::whereIn('order_code', $this->filter())->whereIn('productID', $product_informations)->sum('quantity');
+      $query = Order_items::query();
+
+      if ($this->user->account_type === 'RSM') {
+         $query->whereIn('order_code', $this->filter());
+      }
+      $query->whereIn('productID', $product_informations)->sum('quantity');
       return $order_items ?? 0;
    }
    public function filter(): array
