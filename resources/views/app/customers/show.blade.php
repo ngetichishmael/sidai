@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-12 col-12">
                                     <div style="display: flex; justify-content:center">
-                                        <img src="{{ asset('images/bglogo.png')}}" class="logo" alt="Image" width="100px" height="80px"/>
+                                        <img src="{{ asset('app-assets/images/bglogo.png')}}" class="logo" alt="Image" width="100px" height="80px"/>
                                       </div>
                                 </div>
                                 <div class="col-md-6 col-12">

@@ -272,8 +272,18 @@ public function groups(){
             "errors" => $validator->errors()
          ], 403);
       }
+      if($request->hasFile('image')){
+         $destination_path = 'public/image';
+         $image = $request->file('image');
+         $image_name = $image->getClientOriginalName();
+         $path = $image->storeAs($destination_path,$image_name);
+         if($path){
+            $image_path= $destination_path.'/'.$image_name;
+         }
 
-      $image_path = $request->file('image')->store('image', 'public');
+      }
+
+      $image_path = $request->file('image')->store('app-assets/images', 'public');
       $emailData = $request->email ?? $request->customer_name . Str::random(3) . '@gmail.com';
       $route = Area::with('subregion.region')->find($request->route_code);
       $user = User::create([
