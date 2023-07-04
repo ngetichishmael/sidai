@@ -55,7 +55,7 @@
                                 <tr>
                                     <td>{{ $count++ }}</td>
                                     <td>{{ $warehouse->name }}</td>
-                                    <td>{{ $warehouse->Manager->name ?? '' }}</td>
+                                    <td>{{ $warehouse->Manager->name ?? 'Not Assigned' }}</td>
                                     <td class="cell-fit">
                                         {{ $warehouse->subregion->name ?? '' }},
                                         {{ $warehouse->region->name ?? '' }}

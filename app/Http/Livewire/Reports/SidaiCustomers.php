@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Livewire\Reports;
+
+use Carbon\Carbon;
+use Livewire\Component;
+use App\Models\customers;
+use Livewire\WithPagination;
+use App\Exports\CustomersExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+class SidaiCustomers extends Component
+{
+    protected $paginationTheme = 'bootstrap';
+   public $start;
+   public $end;
+   use WithPagination;
+    public function render()
+    {
+        return view('livewire.reports.sidai-customers');
+    }
+    public function data()
+   {
+      $query = customers::has('orders')->get();
+      if (!is_null($this->start)) {
+         if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+            $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+         } else {
+            if (is_null($this->end)) {
+               $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+            }
+            $query->whereBetween('created_at', [$this->start, $this->end]);
+         }
+      }
+
+      return $query;
+   }
+
+    public function export()
+   {
+      return Excel::download(new CustomersExport, 'Customers.xlsx');
+   }
+}
+
