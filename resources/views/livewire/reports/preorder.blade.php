@@ -31,6 +31,9 @@
         <select wire:model="status" class="form-control">
             <option value="" selected>select</option>
             <option value=""></option>
+            <option value="">Pending Delivery</option>
+            <option value="">Waiting Acceptance</option>
+            <option value="">Delivered</option>
         </select>
     </div>
     <div class="col-md-3">

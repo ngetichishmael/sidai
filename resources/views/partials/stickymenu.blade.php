@@ -10,7 +10,7 @@
                     <a href="{{ route('vansales.reports') }}" style="color: white;font-size:12px">Vansales </a><br><br>
                 <a href="{{ route('delivery.reports') }}" style="color: white;font-size:12px">Delivery </a><br><br>
                         
-                <a href="{{ route('supplier.reports') }}" style="color: white;font-size:12px">Suppliers </a><br><br>
+                {{-- <a href="{{ route('supplier.reports') }}" style="color: white;font-size:12px">Suppliers </a><br><br> --}}
                 
                 <a href="{{ route('distributor.reports') }}" style="color: white;font-size:12px">Distributors
                         </a><br><br>
