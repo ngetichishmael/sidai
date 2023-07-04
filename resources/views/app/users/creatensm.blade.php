@@ -70,24 +70,24 @@
 
 
                                                     <input id="region" type="hidden" name="region" value="0000"  />
-                                                    <input id="region" type="hidden" name="account_type"  id="account-type" value="NSM"  />
+{{--                                                    <input id="region" type="hidden" name="account_type"  id="account-type" value="NSM"  />--}}
 
 
-{{--                                            <div class="col-md-6 col-12" type="hidden">--}}
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="select-country">User Type</label>--}}
-{{--                                                    <select class="form-control select2 select" id="account-type"--}}
-{{--                                                        name="account_type" required>--}}
-{{--                                                        <option value=""></option>--}}
-{{--                                                       <option value="NSM">National Sales Manager</option>--}}
-{{--                                                       <option value="RSM">Regional Sales Manager</option>--}}
-{{--                                                       <option value="TSR">Technical Sales Representative</option>--}}
-{{--                                                       <option value="Shop-Attendee">Shop Attendee</option>--}}
-{{--                                                       <option value="TD">Trade Developer</option>--}}
-
-{{--                                                    </select>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
+                                            <div class="col-md-6 col-12" type="hidden">
+                                                <div class="form-group">
+                                                    <label for="select-country">User Type</label>
+                                                    <select class="form-control select2 select" id="account-type"
+                                                        name="account_type" required>
+                                                       <option value=""></option>
+                                                       <option value="Admin">Admin</option>
+                                                       <option value="NSM">National Sales Manager</option>
+                                                       <option value="RSM">Regional Sales Manager</option>
+                                                       <option value="TSR">Technical Sales Representative</option>
+                                                       <option value="Shop-Attendee">Shop Attendee</option>
+                                                       <option value="TD">Trade Developer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
 {{--                                            <div class="col-md-6 col-12">--}}
 {{--                                                <div class="form-group">--}}
 {{--                                                    <label for="select-region">Regions</label>--}}

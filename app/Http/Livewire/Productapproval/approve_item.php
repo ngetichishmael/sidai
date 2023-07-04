@@ -20,7 +20,8 @@ class approve_item extends Component
    public function render()
    {
       $products = RequisitionProduct::where('requisition_id', $this->product_id)->with('ProductInformation')->get();
-      $warehouses =warehousing::where('status', 'Active')->get();
+      $warehouseCodes = $products->pluck('product_information.warehouse_code');
+      $warehouses = Warehousing::whereIn('warehouse_code', $warehouseCodes)->get();
       return view('livewire.productapproval.approve', [
          'products' => $products,
          'requisition_id'=>$this->product_id,
