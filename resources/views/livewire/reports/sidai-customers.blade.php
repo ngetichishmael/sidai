@@ -59,7 +59,10 @@
                       </tr>
                    </thead>
                    <tbody>
-                     @foreach ($users as $key => $user )
+                    <tr>
+                        <td>No Data</td>
+                    </tr>
+                     {{-- @foreach ($users as $key => $user )
                      <tr>
                         <td>{{ $key+1 }}</td>
                         <td>{{ $user->name }}</td>
@@ -67,7 +70,7 @@
                         <td></td>
                         <td></td>
                     </tr>  
-                     @endforeach
+                     @endforeach --}}
                     
                       
                    </tbody>
