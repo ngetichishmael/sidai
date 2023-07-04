@@ -19,7 +19,7 @@
       </div>
    </div>
    @include('partials._messages')
-   @livewire('reports.customers')
+   @livewire('reports.sidai-customers')
 @endsection
 {{-- page scripts --}}
 @section('script')

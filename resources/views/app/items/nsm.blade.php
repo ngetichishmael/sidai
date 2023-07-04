@@ -34,13 +34,13 @@
                     </tr>
                  </thead>
                  <tbody>
-                  @foreach ($nsms as $key=>$nsm)
+                  @foreach ($nsms as $key => $nsm)
                   <tr>
                      <td>{{ $key+1 }}</td>
                      <td>{{ $nsm->name }}</td>
                      <td></td>
-                     <td>{{ $nsm->Region->name??'' }}</td>
-                     <td>{{ $nsm->Subregion->name??'' }}</td>
+                     <td>{{ $nsm->Region->name??'Not found' }}</td>
+                     <td>{{ $nsm->Subregion->name??'Not found' }}</td>
                  </tr>
                   @endforeach
                    
