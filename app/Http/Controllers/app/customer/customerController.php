@@ -100,7 +100,7 @@ class customerController extends Controller
       $c=Customers::whereId($id)->update(
          [
             'customer_type' => 'creditor',
-            'creditor_approved' => 1,
+            'creditor_status' => 'approved',
             'is_creditor' => 1,
          ]
       );
