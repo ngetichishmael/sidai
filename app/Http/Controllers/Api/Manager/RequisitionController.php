@@ -94,28 +94,28 @@ class RequisitionController extends Controller
             if ($product) {
                if ($request->has('approve')) {
                   $product->update(['approval' => 1]);
-                  $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
-                  $value = [
-                     'productID' => $product->id,
-                     'qty' => $product->quantity,
-                  ];
-
-                  $stocked = product_inventory::find($product->id);
-                  (new StockLiftHelper())(
-                     $user_code,
-                     $business_code,
-                     $value,
-                     $image_path,
-                     $random,
-                     $stocked
-                  );
+//                  $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
+//                  $value = [
+//                     'productID' => $product->product_id,
+//                     'qty' => $product->quantity,
+//                  ];
+//
+//                  $stocked = product_inventory::find($product->product_id);
+//                  (new StockLiftHelper())(
+//                     $user_code,
+//                     $business_code,
+//                     $value,
+//                     $image_path,
+//                     $random,
+//                     $stocked
+//                  );
                } elseif ($request->has('disapprove')) {
                   $product->update(['approval' => 0]);
-                  items::where('product_code', $product->productID)
-                     ->decrement('allocated_qty', $product->quantity);
-
-                  product_inventory::where('productID', $product->productID)
-                     ->increment('current_stock', $product->quantity);
+//                  items::where('product_code', $product->productID)
+//                     ->decrement('allocated_qty', $product->quantity);
+//
+//                  product_inventory::where('productID', $product->productID)
+//                     ->increment('current_stock', $product->quantity);
                }
             }
          }
