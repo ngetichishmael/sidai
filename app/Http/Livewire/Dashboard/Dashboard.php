@@ -291,6 +291,7 @@ class Dashboard extends Component
          ->groupBy('month')
          ->pluck('count', 'month')
          ->toArray();
+//      dd($preOrderCounts);
       $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
          ->where(function ($query) use ($sidai) {
             $query->whereHas('Order', function ($subQuery) use ($sidai) {
