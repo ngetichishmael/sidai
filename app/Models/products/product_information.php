@@ -2,6 +2,7 @@
 
 namespace App\Models\products;
 
+use App\Models\warehousing;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -16,7 +17,7 @@ class product_information extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasOne
     */
-   public function ProductPrice(): HasOne
+   public function ProductPrice()
    {
       return $this->hasOne(product_price::class, 'productID', 'id');
    }
@@ -25,12 +26,16 @@ class product_information extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasOne
     */
-   public function Inventory(): HasOne
+   public function Inventory()
    {
       return $this->hasOne(product_inventory::class, 'productID', 'id');
    }
    public function ProductSKU()
    {
       return $this->hasMany(ProductSku::class, 'sku_code','sku_code');
+   }
+   public function warehouse()
+   {
+      return $this->belongsTo(warehousing::class, 'warehouse_code','warehouse_code');
    }
 }

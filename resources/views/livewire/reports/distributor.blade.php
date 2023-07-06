@@ -61,10 +61,10 @@
                             @foreach ($distributors as $key => $distributor)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $distributor->customer_name }}</td>
-                                    <td>{{ $distributor->order_count }}</td>
+                                    <td>{{ $distributor->customer_name ?? ''}}</td>
+                                    <td>{{ $distributor->order_count ?? ''}}</td>
                                     <td>{{ $distributor->region_name ?? '' }}</td>
-                                    <td>{{ $distributor->area_name }}</td>
+                                    <td>{{ $distributor->area_name ?? ''}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

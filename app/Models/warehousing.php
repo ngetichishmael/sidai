@@ -26,7 +26,7 @@ class warehousing extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-   public function Products(): HasMany
+   public function Products()
    {
       return $this->hasMany(product_information::class, 'warehouse_code', 'warehouse_code');
    }

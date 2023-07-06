@@ -8,21 +8,24 @@
                     <div class="card-body">
                        <form method="POST" action="{{ route('inventory.handleApproval') }}">
                           @csrf
-                          <div class="form-group mb-1 mt-2 ml-0 pe-0 col-md-5">
-                             <label for="warehouse" style="color: #d5512d">Warehouse:</label>
-                             <select id="warehouse" class="form-control select2" name="warehouse_code" required>
-                                <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
-                                @foreach($warehouses as $warehouse)
-                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>
-                                @endforeach
-                             </select>
-                          </div>
+{{--                          <div class="form-group mb-1 mt-2 ml-0 pe-0 col-md-5">--}}
+{{--                             <label for="warehouse" style="color: #d5512d">Warehouse:--}}
+{{--                                <input class="focus:bg-gray-400" readonly value="{{}}">--}}
+{{--                             <select id="warehouse" class="form-control select2" name="warehouse_code" required>--}}
+{{--                                <option value="" class="focus:bg-gray-400">Select a Warehouse</option>--}}
+{{--                                @foreach($warehouses as $warehouse)--}}
+{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
+{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                             </select>--}}
+{{--                          </div>--}}
                           <table class="table table-bordered table-striped">
                             <thead>
                                 <th>#</th>
                                 <th>Product Name</th>
                                 <th>Quantity</th>
                                 <th>SKU Code</th>
+                                <th>Warehouse</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -32,7 +35,14 @@
                                   <td>{!! $product->ProductInformation->product_name !!}</td>
                                   <td>{!! $product->quantity !!}</td>
                                   <td>{!! $product->ProductInformation->sku_code !!}</td>
-                                  <td><input type="checkbox" name="selected_products[]" value="{{ $product->id }}"></td>
+                                  <td>{!! $product->ProductInformation->warehouse->name !!}</td>
+                                  <td>
+                                     @if ($product === 1)
+                                        <input type="checkbox" name="selected_products[]" value="{{ $product->id }}" checked>
+                                     @else
+                                        <input type="checkbox" name="selected_products[]" value="{{ $product->id }}">
+                                     @endif
+                                  </td>
                                </tr>
                             @endforeach
                             </tbody>

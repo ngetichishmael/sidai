@@ -29,7 +29,7 @@ class WarehouseController extends Controller
       return response()->json([
          'status' => 200,
          'success' => true,
-         'message' => "All warehouses available",
+         'message' => "All warehouses available in Your Region",
          'data' => $warehouse,
       ]);
     }
