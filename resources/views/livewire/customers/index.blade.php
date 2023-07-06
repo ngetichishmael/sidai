@@ -27,7 +27,7 @@
                     <th width="15%">Action</th>
                 </thead>
                 <tbody>
-                    @foreach ($contacts as $count => $contact)
+                    @foreach ($contacts as $contact)
                         @if ($contact->businessID == Auth::user()->businessID)
                             <tr {{-- class="success" --}}>
                                 <td>{!! $count + 1 !!}</td>

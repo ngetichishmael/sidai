@@ -11,6 +11,7 @@ use App\Models\customer_group;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\customers as ExportsCustomers;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Dashboard extends Component
 {
@@ -31,7 +32,7 @@ class Dashboard extends Component
    }
    public function render()
    {
-      
+
       return view('livewire.customers.dashboard', [
          'contacts' => $this->customers(),
          'regions' => $this->region(),
@@ -40,6 +41,10 @@ class Dashboard extends Component
    }
    public function customers()
    {
+      $aggregate = array();
+      if ($this->user->account_type === "RSM" && empty($this->filter())) {
+         return $aggregate;
+      }
       $searchTerm = '%' . $this->search . '%';
       $regionTerm = '%' . $this->regional . '%';
       $aggregate = customers::select(
@@ -61,10 +66,22 @@ class Dashboard extends Component
             $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
-         ->where('customer_type', 'normal')
-         ->OrderBy('customers.id', 'DESC')
-         ->paginate($this->perPage);
-      return $aggregate;
+         ->where('customer_type', 'normal');
+      if ($this->user->account_type === "RSM") {
+         $aggregate->whereIn('customers.id', $this->filter());
+      }
+      $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
+
+      // Convert the result to a LengthAwarePaginator instance
+      $paginator = new LengthAwarePaginator(
+         $aggregate->items(),
+         $aggregate->total(),
+         $aggregate->perPage(),
+         $aggregate->currentPage(),
+         ['path' => request()->url()]
+      );
+
+      return $paginator;
    }
    public function filter(): array
    {

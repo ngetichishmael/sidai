@@ -51,8 +51,7 @@
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
-
-                        @foreach ($contacts as $count => $contact)
+                        @forelse($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
                                 {!! $contact->customer_name !!}
@@ -60,10 +59,10 @@
                             <td>{!! $contact->customer_number !!}</td>
 
                             <td class="cell-fit">
-                                {!! $contact->region_name ?? $contact->Region->name ?? '' !!}
+                                {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
                             </td>
                             <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
-{{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td>--}}
+                            {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
                             <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
                             <td>{!! $contact->customer_type !!}</td>
                             <td>
@@ -75,7 +74,7 @@
                             <td>
                                 <div class="dropdown">
                                     <button style="background-color: #B6121B;color:white"
-                                        class="btn btn-md  dropdown-toggle mr-2" type="button" id="dropdownMenuButton"
+                                        class="mr-2 btn btn-md dropdown-toggle" type="button" id="dropdownMenuButton"
                                         data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"
                                         data-bs-toggle="dropdown" data-bs-auto-close="outside">
                                         <i data-feather="settings"></i>
@@ -108,18 +107,21 @@
 
                             </td>
                             </tr>
-                        @endforeach
-                        @if(empty($contacts))
-                           <div>
-                              <tr>
-                                 <td colspan="6"> No Distributor(s) Found ...</td>
-                              </tr>
-                           </div>
-                        @endif
+                        @empty
+                            <div>
+                                <tr>
+                                    <td colspan="10" class="text-center"> No Distributor(s) Found ...</td>
+                                </tr>
+                            </div>
+                        @endforelse
                     </tbody>
                 </table>
+                @if (!empty($contacts))
+                    <div>
+                        {{ $contacts->links() }}
+                    </div>
+                @endif
 
-               {{ $contacts->links() }}
             </div>
         </div>
     </div>
