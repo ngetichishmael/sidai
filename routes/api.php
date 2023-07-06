@@ -243,6 +243,8 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('/stock/create/request', [StockRequisitionController::class, "store"])->middleware('auth:sanctum');
    Route::post('/stock/cancel', [StockRequisitionController::class, "cancel"])->middleware('auth:sanctum');
    Route::post('/stock/update', [StockRequisitionController::class, "update"])->middleware('auth:sanctum');
+   Route::get('stock/requisitions/approved', [StockRequisitionController::class, "approved"])->middleware('auth:sanctum');
+   Route::post('/stock/accept', [StockRequisitionController::class, "accept"])->middleware('auth:sanctum');
 
    Route::middleware(['auth'])->group(function () {
    });
