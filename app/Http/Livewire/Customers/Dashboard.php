@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Customers;
 
-use App\Exports\customers as ExportsCustomers;
-use App\Models\customers;
-use Livewire\Component;
-use App\Models\Region;
-use App\Models\customer_group;
 use App\Models\User;
+use App\Models\Region;
+use Livewire\Component;
+use App\Models\customers;
 use Livewire\WithPagination;
+use App\Models\customer_group;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\customers as ExportsCustomers;
 
 class Dashboard extends Component
 {
@@ -21,8 +22,16 @@ class Dashboard extends Component
    public ?string $regional = null;
    public $orderBy = 'customers.id';
    public $orderAsc = false;
+
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
+      
       return view('livewire.customers.dashboard', [
          'contacts' => $this->customers(),
          'regions' => $this->region(),
@@ -56,6 +65,25 @@ class Dashboard extends Component
          ->OrderBy('customers.id', 'DESC')
          ->paginate($this->perPage);
       return $aggregate;
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if (!$user->account_type === 'RSM') {
+         return $array;
+      }
+      $regions = Region::where('id', $user_code)->pluck('id');
+      if ($regions->isEmpty()) {
+         return $array;
+      }
+      $customers = customers::whereIn('region_id', $regions)->get();
+      if ($customers->isEmpty()) {
+         return $array;
+      }
+      return $customers->toArray();
    }
    public function updatedRegional()
    {
