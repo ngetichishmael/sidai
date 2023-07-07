@@ -26,43 +26,32 @@
                     <th>Region</th>
                     <th>Sub-region</th>
                     <th>Route</th>
+                    <th>Customer Type</th>
                     <th>Created By</th>
                     <th>Date</th>
                     <th width="15%">Action</th>
                     </thead>
                     <tbody>
-                    @if ($contacts->isEmpty())
-                       <tr>
-                          <td colspan="9" class="text-center align-middle">No creditors waiting approval found</td>
-                       </tr>
-                    @else
-                        @foreach ($contacts as $count => $contact)
+                        @forelse($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
-                                {!! $contact->customer_name ?? '' !!}
+                                {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->phone_number ?? ''!!}</td>
+                            <td>{!! $contact->customer_number !!}</td>
+
+                            <td class="cell-fit">
+                                {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
+                            </td>
+                            <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
+                            {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
+                            <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
+                            <td>{!! $contact->customer_type !!}</td>
                             <td>
-                                {!! $contact->Area->Subregion->Region->name ?? $contact->Region->name ?? ' ' !!}
+                                {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
                             <td>
-                                {!! $contact->Area->Subregion->name ?? $contact->Subregion->name ?? '' !!}
+                                {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
-                            <td>
-                                {!! $contact->Area->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->user->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->created_at ?? '' !!}
-                            </td>
-{{--                            <td>--}}
-{{--                                <a href="{{ route('make.orders', ['id' => $contact->id]) }}"--}}
-{{--                                    class="btn btn-sm btn-secondary">Order</a>--}}
-{{--                                <a href="{{ route('creditor.edit', $contact->id) }}"--}}
-{{--                                    class="btn btn-sm btn-primary">Edit</a>--}}
-{{--                            </td>--}}
                             <td>
                                 @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2 || @empty($contact->creditor_approved) )
                                     <button wire:click.prevent="approveCreditor({{ $contact->id }})"
@@ -75,8 +64,13 @@
                                 @endif
                             </td>
                             </tr>
-                        @endforeach
-                    @endif
+                        @empty
+                            <div>
+                                <tr>
+                                    <td colspan="10" class="text-center"> No Customer(s) Found ...</td>
+                                </tr>
+                            </div>
+                        @endforelse
                     </tbody>
                 </table>
 
