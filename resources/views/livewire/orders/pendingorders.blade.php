@@ -75,8 +75,10 @@
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
-                                    <td></td>
-                                    <td></td>
+                                    <td title="{{ $order->Customer->Region->name ?? null }}">
+                                        {{ Str::limit($order->Customer->Region->name ?? null, 20) }}</td>
+                                    <td title="{{ $order->Customer->Area->name ?? null }}">
+                                        {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
