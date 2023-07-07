@@ -6,6 +6,7 @@ use App\Helpers\StockLiftHelper;
 use App\Models\inventory\items;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
+use App\Models\StockRequisition;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -65,28 +66,34 @@ class inventoryController extends Controller
          if ($product) {
             if ($request->has('approve')) {
                $product->update(['approval' => 1]);
-               $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
-               $value = [
-                  'productID' => $product->id,
-                  'qty' => $product->quantity,
-               ];
-
-               $stocked = product_inventory::find($product->id);
-               (new StockLiftHelper())(
-                  $user_code,
-                  $business_code,
-                  $value,
-                  $image_path,
-                  $random,
-                  $stocked
-               );
+               StockRequisition::where('id',$request->requisition_id)->update([
+                  'status'=>'Approved'
+               ]);
+//               $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
+//               $value = [
+//                  'productID' => $product->id,
+//                  'qty' => $product->quantity,
+//               ];
+//
+//               $stocked = product_inventory::find($product->id);
+//               StockLiftHelper::updateOrCreateItems(
+//                  $user_code,
+//                  $business_code,
+//                  $value,
+//                  $image_path,
+//                  $random,
+//                  $stocked
+//               );
             } elseif ($request->has('disapprove')) {
                $product->update(['approval' => 0]);
-               items::where('product_code', $product->productID)
-                  ->decrement('allocated_qty', $product->quantity);
-
-               product_inventory::where('productID', $product->productID)
-                  ->increment('current_stock', $product->quantity);
+               StockRequisition::where('id',$request->requisition_id)->update([
+                  'status'=>'Approved'
+               ]);
+//               items::where('product_code', $product->productID)
+//                  ->decrement('allocated_qty', $product->quantity);
+//
+//               product_inventory::where('productID', $product->productID)
+//                  ->increment('current_stock', $product->quantity);
                //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
             }
          }
