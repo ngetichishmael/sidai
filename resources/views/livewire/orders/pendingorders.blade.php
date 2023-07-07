@@ -61,7 +61,7 @@
                     </thead>
                     <tbody>
                         @foreach ($pendingorders as $count => $order)
-
+            @dump($order->User->name)
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
@@ -73,7 +73,7 @@
 {{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
                                 <td title="{{ $order->User->name ?? null }}">
-                                   @dd($order->User->name)</td>
+                                    {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
