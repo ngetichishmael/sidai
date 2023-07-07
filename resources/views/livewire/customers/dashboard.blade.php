@@ -112,14 +112,14 @@
                         @if(empty($contacts))
                            <div>
                               <tr>
-                                 <td colspan="6"> No Distributor(s) Found ...</td>
+                                 <td colspan="6"> No Customers Found ...</td>
                               </tr>
                            </div>
                         @endif
                     </tbody>
                 </table>
 
-               {{ $contacts->links() }}
+               {{-- {{ $contacts->links() }} --}}
             </div>
         </div>
     </div>

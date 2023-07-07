@@ -31,41 +31,53 @@ class Dashboard extends Component
    }
    public function render()
    {
-      
       return view('livewire.customers.dashboard', [
          'contacts' => $this->customers(),
          'regions' => $this->region(),
          'groups' => $this->groups()
       ]);
    }
+   
    public function customers()
-   {
-      $searchTerm = '%' . $this->search . '%';
-      $regionTerm = '%' . $this->regional . '%';
-      $aggregate = customers::select(
-         'customers.customer_name as customer_name',
-         'customers.phone_number as customer_number',
-         'regions.name as region_name',
-         'subregions.name as subregion_name',
-         'areas.name as area_name',
-         'customers.customer_type as customer_type',
-         'customers.id as id',
-         'customers.route_code as route',
-         'customers.created_at as created_at'
-      )
-         ->join('areas', 'customers.route_code', '=', 'areas.id')
-         ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
-         ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
-         ->where('regions.name', 'like', $regionTerm)
-         ->where(function ($query) use ($searchTerm) {
-            $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-               ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
-         })
-         ->where('customer_type', 'normal')
-         ->OrderBy('customers.id', 'DESC')
-         ->paginate($this->perPage);
-      return $aggregate;
+{
+   $searchTerm = '%' . $this->search . '%';
+   $regionTerm = '%' . $this->regional . '%';
+   $aggregate = customers::select(
+      'customers.customer_name as customer_name',
+      'customers.phone_number as customer_number',
+      'regions.name as region_name',
+      'subregions.name as subregion_name',
+      'areas.name as area_name',
+      'customers.customer_type as customer_type',
+      'customers.id as id',
+      'customers.route_code as route',
+      'customers.created_at as created_at'
+   )
+      ->join('areas', 'customers.route_code', '=', 'areas.id')
+      ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+      ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+      ->where('regions.name', 'like', $regionTerm)
+      ->where(function ($query) use ($searchTerm) {
+         $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
+            ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
+      })
+      ->where('customer_type', 'normal');
+
+   // Retrieve the filtered regions
+   $filteredRegions = $this->filter();
+
+   // If the filtered regions array is not empty, apply the filter to the query
+   if (!empty($filteredRegions)) {
+      $aggregate->whereIn('regions.id', $filteredRegions);
+   } else {
+      return []; // Empty array if no filtered regions
    }
+
+   $aggregate->orderBy('customers.id', 'DESC');
+   $paginateResults = $aggregate->paginate($this->perPage);
+
+   return $paginateResults;
+}
    public function filter(): array
    {
 
@@ -79,7 +91,7 @@ class Dashboard extends Component
       if ($regions->isEmpty()) {
          return $array;
       }
-      $customers = customers::whereIn('region_id', $regions)->get();
+      $customers = customers::whereIn('region_id', $regions)->pluck('region_id');
       if ($customers->isEmpty()) {
          return $array;
       }
