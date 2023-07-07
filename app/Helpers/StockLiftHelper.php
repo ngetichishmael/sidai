@@ -8,7 +8,15 @@ use App\Models\products\product_inventory;
 
 class StockLiftHelper
 {
-   public function __invoke(
+//   public function __invoke(
+//      $user_code,
+//      $business_code,
+//      $value,
+//      $image_path,
+//      $random,
+//      $stocked
+//   ) {
+   public static function updateOrCreateItems(
       $user_code,
       $business_code,
       $value,
