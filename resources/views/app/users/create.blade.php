@@ -73,6 +73,7 @@
                                                     <select class="form-control select2" id="account-type"
                                                         name="account_type" required>
                                                         <option value="">Select Category</option>
+                                                       <option value="Admin">Admin</option>
                                                        <option value="NSM">National Sales Manager</option>
                                                        <option value="RSM">Regional Sales Manager</option>
                                                        <option value="TSR">Technical Sales Representative</option>

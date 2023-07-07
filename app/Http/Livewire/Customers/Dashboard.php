@@ -11,6 +11,7 @@ use App\Models\customer_group;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\customers as ExportsCustomers;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Dashboard extends Component
 {
@@ -39,45 +40,50 @@ class Dashboard extends Component
    }
    
    public function customers()
-{
-   $searchTerm = '%' . $this->search . '%';
-   $regionTerm = '%' . $this->regional . '%';
-   $aggregate = customers::select(
-      'customers.customer_name as customer_name',
-      'customers.phone_number as customer_number',
-      'regions.name as region_name',
-      'subregions.name as subregion_name',
-      'areas.name as area_name',
-      'customers.customer_type as customer_type',
-      'customers.id as id',
-      'customers.route_code as route',
-      'customers.created_at as created_at'
-   )
-      ->join('areas', 'customers.route_code', '=', 'areas.id')
-      ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
-      ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
-      ->where('regions.name', 'like', $regionTerm)
-      ->where(function ($query) use ($searchTerm) {
-         $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-            ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
-      })
-      ->where('customer_type', 'normal');
+   {
+      $aggregate = array();
+      if ($this->user->account_type === "RSM" && empty($this->filter())) {
+         return $aggregate;
+      }
+      $searchTerm = '%' . $this->search . '%';
+      $regionTerm = '%' . $this->regional . '%';
+      $aggregate = customers::select(
+         'customers.customer_name as customer_name',
+         'customers.phone_number as customer_number',
+         'regions.name as region_name',
+         'subregions.name as subregion_name',
+         'areas.name as area_name',
+         'customers.customer_type as customer_type',
+         'customers.id as id',
+         'customers.route_code as route',
+         'customers.created_at as created_at'
+      )
+         ->join('areas', 'customers.route_code', '=', 'areas.id')
+         ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+         ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+         ->where('regions.name', 'like', $regionTerm)
+         ->where(function ($query) use ($searchTerm) {
+            $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
+               ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
+         })
+         ->where('customer_type', 'normal');
+      // if ($this->user->account_type === "RSM") {
+      //    $aggregate->whereIn('customers.id', $this->filter());
+      // }
+      $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
 
-   // Retrieve the filtered regions
-   $filteredRegions = $this->filter();
+      // Convert the result to a LengthAwarePaginator instance
+      $paginator = new LengthAwarePaginator(
+         $aggregate->items(),
+         $aggregate->total(),
+         $aggregate->perPage(),
+         $aggregate->currentPage(),
+         ['path' => request()->url()]
+      );
 
-   // If the filtered regions array is not empty, apply the filter to the query
-   if (!empty($filteredRegions)) {
-      $aggregate->whereIn('regions.id', $filteredRegions);
-   } else {
-      return []; // Empty array if no filtered regions
+      return $paginator;
    }
 
-   $aggregate->orderBy('customers.id', 'DESC');
-   $paginateResults = $aggregate->paginate($this->perPage);
-
-   return $paginateResults;
-}
    public function filter(): array
    {
 
@@ -91,7 +97,7 @@ class Dashboard extends Component
       if ($regions->isEmpty()) {
          return $array;
       }
-      $customers = customers::whereIn('region_id', $regions)->pluck('region_id');
+      $customers = customers::whereIn('region_id', $regions)->get();
       if ($customers->isEmpty()) {
          return $array;
       }

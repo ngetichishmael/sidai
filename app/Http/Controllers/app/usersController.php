@@ -126,9 +126,9 @@ class usersController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'email' => 'required',
+         'email' => 'required|email|unique:users',
          'name' => 'required',
-         'phone_number' => 'required',
+         'phone_number' => 'required|unique:users',
          'account_type' => 'required',
          'region' => 'required',
       ]);
@@ -183,6 +183,28 @@ class usersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = "";
       $activityLog->save();
+
+      if ($request->account_type ==='RSM')
+      {
+         $rsm = User::where('account_type', 'RSM');
+         return view('app.users.rsm', compact('rsm'));
+      }
+      elseif ($request->account_type === 'NSM'){
+         $nsm = User::where('account_type', 'NSM');
+         return view('app.users.rsm', compact('nsm'));
+      }
+      elseif ($request->account_type ==='Shop-Attendee'){
+         $shopattendee = User::where('account_type', 'Shop-Attendee');
+         return view('app.users.shopattendee', compact('shopattendee'));
+
+      }elseif ($request->account_type === 'TD'){
+         $td = User::where('account_type', 'td');
+         return view('app.users.rsm', compact('td'));
+
+      }elseif ($request->account_type === 'TSR'){
+         $tsr = User::where('account_type', 'TSR');
+         return view('app.users.rsm', compact('tsr'));
+      }else
 
       return redirect()->back();
    }
