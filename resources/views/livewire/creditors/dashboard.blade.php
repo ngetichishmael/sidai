@@ -41,33 +41,36 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th>Phone Number</th>
+                        <th>number</th>
                         <th>Region</th>
-                        <th>Sub-region</th>
-                        <th>Route</th>
+                        <th>Subregion</th>
+                        <th>Town</th>
+                        <th>Customer Type</th>
                         <th>Created By</th>
+                        <th>Created Date</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
-                        @foreach ($contacts as $count => $contact)
+                        @forelse($contacts as $count => $contact)
                             <td>{!! $count + 1 !!}</td>
                             <td>
-                                {!! $contact->customer_name ?? '' !!}
+                                {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->phone_number ?? "" !!}</td>
-                            <td>
-                               {!! $contact->Area->Subregion->Region->name ?? $contact->Region->name ?? ' ' !!}
-                            </td>
-                            <td>
-                               {!! $contact->Area->Subregion->name ?? $contact->Subregion->name ?? '' !!}
-                            </td>
-                            <td>
-                               {!! $contact->Area->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->Creator->name ?? '' !!}
-                            </td>
+                            <td>{!! $contact->customer_number !!}</td>
 
+                            <td class="cell-fit">
+                                {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
+                            </td>
+                            <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
+                            {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
+                            <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
+                            <td>{!! $contact->customer_type !!}</td>
+                            <td>
+                                {!! $this->Creator($contact->id) ?? '' !!}
+                            </td>
+                            <td>
+                                {!! $contact->created_at->format('d/m/Y') ?? '' !!}
+                            </td>
                             <td>
                                 <a href="{{ route('creditors.details', $contact->id) }}"
                                     class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
@@ -75,10 +78,20 @@
                                     class="btn btn-sm" style="background-color: #B6121B; color:white">Edit</a>
                             </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <div>
+                                <tr>
+                                    <td colspan="10" class="text-center"> No Creditor(s) Found ...</td>
+                                </tr>
+                            </div>
+                        @endforelse
                     </tbody>
                 </table>
-
+                @if (!empty($contacts))
+                    <div>
+                        {{ $contacts->links() }}
+                    </div>
+                @endif
 
             </div>
         </div>

@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\StockLiftHelper;
-use App\Http\Controllers\Controller;
-use App\Imports\products;
-use App\Models\products\product_information;
-use App\Models\products\product_inventory;
-use App\Models\RequisitionProduct;
-use App\Models\StockRequisition;
 use Carbon\Carbon;
+use App\Imports\products;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Helpers\StockLiftHelper;
+use App\Models\StockRequisition;
+use App\Models\RequisitionProduct;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\products\product_inventory;
+use App\Models\products\product_information;
 
 class StockRequisitionController extends Controller
 {

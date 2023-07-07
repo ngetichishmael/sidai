@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Creditors;
 
+use App\Models\User;
 use App\Models\Region;
 use Livewire\Component;
 use App\Models\customers;
@@ -10,6 +11,7 @@ use App\Models\customer_group;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\customers as ExportsCustomers;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Dashboard extends Component
 {
@@ -20,29 +22,26 @@ class Dashboard extends Component
     public ?string $search = null;
     public ?string $regional = null;
 
-    public $user;
+     public $user;
 
-    public function __construct()
-    {
-       $this->user = Auth::user();
-    }
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
-      $searchTerm = '%' . $this->search . '%';
-      $contacts = customers::where('is_creditor', 1)->where('creditor_status', 'approved')
-         ->with('Area.Subregion.Region', 'Creator')
-//         ->search($searchTerm)
-//         ->where('customer_type', 'LIKE','creditor')
-         ->orderBy('id', 'DESC')
-         ->paginate($this->perPage);
          return view('livewire.creditors.dashboard', [
-            'contacts' => $contacts,
+            'contacts' => $this->customers(),
             'regions' => $this->region(),
             'groups' => $this->groups()
          ]);
    }
    public function customers()
 {
+   $aggregate = array();
+      if ($this->user->account_type === "RSM" && empty($this->filter())) {
+         return $aggregate;
+      }
    $searchTerm = '%' . $this->search . '%';
    $regionTerm = '%' . $this->regional . '%';
    $aggregate = customers::select(
@@ -65,21 +64,21 @@ class Dashboard extends Component
             ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
       })
       ->where('customer_type', 'creditor');
+      if ($this->user->account_type === "RSM") {
+         $aggregate->whereIn('regions.id', $this->filter());
+      }
+      $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
 
-   // Retrieve the filtered regions
-   $filteredRegions = $this->filter();
+      // Convert the result to a LengthAwarePaginator instance
+      $paginator = new LengthAwarePaginator(
+         $aggregate->items(),
+         $aggregate->total(),
+         $aggregate->perPage(),
+         $aggregate->currentPage(),
+         ['path' => request()->url()]
+      );
 
-   // If the filtered regions array is not empty, apply the filter to the query
-   if (!empty($filteredRegions)) {
-      $aggregate->whereIn('regions.id', $filteredRegions);
-   } else {
-      return []; // Empty array if no filtered regions
-   }
-
-   $aggregate->orderBy('customers.id', 'DESC');
-   $paginateResults = $aggregate->paginate($this->perPage);
-
-   return $paginateResults;
+      return $paginator;
 }
    public function filter(): array
    {
@@ -99,6 +98,12 @@ class Dashboard extends Component
          return $array;
       }
       return $customers->toArray();
+   }
+   public function creator($id)
+   {
+      $user_code = customers::whereId($id)->pluck('created_by')->implode('');
+      $user = User::where('user_code', $user_code)->pluck('name')->implode('');
+      return $user;
    }
    public function updatedRegional()
    {

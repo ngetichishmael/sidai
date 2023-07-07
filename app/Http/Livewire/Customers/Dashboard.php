@@ -67,9 +67,9 @@ class Dashboard extends Component
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
          ->where('customer_type', 'normal');
-      // if ($this->user->account_type === "RSM") {
-      //    $aggregate->whereIn('customers.id', $this->filter());
-      // }
+      if ($this->user->account_type === "RSM") {
+         $aggregate->whereIn('regions.id', $this->filter());
+      }
       $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
 
       // Convert the result to a LengthAwarePaginator instance
@@ -97,7 +97,7 @@ class Dashboard extends Component
       if ($regions->isEmpty()) {
          return $array;
       }
-      $customers = customers::whereIn('region_id', $regions)->get();
+      $customers = customers::whereIn('region_id', $regions)->pluck('region_id');
       if ($customers->isEmpty()) {
          return $array;
       }
