@@ -38,17 +38,17 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="mb-1">
+                            <div class="mb-2">
                                 <div class="d-flex justify-content-left">
                                     <label class="form-label" for="login-password">Password</label>
 
                                 </div>
-                                <div class="input-group input-group-merge form-password-toggle">
-                                    <input type="password" class="form-control form-control-merge" id="login-password"
-                                        name="password" tabindex="2"
-                                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                        aria-describedby="login-password" />
-                                    <span class="cursor-pointer input-group-text"><i data-feather="eye"></i></span>
+                               <div class="input-group input-group-merge form-password-toggle">
+                                  <input type="password" class="form-control form-control-merge" id="login-password"
+                                         name="password" tabindex="2"
+                                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                         aria-describedby="login-password" />
+                                  <span class="cursor-pointer input-group-text"><i data-feather="eye"></i></span>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
                                             <strong class="text-danger">{{ $errors->first('password') }}</strong>
