@@ -15,7 +15,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $region->name }}</td>
-                               <td>{{$customer_counts->where('region_id','=',$region->id)->count()}}</td>
+                               <td>{{ $this->customers($region->id) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

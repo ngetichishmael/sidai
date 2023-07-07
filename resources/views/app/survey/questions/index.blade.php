@@ -46,8 +46,8 @@
                               <b>Answer:</b> {!! $question->answer !!}
                            </td>
                            <td>
-                              <a href="{!! route('survey.questions.edit',[$survey->code,$question->questionID]) !!}" class="btn btn-primary btn-sm"><i class="fad fa-edit"></i></a>
-                              <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                              <a href="{!! route('survey.questions.edit',[$survey->code,$question->questionID]) !!}" class="btn btn-primary btn-sm"><i class="fad fa-edit"></i>Edit</a>
+                              <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>Delete</a>
                            </td>
                         </tr>
                      @endforeach

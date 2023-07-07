@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire\Territory\Region;
 
-use App\Models\customers;
+use App\Models\Area;
 use App\Models\Region;
 use Livewire\Component;
+use App\Models\customers;
+use App\Models\Subregion;
 use Livewire\WithPagination;
 
 class Dashboard extends Component
@@ -18,10 +20,16 @@ class Dashboard extends Component
    {
       $regions = Region::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
-      $customer_counts =customers::where('status','=','Active')->get();
+      // $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.region.dashboard', [
-         'regions' => $regions,
-         'customer_counts' =>$customer_counts
+         'regions' => $regions
       ]);
+   }
+   public function customers($id)
+   {
+      $subregions = Subregion::where('region_id', $id)->pluck('id');
+      $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
+      $customers = customers::whereIn('route_code', $areas)->count();
+      return $customers ?? 0;
    }
 }
