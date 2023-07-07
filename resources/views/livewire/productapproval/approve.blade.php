@@ -32,10 +32,10 @@
                             @foreach ($products as $count => $product)
                                <tr>
                                   <td>{!! $count + 1 !!}</td>
-                                  <td>{!! $product->ProductInformation->product_name !!}</td>
-                                  <td>{!! $product->quantity !!}</td>
-                                  <td>{!! $product->ProductInformation->sku_code !!}</td>
-                                  <td>{!! $product->ProductInformation->warehouse->name !!}</td>
+                                  <td>{!! $product->ProductInformation->product_name??'' !!}</td>
+                                  <td>{!! $product->quantity??'' !!}</td>
+                                  <td>{!! $product->ProductInformation->sku_code??'' !!}</td>
+                                  <td>{!! $product->ProductInformation->warehouse->name??'' !!}</td>
                                   <td>
                                      @if ($product === 1)
                                         <input type="checkbox" name="selected_products[]" value="{{ $product->id }}" checked>
