@@ -89,33 +89,20 @@ class RequisitionController extends Controller
          ]);
       }else{
          foreach ($selectedProducts as $productId) {
-            $product = RequisitionProduct::find($productId);
+            $product = RequisitionProduct::where('requisition_id', $request->requisition_id)->where('product_id',$productId)->get();
 
             if ($product) {
                if ($request->has('approve')) {
                   $product->update(['approval' => 1]);
-//                  $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
-//                  $value = [
-//                     'productID' => $product->product_id,
-//                     'qty' => $product->quantity,
-//                  ];
-//
-//                  $stocked = product_inventory::find($product->product_id);
-//                  (new StockLiftHelper())(
-//                     $user_code,
-//                     $business_code,
-//                     $value,
-//                     $image_path,
-//                     $random,
-//                     $stocked
-//                  );
+                  StockRequisition::where('id',$request->requisition_id)->update([
+                      'status'=>'Approved'
+                  ]);
+
                } elseif ($request->has('disapprove')) {
                   $product->update(['approval' => 0]);
-//                  items::where('product_code', $product->productID)
-//                     ->decrement('allocated_qty', $product->quantity);
-//
-//                  product_inventory::where('productID', $product->productID)
-//                     ->increment('current_stock', $product->quantity);
+                   StockRequisition::where('id',$request->requisition_id)->update([
+                       'status'=>'Approved'
+                   ]);
                }
             }
          }
