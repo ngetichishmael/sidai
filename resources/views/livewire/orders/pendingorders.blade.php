@@ -54,9 +54,10 @@
                         <th width="1%">#</th>
                         <th>Customer</th>
                         <th>Sales Person</th>
+                        <th>Region</th>
+                        <th>Sub-Region</th>
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
-{{--                        <th>Quantity</th>--}}
                         <th>Actions</th>
                     </thead>
                     <tbody>
@@ -74,6 +75,8 @@
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
+                                    <td></td>
+                                    <td></td>
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
