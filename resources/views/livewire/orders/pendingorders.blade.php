@@ -54,8 +54,9 @@
                         <th width="1%">#</th>
                         <th>Customer</th>
                         <th>Sales Person</th>
-                        <th>Region</th>
+{{--                        <th>Region</th>--}}
                         <th>Sub-Region</th>
+                        <th>Route</th>
                         <th>Amount (Ksh.)</th>
                         <th>Date</th>
                         <th>Actions</th>
@@ -69,25 +70,12 @@
 {{--                                <td>{{ $order->order_type }}</td>--}}
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 30) }}</td>
-<<<<<<< HEAD
                                <td title="{{ $order->User->name ?? null }}">
                                   {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
                                     {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>
                                 <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
-=======
-{{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
-{{--                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>--}}
-{{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
-{{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
-                                <td title="{{ $order->User->name ?? null }}">
-                                    {{ Str::limit($order->User->name ?? null, 20) }}</td>
-                                    <td title="{{ $order->Customer->Region->name ?? null }}">
-                                        {{ Str::limit($order->Customer->Region->name ?? null, 20) }}</td>
-                                    <td title="{{ $order->Customer->Area->name ?? null }}">
-                                        {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
->>>>>>> 10cbcf7fea547a2bdc4c23d86d694d154a4c3534
                                 <td>{{ number_format($order->price_total) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
