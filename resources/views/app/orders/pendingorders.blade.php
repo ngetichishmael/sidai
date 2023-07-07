@@ -12,7 +12,7 @@
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                     <li class="breadcrumb-item"><a href="#">Pending Orders</a></li>
+                     <li class="breadcrumb-item"><a href="{{ url('/pendingorders') }}">Pending Orders</a></li>
                      <li class="breadcrumb-item active">List</li>
                   </ol>
                </div>

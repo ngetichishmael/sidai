@@ -77,7 +77,7 @@ class StockRequisitionController extends Controller
    }
    public function approved(Request $request)
    {
-      $stockRequisition = StockRequisition::with(['RequisitionProducts' => function ($query) {
+      $stockRequisition = StockRequisition::where('id', $request->requisition_id)->with(['RequisitionProducts' => function ($query) {
          $query->where('approval', 1);
       }])
          ->where('sales_person', $request->user()->user_code)
