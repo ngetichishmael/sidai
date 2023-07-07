@@ -61,7 +61,7 @@
                     </thead>
                     <tbody>
                         @foreach ($pendingorders as $count => $order)
-@dd($pendingorders)
+@dd($order->User->name)
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
