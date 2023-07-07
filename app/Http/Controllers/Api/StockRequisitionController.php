@@ -131,7 +131,7 @@ class StockRequisitionController extends Controller
             ];
 
             $stocked = product_inventory::find($product->product_id);
-            (new StockLiftHelper())(
+            StockLiftHelper::updateOrCreateItems(
                $user_code,
                $business_code,
                $value,
