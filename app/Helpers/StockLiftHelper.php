@@ -5,6 +5,8 @@ namespace App\Helpers;
 use App\Models\inventory\allocations;
 use App\Models\inventory\items;
 use App\Models\products\product_inventory;
+use Illuminate\Support\Facades\DB;
+
 
 class StockLiftHelper
 {
@@ -26,8 +28,8 @@ class StockLiftHelper
    ) {
       $currentQty = $stocked ? $stocked['current_stock'] : 0;
       $allocatedQty = $value['qty'];
-      info("quantity".$allocatedQty);
-      info(" current qty ".$allocatedQty);
+      info("quantity       ". $allocatedQty);
+      info(" current qty   ". $allocatedQty);
       items::updateOrCreate(
          [
             'product_code' => $value['productID'],
