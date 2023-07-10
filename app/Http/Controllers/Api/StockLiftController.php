@@ -40,9 +40,20 @@ class StockLiftController extends Controller
       $productIDs = array_column($data, 'productID');
       $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
 
+//      foreach ($data as $value) {
+//         $stocked = $stockedProducts->get($value['productID']);
+//         (new StockLiftHelper())(
+//            $user_code,
+//            $business_code,
+//            $value,
+//            $image_path,
+//            $random,
+//            $stocked
+//         );
+//      }
       foreach ($data as $value) {
          $stocked = $stockedProducts->get($value['productID']);
-         (new StockLiftHelper())(
+         StockLiftHelper::updateOrCreateItems(
             $user_code,
             $business_code,
             $value,

@@ -70,6 +70,7 @@ class StockRequisitionController extends Controller
          return [
             'status' => $requisition->status,
             'date'=>$requisition->created_at,
+            'requisition_id'=>$requisition->id,
             'data' => $products
          ];
       });
@@ -130,7 +131,7 @@ class StockRequisitionController extends Controller
             ];
 
             $stocked = product_inventory::find($product->product_id);
-            (new StockLiftHelper())(
+            StockLiftHelper::updateOrCreateItems(
                $user_code,
                $business_code,
                $value,
