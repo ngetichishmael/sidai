@@ -15,6 +15,7 @@ class Approval extends Component
    public function render()
    {
       $requisitions = StockRequisition::with('user')->withCount('RequisitionProducts', 'ApprovedRequisitionProducts') ->orderBy('id', 'DESC')->paginate($this->perPage);
+      $approved = RequisitionProduct::all();
 
       return view('livewire.productapproval.approval', compact('requisitions'));
    }
