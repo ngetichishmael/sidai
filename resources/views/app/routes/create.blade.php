@@ -67,20 +67,10 @@
                           @endforeach
                        </select>
                     </div>
-{{--                   <div class="form-group col-md-6 mb-1">--}}
-{{--                        <label for="">Add sales people to Route</label>--}}
-{{--                        {!! Form::select('sales_persons[]', $salesPeople, null, ['class' => 'form-control select2', 'name'=>"user",'id'=>"user",'multiple' => '']) !!}--}}
-{{--                    </div>--}}
                    <div class="form-group col-md-6 mb-1">
                       <label for="">Add sales people to Route</label>
                       {!! Form::select('sales_persons[]', [], null, ['class' => 'form-control select2', 'name' => 'user', 'id' => 'user', 'multiple' => '']) !!}
                    </div>
-{{--                   <div class="form-group col-md-4">--}}
-{{--                      <label for="">Choose User</label>--}}
-{{--                      <select name="user" class="form-control select2" id="user" required>--}}
-{{--                         <option value=""></option>--}}
-{{--                      </select>--}}
-{{--                   </div>--}}
 
                     <div class="form-group mb-1">
                         <button class="btn" style="background-color: #B6121B;color:white" type="submit">Save Information</button>
