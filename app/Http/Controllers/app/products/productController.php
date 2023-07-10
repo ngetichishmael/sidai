@@ -344,6 +344,52 @@ class productController extends Controller
          'code'=>$code,
       ]);
    }
+   public function singleview($id)
+   {
+      $product_information = product_information::whereId($id)->first();
+      $product_price = product_price::where('productID', $id)->first();
+      $product_inventory = product_inventory::where('productID', $id)->first();
+      $code=$product_information->warehouse_code;
+
+
+      return view('app.products.productview', [
+         'id' => $id,
+         'product_information' => $product_information,
+         'product_inventory' => $product_inventory,
+         'product_price' => $product_price,
+         'code'=>$code,
+      ]);
+   }
+   public function updatesingle(Request $request, $id)
+   {
+      $information = product_information::whereId($id)->first();
+      $this->validate($request, [
+         'buying_price' => 'required',
+         'distributor_price' => 'required'
+      ]);
+      $prices = product_price::where('id',$id)->first();
+      $prices->buying_price = $request->buying_price;
+      $prices->distributor_price = $request->distributor_price;
+      $prices->selling_price = $request->selling_price;
+      $prices->business_code = Auth::user()->business_code;
+      $prices->save();
+   
+
+      session()->flash('success', 'Prices successfully Updated!');
+      $random=Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Price Updating';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Product update ';
+      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address = $request->ip();
+      $activityLog->save();
+
+      
+      return redirect('/warehousing/'.$information->warehouse_code.'/products');
+   }
 
    /**
     * Update the specified resource in storage.
