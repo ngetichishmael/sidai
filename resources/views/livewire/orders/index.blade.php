@@ -46,7 +46,7 @@
                     </thead>
                     <tbody>
                         @foreach ($orders as $count => $order)
-                        
+
                             <tr>
                                 {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
@@ -59,8 +59,8 @@
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
-                                <td>ksh {{ number_format($order->price_total) }}</td>
-                                <td>ksh {{ number_format($order->balance) }}</td>
+                                <td>{{ number_format($order->price_total) }}</td>
+                                <td>{{ number_format($order->balance) }}</td>
                                 <td>{{ $order->qty }}</td>
                                 <td>{{ $order->order_status }}</td>
                                 <td>
