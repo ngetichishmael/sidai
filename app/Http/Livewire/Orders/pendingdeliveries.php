@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Orders;
 
-use App\Exports\OrdersExport;
-use App\Models\Delivery;
-use App\Models\suppliers\suppliers;
-use Livewire\Component;
 use App\Models\Orders;
+use App\Models\Region;
+use Livewire\Component;
+use App\Models\Delivery;
+use App\Models\customers;
 use Livewire\WithPagination;
-use Auth;
+use App\Exports\OrdersExport;
+use App\Models\suppliers\suppliers;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class pendingdeliveries extends Component
@@ -24,6 +26,12 @@ class pendingdeliveries extends Component
    public $toDate;
 
    protected $queryString = ['search', 'fromDate', 'toDate'];
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
@@ -39,6 +47,9 @@ class pendingdeliveries extends Component
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
+         ->when($this->user->account_type === "RSM",function($query){
+            $query->whereIn('customer', $this->filter());
+         })
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
@@ -58,7 +69,27 @@ class pendingdeliveries extends Component
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
+         // dd($orders);
       return view('livewire.orders.pendingdeliveries', compact('orders'));
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if (!$user->account_type === 'RSM') {
+         return $array;
+      }
+      $regions = Region::where('id', $user_code)->pluck('id');
+      if ($regions->isEmpty()) {
+         return $array;
+      }
+      $customers = customers::whereIn('region_id', $regions)->pluck('id');
+      if ($customers->isEmpty()) {
+         return $array;
+      }
+      return $customers->toArray();
    }
    public function export()
    {
