@@ -45,84 +45,83 @@ class CheckingSaleOrderController extends Controller
         $user_code = $request->user()->user_code;
         $total = 0;
         $request = $request->collect();
-        foreach ($request as $data) {
-            foreach ($data as $value) {
-                $quantity = $value['qty'] ?? 1;
-                $price_total = $quantity * $value["price"];
-                $total += $price_total;
-                $product = product_information::with('ProductPrice')->where('id', $value["productID"])->first();
-                Cart::updateOrCreate(
+        info($request);
+        foreach ($request as $value) {
+            $quantity = $value['qty'] ?? 1;
+            $price_total = $quantity * $value["price"];
+            $total += $price_total;
+            $product = product_information::with('ProductPrice')->where('id', $value["productID"])->first();
+            Cart::updateOrCreate(
+                [
+                    'checkin_code' => $checkinCode,
+                    "order_code" => $random,
+                ],
+                [
+                    'productID' => $value["productID"],
+                    "product_name" => $product->product_name,
+                    "qty" => $quantity,
+                    "price" => $value["price"],
+                    "amount" => $quantity * $value["price"],
+                    "total_amount" => $quantity * $value["price"],
+                    "userID" => $user_code,
+                ]
+            );
+            DB::table('inventory_allocated_items')
+                ->where('product_code', $value["productID"])
+                ->decrement(
+                    'allocated_qty',
+                    $quantity,
                     [
-                        'checkin_code' => $checkinCode,
-                        "order_code" => $random,
-                    ],
-                    [
-                        'productID' => $value["productID"],
-                        "product_name" => $product->product_name,
-                        "qty" => $quantity,
-                        "price" => $value["price"],
-                        "amount" => $quantity * $value["price"],
-                        "total_amount" => $quantity * $value["price"],
-                        "userID" => $user_code,
-                    ]
-                );
-                DB::table('inventory_allocated_items')
-                    ->where('product_code', $value["productID"])
-                    ->decrement(
-                        'allocated_qty',
-                        $quantity,
-                        [
-                            'updated_at' => now(),
-                        ]
-                    );
-                Order::updateOrCreate(
-                    [
-
-                        'order_code' => $random,
-                    ],
-                    [
-                        'user_code' => $user_code,
-                        'customerID' => $checkin->customer_id,
-                        'price_total' => $total,
-                        'balance' => $total,
-                        'order_status' => 'Pending Delivery',
-                        'payment_status' => 'Pending Payment',
-                        'qty' => $quantity,
-                        'discount' => $items["discount"] ?? "0",
-                        'checkin_code' => $checkinCode,
-                        'order_type' => 'Van sales',
-                        'delivery_date' => now(),
-                        'business_code' => $checkin->business_code,
                         'updated_at' => now(),
                     ]
                 );
-                Order_items::create([
-                    'order_code' => $random,
-                    'productID' => $value["productID"],
-                    'product_name' => $product->product_name,
-                    'quantity' => $quantity,
-                    'sub_total' => $quantity * $value["price"],
-                    'total_amount' => $quantity * $value["price"],
-                    'selling_price' => $value["price"],
-                    'discount' => $items["discount"] ?? "0",
-                    'taxrate' => 0,
-                    'taxvalue' => 0,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
+            Order::updateOrCreate(
+                [
 
-            $ativity_rand = Str::random(20);
-            $activityLog = new activity_log();
-            $activityLog->activity = 'Product added to vansale order';
-            $activityLog->user_code = auth()->user()->user_code;
-            $activityLog->section = 'Vansale order';
-            $activityLog->action = 'Vansale order made by' . auth()->user()->name . ' order code  ' . $random;
-            $activityLog->userID = auth()->user()->id;
-            $activityLog->activityID = $ativity_rand;
-            $activityLog->ip_address = "";
-            $activityLog->save();
+                    'order_code' => $random,
+                ],
+                [
+                    'user_code' => $user_code,
+                    'customerID' => $checkin->customer_id,
+                    'price_total' => $total,
+                    'balance' => $total,
+                    'order_status' => 'Pending Delivery',
+                    'payment_status' => 'Pending Payment',
+                    'qty' => $quantity,
+                    'discount' => $items["discount"] ?? "0",
+                    'checkin_code' => $checkinCode,
+                    'order_type' => 'Van sales',
+                    'delivery_date' => now(),
+                    'business_code' => $checkin->business_code,
+                    'updated_at' => now(),
+                ]
+            );
+            Order_items::create([
+                'order_code' => $random,
+                'productID' => $value["productID"],
+                'product_name' => $product->product_name,
+                'quantity' => $quantity,
+                'sub_total' => $quantity * $value["price"],
+                'total_amount' => $quantity * $value["price"],
+                'selling_price' => $value["price"],
+                'discount' => $items["discount"] ?? "0",
+                'taxrate' => 0,
+                'taxvalue' => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
+
+        $ativity_rand = Str::random(20);
+        $activityLog = new activity_log();
+        $activityLog->activity = 'Product added to vansale order';
+        $activityLog->user_code = auth()->user()->user_code;
+        $activityLog->section = 'Vansale order';
+        $activityLog->action = 'Vansale order made by' . auth()->user()->name . ' order code  ' . $random;
+        $activityLog->userID = auth()->user()->id;
+        $activityLog->activityID = $ativity_rand;
+        $activityLog->ip_address = "";
+        $activityLog->save();
 
         return response()->json([
             "success" => true,
