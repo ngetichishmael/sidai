@@ -42,7 +42,7 @@ class TargetResource extends JsonResource
             'targets_order' => $this->TargetOrder ? [
                 'OrdersTarget' => $this->TargetOrder->OrdersTarget ?? 0,
                 'AchievedOrdersTarget' => $this->TargetOrder->AchievedOrdersTarget ?? 0,
-                'Deadline' => $this->TargetsOrder->Deadline,
+                'Deadline' => $this->TargetOrder->Deadline,
             ] : [
                 'OrdersTarget' => 0,
                 'AchievedOrdersTarget' => 0,
