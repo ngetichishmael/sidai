@@ -5,14 +5,14 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="validationTooltip01">Start Date</label>
-                        <input wire:model="start" name="startDate" type="date" class="form-control"
+                        <input wire:model="startDate" name="startDate" type="date" class="form-control"
                             id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="validationTooltip01">End Date</label>
-                        <input wire:model="end" name="startDate" type="date" class="form-control"
+                        <input wire:model="endDate" name="startDate" type="date" class="form-control"
                             id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                     <h3 class="mb-75 mt-2 pt-50">
                         <?php
                         // Calculate the sum total
-                        $sumTotal = $Cash + $Mpesa + $Cheque;
+                        $sumTotal = $Cash + $Mpesa + $Cheque + $total;
                         ?>
 
                         <a href="javascript:void(0);"> {{ number_format($sumTotal) }} </a>
@@ -129,7 +129,7 @@
                                         <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
                                             &nbsp; {{ number_format($total) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
-                                            style="color: rgba(71,75,79,0.76)"> Reconciled</p>
+                                            style="color: rgba(71,75,79,0.76)"> Bank </p>
                                     </div>
                                 </a>
                             </div>
