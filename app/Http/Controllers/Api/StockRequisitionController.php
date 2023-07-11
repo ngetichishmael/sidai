@@ -11,6 +11,7 @@ use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -121,8 +122,7 @@ class StockRequisitionController extends Controller
          ]);
       }
       foreach ($selectedProducts as $productId) {
-         $product = RequisitionProduct::where('requisition_id', $request->requisition_id)->where('product_id',$productId)->get();
-
+         $product = RequisitionProduct::where('requisition_id', $request->requisition_id)->where('product_id',$productId)->first();
          if ($product) {
             $value = [
                'productID' => $product->product_id,
@@ -138,6 +138,12 @@ class StockRequisitionController extends Controller
                $random,
                $stocked
             );
+         }else{
+            return response()->json([
+               'status' =>  409,
+               'success' => false,
+               "message" => "something went wrong, product not found in the specified requisition",
+            ], 409);
          }
       }
       return response()->json([

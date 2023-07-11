@@ -132,7 +132,7 @@ class usersController extends Controller
          'account_type' => 'required',
          'region' => 'required',
       ]);
-      $user_code = rand(100000, 999999);
+      $user_code = Str::random(20);
       //save user
       $code = rand(100000, 999999);
       User::updateOrCreate(
