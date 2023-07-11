@@ -47,6 +47,8 @@ class CheckingSaleOrderController extends Controller
         $request = $request->collect();
         info($request);
         foreach ($request as $value) {
+            info($value);
+
             $quantity = $value['qty'] ?? 1;
             $price_total = $quantity * $value["price"];
             $total += $price_total;
