@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire\Orders;
 
+use App\Models\Orders;
+use App\Models\Region;
+use Livewire\Component;
+use App\Models\customers;
+use Livewire\WithPagination;
 use App\Exports\OrdersExport;
 use App\Models\suppliers\suppliers;
-use Livewire\Component;
-use App\Models\Orders;
-use Livewire\WithPagination;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -25,6 +27,12 @@ class distributororders extends Component
 
    public $fromDate;
    public $toDate;
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
@@ -36,6 +44,9 @@ class distributororders extends Component
                ->where('supplierID', '!=', 1);
          })
          ->where('order_type','=','Pre Order')
+         ->when($this->user->account_type === "RSM",function($query){
+            $query->whereIn('customerID', $this->filter());
+         })
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
@@ -58,6 +69,25 @@ class distributororders extends Component
          ->paginate($this->perPage);
 
       return view('livewire.orders.distributororders', compact('pendingorders'));
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if (!$user->account_type === 'RSM') {
+         return $array;
+      }
+      $regions = Region::where('id', $user_code)->pluck('id');
+      if ($regions->isEmpty()) {
+         return $array;
+      }
+      $customers = customers::whereIn('region_id', $regions)->pluck('id');
+      if ($customers->isEmpty()) {
+         return $array;
+      }
+      return $customers->toArray();
    }
    public function export()
    {
