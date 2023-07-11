@@ -44,8 +44,8 @@ class CheckingSaleOrderController extends Controller
         $checkin = checkin::where('code', $checkinCode)->first();
         $user_code = $request->user()->user_code;
         $total = 0;
-        //   $request = $request->collect();
-        //   info($request);
+        //  $request = $request->collect();
+        info($request);
         if (isset($request['cartItem']) && is_array($request['cartItem'])) {
             foreach ($request['cartItem'] as $value) {
                 info($value);
