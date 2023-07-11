@@ -107,7 +107,7 @@ class StockRequisitionController extends Controller
    }
    public function accept(Request $request)
    {
-      $selectedProducts = $request->accepted_products;
+      $selectedProducts = $request->products;
       $user = $request->user();
       $user_code = $user->user_code;
       $business_code = $user->business_code;
