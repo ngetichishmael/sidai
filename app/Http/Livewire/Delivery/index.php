@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Delivery;
 
-use App\Models\Delivery;
+use App\Models\Region;
 use Livewire\Component;
+use App\Models\Delivery;
+use App\Models\customers;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 
 class index extends Component
 {
@@ -21,11 +24,20 @@ class index extends Component
    public $toDate;
 
    protected $queryString = ['search', 'fromDate', 'toDate'];
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
 
       $searchTerm = '%' . $this->search . '%';
       $deliveries = Delivery::whereIn('delivery_status', ['Delivered', 'Partial delivery'])->with('User', 'Customer')
+      ->when($this->user->account_type === "RSM",function($query){
+         $query->whereIn('customer', $this->filter());
+      })
 //         ->search($searchTerm)
          ->when($this->fromDate, function ($query) {
             return $query->whereDate('created_at', '>=', $this->fromDate);
@@ -36,5 +48,24 @@ class index extends Component
          ->orderBy('updated_at', 'desc')
          ->paginate($this->perPage);
       return view('livewire.delivery.index', compact('deliveries'));
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if (!$user->account_type === 'RSM') {
+         return $array;
+      }
+      $regions = Region::where('id', $user_code)->pluck('id');
+      if ($regions->isEmpty()) {
+         return $array;
+      }
+      $customers = customers::whereIn('region_id', $regions)->pluck('id');
+      if ($customers->isEmpty()) {
+         return $array;
+      }
+      return $customers->toArray();
    }
 }
