@@ -44,11 +44,10 @@ class CheckingSaleOrderController extends Controller
         $checkin = checkin::where('code', $checkinCode)->first();
         $user_code = $request->user()->user_code;
         $total = 0;
-        $request = $request->collect();
-        info($request);
-        foreach ($request as $value) {
+        //   $request = $request->collect();
+        //   info($request);
+        foreach ($request['cartItem'] as $value) {
             info($value);
-
             $quantity = $value['qty'] ?? 1;
             $price_total = $quantity * $value["price"];
             $total += $price_total;
