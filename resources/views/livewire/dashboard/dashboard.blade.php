@@ -32,7 +32,7 @@
       <h3 class="mb-75 mt-2 pt-50">
       <?php
         // Calculate the sum total
-        $sumTotal = $Cash + $Mpesa + $Cheque + $total;
+        $sumTotal = $Cash + $Mpesa + $Cheque;
         ?>
 
         <a href="javascript:void(0);"> {{ number_format($sumTotal) }} </a>
