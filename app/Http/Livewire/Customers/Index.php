@@ -20,7 +20,11 @@ class Index extends Component
    public $orderAsc = false;
    public $customer_name = null;
    public $user;
-   public function __invoke()
+//   public function __invoke()
+//   {
+//      $this->user = Auth::user();
+//   }
+   public function __invoke(Container $container, Route $route)
    {
       $this->user = Auth::user();
    }
