@@ -52,7 +52,8 @@ class productsController extends Controller
       return response()->json([
          "success" => true,
          "message" => "Product List",
-         "data" => $products
+         "data" => $products,
+         "warehouse" => $warehouses
       ]);
    }
    public function index2(Request $request, $warehouseCode)
@@ -82,8 +83,7 @@ class productsController extends Controller
       return response()->json([
          "success" => true,
          "message" => "Product List",
-         "data" => $products,
-         "warehouse" => $warehouseCode
+         "data" => $products
       ]);
    }
 }
