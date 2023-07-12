@@ -82,7 +82,8 @@ class productsController extends Controller
       return response()->json([
          "success" => true,
          "message" => "Product List",
-         "data" => $products
+         "data" => $products,
+         "warehouse" => $warehouseCode
       ]);
    }
 }
