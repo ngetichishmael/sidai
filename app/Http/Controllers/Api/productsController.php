@@ -7,6 +7,7 @@ use App\Models\products\product_information;
 use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\UnitRoute;
+use App\Models\warehousing;
 use App\Models\zone;
 use Illuminate\Http\Request;
 
@@ -25,8 +26,10 @@ class productsController extends Controller
    public function index(Request $request, $businessCode)
    {
       $route_code = $request->user()->route_code;
-      $region_id = Region::whereId($route_code)->first();
-      $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $region_id = $request->user()->region_id;
+      $region = Region::whereId($region_id)->first();
+      $warehouses=warehousing::where('region_id', $region)->select('warehouse_code')->get();
+      $products = product_information::whereIn('product_information.warehouse_code', $warehouses)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',
@@ -41,7 +44,8 @@ class productsController extends Controller
             'product_information.business_code as business_code',
             'sku_code',
             'brand',
-            'category'
+            'category',
+            'warehouse_code'
          )
          ->get();
 
@@ -70,7 +74,8 @@ class productsController extends Controller
             'product_information.business_code as business_code',
             'sku_code',
             'brand',
-            'category'
+            'category',
+            'warehouse_code'
          )
          ->get();
 
