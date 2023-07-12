@@ -382,7 +382,7 @@ class ordersController extends Controller
       // $activityLog->activityID = $random;
       // $activityLog->ip_address ="";
       // $activityLog->save();
-      // Session::flash('success', 'Delivery created and orders allocated to a user');
+      Session::flash('success', 'Delivery created and orders allocated to a user');
       return redirect()->route('orders.pendingorders');
    }
    public function reAllocateOrders(Request $request)

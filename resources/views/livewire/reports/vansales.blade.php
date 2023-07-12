@@ -55,6 +55,7 @@
                        <th>Customer Name</th>
                        <th>User Name</th>
                        <th>User Type</th>
+                       <th>Date/Time</th>
                        <th>Action</th>
                     </tr>
                  </thead>
@@ -66,6 +67,7 @@
                      <td>{{ $vansale->Customer->customer_name??'' }}</td>
                      <td>{{ $vansale->User->name??'' }}</td>
                      <td>{{ $vansale->User->account_type??'' }}</td>
+                     <td>{{ $vansale->created_at ?? '' }}</td>
                      <td><a href="{{ URL('orders/vansaleitems/'.$vansale->order_code) }}" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                  </tr>
                   @endforeach

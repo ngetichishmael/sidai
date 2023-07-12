@@ -256,6 +256,12 @@
        <span class="menu-title text-truncate" data-i18n="Invoice">Stock Lifts</span>
     </a>
  </li>
+<li class="nav-item {!! Nav::isResource('support') !!}">
+    <a class="d-flex align-items-center" href="">
+       <i data-feather="book"></i>
+       <span class="menu-title text-truncate" data-i18n="Invoice">Stock Reconciliation</span>
+    </a>
+ </li>
 
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
 {{--              <li class="nav-item {!! request()->routeIs('chats.index') ? 'active' : '' !!}">--}}
