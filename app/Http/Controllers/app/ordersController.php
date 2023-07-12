@@ -203,7 +203,7 @@ class ordersController extends Controller
             "allocated" => $request->user,
             "delivery_note" => $request->note,
             "delivery_status" => "Waiting acceptance",
-            "Type" => "Warehoused",
+            "Type" => "Warehouse",
             "created_by" => Auth::user()->user_code
          ]
       );
@@ -325,7 +325,7 @@ class ordersController extends Controller
             "allocated" => $request->user,
             "delivery_note" => $request->note,
             "delivery_status" => "Waiting acceptance",
-            "Type" => "Not Warehoused",
+            "Type" => "Van_sale",
             "created_by" => Auth::user()->user_code
          ]
       );
