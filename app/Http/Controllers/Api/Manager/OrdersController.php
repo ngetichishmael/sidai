@@ -246,7 +246,7 @@ class OrdersController extends Controller
 //      info("Manager allocate orders");
       $json = $request->products;
       $data = json_decode($json, true);
-      $validator           =  Validator::make($request->all(), [
+      $validator =  Validator::make($request->all(), [
          "customerID" => "required",
          "user_code" => "required",
          "order_code" => "required",
