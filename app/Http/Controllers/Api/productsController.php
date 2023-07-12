@@ -22,11 +22,11 @@ class productsController extends Controller
     *
     * @param $businessCode
     **/
-   public function index(Request $request, $businessCode)
+   public function index(Request $request, $businessCode, $warehouseCode)
    {
       $route_code = $request->user()->route_code;
       $region_id = Region::whereId($route_code)->first();
-      $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $products = product_information::where("warehouse_code", $warehouseCode)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',

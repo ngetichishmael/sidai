@@ -46,11 +46,11 @@ class CheckingSaleOrderController extends Controller
         $total = 0;
        $region = Region::where('id', $request->user()->region_id)->first();
        $regionCode = strtoupper(substr($region->name, 0, 3));
-       $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+       $orderCount = Orders::where('order_code', 'like', $regionCode.'%')->count() + 1;
        $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
        $random = $regionCode.'-'.$orderNumber;
-        //  $request = $request->collect();
-        info($request);
+          $request = $request->collect();
+          dd($request);
         if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
             foreach ($request[0]['cartItem'] as $value) {
                 info($value);
@@ -60,7 +60,7 @@ class CheckingSaleOrderController extends Controller
                 $product = product_information::with('ProductPrice')->where('id', $value["productID"])->first();
                 Cart::updateOrCreate(
                     [
-                        'checkin_code' => $checkinCode,
+                       'checkin_code' => $checkinCode,
                         "order_code" => $random,
                     ],
                     [
