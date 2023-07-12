@@ -12,11 +12,6 @@ use App\Models\StockRequisition;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-<<<<<<< HEAD
-=======
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
->>>>>>> 07133b56c91d6d98be977d517210e487f4da463e
 
 class StockRequisitionController extends Controller
 {
@@ -70,78 +65,14 @@ class StockRequisitionController extends Controller
                 return $product;
             });
 
-<<<<<<< HEAD
             return [
                 'status' => $requisition->status,
                 'date' => $requisition->created_at,
                 'requisition_id' => $requisition->id,
                 'data' => $products,
-=======
-         return [
-            'status' => $requisition->status,
-            'date'=>$requisition->created_at,
-            'requisition_id'=>$requisition->id,
-            'data' => $products
-         ];
-      });
-
-      return response()->json($statusAndData, 200);
-   }
-   public function approved(Request $request)
-   {
-      $stockRequisition = StockRequisition::where('id', $request->requisition_id)->with(['RequisitionProducts' => function ($query) {
-         $query->where('approval', 1);
-      }])
-         ->where('sales_person', $request->user()->user_code)
-         ->get();
-      $statusAndData = $stockRequisition->map(function ($requisition) {
-         $products = $requisition->RequisitionProducts->map(function ($product) {
-            $productInformation = product_information::where('id', $product->product_id)->first();
-            $product->product_name = $productInformation->product_name;
-            return $product;
-         });
-
-         return [
-            'status' => 200,
-            'message'=>'all accepted requisitions',
-            'data' => $products
-         ];
-      });
-
-      return response()->json($statusAndData, 200);
-   }
-
-   public function update(Request $request, StockRequisition $stockRequisition)
-   {
-      $stockRequisition->update($request->all());
-      return response()->json($stockRequisition);
-   }
-   public function accept(Request $request)
-   {
-      $selectedProducts = $request->products;
-      $user = $request->user();
-      $user_code = $user->user_code;
-      $business_code = $user->business_code;
-      $random = Str::random(20);
-      $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
-      if (empty($selectedProducts)) {
-         return response()->json([
-            'status' => 409,
-            'success' => false,
-            "message" => "Not products selected for acceptance",
-         ]);
-      }
-      foreach ($selectedProducts as $productId) {
-         $product = RequisitionProduct::where('requisition_id', $request->requisition_id)->where('product_id',$productId)->first();
-         if ($product) {
-            $value = [
-               'productID' => $product->product_id,
-               'qty' => $product->quantity,
->>>>>>> 07133b56c91d6d98be977d517210e487f4da463e
             ];
         });
 
-<<<<<<< HEAD
         return response()->json($statusAndData, 200);
     }
     public function approved(Request $request)
@@ -157,31 +88,6 @@ class StockRequisitionController extends Controller
                 $product->product_name = $productInformation->product_name;
                 return $product;
             });
-=======
-            $stocked = product_inventory::find($product->product_id);
-            StockLiftHelper::updateOrCreateItems(
-               $user_code,
-               $business_code,
-               $value,
-               $image_path,
-               $random,
-               $stocked
-            );
-         }else{
-            return response()->json([
-               'status' =>  409,
-               'success' => false,
-               "message" => "something went wrong, product not found in the specified requisition",
-            ], 409);
-         }
-      }
-      return response()->json([
-         'status' => 200,
-         'success' => true,
-         "message" => "You have accepted the products, they will now be under your allocation",
-      ]);
-   }
->>>>>>> 07133b56c91d6d98be977d517210e487f4da463e
 
             return [
                 'status' => 200,
