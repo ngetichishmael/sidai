@@ -19,7 +19,7 @@
       </div>
    </div>
    @include('partials._messages')
-   {{-- @livewire('orders.liftedstock') --}}
+   @livewire('stocks.lifted-stock')
 @endsection
 {{-- page scripts --}}
 @section('script')
