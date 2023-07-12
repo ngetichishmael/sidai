@@ -28,8 +28,8 @@ class productsController extends Controller
       $route_code = $request->user()->route_code;
       $region_id = $request->user()->region_id;
       $region = Region::whereId($region_id)->first();
-      $warehouses=warehousing::where('region_id', $region)->select('warehouse_code')->get();
-      $products = product_information::whereIn('product_information.warehouse_code', $warehouses)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $warehouses=warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
+      $products = product_information::whereIn('warehouse_code', [$warehouses])->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',
@@ -53,7 +53,6 @@ class productsController extends Controller
          "success" => true,
          "message" => "Product List",
          "data" => $products,
-         "warehouse" => $warehouses
       ]);
    }
    public function index2(Request $request, $warehouseCode)
