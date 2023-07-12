@@ -343,7 +343,7 @@ class checkinController extends Controller
       $regionCode = strtoupper(substr($region->name, 0, 3));
       $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $orderCode = $regionCode . '-' . $orderNumber;
+      $orderCode = $regionCode.'-'.$orderNumber;
       if (empty($orderCode)){
          $orderCode = Helper::generateRandomString(8);
       }

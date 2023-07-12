@@ -41,14 +41,14 @@ class CheckingSaleOrderController extends Controller
     //Start Vansales
     public function VanSales(Request $request, $checkinCode, $random)
     {
-        $checkin = checkin::where('code', $checkinCode)->first();
+        $checkin = $checkinCode;
         $user_code = $request->user()->user_code;
         $total = 0;
        $region = Region::where('id', $request->user()->region_id)->first();
        $regionCode = strtoupper(substr($region->name, 0, 3));
        $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
        $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-       $random = $regionCode . '-' . $orderNumber;
+       $random = $regionCode.'-'.$orderNumber;
         //  $request = $request->collect();
         info($request);
         if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
@@ -89,7 +89,7 @@ class CheckingSaleOrderController extends Controller
                     ],
                     [
                         'user_code' => $user_code,
-                        'customerID' => $checkin->customer_id,
+                        'customerID' => $checkinCode,
                         'price_total' => $total,
                         'balance' => $total,
                         'order_status' => 'Pending Delivery',
@@ -99,7 +99,7 @@ class CheckingSaleOrderController extends Controller
                         'checkin_code' => $checkinCode,
                         'order_type' => 'Van sales',
                         'delivery_date' => now(),
-                        'business_code' => $checkin->business_code,
+                        'business_code' => auth::user()->business_code ?? $checkinCode,
                         'updated_at' => now(),
                     ]
                 );
@@ -231,11 +231,11 @@ class CheckingSaleOrderController extends Controller
     {
 //       $checkin = customers::whereId($checkinCode)->first();
 
-        $region = Region::where('id', $request->user()->region_id)->first();
-        $regionCode = strtoupper(substr($region->name, 0, 3));
-        $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
-        $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-        $random = $regionCode . '-' . $orderNumber;
+       $region = Region::where('id', $request->user()->region_id)->first();
+       $regionCode = strtoupper(substr($region->name, 0, 3));
+       $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+       $random = $regionCode.'-'.$orderNumber;
 //      dd($random);
 //      if (empty($orderCode)){
 //         $orderCode = Helper::generateRandomString(8);
@@ -244,7 +244,7 @@ class CheckingSaleOrderController extends Controller
         $user_code = $request->user()->user_code;
         $request = $request->collect();
         $total = 0;
-        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
+//        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
         foreach ($request as $value) {
             $price_total = $value["qty"] * $value["price"];
             $total += $price_total;
