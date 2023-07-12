@@ -45,13 +45,7 @@
                                             value="{{ $customer->customer_name ?? '' }}" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="id-column">ID Number</label>
-                                        <input type="number" id="id-column" class="form-control" name="id_number"
-                                            placeholder="address" value="{{ $customer->id_number }}" />
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
@@ -59,14 +53,6 @@
                                             value="{{ $customer->contact_person }}" name="contact_person" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Telephone</label>
-                                        <input type="text" id="telephone-column" class="form-control"
-                                            value="{{ $customer->telephone }}" name="telephone" />
-                                    </div>
-                                </div>
-
 
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -82,7 +68,7 @@
 
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->group_name }}"
-                                                @if ($group->group_name == $customer->group_name) selected @endif>
+                                                @if ($group->group_name === $customer->customer_group) selected @endif>
                                                 {{ $group->group_name }}
                                             </option>
                                         @endforeach
@@ -95,7 +81,7 @@
 
                                         @foreach ($prices as $price)
                                             <option value="{{ $price->name }}"
-                                                @if ($price->name == $price->group_name) selected @endif>
+                                                @if ($price->name == $customer->price_group) selected @endif>
                                                 {{ $price->name }}
                                             </option>
                                         @endforeach

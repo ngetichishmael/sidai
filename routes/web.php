@@ -260,6 +260,9 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('stock/mail/send', ['middleware' => ['permission:update-stockcontrol'], 'uses' => 'app\products\stockcontrolController@send', 'as' => 'stock.mail.send']);
    Route::post('stock/attach/files', ['middleware' => ['permission:update-stockcontrol'], 'uses' => 'app\products\stockcontrolController@attachment_files', 'as' => 'stock.attach']);
 
+   //stock lifts
+   Route::get('stock-lifts', ['uses' => 'app\products\StockLiftController@lifted', 'as' => 'stock.lifts']);
+
    /* === product category === */
    Route::get('warehousing/products/category', ['uses' => 'app\products\categoryController@index', 'as' => 'product.category']);
    Route::post('warehousing/products/category/store', ['uses' => 'app\products\categoryController@store', 'as' => 'product.category.store']);
@@ -404,8 +407,10 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('orders/{code}/distributorschangeStatus', ['uses' => 'app\ordersController@distributorschangeStatus', 'as' => 'orders.distributorschangeStatus']);
    Route::get('orders/customer/{id}', ['uses' => 'app\ordersController@makeOrder', 'as' => 'make.orders']);
    Route::get('orders/{code}/delivery/allocation', ['uses' => 'app\ordersController@allocation', 'as' => 'orders.delivery.allocation']);
+   Route::get('orders/{code}/delivery/withnostock', ['uses' => 'app\ordersController@allocationwithoutstock', 'as' => 'orders.delivery.without']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@delivery', 'as' => 'order.create.delivery']);
    Route::post('orders/allocate', ['uses' => 'app\ordersController@allocateOrders', 'as' => 'order.create.allocateorders']);
+   Route::post('orders/allocatewithoutstock', ['uses' => 'app\ordersController@allocateOrdersWithoutStock', 'as' => 'order.create.allocateordersnostock']);
    Route::post('orders/reallocate', ['uses' => 'app\ordersController@reAllocateOrders', 'as' => 'order.create.reallocateorders']);
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);

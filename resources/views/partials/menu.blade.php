@@ -105,10 +105,10 @@
                     <a class="d-flex align-items-center" href="#"><i data-feather='archive'></i><span
                             class="menu-title text-truncate" data-i18n="Invoice"> Warehousing Management</span></a>
                     <ul class="menu-content">
-                        @if (Auth::check() && Auth::user()->account_type == 'NSM')
+                        @if (Auth::check() && Auth::user()->account_type == 'NSM' ||(Auth::check() && Auth::user()->account_type == 'RSM'))
                             <li style="padding-left: 50px"><a class="d-flex align-items-center"
                                     href="{!! route('warehousing.index') !!}">
-                                    <span class="menu-item text-truncate">All
+                                    <span class="menu-item text-truncate">
                                         Warehouses</span></a></li>
                         @endif
                         {{--               <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i --}}
@@ -249,6 +249,20 @@
 </li>
 </ul>
 </li>
+
+<li class="nav-item {!! Nav::isResource('support') !!}">
+    <a class="d-flex align-items-center" href="{{ route('stock.lifts') }}">
+       <i data-feather="layers"></i>
+       <span class="menu-title text-truncate" data-i18n="Invoice">Stock Lifts</span>
+    </a>
+ </li>
+<li class="nav-item {!! Nav::isResource('support') !!}">
+    <a class="d-flex align-items-center" href="">
+       <i data-feather="book"></i>
+       <span class="menu-title text-truncate" data-i18n="Invoice">Stock Reconciliation</span>
+    </a>
+ </li>
+
 @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
 {{--              <li class="nav-item {!! request()->routeIs('chats.index') ? 'active' : '' !!}">--}}
 {{--                 <a class="d-flex align-items-center" href="{{ route('chats.index') }}">--}}

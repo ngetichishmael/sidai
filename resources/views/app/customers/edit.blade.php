@@ -45,13 +45,7 @@
                                             value="{{ $customer->customer_name }}" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="id-column">ID Number</label>
-                                        <input type="number" id="id-column" class="form-control" name="id_number"
-                                            placeholder="address" value="{{ $customer->id_number }}" />
-                                    </div>
-                                </div>
+                                
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
@@ -59,14 +53,6 @@
                                             value="{{ $customer->contact_person }}" name="contact_person" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
-                                    <div class="form-group">
-                                        <label for="last-name-column">Telephone</label>
-                                        <input type="text" id="last-name-column" class="form-control"
-                                            value="{{ $customer->telephone }}" name="telephone" />
-                                    </div>
-                                </div>
-                                
                                
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
@@ -88,19 +74,19 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                {{-- <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12">
                                     <label>Pricing Category</label>
                                     <select class="form-control" name="pricing_category">
                                         <option value="">Pricing Category</option>
 
                                         @foreach ($prices as $price)
                                             <option value="{{ $price->name }}"
-                                                @if ($price->name == $price->group_name) selected @endif>
+                                                @if ($price->name == $price->name) selected @endif>
                                                 {{ $price->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                </div> --}}
+                                </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>

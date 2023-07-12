@@ -249,32 +249,9 @@
             </div>
         </div>
         <div class="col-md-3">
-            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order</a></center>
-{{--            @if ($payment)--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header">Order Payments</div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h6>--}}
-{{--                            <b>Amount:</b> {!! $payment->amount !!} <br>--}}
-{{--                            <b>Payment Date:</b> {!! $payment->payment_date !!}<br>--}}
-{{--                            <b>Payment Method:</b> {!! $payment->payment_method !!}<br>--}}
-{{--                        </h6>--}}
-{{--                        <hr>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @else--}}
-{{--                <div class="card">--}}
-{{--                    <div class="card-header">Order Payments</div>--}}
-{{--                    <div class="card-body">--}}
-{{--                        <h6>--}}
-{{--                            <b>Amount:</b> N/A <br>--}}
-{{--                            <b>Payment Date:</b> N/A <br>--}}
-{{--                            <b>Payment Method:</b> N/A <br>--}}
-{{--                        </h6>--}}
-{{--                        <hr>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
+            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
+            <center><a href="{!! route('orders.delivery.without', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order Without Stock</a></center>
+
         </div>
     </div>
 @endsection
