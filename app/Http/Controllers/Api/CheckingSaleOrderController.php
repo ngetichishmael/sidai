@@ -7,6 +7,7 @@ use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
 use App\Models\Orders;
+use App\Models\Orders;
 use App\Models\Orders as Order;
 use App\Models\Order_items;
 use App\Models\products\product_information;
@@ -44,6 +45,11 @@ class CheckingSaleOrderController extends Controller
         $checkin = checkin::where('code', $checkinCode)->first();
         $user_code = $request->user()->user_code;
         $total = 0;
+       $region = Region::where('id', $request->user()->region_id)->first();
+       $regionCode = strtoupper(substr($region->name, 0, 3));
+       $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+       $random = $regionCode . '-' . $orderNumber;
         //  $request = $request->collect();
         info($request);
         if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
