@@ -53,7 +53,6 @@ class CheckingSaleOrderController extends Controller
         if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
             foreach ($request[0]['cartItem'] as $value) {
                 info($value);
-                dd($value);
                 $quantity = $value['qty'] ?? 1;
                 $price_total = $quantity * $value["price"];
                 $total += $price_total;
@@ -118,6 +117,12 @@ class CheckingSaleOrderController extends Controller
                     'updated_at' => now(),
                 ]);
             }
+        }else{
+           return response()->json([
+              "success" => false,
+              "message" => "Could not perform the operation",
+              "order_code" => $random,
+           ]);
         }
 
         $ativity_rand = Str::random(20);
