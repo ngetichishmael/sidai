@@ -7,7 +7,6 @@ use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
 use App\Models\Orders;
-use App\Models\Orders;
 use App\Models\Orders as Order;
 use App\Models\Order_items;
 use App\Models\products\product_information;
