@@ -157,5 +157,4 @@ class StockRequisitionController extends Controller
         $stockRequisition->update(['status' => 'Cancelled']);
         return response()->json(null, 204);
     }
-
 }
