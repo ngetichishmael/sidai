@@ -16,7 +16,7 @@ class LiftedStock extends Component
         ->join('warehouses','product_information.warehouse_code', '=', 'warehouses.warehouse_code')
         ->select('users.name as username','warehouses.name as warehouse')
         ->get();
-        dd($lifted);
+        //dd($lifted);
 
         return view('livewire.stocks.lifted-stock',['lifted'=>$lifted]);
     }
