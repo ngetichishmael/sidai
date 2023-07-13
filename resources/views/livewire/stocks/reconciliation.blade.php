@@ -27,23 +27,20 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>UserName</th>
-                                <th>Seller</th>
-                                <th>Date|Time</th>
+                                <th>Warehouse</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lifted as $key=> $stock )
+                            @foreach ($warehouses as$key => $warehouse )
                             <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $stock->sales_person }}</td>
-                            <td></td>
-                            <td>{{ $stock->created_at }}</td>
-                            <td><a href="" class="btn btn-sm" style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
+                                <td>{{ $key+1 }}</td>
+                                <td>{{ $warehouse->name??'' }}</td>
+                                <td><a href="" class="btn btn-sm" style="color: white;background-color:rgb(194, 51, 51)">View</a></td>
                             </tr>
                                 
                             @endforeach
+                           
                            
                         </tbody>
                     </table>

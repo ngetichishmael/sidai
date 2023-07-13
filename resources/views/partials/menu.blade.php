@@ -257,7 +257,7 @@
     </a>
  </li>
 <li class="nav-item {!! Nav::isResource('support') !!}">
-    <a class="d-flex align-items-center" href="">
+    <a class="d-flex align-items-center" href="{{ route('stock.recon') }}">
        <i data-feather="book"></i>
        <span class="menu-title text-truncate" data-i18n="Invoice">Stock Reconciliation</span>
     </a>

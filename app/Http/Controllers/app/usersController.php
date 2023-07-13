@@ -38,16 +38,6 @@ class usersController extends Controller
    //list
    public function list()
    {
-//      $lists = User::whereIn('account_type', ['NSM', 'RSM', 'TD', 'TSR', 'Shop-Attendee'])
-//         ->distinct('account_type')
-//         ->whereNotIn('account_type', ['Customer'])
-//         ->groupBy('account_type')
-//         ->pluck('account_type');
-//      $counts = User::whereIn('account_type', $lists)
-//         ->select('account_type', \DB::raw('count(*) as total'))
-//         ->groupBy('account_type')
-//         ->pluck('total', 'account_type');
-//      $count=1;
       $accountTypes = Role::pluck('name')->toArray();
 
       $lists = User::whereIn('account_type', $accountTypes)

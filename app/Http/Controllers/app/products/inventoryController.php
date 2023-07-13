@@ -1,14 +1,14 @@
 <?php
 namespace App\Http\Controllers\app\products;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\products\product_information;
-use App\Models\products\product_inventory;
-use App\Models\products\product_price;
-use App\Models\Branches;
-use Session;
 use Hr;
+use App\Models\Branches;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth ;
+use App\Models\products\product_price;
+use Illuminate\Support\Facades\Session;
+use App\Models\products\product_inventory;
+use App\Models\products\product_information;
 
 class inventoryController extends Controller{
 
@@ -48,6 +48,11 @@ class inventoryController extends Controller{
       Session::flash('success','Item inventory successfully updated');
 
       return redirect()->back();
+   }
+
+   public function stockrecon(){
+      
+      return view('app.stocks.reconciliation');
    }
 
    /**
