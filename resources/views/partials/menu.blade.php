@@ -251,15 +251,15 @@
 </li>
 
 <li class="nav-item {!! Nav::isResource('support') !!}">
-    <a class="d-flex align-items-center" href="{{ route('stock.lifts') }}">
+    <a class="d-flex align-items-center" href="{!! route('stock.lifts') !!}">
        <i data-feather="layers"></i>
-       <span class="menu-title text-truncate" data-i18n="Invoice">Stock Lifts</span>
+       <span class="menu-title text-truncate" data-i18n="Invo">Stock Lifts</span>
     </a>
  </li>
 <li class="nav-item {!! Nav::isResource('support') !!}">
-    <a class="d-flex align-items-center" href="">
+    <a class="d-flex align-items-center" href="{{ route('stock.recon') }}">
        <i data-feather="book"></i>
-       <span class="menu-title text-truncate" data-i18n="Invoice">Stock Reconciliation</span>
+       <span class="menu-title text-truncate" data-i18n="voice">Stock Reconciliation</span>
     </a>
  </li>
 

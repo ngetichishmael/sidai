@@ -97,7 +97,7 @@ Route::middleware(['auth'])->group(function () {
       'create' => 'PaidPayment.create',
       'store' => 'PaidPayment.store',
    ]);
-   Route::resource('payment/pending', PendingPaymentController::class)->names([
+   Route::resource('payment/Creditor-Payments', PendingPaymentController::class)->names([
       'index' => 'PendingPayment',
       'show' => 'PendingPayment.show',
       'edit' => 'PendingPayment.edit',
