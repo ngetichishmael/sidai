@@ -250,13 +250,13 @@
 </ul>
 </li>
 
-<li class="nav-item {!! Nav::isResource('support') !!}">
+<li class="nav-item {!! Nav::isResource('stocklift') !!}">
     <a class="d-flex align-items-center" href="{!! route('stock.lifts') !!}">
        <i data-feather="layers"></i>
        <span class="menu-title text-truncate" data-i18n="Invo">Stock Lifts</span>
     </a>
  </li>
-<li class="nav-item {!! Nav::isResource('support') !!}">
+<li class="nav-item {!! Nav::isResource('reconcilition') !!}">
     <a class="d-flex align-items-center" href="{{ route('stock.recon') }}">
        <i data-feather="book"></i>
        <span class="menu-title text-truncate" data-i18n="voice">Stock Reconciliation</span>
