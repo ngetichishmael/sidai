@@ -21,10 +21,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>OrderID</th>
-                        <th>Customer</th>
-                        <th>Sales Agents</th>
+                        <th>Creditors</th>
                         <th>Total Amount</th>
+                        <th>Amount Paid</th>
                         <th>Pending Balance</th>
                         <th>Status</th>
                         <th>Date</th>
@@ -35,16 +34,16 @@
                     @foreach ($deliveries as $count => $deliver)
                         <tr>
                             <td>{{ $count + 1 }}</td>
-                            <td>{{ $deliver->order_code }}</td>
                             <td>{{ $deliver->Customer->customer_name ?? ' ' }}</td>
-                            <td>{{ $deliver->User->name ?? '' }}</td>
+                            {{-- <td>{{ $deliver->User->name ?? '' }}</td> --}}
+                            <td>{{ number_format($deliver->Order->price_total ?? 0) }}</td>
                             <td>{{ number_format($deliver->Order->price_total ?? 0) }}</td>
                             <td>{{ number_format($deliver->Order->balance ?? 0) }}</td>
                             <td>{{ $deliver->delivery_status }}</td>
                             <td>{{ $deliver->updated_at }}</td>
                             <td>
                                 <a href="{!! route('delivery.details', $deliver->order_code, $deliver->name) !!}" class="btn btn-sm"
-                                    style="background-color: #B6121B;color:white">View</a </td>
+                                    style="background-color: #B6121B;color:white">View</a></td>
                         </tr>
                     @endforeach
                 </tbody>
