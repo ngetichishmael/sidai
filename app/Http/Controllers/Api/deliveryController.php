@@ -132,6 +132,69 @@ class deliveryController extends Controller
          200
       );
    }
+   public function acceptDeliveryWithoutStock(Request $request)
+   {
+      $user = $request->user();
+      $user_code = $user->user_code;
+      $business_code = $user->business_code;
+      $random = Str::random(20);
+      $data = $request->all();
+
+      foreach ($data as $value) {
+         Delivery::where('delivery_code', $value["delivery_code"])->update([
+            'delivery_status' => 'pending',
+            'Note' => $value["note"],
+            'updated_by' => $request->user()->user_code,
+         ]);
+         $delivery_items = Delivery_items::where(
+            'delivery_code',
+            $value["delivery_code"]
+         )->get();
+         // foreach ($delivery_items as $delivery) {
+         //    items::updateOrCreate(
+         //       [
+         //          'product_code' => $delivery->productID,
+         //          'created_by' => $user_code
+         //       ],
+         //       [
+         //          'business_code' => $business_code,
+         //          'allocation_code' => $random,
+         //          'current_qty' => $delivery->allocated_quantity,
+         //          'allocated_qty' => $delivery->allocated_quantity,
+         //          'image' => $delivery->delivery_code,
+         //          'returned_qty' => 0,
+         //          'created_by' => $user_code,
+         //          'updated_by' => $user_code
+         //       ]
+         //    );
+         //    // items::where('product_code', $delivery->productID)
+         //    //    ->increment('allocated_qty', $delivery->allocated_quantity);
+
+         //    product_inventory::where('productID', $delivery->productID)
+         //       ->decrement('current_stock', $delivery->allocated_quantity);
+         //    allocations::updateOrCreate(
+         //       [
+         //          "allocation_code" => $random,
+         //          "sales_person" => $user_code
+         //       ],
+         //       [
+         //          "business_code" => $business_code,
+         //          "status" => "Waiting acceptance",
+         //          "created_by" => $user_code,
+         //          "updated_by" => $user_code
+         //       ]
+         //    );
+         // }
+      }
+      return response()->json(
+         [
+            "status" => 200,
+            "success" => true,
+            "message" => "Accepting deliveries No stock...",
+         ],
+         200
+      );
+   }
    public function rejectDelivery(Request $request)
    {
       $data = $request->all();
