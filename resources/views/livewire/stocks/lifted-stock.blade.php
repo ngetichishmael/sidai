@@ -1,4 +1,3 @@
-
 <div class="row">
     <div class="col-md-3">
         <label for="">Status</label>
@@ -27,24 +26,29 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>UserName</th>
-                                <th>Seller</th>
-                                <th>Date|Time</th>
+                                <th>Allocation Code</th>
+                                <th>Product Name</th>
+                                <th>Warehouse</th>
+                                <th>Sales Agent</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                           
-                            <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><a href="" class="btn btn-sm" style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
-                            </tr>
-                                
-                            
-                           
+
+                            @foreach ($lifted as $key => $lifted)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $lifted->code }}</td>
+                                    <td>{{ $lifted->name }}</td>
+                                    <td>{{ $lifted->warehouse }}</td>
+                                    <td>{{ $lifted->user_name }}</td>
+                                    <td><a href="" class="btn btn-sm"
+                                            style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
+                                </tr>
+                            @endforeach
+
+
+
                         </tbody>
                     </table>
                 </div>
