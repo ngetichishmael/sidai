@@ -31,7 +31,7 @@ class Index extends Component
          $query->whereIn('region_id', $this->filter());
       })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
-         dd($warehouses);
+         
 
       return view('livewire.warehousing.index', [
          'warehouses' => $warehouses,
