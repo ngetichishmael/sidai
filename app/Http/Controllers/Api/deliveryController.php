@@ -78,7 +78,7 @@ class deliveryController extends Controller
       $data = $request->all();
 
       foreach ($data as $value) {
-         if($value["Type"]==="Warehouse"){
+         // if($value["Type"]==="Warehouse"){
             Delivery::where('delivery_code', $value["delivery_code"])->update([
                'delivery_status' => 'pending',
                'Note' => $value["note"],
@@ -123,17 +123,17 @@ class deliveryController extends Controller
                   ]
                );
             }
-         }elseif($value["Type"]==="Van_sale"){
-            Delivery::where('delivery_code', $value["delivery_code"])->update([
-               'delivery_status' => 'pending',
-               'Note' => $value["note"],
-               'updated_by' => $request->user()->user_code,
-            ]);
-            $delivery_items = Delivery_items::where(
-               'delivery_code',
-               $value["delivery_code"]
-            )->get();
-         }
+         // }elseif($value["Type"]==="Van_sale"){
+         //    Delivery::where('delivery_code', $value["delivery_code"])->update([
+         //       'delivery_status' => 'pending',
+         //       'Note' => $value["note"],
+         //       'updated_by' => $request->user()->user_code,
+         //    ]);
+         //    $delivery_items = Delivery_items::where(
+         //       'delivery_code',
+         //       $value["delivery_code"]
+         //    )->get();
+         // }
          return response()->json(
             [
                "status" => 200,

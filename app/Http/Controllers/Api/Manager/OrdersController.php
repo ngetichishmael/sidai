@@ -199,13 +199,7 @@ class OrdersController extends Controller
                         "allocated_totalamount" => $totalSum,
                     ]);
 
-//         if ($request->product[$i] < $request->allocate[$i]) {
-//            Orders::where('order_code', $request->order_code)
-//               ->update([
-//                  "order_status" => "Partial delivery"
-//               ]);
-//         }else{
-//         }
+
                 $quantity += 1;
             } else {
                 Delivery::destroy($delivery->delivery_code);
