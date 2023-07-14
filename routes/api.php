@@ -67,6 +67,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::get('deliveries/{businessCode}/{userCode}', 'deliveryController@index');
    Route::get('delivery/{code}/{businessCode}/details', 'deliveryController@details');
    Route::post('/accept/delivery', 'deliveryController@acceptDelivery')->middleware('auth:sanctum');
+   Route::post('/accept/delivery-with-no-stock', 'deliveryController@acceptDeliveryWithoutStock')->middleware('auth:sanctum');
    Route::post('/reject/delivery', 'deliveryController@rejectDelivery')->middleware('auth:sanctum');
 
    //customer checking

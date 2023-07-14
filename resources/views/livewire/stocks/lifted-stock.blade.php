@@ -34,16 +34,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lifted as $key=> $stock )
+                           
                             <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $stock->sales_person }}</td>
                             <td></td>
-                            <td>{{ $stock->created_at }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td><a href="" class="btn btn-sm" style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
                             </tr>
                                 
-                            @endforeach
+                            
                            
                         </tbody>
                     </table>

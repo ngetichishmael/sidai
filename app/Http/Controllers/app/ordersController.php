@@ -329,59 +329,59 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
-      // for ($i = 0; $i < count($request->allocate); $i++) {
-      //    $pricing = product_price::whereId($request->item_code[$i])->first();
-      //    $totalSum += $request->price[$i];
-      //    Delivery_items::updateOrCreate(
-      //       [
-      //          "business_code" => Auth::user()->business_code,
-      //          "delivery_code" => $delivery->delivery_code,
-      //          "productID" => $request->item_code[$i],
-      //       ],
-      //       [
-      //          "selling_price" => $pricing->selling_price,
-      //          "sub_total" => $request->price[$i],
-      //          "total_amount" => $request->price[$i],
-      //          "product_name" => $request->product[$i],
-      //          "allocated_quantity" => $request->allocate[$i],
-      //          "delivery_item_code" => Str::random(20),
-      //          "requested_quantity" => $request->requested[$i],
-      //          "created_by" => Auth::user()->user_code
-      //       ]
-      //    );
+      for ($i = 0; $i < count($request->allocate); $i++) {
+         $pricing = product_price::whereId($request->item_code[$i])->first();
+         $totalSum += $request->price[$i];
+         Delivery_items::updateOrCreate(
+            [
+               "business_code" => Auth::user()->business_code,
+               "delivery_code" => $delivery->delivery_code,
+               "productID" => $request->item_code[$i],
+            ],
+            [
+               "selling_price" => $pricing->selling_price,
+               "sub_total" => $request->price[$i],
+               "total_amount" => $request->price[$i],
+               "product_name" => $request->product[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "delivery_item_code" => Str::random(20),
+               "requested_quantity" => $request->requested[$i],
+               "created_by" => Auth::user()->user_code
+            ]
+         );
 
-      //    Order_items::where('productID', $request->item_code[$i])
-      //       ->where('order_code', $request->order_code)
-      //       ->update([
-      //          "requested_quantity" => $request->requested[$i],
-      //          "allocated_quantity" => $request->allocate[$i],
-      //          "allocated_subtotal" => $request->price[$i],
-      //          "allocated_totalamount" => $request->price[$i],
-      //       ]);
+         Order_items::where('productID', $request->item_code[$i])
+            ->where('order_code', $request->order_code)
+            ->update([
+               "requested_quantity" => $request->requested[$i],
+               "allocated_quantity" => $request->allocate[$i],
+               "allocated_subtotal" => $request->price[$i],
+               "allocated_totalamount" => $request->price[$i],
+            ]);
 
-      //    $quantity +=1;
-      // }
+         $quantity +=1;
+      }
 
-      // $order = Orders::where('order_code', $request->order_code)->first();
-      // if ($order) {
-      //    $order->update([
-      //       "order_status" => "Waiting acceptance",
-      //       "price_total" => $totalSum,
-      //       "balance" => $totalSum,
-      //       "initial_total_price" => $order->price_total,
-      //       "updated_qty" => $quantity,
-      //    ]);
-      // }
-      // $random = Str::random(20);
-      // $activityLog = new activity_log();
-      // $activityLog->activity = 'Allocate an order to a User';
-      // $activityLog->user_code = auth()->user()->user_code;
-      // $activityLog->section = 'Order Allocation';
-      // $activityLog->action = 'Order allocated to user '. $request->name. ' Role '.$request->account_type.'';
-      // $activityLog->userID = auth()->user()->id;
-      // $activityLog->activityID = $random;
-      // $activityLog->ip_address ="";
-      // $activityLog->save();
+      $order = Orders::where('order_code', $request->order_code)->first();
+      if ($order) {
+         $order->update([
+            "order_status" => "Waiting acceptance",
+            "price_total" => $totalSum,
+            "balance" => $totalSum,
+            "initial_total_price" => $order->price_total,
+            "updated_qty" => $quantity,
+         ]);
+      }
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Allocate an order to a User';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Order Allocation';
+      $activityLog->action = 'Order allocated to user '. $request->name. ' Role '.$request->account_type.'';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
       Session::flash('success', 'Delivery created and orders allocated to a user');
       return redirect()->route('orders.pendingorders');
    }
