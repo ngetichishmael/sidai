@@ -19,7 +19,7 @@ class deliveryController extends Controller
       $deliveries = Delivery::with('User', 'OrderItems')
          ->where('order_code', $code)
          ->select('*')
-         ->limit(1)
+         // ->limit(1)
          ->get();
       return view('app.delivery.invoice', compact('deliveries', 'code', 'total', 'subtotal'));
    }
