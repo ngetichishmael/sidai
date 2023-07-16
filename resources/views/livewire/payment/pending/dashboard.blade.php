@@ -39,14 +39,14 @@
                             <td>{{ number_format($deliver->Order->price_total ?? 0) }}</td>
                             <td>{{ number_format($deliver->Order->price_total ?? 0) }}</td>
                             <td>{{ number_format($deliver->Order->balance ?? 0) }}</td>
-                            <td>{{ $deliver->delivery_status }}</td>
-                            {{-- <td>@if ($deliver->Order->balance === 0)
+                            {{-- <td>{{ $deliver->delivery_status }}</td> --}}
+                            <td>@if ($deliver->Order->balance === 0)
                                 Complete
                                 @elseif ($deliver->Order->balance >1)
                                 Pending
                                 
                             @endif
-                            </td> --}}
+                            </td>
                             <td>{{ $deliver->updated_at }}</td>
                             <td>
                                 <a href="{!! route('delivery.details', $deliver->order_code, $deliver->name) !!}" class="btn btn-sm"
