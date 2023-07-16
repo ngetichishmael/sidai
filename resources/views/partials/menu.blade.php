@@ -212,32 +212,27 @@
                                 href="{{ route('areas') }}">
                                 <span class="menu-item text-truncate">Routes</span></a>
                         </li>
-
-                        <li class="nav-item {!! Nav::isResource('maps') !!}">
-                            <a class="d-flex align-items-center" href="#"><span
-                                    class="menu-title text-truncate" data-i18n="Invoice">Maps</span></a>
-                            <ul class="menu-content">
-                                <li class="nav-item {!! Nav::isResource('maps') !!}">
-                                    <a class="d-flex align-items-center" href="{!! route('maps') !!}">
-                                        <span class="menu-title text-truncate" data-i18n="Todo">
-                                            Maps</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item {!! Nav::isResource('current-information') !!}">
-                                    <a class="d-flex align-items-center" href="{!! route('current-information') !!}">
-                                        <span class="menu-title text-truncate" data-i18n="Todo">
-                                            Sales Agents</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
                     </ul>
                 </li>
+                <li class="nav-item {!! Nav::isResource('maps') !!}">
+                    <a class="d-flex align-items-center" href="#">
+                        <i data-feather="map"></i><span class="menu-title text-truncate" data-i18n="Todo">
+                            Maps</span></a>
+                            <ul class="menu-content">
+                                <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('maps') !!}">
+                                <span class="menu-item text-truncate">Maps</span></a>
+                                </li>
+                                <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('current-information') !!}">
+                                <span class="menu-item text-truncate">Sales Agents</span></a>
+                                </li>
+                            </ul>
+                </li>
+                
 
             @endif
 <li class="nav-item {!! Nav::isResource('routes') !!}">
 <a class="d-flex align-items-center" href="">
-<i data-feather='map'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
+<i data-feather='compass'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
    Scheduling</span>
 </a>
 <ul class="menu-content">
