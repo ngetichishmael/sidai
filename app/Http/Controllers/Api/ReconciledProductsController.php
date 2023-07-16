@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\ReconciledProducts as ReconciledProducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+Use App\Models\warehousing;
 
 class ReconciledProductsController extends Controller
 {
@@ -14,13 +15,18 @@ class ReconciledProductsController extends Controller
       $usercode = $request->user()->user_code;
       $id = $request->user()->id;
       $request = $request->collect();
+
+      $randomWarehouse = Warehousing::select('warehouse_code')
+                        ->inRandomOrder()
+                        ->limit(1)
+                        ->get();
       foreach ($request as $data) {
          $reconciled_products = new ReconciledProducts();
          $reconciled_products->productID = $data['productID'];
          $reconciled_products->amount = $data['amount'];
          $reconciled_products->supplierID = $data['supplierID'];
          $reconciled_products->userCode  = $usercode;
-         $reconciled_products->warehouse_code  = $usercode;
+         $reconciled_products->warehouse_code  = $data['warehouse_code'] ?? $randomWarehouse;
          $reconciled_products->save();
 
          DB::table('inventory_allocated_items')
