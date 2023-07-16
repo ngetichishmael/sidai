@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Stocks;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
-
+use App\Models\inventory_allocated_items;
 class LiftedStock extends Component
 {
     public function render()

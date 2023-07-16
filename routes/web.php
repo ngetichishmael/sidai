@@ -262,6 +262,7 @@ Route::group(['middleware' => ['verified']], function () {
 
    //stock lifts
    Route::get('stock-lifts', ['uses' => 'app\products\StockLiftController@lifted', 'as' => 'stock.lifts']);
+   Route::get('lifted/items/{allocation_code}', ['uses' => 'app\products\StockLiftController@items', 'as' => 'product.items']);
    //stock Reconciliations
    Route::get('stock-Reconciliations', ['uses' => 'app\products\inventoryController@stockrecon', 'as' => 'stock.recon']);
 
