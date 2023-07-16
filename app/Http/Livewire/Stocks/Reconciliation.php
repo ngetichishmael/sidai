@@ -17,7 +17,7 @@ class Reconciliation extends Component
     public function render()
     {
         $searchTerm = '%' . $this->search . '%';
-      $warehouses = warehousing::with('manager', 'region', 'subregion')
+      $warehouses = warehousing::with('manager', 'region', 'subregion','ReconciledProducts')
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
          
         return view('livewire.stocks.reconciliation',['warehouses' => $warehouses]);

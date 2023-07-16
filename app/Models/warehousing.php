@@ -50,4 +50,8 @@ class warehousing extends Model
    {
       return $this->hasMany(ProductSku::class, 'sku_code','sku_code');
    }
+   public function ReconciledProducts()
+   {
+      return $this->hasMany(ReconciledProducts::class, 'warehouse_code','warehouse_code');
+   }
 }
