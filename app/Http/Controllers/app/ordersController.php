@@ -56,7 +56,6 @@ class ordersController extends Controller
    public function details($code)
    {
       $order = Orders::where('order_code', $code)->first();
-      // dd($code);
       $items = Order_items::where('order_code', $order->order_code)->get();
       $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
       $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();

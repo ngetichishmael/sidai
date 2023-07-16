@@ -9,6 +9,7 @@ use App\Models\products\product_price;
 use Illuminate\Support\Facades\Session;
 use App\Models\products\product_inventory;
 use App\Models\products\product_information;
+use App\Models\ReconciledProducts;
 
 class inventoryController extends Controller{
 
@@ -53,6 +54,11 @@ class inventoryController extends Controller{
    public function stockrecon(){
       
       return view('app.stocks.reconciliation');
+   }
+   public function reconciled($warehouse_code)
+   {
+      $reconciled = ReconciledProducts::where('warehouse_code', $warehouse_code)->get();
+      return view('app.items.reconciledproducts', ['reconciled' => $reconciled]);
    }
 
    /**
