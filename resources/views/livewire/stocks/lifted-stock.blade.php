@@ -42,7 +42,7 @@
                                     <td>{{ $lifted->name }}</td>
                                     <td>{{ $lifted->warehouse }}</td>
                                     <td>{{ $lifted->user_name }}</td>
-                                    <td><a href="" class="btn btn-sm"
+                                    <td><a href="{{ URL('lifted/items/' . $lifted->code) }}" class="btn btn-sm"
                                             style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
                                 </tr>
                             @endforeach
