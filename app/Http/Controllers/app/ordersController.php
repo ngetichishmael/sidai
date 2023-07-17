@@ -328,7 +328,8 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
-      for ($i = 0; $i < count($request->allocate); $i++) {
+      $allocateArray = $request->allocate ?? [];
+      for ($i = 0; $i < count($allocateArray); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
          $totalSum += $request->price[$i];
          Delivery_items::updateOrCreate(
@@ -342,7 +343,7 @@ class ordersController extends Controller
                "sub_total" => $request->price[$i],
                "total_amount" => $request->price[$i],
                "product_name" => $request->product[$i],
-               "allocated_quantity" => $request->allocate[$i],
+               "allocated_quantity" => $allocateArray[$i],
                "delivery_item_code" => Str::random(20),
                "requested_quantity" => $request->requested[$i],
                "created_by" => Auth::user()->user_code
@@ -353,7 +354,7 @@ class ordersController extends Controller
             ->where('order_code', $request->order_code)
             ->update([
                "requested_quantity" => $request->requested[$i],
-               "allocated_quantity" => $request->allocate[$i],
+               "allocated_quantity" => $allocateArray[$i],
                "allocated_subtotal" => $request->price[$i],
                "allocated_totalamount" => $request->price[$i],
             ]);
