@@ -26,7 +26,7 @@ class ReconciledProductsController extends Controller
          $reconciled_products->amount = $data['amount'];
          $reconciled_products->supplierID = $data['supplierID'];
          $reconciled_products->userCode  = $usercode;
-         $reconciled_products->warehouse_code  = $data['warehouse_code'] ?? $randomWarehouse;
+         $reconciled_products->warehouse_code  = $randomWarehouse;
          $reconciled_products->save();
 
          DB::table('inventory_allocated_items')
