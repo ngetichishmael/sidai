@@ -127,8 +127,7 @@ class deliveryController extends Controller
                 [
                     "status" => 200,
                     "success" => true,
-                    "message" => "Accepting deliveries...",
-                    "Codes" => $codes
+                    "message" => "Accepting deliveries..."
                 ],
                 200
             );
@@ -149,8 +148,7 @@ class deliveryController extends Controller
         [
             "status" => 200,
             "success" => true,
-            "message" => "Accepting deliveries without stock...",
-            "Codes" => $codes
+            "message" => "Accepting deliveries without stock..."
         ],
         200
     );
