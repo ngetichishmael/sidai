@@ -18,7 +18,8 @@
                                 <tr>
                                     <td>{!! $count + 1 !!}</td>
                                     <td>{{ $requisition->user->name ?? '' }}</td>
-                                    @isset($requisition->requisition_products_count, $requisition->approved_requisition_products_count)
+                                    @if (isset($requisition->requisition_products_count, $requisition->approved_requisition_products_count) &&
+                                            $requisition->requisition_products_count > 0)
                                         @php
                                             $percentage = ($requisition->approved_requisition_products_count / $requisition->requisition_products_count) * 100;
                                             $data = $requisition->approved_requisition_products_count . '/' . $requisition->requisition_products_count;
@@ -35,7 +36,10 @@
                                         @else
                                             <td style="color: #B6121B">{{ $data }}</td>
                                         @endif
-                                    @endisset
+                                    @else
+                                        <td style="color: #B6121B">Data Unavailable</td>
+                                    @endif
+
 
 
 
