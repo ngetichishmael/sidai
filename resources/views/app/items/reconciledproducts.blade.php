@@ -32,13 +32,13 @@
                     </tr>
                  </thead>
                  <tbody>
-                  {{-- @foreach ($items as $key=>$item)
+                  @foreach ($reconciled as $key=>$reconcile)
                   <tr>
                      <td>{{ $key+1 }}</td>
-                     <td>{{ $item->product_name }}</td>
-                     <td></td>
+                     <td>{{ $reconcile->name }}</td>
+                     <td>{{ $reconcile->amount }}</td>
                  </tr>
-                  @endforeach --}}
+                  @endforeach
                    
                     
                  </tbody>
