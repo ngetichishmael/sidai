@@ -212,6 +212,7 @@ Route::group(['namespace' => 'Api'], function () {
      * Post Device data
      */
     Route::post('/current/device/information', [CurrentDeviceInformationController::class, "postCurrentDeviceInformation"])->middleware('auth:sanctum');
+    Route::get('getMarkers/{userCode}', [CurrentDeviceInformationController::class, "getUserCoordinates"])->name('getUserCoordinates');
 
     /**
      * Get Outlet Types
