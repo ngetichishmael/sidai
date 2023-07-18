@@ -37,7 +37,7 @@
                         <u>{!! $order->order_code !!}</u>
                     </h4>
                     <hr>
-                    <<<<<<< HEAD <div class="row">
+                    <div class="row">
                         <div class="form-group col-md-4">
                             <label for="">Assign Stock To</label>
                             <select name="account_type" class="form-control select" id="account_type" required>
@@ -55,26 +55,6 @@
                             </select>
                         </div>
                         {{-- <div class="form-group ml-0 pe-0 col-md-4">
-=======
-                   <div class="row">
-                      <div class="form-group col-md-4">
-                         <label for="">Assign Stock To</label>
-                         <select name="account_type" class="form-control select" id="account_type" required>
-                            <option value="">Choose User Type</option>
-                            @foreach ($account_types as $account)
-                               <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
-                            @endforeach
-                            <option value="distributors">Distributors</option>
-                         </select>
-                      </div>
-                      <div class="form-group col-md-4">
-                         <label for="">Choose User</label>
-                         <select name="user" class="form-control select2" id="user" required>
-                            <option value=""></option>
-                         </select>
-                      </div>
-                      {{-- <div class="form-group ml-0 pe-0 col-md-4">
->>>>>>> efbf40867a5b72c6d8464a43bcb8d9296c9b1e5d
                          <label for="warehouse">Warehouse:</label>
                          <select id="warehouse" class="form-control select2" name="warehouse_code" required>
                             <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
@@ -87,10 +67,9 @@
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <<<<<<< HEAD=======<<<<<<< HEAD=======>>>>>>> efbf40867a5b72c6d8464a43bcb8d9296c9b1e5d
             <div class="mt-2 card">
                 <div class="card-body">
                     <h4>Assign Items</h4>
@@ -150,10 +129,8 @@
                     @endforeach
                 </div>
             </div>
-            <<<<<<< HEAD=======>>>>>>> f69ba5d1ec96a01b7fe236890cde6bf6c2b04781
-                >>>>>>> efbf40867a5b72c6d8464a43bcb8d9296c9b1e5d
-                <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
-                </div>
+            <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
+        </div>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
