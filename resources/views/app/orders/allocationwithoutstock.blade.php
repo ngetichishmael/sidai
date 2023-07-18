@@ -69,9 +69,6 @@
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
-
-=======
             <div class="mt-2 card">
                 <div class="card-body">
                     <h4>Assign Items</h4>
@@ -127,7 +124,6 @@
                     @endforeach
                 </div>
             </div>
->>>>>>> f69ba5d1ec96a01b7fe236890cde6bf6c2b04781
             <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
         </div>
     </form>

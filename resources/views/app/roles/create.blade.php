@@ -181,7 +181,7 @@
                       'Admin' => 'Admin',
                   ] as $value => $label)
                      <div class="form-check">
-                        {!! Form::checkbox('platform[]', $value, in_array($value, $role->platform), ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
+                        {!! Form::checkbox('platform[]', $value, in_array($value, (array)$role->platform), ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
                         {!! Form::label('platform_'.$value, $label, ['class' => 'form-check-label']) !!}
                      </div>
                   @endforeach
