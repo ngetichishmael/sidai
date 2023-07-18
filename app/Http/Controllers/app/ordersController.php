@@ -328,7 +328,7 @@ class ordersController extends Controller
             "created_by" => Auth::user()->user_code
          ]
       );
-      dd($request->allocate);
+      
 
       for ($i = 0; $i < count($request->allocate); $i++) {
          $pricing = product_price::whereId($request->item_code[$i])->first();
