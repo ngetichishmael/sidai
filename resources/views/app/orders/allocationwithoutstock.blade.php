@@ -33,7 +33,8 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
-                   <h4>Assign Order To User of customer <u>{{$order->customer->customer_name}}</u>, Order Code <u>{!! $order->order_code !!}</u></h4>
+                    <h4>Assign Order To User of customer <u>{{ $order->customer->customer_name }}</u>, Order Code
+                        <u>{!! $order->order_code !!}</u></h4>
                     <hr>
                    <div class="row">
                       <div class="form-group col-md-4">
@@ -68,6 +69,9 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
+
+=======
             <div class="mt-2 card">
                 <div class="card-body">
                     <h4>Assign Items</h4>
@@ -123,53 +127,58 @@
                     @endforeach
                 </div>
             </div>
+>>>>>>> f69ba5d1ec96a01b7fe236890cde6bf6c2b04781
             <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
         </div>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-       $(document).ready(function() {
-          $('#account_type').on('change', function() {
-             var accountType = $(this).val();
-             if (accountType === 'distributors') {
-                $.ajax({
-                   url: '{{ route('get.distributors') }}',
-                   type: 'GET',
-                   success: function(data) {
-                      $('#user').empty();
-                      $('#user').append('<option value="">Choose a Distributor</option>');
-                      data.users.forEach(function(distributor) {
-                         $('#user').append('<option value="' + distributor.id + '">' + distributor.name + '</option>');
-                      });
-                   },
-                   error: function($e) {
-                      console.log($e);
-                      console.log('Error occurred during AJAX request.');
-                   }
-                });
-             } else if (accountType) {
-                $.ajax({
-                   url: '{{ route('get.users') }}',
-                   type: 'GET',
-                   data: { account_type: accountType },
-                   success: function(data) {
-                      $('#user').empty();
-                      $('#user').append('<option value="">Choose a User</option>');
-                      data.users.forEach(function(user) {
-                         $('#user').append('<option value="' + user.user_code + '">' + user.name + '</option>');
-                      });
-                   },
-                   error: function() {
-                      console.log('Error occurred during AJAX request.');
-                   }
-                });
-             } else {
-                $('#user').empty();
-                $('#user').append('<option value="">Choose User</option>');
-             }
-          });
-       });
+        $(document).ready(function() {
+            $('#account_type').on('change', function() {
+                var accountType = $(this).val();
+                if (accountType === 'distributors') {
+                    $.ajax({
+                        url: '{{ route('get.distributors') }}',
+                        type: 'GET',
+                        success: function(data) {
+                            $('#user').empty();
+                            $('#user').append('<option value="">Choose a Distributor</option>');
+                            data.users.forEach(function(distributor) {
+                                $('#user').append('<option value="' + distributor.id +
+                                    '">' + distributor.name + '</option>');
+                            });
+                        },
+                        error: function($e) {
+                            console.log($e);
+                            console.log('Error occurred during AJAX request.');
+                        }
+                    });
+                } else if (accountType) {
+                    $.ajax({
+                        url: '{{ route('get.users') }}',
+                        type: 'GET',
+                        data: {
+                            account_type: accountType
+                        },
+                        success: function(data) {
+                            $('#user').empty();
+                            $('#user').append('<option value="">Choose a User</option>');
+                            data.users.forEach(function(user) {
+                                $('#user').append('<option value="' + user.user_code +
+                                    '">' + user.name + '</option>');
+                            });
+                        },
+                        error: function() {
+                            console.log('Error occurred during AJAX request.');
+                        }
+                    });
+                } else {
+                    $('#user').empty();
+                    $('#user').append('<option value="">Choose User</option>');
+                }
+            });
+        });
     </script>
 
 @endsection

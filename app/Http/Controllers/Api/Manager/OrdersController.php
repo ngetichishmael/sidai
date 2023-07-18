@@ -54,46 +54,65 @@ class OrdersController extends Controller
         }
         return $orders->toArray();
     }
-    public function allOrdersUsingAPIResource()
+    public function filterOrders($region_id): array
+    {
+
+        $array = [];
+        $customers = customers::where('region_id', $region_id)->pluck('id');
+        if ($customers->isEmpty()) {
+            return $array;
+        }
+        return $customers->toArray();
+    }
+    public function allOrdersUsingAPIResource(Request $request)
     {
         return response()->json([
             'status' => 200,
             'success' => true,
             'Data' => UserResource::collection(
-                User::withCount(['Checkings'])->with('Orders.OrderItem')->whereIn('account_type', ['TSR', 'TD', 'RSM'])->get()
+                User::withCount(['Checkings'])->with('Orders.OrderItem')
+                    ->where('route_code', $request->user()->route_code)
+                    ->whereIn('account_type', ['TSR', 'TD', 'RSM'])
+                    ->get()
             ),
         ]);
     }
 
-    public function allOrderForCustomers()
+    public function allOrderForCustomers(Request $request)
     {
         return response()->json([
             'status' => 200,
             'success' => true,
             "message" => "Order information for customers",
             'Data' => CustomerResource::collection(
-                customers::withCount(['Checkings'])->with('Orders.OrderItem')->get()
+                customers::withCount(['Checkings'])
+                    ->where('region_id', $request->user()->route_code)
+                    ->with('Orders.OrderItem')
+                    ->get()
             ),
         ]);
     }
+
     public function allocateOrders2(Request $request)
     {
+        $route_code = $request->user()->route_code;
         $this->validate($request, [
             'account_type' => 'required',
             'order_code' => 'required',
             'products' => 'required',
-//         'warehouse' => 'required',
         ]);
         $supplierID = null;
         $totalSum = 0;
         $quantity = 0;
-        $order = Orders::where('order_code', $request->order_code)->first();
+        $order = Orders::where('order_code', $request->order_code)
+            ->first();
 
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->distributor_id);
             if ($distributor) {
                 foreach ($request->products as $product) {
-                    $pricing = product_price::where('productID', $product['product_id'])->first();
+                    $pricing = product_price::where('productID', $product['product_id'])
+                        ->first();
                     $orderitems = Order_items::where('order_code', $request->order_code)->where('productID', $product['product_id'])->first();
                     if ($orderitems) {
                         $subtotal = $pricing->selling_price * $product['allocated_quantity'];
@@ -199,7 +218,6 @@ class OrdersController extends Controller
                         "allocated_totalamount" => $totalSum,
                     ]);
 
-
                 $quantity += 1;
             } else {
                 Delivery::destroy($delivery->delivery_code);
@@ -291,13 +309,9 @@ class OrdersController extends Controller
         foreach ($data as $value) {
             $arrayFiltered = array();
             $user = $value['inventory'];
-//         $inventory = $value['inventory'];
             if ($user !== null) {
                 $arrayFiltered["OrderedUser"] = $value["inventory"]["user"] == null ? $this->noValue() : $this->returnFilterUser($value["inventory"]["user"]);
-                //$arrayFiltered["ItemDetails"] = $value["information"] == null ? $this->noInformation() : $this->returnFilterInformation($value["information"]);
                 $itemDetails = $value["information"] == null ? $this->noInformation() : $this->returnFilterInformation($value["information"]);
-
-                // Add additional fields to ItemDetails
                 $itemDetails["allocation_code"] = $value->allocation_code;
                 $itemDetails["productID"] = $value->product_code;
                 $itemDetails["current_qty"] = $value->current_qty;
@@ -410,30 +424,6 @@ class OrdersController extends Controller
             ], 404);
         }
     }
-
-//   public function allocationItems(Request $request)
-//   {
-//      $data = items::with(["Inventory.User", "Information"])->get();
-//      $arraydata = array();
-//      foreach ($data as $value) {
-//         $arrayFiltered = array();
-//         $user = $value['inventory'];
-//         if ($user !== null) {
-//            $arrayFiltered["OrderedUser"] =
-//               $value["inventory"]["user"] == null
-//               ? $this->noValue() : $this->returnFilterUser($value["inventory"]["user"]);
-//            $arrayFiltered["ItemDetails"] = $value["information"] == null
-//               ? $this->noInformation() : $this->returnFilterInformation($value["information"]);
-//         }
-//         array_push($arraydata, $arrayFiltered);
-//      }
-//      return response()->json([
-//         'status' => 200,
-//         'success' => true,
-//         "message" => "Preordered Information",
-//         'Array' => array_filter($arraydata),
-//      ]);
-//   }
     public function noValue()
     {
         $arrayData = array();
@@ -467,16 +457,10 @@ class OrdersController extends Controller
     }
     public function returnFilterInformation($data)
     {
-//      dd($data);
         $arrayData = array();
         if ($data !== null) {
             $arrayData["id"] = $data["id"];
             $arrayData["item_name"] = $data["product_name"];
-//         $item = items::where($data["id"])->first();
-//         $arrayData["qty_stocked"] = $item->current_stock;
-//         $arrayData["allocated_qty"] = $item->allocated_qty;
-//         $arrayData["allocation_code"] = $item->allocation_code;
-//         $arrayData["productID"] = $item->product_code;
             $arrayData["qty_stocked"] = product_inventory::whereId($data["id"])->pluck("current_stock")->implode('');
             $arrayData["brand"] = $data["brand"];
             $arrayData["total_amount"] = product_price::whereId($data["id"])->pluck("buying_price")->implode('');
@@ -511,9 +495,6 @@ class OrdersController extends Controller
     public function customTransaction(Request $request)
     {
         return response()->json([
-//         'status' => 200,
-//         'success' => true,
-//         "message" => "Order information for customers",
             'Custom' => OrderResource::collection(
                 Orders::with(['Customer'])->period($request->start_date, $request->end_date)->get(),
             ),
