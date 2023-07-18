@@ -3,13 +3,14 @@ namespace App\Http\Controllers\app\products;
 use Hr;
 use App\Models\Branches;
 use Illuminate\Http\Request;
+use App\Models\ReconciledProducts;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth ;
 use App\Models\products\product_price;
 use Illuminate\Support\Facades\Session;
 use App\Models\products\product_inventory;
 use App\Models\products\product_information;
-use App\Models\ReconciledProducts;
 
 class inventoryController extends Controller{
 
@@ -57,7 +58,13 @@ class inventoryController extends Controller{
    }
    public function reconciled($warehouse_code)
    {
-      $reconciled = ReconciledProducts::where('warehouse_code', $warehouse_code)->get();
+      $reconciled = DB::table('reconciled_products')
+      ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
+      ->where('reconciled_products.warehouse_code', $warehouse_code)
+      ->select('product_information.product_name as name',
+          'reconciled_products.amount as amount')
+      ->get();
+      
       return view('app.items.reconciledproducts', ['reconciled' => $reconciled]);
    }
 
