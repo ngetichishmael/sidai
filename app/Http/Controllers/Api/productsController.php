@@ -76,7 +76,6 @@ class productsController extends Controller
          "success" => true,
          "message" => "Product List",
          "data" => $products,
-         "region" => $region->name,
       ]);
    }
    public function index2(Request $request, $warehouseCode)
