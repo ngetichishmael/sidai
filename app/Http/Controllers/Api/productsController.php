@@ -30,7 +30,7 @@ class productsController extends Controller
       $region = Region::whereId($region_id)->first();
       if ($region){
          $warehouses = warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
-
+dd($warehouses);
       $products = product_information::whereIn('warehouse_code', [$warehouses])->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
