@@ -666,7 +666,7 @@ class checkinController extends Controller
             'product_information.brand',
             'product_information.sku_code',
             DB::raw('CAST(product_price.buying_price AS CHAR) as wholesale_price'),
-            DB::raw('CAST(product_price.selling_price AS CHAR) as retail_price'),
+            DB::raw('CAST(product_price.selling_price AS CHAR) as retailer_price'),
             'product_price.distributor_price as distributor_price',
             'inventory_allocated_items.allocation_code',
             'inventory_allocated_items.current_qty',
