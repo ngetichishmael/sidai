@@ -93,6 +93,7 @@ Route::group(['middleware' => ['verified']], function () {
    ]);
    Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
    Route::get('approveCreditors', ['uses' => 'app\customer\customerController@approveCreditors', 'as' => 'approveCreditors']);
+   Route::get('approveCustomers', ['uses' => 'app\customer\customerController@approveCustomers', 'as' => 'approvecustomers']);
    Route::get('creditors/pending', ['uses' => 'app\customer\customerController@pendingcreditor', 'as' => 'pending.creditors']);
    Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
    Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
    Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
    Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
+   Route::get('customer/{id}/approve', ['uses' => 'app\customer\customerController@approvecustomer', 'as' => 'customer.approve']);
    /* === customer checkin === */
    Route::get('customer/checkins', ['uses' => 'app\customer\checkinController@index', 'as' => 'customer.checkin.index']);
 
