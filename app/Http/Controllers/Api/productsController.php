@@ -10,6 +10,7 @@ use App\Models\UnitRoute;
 use App\Models\warehousing;
 use App\Models\zone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group Product
@@ -88,9 +89,12 @@ class productsController extends Controller
             'product_price.branch_id as region',
             'product_information.id as productID',
             'product_information.created_at as date',
-            'product_price.buying_price as wholesale_price',
-            'product_price.selling_price as retail_price',
-            'product_price.distributor_price as distributor_price',
+//            'product_price.buying_price as wholesale_price',
+//            'product_price.selling_price as retail_price',
+//            'product_price.distributor_price as distributor_price',
+            DB::raw('CAST(product_price.buying_price AS CHAR) as wholesale_price'),
+            DB::raw('CAST(product_price.selling_price AS CHAR) as retail_price'),
+            DB::raw('CAST(product_price.distributor_price AS CHAR) as distributor_price'),
             'product_information.product_name as product_name',
             'product_inventory.current_stock as stock',
             'product_information.created_at as date',
