@@ -21,7 +21,7 @@
             <td>{{ $warehouse->region->name??'' }}</td>
             <td>{{ $warehouse->subregion->name??'' }}</td>
             <td>{{ $warehouse->products_count }}</td>
-            {{-- <td></td> --}}
+            {{-- <td>{{ $warehouse-> }}</td> --}}
             <td>{{ $warehouse->updated_at->format('d/m/Y') }}</td>
             
         </tr>

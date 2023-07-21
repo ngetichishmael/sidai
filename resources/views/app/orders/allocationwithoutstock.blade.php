@@ -37,7 +37,7 @@
                         <u>{!! $order->order_code !!}</u></h4>
                     <hr>
                    <div class="row">
-                      <div class="form-group col-md-4">
+                      {{-- <div class="form-group col-md-4">
                          <label for="">Assign Stock To</label>
                          <select name="account_type" class="form-control select" id="account_type" required>
                             <option value="">Choose User Type</option>
@@ -46,11 +46,15 @@
                             @endforeach
                             <option value="distributors">Distributors</option>
                          </select>
-                      </div>
+                      </div> --}}
                       <div class="form-group col-md-4">
                          <label for="">Choose User</label>
                          <select name="user" class="form-control select2" id="user" required>
-                            <option value=""></option>
+                            <option value="">Choose User</option>
+                            @foreach ($users as $user)
+                               <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
+                            @endforeach
+                            <option value="distributors">Distributors</option>
                          </select>
                       </div>
                       {{-- <div class="form-group ml-0 pe-0 col-md-4">
