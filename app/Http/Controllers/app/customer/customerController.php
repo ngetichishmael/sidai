@@ -50,6 +50,10 @@ class customerController extends Controller
    {
       return view('app.creditors.approve');
    }
+   public function approveCustomers()
+   {
+      return view('app.customers.approve');
+   }
    public function show()
    {
       return view('app.customers.index');
@@ -116,6 +120,26 @@ class customerController extends Controller
       $activityLog->save();
 
       return redirect()->route('creditors');
+   }
+   public function approvecustomer($id)
+   {
+      $c=Customers::whereId($id)->update(
+         [
+            'approval' => 'approved'
+         ]
+      );
+      Session::flash('success', 'Customer successfully Approved');
+      $random = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Customer approved';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Customer successfully Approved';
+      $activityLog->action = 'Customer With id'. $c.' successfully Approved';
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+
+      return redirect()->route('customer');
    }
 
    public function store(Request $request)

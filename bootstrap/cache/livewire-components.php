@@ -10,6 +10,7 @@
   'creditors.approve' => 'App\\Http\\Livewire\\Creditors\\Approve',
   'creditors.dashboard' => 'App\\Http\\Livewire\\Creditors\\Dashboard',
   'customer-group.customergroup' => 'App\\Http\\Livewire\\CustomerGroup\\Customergroup',
+  'customers.approve' => 'App\\Http\\Livewire\\Customers\\Approve',
   'customers.dashboard' => 'App\\Http\\Livewire\\Customers\\Dashboard',
   'customers.index' => 'App\\Http\\Livewire\\Customers\\Index',
   'customers.order' => 'App\\Http\\Livewire\\Customers\\Order',
