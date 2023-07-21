@@ -48,8 +48,6 @@
                                 <option value="distributors">Distributors</option>
                             </select>
                         </div>
-                       
-                        
                         <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
