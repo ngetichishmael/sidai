@@ -34,21 +34,23 @@
             <div class="card">
                 <div class="card-body">
                     <h4>Assign Order To User of customer <u>{{ $order->customer->customer_name }}</u>, Order Code
-                        <u>{!! $order->order_code !!}</u></h4>
+                        <u>{!! $order->order_code !!}</u>
+                    </h4>
                     <hr>
-                   <div class="row">
-                      <div class="form-group col-md-4">
-                         <label for="">Choose User</label>
-                         <select name="user" class="form-control select2" id="user" required>
-                            <option value="">Choose User</option>
-                            @foreach ($users as $user)
-                               <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
-                            @endforeach
-                            <option value="distributors">Distributors</option>
-                         </select>
-                      </div>
-                      
-                   <div class="form-group col-md-4 ml-3">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="">Assign Stock To</label>
+                            <select name="user" class="form-control select" id="user" required>
+                                <option value="">Choose User</option>
+                                @foreach ($users as $user)
+                                    <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
+                                @endforeach
+                                <option value="distributors">Distributors</option>
+                            </select>
+                        </div>
+                       
+                        
+                        <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
                         </div>
@@ -73,38 +75,42 @@
                                 <div class="form-group">
                                     <label for="">Quantity</label>
                                     <input type="text" name="requested[]" value="{!! $item->quantity !!}"
-                                           class="form-control" style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
+                                        class="form-control"
+                                        style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
                                 </div>
-                            </div><div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
                                 <div class="form-group">
                                     <label for="">Total Price</label>
-                                    <input type="text"  value="{!! $item->selling_price * $item->quantity !!}"
-                                        class="form-control" readonly>
+                                    <input type="text" value="{!! $item->selling_price * $item->quantity !!}" class="form-control" readonly>
                                 </div>
                             </div>
 
-                           <div class="col-md-2">
-                              <div class="form-group">
-                                 <label for="">Allocate</label>
-                                 <input type="number" name="allocate[]" class="form-control" placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required oninput="calculatePrice(this, {!! $item->selling_price !!})">
-                              </div>
-                           </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="">Allocate</label>
+                                    <input type="number" name="allocate[]" class="form-control"
+                                        placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required
+                                        oninput="calculatePrice(this, {!! $item->selling_price !!})">
+                                </div>
+                            </div>
 
-                           <div class="col-md-2">
-                              <div class="form-group">
-                                 <label for="">Updated Price</label>
-                                 <input type="number" name="price[]" class="form-control" style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
-                              </div>
-                           </div>
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label for="">Updated Price</label>
+                                    <input type="number" name="price[]" class="form-control"
+                                        style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
+                                </div>
+                            </div>
 
-                           <script>
-                              function calculatePrice(input, sellingPrice) {
-                                 const allocatedQuantity = input.value;
-                                 const totalPrice = allocatedQuantity * sellingPrice;
-                                 const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
-                                 priceInput.value = totalPrice;
-                              }
-                           </script>
+                            <script>
+                                function calculatePrice(input, sellingPrice) {
+                                    const allocatedQuantity = input.value;
+                                    const totalPrice = allocatedQuantity * sellingPrice;
+                                    const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
+                                    priceInput.value = totalPrice;
+                                }
+                            </script>
 
                         </div>
                     @endforeach
