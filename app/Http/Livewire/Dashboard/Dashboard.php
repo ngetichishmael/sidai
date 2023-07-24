@@ -344,6 +344,53 @@ class Dashboard extends Component
         }
         return $graphdata;
     }
+    public function getGraphDatas()
+    {
+        $months = [
+            1 => 'January',
+            2 => 'February',
+            3 => 'March',
+            4 => 'April',
+            5 => 'May',
+            6 => 'June',
+            7 => 'July',
+            8 => 'August',
+            9 => 'September',
+            10 => 'October',
+            11 => 'November',
+            12 => 'December',
+        ];
+        $preOrderCounts = Orders::whereYear('updated_at', '=', date('Y'))
+            ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->pluck('count', 'month')
+            ->toArray();
+        $deliveryCounts = Delivery::whereIn('delivery_status', ['Delivered', 'DELIVERED', 'Partial Delivery'])
+            ->where(function ($query) {
+                $query->whereHas('Order', function ($subQuery) {
+                    $subQuery->whereNull('supplierID')
+                        ->where('supplierID', '=', '')
+                        ->where('supplierID', '=', 1);
+                })->whereHas('Order', function ($subQuery) {
+                    $subQuery->where('order_type', 'Pre Order');
+                });
+            })
+            ->whereYear('updated_at', '=', date('Y'))
+            ->selectRaw('MONTH(updated_at) as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->pluck('count', 'month')
+            ->toArray();
+
+        $graphdata = [];
+        for ($month = 1; $month <= 12; $month++) {
+            $graphdata[] = [
+                'month' => $months[$month],
+                'preOrderCount' => $preOrderCounts[$month] ?? $month++,
+                'deliveryCount' => $deliveryCounts[$month] ?? $month++,
+            ];
+        }
+        return $graphdata;
+    }
     public function render()
     {
         $data = [
@@ -369,6 +416,7 @@ class Dashboard extends Component
             'visitsTotal' => $this->getVisitsTotal(),
             'customersCountTotal' => $this->getCustomersCountTotal(),
             'graphdata' => $this->getGraphData(),
+            'graphdata' => $this->getGraphDatas(),
 
         ];
 
