@@ -59,6 +59,7 @@ class productCategoriesController extends Controller
    {
 
       $data=category::with('ProductInformation.ProductPrice')->get();
+
       return response()->json([
          "success" => true,
          "message" => "Catergory with Product Information and Product Price",

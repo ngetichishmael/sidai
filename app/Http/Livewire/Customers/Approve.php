@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Livewire\Customers;
-
 use App\Models\User;
 use App\Models\Region;
 use Livewire\Component;
@@ -11,35 +10,34 @@ use App\Models\customer_group;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\customers as ExportsCustomers;
-use Illuminate\Pagination\LengthAwarePaginator;
 
-class Dashboard extends Component
+class Approve extends Component
 {
    use WithPagination;
+   public $region = null;
    public $group = null;
    protected $paginationTheme = 'bootstrap';
-   public $perPage = 25;
+   public $perPage = 10;
    public ?string $search = null;
    public ?string $regional = null;
-   public $orderBy = 'customers.id';
-   public $orderAsc = false;
-
+   
    public $user;
 
    public function __construct()
    {
       $this->user = Auth::user();
    }
-   public function render()
-   {
-      return view('livewire.customers.dashboard', [
-         'contacts' => $this->customers(),
-         'regions' => $this->region(),
-         'groups' => $this->groups()
-      ]);
-   }
-   
-   public function customers()
+    public function render()
+    {
+        // dd($this->approvecustomers());
+
+       return view('livewire.customers.approve', [
+          'contacts' => $this->approvecustomers(),
+          'regions' =>$this->region(),
+          'groups' =>$this->groups()
+       ]);
+    }
+    public function approvecustomers()
    {
       $aggregate = array();
       if ($this->user->account_type === "RSM" && empty($this->filter())) {
@@ -67,24 +65,14 @@ class Dashboard extends Component
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
          ->where('customer_type', 'normal')
-         ->where('approval', 'approved');
+         ->where('approval', 'waiting_approval');
       if ($this->user->account_type === "RSM") {
          $aggregate->whereIn('regions.id', $this->filter());
       }
       $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
 
-      // Convert the result to a LengthAwarePaginator instance
-      $paginator = new LengthAwarePaginator(
-         $aggregate->items(),
-         $aggregate->total(),
-         $aggregate->perPage(),
-         $aggregate->currentPage(),
-         ['path' => request()->url()]
-      );
-
-      return $paginator;
+      return $aggregate;
    }
-
    public function filter(): array
    {
 
@@ -104,22 +92,16 @@ class Dashboard extends Component
       }
       return $customers->toArray();
    }
-   public function updatedRegional()
-   {
-      // dd($this->regional);
-      $this->search = null;
-      $this->render();
-   }
    public function creator($id)
    {
       $user_code = customers::whereId($id)->pluck('created_by')->implode('');
       $user = User::where('user_code', $user_code)->pluck('name')->implode('');
       return $user;
    }
-   public function export()
-   {
-      return Excel::download(new ExportsCustomers, 'customers.xlsx');
-   }
+    public function export()
+      {
+   return Excel::download(new ExportsCustomers, 'customers.xlsx');
+      }
    public function deactivate($id)
    {
       customers::whereId($id)->update(
@@ -127,22 +109,36 @@ class Dashboard extends Component
       );
       return redirect()->to('/customer');
    }
+   public function approveCustomer($id)
+   {
+      customers::whereId($id)->update(
+         ['approval' => "approved"]
+      );
+      return redirect()->to('/approveCustomers');
+   }
+   public function dissaproveCustomer($id)
+   {
+      customers::whereId($id)->update(
+         ['approval' => "waiting_approval"]
+      );
+      return redirect()->to('/approveCustomers');
+   }
    public function activate($id)
    {
       customers::whereId($id)->update(
-         ['approval' => "Approved"]
+         ['approval' => "approved"]
       );
 
       return redirect()->to('/customer');
    }
-   public function region()
-   {
+
+   public function region(){
       $region = Region::all();
       return $region;
    }
-   public function groups()
-   {
+   public function groups(){
       $groups = customer_group::all();
       return $groups;
    }
+
 }

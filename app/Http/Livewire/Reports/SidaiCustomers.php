@@ -17,13 +17,14 @@ class SidaiCustomers extends Component
    use WithPagination;
     public function render()
     {
+      // dd($this->data());
         return view('livewire.reports.sidai-customers',[
             'users' =>$this->data()
         ]);
     }
     public function data()
    {
-      $query = customers::has('orders')->get();
+      $query = customers::has('orders')->withCount('orders')->get();
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");

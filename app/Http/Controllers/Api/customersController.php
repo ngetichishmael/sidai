@@ -316,6 +316,7 @@ class customersController extends Controller
             'route_code' => $request->route_code,
             'route' => $request->route_code,
             'customer_group' => $request->outlet,
+            'approval' => "waiting_approval",
             'price_group' => $request->outlet,
             'region_id' => optional($route->subregion->region)->id,
             'subregion_id' => optional($route->subregion)->id,
@@ -403,6 +404,7 @@ class customersController extends Controller
         $customer->created_by = $request->user()->user_code;
         $customer->route_code = $request->route_code;
         $customer->route = $request->route_code;
+        $customer->approval = "waiting_approval";
         $customer->customer_group = $request->outlet;
         $customer->price_group = $request->outlet;
         $customer->region_id = $region->id;

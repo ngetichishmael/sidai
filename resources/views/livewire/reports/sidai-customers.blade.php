@@ -59,18 +59,17 @@
                       </tr>
                    </thead>
                    <tbody>
-                    <tr>
-                        <td>No Data</td>
-                    </tr>
-                     {{-- @foreach ($users as $key => $user )
+                    
+                     @foreach ($users as $key => $user )
                      <tr>
                         <td>{{ $key+1 }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $user->customer_name }}</td>
+                        <td>{{ $user->orders_count }}</td>
+                        <td>{{ $user->Region->name??'' }}</td>
+                        <td>{{ $user->Subregion->name??'' }}</td>
+                        
                     </tr>  
-                     @endforeach --}}
+                     @endforeach
                     
                       
                    </tbody>

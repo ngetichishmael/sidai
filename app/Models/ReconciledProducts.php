@@ -16,4 +16,5 @@ class ReconciledProducts extends Model
         'supplierID'
 
     ];
+    
 }
