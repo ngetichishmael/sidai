@@ -258,6 +258,9 @@
                             <div>
                                 @livewire('dashboard.line-chart')
                             </div>
+                           <div>
+                              @livewire('individual.leads')
+                           </div>
                         </div>
                     </div>
                 </div>
