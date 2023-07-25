@@ -23,6 +23,7 @@
   'dashboard.percentage-targets' => 'App\\Http\\Livewire\\Dashboard\\PercentageTargets',
   'delivery.index' => 'App\\Http\\Livewire\\Delivery\\index',
   'individual.leads' => 'App\\Http\\Livewire\\Individual\\Leads',
+  'individual.orders' => 'App\\Http\\Livewire\\Individual\\Orders',
   'inventory.allocated' => 'App\\Http\\Livewire\\Inventory\\Allocated',
   'inventory.items' => 'App\\Http\\Livewire\\Inventory\\Items',
   'leads.chart' => 'App\\Http\\Livewire\\Leads\\Chart',
