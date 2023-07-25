@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="col-md-12">
-                    {!! $salestarget->container() !!}
+                    {!! $orderstarget->container() !!}
                 </div>
             </div>
         </div>
@@ -11,5 +11,5 @@
 </div>
 
 {{-- @section('scripts')
-    {!! $salestarget->script() !!}
+    {!! $orderstarget->script() !!}
 @endsection --}}
