@@ -258,12 +258,12 @@
                             <div>
                                 @livewire('dashboard.line-chart')
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card card-developer-meetup">
                     <div class="text-center meetup-img-wrapper rounded-top">
@@ -319,7 +319,7 @@
                             <div>
                                 @livewire('individual.leads')
                             </div>
-                           
+
                         </div>
                     </div>
                 </div>
