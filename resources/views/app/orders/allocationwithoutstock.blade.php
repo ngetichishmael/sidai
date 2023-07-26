@@ -38,17 +38,21 @@
                     </h4>
                     <hr>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 88a4f6b1bea04eb720df9fa9250d987e46de9c09
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="">Assign Stock To</label>
-                            <select name="account_type" class="form-control select" id="account_type" required>
-                                <option value="">Choose User Type</option>
-                                @foreach ($account_types as $account)
-                                    <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                            <select name="user" class="form-control select" id="user" required>
+                                <option value="">Choose User</option>
+                                @foreach ($users as $user)
+                                    <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
                                 @endforeach
                                 <option value="distributors">Distributors</option>
                             </select>
                         </div>
+<<<<<<< HEAD
                         <div class="form-group col-md-4">
                             <label for="">Choose User</label>
                             <select name="user" class="form-control select2" id="user" required>
@@ -88,6 +92,8 @@
                             @endforeach
                          </select>
                       </div> --}}
+=======
+>>>>>>> 88a4f6b1bea04eb720df9fa9250d987e46de9c09
                         <div class="form-group col-md-4 ml-3">
                             <label for="noteText">Note</label>
                             <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>

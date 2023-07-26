@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\StockRequisitionController;
 use App\Http\Controllers\Api\SurveryAnswersController;
 use App\Http\Controllers\Api\surveyController;
 use App\Http\Controllers\Api\TargetsController;
+use App\Http\Controllers\Api\TargetsUIController;
 use App\Http\Controllers\Api\WarehouseController;
 use App\Http\Controllers\Chat\SocketsController;
 use Illuminate\Support\Facades\Route;
@@ -57,7 +58,7 @@ Route::group(['namespace' => 'Api'], function () {
     //products
     Route::get('products/{businessCode}', 'productsController@index')->middleware('auth:sanctum');
     Route::get('products/warehouse/{warehouseCode}', 'productsController@index2')->middleware('auth:sanctum');
-
+    Route::get('products/regional', 'productsController@index3')->middleware('auth:sanctum');
     //product categories
     Route::get('products/categories/{businessCode}', 'productCategoriesController@index');
     Route::get('products/{categoryID}/category', 'productCategoriesController@products_by_category');
@@ -249,4 +250,5 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('support/{ticket_id}/messages', 'SupportTicketController@getMessages')->middleware('auth:sanctum');
     Route::get('/support/{id}', 'SupportTicketController@show')->middleware('auth:sanctum');
 
+    Route::get('/get/targets/{type}', [TargetsUIController::class, "getTarget"])->name('getUITargets');
 });
