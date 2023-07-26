@@ -37,10 +37,6 @@
                         <u>{!! $order->order_code !!}</u>
                     </h4>
                     <hr>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 88a4f6b1bea04eb720df9fa9250d987e46de9c09
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="">Assign Stock To</label>
@@ -52,116 +48,86 @@
                                 <option value="distributors">Distributors</option>
                             </select>
                         </div>
-<<<<<<< HEAD
-                        <div class="form-group col-md-4">
-                            <label for="">Choose User</label>
-                            <select name="user" class="form-control select2" id="user" required>
-                                <option value=""></option>
-                            </select>
-                        </div>
-                        {{-- <div class="form-group ml-0 pe-0 col-md-4">
-=======
-                   <div class="row">
-                      {{-- <div class="form-group col-md-4">
-                         <label for="">Assign Stock To</label>
-                         <select name="account_type" class="form-control select" id="account_type" required>
-                            <option value="">Choose User Type</option>
-                            @foreach ($account_types as $account)
-                               <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
-                            @endforeach
-                            <option value="distributors">Distributors</option>
-                         </select>
-                      </div> --}}
-                      <div class="form-group col-md-4">
-                         <label for="">Choose User</label>
-                         <select name="user" class="form-control select2" id="user" required>
-                            <option value="">Choose User</option>
-                            @foreach ($users as $user)
-                               <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
-                            @endforeach
-                            <option value="distributors">Distributors</option>
-                         </select>
-                      </div>
-                      {{-- <div class="form-group ml-0 pe-0 col-md-4">
->>>>>>> 8c8639332b509c683bb01713ab62f1b13a57f1d9
-                         <label for="warehouse">Warehouse:</label>
-                         <select id="warehouse" class="form-control select2" name="warehouse_code" required>
-                            <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
-                            @foreach ($warehouses as $warehouse)
-                               <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>
-                            @endforeach
-                         </select>
-                      </div> --}}
-=======
->>>>>>> 88a4f6b1bea04eb720df9fa9250d987e46de9c09
-                        <div class="form-group col-md-4 ml-3">
-                            <label for="noteText">Note</label>
-                            <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="">Choose User</label>
+                                <select name="user" class="form-control select2" id="user" required>
+                                    <option value="">Choose User</option>
+                                    @foreach ($users as $user)
+                                        <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
+                                    @endforeach
+                                    <option value="distributors">Distributors</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 ml-3">
+                                <label for="noteText">Note</label>
+                                <textarea name="note" class="form-control" id="noteTxt" rows="3" placeholder="Provide a description"></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="mt-2 card">
-                <div class="card-body">
-                    <h4>Assign Items</h4>
-                    <hr>
-                    @foreach ($items as $key => $item)
-                        <input type="hidden" name="item_code[]" value="{!! $item->productID !!}">
-                        <div class="mb-1 row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="">Product</label>
-                                    <input type="text" name="product[]"value="{!! $item->product_name !!}"
-                                        class="form-control" readonly>
+                <div class="mt-2 card">
+                    <div class="card-body">
+                        <h4>Assign Items</h4>
+                        <hr>
+                        @foreach ($items as $key => $item)
+                            <input type="hidden" name="item_code[]" value="{!! $item->productID !!}">
+                            <div class="mb-1 row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Product</label>
+                                        <input type="text" name="product[]"value="{!! $item->product_name !!}"
+                                            class="form-control" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Quantity</label>
-                                    <input type="text" name="requested[]" value="{!! $item->quantity !!}"
-                                        class="form-control"
-                                        style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="">Quantity</label>
+                                        <input type="text" name="requested[]" value="{!! $item->quantity !!}"
+                                            class="form-control"
+                                            style="background: rgba(255,86,86,0.7); color: rgba(0,0,0,0.82)" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Total Price</label>
-                                    <input type="text" value="{!! $item->selling_price * $item->quantity !!}" class="form-control" readonly>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="">Total Price</label>
+                                        <input type="text" value="{!! $item->selling_price * $item->quantity !!}" class="form-control"
+                                            readonly>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Allocate</label>
-                                    <input type="number" name="allocate[]" class="form-control"
-                                        placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}" required
-                                        oninput="calculatePrice(this, {!! $item->selling_price !!})">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="">Allocate</label>
+                                        <input type="number" name="allocate[]" class="form-control"
+                                            placeholder="max {!! $item->quantity !!}" max="{!! $item->quantity !!}"
+                                            required oninput="calculatePrice(this, {!! $item->selling_price !!})">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label for="">Updated Price</label>
-                                    <input type="number" name="price[]" class="form-control"
-                                        style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label for="">Updated Price</label>
+                                        <input type="number" name="price[]" class="form-control"
+                                            style="background: #fa8760; color: rgba(0,0,0,0.82)" required readonly>
+                                    </div>
                                 </div>
+
+                                <script>
+                                    function calculatePrice(input, sellingPrice) {
+                                        const allocatedQuantity = input.value;
+                                        const totalPrice = allocatedQuantity * sellingPrice;
+                                        const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
+                                        priceInput.value = totalPrice;
+                                    }
+                                </script>
+
                             </div>
-
-                            <script>
-                                function calculatePrice(input, sellingPrice) {
-                                    const allocatedQuantity = input.value;
-                                    const totalPrice = allocatedQuantity * sellingPrice;
-                                    const priceInput = input.closest('.col-md-2').nextElementSibling.querySelector('input[name="price[]"]');
-                                    priceInput.value = totalPrice;
-                                }
-                            </script>
-
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
+                <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
             </div>
-            <button class="mt-1 btn btn-success" type="submit">Save and Allocate order</button>
-        </div>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
