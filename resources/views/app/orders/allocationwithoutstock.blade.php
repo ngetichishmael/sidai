@@ -37,6 +37,7 @@
                         <u>{!! $order->order_code !!}</u>
                     </h4>
                     <hr>
+<<<<<<< HEAD
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="">Assign Stock To</label>
@@ -55,6 +56,30 @@
                             </select>
                         </div>
                         {{-- <div class="form-group ml-0 pe-0 col-md-4">
+=======
+                   <div class="row">
+                      {{-- <div class="form-group col-md-4">
+                         <label for="">Assign Stock To</label>
+                         <select name="account_type" class="form-control select" id="account_type" required>
+                            <option value="">Choose User Type</option>
+                            @foreach ($account_types as $account)
+                               <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                            @endforeach
+                            <option value="distributors">Distributors</option>
+                         </select>
+                      </div> --}}
+                      <div class="form-group col-md-4">
+                         <label for="">Choose User</label>
+                         <select name="user" class="form-control select2" id="user" required>
+                            <option value="">Choose User</option>
+                            @foreach ($users as $user)
+                               <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
+                            @endforeach
+                            <option value="distributors">Distributors</option>
+                         </select>
+                      </div>
+                      {{-- <div class="form-group ml-0 pe-0 col-md-4">
+>>>>>>> 8c8639332b509c683bb01713ab62f1b13a57f1d9
                          <label for="warehouse">Warehouse:</label>
                          <select id="warehouse" class="form-control select2" name="warehouse_code" required>
                             <option value="" class="focus:bg-gray-400">Select a Warehouse</option>
