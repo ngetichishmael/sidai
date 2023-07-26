@@ -10,6 +10,6 @@
     </div>
 </div>
 
-{{-- @section('scripts')
+@section('scripts')
     {!! $orderstarget->script() !!}
-@endsection --}}
+@endsection

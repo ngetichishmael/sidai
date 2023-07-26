@@ -1,7 +1,7 @@
 <div class="card">
-   <canvas id="lineChart" width="800" height="400"></canvas>
+    <canvas id="lineChart" width="800" height="400"></canvas>
 
-   <script type="application/javascript">
+    <script type="application/javascript">
        const data = @json($graphdata);
 {{--       @dd($graphdata)--}}
        const labels = data.map(entry => entry.month);
