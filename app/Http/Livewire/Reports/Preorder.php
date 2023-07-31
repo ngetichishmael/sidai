@@ -38,7 +38,8 @@ class Preorder extends Component
    }
    public function data()
    {
-      $query = Orders::with('User', 'Customer');
+      $query = Orders::with('User', 'Customer')->withCount('OrderItems');
+      
 
       if ($this->user->account_type === 'RSM') {
          $query->whereIn('customerID', $this->filter());

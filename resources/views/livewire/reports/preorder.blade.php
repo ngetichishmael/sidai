@@ -64,6 +64,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
                             @forelse ($preorders as $preorder)
                                 <tr>
                                     <td>{{ $count++ }}</td>

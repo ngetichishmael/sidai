@@ -15,7 +15,7 @@ class PreorderExport implements FromView
     public function view(): View
     {
          return view('Exports.preorders', [
-            'preorders' => Orders::with('User', 'Customer')->where('order_type', 'Pre Order')->get()
+            'preorders' => Orders::with('User', 'Customer')->withCount('OrderItems')->where('order_type', 'Pre Order')->get()
          ]);
 
     }
