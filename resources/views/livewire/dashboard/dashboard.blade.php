@@ -323,7 +323,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
         @include('livewire.dashboard.table')
     </div>
