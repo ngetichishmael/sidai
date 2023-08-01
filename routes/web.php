@@ -3,7 +3,9 @@
 use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Chat\SocketsController;
+use App\Http\Controllers\PermissionsController2;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\RolesController2;
 use App\Http\Controllers\SupportTicketController;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
@@ -24,7 +26,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('api/tests', [TestingController::class, 'test']);
 Auth::routes(['verify' => true]);
 
-Route::group(['middleware' => ['verified']], function () {
+//Route::group(['middleware' => ['verified']], function () {
+   Route::group(['middleware' => 'auth'], function () {
    Route::get('dashboard', 'app\sokoflowController@dashboard')->name('app.dashboard');
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
 
@@ -37,7 +40,7 @@ Route::group(['middleware' => ['verified']], function () {
       'destroy' => 'regions.destroy',
       'create' => 'regions.create',
       'store' => 'regions.store',
-   ]);
+   ])->middleware('checkDataAccessLevel:all,regional');
    Route::resource('subregions', Territory\SubRegionController::class)->names([
       'index' => 'subregions',
       'show' => 'subregions.show',
@@ -46,7 +49,7 @@ Route::group(['middleware' => ['verified']], function () {
       'destroy' => 'subregions.destroy',
       'create' => 'subregions.create',
       'store' => 'subregions.store',
-   ]);
+   ])->middleware('checkDataAccessLevel:all,subregional');
    Route::resource('areas', AreaController::class)->names([
       'index' => 'areas',
       'show' => 'areas.show',
@@ -55,7 +58,7 @@ Route::group(['middleware' => ['verified']], function () {
       'destroy' => 'areas.destroy',
       'create' => 'areas.create',
       'store' => 'areas.store',
-   ]);
+   ])->middleware('checkDataAccessLevel:all,area');
    Route::resource('subareas', SubareaController::class)->names([
       'index' => 'subareas',
       'show' => 'subareas.show',
@@ -64,7 +67,7 @@ Route::group(['middleware' => ['verified']], function () {
       'destroy' => 'subareas.destroy',
       'create' => 'subareas.create',
       'store' => 'subareas.store',
-   ]);
+   ])->middleware('checkDataAccessLevel:all,subregional');;
    Route::resource('zones', Territory\ZoneController::class)->names([
       'index' => 'zones',
       'show' => 'zones.show',
@@ -73,7 +76,7 @@ Route::group(['middleware' => ['verified']], function () {
       'destroy' => 'zones.destroy',
       'create' => 'zones.create',
       'store' => 'zones.store',
-   ]);
+   ])->middleware('checkDataAccessLevel:all,area');
    Route::resource('units', UnitController::class)->names([
       'index' => 'units',
       'show' => 'units.show',
@@ -195,7 +198,7 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('warehousing/products/{id}/view', ['uses' => 'app\products\productController@singleview', 'as' => 'products.view']);
    Route::post('warehousing/products/{id}/updateprices', ['uses' => 'app\products\productController@updatesingle', 'as' => 'products.updatesingle']);
    Route::post('warehousing/products/{id}/update', ['uses' => 'app\products\productController@update', 'as' => 'products.update']);
-   Route::post('warehousing/products/{id}/updatestock', ['uses' => 'app\products\productController@updatestock', 'as' => 'products.updatestock']); 
+   Route::post('warehousing/products/{id}/updatestock', ['uses' => 'app\products\productController@updatestock', 'as' => 'products.updatestock']);
    Route::get('warehousing/products/{id}/details', ['uses' => 'app\products\productController@details', 'as' => 'products.details']);
    Route::get('warehousing/products/{id}/destroy', ['middleware' => ['permission:delete-products'], 'uses' => 'app\products\productController@destroy', 'as' => 'products.destroy']);
 
@@ -289,17 +292,23 @@ Route::group(['middleware' => ['verified']], function () {
    Route::get('user/creatensm', ['uses' => 'app\usersController@creatensm', 'as' => 'user.creatensm']);
    Route::post('user/store', ['uses' => 'app\usersController@store', 'as' => 'user.store']);
    Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
+   Route::get('user/{id}/view', ['uses' => 'app\usersController@show', 'as' => 'user.view']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
    //   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
    Route::get('user{id}/suspend', ['uses' => 'app\usersController@suspend', 'as' => 'user.suspend']);
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
-   Route::get('users-nsm', ['uses' => 'app\usersController@nsm', 'as' => 'users.nsm']);
-   Route::get('shop-attendee', ['uses' => 'app\usersController@shopattendee', 'as' => 'shop-attendee']);
-   Route::get('tsr', ['uses' => 'app\usersController@tsr', 'as' => 'tsr']);
-   Route::get('rsm', ['uses' => 'app\usersController@rsm', 'as' => 'rsm']);
-   Route::get('td', ['uses' => 'app\usersController@td', 'as' => 'td']);
-   //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
+//   Route::get('users-nsm', ['uses' => 'app\usersController@nsm', 'as' => 'users.nsm']);
+//   Route::get('shop-attendee', ['uses' => 'app\usersController@shopattendee', 'as' => 'shop-attendee']);
+//   Route::get('tsr', ['uses' => 'app\usersController@tsr', 'as' => 'tsr']);
+//   Route::get('rsm', ['uses' => 'app\usersController@rsm', 'as' => 'rsm']);
+//   Route::get('td', ['uses' => 'app\usersController@td', 'as' => 'td']);
+
+   //one view and interface for all users
+      // web.php
+      Route::get('/view-role/{role}', 'app\usersController@viewRole')->name('view-role');
+
+      //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
    // Routes for reports
    Route::middleware('web')->group(function () {
       Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
@@ -499,10 +508,30 @@ Route::group(['middleware' => ['verified']], function () {
    Route::post('/support/{ticketId}/messages/{messageId}/reply', [SupportTicketController::class, 'replyToMessage'])->name('support.reply');
    Route::get('support/{ticket_id}/messages', ['uses' => 'SupportTicketController@getMessages', 'as' => 'support.getMessages'])->middleware('auth:sanctum');
 //
-   Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
-   Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
-   Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
-   Route::get('/roles/{role}', [RoleController::class, 'show'])->name('roles.show');
-   Route::get('/roles/{role}/edit', [RoleController::class, 'edit'])->name('roles.edit');
-   Route::put('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
-});
+//   Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
+//   Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
+//   Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
+//   Route::get('/roles/{role}', [RoleController::class, 'show'])->name('roles.show');
+//   Route::get('/roles/{role}/edit', [RoleCocompontroller::class, 'edit'])->name('roles.edit');
+//   Route::put('/roles/{role}', [RoleController::class, 'update'])->name('roles.update');
+
+
+      // Roles
+      Route::get('/roles', 'RolesController@index')->name('roles.index');
+      Route::get('/roles/create', 'RolesController@create')->name('roles.create');
+      Route::post('/roles', 'RolesController@store')->name('roles.store');
+      Route::get('/roles/{role}', 'RolesController@show')->name('roles.show');
+      Route::get('/roles/{role}/edit', 'RolesController@edit')->name('roles.edit');
+      Route::put('/roles/{role}', 'RolesController@update')->name('roles.update');
+      Route::delete('/roles/{role}', 'RolesController@destroy')->name('roles.destroy');
+
+// Permissions
+      Route::get('/permissions', 'PermissionsController@index')->name('permissions.index');
+      Route::get('/permissions/create', 'PermissionsController@create')->name('permissions.create');
+      Route::post('/permissions', 'PermissionsController@store')->name('permissions.store');
+      Route::get('/permissions/{permission}', 'PermissionsController@show')->name('permissions.show');
+      Route::get('/permissions/{permission}/edit', 'PermissionsController@edit')->name('permissions.edit');
+      Route::put('/permissions/{permission}', 'PermissionsController@update')->name('permissions.update');
+      Route::delete('/permissions/{permission}', 'PermissionsController@destroy')->name('permissions.destroy');
+      Route::get('/unauthorized', 'PermissionsController@unauthorized')->name('unauthorized');
+   });

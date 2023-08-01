@@ -1,24 +1,36 @@
 @extends('layouts.app')
 {{-- page header --}}
-@section('title', 'National Sales Manager')
+@section('title', '{{description->description}}')
 
 {{-- content section --}}
 @section('content')
-    <!-- begin breadcrumb -->
-    <div class="mb-2 row">
-        <div class="col-md-9">
-            <h2 class="page-header"> National Sales Manager</h2>
-        </div>
-        <div class="col-md-3">
-            <center>
-                <a href="{!! route('user.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i data-feather="user-plus"></i> Add Users</a>
-
-                {{-- <a href="{!! route('users.all.import') !!}" class="btn btn-primary btn-sm"><i class="fa fa-user-plus"></i> Import</a> --}}
-            </center>
-        </div>
-    </div>
+   <div class="content-header row">
+      <div class="content-header-left col-md-12 col-12 mb-2">
+         <div class="row breadcrumbs-top">
+            <div class="col-12">
+               <h2 class="content-header-title float-start mb-0">{{$description->description}}</h2>
+               <div class="breadcrumb-wrapper">
+                  <ol class="breadcrumb">
+                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                     <li class="breadcrumb-item active"><a href="/users-Roles">Roles List</a></li>
+                     <li class="breadcrumb-item active"><a href="#">{{$description->description}} List</a></li>
+                  </ol>
+               </div>
+               <div class="row">
+               <div class="col-md-9">
+               </div>
+               <div class="col-md-3">
+                  <center>
+                     <a href="{!! route('user.create') !!}" class="btn btn-sm" style="background-color: #B6121B;color:white"><i data-feather="user-plus"></i> Add Users</a>
+                  </center>
+               </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
     <!-- end breadcrumb -->
-    @livewire('users.index')
+    @livewire('users.index',  ['role' => $role])
 @endsection
 {{-- page scripts --}}
 @section('script')

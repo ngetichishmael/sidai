@@ -17,18 +17,25 @@ class Index extends Component
    public $perPage = 10;
    public $orderBy = 'id';
    public $orderAsc = true;
-   public ?string $search = null;
+//   public ?string $search = null;
+ public $search;
 
-   public function render()
+   public $role;
+   protected $users;
+
+   public function mount($role)
    {
+      $this->role = $role;
       $searchTerm = '%' . $this->search . '%';
-      $nsm =  User::where('account_type', ['NSM'])->whereLike([
+      $this->users = User::where('account_type', $this->role)->whereLike([
          'Region.name', 'name', 'email', 'phone_number',
       ], $searchTerm)
          ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
          ->paginate($this->perPage);
-
-      return view('livewire.users.index', compact('nsm'));
+   }
+   public function render()
+   {
+      return view('livewire.users.index', ['users' => $this->users]);
    }
    public function deactivate($id)
    {

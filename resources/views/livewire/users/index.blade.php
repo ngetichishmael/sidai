@@ -33,7 +33,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($nsm as $key => $user)
+                        @foreach ($users as $key => $user)
                             <tr>
                                 <td>{!! $key + 1 !!}</td>
 {{--                                <td>{!! $user->Region->name ?? ' ' !!}</td>--}}
@@ -49,19 +49,17 @@
                                          <i data-feather="settings"></i>
                                       </button>
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                         <a href="{{ route('user.edit', $user->user_code) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit</a>
-                                         <a href="{{ route('user.edit', $user->user_code) }}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View</a>
+                                         <a href="{{ route('user.edit', $user->user_code) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;">&nbsp;Edit</a>
+                                         <a href="{{ route('user.view', $user->user_code) }}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0;"> View</a>
 {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a>--}}
-
-
                                     @if ($user->status === 'Active')
                                         <a wire:click.prevent="deactivate({{ $user->id }})"
                                             onclick="confirm('Are you sure you want to DEACTIVATE this user?')||event.stopImmediatePropagation()"
-                                            type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" ><i data-feather="pause"></i>&nbsp;Suspend</a>
+                                            type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" >&nbsp;Suspend</a>
                                     @else
                                         <a wire:click.prevent="activate({{ $user->id }})"
                                             onclick="confirm('Are you sure you want to ACTIVATE this user?')||event.stopImmediatePropagation()"
-                                            type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold"><i data-feather="check"></i>&nbsp;Activate </a>
+                                            type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold">&nbsp;Activate </a>
                                     @endif
                                       </div>
                                    </div>
@@ -71,7 +69,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="mt-1">{!! $nsm->links() !!}</div>
+            <div class="mt-1">{!! $users->links() !!}</div>
         </div>
     </div>
 </div>
