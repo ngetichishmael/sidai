@@ -203,13 +203,15 @@ class usersController extends Controller
       $permissions = AppPermission::where('user_code', $user_code)->firstOrFail();
 
       $regions = Region::all();
+      $user_region=Region::where('id', $edit->region_id)->first();
       $roles= Role::all();
       return view('app.users.edit', [
          'edit' => $edit,
          'user_code' => $user_code,
          'permissions' => $permissions,
          'regions' => $regions,
-         'roles' =>$roles
+         'roles' =>$roles,
+         'user_region'=>$user_region
       ]);
    }
    public function show($user_code)
