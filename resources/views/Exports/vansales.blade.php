@@ -7,6 +7,7 @@
         <th>User Name</th>
         <th>User Type</th>
         <th>Status</th>
+        <th>Number of Items</th>
         
     </tr>
     </thead>
@@ -19,6 +20,7 @@
             <td>{{ $vansale->User->name??'N/A' }}</td>
             <td>{{ $vansale->User->account_type??'N/A' }}</td>
             <td>{{ $vansale->order_status ??'N/A' }}</td>
+            <td>{{ $vansale->order_items_count??'0' }}</td>
         </tr>
     @endforeach
     </tbody>

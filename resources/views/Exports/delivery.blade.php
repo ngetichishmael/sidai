@@ -7,6 +7,7 @@
         <th>User Name</th>
         <th>User Type</th>
         <th>Status</th>
+        <th>Number of Items</th>
         
     </tr>
     </thead>
@@ -19,6 +20,7 @@
             <td>{{ $delivery->User->name??'N/A' }}</td>
             <td>{{ $delivery->User->account_type??'N/A' }}</td>
             <td>{{ $delivery->order_status ??'N/A' }}</td>
+            <td>{{ $delivery->order_items_count??'0' }}</td>
         </tr>
     @endforeach
     </tbody>
