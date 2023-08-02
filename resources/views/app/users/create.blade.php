@@ -19,7 +19,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">User</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url()->previous()}}">Users</a></li>
                             <li class="breadcrumb-item active">Create</li>
                         </ol>
                     </div>
@@ -38,13 +38,6 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-{{--                                            <div class="mb-2 col-md-6 col-12">--}}
-{{--                                                <div class="form-group">--}}
-{{--                                                    <label for="first-name-column">Employee Code</label>--}}
-{{--                                                    <input type="text" id="first-name-column" class="form-control"--}}
-{{--                                                        placeholder="Employee Code" name="employee_code" required />--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
                                             <div class="mb-2 col-md-6 col-12">
                                                 <div class="form-group">
                                                     <label for="first-name-column">Name</label>
@@ -69,21 +62,18 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">User Type</label>
+                                                    <label for="select-country">User Role</label>
                                                     <select class="form-control select2" id="account-type"
                                                         name="account_type" required>
-                                                        <option value="">Select Category</option>
-                                                       <option value="Admin">Admin</option>
-                                                       <option value="NSM">National Sales Manager</option>
-                                                       <option value="RSM">Regional Sales Manager</option>
-                                                       <option value="TSR">Technical Sales Representative</option>
-                                                       <option value="Shop-Attendee">Shop Attendee</option>
-                                                       <option value="TD">Trade Developer</option>
-
+                                                        <option value="">Select Role</option>
+                                                       @foreach ($roles as $value)
+                                                          <option value="{{ $value->name }}">{{ $value->name }}-{{ $value->description }}
+                                                          </option>
+                                                       @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 col-12">
+                                            <div class="col-md-6 col-12 mt-1">
                                                 <div class="form-group">
                                                     <label for="select-region">Regions</label>
                                                     <select class="form-control select2" id="region" name="region"
@@ -181,12 +171,14 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
-                                            <button type="submit" class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Save
-                                                Changes</button>
-                                            <a href="{{ route('users.index') }}" type="reset"
+                                       <div class="row">
+                                          <di class="col-md-8 col-sm-5 "></di>
+                                        <div class="mt-2  col-md-4 col-sm-5 d-flex flex-sm-row flex-column" style="gap: 20px;">
+                                            <button type="submit" class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Create User</button>
+                                            <a href="{{ url()->previous() }}" type="reset"
                                                 class="btn btn-outline-secondary">Cancel</a>
                                         </div>
+                                       </div>
                                     </div>
                                 </form>
                                 <!-- users edit account form ends -->

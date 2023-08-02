@@ -62,13 +62,12 @@
          </div>
       </div>
             </div>
+   <div>
    <center>
       <a href="{{ url()->previous() }}" class="btn btn-info mt-2">
          <i data-feather='arrow-left'></i> Back
       </a>
    </center>
-         </div>
-      </div>
    </div>
 @endsection
 {{-- page scripts --}}

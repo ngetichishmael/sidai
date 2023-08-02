@@ -5,7 +5,9 @@ namespace App\Http\Controllers\app;
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Area;
+use App\Models\laratrust\Role_user;
 use App\Models\Role;
+use App\Models\Subregion;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -38,48 +40,55 @@ class usersController extends Controller
    //list
    public function list()
    {
-      $accountTypes = Role::pluck('name')->toArray();
+      //$roles = Role::withCount('users')->pluck('name')->toArray();
 
-      $lists = User::whereIn('account_type', $accountTypes)
-         ->distinct('account_type')
-         ->whereNotIn('account_type', ['Customer'])
-         ->groupBy('account_type')
-         ->pluck('account_type');
-      $counts = User::join('roles', 'users.account_type', '=', 'roles.name')
-         ->whereIn('users.account_type', $accountTypes)
-         ->whereNotIn('users.account_type', ['Customer'])
-         ->groupBy('users.account_type')
-         ->selectRaw('users.account_type, count(*) as count')
-         ->pluck('count', 'users.account_type');
+//      $lists = User::whereIn('account_type', $accountTypes)
+//         ->distinct('account_type')
+//         ->whereNotIn('account_type', ['Customer'])
+//         ->groupBy('account_type')
+//         ->pluck('account_type');
+//      $counts = User::join('roles', 'users.account_type', '=', 'roles.name')
+//         ->whereIn('users.account_type', $accountTypes)
+//         ->whereNotIn('users.account_type', ['Customer'])
+//         ->groupBy('users.account_type')
+//         ->selectRaw('users.account_type, count(*) as count')
+//         ->pluck('count', 'users.account_type');
 
-      $count = 1;
-      return view('app.users.list', compact('lists', 'counts','count'));
+//      $count = 1;
+      $roles = Role::withCount('users')->get();
+      return view('app.users.list', compact( 'roles'));
    }
-   public function nsm()
+   public function viewRole($role)
    {
-      $admin = User::where('account_type', 'NSM');
-      return view('app.users.index', compact('admin'));
+      $users = User::where('account_type',$role);
+      $description=Role::where('name', $role)->first();
+      return view('app.users.index', compact('users', 'description', 'role'));
    }
-   public function shopattendee()
-   {
-      $shopattendee = User::where('account_type', 'Shop-Attendee');
-      return view('app.users.shopattendee', compact('shopattendee'));
-   }
-   public function tsr()
-   {
-      $tsr = User::where('account_type', 'TSR');
-      return view('app.users.tsr', compact('tsr'));
-   }
-   public function td()
-   {
-      $td = User::where('account_type', 'TD');
-      return view('app.users.td', compact('td'));
-   }
-   public function rsm()
-   {
-      $rsm = User::where('account_type', 'RSM');
-      return view('app.users.rsm', compact('rsm'));
-   }
+//   public function nsm()
+//   {
+//      $admin = User::where('account_type', 'NSM');
+//      return view('app.users.index', compact('admin'));
+//   }
+//   public function shopattendee()
+//   {
+//      $shopattendee = User::where('account_type', 'Shop-Attendee');
+//      return view('app.users.shopattendee', compact('shopattendee'));
+//   }
+//   public function tsr()
+//   {
+//      $tsr = User::where('account_type', 'TSR');
+//      return view('app.users.tsr', compact('tsr'));
+//   }
+//   public function td()
+//   {
+//      $td = User::where('account_type', 'TD');
+//      return view('app.users.td', compact('td'));
+//   }
+//   public function rsm()
+//   {
+//      $rsm = User::where('account_type', 'RSM');
+//      return view('app.users.rsm', compact('rsm'));
+//   }
    public function index()
    {
       return view('app.users.index');
@@ -96,10 +105,15 @@ class usersController extends Controller
    {
       // $routes = array_merge($regions, $subregions, $zones);
       $regions = Region::all();
+      $subregions = Subregion::all();
       $routes = Area::all();
+      $roles= Role::all();
       return view('app.users.create', [
          "routes" => $routes,
-         "regions" => $regions
+         "regions" => $regions,
+         "subregions" => $subregions,
+         "roles"=>$roles
+
       ]);
    }
    public function creatensm()
@@ -125,10 +139,9 @@ class usersController extends Controller
       $user_code = Str::random(20);
       //save user
       $code = rand(100000, 999999);
-      User::updateOrCreate(
+      $user=User::updateOrCreate(
          [
             "user_code" => $user_code,
-
          ],
          [
             "email" => $request->email,
@@ -162,6 +175,10 @@ class usersController extends Controller
             "merchanizing" => $merchanizing,
          ]
       );
+      $role=Role::where('name', $request->account_type)->first();
+      if ($role){
+         $user->roles()->sync($role->id);
+      }
       Session()->flash('success', 'User Created Successfully, Default Password is Phone_number');
       $random = Str::random(20);
       $activityLog = new activity_log();
@@ -173,30 +190,8 @@ class usersController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = "";
       $activityLog->save();
-
-      if ($request->account_type ==='RSM')
-      {
-         $rsm = User::where('account_type', 'RSM');
-         return view('app.users.rsm', compact('rsm'));
-      }
-      elseif ($request->account_type === 'NSM'){
-         $nsm = User::where('account_type', 'NSM');
-         return view('app.users.rsm', compact('nsm'));
-      }
-      elseif ($request->account_type ==='Shop-Attendee'){
-         $shopattendee = User::where('account_type', 'Shop-Attendee');
-         return view('app.users.shopattendee', compact('shopattendee'));
-
-      }elseif ($request->account_type === 'TD'){
-         $td = User::where('account_type', 'td');
-         return view('app.users.rsm', compact('td'));
-
-      }elseif ($request->account_type === 'TSR'){
-         $tsr = User::where('account_type', 'TSR');
-         return view('app.users.rsm', compact('tsr'));
-      }else
-
-      return redirect()->back();
+//      return redirect()->back();
+      return redirect()->to(url()->previous());
    }
 
    //edit
@@ -208,12 +203,37 @@ class usersController extends Controller
       $permissions = AppPermission::where('user_code', $user_code)->firstOrFail();
 
       $regions = Region::all();
-
+      $user_region=Region::where('id', $edit->region_id)->first();
+      $roles= Role::all();
       return view('app.users.edit', [
          'edit' => $edit,
          'user_code' => $user_code,
          'permissions' => $permissions,
          'regions' => $regions,
+         'roles' =>$roles,
+         'user_region'=>$user_region
+      ]);
+   }
+   public function show($user_code)
+   {
+      $edit = User::where('user_code', $user_code)
+         ->where('business_code', FacadesAuth::user()->business_code)
+         ->first();
+      $permissions = AppPermission::where('user_code', $user_code)->firstOrFail();
+      $user_role=Role_user::where('user_id', $edit->id)->first();
+      $role_detail=[];
+         if($user_role){
+            $role_detail=Role::where('id', $user_role->role_id)->with('permissions')->get();
+         }
+      $regions = Region::all();
+      $roles= Role::all();
+      return view('app.users.view', [
+         'user' => $edit,
+         'user_code' => $user_code,
+         'permissions' => $permissions,
+         'regions' => $regions,
+         'roles' =>$roles,
+         'role_detail'=>$role_detail
       ]);
    }
 
@@ -227,7 +247,7 @@ class usersController extends Controller
          'account_type' => 'required',
       ]);
 
-      User::updateOrCreate(
+      $user=User::updateOrCreate(
          [
             "user_code" => $user_code,
             "business_code" => FacadesAuth::user()->business_code,
@@ -259,7 +279,10 @@ class usersController extends Controller
             "merchanizing" => $merchanizing,
          ]
       );
-
+      $role=Role::where('name', $request->account_type)->first();
+      if ($role){
+         $user->roles()->sync($role->id);
+      }
       Session()->flash('success', 'User updated Successfully');
 
       $random = Str::random(20);
