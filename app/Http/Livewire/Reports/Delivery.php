@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Reports;
 
-use App\Exports\DeliveryExport;
+use Carbon\Carbon;
 use App\Models\Area;
 use App\Models\Orders;
-use App\Models\Subregion;
 use Livewire\Component;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\customers;
+use App\Models\Subregion;
 use Livewire\WithPagination;
+use App\Exports\DeliveryExport;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Delivery extends Component
