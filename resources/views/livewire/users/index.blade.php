@@ -95,5 +95,5 @@
             <div class="mt-1">{!! $users->links() !!}</div>
         </div>
     </div>
-   @include('livewire.notification.users.modal')
+   @include('livewire.users.modal')
 </div>
