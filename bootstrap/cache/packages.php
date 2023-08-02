@@ -85,13 +85,6 @@
       0 => 'Knuckles\\Scribe\\ScribeServiceProvider',
     ),
   ),
-  'laravel/passport' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Passport\\PassportServiceProvider',
-    ),
-  ),
   'laravel/sail' => 
   array (
     'providers' => 
