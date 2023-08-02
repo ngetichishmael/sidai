@@ -102,6 +102,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                           <input type="hidden" name="initial_role" value="{{$edit->account_type}}">
                                         </div>
                                     </div>
                                 </div>

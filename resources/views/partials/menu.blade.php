@@ -22,7 +22,7 @@
                 <li class="nav-item {!! Nav::isRoute('customer') !!}">
                     <a class="d-flex align-items-center" href="#">
                         <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
-                            Customers Managements</span>
+                            Customers Management</span>
                     </a>
                     <ul class="menu-content">
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
