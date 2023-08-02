@@ -1,28 +1,28 @@
 <?php
 
-namespace App\Http\Livewire\Target;
+namespace App\Exports;
 
-use Carbon\Carbon;
-use Livewire\Component;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\TargetExport;
-use App\Models\SalesTarget;
+use App\Models\User;
+use App\Models\Orders;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
-use Livewire\WithPagination;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class Index extends Component
+
+class TargetExport implements FromView
 {
-   protected $paginationTheme = 'bootstrap';
-   public $start;
-   public $end;
-   use WithPagination;
-   public function render()
-   {
-      return view('livewire.target.index', [
-         'targets' => $this->data()
-      ]);
-   }
-   public function data()
+
+    /**
+    * @return \Illuminate\Support\FromView
+    */
+    public function view(): View
+    {
+         return view('Exports.targets', [
+            'targets' => $this->data()
+         ]);
+
+    }
+    public function data()
    {
       $result = DB::table('users AS u')
          ->select(
@@ -43,9 +43,5 @@ class Index extends Component
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->get();
       return $result;
-   }
-   public function export()
-   {
-      return Excel::download(new TargetExport, 'Targets.xlsx');
    }
 }

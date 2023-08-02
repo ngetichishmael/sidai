@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Visits;
 
 use App\Models\User;
+use App\Exports\VisitationExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -24,17 +26,12 @@ class Index extends Component
    public function data()
    {
       $query = User::withCount('Checkings')->where('route_code', '=', Auth::user()->route_code);
-      // if (!is_null($this->start)) {
-      //    if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-      //       $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
-      //    } else {
-      //       if (is_null($this->end)) {
-      //          $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
-      //       }
-      //       $query->whereBetween('created_at', [$this->start, $this->end]);
-      //    }
-      // }
+      
 
       return $query->get();
+   }
+   public function export()
+   {
+      return Excel::download(new VisitationExport, 'visitations.xlsx');
    }
 }

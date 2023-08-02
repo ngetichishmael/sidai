@@ -17,7 +17,6 @@ class SidaiCustomers extends Component
    use WithPagination;
     public function render()
     {
-      // dd($this->data());
         return view('livewire.reports.sidai-customers',[
             'users' =>$this->data()
         ]);
