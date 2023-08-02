@@ -295,7 +295,15 @@ class usersController extends Controller
       $activityLog->ip_address = "";
       $activityLog->save();
 
-      return redirect()->back();
+//      return redirect()->back();
+
+      $role=$request->initial_role;
+      $users = User::where('account_type',$role);
+      $description=Role::where('name', $role)->first();
+      if (!empty($description)){
+         return view('app.users.index', compact('users', 'description', 'role'));
+      }
+       return redirect()->to(url()->previous());
    }
    //   public function destroy($id)
    //   {
