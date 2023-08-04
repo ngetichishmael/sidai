@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
 use App\Models\Delivery;
 use App\Models\Region;
@@ -21,6 +22,9 @@ use App\Models\Order_edit_reason;
 use App\Models\Orders;
 use App\Models\Order_items;
 use App\Models\Cart;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
+//use Notification;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Helper;
 use Illuminate\Support\Facades\DB;
@@ -339,81 +343,100 @@ class checkinController extends Controller
       $checkin = checkin::where('code', $checkinCode)->first();
       //get cart items
       $cart = Cart::where('checkin_code', $checkinCode)->get();
-      $region = Region::where('id', $request->user()->region_id)->first();
-      $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
-      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $orderCode = $regionCode.'-'.$orderNumber;
+      if (count($cart)>0) {
+//      $region = Region::findOrFail('id', $request->user()->region_id)->first();
+      $region = Region::findOrFail($request->user()->region_id);
+      if (!empty($region)){
+         $regionCode = strtoupper(substr($region->name, 0, 3));
+         $regionCode = preg_replace('/[^A-Z0-9]/', '', $regionCode);
+         $orderCount = Orders::where('order_code', 'like', $regionCode .'%')->count() + 1;
+         $orderNumber = str_pad($orderCount, 6, '0', STR_PAD_LEFT);
+         $orderCode = $regionCode . '-' . $orderNumber;
+      }
+
       if (empty($orderCode)){
          $orderCode = Helper::generateRandomString(8);
       }
 
       $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       //order
-      $order = new Orders;
-      $order->order_code =  $orderCode;
-      $order->user_code = $request->user()->user_code;
-      $order->business_code = $request->user()->business_code;
-      $order->customerID = $checkin->customer_id;
-      $order->checkin_code = $checkinCode;
-      $order->price_total = $cart->sum('amount');
-      $order->order_status = 'Pending Delivery';
-      $order->payment_status = 'Pending Payment';
-      $order->qty = $cart->sum('qty');
-      $order->order_type = $request->order_type;
-      $order->supplierID = $request->distributor ?? 1;
-      $order->balance = $cart->sum('amount');
-      $order->delivery_date = $request->delivery_date;
-      $order->reasons_partial_delivery = $request->reasons_partial_delivery;
-      $order->save();
 
-      //create order items
-      foreach ($cart as $item) {
-         $cartItem =  Cart::where('checkin_code', $checkinCode)->where('id', $item->id)->first();
+         $order = new Orders;
+         $order->order_code = $orderCode;
+         $order->user_code = $request->user()->user_code;
+         $order->business_code = $request->user()->business_code;
+         $order->customerID = $checkin->customer_id;
+         $order->checkin_code = $checkinCode;
+         $order->price_total = $cart->sum('amount');
+         $order->order_status = 'Pending Delivery';
+         $order->payment_status = 'Pending Payment';
+         $order->qty = $cart->sum('qty');
+         $order->order_type = $request->order_type;
+         $order->supplierID = $request->distributor ?? 1;
+         $order->balance = $cart->sum('amount');
+         $order->delivery_date = $request->delivery_date;
+         $order->reasons_partial_delivery = $request->reasons_partial_delivery;
+         $order->save();
 
-         $orderItems = new Order_items;
-         $orderItems->order_code =  $orderCode;
-         $orderItems->productID =  $cartItem->productID;
-         $orderItems->product_name = $cartItem->product_name;
-         $orderItems->quantity =  $cartItem->qty;
-         $orderItems->sub_total =  $cartItem->amount;
-         $orderItems->total_amount =  $cartItem->total_amount;
-         $orderItems->selling_price =  $cartItem->price;
-         $orderItems->discount =  $cartItem->discount;
-         $orderItems->taxrate =  $cartItem->tax_rate;
-         $orderItems->taxvalue =  $cartItem->tax_value;
-         $orderItems->save();
+         //create order items
+         foreach ($cart as $item) {
+            $cartItem = Cart::where('checkin_code', $checkinCode)->where('id', $item->id)->first();
 
-         //delete item
-         $cartItem->delete();
-      }
-         if ($request->distributor != 1 && $request->distributor !=null ){
+            $orderItems = new Order_items;
+            $orderItems->order_code = $orderCode;
+            $orderItems->productID = $cartItem->productID;
+            $orderItems->product_name = $cartItem->product_name;
+            $orderItems->quantity = $cartItem->qty;
+            $orderItems->sub_total = $cartItem->amount;
+            $orderItems->total_amount = $cartItem->total_amount;
+            $orderItems->selling_price = $cartItem->price;
+            $orderItems->discount = $cartItem->discount;
+            $orderItems->taxrate = $cartItem->tax_rate;
+            $orderItems->taxvalue = $cartItem->tax_value;
+            $orderItems->save();
+
+            //delete item
+            $cartItem->delete();
+            Log::debug("\\\\\\\\\\\\\\              " . $orderItems);
+            Log::debug("\\\\\\\\\\\\\\              " . $cartItem);
+         }
+         if ($request->distributor != 1 && $request->distributor != null) {
             $usersToNotify = Suppliers::findOrFail($request->distributor);
-            $number =$usersToNotify->phone_number;
-            $order_code=$orderCode;
+            $number = $usersToNotify->phone_number;
+            $order_code = $orderCode;
             $this->sendOrder($number, $order_code);
-//               $usersToNotify = Suppliers::findOrFail($request->distributor);
-//               $orderId = $order->id;
+            $usersToNotify = Suppliers::findOrFail($request->distributor);
+            $distributor = $usersToNotify->name;
+            $distributorid = $usersToNotify->id;
 //               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+            SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid);
          }
 
-      $ativity_rand= Str::random(20);
-      $activityLog = new activity_log();
-      $activityLog->activity = 'Order created successfully';
-      $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Order creation';
-      $activityLog->action = 'Order created by' . $request->user()->name . ' order code  '.$orderCode;
-      $activityLog->userID = auth()->user()->id;
-      $activityLog->activityID = $ativity_rand;
-      $activityLog->ip_address = "";
-      $activityLog->save();
+         $ativity_rand = Str::random(20);
+         $activityLog = new activity_log();
+         $activityLog->activity = 'Order created successfully';
+         $activityLog->user_code = auth()->user()->user_code;
+         $activityLog->section = 'Order creation';
+         $activityLog->action = 'Order created by' . $request->user()->name . ' order code  ' . $orderCode;
+         $activityLog->userID = auth()->user()->id;
+         $activityLog->activityID = $ativity_rand;
+         $activityLog->ip_address = "";
+         $activityLog->save();
 
-      return response()->json([
-         "success" => true,
-         "message" => "Order created successfully",
-         "orderCode" => $orderCode,
-         "checkinCode" => $checkinCode,
-      ]);
+         return response()->json([
+            "success" => true,
+            "message" => "Order created successfully",
+            "orderCode" => $orderCode,
+            "checkinCode" => $checkinCode,
+         ], 201);
+      }
+      else{
+         return response()->json([
+            "success" => false,
+            "message" => "Could Not Create The Order, Cart Item Not Found",
+            "checkinCode" => $checkinCode,
+         ], 404);
+      }
    }
 
    /**
@@ -453,6 +476,33 @@ class checkinController extends Controller
          "orders" => $orders,
       ]);
    }
+   public function sendNotification(){
+      $orderId = 3;
+      $order = Orders::find($orderId);
+      if ($order) {
+         $user = $order->user;
+         if ($user) {
+            $distributorid = 3;
+            $distributor="sidai steven distributor";
+               // Dispatch the job to the queue
+              SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid);
+//            Notification::route('mail', 'stevenmaina17@gmail.com')
+//               ->notify(new NewOrderNotification($order, $distributor));
+
+            return response()->json([
+               "success" => true,
+               "message" => "Notification sent",
+               "order_id" => $orderId,
+            ]);
+         }
+      } else {
+         return response()->json([
+            "success" => false,
+            "message" => "Order not found",
+            "order_id" => $orderId,
+         ]);
+      }
+}
    public function userOrders(Request $request)
    {
 
