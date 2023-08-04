@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\TestingController;
-use App\Http\Controllers\Chat\ChatController;
+//use App\Http\Controllers\Chat\ChatController;
+use App\Http\Controllers\app\customer\customerController;
 use App\Http\Controllers\Chat\SocketsController;
 use App\Http\Controllers\PermissionsController2;
 use App\Http\Controllers\RoleController;
@@ -94,6 +95,13 @@ Auth::routes(['verify' => true]);
       'destroy' => 'customer.destroy',
       'store' => 'customer.store',
    ]);
+//      Route::get('/customer', [customerController::class, 'index'])->name('customer');
+//      Route::get('/customer/{id}', [customerController::class, 'show'])->name('customer.show');
+//      Route::get('/customer/{id}/edit', [customerController::class, 'edit'])->name('customer.edit');
+//      Route::put('/customer/{id}', [customerController::class, 'update'])->name('customer.update');
+//      Route::delete('/customer/{id}', [customerController::class, 'destroy'])->name('customer.destroy');
+//      Route::get('/customer/create', [customerController::class, 'create'])->name('customer.create');
+//      Route::post('/customer', [customerController::class, 'store'])->name('customer.store');
    Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
    Route::get('approveCreditors', ['uses' => 'app\customer\customerController@approveCreditors', 'as' => 'approveCreditors']);
    Route::get('approveCustomers', ['uses' => 'app\customer\customerController@approveCustomers', 'as' => 'approvecustomers']);
@@ -291,7 +299,7 @@ Auth::routes(['verify' => true]);
    Route::get('user/create', ['uses' => 'app\usersController@create', 'as' => 'user.create']);
    Route::get('user/creatensm', ['uses' => 'app\usersController@creatensm', 'as' => 'user.creatensm']);
    Route::post('user/store', ['uses' => 'app\usersController@store', 'as' => 'user.store']);
-   Route::get('user/{id}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
+   Route::get('user/{user_code}/edit', ['uses' => 'app\usersController@edit', 'as' => 'user.edit']);
    Route::get('user/{id}/view', ['uses' => 'app\usersController@show', 'as' => 'user.view']);
    Route::post('user/{id}/update', ['uses' => 'app\usersController@update', 'as' => 'user.update']);
    //   Route::get('user{id}/destroy', ['uses' => 'app\usersController@destroy', 'as' => 'user.destroy']);
@@ -463,21 +471,21 @@ Auth::routes(['verify' => true]);
    Route::get('activity/show/{id}', ['uses' => 'ActivityController@show', 'as' => 'activity.show']);
 
    //chats endpoints
-   Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
-   Route::get('chats/{chat}', 'ChatController@show');
-   Route::get('/chats/index', [ChatController::class, 'index'])->name('chats.index');
-   Route::post('chats/{chat}/messages', 'MessageController@store');
-   Route::get('/messages/{receiverId}', [ChatController::class, 'messagesIndex'])->name('messages.index');
-
-   Route::get('socket/index', function (AppProvider $appProvider) {
-      return view('app/chat/index', [
-         "port" => env("LARAVEL_WEBSOCKETS_PORT"),
-         "host" => env("LARAVEL_WEBSOCKETS_HOST"),
-         "authEndpoint" => "/api/socket/connect",
-         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-         "apps" => $appProvider->all()
-      ]);
-   })->name('socket.index');
+//   Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
+//   Route::get('chats/{chat}', 'ChatController@show');
+//   Route::get('/chats/index', [ChatController::class, 'index'])->name('chats.index');
+//   Route::post('chats/{chat}/messages', 'MessageController@store');
+//   Route::get('/messages/{receiverId}', [ChatController::class, 'messagesIndex'])->name('messages.index');
+//
+//   Route::get('socket/index', function (AppProvider $appProvider) {
+//      return view('app/chat/index', [
+//         "port" => env("LARAVEL_WEBSOCKETS_PORT"),
+//         "host" => env("LARAVEL_WEBSOCKETS_HOST"),
+//         "authEndpoint" => "/api/socket/connect",
+//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
+//         "apps" => $appProvider->all()
+//      ]);
+//   })->name('socket.index');
 
 
 
