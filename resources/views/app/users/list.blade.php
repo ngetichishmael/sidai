@@ -16,10 +16,10 @@
                   </ol>
                </div>
             </div>
-            <div class="ml-0 pe-0">
-               <center>
+            <div class="ml-5 pe-5 d-flex">
+               <div class="ms-auto">
                   <a href="{{ route('roles.create') }}" class="btn btn-small" style="background: #B6121B; color: white">Create Role</a>
-               </center>
+               </div>
             </div>
          </div>
       </div>
@@ -33,32 +33,36 @@
                  <thead>
                     <tr>
                        <th width="1%">#</th>
-                       <th>Account Types</th>
+                       <th>Role Name</th>
+                       <th>Role Description</th>
                        <th width="20%">Number of Users</th>
                        <th>Actions</th>
                     </tr>
                  </thead>
                  <tbody>
-                    @foreach ($lists as $list)
+
+                    @foreach ($roles as $key => $list)
                     <tr>
-                       <td>{!! $count++ !!}</td>
-                       <td>{!! $list !!}</td>
-                       <td>{{ $counts[$list] }}</td>
+                       <td>{!! $key + 1 !!}</td>
+                       <td>{!! $list->name !!}</td>
+                       <td>{!! $list->description !!}</td>
+                       <td>{{ $list->users_count }}</td>
                        <td>
                           <div class="d-flex" style="gap:20px">
-                             @if($list == 'Admin')
-                                <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View</a>
-                            @elseif($list == 'NSM')
-                                <a href="{{ route('users.nsm') }}" class="btn btn-info btn-sm">View</a>
-                                @elseif($list == 'RSM')
-                                <a href="{{ route('rsm') }}" class="btn btn-info btn-sm">View </a>
-                             @elseif($list == 'TSR')
-                                <a href="{{ route('tsr') }}" class="btn btn-info btn-sm">View </a>
-                             @elseif($list == 'TD')
-                                <a href="{{ route('td') }}" class="btn btn-info btn-sm">View </a>
-                                @elseif($list == 'Shop-Attendee')
-                                <a href="{{ route('shop-attendee') }}" class="btn btn-info btn-sm">View</a>
-                            @endif
+                             <a href="{{ route('view-role', ['role' => $list->name]) }}"  class="btn btn-info btn-sm">View Users of This Role</a>
+{{--                             @if($list == 'Admin')--}}
+{{--                                <a href="{{ route('users.index') }}" class="btn btn-info btn-sm">View</a>--}}
+{{--                            @elseif($list == 'NSM')--}}
+{{--                                <a href="{{ route('users.nsm') }}" class="btn btn-info btn-sm">View</a>--}}
+{{--                                @elseif($list == 'RSM')--}}
+{{--                                <a href="{{ route('rsm') }}" class="btn btn-info btn-sm">View </a>--}}
+{{--                             @elseif($list == 'TSR')--}}
+{{--                                <a href="{{ route('tsr') }}" class="btn btn-info btn-sm">View </a>--}}
+{{--                             @elseif($list == 'TD')--}}
+{{--                                <a href="{{ route('td') }}" class="btn btn-info btn-sm">View </a>--}}
+{{--                                @elseif($list == 'Shop-Attendee')--}}
+{{--                                <a href="{{ route('shop-attendee') }}" class="btn btn-info btn-sm">View</a>--}}
+{{--                            @endif--}}
                           </div>
                        </td>
                     </tr>

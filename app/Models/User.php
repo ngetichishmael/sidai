@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Routing\Route;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -200,4 +201,35 @@ class User extends Authenticatable implements MustVerifyEmail
    {
       return $this->hasMany(checkin::class, 'user_code', 'user_code');
    }
+   public function route():BelongsTo
+   {
+      return $this->belongsTo(Area::class, 'route_code', 'id');
+   }
+   public function assignRoleAndPermissions()
+   {
+      $accountType = $this->account_type;
+
+      // Get the role associated with the account_type
+      $role = Role::where('name', $accountType)->first();
+
+      // Attach the role to the user
+      if ($role) {
+         $this->roles()->attach($role->id);
+
+         // Attach the role's permissions to the user
+         $permissions = $role->permissions;
+         $this->permissions()->attach($permissions);
+      }
+   }
+
+   public function permissions()
+   {
+      return $this->belongsToMany(Permission::class);
+   }
+
+   public function hasPermission($permission)
+   {
+      return $this->permissions->contains('name', $permission);
+   }
+
 }

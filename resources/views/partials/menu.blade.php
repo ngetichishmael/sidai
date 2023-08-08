@@ -18,14 +18,11 @@
                         Dashboards</span>
                 </a>
             </li>
-            @if (
-                (Auth::check() && Auth::user()->account_type == 'Admin') ||
-                    (Auth::check() && Auth::user()->account_type == 'NSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'RSM'))
+           @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                 <li class="nav-item {!! Nav::isRoute('customer') !!}">
                     <a class="d-flex align-items-center" href="#">
                         <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
-                            Customers Managements</span>
+                            Customers Management</span>
                     </a>
                     <ul class="menu-content">
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
@@ -55,12 +52,8 @@
                         </li>
                     </ul>
                 </li>
-            @endif
-            @if (
-                (Auth::check() && Auth::user()->account_type == 'Admin') ||
-                    (Auth::check() && Auth::user()->account_type == 'NSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'RSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'Shop-Attendee'))
+           @endhaspermissionto
+           @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
                 <li class="nav-item {!! Nav::isResource('orders') !!}">
                     <a class="d-flex align-items-center" href="#">
                         <i data-feather='shopping-cart'></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -109,12 +102,12 @@
                     <a class="d-flex align-items-center" href="#"><i data-feather='archive'></i><span
                             class="menu-title text-truncate" data-i18n="Invoice"> Warehousing Management</span></a>
                     <ul class="menu-content">
-                        @if (Auth::check() && Auth::user()->account_type == 'NSM' ||(Auth::check() && Auth::user()->account_type == 'RSM'))
+                       @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                             <li style="padding-left: 50px"><a class="d-flex align-items-center"
                                     href="{!! route('warehousing.index') !!}">
                                     <span class="menu-item text-truncate">
                                         Warehouses</span></a></li>
-                        @endif
+                       @endhaspermissionto
                         {{--               <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i --}}
                         {{--                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li> --}}
 
@@ -138,8 +131,8 @@
                         </li>
                     </ul>
                 </li>
-            @endif
-            @if ((Auth::check() && Auth::user()->account_type == 'Admin') || (Auth::check() && Auth::user()->account_type == 'NSM'))
+           @endhaspermissionto
+           @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                 <li class="nav-item {!! Nav::isResource('users') !!}">
                     <a class="d-flex align-items-center" href="{{route('users.list')}}">
                         <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -193,29 +186,29 @@
                         </li>
                     </ul>
                 </li>
-            @endif
-           
-            @if (
-                (Auth::check() && Auth::user()->account_type == 'Admin') ||
-                    (Auth::check() && Auth::user()->account_type == 'NSM') ||
-                    (Auth::check() && Auth::user()->account_type == 'RSM'))
+           @endhaspermissionto
                 <li class="nav-item {!! Nav::isResource('regions') !!}">
                     <a class="d-flex align-items-center" href="#"><i data-feather="map-pin"></i><span
                             class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
                     <ul class="menu-content">
+                       @hasdataaccessto(['all','regional'])
                         <li style="padding-left: 50px">
                             <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
                                 href="{{ route('regions') }}"><span
                                     class="menu-item text-truncate">Regions</span></a>
                         </li>
+                       @endhasdataaccessto
+                       @hasdataaccessto(['all','subregional'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
-                                href="{{ route('subregions') }}"><span class="menu-item text-truncate">Sub
-                                    Regions</span></a>
+                                href="{{ route('subregions') }}"><span class="menu-item text-truncate">Sub Regions</span></a>
                         </li>
+                       @endhasdataaccessto
+                       @hasdataaccessto(['all','routes'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}"
                                 href="{{ route('areas') }}">
                                 <span class="menu-item text-truncate">Routes</span></a>
                         </li>
+                       @endhasdataaccessto
                     </ul>
                 </li>
                 <li class="nav-item {!! Nav::isResource('maps') !!}">
@@ -231,9 +224,7 @@
                                 </li>
                             </ul>
                 </li>
-                
 
-            @endif
 <li class="nav-item {!! Nav::isResource('routes') !!}">
 <a class="d-flex align-items-center" href="">
 <i data-feather='compass'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
@@ -262,7 +253,7 @@
     </a>
  </li>
 
-@if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+           @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
 {{--              <li class="nav-item {!! request()->routeIs('chats.index') ? 'active' : '' !!}">--}}
 {{--                 <a class="d-flex align-items-center" href="{{ route('chats.index') }}">--}}
               <li class="nav-item {!! Nav::isResource('support') !!}">
@@ -271,8 +262,8 @@
                     <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>
                  </a>
               </li>
-@endif
-@if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+           @endhaspermissionto
+           @haspermissionto(['manager_dashboard', 'admin_dashboard'])
 <li class="nav-item {!! Nav::isResource('survey') !!}">
 <a class="d-flex align-items-center" href="#">
 <i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
@@ -292,23 +283,20 @@
 </li>
 </ul>
 </li>
-@if (
-    (Auth::check() && Auth::user()->account_type == 'Admin') ||
-        (Auth::check() && Auth::user()->account_type == 'NSM') ||
-        (Auth::check() && Auth::user()->account_type == 'RSM') ||
-        (Auth::check() && Auth::user()->account_type == 'Shop-Attendee'))
+           @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
     <li class="nav-item {!! Nav::isResource('reports') !!}">
         <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
                 data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                 All Reports</span></a>
     </li>
-@endif
+              @endhaspermissionto
 <li class="nav-item {!! Nav::isResource('activity')!!}">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
 <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
 </a>
 </li>
-@endif
+           @endhaspermissionto
 </ul>
 </div>
+
 </div>
