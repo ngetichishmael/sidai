@@ -12,7 +12,7 @@ class StockDistributer extends Controller
       return response()->json([
          "success" => true,
          "message" => "All Suppliers",
-         "Data" => suppliers::all(),
+         "Data" => suppliers::whereIn('status',['Active', 'active'])->orderBy('name', 'asc')->get()
       ]);
    }
 }

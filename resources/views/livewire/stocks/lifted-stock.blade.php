@@ -26,8 +26,9 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Allocation Code</th>
+                                {{-- <th>Allocation Code</th> --}}
                                 <th>Product Name</th>
+                                <th>Date</th>
                                 <th>Warehouse</th>
                                 <th>Sales Agent</th>
                                 <th>Action</th>
@@ -38,8 +39,9 @@
                             @foreach ($lifted as $key => $lifted)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $lifted->code }}</td>
+                                    {{-- <td>{{ $lifted->code }}</td> --}}
                                     <td>{{ $lifted->name }}</td>
+                                    <td>{{ $lifted->date }}</td>
                                     <td>{{ $lifted->warehouse }}</td>
                                     <td>{{ $lifted->user_name }}</td>
                                     <td><a href="{{ URL('lifted/items/' . $lifted->code) }}" class="btn btn-sm"
