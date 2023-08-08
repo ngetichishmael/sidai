@@ -16,6 +16,7 @@ class LiftedStock extends Component
             ->join('users', 'inventory_allocations.sales_person', '=', 'users.user_code')
             ->select('inventory_allocations.allocation_code as code',
                 'product_information.product_name as name',
+                'inventory_allocated_items.allocated_qty as qty',
                 'inventory_allocations.updated_at as date',
                 'warehouse.name as warehouse',
                 'users.name as user_name')
