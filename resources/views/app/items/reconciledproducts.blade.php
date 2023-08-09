@@ -27,6 +27,7 @@
                  <thead>
                     <tr>
                        <th>#</th>
+                       <th>Sales Agent</th>
                        <th>Product Name</th>
                        <th>Quantity</th>
                     </tr>
@@ -35,6 +36,7 @@
                   @foreach ($reconciled as $key=>$reconcile)
                   <tr>
                      <td>{{ $key+1 }}</td>
+                     <td>{{ $reconcile->user }}</td>
                      <td>{{ $reconcile->name }}</td>
                      <td>{{ $reconcile->amount }}</td>
                  </tr>

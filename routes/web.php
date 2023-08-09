@@ -422,9 +422,11 @@ Auth::routes(['verify' => true]);
    /* === Orders === */
    Route::get('orders', ['uses' => 'app\ordersController@index', 'as' => 'orders.index']);
    Route::get('pendingorders', ['uses' => 'app\ordersController@pendingorders', 'as' => 'orders.pendingorders']);
+   Route::get('vansaleorders', ['uses' => 'app\ordersController@vansaleorders', 'as' => 'orders.vansaleorders']);
    //   Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
    Route::get('pendingdeliveries', ['uses' => 'app\ordersController@pendingdeliveries', 'as' => 'orders.pendingdeliveries']);
    Route::get('orders/{code}/details', ['uses' => 'app\ordersController@details', 'as' => 'orders.details']);
+   Route::get('orders/{code}/vansaledetails', ['uses' => 'app\ordersController@vansaledetails', 'as' => 'orders.vansaledetails']);
    Route::get('orders/{code}/pendingdetails', ['uses' => 'app\ordersController@pendingdetails', 'as' => 'orders.pendingdetails']);
    Route::get('orders/{code}/distributorsdetails', ['uses' => 'app\ordersController@distributordetails', 'as' => 'orders.distributorsdetails']);
    Route::post('orders/{code}/distributorschangeStatus', ['uses' => 'app\ordersController@distributorschangeStatus', 'as' => 'orders.distributorschangeStatus']);
