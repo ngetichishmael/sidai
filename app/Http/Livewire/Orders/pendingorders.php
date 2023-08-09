@@ -67,7 +67,7 @@ class pendingorders extends Component
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
-         dd($this->filter());
+         
 
       return view('livewire.orders.pendingorders', compact('pendingorders'));
    }
