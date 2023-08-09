@@ -40,6 +40,7 @@
   'orders.index' => 'App\\Http\\Livewire\\Orders\\index',
   'orders.pendingdeliveries' => 'App\\Http\\Livewire\\Orders\\pendingdeliveries',
   'orders.pendingorders' => 'App\\Http\\Livewire\\Orders\\pendingorders',
+  'orders.vansaleorders' => 'App\\Http\\Livewire\\Orders\\vansaleorders',
   'outlet.dashboard' => 'App\\Http\\Livewire\\Outlet\\Dashboard',
   'payment.paid.dashboard' => 'App\\Http\\Livewire\\Payment\\Paid\\Dashboard',
   'payment.pending.dashboard' => 'App\\Http\\Livewire\\Payment\\Pending\\Dashboard',

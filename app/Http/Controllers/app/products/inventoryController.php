@@ -62,7 +62,7 @@ class inventoryController extends Controller{
       ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
       ->where('reconciled_products.warehouse_code', $warehouse_code)
       ->select('product_information.product_name as name',
-          'reconciled_products.amount as amount')
+          'reconciled_products.amount as amount','reconciled_products.userCode as user')
       ->get();
       
       return view('app.items.reconciledproducts', ['reconciled' => $reconciled]);
