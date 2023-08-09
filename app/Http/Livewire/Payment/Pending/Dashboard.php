@@ -31,7 +31,7 @@ class Dashboard extends Component
       $deliveries = Delivery::with(['Customer', 'Order', 'User'])
          ->where('delivery_status', 'pending')
          ->orWhere('delivery_status', 'Partial delivery')
-         ->when($this->user->account_type === "RSM",function($query){
+         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customer', $this->filter());
          })
          ->orderBy('id', 'desc')
@@ -46,7 +46,7 @@ class Dashboard extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM') {
+      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
          return $array;
       }
       $regions = Region::where('id', $user_code)->pluck('id');
