@@ -44,7 +44,7 @@ class distributororders extends Component
                ->where('supplierID', '!=', 1);
          })
          ->where('order_type','=','Pre Order')
-         ->when($this->user->account_type === "RSM",function($query){
+         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customerID', $this->filter());
          })
          ->where(function ($query) use ($searchTerm) {
@@ -76,7 +76,7 @@ class distributororders extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM') {
+      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
          return $array;
       }
       $regions = Region::where('id', $user_code)->pluck('id');

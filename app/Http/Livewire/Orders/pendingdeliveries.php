@@ -47,7 +47,7 @@ class pendingdeliveries extends Component
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->when($this->user->account_type === "RSM",function($query){
+         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customer', $this->filter());
          })
          ->where(function ($query) use ($searchTerm) {
@@ -78,7 +78,7 @@ class pendingdeliveries extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM') {
+      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
          return $array;
       }
       $regions = Region::where('id', $user_code)->pluck('id');
