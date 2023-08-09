@@ -144,8 +144,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        {{-- <div class="col-sm-6">
-                            <div>
+                        <div class="col-sm-6">
+                            {{-- <div>
                                 <span class="text-sm text-grey-m2 align-middle">To:</span>
                                 <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name }}</span>
                             </div>
@@ -155,14 +155,14 @@
                                 </div>
                                 <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
                                         class="text-600">(+254){!! $test->phone_number !!}</b></div>
-                            </div>
-                        </div> --}}
+                            </div> --}}
+                        </div>
                         <!-- /.col -->
 
                         <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                             <hr class="d-sm-none" />
                             <div class="text-grey-m2">
-                                <div class="mt-1">Vansale </div>
+                                <div class="mt-1">Vansales </div>
 
                                 <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">ID:</span> #{!! $order->id !!}</div>
