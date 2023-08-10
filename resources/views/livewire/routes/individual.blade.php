@@ -30,7 +30,7 @@
                     @foreach ($routes as $count => $route)
                         <tr>
                             <td>{!! $count + 1 !!}</td>
-                            <td>{!! $route->created_by ?? "" !!}</td>
+                            <td>{!! $route->user->name ?? "" !!}</td>
                             <td>{!! $route->name !!}</td>
                             <td>{!! $route->status !!}</td>
                             <td>{!! $route->end_date !!}</td>

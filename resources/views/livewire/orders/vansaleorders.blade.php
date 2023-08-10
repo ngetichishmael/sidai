@@ -82,15 +82,6 @@
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{!! route('orders.vansaledetails', $order->order_code) !!}">View</a>
-                                        @if ($order->order_status === 'CANCELLED')
-                                           <a wire:click.prevent="activate({{ $order->id }})"
-                                                   onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                                   type="button" class="dropdown-item btn btn-sm" style="color: lightgreen">Reinstate</a>
-                                        @else
-                                           <a wire:click.prevent="deactivate({{ $order->id }})"
-                                                   onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"
-                                                   type="button" class="dropdown-item btn btn-sm" style="color: orangered">Cancel</a>
-                                        @endif
                                      </div>
                                   </div>
                                </td>
