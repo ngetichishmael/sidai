@@ -30,6 +30,7 @@
                        <th>Sales Agent</th>
                        <th>Product Name</th>
                        <th>Quantity</th>
+                       <th>Date</th>
                     </tr>
                  </thead>
                  <tbody>
@@ -39,6 +40,7 @@
                      <td>{{ $reconcile->user }}</td>
                      <td>{{ $reconcile->name }}</td>
                      <td>{{ $reconcile->amount }}</td>
+                     <td>{{ $reconcile->date }}</td>
                  </tr>
                   @endforeach
                    
