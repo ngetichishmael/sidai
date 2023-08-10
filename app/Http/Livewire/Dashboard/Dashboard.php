@@ -118,7 +118,7 @@ class Dashboard extends Component
                     });
             })
             ->where(function (Builder $query) {
-                $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
+                $this->whereBetweenDate($query, 'updated_at', Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
             })
             ->count();
     }
