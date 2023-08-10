@@ -14,12 +14,13 @@ class LiftedStock extends Component
             ->join('product_information', 'inventory_allocated_items.product_code', '=', 'product_information.id')
             ->join('warehouse', 'product_information.warehouse_code', '=', 'warehouse.warehouse_code')
             ->join('users', 'inventory_allocations.sales_person', '=', 'users.user_code')
+            ->join('regions', 'users.region_id', '=', 'regions.id')
             ->select('inventory_allocations.allocation_code as code',
                 'product_information.product_name as name',
                 'inventory_allocated_items.current_qty as qty',
                 'inventory_allocations.updated_at as date',
                 'warehouse.name as warehouse',
-                'users.name as user_name')
+                'users.name as user_name','regions.name as user_region')
             ->get();
 
         return view('livewire.stocks.lifted-stock', [

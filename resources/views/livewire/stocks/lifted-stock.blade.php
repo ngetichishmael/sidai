@@ -27,11 +27,12 @@
                             <tr>
                                 <th>#</th>
                                 {{-- <th>Allocation Code</th> --}}
-                                <th>Product Name</th>
-                                <th>Date</th>
-                                <th>Warehouse</th>
-                                <th>Quantity</th>
+                                {{-- <th>Product Name</th> --}}
                                 <th>Sales Agent</th>
+                                <th>Quantity</th>
+                                <th>Region</th>
+                                <th>Source</th>
+                                <th>Date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -41,11 +42,12 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     {{-- <td>{{ $lifted->code }}</td> --}}
-                                    <td>{{ $lifted->name }}</td>
-                                    <td>{{ $lifted->date }}</td>
-                                    <td>{{ $lifted->warehouse }}</td>
-                                    <td>{{ $lifted->qty??'' }}</td>
+                                    {{-- <td>{{ $lifted->name }}</td> --}}
                                     <td>{{ $lifted->user_name }}</td>
+                                    <td>{{ $lifted->qty??'' }}</td>
+                                    <td>{{ $lifted->user_region??'' }}</td>
+                                    <td>{{ $lifted->warehouse }}</td>
+                                    <td>{{ $lifted->date }}</td>
                                     <td><a href="{{ URL('lifted/items/' . $lifted->code) }}" class="btn btn-sm"
                                             style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
                                 </tr>
