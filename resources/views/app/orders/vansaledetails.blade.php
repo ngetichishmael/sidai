@@ -125,11 +125,11 @@
         <div class="content-header-left col-md-12 col-12 mb-2">
             <div class="row breadcrumbs-top">
                 <div class="col-12">
-                    <h2 class="content-header-title float-start mb-0">Order Details</h2>
+                    <h2 class="content-header-title float-start mb-0">Vansale Details</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Orders</a></li>
+                            <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Vansales</a></li>
                             <li class="breadcrumb-item active">{!! $order->order_code !!}</li>
                             <li class="breadcrumb-item active">Details</li>
                         </ol>
@@ -171,8 +171,8 @@
                                         class="text-600 text-90">Date:</span> {!! $order->created_at !!}</div>
 
                                 <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Status:</span> <span
-                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span>
+                                        class="text-600 text-90">Type:</span> <span
+                                        class="badge badge-warning badge-pill px-25 text-black-50">Vansale</span>
                                 </div>
                             </div>
                         </div>
