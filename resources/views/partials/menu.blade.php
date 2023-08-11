@@ -69,6 +69,10 @@
                                 <span class="menu-item text-truncate">Pending Deliveries</span></a>
                         </li>
                         <li style="padding-left: 50px"><a class="d-flex align-items-center"
+                                href="{{ route('orders.vansaleorders') }}">
+                                <span class="menu-item text-truncate">Vansale Orders</span></a>
+                        </li>
+                        <li style="padding-left: 50px"><a class="d-flex align-items-center"
                                 href="{!! route('delivery.index') !!}">
                                 <span class="menu-title text-truncate" data-i18n="Todo">
                                     Delivery History</span>

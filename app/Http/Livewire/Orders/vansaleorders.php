@@ -12,7 +12,7 @@ use App\Models\suppliers\suppliers;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class pendingorders extends Component
+class vansaleorders extends Component
 {
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
@@ -36,7 +36,7 @@ class pendingorders extends Component
       $searchTerm = '%' . $this->search . '%';
 
       $sidai=suppliers::where('name', 'Sidai')->first();
-      $pendingorders = Orders::with('Customer', 'user', 'distributor')
+      $vansaleorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
          ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customerID', $this->filter());
@@ -50,7 +50,7 @@ class pendingorders extends Component
                      }
                   });
          })
-         ->where('order_type','=','Pre Order')
+         ->where('order_type','=','Van sales')
          ->where(function ($query) use ($searchTerm) {
             $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
                $subQuery->where('customer_name', 'like', $searchTerm);
@@ -69,7 +69,7 @@ class pendingorders extends Component
          ->paginate($this->perPage);
          
 
-      return view('livewire.orders.pendingorders', compact('pendingorders'));
+      return view('livewire.orders.vansaleorders', compact('vansaleorders'));
    }
    public function filter(): array
    {
