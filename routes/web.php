@@ -3,11 +3,12 @@
 use App\Http\Controllers\Api\TestingController;
 //use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\app\customer\customerController;
-use App\Http\Controllers\Chat\SocketsController;
+//use App\Http\Controllers\Chat\SocketsController;
 use App\Http\Controllers\PermissionsController2;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RolesController2;
 use App\Http\Controllers\SupportTicketController;
+use App\Http\Livewire\Chat\Main;
 use BeyondCode\LaravelWebSockets\Apps\AppProvider;
 use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,7 @@ use Illuminate\Http\Request;
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/others.php';
+//require __DIR__ . '/chat.php';
 
 Route::get('/', 'Auth\LoginController@showLoginForm')->name('home.page');
 Route::get('/privacy-policy', 'PrivacyController@index');
@@ -32,8 +34,12 @@ Auth::routes(['verify' => true]);
    Route::get('dashboard', 'app\sokoflowController@dashboard')->name('app.dashboard');
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
 
-
-   Route::resource('regions', Territory\RegionController::class)->names([
+//      Route::get('/users',App\Http\Controllers\Chat\CreateChat::class)->name('users');
+//      Route::get('/chat{key?}',Main::class)->name('chat');
+      Route::get('/chat/{key?}', function () {
+         return view('livewire.chat.main');
+      })->name('chat');
+      Route::resource('regions', Territory\RegionController::class)->names([
       'index' => 'regions',
       'show' => 'regions.show',
       'edit' => 'regions.edit',

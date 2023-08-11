@@ -39,10 +39,6 @@
                                     @else
                                         <td style="color: #B6121B">Data Unavailable</td>
                                     @endif
-
-
-
-
                                     <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
                                     <td>
                                         <a href="{!! route('inventory.approve', [$requisition->id]) !!}" class="btn btn-sm"
