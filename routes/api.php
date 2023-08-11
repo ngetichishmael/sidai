@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AppsPermissionController;
-use App\Http\Controllers\Api\Chat\ChatController;
+//use App\Http\Controllers\Api\Chat\ChatController;
 use App\Http\Controllers\Api\CompanyRouteController;
 use App\Http\Controllers\Api\CurrentDeviceInformationController;
 use App\Http\Controllers\Api\CustomersProductsController;
@@ -88,7 +88,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::post('checkin/change/distributor/status', 'checkinController@distributorschangeStatus')->middleware('auth:sanctum');
 
     Route::get('checkin/{checkinCode}/cart', ['uses' => 'checkinController@cart', 'as' => 'checkin.cart']);
-    Route::post('checkin/{checkinCode}/order-save', ['uses' => 'checkinController@save_order', 'as' => 'checkin.order.save']);
+    Route::post('checkin/{checkinCode}/order-save', ['uses' => 'checkinController@save_order', 'as' => 'checkin.order.save'])->middleware('auth:sanctum');
     Route::get('checkin/{checkinCode}/cart/{id}/delete', ['uses' => 'checkinController@cart_delete', 'as' => 'checkin.cart.delete']);
 
     Route::get('checkin/{checkinCode}/orders', ['uses' => 'checkinController@orders', 'as' => 'checkin.orders']);
@@ -238,10 +238,10 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::middleware(['auth'])->group(function () {
     });
-    Route::post('socket/connect', [SocketsController::class, 'connect']);
+//    Route::post('socket/connect', [SocketsController::class, 'connect']);
 
-    Route::get('/chats', [ChatController::class, 'index']);
-    Route::patch('/chats/{id}/read', [ChatController::class, 'markAsRead']);
+//    Route::get('/chats', [ChatController::class, 'index']);
+//    Route::patch('/chats/{id}/read', [ChatController::class, 'markAsRead']);
 
     //support
     Route::get('/support/all', 'SupportTicketController@index2')->middleware('auth:sanctum');
@@ -251,4 +251,5 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('/support/{id}', 'SupportTicketController@show')->middleware('auth:sanctum');
 
     Route::get('/get/targets/{type}', [TargetsUIController::class, "getTarget"])->name('getUITargets');
+    Route::get('/testing/notification', [\App\Http\Controllers\Api\checkinController::class, "sendNotification"])->name('testing')->middleware('auth:sanctum');
 });

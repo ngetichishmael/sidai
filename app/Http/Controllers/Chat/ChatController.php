@@ -11,7 +11,6 @@ class ChatController extends Controller
 {
    public function index()
    {
-      dd("nothing");
       $users = User::with('latestMessage')->get();
 
       return view('app/chat/chat-list', compact('users'));

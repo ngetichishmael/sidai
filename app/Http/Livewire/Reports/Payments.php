@@ -3,14 +3,15 @@
 namespace App\Http\Livewire\Reports;
 
 use Carbon\Carbon;
+use App\Models\Area;
 use App\Models\Orders;
 use Livewire\Component;
+use App\Models\customers;
+use App\Models\Subregion;
 use Livewire\WithPagination;
 use App\Exports\PaymentsExport;
-use App\Models\Area;
-use App\Models\Subregion;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Payments extends Component

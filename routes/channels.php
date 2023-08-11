@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -22,4 +23,10 @@ Broadcast::channel("SendMessageEvent", function () {
       "message" => $this->message,
       "time" => $this->time
    ];
+});
+Broadcast::channel('chat.{receiver}',function(User $user, $receiver){
+
+   #check if user is same as receiver
+
+   return (int) $user->id === (int) $receiver;
 });

@@ -15,7 +15,7 @@ class DeliveryExport implements FromView
     public function view(): View
     {
          return view('Exports.delivery', [
-            'deliveries' => Orders::with('User', 'Customer')->where('order_status', 'Delivered')->get()
+            'deliveries' => Orders::with('User', 'Customer')->withCount('OrderItems')->where('order_status', 'Delivered')->get()
          ]);
 
     }

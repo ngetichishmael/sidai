@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Target;
 
 use Carbon\Carbon;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\TargetExport;
 use App\Models\SalesTarget;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
@@ -41,5 +43,9 @@ class Index extends Component
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->get();
       return $result;
+   }
+   public function export()
+   {
+      return Excel::download(new TargetExport, 'Targets.xlsx');
    }
 }

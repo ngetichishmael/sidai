@@ -5,7 +5,11 @@
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
-
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+<script src="{{ asset('js/app.js') }}" defer></script>
+@livewireScripts
 <body class="vertical-layout vertical-menu-modern navbar-floating footer-static" data-open="click"
     data-menu="vertical-menu-modern" data-col="">
     <!-- BEGIN: Header-->
@@ -16,7 +20,6 @@
     <!-- BEGIN: Main Menu-->
     @include('partials.menu')
     <!-- END: Main Menu-->
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -35,6 +38,9 @@
     <div class="drag-target"></div>
 
     @include('partials._javascripts')
+
+    @livewireScripts
+    @stack('scripts')
 </body>
 <!-- END: Body-->
 

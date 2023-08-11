@@ -5,7 +5,7 @@
         <th>Order ID</th>
         <th>Customer Name</th>
         <th>Sales Rep</th>
-        <th>No. of Products</th>
+        <th>Number of Items</th>
         <th>Region</th>
         <th>Sub Region</th>
         <th>Status</th>

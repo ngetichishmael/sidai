@@ -42,6 +42,10 @@ class ordersController extends Controller
     {
         return view('app.orders.pendingorders');
     }
+    public function vansaleorders()
+    {
+        return view('app.orders.vansaleorders');
+    }
 
     public function makeOrder($id)
     {
@@ -63,6 +67,16 @@ class ordersController extends Controller
         $payment = order_payments::where('order_id', $order->order_code)->first();
         // dd($payment);
         return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+    }
+    public function vansaledetails($code)
+    {
+        $order = Orders::where('order_code', $code)->first();
+        $items = Order_items::where('order_code', $order->order_code)->get();
+        $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
+        $id = $Customer_id->customerID;
+        $test = customers::where('id', $id)->first();
+        $payment = order_payments::where('order_id', $order->order_code)->first();
+        return view('app.orders.vansaledetails', compact('order', 'items', 'test', 'payment'));
     }
     public function distributordetails($code)
     {

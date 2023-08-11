@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="description" content="">
     <meta name="keywords" content="">
+   <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="Devint">
 {{--    <title>@yield('title') - Sidai Africa Limited</title>--}}
     <title>Sidai Africa Limited</title>
@@ -13,6 +14,11 @@
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{!! asset('app-assets/vendors/css/vendors.min.css') !!}">
     <!-- END: Vendor CSS-->
+{{--   fonts--}}
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <!-- BEGIN: Theme CSS-->

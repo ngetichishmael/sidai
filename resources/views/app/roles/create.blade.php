@@ -1,10 +1,12 @@
 @extends('layouts.app')
 {{-- page header --}}
 @section('title', 'Create Role')
-{{-- page styles --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
+
+<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome for icons (optional, as you may already have it) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -42,8 +44,8 @@
                         <th>Role name</th>
                         <th>Data Authorized To Access</th>
                         <th>Platform</th>
-                        <th>Created by</th>
-                        <th>Updated by</th>
+{{--                        <th>Created by</th>--}}
+{{--                        <th>Updated by</th>--}}
                         <th>Actions</th>
                      </tr>
                      </thead>
@@ -51,14 +53,38 @@
                      @foreach ($roles as $key => $role)
                         <tr>
                            <td>{{ $role->name }}</td>
-                           <td>{{ $role->display_name}}</td>
-                           <td>{{ $role->access_to}}</td>
-                           <td>{{ $role->checkedPlatforms() }}</td>
-                           <td>{{ $role->CreatedBy->name ?? '' }}</td>
-                           <td>{{ $role->UpdatedBy->name ?? '' }}</td>
-                           <td><button type="button" class="btn btn-sm" data-toggle="modal" style="background-color: #B6121B;color:white" data-target="#editRoleModal">
-                                 Edit Role
-                              </button></td>
+                           <td>{{ $role->description}}</td>
+                           <td>{{ $role->data_access_level}}</td>
+                           <td>
+                              @foreach ($role->permissions as $permission)
+                                 <span style="display: inline-block; padding: 0.1rem 1rem; margin-right: 0.2rem; background-color: #007bff; color: #fff; border-radius: 0.35rem;">{{ ucfirst($permission->name) }}</span>
+                              @endforeach
+                           </td>
+{{--                           <td>{{ $role->CreatedBy->name ?? '' }}</td>--}}
+{{--                           <td>{{ $role->UpdatedBy->name ?? '' }}</td>--}}
+{{--                           <td><button type="button" class="btn btn-sm" data-toggle="modal" style="background-color: #B6121B;color:white" data-target="#editRoleModal">--}}
+{{--                                 Edit Role--}}
+{{--                              </button></td>--}}
+                           <td>
+                              <div class="dropdown" >
+                                 <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                                    <i data-feather="settings"></i>
+                                 </button>
+                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a href="{{ route('roles.show', $role) }}" class="btn btn-sm" style="color: #52b3dc">View</a>
+                                    <br/>
+                                    <a href="{{ route('roles.edit', $role) }}" class="btn btn-sm" style="color: darkseagreen">Edit</a>
+                                    <br/>
+                                    <form action="{{ route('roles.destroy', $role) }}" method="post" class="d-inline">
+
+                                       @csrf
+                                       @method('DELETE')
+                                       <button type="submit" class="btn btn-sm" style="color: #f66962"
+                                               onclick="return confirm('Are you sure you want to delete this role?')">Delete</button>
+                                    </form>
+                                 </div>
+                              </div>
+                           </td>
                         </tr>
                      @endforeach
                      </tbody>
@@ -91,40 +117,60 @@
                          'required' => '',
                      ]) !!}
                   </div>
-                  <div class="form-group form-group-default required mb-1">
-                     {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}
-                     {!! Form::text('description', null, [
-                         'class' => 'form-control',
-                         'placeholder' => 'Enter Role Description',
-                     ]) !!}
-                  </div>
+{{--                  <div class="form-group form-group-default required mb-1">--}}
+{{--                     {!! Form::label('description', 'Description', ['class' => 'control-label']) !!}--}}
+{{--                     {!! Form::text('description', null, [--}}
+{{--                         'class' => 'form-control',--}}
+{{--                         'placeholder' => 'Enter Role Description',--}}
+{{--                     ]) !!}--}}
+{{--                  </div>--}}
                   <div class="form-group form-group-default required mb-1">
                      {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}
                      <br>
-                     @foreach([
-                         'Sales App' => 'Sales App',
-                         'Managers App' => 'Managers App',
-                         'Manager Dashboard' => 'Manager Dashboard',
-                         'Shop Attendee Dashboard' => 'Shop Attendee Dashboard',
-                         'Admin' => 'Admin',
-                     ] as $value => $label)
+                     @foreach($permissions as $id => $label)
                         <div class="form-check form-check-inline mt-0.9">
-                           {!! Form::checkbox('platform[]', $value, null, ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
-                           {!! Form::label('platform_'.$value, $label, ['class' => 'form-check-label']) !!}
+                           {!! Form::checkbox('platform[]', $id, null, ['class' => 'form-check-input', 'id' => 'platform_'.$id]) !!}
+                           {!! Form::label('platform_'.$id, $label, ['class' => 'form-check-label']) !!}
                         </div>
                      @endforeach
                   </div>
+
+                  {{--                  @if (!is_null($permissions) && is_array($permissions))--}}
+{{--                     <div class="form-group form-group-default required mb-1">--}}
+{{--                        {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}--}}
+{{--                        <br>--}}
+{{--                        @foreach($permissions as $permission)--}}
+{{--                           <div class="form-check form-check-inline mt-0.9">--}}
+{{--                              {!! Form::checkbox('platform[]', $permission['id'], null, ['class' => 'form-check-input', 'id' => 'platform_'.$permission['id']]) !!}--}}
+{{--                              {!! Form::label('platform_'.$permission['id'], $permission['label'], ['class' => 'form-check-label']) !!}--}}
+{{--                           </div>--}}
+{{--                        @endforeach--}}
+{{--                     </div>--}}
+{{--                  @else--}}
+{{--                     <p>No permissions found.</p>--}}
+{{--                  @endif--}}
+
+                  {{--                  <div class="form-group form-group-default required mb-1">--}}
+{{--                     {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}--}}
+{{--                     <br>--}}
+{{--                     @foreach($permissions as $permission)--}}
+{{--                        <div class="form-check form-check-inline mt-0.9">--}}
+{{--                           {!! Form::checkbox('platform[]', $permission['id'], null, ['class' => 'form-check-input', 'id' => 'platform_'.$permission['id']]) !!}--}}
+{{--                           {!! Form::label('platform_'.$permission['id'], $permission['label'], ['class' => 'form-check-label']) !!}--}}
+{{--                        </div>--}}
+{{--                     @endforeach--}}
+{{--                  </div>--}}
                   <div class="form-group form-group-default required mb-1">
-                     {!! Form::label('data_type', 'Type of data', ['class' => 'control-label']) !!}
-                     {!! Form::select('data_type', [
+                     {!! Form::label('data_access_level', 'Data Access Level', ['class' => 'control-label']) !!}
+                     {!! Form::select('data_access_level', [
                          'all' => 'All regions',
-                         'region' => 'Regional Data',
-                         'subregion' => 'Subregional ',
+                         'regional' => 'Regional Data',
+                         'subregional' => 'Subregional ',
                          'route' => 'Routes Data',
                      ], null, [
                          'class' => 'form-control',
                          'required' => 'required',
-                         'id' => 'data_type_select'
+                         'id' => 'data_access_level_select'
                      ]) !!}
                   </div>
                   <div class="mt-4 form-group">
@@ -170,30 +216,28 @@
                   {!! Form::label('description', 'Description') !!}
                   {!! Form::text('description', $role->description, ['class' => 'form-control', 'placeholder' => 'Enter Description']) !!}
                </div>
-               <div class="form-group">
-                  {!! Form::label('platform', 'Platform') !!}
+               <div class="form-group form-group-default required mb-1">
+                  {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}
                   <br>
-                  @foreach([
-                      'Sales App' => 'Sales App',
-                      'Managers App' => 'Managers App',
-                      'Manager Dashboard' => 'Manager Dashboard',
-                      'Shop Attendee Dashboard' => 'Shop Attendee Dashboard',
-                      'Admin' => 'Admin',
-                  ] as $value => $label)
-                     <div class="form-check">
-                        {!! Form::checkbox('platform[]', $value, in_array($value, (array)$role->platform), ['class' => 'form-check-input', 'id' => 'platform_'.$value]) !!}
-                        {!! Form::label('platform_'.$value, $label, ['class' => 'form-check-label']) !!}
+                  @foreach($permissions as $id => $label)
+                     <div class="form-check form-check-inline mt-0.9">
+                        {!! Form::checkbox('platform[]', $id, null, ['class' => 'form-check-input', 'id' => 'platform_'.$id]) !!}
+                        {!! Form::label('platform_'.$id, $label, ['class' => 'form-check-label']) !!}
                      </div>
                   @endforeach
                </div>
-               <div class="form-group">
-                  {!! Form::label('data_type', 'Type of data') !!}
-                  {!! Form::select('data_type', [
+               <div class="form-group form-group-default required mb-1">
+                  {!! Form::label('data_access_level', 'Data Access Level', ['class' => 'control-label']) !!}
+                  {!! Form::select('data_access_level', [
                       'all' => 'All regions',
-                      'region' => 'Regional Data',
-                      'subregion' => 'Subregional ',
+                      'regional' => 'Regional Data',
+                      'subregional' => 'Subregional ',
                       'route' => 'Routes Data',
-                  ], $role->data_type, ['class' => 'form-control']) !!}
+                  ], null, [
+                      'class' => 'form-control',
+                      'required' => 'required',
+                      'id' => 'data_access_level_select'
+                  ]) !!}
                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

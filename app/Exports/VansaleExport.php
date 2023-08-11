@@ -15,7 +15,7 @@ class VansaleExport implements FromView
     public function view(): View
     {
          return view('Exports.vansales', [
-            'vansales' => Orders::with('User', 'Customer')->where('order_type', 'Van sales')->get()
+            'vansales' => Orders::with('User', 'Customer')->withCount('OrderItems')->where('order_type', 'Van sales')->get()
          ]);
 
     }

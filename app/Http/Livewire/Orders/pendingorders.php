@@ -38,7 +38,7 @@ class pendingorders extends Component
       $sidai=suppliers::where('name', 'Sidai')->first();
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
-         ->when($this->user->account_type === "RSM",function($query){
+         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customerID', $this->filter());
          })
          ->where(function ($query) use ($sidai) {
@@ -67,6 +67,7 @@ class pendingorders extends Component
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
+         
 
       return view('livewire.orders.pendingorders', compact('pendingorders'));
    }
@@ -76,7 +77,7 @@ class pendingorders extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM') {
+      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
          return $array;
       }
       $regions = Region::where('id', $user_code)->pluck('id');

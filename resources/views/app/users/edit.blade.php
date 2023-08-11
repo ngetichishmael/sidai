@@ -15,9 +15,9 @@
                     <h2 class="mb-0 content-header-title float-start">Users </h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Users</a></li>
-                            <li class="breadcrumb-item active">Edit</li>
+                            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ url()->previous() }}">Users</a></li>
+                            <li class="breadcrumb-item active" >Edit</li>
                         </ol>
                     </div>
                 </div>
@@ -65,16 +65,15 @@
                                             </div>
                                             <div class="mb-2 col-md-6 col-12 ">
                                                 <div class="form-group">
-                                                    <label for="select-country">Current Type:
+                                                    <label for="select-country">Current User Role:
                                                         {{ $edit->account_type }}</label>
                                                     <select class="form-control select2" id="select-country"
                                                         name="account_type" required>
-                                                       <option value="">Select Category</option>
-                                                       <option value="NSM">National Sales Manager</option>
-                                                       <option value="RSM">Regional Sales Manager</option>
-                                                       <option value="TSR">Technical Sales Representative</option>
-                                                       <option value="Shop-Attendee">Shop Attendee</option>
-                                                       <option value="TD">Trade Developer</option>
+                                                       <option value="{{ $edit->account_type }}" selected>{{ $edit->account_type }}</option>
+                                                       @foreach ($roles as $value)
+                                                          <option value="{{ $value->name }}">{{ $value->name }}-{{ $value->description }}
+                                                          </option>
+                                                       @endforeach
                                                     </select>
                                                 </div>
                                             </div>
@@ -84,7 +83,7 @@
                                                         {{ $edit->status }}</label>
                                                     <select class="form-control select2" id="select-action" name="status"
                                                         required>
-                                                        <option value="">Select Action</option>
+                                                        <option value="{{ $edit->status }}"> {{ $edit->status }}</option>
                                                         <option value="Active">Active</option>
                                                         <option value="Suspend">Suspend</option>
                                                     </select>
@@ -92,10 +91,10 @@
                                             </div>
                                             <div class="col-md-6 col-12">
                                                 <div class="form-group">
-                                                    <label for="select-country">Region</label>
+                                                    <label for="select-country">Current User Region: {{$user_region->name ?? ''}} </label>
                                                     <select class="form-control select2" id="select-country" name="region"
                                                         required>
-                                                        <option value="">Region</option>
+                                                       <option value="{{$user_region->id ?? ''}}" selected>{{$user_region->name ?? ''}}</option>
                                                         @foreach ($regions as $value)
                                                             <option value="{{ $value->id }}">{{ $value->name }}
                                                             </option>
@@ -103,6 +102,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                           <input type="hidden" name="initial_role" value="{{$edit->account_type}}">
                                         </div>
                                     </div>
                                 </div>
@@ -191,13 +191,15 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="mt-2 col-12 d-flex flex-sm-row flex-column" style="gap: 20px;">
-                                            <button type="submit"
-                                                class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1">Update</button>
-                                            <a href="{{ route('users.index') }}" type="reset"
-                                                class="btn btn-outline-secondary">Cancel</a>
-                                        </div>
                                     </div>
+                                   <div class="row mt-1">
+                                      <div class="col-8"></div>
+                                      <div class="col-4 d-flex justify-content-end">
+                                         <button type="submit" class="mb-1 mr-1 btn btn-primary"> Update </button>&nbsp;&nbsp;
+                                         <a href="{{ url()->previous() }}" type="reset" class="mb-1 mr-1 btn btn-outline-secondary"> Cancel </a>
+                                      </div>
+                                   </div>
+
                                 </form>
                                 <!-- users edit account form ends -->
                             </div>
