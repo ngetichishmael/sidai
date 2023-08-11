@@ -2,14 +2,14 @@
 
 namespace App\Mail;
 
+use App\Models\crm\emails;
+use App\Models\wingu\business;
+use Auth;
+use Finance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\wingu\business;
-use App\Models\crm\emails;
 use Wingu;
-use Finance;
-use Auth;
 
 class sendPayment extends Mailable
 {

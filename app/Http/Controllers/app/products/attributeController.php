@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\app\finance\products;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\finance\products\attributes;
+use Auth;
+use Illuminate\Http\Request;
 use Limitless;
 use Session;
-use Auth;
 
 
 class attributeController extends Controller

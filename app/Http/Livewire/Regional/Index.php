@@ -9,7 +9,6 @@ use App\Models\Delivery;
 use App\Models\Orders;
 use App\Models\Region;
 use App\Models\Subregion;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;

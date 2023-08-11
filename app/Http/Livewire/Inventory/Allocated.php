@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Inventory;
 
 use App\Models\inventory\allocations;
-use Livewire\Component;
 use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Allocated extends Component

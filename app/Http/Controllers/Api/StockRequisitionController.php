@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
-use App\Imports\products;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;

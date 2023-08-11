@@ -2,10 +2,6 @@
 
 namespace App\Http\Livewire\Reports;
 
-use Carbon\Carbon;
-use Livewire\Component;
-use App\Models\warehousing;
-use Livewire\WithPagination;
 use App\Exports\WarehouseExport;
 use App\Models\Area;
 use App\Models\customer\customers;
@@ -13,7 +9,11 @@ use App\Models\Order_items;
 use App\Models\Orders;
 use App\Models\products\product_information;
 use App\Models\Subregion;
+use App\Models\warehousing;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Warehouse extends Component

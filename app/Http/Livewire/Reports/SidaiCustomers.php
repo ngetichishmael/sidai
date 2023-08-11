@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Reports;
 
+use App\Exports\CustomersExport;
+use App\Models\customers;
 use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\customers;
 use Livewire\WithPagination;
-use App\Exports\CustomersExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SidaiCustomers extends Component

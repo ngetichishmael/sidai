@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\app\customer;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class checkinController extends Controller
 {

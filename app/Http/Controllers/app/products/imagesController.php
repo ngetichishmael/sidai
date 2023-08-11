@@ -3,14 +3,14 @@ namespace App\Http\Controllers\app\products;
 
 use App\Helpers\Helper as HelpersHelper;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\file_manager;
 use App\Models\products\product_information;
 use File;
-use Wingu;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File as FacadesFile;
 use Illuminate\Support\Facades\Session;
+use Wingu;
 
 class imagesController extends Controller{
 
@@ -49,7 +49,7 @@ class imagesController extends Controller{
       //save the image details into the database
       $image = new file_manager;
       $image->fileID     = $request->productID;
-      $image->file_name  = $filename; 
+      $image->file_name  = $filename;
       $image->businessID = Auth::user()->businessID;
       $image->file_size  = $size;
       $image->folder 	 = 'Finance';
@@ -95,7 +95,7 @@ class imagesController extends Controller{
                   ->update(['cover' => 0]);
 
       $cover = file_manager::where('id',$id)->where('section','products')->where('fileID', $request->product_id)->first();
-      $cover->cover = 1; 
+      $cover->cover = 1;
       $cover->save();
 
       Session::flash('Success', 'Cover Images has been selected !');
@@ -108,7 +108,7 @@ class imagesController extends Controller{
     *
     * @param  int  $id
     * @return \Illuminate\Http\Response
-    */ 
+    */
 
    public function destroy($id)
    {

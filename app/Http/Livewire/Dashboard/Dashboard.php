@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Models\customers;
 use App\Models\customer\checkin;
+use App\Models\customers;
 use App\Models\Delivery;
-use App\Models\Orders;
 use App\Models\order_payments as OrderPayment;
+use App\Models\Orders;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Carbon\Carbon;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\app\customer;
 
-use Illuminate\Http\Request;
 use App\Exports\customers as export;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel as ExcelData;
 
 class importController extends Controller

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Target;
 
 use App\Models\SalesTarget;
-use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
 

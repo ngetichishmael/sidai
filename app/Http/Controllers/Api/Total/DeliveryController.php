@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Api\Total;
 
-use App\Models\Cart;
-use App\Models\Orders;
-use App\Models\Delivery;
-use App\Models\Order_items;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\Delivery_items;
-use App\Models\inventory\items;
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
+use App\Models\Delivery;
+use App\Models\Delivery_items;
 use App\Models\inventory\allocations;
-use App\Models\products\product_price;
-
-use Illuminate\Support\Facades\Validator;
+use App\Models\inventory\items;
+use App\Models\Order_items;
+use App\Models\Orders;
 use App\Models\products\product_inventory;
+use App\Models\products\product_price;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class DeliveryController extends Controller
 {

@@ -3,8 +3,8 @@
 namespace App\Exports;
 
 use App\Models\Orders;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromView;
 
 class PaymentsExport implements FromView

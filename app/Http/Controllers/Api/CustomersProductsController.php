@@ -7,7 +7,6 @@ use App\Models\products\product_information;
 use App\Models\products\product_price;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class CustomersProductsController extends Controller

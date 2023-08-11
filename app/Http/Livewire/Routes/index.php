@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Routes;
 
-use Livewire\Component;
-use App\Models\customer\customers;
-use Livewire\WithPagination;
 use App\Models\Routes;
 use Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
+
 class Index extends Component
 {
    use WithPagination;
@@ -16,7 +16,7 @@ class Index extends Component
    public function render()
    {
       $routes = Routes::with("user")->where('Type','Assigned')->paginate($this->perPage);
-      
+
 
       return view('livewire.routes.index', compact('routes'));
    }

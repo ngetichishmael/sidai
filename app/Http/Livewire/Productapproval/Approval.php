@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Livewire\Productapproval;
-use App\Models\User;
+use App\Models\products\product_information;
 use App\Models\Region;
+use App\Models\RequisitionProduct;
+use App\Models\StockRequisition;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\StockRequisition;
-use App\Models\RequisitionProduct;
-use Illuminate\Support\Facades\Auth;
-use App\Models\products\product_information;
 
 class Approval extends Component
 {

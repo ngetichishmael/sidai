@@ -2,12 +2,12 @@
 
 namespace App\Http\Livewire\Delivery;
 
-use App\Models\Region;
-use Livewire\Component;
-use App\Models\Delivery;
 use App\Models\customers;
-use Livewire\WithPagination;
+use App\Models\Delivery;
+use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class index extends Component
 {

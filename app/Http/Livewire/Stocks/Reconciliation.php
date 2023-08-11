@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Stocks;
 
-use Livewire\Component;
 use App\Models\warehousing;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Reconciliation extends Component
@@ -19,8 +19,8 @@ class Reconciliation extends Component
         $searchTerm = '%' . $this->search . '%';
       $warehouses = warehousing::with('manager', 'region', 'subregion','ReconciledProducts')
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
-         
-         
+
+
         return view('livewire.stocks.reconciliation',['warehouses' => $warehouses]);
     }
 }

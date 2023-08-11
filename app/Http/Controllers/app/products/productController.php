@@ -17,7 +17,6 @@ use App\Models\RequisitionProduct;
 use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\suppliers;
 use App\Models\tax;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -373,7 +372,7 @@ class productController extends Controller
       $prices->selling_price = $request->selling_price;
       $prices->business_code = Auth::user()->business_code;
       $prices->save();
-   
+
 
       session()->flash('success', 'Prices successfully Updated!');
       $random=Str::random(20);
@@ -387,7 +386,7 @@ class productController extends Controller
       $activityLog->ip_address = $request->ip();
       $activityLog->save();
 
-      
+
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
    }
 

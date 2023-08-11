@@ -5,8 +5,8 @@ namespace App\Http\Livewire\Users;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Livewire\WithPagination;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class rsm extends Component
 {

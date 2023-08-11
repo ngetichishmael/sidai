@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\products\product_information;
 use App\Models\products\ProductSku;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\products\product_information;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class warehousing extends Model
 {

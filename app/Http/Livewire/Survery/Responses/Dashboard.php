@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Survery\Responses;
 
 use App\Exports\ResponsesExport;
 use App\Models\SurveyResponses;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;

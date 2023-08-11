@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\products\product_information;
 use App\Models\products\category;
-use Illuminate\Http\Request;
+use App\Models\products\product_information;
 
 /**
  * @group Product categories
