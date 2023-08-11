@@ -256,8 +256,14 @@
            @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
 {{--              <li class="nav-item {!! request()->routeIs('chats.index') ? 'active' : '' !!}">--}}
 {{--                 <a class="d-flex align-items-center" href="{{ route('chats.index') }}">--}}
-              <li class="nav-item {!! Nav::isResource('support') !!}">
-                 <a class="d-flex align-items-center" href="{!! route('support.index') !!}">
+{{--              <li class="nav-item {!! Nav::isResource('support') !!}">--}}
+{{--                 <a class="d-flex align-items-center" href="{!! route('support.index') !!}">--}}
+{{--                    <i data-feather="message-circle"></i>--}}
+{{--                    <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>--}}
+{{--                 </a>--}}
+{{--              </li>--}}
+           <li class="nav-item {!! Nav::isResource('chat') !!}">
+                 <a class="d-flex align-items-center" href="{{url('chatify')}}" >
                     <i data-feather="message-circle"></i>
                     <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>
                  </a>

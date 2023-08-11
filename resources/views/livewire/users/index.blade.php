@@ -78,11 +78,11 @@
                                     @if ($user->status === 'Active')
                                         <a wire:click.prevent="deactivate({{ $user->id }})"
                                             onclick="confirm('Are you sure you want to DEACTIVATE this user?')||event.stopImmediatePropagation()"
-                                            type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f;font-weight: bold" >&nbsp;Suspend</a>
+                                            type="button" class="dropdown-item btn btn-sm me-2 redorange-color"  >&nbsp;Suspend</a>
                                     @else
                                         <a wire:click.prevent="activate({{ $user->id }})"
                                             onclick="confirm('Are you sure you want to ACTIVATE this user?')||event.stopImmediatePropagation()"
-                                            type="button" class="dropdown-item btn btn-sm me-2" style="color:  #54a149; font-weight: bold">&nbsp;Activate </a>
+                                            type="button" class="dropdown-item btn btn-sm me-2 green-color " >&nbsp;Activate </a>
                                     @endif
                                       </div>
                                    </div>
