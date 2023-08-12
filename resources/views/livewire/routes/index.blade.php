@@ -20,8 +20,8 @@
                 <thead>
                     <tr>
                         <th width="1%">#</th>
-                        <th>Route Name</th>
                         <th>Sales Person</th>
+                        <th>Route Name</th>
                         <th>Status</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -32,8 +32,8 @@
                     @foreach ($routes as $count => $route)
                         <tr>
                             <td>{!! $count + 1 !!}</td>
-                            <td>{!! $route->name !!}</td>
                             <td>{!! $route->user->name ?? "" !!}</td>
+                            <td>{!! $route->name !!}</td>
                             <td>{!! $route->status !!}</td>
                             <td>{!! $route->start_date !!}</td>
                             <td>{!! $route->end_date !!}</td>

@@ -45,7 +45,6 @@
                         <th>Region</th>
                         <th>Subregion</th>
                         <th>Town</th>
-                        <th>Customer Type</th>
                         <th>Created By</th>
                         <th>Created Date</th>
                         <th width="15%">Action</th>
@@ -64,7 +63,7 @@
                             <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
                             {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
                             <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
-                            <td>{!! $contact->customer_type !!}</td>
+                            
                             <td>
                                 {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
