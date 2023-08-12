@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Api\Manager;
 
-use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
-use App\Models\inventory\items;
-use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Illuminate\Http\Request;

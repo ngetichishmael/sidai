@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Imports\customers;
 use App\Models\Area;
 use App\Models\customers as ModelsCustomers;
 use App\Models\Delivery;

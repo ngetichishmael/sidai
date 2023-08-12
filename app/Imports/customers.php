@@ -3,14 +3,14 @@
 namespace App\Imports;
 
 use App\Models\Area;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\customer\customers as customer;
 use App\Models\Region;
 use App\Models\Subregion;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class customers implements ToCollection, WithHeadingRow
 {

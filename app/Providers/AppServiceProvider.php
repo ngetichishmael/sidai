@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Providers;
-use App\Models\laratrust\Role_user;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Builder;

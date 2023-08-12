@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\products\product_information;
 use App\Models\Region;
-use App\Models\Subregion;
-use App\Models\UnitRoute;
 use App\Models\warehousing;
-use App\Models\zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

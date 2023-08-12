@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\visitschedule as ModelsVisitschedule;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class VisitScheduleController extends Controller

@@ -4,18 +4,17 @@ namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
+use App\Models\AppPermission;
 use App\Models\Area;
 use App\Models\laratrust\Role_user;
+use App\Models\Region;
 use App\Models\Role;
 use App\Models\Subregion;
 use App\Models\suppliers\suppliers;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Models\AppPermission;
-use App\Models\Region;
-use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class usersController extends Controller

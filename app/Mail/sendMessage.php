@@ -2,13 +2,13 @@
 
 namespace App\Mail;
 
+use App\Models\wingu\business;
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\wingu\business;
 use Wingu;
-use Auth;
+
 class sendMessage extends Mailable
 {
    use Queueable, SerializesModels;
@@ -38,7 +38,7 @@ class sendMessage extends Mailable
       $business = Wingu::business();
       $from = $business->primary_email;
       $name = $business->name;
-            
+
       return $this->view('email.template01', compact('content','business'))->from($from, $name)->subject($subject);
    }
 }

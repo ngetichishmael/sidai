@@ -2,15 +2,15 @@
 
 namespace App\Http\Livewire\Regionselect;
 
-use Livewire\Component;
 use App\Models\Region;
 use App\Models\Subregion;
+use Livewire\Component;
 
 class Dynamicselect extends Component
 {
     public $region_id;
     public $subregion_id;
- 
+
     public function render()
     {
        $regions = Region::all();

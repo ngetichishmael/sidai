@@ -2,12 +2,8 @@
 
 namespace App\Http\Livewire\Productapproval;
 
-use App\Models\activity_log;
-use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
-use App\Models\status;
-use App\Models\StockRequisition;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Livewire\Component;

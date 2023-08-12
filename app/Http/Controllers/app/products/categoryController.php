@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers\app\products;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\products\category;
-use Session;
-use Helper;
-use Input;
-use File;
 use Auth;
+use File;
+use Helper;
+use Illuminate\Http\Request;
+use Input;
+use Session;
 use Wingu;
 
 class categoryController extends Controller{

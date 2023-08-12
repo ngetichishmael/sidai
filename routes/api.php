@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\AppsPermissionController;
-//use App\Http\Controllers\Api\Chat\ChatController;
 use App\Http\Controllers\Api\CompanyRouteController;
 use App\Http\Controllers\Api\CurrentDeviceInformationController;
 use App\Http\Controllers\Api\CustomersProductsController;
@@ -19,8 +18,9 @@ use App\Http\Controllers\Api\surveyController;
 use App\Http\Controllers\Api\TargetsController;
 use App\Http\Controllers\Api\TargetsUIController;
 use App\Http\Controllers\Api\WarehouseController;
-use App\Http\Controllers\Chat\SocketsController;
 use Illuminate\Support\Facades\Route;
+
+//use App\Http\Controllers\Api\Chat\ChatController;
 
 /*
 |--------------------------------------------------------------------------

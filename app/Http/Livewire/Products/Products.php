@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\Products;
 
 use App\Models\products\product_information;
-use Livewire\Component;
-// use Illuminate\Support\Facades\Auth as FacadesAuth;
-use Livewire\WithPagination;
 use Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+// use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class Products extends Component
 {

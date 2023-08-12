@@ -4,15 +4,15 @@ namespace App\Http\Controllers\app\survey;
 
 use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\survey\survey;
-use App\Models\survey_questions_options as Options;
+use App\Models\survey\answers;
 use App\Models\survey\question_type;
 use App\Models\survey\questions;
-use App\Models\survey\answers;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth ;
+use App\Models\survey\survey;
+use App\Models\survey_questions_options as Options;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class questionsController extends Controller
 {
@@ -75,7 +75,7 @@ class questionsController extends Controller
       //    $file->move($destinationPath, $fileName);
       //    $question->image = $fileName;
       // }
-      
+
       $optionsRandom=Str::random(10);
       $question->survey_code = $id;
       $question->question_code = Helper::generateRandomString(12);
@@ -180,7 +180,7 @@ class questionsController extends Controller
          // SET UPLOAD PATH
          $destinationPath = base_path().'/public/trivia/questions/';
          // GET THE FILE EXTENSION
-         $extension = $file->getClientOriginalExtension(); 
+         $extension = $file->getClientOriginalExtension();
 
          // RENAME THE UPLOAD WITH RANDOM NUMBER
          $fileName = Str::random(10). '.' . $extension;
@@ -210,7 +210,7 @@ class questionsController extends Controller
       $answers->survey_code = $triviaID;
       $answers->questionID = $questionID;
       if($request->type == 1){
-         //Options for Question Types 
+         //Options for Question Types
          $options->options_a = $request->option_a;
          $options->options_b = $request->option_b;
          $options->options_c = $request->option_c;

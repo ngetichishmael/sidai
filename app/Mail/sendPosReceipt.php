@@ -1,12 +1,13 @@
 <?php
 namespace App\Mail;
-use App\Models\finance\invoice\invoice_products;
 use App\Models\finance\customer\customers;
+use App\Models\finance\invoice\invoice_products;
 use App\Models\finance\invoice\invoices;
-use Illuminate\Queue\SerializesModels;
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Auth;
+use Illuminate\Queue\SerializesModels;
+
 class sendPosReceipt extends Mailable
 {
    use Queueable, SerializesModels;
@@ -51,7 +52,7 @@ class sendPosReceipt extends Mailable
 
       $from = $invoice->primary_email;
       $name = $invoice->businessName;
-      
+
       return $this->view('email.pos_receipt', compact('invoice','products','client'))->from($from, $name)->subject($subject);
    }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Livewire\Creditors;
 
-use App\Models\User;
-use App\Models\Region;
-use Livewire\Component;
-use App\Models\customers;
-use Livewire\WithPagination;
-use App\Models\customer_group;
-use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\customers as ExportsCustomers;
+use App\Models\customer_group;
+use App\Models\customers;
+use App\Models\Region;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Approve extends Component
 {
@@ -21,7 +21,7 @@ class Approve extends Component
    public $perPage = 10;
    public ?string $search = null;
    public ?string $regional = null;
-   
+
    public $user;
 
    public function __construct()

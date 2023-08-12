@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Orders;
 
+use App\Exports\OrdersExport;
+use App\Models\customers;
 use App\Models\Orders;
 use App\Models\Region;
-use Livewire\Component;
-use App\Models\customers;
-use Livewire\WithPagination;
-use App\Exports\OrdersExport;
 use App\Models\suppliers\suppliers;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class pendingorders extends Component
@@ -67,7 +67,7 @@ class pendingorders extends Component
          })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
-         
+
 
       return view('livewire.orders.pendingorders', compact('pendingorders'));
    }

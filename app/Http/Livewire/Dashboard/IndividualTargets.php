@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Charts\SalesTargetChart;
-use App\Models\SalesTarget;
 use Livewire\Component;
 
 class IndividualTargets extends Component

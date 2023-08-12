@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Orders;
-use App\Models\Delivery;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\Delivery_items;
-use App\Models\inventory\items;
-use App\Models\customer\customers;
 use App\Http\Controllers\Controller;
+use App\Models\customer\customers;
+use App\Models\Delivery;
+use App\Models\Delivery_items;
 use App\Models\inventory\allocations;
+use App\Models\inventory\items;
+use App\Models\Orders;
 use App\Models\products\product_inventory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @group Deliveries
