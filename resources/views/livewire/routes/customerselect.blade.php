@@ -2,7 +2,7 @@
     <div class="col-md-12 col-12">
         <div class="form-group">
     <label for="region_id">Route:</label>
-    <select wire:model="route_id" id="route_id" class="form-control"
+    <select wire:model="route_id" id="route_id" class="form-control select2"
             name="name" required>
        <option value="">Select a route</option>
        @foreach($routes as $route)

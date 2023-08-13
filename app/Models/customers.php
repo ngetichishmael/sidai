@@ -80,4 +80,8 @@ class customers extends Model
    {
       return $this->belongsTo(Area::class, 'route_code', 'id');
    }
+   public function Wallet(): HasOne
+    {
+        return $this->hasOne(EWallet::class, 'customer_id', 'id');
+    }
 }

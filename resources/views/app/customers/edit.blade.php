@@ -68,7 +68,7 @@
 
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->group_name }}"
-                                                @if ($group->group_name == $customer->group_name) selected @endif>
+                                                @if ($group->group_name == $customer->customer_group) selected @endif>
                                                 {{ $group->group_name }}
                                             </option>
                                         @endforeach

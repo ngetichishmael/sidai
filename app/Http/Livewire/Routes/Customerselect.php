@@ -18,10 +18,11 @@ class Customerselect extends Component
             'routes' => $routes,
             'customers' => $this->customer()
          ]);
+         
     }
     public function customer()
     {
-        $customers = customers::where('route', $this->route_id)->get();
+        $customers = customers::where('route_code', $this->route_id)->get();
         $this->customer_count = count($customers);
         return $customers;
     }
