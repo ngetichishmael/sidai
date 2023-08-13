@@ -67,7 +67,7 @@
                                         </div>
                                     </div> &nbsp;&nbsp;
                                     <div class="media-body my-auto pl-3 ml-3">
-                                        <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
+                                        <h4 class="font-weight-bold ml-2" style="font-weight: bolder">
                                             &nbsp; {{ number_format($Cash) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
                                             style="color: rgba(71,75,79,0.76)"> Cash </p>
@@ -86,7 +86,7 @@
                                         </div>
                                     </div> &nbsp;&nbsp;
                                     <div class="media-body my-auto pl-3 ml-3">
-                                        <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
+                                        <h4 class="font-weight-bold ml-2" style="font-weight: bolder">
                                             &nbsp; {{ number_format($Mpesa) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
                                             style="color: rgba(71,75,79,0.76)"> Mpesa </p>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div> &nbsp;&nbsp;
                                     <div class="media-body my-auto pl-3 ml-3">
-                                        <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
+                                        <h4 class="font-weight-bold ml-2" style="font-weight: bolder">
                                             &nbsp; {{ number_format($Cheque) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
                                             style="color: rgba(71,75,79,0.76)"> Cheque </p>
@@ -126,7 +126,7 @@
                                         </div>
                                     </div> &nbsp;&nbsp;
                                     <div class="media-body my-auto pl-3 ml-3">
-                                        <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
+                                        <h4 class="font-weight-bold ml-2" style="font-weight: bolder">
                                             &nbsp; {{ number_format($total) }}</h4>
                                         <p class="card-text font-small-3 mb-0 font-medium-1"
                                             style="color: rgba(71,75,79,0.76)"> Bank </p>
@@ -230,21 +230,21 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">
-                            <a href="#systemUsers" class="d-flex align-items-center">
-                                <div class="avatar bg-light-primary">
-                                    <div class="avatar-content">
-                                        <span class="material-symbols-outlined">people</span>
-                                    </div>
-                                </div> &nbsp;&nbsp;
-                                <div class="media-body my-auto pl-3 ml-3">
-                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">
-                                        {{ number_format($activeAll) }}</h4>
-                                    <p class="card-text font-small-3 mb-0 font-medium-1"
-                                        style="color: rgba(71,75,79,0.76)">Users</p>
-                                </div>
-                            </a>
-                        </div>
+{{--                        <div class="col-xl-2 col-sm-4 col-12 mb-2 mb-xl-0">--}}
+{{--                            <a href="#systemUsers" class="d-flex align-items-center">--}}
+{{--                                <div class="avatar bg-light-primary">--}}
+{{--                                    <div class="avatar-content">--}}
+{{--                                        <span class="material-symbols-outlined">people</span>--}}
+{{--                                    </div>--}}
+{{--                                </div> &nbsp;&nbsp;--}}
+{{--                                <div class="media-body my-auto pl-3 ml-3">--}}
+{{--                                    <h4 class="font-weight-bolder ml-2" style="font-weight: bolder">--}}
+{{--                                        {{ number_format($activeAll) }}</h4>--}}
+{{--                                    <p class="card-text font-small-3 mb-0 font-medium-1"--}}
+{{--                                        style="color: rgba(71,75,79,0.76)">Users</p>--}}
+{{--                                </div>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
 
                     </div>
                 </div>

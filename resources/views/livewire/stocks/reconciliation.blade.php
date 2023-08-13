@@ -38,12 +38,12 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $warehouse->name??'' }}</td>
                                 <td>{{ $warehouse->region->name??'' }}</td>
-                                <td><a href="{{ URL('products/reconciled/' . $warehouse->warehouse_code) }}" class="btn btn-sm" style="color: white;background-color:rgb(194, 51, 51)">View</a></td>
+                                <td><a href="{{ URL('salesperson/reconciled/' . $warehouse->warehouse_code) }}" class="btn btn-sm" style="color: white;background-color:rgb(194, 51, 51)">View</a></td>
                             </tr>
-                                
+
                             @endforeach
-                           
-                           
+
+
                         </tbody>
                     </table>
                 </div>

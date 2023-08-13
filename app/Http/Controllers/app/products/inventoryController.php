@@ -55,12 +55,31 @@ class inventoryController extends Controller{
 
       return view('app.stocks.reconciliation');
    }
-   public function reconciled($warehouse_code)
+   public function salesperson($warehouse_code)
+   {
+//      $sales = DB::table('reconciled_products')
+//      ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
+//      ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
+//      ->where('reconciled_products.warehouse_code', $warehouse_code)
+//      ->select('product_information.product_name as name',
+//          'reconciled_products.amount as amount','users.name as user','reconciled_products.updated_at as date')
+//      ->get();
+      $sales = DB::table('reconciled_products')
+         ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
+         ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
+         ->where('reconciled_products.warehouse_code', $warehouse_code)
+         ->select('users.name as user','reconciled_products.created_at as date', DB::raw('SUM(reconciled_products.amount) as total_amount', ))
+         ->groupBy('users.name')
+         ->get();
+
+      return view('app.items.salespersons', ['sales' => $sales, 'warehouse'=>$warehouse_code]);
+   }
+   public function reconciled($reconciliation_id)
    {
       $reconciled = DB::table('reconciled_products')
       ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
       ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
-      ->where('reconciled_products.warehouse_code', $warehouse_code)
+      ->where('reconciled_products.id', $reconciliation_id)
       ->select('product_information.product_name as name',
           'reconciled_products.amount as amount','users.name as user','reconciled_products.updated_at as date')
       ->get();
