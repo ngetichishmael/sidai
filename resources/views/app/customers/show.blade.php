@@ -7,7 +7,10 @@
 {{-- content section --}}
 @section('content')
     <!-- begin breadcrumb -->
-    <div class="mb-2 row">
+    @livewire('customers.view', [
+        'customer_id' => $id,
+    ])
+    {{-- <div class="mb-2 row">
         <div class="col-md-8">
             <h2 class="page-header"><i data-feather="users"></i>Customers | Details </h2>
         </div>
@@ -65,7 +68,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
-                                        <h4>Starus:</h4>
+                                        <h4>Status:</h4>
                                         <p style="color:black">{{ $customer->status ?? 'N/A' }}</p>
                                     </div>
                                 </div>
@@ -98,7 +101,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Basic Floating Label Form section end -->
 @endsection
 {{-- page scripts --}}
