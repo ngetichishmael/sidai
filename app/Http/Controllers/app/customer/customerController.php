@@ -249,9 +249,9 @@ class customerController extends Controller
    public function edit($id)
    {
 
-      $regions = Region::all();
-      $subregions = Subregion::all();
-      $areas = Area::all();
+      // $regions = Region::all();
+      // $subregions = Subregion::all();
+      // $areas = Area::all();
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
@@ -265,7 +265,7 @@ class customerController extends Controller
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
-         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'prices')
+         compact('customer', 'country', 'groups', 'prices')
       );
    }
    public function editcreditor($id)
@@ -306,8 +306,8 @@ $region=
       $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
       $customer->route = $request->route ?? $customer->route;
-      $customer->route_code = $request->territory ?? $customer->territory;
-      $customer->zone_id = $request->territory ?? $customer->territory;
+      $customer->route_code = $request->route ?? $customer->territory;
+      $customer->zone_id = $request->region ?? $customer->territory;
       $customer->branch = $request->branch ?? $customer->branch;
       $customer->email = $request->email ?? $customer->email;
       $customer->phone_number = $request->phone_number ?? $customer->phone_number;
