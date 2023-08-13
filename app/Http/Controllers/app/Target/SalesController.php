@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\app\Target;
 
+use App\Http\Controllers\Controller;
 use App\Models\SalesTarget;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class SalesController extends Controller

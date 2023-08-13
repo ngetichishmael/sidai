@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\app\products;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\products\product_information;
 use App\Imports\products;
+use App\Models\products\product_information;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session as FacadesSession;
 use Maatwebsite\Excel\Facades\Excel;
 

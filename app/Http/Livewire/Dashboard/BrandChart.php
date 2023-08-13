@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Charts\BrandSales;
 use App\Models\Orders;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class BrandChart extends Component

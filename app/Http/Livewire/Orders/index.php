@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Orders;
 
 use App\Exports\OrdersExport;
-use Livewire\Component;
 use App\Models\Orders;
-use Livewire\WithPagination;
 use Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component

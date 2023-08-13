@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\app;
 
-use App\Helpers\StockLiftHelper;
-use App\Models\inventory\items;
+use App\Http\Controllers\Controller;
+use App\Models\inventory\allocations;
 use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\inventory\allocations;
+use Illuminate\Support\Str;
 
 class inventoryController extends Controller
 {

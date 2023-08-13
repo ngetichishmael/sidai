@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Chat;
 
-use App\Events\MessageSent;
 use App\Events\MessageRead;
 use App\Models\Conversation;
 use App\Models\Message;
@@ -37,10 +36,10 @@ class Chatbox extends Component
 
     public function resetComponent()
   {
- 
+
 $this->selectedConversation= null;
 $this->receiverInstance= null;
- 
+
       # code...
   }
 
@@ -67,14 +66,14 @@ $this->receiverInstance= null;
 
     function broadcastedMessageReceived($event)
     {
-        ///here 
+        ///here
       $this->emitTo('chat.chat-list','refresh');
         # code...
-        
+
         $broadcastedMessage = Message::find($event['message']);
 
 
-        #check if any selected conversation is set 
+        #check if any selected conversation is set
         if ($this->selectedConversation) {
             #check if Auth/current selected conversation is same as broadcasted selecetedConversationgfg
             if ((int) $this->selectedConversation->id  === (int)$event['conversation_id']) {

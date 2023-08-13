@@ -1,16 +1,15 @@
 <?php
 namespace App\Http\Controllers\app\products;
-use Hr;
-use App\Models\Branches;
-use Illuminate\Http\Request;
-use App\Models\ReconciledProducts;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth ;
-use App\Models\products\product_price;
-use Illuminate\Support\Facades\Session;
-use App\Models\products\product_inventory;
+use App\Models\Branches;
 use App\Models\products\product_information;
+use App\Models\products\product_inventory;
+use App\Models\products\product_price;
+use Hr;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class inventoryController extends Controller{
 
@@ -53,7 +52,7 @@ class inventoryController extends Controller{
    }
 
    public function stockrecon(){
-      
+
       return view('app.stocks.reconciliation');
    }
    public function reconciled($warehouse_code)
@@ -65,7 +64,7 @@ class inventoryController extends Controller{
       ->select('product_information.product_name as name',
           'reconciled_products.amount as amount','users.name as user','reconciled_products.updated_at as date')
       ->get();
-      
+
       return view('app.items.reconciledproducts', ['reconciled' => $reconciled]);
    }
 

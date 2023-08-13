@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\app;
 
-use App\Models\Delivery;
 use App\Http\Controllers\Controller;
+use App\Models\Delivery;
 
 class deliveryController extends Controller
 {

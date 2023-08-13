@@ -3,10 +3,10 @@
 namespace App\Http\Livewire\Territory\Region;
 
 use App\Models\Area;
-use App\Models\Region;
-use Livewire\Component;
 use App\Models\customers;
+use App\Models\Region;
 use App\Models\Subregion;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Dashboard extends Component

@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
-use App\Models\inventory\allocations;
-use App\Models\inventory\items;
 use App\Models\products\product_inventory;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class StockLiftController extends Controller

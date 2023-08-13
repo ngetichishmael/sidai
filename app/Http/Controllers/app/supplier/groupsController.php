@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\app\supplier;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\suppliers\category;
 use Auth;
+use Illuminate\Http\Request;
 use Session;
 
 class groupsController extends Controller

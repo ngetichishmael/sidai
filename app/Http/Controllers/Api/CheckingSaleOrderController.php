@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\Order_items;
 use App\Models\Orders;
 use App\Models\Orders as Order;
-use App\Models\Order_items;
 use App\Models\products\product_information;
 use App\Models\Region;
 use App\Models\suppliers\suppliers;
-use App\Models\User;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -269,7 +269,7 @@ class CheckingSaleOrderController extends Controller
                     "userID" => $user_code,
                 ]
             );
-            $orderId = Order::updateOrCreate(
+            $order = Order::updateOrCreate(
                 [
                     'order_code' => $random,
                 ],
@@ -310,13 +310,20 @@ class CheckingSaleOrderController extends Controller
                 ->increment('AchievedOrdersTarget', $value["qty"]);
         }
         if ($distributor != 1 && $distributor != null) {
-            $usersToNotify = Suppliers::findOrFail($distributor);
-            $number = $usersToNotify->phone_number;
-            $order_code = $random;
-            $this->sendOrder($number, $order_code);
+//            $usersToNotify = Suppliers::findOrFail($distributor);
+//            $number = $usersToNotify->phone_number;
+//            $order_code = $random;
+//            $this->sendOrder($number, $order_code);
 
-//         $usersToNotify = Suppliers::findOrFail($distributor);
-//         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
+           $usersToNotify = Suppliers::findOrFail($request->distributor);
+           $number = $usersToNotify->phone_number;
+           $order_code = $random;
+           $this->sendOrder($number, $order_code);
+           $usersToNotify = Suppliers::findOrFail($request->distributor);
+           $distributor = $usersToNotify->name;
+           $distributorid = $usersToNotify->id;
+//               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+           SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid);
         }
         $ativity_rand = Str::random(20);
         $activityLog = new activity_log();

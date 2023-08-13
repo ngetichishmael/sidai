@@ -2,14 +2,14 @@
 
 namespace App\Mail;
 
+use App\Models\crm\emails;
+use App\Models\wingu\business;
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\crm\emails;
-use App\Models\wingu\business;
 use Wingu;
-use Auth;
- 
+
 class sendStatement extends Mailable
 {
    use Queueable, SerializesModels;

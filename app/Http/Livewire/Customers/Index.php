@@ -3,13 +3,13 @@
 namespace App\Http\Livewire\Customers;
 
 use App\Models\Area;
-use Livewire\Component;
 use App\Models\customer\customers;
 use App\Models\Subregion;
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Routing\Route;
-use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {

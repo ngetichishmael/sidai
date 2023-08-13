@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Territory;
 
-use Livewire\Component;
 use App\Models\Territory;
-use Illuminate\Support\Str;
-use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Str;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {

@@ -2,15 +2,14 @@
 
 namespace App\Mail;
 
+use App\Models\crm\emails;
+use App\Models\wingu\file_manager as documents;
+use Auth;
+use Finance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\wingu\file_manager as documents;
-use App\Models\crm\emails;
 use Wingu;
-use Finance;
-use Auth;
 
 class sendEstimates extends Mailable
 {

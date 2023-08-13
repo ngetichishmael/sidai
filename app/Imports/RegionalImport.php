@@ -3,12 +3,12 @@
 namespace App\Imports;
 
 use App\Models\Area;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\Region;
-use Illuminate\Support\Str;
 use App\Models\Relationship;
 use App\Models\Subregion;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class RegionalImport implements ToCollection, WithHeadingRow

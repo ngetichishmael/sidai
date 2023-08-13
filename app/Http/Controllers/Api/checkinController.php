@@ -2,40 +2,33 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
-use App\Models\Delivery;
-use App\Models\Region;
-use App\Models\suppliers\suppliers;
-use App\Models\User;
-use App\Models\UserCode;
-use App\Notifications\NewOrderNotification;
-use App\Notifications;
-use Illuminate\Contracts\Debug\ExceptionHandler;
-use Illuminate\Http\Request;
-use App\Models\customer\customers;
-use App\Models\customer\checkin;
-use App\Models\inventory\allocations;
-use App\Models\products\product_information;
-use App\Models\Order_edit_reason;
-use App\Models\Orders;
-use App\Models\Order_items;
 use App\Models\Cart;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Notification;
-//use Notification;
-use Illuminate\Support\Facades\Auth;
-use App\Helpers\Helper;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\DB as FacadesDB;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Session as FacadesSession;
+use App\Models\customer\checkin;
+use App\Models\customer\customers;
+use App\Models\Delivery;
+use App\Models\inventory\allocations;
+use App\Models\Order_edit_reason;
+use App\Models\Order_items;
+use App\Models\Orders;
+use App\Models\products\product_information;
+use App\Models\Region;
 use App\Models\Route_customer;
 use App\Models\Routes;
+use App\Models\suppliers\suppliers;
 use Carbon\Carbon;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session as FacadesSession;
 use Illuminate\Support\Str;
-use mysql_xdevapi\Exception;
+
+//use Notification;
 
 /**
  * @group Checkin Api's

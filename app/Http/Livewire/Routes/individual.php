@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Routes;
 
-use Livewire\Component;
-use App\Models\customer\customers;
-use Livewire\WithPagination;
 use App\Models\Routes;
 use Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
+
 class individual extends Component
 {
    use WithPagination;

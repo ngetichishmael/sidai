@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Routes;
 
 use App\Models\Area;
+use App\Models\customer\customers;
 use Livewire\Component;
-use App\Models\customers;
 
 class Customerselect extends Component
 {
@@ -26,5 +26,5 @@ class Customerselect extends Component
         $this->customer_count = count($customers);
         return $customers;
     }
-   
+
 }

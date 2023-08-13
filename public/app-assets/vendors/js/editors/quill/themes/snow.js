@@ -1,9 +1,8 @@
 import extend from 'extend';
 import Emitter from '../core/emitter';
-import BaseTheme, { BaseTooltip } from './base';
+import BaseTheme, {BaseTooltip} from './base';
 import LinkBlot from '../formats/link';
-import Picker from '../ui/picker';
-import { Range } from '../core/selection';
+import {Range} from '../core/selection';
 
 
 const TOOLBAR_CONFIG = [

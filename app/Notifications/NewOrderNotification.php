@@ -4,8 +4,6 @@ namespace App\Notifications;
 
 use App\Models\customers;
 use App\Models\Order_items;
-use App\Models\Orders;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;

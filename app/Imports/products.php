@@ -2,14 +2,13 @@
 
 namespace App\Imports;
 
+use App\Models\products\product_information;
+use App\Models\products\product_inventory;
+use App\Models\products\product_price;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
-use App\Models\products\product_price;
-use App\Models\products\product_inventory;
-use App\Models\products\product_information;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class products implements ToCollection, WithHeadingRow
 {

@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\app\customer;
 
-use App\Helpers\Helper;
-use App\Models\activity_log;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Area;
+use App\Models\country;
+use App\Models\customer\customers;
+use App\Models\customer\groups;
 use App\Models\customer_group;
 use App\Models\price_group;
-use App\Models\customer\customers;
-use App\Models\country;
-use App\Models\customer\groups;
 use App\Models\PriceGroup;
 use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\suppliers\supplier_address;
+use App\Models\User;
+use Carbon\Carbon;
 use File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;

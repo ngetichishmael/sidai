@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\app;
 
-use Helper;
-use Session;
-use App\Models\User;
-use App\Models\zone;
-use App\Models\Routes;
-use App\Models\Area;
-use App\Models\UnitRoute;
-use App\Models\Route_sales;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\Route_customer;
-use App\Models\customer\customers;
 use App\Http\Controllers\Controller;
-use App\Models\Relationship;
+use App\Models\customer\customers;
+use App\Models\Route_customer;
+use App\Models\Route_sales;
+use App\Models\Routes;
+use App\Models\User;
+use Helper;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Session;
 
 class routesController extends Controller
 {

@@ -3,13 +3,13 @@
 namespace App\Http\Livewire\Customers;
 
 use App\Models\Cart;
-use Livewire\Component;
 use App\Models\customers;
 use App\Models\Order_items;
 use App\Models\Orders;
-use Illuminate\Support\Str;
 use App\Models\products\product_information;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class Order extends Component
 {

@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Notification\CustomersNotificationController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
