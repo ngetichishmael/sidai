@@ -3,8 +3,13 @@
 namespace App\Http\Livewire\Routes;
 
 use App\Models\Area;
+<<<<<<< HEAD
 use App\Models\customer\customers;
 use Livewire\Component;
+=======
+use Livewire\Component;
+use App\Models\customers;
+>>>>>>> 79120a3ff4d6b2d954beb48050372f9940e3f75a
 
 class Customerselect extends Component
 {
@@ -18,10 +23,11 @@ class Customerselect extends Component
             'routes' => $routes,
             'customers' => $this->customer()
          ]);
+         
     }
     public function customer()
     {
-        $customers = customers::where('route', $this->route_id)->get();
+        $customers = customers::where('route_code', $this->route_id)->get();
         $this->customer_count = count($customers);
         return $customers;
     }
