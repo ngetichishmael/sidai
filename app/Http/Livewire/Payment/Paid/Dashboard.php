@@ -47,30 +47,30 @@ class Dashboard extends Component
          'payments' => $payments
       ]);
    }
-   public function approve($id)
-   {
-      Delivery::whereId($id)->update([
-         'approval' => 1
-      ]);
-      $this->render();
-   }
-   public function filter(): array
-   {
+   // public function approve($id)
+   // {
+   //    Delivery::whereId($id)->update([
+   //       'approval' => 1
+   //    ]);
+   //    $this->render();
+   // }
+   // public function filter(): array
+   // {
 
-      $array = [];
-      $user = Auth::user();
-      $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
-         return $array;
-      }
-      $regions = Region::where('id', $user_code)->pluck('id');
-      if ($regions->isEmpty()) {
-         return $array;
-      }
-      $customers = customers::whereIn('region_id', $regions)->pluck('id');
-      if ($customers->isEmpty()) {
-         return $array;
-      }
-      return $customers->toArray();
-   }
+   //    $array = [];
+   //    $user = Auth::user();
+   //    $user_code = $user->region_id;
+   //    if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
+   //       return $array;
+   //    }
+   //    $regions = Region::where('id', $user_code)->pluck('id');
+   //    if ($regions->isEmpty()) {
+   //       return $array;
+   //    }
+   //    $customers = customers::whereIn('region_id', $regions)->pluck('id');
+   //    if ($customers->isEmpty()) {
+   //       return $array;
+   //    }
+   //    return $customers->toArray();
+   // }
 }
