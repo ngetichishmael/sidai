@@ -11,6 +11,11 @@ use App\Models\StockRequisition;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+<<<<<<< Updated upstream
+=======
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+>>>>>>> Stashed changes
 
 class StockRequisitionController extends Controller
 {
