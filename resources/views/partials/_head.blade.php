@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
     <meta name="description" content="">
     <meta name="keywords" content="">
-   <meta name="csrf-token" content="{{ csrf_token() }}">
+{{--   <meta name="csrf-token" content="{{ csrf_token() }}">--}}
     <meta name="author" content="Devint">
 {{--    <title>@yield('title') - Sidai Africa Limited</title>--}}
     <title>Sidai Africa Limited</title>
