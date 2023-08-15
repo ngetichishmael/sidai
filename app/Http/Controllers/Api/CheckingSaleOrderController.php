@@ -315,11 +315,10 @@ class CheckingSaleOrderController extends Controller
 //            $order_code = $random;
 //            $this->sendOrder($number, $order_code);
 
-           $usersToNotify = Suppliers::findOrFail($request->distributor);
+           $usersToNotify = Suppliers::findOrFail($distributor);
            $number = $usersToNotify->phone_number;
            $order_code = $random;
            $this->sendOrder($number, $order_code);
-           $usersToNotify = Suppliers::findOrFail($request->distributor);
            $distributor = $usersToNotify->name;
            $distributorid = $usersToNotify->id;
 //               Notification::send($usersToNotify, new NewOrderNotification($orderId));
@@ -394,11 +393,13 @@ class CheckingSaleOrderController extends Controller
                 $response = curl_exec($curl);
                 curl_close($curl);
                 return $response;
-
+   dd($response);
             } catch (ExceptionHandler $e) {
+               dd($e);
                 return response()->json(['message' => 'Error occurred while trying to send OTP code']);
             }
         } else {
+           dd("User is not registered");
             return response()->json(['message' => 'User is not registered!']);
         }
     }
