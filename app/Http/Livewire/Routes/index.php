@@ -15,27 +15,10 @@ class Index extends Component
    public $search = '';
    public function render()
    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       $routes = Routes::with("user")->where('Type','Assigned')
       ->orderBy('created_at', 'desc')->paginate($this->perPage);
     //     $routes = Routes::with("user")->where('Type','Assigned')->paginate($this->perPage);
-=======
-      $routes = Routes::with("user")->where('Type','Assigned')->paginate($this->perPage);
-
-
->>>>>>> 2c6f24817e5c9256a837d530086a3f0b97431fdf
-=======
-      $routes = Routes::with("user")->where('Type','Assigned')
-      ->orderBy('created_at', 'desc')->paginate($this->perPage);
-    //     $routes = Routes::with("user")->where('Type','Assigned')->paginate($this->perPage);
->>>>>>> 8c509ae0f46186cc10097e581041580d5697af5e
-=======
-
-      $routes = Routes::with("user")->where('Type','Assigned')
-      ->orderBy('created_at', 'desc')->paginate($this->perPage);
->>>>>>> 45082215c1d8aa6afc39a1dc290c319cc42d4886
       return view('livewire.routes.index', compact('routes'));
    }
 }
