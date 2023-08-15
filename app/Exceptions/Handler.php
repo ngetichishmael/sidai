@@ -45,6 +45,7 @@ class Handler extends ExceptionHandler
 //         return redirect()->route('login')->withErrors(['message' => 'Authentication failed. Please log in again.']);
 //      }
       if ($exception instanceof TokenMismatchException && !$request->expectsJson()) {
+
          return redirect()->route('login')->withErrors(['message' => 'Session expired. Please log in again.']);
       }
 
@@ -56,8 +57,10 @@ class Handler extends ExceptionHandler
       // Handle AuthenticationException (if needed)
       if ($exception instanceof AuthenticationException) {
          if ($request->expectsJson()) {
+//            dd("session expired");
             return response()->json(['error' => 'Authentication failed. Please log in again.'], 401);
          } else {
+//            dd("session expired else");
             return redirect()->route('login')->withErrors(['message' => 'Authentication failed. Please log in again.']);
          }
 
