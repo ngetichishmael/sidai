@@ -73,11 +73,6 @@
                             <!-- Options will be added using AJAX -->
                         </select>
                     </div>
-                   {{-- <div class="form-group col-md-6 mb-1">
-                      <label for="">Add sales people to Route</label>
-                      {!! Form::select('sales_persons[]', [], null, ['class' => 'form-control select2', 'name' => 'user', 'id' => 'user', 'multiple' => '']) !!}
-                   </div> --}}
-
                     <div class="form-group mb-1">
                         <button class="btn" style="background-color: #B6121B;color:white" type="submit">Save Information</button>
                     </div>
