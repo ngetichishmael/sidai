@@ -17,7 +17,10 @@ class Region extends Component
    public $subregion = NULL;
    public function render()
    {
-      return view('livewire.customers.region');
+      return view('livewire.customers.region',[
+         'region'=>$this->regions,
+         'subregion'=>$this->subregions
+      ]);
    }
    public function updatedRegion($region)
    {
