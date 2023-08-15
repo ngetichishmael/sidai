@@ -69,13 +69,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
          $customer=customers::find($this->order->customerID);
          if (!empty($customer)) {
            $orderitems=$this->orderitems;
-//            foreach ($orderitems as $item) {
-//               $orderDetails .= $item->product_name . "\t\t" . $item->quantity . "\n";
-//            }
          }
         $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude . ',' . $customer->longitude;
-//         $message="A new order has been placed for ".$customer->customer_name;
-//         $location= "Customer Location Pin: " . $mapLink;
          $customer=$customer->customer_name;
          Log::debug('----------------------------------'. $this->orderitems);
          Log::debug('*****************************'. $orderitems);
@@ -99,7 +94,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-Log::debug("in toarray db notifiable");
+      Log::debug("in toarray db notifiable");
        $orderDetails = '';
        if ($this->order){
           $customer=customers::find($this->order->customerID);

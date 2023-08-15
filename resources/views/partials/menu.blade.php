@@ -18,6 +18,7 @@
                         Dashboards</span>
                 </a>
             </li>
+{{--           @dd(\Illuminate\Support\Facades\Auth::user())--}}
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                 <li class="nav-item {!! Nav::isRoute('customer') !!}">
                     <a class="d-flex align-items-center" href="#">
