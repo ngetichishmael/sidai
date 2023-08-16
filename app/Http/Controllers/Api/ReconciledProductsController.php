@@ -13,7 +13,7 @@ class ReconciledProductsController extends Controller
     public function index2(Request $request, $warehouse_code)
     {
         $usercode = $request->user()->name;
-        $id = $request->user()->id;
+        $id = $request->user()->user_code;
         $request = $request->collect();
 
         $randomWarehouse = Warehousing::select('warehouse_code')
@@ -29,22 +29,13 @@ class ReconciledProductsController extends Controller
             $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
             $reconciled_products->save();
 
-//            $is=DB::table('inventory_allocated_items')
-//                ->where('created_by', $usercode)
-//                ->where('product_code',$data['productID'])
-//                ->decrement('allocated_qty', $data['amount'], [
-//                    'updated_at' => now(),
-//                ]);
-
-           $checkitems=DB::table('inventory_allocated_items')
-              ->where('product_code',$data['productID'])->where('created_by', $usercode)
-              ->decrement(
-                 'allocated_qty',
-                 $data['amount'],
-                 [
+            $is=DB::table('inventory_allocated_items')
+                ->where('created_by', $usercode)
+                ->where('product_code',$data['productID'])
+                ->decrement('allocated_qty', $data['amount'], [
                     'updated_at' => now(),
-                 ]
-              );
+                ]);
+
             info("amount is ".$data['amount']);
             DB::table('inventory_allocated_items')
                 ->where('allocated_qty', '<', 1)
