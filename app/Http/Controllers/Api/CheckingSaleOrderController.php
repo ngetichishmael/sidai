@@ -73,7 +73,7 @@ class CheckingSaleOrderController extends Controller
                         "userID" => $user_code,
                     ]
                 );
-               DB::table('inventory_allocated_items')
+               $checkitems=DB::table('inventory_allocated_items')
                   ->where('product_code',$value["productID"])->where('created_by', $user_code)
                   ->decrement(
                      'allocated_qty',
@@ -82,6 +82,7 @@ class CheckingSaleOrderController extends Controller
                         'updated_at' => now(),
                      ]
                   );
+
                 Order::updateOrCreate(
                     [
 
