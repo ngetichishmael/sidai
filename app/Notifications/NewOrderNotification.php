@@ -10,6 +10,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use function Symfony\Component\Translation\t;
 
 class NewOrderNotification extends Notification implements ShouldQueue
 {
@@ -18,6 +19,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
    private $order;
    private $orderitems;
    private $distributor;
+   private $sales;
+   private  $sales_number;
    /**
     * @var mixed
     */
@@ -29,9 +32,11 @@ class NewOrderNotification extends Notification implements ShouldQueue
      * @return void
      */
 
-   public function __construct($order, $distributor)
+   public function __construct($order, $distributor, $sales, $sales_number)
    {
       $this->order = $order;
+      $this->sales = $sales;
+      $this->sales_number = $sales_number;
       $this->distributor = $distributor;
       $this->orderitems = Order_items::where('order_code', $this->order->order_code)->get();
       Log::debug($this->order->order_code);
@@ -82,6 +87,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
                'ordercode'=>$this->order->order_code,
                'name'=>$this->distributor,
                'orderitems'=>$this->orderitems,
+               'sales'=>$this->sales,
+               'sales_number'=>$this->sales_number,
          ]);
       }
     }

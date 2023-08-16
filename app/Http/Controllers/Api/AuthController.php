@@ -147,7 +147,7 @@ class AuthController extends Controller
                     'user_id' => $user[0]->id,
                     'code' => $code,
                 ]);
-                $message = "Your OTP is " . $code;
+                $message = "Your Sidai OTP is " . $code;
                 (new SMS)($number, $message);
                 return response()->json(['data' => $user, 'otp' => $code]);
             } catch (ExceptionHandler $e) {
