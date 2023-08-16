@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\User;
 use App\Models\UserCode;
+use Carbon\Carbon;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
@@ -141,6 +142,14 @@ class AuthController extends Controller
         $user = User::where('phone_number', $number)->get();
 
         if ($user != null) {
+           $check=UserCode::where('user_id' ,'=',  $user[0]->id)->first();
+           $currentTimestamp = Carbon::now();
+           $thresholdTimestamp = $currentTimestamp->subSeconds(360);
+
+           if ($check->created_at->greaterThan($thresholdTimestamp)) {
+               return response()->json(['data' => $user, 'otp' => $check->code]);
+           } else{
+
             try {
                 $code = rand(100000, 999999);
                 UserCode::updateOrCreate([
@@ -153,7 +162,9 @@ class AuthController extends Controller
             } catch (ExceptionHandler $e) {
                 return response()->json(['message' => 'Error occurred while trying to send OTP code']);
             }
-        } else {
+        }
+        }
+        else {
             return response()->json(['message' => 'User is not registered!']);
         }
     }

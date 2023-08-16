@@ -13,6 +13,7 @@ use App\Models\Orders;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -107,6 +108,15 @@ class DeliveryController extends Controller
          "updated_by" => $user_code
       ];
       allocations::updateOrCreate(["allocation_code" => $random], $allocationData);
+      DB::table('inventory_allocated_items')
+         ->where('product_code',$value["productID"])->where('created_by', $user_code)
+         ->decrement(
+            'allocated_qty',
+            $value["qty"],
+            [
+               'updated_at' => now(),
+            ]
+         );
 
       $deliveryItemsData = [
          "business_code" => $business_code,
@@ -222,6 +232,16 @@ class DeliveryController extends Controller
                "updated_by" => $user_code
             ]
          );
+
+         DB::table('inventory_allocated_items')
+            ->where('product_code',$value["productID"])->where('created_by', $user_code)
+            ->decrement(
+               'allocated_qty',
+               $value["qty"],
+               [
+                  'updated_at' => now(),
+               ]
+            );
 
          Order_items::where('productID', $value["productID"])
             ->where('order_code', $order_code->order_code)
