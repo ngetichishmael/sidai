@@ -119,11 +119,12 @@ class TargetResource extends JsonResource
                'month' => 0,
             ],
          ],
-         'targets_visit' => $this->TargetsVisit ? [
-            'VisitsTarget' => $this->TargetsVisit->VisitsTarget ?? 0,
-            'AchievedVisitsTarget' => $this->TargetsVisit->AchievedVisitsTarget ?? 0,
-            'Deadline' => $this->TargetsVisit->Deadline,
-            'achievement' => $this->getVisitsAchieved($this->user_code),
+
+         'targets_visit' => $this->TargetVisit ? [
+            'VisitsTarget' => $this->TargetVisit->VisitTarget ?? 0,
+            'AchievedVisitsTarget' => $this->TargetVisit->AchievedVisitsTarget ?? 0,
+            'Deadline' => $this->TargetVisit->Deadline,
+            'achievement' => $this->getVisitAchieved($this->user_code),
          ] : [
             'VisitsTarget' => 0,
             'AchievedVisitsTarget' => 0,
