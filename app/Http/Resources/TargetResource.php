@@ -105,9 +105,9 @@ class TargetResource extends JsonResource
             ],
          ],
          'targets_order' => $this->TargetsOrder ? [
-            'OrdersTarget' => $this->TargetsOrder->OrdersTarget ?? 0,
-            'AchievedOrdersTarget' => $this->TargetsOrder->AchievedOrdersTarget ?? 0,
-            'Deadline' => $this->TargetsOrder->Deadline,
+            'OrdersTarget' => $this->TargetOrder->OrdersTarget ?? 0,
+            'AchievedOrdersTarget' => $this->TargetOrder->AchievedOrdersTarget ?? 0,
+            'Deadline' => $this->TargetOrder->Deadline,
             'achievement' => $this->getOrdersAchieved($this->user_code),
          ] : [
             'OrdersTarget' => 0,
