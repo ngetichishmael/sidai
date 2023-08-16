@@ -393,13 +393,10 @@ class CheckingSaleOrderController extends Controller
                 $response = curl_exec($curl);
                 curl_close($curl);
                 return $response;
-   dd($response);
             } catch (ExceptionHandler $e) {
-               dd($e);
                 return response()->json(['message' => 'Error occurred while trying to send OTP code']);
             }
         } else {
-           dd("User is not registered");
             return response()->json(['message' => 'User is not registered!']);
         }
     }

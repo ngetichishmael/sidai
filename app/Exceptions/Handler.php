@@ -36,34 +36,30 @@ class Handler extends ExceptionHandler
      */
    public function render($request, Throwable $exception)
    {
-//      // Handle TokenMismatchException (419 error)
-//      if ($exception instanceof TokenMismatchException) {
-//         return redirect()->route('login')->withErrors(['message' => 'Session expired. Please log in again.']);
-//      }
-//      // Handle AuthenticationException (if needed)
-//      if ($exception instanceof AuthenticationException) {
-//         return redirect()->route('login')->withErrors(['message' => 'Authentication failed. Please log in again.']);
-//      }
       if ($exception instanceof TokenMismatchException && !$request->expectsJson()) {
 
-         return redirect()->route('login')->withErrors(['message' => 'Session expired. Please log in again.']);
-      }
-
-      // Handle TokenMismatchException (419 error) for API requests
-      if ($exception instanceof TokenMismatchException && $request->expectsJson()) {
-         return response()->json(['error' => 'Session expired'], 419);
+         return redirect()->route('login')->WithErrors(['message' => 'Session expired. Please log in again.']);
       }
 
       // Handle AuthenticationException (if needed)
       if ($exception instanceof AuthenticationException) {
-         if ($request->expectsJson()) {
-//            dd("session expired");
-            return response()->json(['error' => 'Authentication failed. Please log in again.'], 401);
-         } else {
-//            dd("session expired else");
-            return redirect()->route('login')->withErrors(['message' => 'Authentication failed. Please log in again.']);
-         }
+//         dd($exception);
+         return redirect()->route('login')->WithErrors(['message' => 'Authentication failed. Please log in again.']);
+      }
+      return parent::render($request, $exception);
+   }
 
-         return parent::render($request, $exception);
-      }}
+      // Handle AuthenticationException (if needed)
+//      if ($exception instanceof AuthenticationException) {
+//         if ($request->expectsJson()) {
+//            dd("session expired");
+//            return response()->json(['error' => 'Authentication failed. Please log in again.'], 401);
+//         }
+//         else {
+//            dd("session expired else");
+//            return redirect()->route('login')->withErrors(['message' => 'Authentication failed. Please log in again.']);
+//         }
+//
+//         return parent::render($request, $exception);
+//      }}
 }
