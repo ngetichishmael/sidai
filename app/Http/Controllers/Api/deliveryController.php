@@ -117,7 +117,7 @@ class deliveryController extends Controller
                     ],
                     [
                         "business_code" => $business_code,
-                        "status" => "Waiting acceptance",
+                        "status" => "pending",
                         "created_by" => $user_code,
                         "updated_by" => $user_code
                     ]
