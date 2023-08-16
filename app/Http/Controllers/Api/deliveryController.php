@@ -159,8 +159,8 @@ class deliveryController extends Controller
                         'updated_by' => $user_code
                     ]
                 );
-                // product_inventory::where('productID', $delivery_item->productID)
-                //     ->decrement('current_stock', $delivery_item->allocated_quantity);
+                product_inventory::where('productID', $delivery_item->productID)
+                    ->decrement('current_stock', $delivery_item->allocated_quantity);
                 allocations::updateOrCreate(
                     [
                         "allocation_code" => $random,
