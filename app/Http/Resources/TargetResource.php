@@ -250,4 +250,27 @@ class TargetResource extends JsonResource
 
       return $data;
    }
+
+   private function getVisitAchieved($user_code): array
+   {
+      $data = [
+         'day' => 0,
+         'week' => 0,
+         'month' => 0,
+      ];
+
+      $currentDateTime = Carbon::now();
+      $startOfDay = $currentDateTime->copy()->startOfDay();
+      $endOfDay = $currentDateTime->copy()->endOfDay();
+      $startOfWeek = $currentDateTime->copy()->startOfWeek();
+      $endOfWeek = $currentDateTime->copy()->endOfWeek();
+      $startOfMonth = $currentDateTime->copy()->startOfMonth();
+      $endOfMonth = $currentDateTime->copy()->endOfMonth();
+
+      $data['day'] = checkin::where('user_code', $user_code)->whereBetween('updated_at', [$startOfDay, $endOfDay])->count();
+      $data['week'] = checkin::where('user_code', $user_code)->whereBetween('updated_at', [$startOfWeek, $endOfWeek])->count();
+      $data['month'] = checkin::where('user_code', $user_code)->whereBetween('updated_at', [$startOfMonth, $endOfMonth])->count();
+
+      return $data;
+   }
 }
