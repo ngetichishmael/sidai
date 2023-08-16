@@ -141,6 +141,40 @@ class deliveryController extends Controller
                 'delivery_code',
                 $value["delivery_code"]
             )->get();
+            
+            foreach ($delivery_items as $delivery_item) {
+                items::updateOrCreate(
+                    [
+                        'product_code' => $delivery_item->productID,
+                        'created_by' => $user_code
+                    ],
+                    [
+                        'business_code' => $business_code,
+                        'allocation_code' => $random,
+                        'current_qty' => $delivery_item->allocated_quantity,
+                        'allocated_qty' => $delivery_item->allocated_quantity,
+                        'image' => $delivery_item->delivery_code,
+                        'returned_qty' => 0,
+                        'created_by' => $user_code,
+                        'updated_by' => $user_code
+                    ]
+                );
+                // product_inventory::where('productID', $delivery_item->productID)
+                //     ->decrement('current_stock', $delivery_item->allocated_quantity);
+                allocations::updateOrCreate(
+                    [
+                        "allocation_code" => $random,
+                        "sales_person" => $user_code
+                    ],
+                    [
+                        "business_code" => $business_code,
+                        "status" => "pending",
+                        "created_by" => $user_code,
+                        "updated_by" => $user_code
+                    ]
+                );
+            }
+            
         }
     }
 
