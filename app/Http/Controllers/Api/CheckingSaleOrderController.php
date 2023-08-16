@@ -7,6 +7,7 @@ use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\inventory\allocations;
 use App\Models\Order_items;
 use App\Models\Orders;
 use App\Models\Orders as Order;
@@ -72,15 +73,15 @@ class CheckingSaleOrderController extends Controller
                         "userID" => $user_code,
                     ]
                 );
-                DB::table('inventory_allocated_items')
-                    ->where('product_code', $value["productID"])
-                    ->decrement(
-                        'allocated_qty',
-                        $quantity,
-                        [
-                            'updated_at' => now(),
-                        ]
-                    );
+               DB::table('inventory_allocated_items')
+                  ->where('product_code',$value["productID"])->where('created_by', $user_code)
+                  ->decrement(
+                     'allocated_qty',
+                     $value["qty"],
+                     [
+                        'updated_at' => now(),
+                     ]
+                  );
                 Order::updateOrCreate(
                     [
 
