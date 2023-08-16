@@ -321,8 +321,10 @@ class CheckingSaleOrderController extends Controller
            $this->sendOrder($number, $order_code);
            $distributor = $usersToNotify->name;
            $distributorid = $usersToNotify->id;
+           $sales=$request->user()->name;
+           $sales_number =$request->user()->phone_number;
 //               Notification::send($usersToNotify, new NewOrderNotification($orderId));
-           SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid);
+           SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid, $sales, $sales_number);
         }
         $ativity_rand = Str::random(20);
         $activityLog = new activity_log();
