@@ -12,8 +12,8 @@ class ReconciledProductsController extends Controller
 {
     public function index2(Request $request, $warehouse_code)
     {
-        $usercode = $request->user()->name;
-        $id = $request->user()->user_code;
+        $usercode = $request->user()->user_code;
+        $id = $request->user()->id;
         $request = $request->collect();
 
         $randomWarehouse = Warehousing::select('warehouse_code')
