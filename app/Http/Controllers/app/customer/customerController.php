@@ -262,10 +262,11 @@ class customerController extends Controller
          'subregion_id' => $subregion_id,
          'region_id' => $region_id,
       ]);
+      $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
-         compact('customer', 'country', 'groups', 'prices')
+         compact('customer', 'country', 'groups', 'prices','regions')
       );
    }
    public function editcreditor($id)
