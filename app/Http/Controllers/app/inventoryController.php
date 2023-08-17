@@ -50,10 +50,11 @@ class inventoryController extends Controller
    public function handleApproval(Request $request)
    {
       $selectedProducts = $request->input('selected_products', []);
+      $allocateQuantities = $request->input('allocate', []);
       $user = $request->user();
-      $user_code = $user->user_code;
-      $business_code = $user->business_code;
-      $random = Str::random(20);
+//      $user_code = $user->user_code;
+//      $business_code = $user->business_code;
+//      $random = Str::random(20);
       if (empty($selectedProducts)) {
          session()->flash('Error','Not products selected');
          return redirect('warehousing/all/stock-requisition');
@@ -62,6 +63,9 @@ class inventoryController extends Controller
          $product = RequisitionProduct::find($productId);
 
          if ($product) {
+            $allocatedQuantity = $allocateQuantities[$productId];
+            $product->allocated_quantity = $allocatedQuantity;
+            $product->save();
             if ($request->has('approve')) {
                $product->update(['approval' => 1]);
                StockRequisition::where('id',$request->requisition_id)->update([

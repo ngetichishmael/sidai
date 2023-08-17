@@ -8,24 +8,14 @@
                     <div class="card-body">
                        <form method="POST" action="{{ route('inventory.handleApproval') }}">
                           @csrf
-{{--                          <div class="form-group mb-1 mt-2 ml-0 pe-0 col-md-5">--}}
-{{--                             <label for="warehouse" style="color: #d5512d">Warehouse:--}}
-{{--                                <input class="focus:bg-gray-400" readonly value="{{}}">--}}
-{{--                             <select id="warehouse" class="form-control select2" name="warehouse_code" required>--}}
-{{--                                <option value="" class="focus:bg-gray-400">Select a Warehouse</option>--}}
-{{--                                @foreach($warehouses as $warehouse)--}}
-{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
-{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
-{{--                                @endforeach--}}
-{{--                             </select>--}}
-{{--                          </div>--}}
                           <table class="table table-bordered table-striped">
                             <thead>
                                 <th>#</th>
                                 <th>Product Name</th>
-                                <th>Quantity</th>
                                 <th>SKU Code</th>
                                 <th>Warehouse</th>
+                                <th>Quantity</th>
+                                <th>Allocate Quantity</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -33,9 +23,12 @@
                                <tr>
                                   <td>{!! $count + 1 !!}</td>
                                   <td>{!! $product->ProductInformation->product_name??'' !!}</td>
-                                  <td>{!! $product->quantity??'' !!}</td>
                                   <td>{!! $product->ProductInformation->sku_code??'' !!}</td>
                                   <td>{!! $product->ProductInformation->warehouse->name??'' !!}</td>
+                                  <td>{!! $product->quantity ?? '' !!}</td>
+                                  <td><input type="number" name="allocate[{{ $product->id }}]" class="form-control" placeholder="max {!! $product->quantity !!}" max="{!! $product->quantity !!}" value="{!! old('allocate.'.$product->id, $product->quantity) !!}" required>
+                                  </td>
+{{--                                  <td><input type="number" name="allocate[]" class="form-control" placeholder="max {!! $product->quantity !!}" max="{!! $product->quantity !!}" value="{!! $product->quantity !!}"  required></td>--}}
                                   @if ($product->approval === 1)
                                   <td style="color: green">Approved</td>
                                   @else

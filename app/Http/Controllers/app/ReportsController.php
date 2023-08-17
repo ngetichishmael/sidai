@@ -12,6 +12,7 @@ use App\Models\Subregion;
 use App\Models\User;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
@@ -21,42 +22,71 @@ class ReportsController extends Controller
    {
       $routeName = $request->route()->getName();
       $middleware = $request->route()->middleware();
-      if (in_array('web', $middleware)) {
-         switch ($routeName) {
-            case 'preorders.reports':
-               return view('app.Reports.preorders');
-            case 'vansales.reports':
-               return view('app.Reports.vansales');
-            case 'delivery.reports':
-               return view('app.Reports.delivery');
-            case 'sidai.reports':
+//      if (in_array('web', $middleware)) {
+//         switch ($routeName) {
+//            case 'preorders.reports':
+//               return view('app.Reports.preorders');
+//            case 'vansales.reports':
+//               return view('app.Reports.vansales');
+//            case 'delivery.reports':
+//               return view('app.Reports.delivery');
+//            case 'sidai.reports':
+//               return view('app.Reports.users');
+//            case 'warehouse.reports':
+//               return view('app.Reports.warehouse');
+//            case 'supplier.reports':
+//               return view('app.Reports.supplier');
+//            case 'visitation.reports':
+//               return view('app.Reports.visitation');
+//            case 'target.reports':
+//               return view('app.Reports.target');
+//            case 'payments.reports':
+//               return view('app.Reports.payments');
+//            case 'distributor.reports':
+//               return view('app.Reports.distributor');
+//            case 'regional.reports':
+//               return view('app.Reports.regional');
+//            case 'clients.reports':
+//               return view('app.Reports.customers');
+//            case 'inventory.reports':
+//               return view('app.Reports.inventory');
+//            default:
+//               return view('app.users.reports');
+//         }
+//      }
+      $routeName = $request->route()->getName();
+      $user = Auth::user();
+
+      switch ($routeName) {
+         case 'preorders.reports':
+         case 'vansales.reports':
+         case 'delivery.reports':
+         case 'supplier.reports':
+         case 'visitation.reports':
+         case 'target.reports':
+         case 'payments.reports':
+         case 'distributor.reports':
+         case 'regional.reports':
+         case 'sidai.reports':
+            if ($user && in_array($user->role, ['shop-attendee'])) {
                return view('app.Reports.users');
-            case 'warehouse.reports':
+            }
+            break;
+         case 'warehouse.reports':
+            if ($user && in_array($user->role, ['shop-attendee'])) {
+               return redirect()->route('unauthorized');
+            } else {
                return view('app.Reports.warehouse');
-            case 'supplier.reports':
-               return view('app.Reports.supplier');
-            case 'visitation.reports':
-               return view('app.Reports.visitation');
-            case 'target.reports':
-               return view('app.Reports.target');
-            case 'payments.reports':
-               return view('app.Reports.payments');
-            case 'distributor.reports':
-               return view('app.Reports.distributor');
-            case 'regional.reports':
-               return view('app.Reports.regional');
-            case 'clients.reports':
-               return view('app.Reports.customers');
-            case 'inventory.reports':
+            }
+         case 'inventory.reports':
+            if ($user && in_array($user->role, ['shop-attendee'])) {
+               return redirect()->route('unauthorized');
+            } else {
                return view('app.Reports.inventory');
-            default:
-               return view('app.users.reports');
-         }
+            }
+            return view('app.users.reports');
       }
-
-      return view('app.users.reports');
    }
-
    public function supplierDetails($id)
    {
       $orders = Orders::where('SupplierID', $id)->get();
