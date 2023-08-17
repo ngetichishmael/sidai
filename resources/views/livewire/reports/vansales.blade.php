@@ -40,9 +40,10 @@
             placeholder="Enter customer name, email address or phone number">
     </div>
 </div>
-   <br>
+<br>
+@include('partials.stickymenu')
+<br>
 <div class="row">
-   @include('partials.stickymenu')
     <div class="col-md-8">
         <div class="card card-inverse">
            <div class="card-body">
