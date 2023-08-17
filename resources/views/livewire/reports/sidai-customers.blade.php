@@ -45,7 +45,7 @@
  @include('partials.stickymenu')
  <br>
   <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
           <div class="card card-inverse">
              <div class="card-body">
                 <div class="card-datatable table-responsive">
