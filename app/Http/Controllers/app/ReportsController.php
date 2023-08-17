@@ -21,66 +21,36 @@ class ReportsController extends Controller
    {
       $routeName = $request->route()->getName();
       $middleware = $request->route()->middleware();
-
-      $routeName = $request->route()->getName();
-      $middleware = $request->route()->middleware();
-
-      $routeToView = [
-         'users.reports' => 'app.users.reports',
-         'preorders.reports' => 'app.Reports.preorders',
-         'vansales.reports' => 'app.Reports.vansales',
-         'delivery.reports' => 'app.Reports.delivery',
-         'sidai.reports' => 'app.Reports.users',
-         'warehouse.reports' => 'app.Reports.warehouse',
-         'supplier.reports' => 'app.Reports.supplier',
-         'visitation.reports' => 'app.Reports.visitation',
-         'target.reports' => 'app.Reports.target',
-         'payments.reports' => 'app.Reports.payments',
-         'distributor.reports' => 'app.Reports.distributor',
-         'regional.reports' => 'app.Reports.regional',
-         'customers.reports' => 'app.Reports.customers',
-         'inventory.reports' => 'app.Reports.inventory',
-      ];
-
-//      if (in_array('web', $middleware)) {
-//         switch ($routeName) {
-//            case 'preorders.reports':
-//               return view('app.Reports.preorders');
-//            case 'vansales.reports':
-//               return view('app.Reports.vansales');
-//            case 'delivery.reports':
-//               return view('app.Reports.delivery');
-//            case 'sidai.reports':
-//               return view('app.Reports.users');
-//            case 'warehouse.reports':
-//               return view('app.Reports.warehouse');
-//            case 'supplier.reports':
-//               return view('app.Reports.supplier');
-//            case 'visitation.reports':
-//               return view('app.Reports.visitation');
-//            case 'target.reports':
-//               return view('app.Reports.target');
-//            case 'payments.reports':
-//               return view('app.Reports.payments');
-//            case 'distributor.reports':
-//               return view('app.Reports.distributor');
-//            case 'regional.reports':
-//               return view('app.Reports.regional');
-//            case 'clients.reports':
-//               return view('app.Reports.customers');
-//            case 'inventory.reports':
-//               return view('app.Reports.inventory');
-//            default:
-//               return view('app.users.reports');
-//         }
-//      }
       if (in_array('web', $middleware)) {
-         if (array_key_exists($routeName, $routeToView)) {
-            if (auth()->user()->hasAnyPermission(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard'])) {
-               return view($routeToView[$routeName]);
-            } else {
-               return view('errors.permission_denied');
-            }
+         switch ($routeName) {
+            case 'preorders.reports':
+               return view('app.Reports.preorders');
+            case 'vansales.reports':
+               return view('app.Reports.vansales');
+            case 'delivery.reports':
+               return view('app.Reports.delivery');
+            case 'sidai.reports':
+               return view('app.Reports.users');
+            case 'warehouse.reports':
+               return view('app.Reports.warehouse');
+            case 'supplier.reports':
+               return view('app.Reports.supplier');
+            case 'visitation.reports':
+               return view('app.Reports.visitation');
+            case 'target.reports':
+               return view('app.Reports.target');
+            case 'payments.reports':
+               return view('app.Reports.payments');
+            case 'distributor.reports':
+               return view('app.Reports.distributor');
+            case 'regional.reports':
+               return view('app.Reports.regional');
+            case 'clients.reports':
+               return view('app.Reports.customers');
+            case 'inventory.reports':
+               return view('app.Reports.inventory');
+            default:
+               return view('app.users.reports');
          }
       }
 
