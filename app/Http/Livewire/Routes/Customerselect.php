@@ -3,8 +3,15 @@
 namespace App\Http\Livewire\Routes;
 
 use App\Models\Area;
+<<<<<<< HEAD
 use App\Models\customer\customers;
 use Livewire\Component;
+=======
+
+use App\Models\customer\customers;
+use Livewire\Component;
+
+>>>>>>> 837ec735f3133d5de09060af882ae7fa9d5c3c36
 
 class Customerselect extends Component
 {
