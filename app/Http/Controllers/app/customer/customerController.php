@@ -89,13 +89,13 @@ class customerController extends Controller
 
    public function details($id)
    {
-      // $customer = Customers::find($id);
+      
       return view('app.customers.show', ['id' => $id,]);
    }
    public function creditordetails($id)
    {
-      $customer = customers::find($id);
-      return view('app.creditors.show', ['customer' => $customer]);
+      // $customer = customers::find($id);
+      return view('app.creditors.show', ['id' => $id]);
    }
 
    public function approvecreditor($id)
