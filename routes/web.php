@@ -2,6 +2,7 @@
 
 use App\Events\SendMessage;
 use App\Http\Controllers\Api\TestingController;
+use App\Http\Controllers\app\inventoryController;
 use App\Http\Controllers\SupportTicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -402,8 +403,11 @@ Auth::routes(['verify' => true]);
    Route::post('inventory/allocate/user', ['uses' => 'app\inventoryController@allocate_user', 'as' => 'inventory.allocate.user']);
    Route::get('inventory/allocate/{code}/items', ['uses' => 'app\inventoryController@allocate_items', 'as' => 'inventory.allocate.items']);
    //stock approval
-   Route::get('warehousing/all/stock-requisition', ['uses' => 'app\inventoryController@approval', 'as' => 'inventory.approval']);
-   Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
+      Route::get('warehousing/all/requisitions/{warehouse_code}', [InventoryController::class, 'approval'])
+         ->name('inventory.approval');
+      Route::get('warehousing/approved/requisitions/{warehouse_code}', ['uses' => 'app\inventoryController@approved', 'as' => 'inventory.approved']);
+      Route::get('warehousing/all', ['uses' => 'app\inventoryController@warehouses', 'as' => 'inventory.warehouses']);
+      Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
    Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);

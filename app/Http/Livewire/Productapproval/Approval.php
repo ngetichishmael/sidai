@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Livewire\Productapproval;
-use App\Models\products\product_information;
-use App\Models\Region;
-use App\Models\RequisitionProduct;
-use App\Models\StockRequisition;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Region;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\StockRequisition;
+use App\Models\RequisitionProduct;
+use Illuminate\Support\Facades\Auth;
+use App\Models\products\product_information;
 
 class Approval extends Component
 {
@@ -16,20 +16,26 @@ class Approval extends Component
    protected $paginationTheme = 'bootstrap';
    public $perPage = 10;
    public $user;
+   public $warehouse_code;
 
-   public function __construct()
-   {
-      $this->user = Auth::user();
-   }
+    public function mount($warehouse_code)
+    {
+       $this->user = Auth::user();
+       $this->warehouse_code = $warehouse_code;
+    }
+
+//   public function __construct()
+//   {
+//      $this->user = Auth::user();
+////      $this->warehouse_code = $warehouse_code;
+//   }
+
    public function render()
    {
       $requisitions = StockRequisition::with('user')->withCount('RequisitionProducts', 'ApprovedRequisitionProducts')
-      ->when($this->user->account_type === "RSM",function($query){
-         $query->whereIn('user_id', $this->filter());
-      })
+         ->where('warehouse_code', $this->warehouse_code)
+         ->where('status' , '=','Waiting Approval')
        ->orderBy('id', 'DESC')->paginate($this->perPage);
-      $approved = RequisitionProduct::all();
-
       return view('livewire.productapproval.approval', compact('requisitions'));
    }
 

@@ -18,6 +18,7 @@
                                 <tr>
                                     <td>{!! $count + 1 !!}</td>
                                     <td>{{ $requisition->user->name ?? '' }}</td>
+{{--                                    <td>{{ $requisition->warehouse->name ?? '' }}</td>--}}
                                     @if (isset($requisition->requisition_products_count, $requisition->approved_requisition_products_count) &&
                                             $requisition->requisition_products_count > 0)
                                         @php
@@ -39,6 +40,10 @@
                                     @else
                                         <td style="color: #B6121B">Data Unavailable</td>
                                     @endif
+
+
+
+
                                     <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
                                     <td>
                                         <a href="{!! route('inventory.approve', [$requisition->id]) !!}" class="btn btn-sm"

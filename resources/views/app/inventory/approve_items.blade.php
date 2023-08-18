@@ -10,8 +10,8 @@
                <h2 class="content-header-title float-start mb-0"> Approve | Stock </h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                     <li class="breadcrumb-item"><a href="#">Inventory</a></li>
+                     <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                     <li class="breadcrumb-item"><a href="/warehousing/all">Inventory</a></li>
                      <li class="breadcrumb-item active">Stock</li>
                   </ol>
                </div>

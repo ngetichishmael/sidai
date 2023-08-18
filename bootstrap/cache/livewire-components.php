@@ -55,6 +55,7 @@
   'price-group.dashboard' => 'App\\Http\\Livewire\\PriceGroup\\Dashboard',
   'price-group.index' => 'App\\Http\\Livewire\\PriceGroup\\Index',
   'productapproval.approval' => 'App\\Http\\Livewire\\Productapproval\\Approval',
+  'productapproval.approved' => 'App\\Http\\Livewire\\Productapproval\\Approved',
   'productapproval.requisitionapprovalwarehouses' => 'App\\Http\\Livewire\\Productapproval\\Requisitionapprovalwarehouses',
   'productapproval.approve_item' => 'App\\Http\\Livewire\\Productapproval\\approve_item',
   'products.products' => 'App\\Http\\Livewire\\Products\\Products',
