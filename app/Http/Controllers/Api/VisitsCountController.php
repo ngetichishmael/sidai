@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Orders as ModelsOrders;
-use Illuminate\Http\Request;
 
 class VisitsCountController extends Controller
 {
-    
 
-    public function index(){        
+
+    public function index(){
         $countWeek= ModelsOrders::whereBetween('delivery_date',[
             now()->startOfWeek(),now()->endOfWeek()
         ])

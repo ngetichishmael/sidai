@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
-use App\Models\Region;
 use App\Models\Role;
-use App\Models\Subregion;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller

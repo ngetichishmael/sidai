@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Territory;
 
-use App\Models\zone;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Relationship;
 use App\Models\Subarea;
+use App\Models\zone;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ZoneController extends Controller
 {

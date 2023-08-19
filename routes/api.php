@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\AppsPermissionController;
-//use App\Http\Controllers\Api\Chat\ChatController;
 use App\Http\Controllers\Api\CompanyRouteController;
 use App\Http\Controllers\Api\CurrentDeviceInformationController;
 use App\Http\Controllers\Api\CustomersProductsController;
@@ -19,8 +18,9 @@ use App\Http\Controllers\Api\surveyController;
 use App\Http\Controllers\Api\TargetsController;
 use App\Http\Controllers\Api\TargetsUIController;
 use App\Http\Controllers\Api\WarehouseController;
-use App\Http\Controllers\Chat\SocketsController;
 use Illuminate\Support\Facades\Route;
+
+//use App\Http\Controllers\Api\Chat\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -230,7 +230,7 @@ Route::group(['namespace' => 'Api'], function () {
 
     //stock requisition
     Route::get('stock/requisitions', [StockRequisitionController::class, "show"])->middleware('auth:sanctum');
-    Route::post('/stock/create/request', [StockRequisitionController::class, "store"])->middleware('auth:sanctum');
+    Route::post('/stock/create/request/{warehouse}', [StockRequisitionController::class, "store"])->middleware('auth:sanctum');
     Route::post('/stock/cancel', [StockRequisitionController::class, "cancel"])->middleware('auth:sanctum');
     Route::post('/stock/update', [StockRequisitionController::class, "update"])->middleware('auth:sanctum');
     Route::get('stock/requisitions/approved', [StockRequisitionController::class, "approved"])->middleware('auth:sanctum');

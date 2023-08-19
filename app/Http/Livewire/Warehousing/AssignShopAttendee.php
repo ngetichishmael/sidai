@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Warehousing;
 
-use App\Models\User;
 use Livewire\Component;
 
 class AssignShopAttendee extends Component

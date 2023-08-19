@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Api\total;
 
-use App\Models\Region;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Area;
 use App\Models\customers;
+use App\Models\Region;
 use App\Models\Subarea;
 use App\Models\Subregion;
 use App\Models\zone;
+use Illuminate\Http\Request;
 
 class RegionalFilter extends Controller
 {
 
    /**
     *
-   
+
     *
     * @param Request $request
     * @return void

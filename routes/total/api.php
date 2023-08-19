@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\Total\DeliveryController;
 use App\Http\Controllers\Api\total\RegionalFilter;
 use App\Http\Controllers\Api\Total\TerritoryController;
 use Illuminate\Support\Facades\Route;
-use Knuckles\Scribe\Annotations as Scribe;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes

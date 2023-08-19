@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Reports;
 
-use Livewire\Component;
 use App\Models\warehousing;
+use Livewire\Component;
 
 class Inventory extends Component
 {

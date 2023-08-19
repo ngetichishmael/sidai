@@ -5,7 +5,6 @@ namespace App\Jobs;
 use App\Models\suppliers\suppliers;
 use App\Notifications\NewOrderNotification;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -19,6 +18,8 @@ class SendNewOrderNotificationJob implements ShouldQueue
    private $order;
    private $distributor;
    private $distributorid;
+   private $sales;
+   private $sales_number;
 
 //public $retries =3;
    /**
@@ -26,11 +27,13 @@ class SendNewOrderNotificationJob implements ShouldQueue
      *
      * @return void
      */
-   public function __construct($order,$distributor,$distributorid )
+   public function __construct($order,$distributor,$distributorid, $sales, $sales_number )
    {
       $this->order = $order;
       $this->distributor = $distributor;
       $this->distributorid = $distributorid;
+      $this->sales = $sales;
+      $this->sales_number = $sales_number;
    }
 
     /**
@@ -46,6 +49,6 @@ class SendNewOrderNotificationJob implements ShouldQueue
          return;
       }
       Log::debug("++++++++++++++++++++++".$this->order );
-         $notifiableUser->notify(new NewOrderNotification($this->order, $this->distributor));
+         $notifiableUser->notify(new NewOrderNotification($this->order, $this->distributor, $this->sales, $this->sales_number));
    }
 }

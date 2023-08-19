@@ -11,7 +11,11 @@
                <h2 class="content-header-title float-start mb-0">Stock Reconciliations</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
-                     {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                        <li class="breadcrumb-item "><a href="/stock-Reconciliations">Reconcilition Warehouse</a></li>
+                        <li class="breadcrumb-item active"><a href="#">Sales</a></li>
+                     </ol>
                   </ol>
                </div>
             </div>

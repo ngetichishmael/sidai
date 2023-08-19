@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PriceGroup;
 use App\Http\Requests\StorePriceGroupRequest;
 use App\Http\Requests\UpdatePriceGroupRequest;
+use App\Models\PriceGroup;
 
 class PriceGroupController extends Controller
 {

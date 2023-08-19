@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Reports;
 use App\Exports\DistributorExport;
 use App\Models\Area;
 use App\Models\customer\customers;
-use App\Models\Orders;
 use App\Models\Subregion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

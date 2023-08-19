@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
    <!--[if gte mso 9]>
    <xml>
@@ -212,37 +212,45 @@
                                  <td style="overflow-wrap: break-word; word-break: break-word; padding: 40px 40px 30px; font-family: 'Lato', sans-serif;" align="left">
 
                                     <div style="line-height: 120%; text-align: left; word-wrap: break-word;">
-                                       <p style="font-size: 18px; line-height: 25.2px; color: #666666;">Hello, {{ $name }}</p>
-                                       <p>A new order has been placed for <span style="color: #d5512d"><b>{{$customer}}</b></span></p>
-                                       <p>Order Code: <span style="color: #d5512d"><b>{{$ordercode}}</b></span></p>
+                                       <p style="font-size: 18px; line-height: 25.2px; color: #666666;">Hi, {{ $name }}</p>
+                                       <p>You have a new order from Sidai for customer called <span style="color: #d5512d"><b>{{$customer}}</b> customer location: {{$location}}</span></p>
+{{--                                       <p>Order Code: <span style="color: #d5512d"><b>{{$ordercode}}</b></span></p>--}}
                                        <p>&nbsp;</p>
-                                       <p><span><b>Customer Location Pin:</b></span> {{$location}}</p>
+{{--                                       <p><span><b>Customer Location Pin:</b></span> {{$location}}</p>--}}
                                        <p>&nbsp;</p><p>&nbsp;</p>
-                                       <p><span><b>Order Details:</b></span></p>
+{{--                                       <p><span><b>Order Details:</b></span></p>--}}
 
                                        @if(empty($orderitems))
                                           <p>Order Items Not displayed at the moment, please refer to your app notification for more details</p>
                                        @else
-                                          <table class="table table-striped table-bordered zero-configuration table-responsive" style="background: #fcebe5">
-                                             <thead>
-                                             <tr>
-                                                <th width="80%">Item Name</th>
-                                                <th width="20%">Quantity</th>
-                                             </tr>
-                                             </thead>
-                                             <tbody>
-                                             @foreach ($orderitems as $item)
-                                                <tr>
-                                                   <td style="color: #e85026">{{$item->product_name}}</td>
-                                                   <td style="color: #0c0c0c">{{$item->quantity}}</td>
-                                                   <td></td>
-                                                </tr>
-                                             @endforeach
-                                             </tbody>
-                                          </table>
-                                       @endif
+                                          @foreach ($orderitems as $item)
+                                             {{$item->product_name}} : {{$item->quantity}}
+                                             <p><br/></p>
+                                          @endforeach
+                                       {{--@if(empty($orderitems))--}}
+{{--                                          <p>Order Items Not displayed at the moment, please refer to your app notification for more details</p>--}}
+{{--                                       @else--}}
+{{--                                          <table class="table table-striped table-bordered zero-configuration table-responsive" style="background: #fcebe5">--}}
+{{--                                             <thead>--}}
+{{--                                             <tr>--}}
+{{--                                                <th width="80%">Item Name</th>--}}
+{{--                                                <th width="20%">Quantity</th>--}}
+{{--                                             </tr>--}}
+{{--                                             </thead>--}}
+{{--                                             <tbody>--}}
+{{--                                             @foreach ($orderitems as $item)--}}
+{{--                                                <tr>--}}
+{{--                                                   <td style="color: #e85026">{{$item->product_name}}</td>--}}
+{{--                                                   <td style="color: #0c0c0c">{{$item->quantity}}</td>--}}
+{{--                                                   <td></td>--}}
+{{--                                                </tr>--}}
+{{--                                             @endforeach--}}
+{{--                                             </tbody>--}}
+{{--                                          </table>--}}
+{{--                                       @endif--}}
                                        <p>&nbsp;</p><p>&nbsp;</p>
-                                       <p>Thank you for using Sidai! For assistance, please contact us at CRM@sidai.com or through the app chat section.</p>
+                                          <p>Incase of any questions please contact sales representative {{ $sales}} ; phone {{$sales_number}} to allign on the order. Thank you for being part of our team.</p>
+{{--                                       <p>Thank you for using Sidai! For assistance, please contact us at CRM@sidai.com or through the app chat section.</p>--}}
                                     </div>
 
                                  </td>

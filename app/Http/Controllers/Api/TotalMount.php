@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use App\Models\customer\checkin;
 use App\Models\products\product_information;
+use Illuminate\Http\Request;
 
 
 class TotalAmount

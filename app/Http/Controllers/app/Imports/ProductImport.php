@@ -6,11 +6,10 @@ use App\Models\ProductInformation;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
-use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
 class ProductImport implements ToModel, WithValidation
 {

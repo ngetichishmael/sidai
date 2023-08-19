@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\app\survey;
 
-use App\Models\User;
 use App\Helpers\Helper;
-use Illuminate\Http\Request;
-use App\Models\survey\survey;
-use App\Models\survey\category;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\survey\category;
+use App\Models\survey\survey;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class surveyController extends Controller

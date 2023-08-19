@@ -2,15 +2,14 @@
 
 namespace App\Mail;
 
+use App\Models\crm\emails;
+use App\Models\wingu\business;
+use App\Models\wingu\file_manager as documents;
+use Auth;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\wingu\file_manager  as documents;
-use App\Models\wingu\business;
-use App\Models\crm\emails;
 use Wingu;
-use Auth;
 
 class sendLpo extends Mailable
 {
@@ -62,7 +61,7 @@ class sendLpo extends Mailable
                      ->where('section',$doctype)
                      ->where('status','Yes')
                      ->where('businessID',Auth::user()->businessID)
-                     ->count(); 
+                     ->count();
 
       $business = business::join('invoice_settings','invoice_settings.businessID','=','business.id')
                      ->where('business.id',Auth::user()->businessID)

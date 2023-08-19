@@ -1,12 +1,12 @@
 <?php
 namespace App\Http\Controllers\app\finance\settings;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\finance\lpo\lpo_settings;
-use Session;
 use Auth;
-use Wingu;
 use Finance;
+use Illuminate\Http\Request;
+use Session;
+use Wingu;
 
 class lpoController extends Controller
 {

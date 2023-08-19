@@ -3,14 +3,10 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\Notification;
-use App\Models\Region;
-use App\Models\Subregion;
 use App\Models\User;
-use App\Models\zone;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class Index extends Component
 {

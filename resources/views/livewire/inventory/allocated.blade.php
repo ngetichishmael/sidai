@@ -17,19 +17,23 @@
                      <th>Action</th>
                   </thead>
                   <tbody>
-                     @foreach($allocations as $count=>$allocation)
-                        <tr>
-                           <td>{!! $count+1 !!}</td>
-                           <td>{!! $allocation->name !!}</td>
-                           {{-- <td>{!! Sales::total_allocated_items($allocation->allocation_code)->sum('current_qty') !!}</td> --}}
-                           <td>{!! date('F jS, Y', strtotime($allocation->created_at)) !!}</td>
-                           <td>{!! Sales::user($allocation->created_by)->name !!}</td>
-                           <td><span class="badge bg-secondary">{!! $allocation->status !!}</span></td>
-                           <td>
-                              <a href="{!! route('inventory.allocate.items',$allocation->allocation_code) !!}" class="btn btn-sm btn-success">view</a>
-                           </td>
-                        </tr>
-                     @endforeach
+                  @forelse ($allocations as $count => $allocation)
+                     <tr>
+                        <td>{!! $count + 1 !!}</td>
+                        <td>{!! $allocation->name !!}</td>
+                        {{-- <td>{!! Sales::total_allocated_items($allocation->allocation_code)->sum('current_qty') !!}</td> --}}
+                        <td>{!! date('F jS, Y', strtotime($allocation->created_at)) !!}</td>
+                        <td>{!! Sales::user($allocation->created_by)->name !!}</td>
+                        <td><span class="badge bg-secondary">{!! $allocation->status !!}</span></td>
+                        <td>
+                              <a href="{!! route('inventory.allocate.items', $allocation->allocation_code) !!}" class="btn btn-sm btn-success">view</a>
+                        </td>
+                     </tr>
+                  @empty
+                     <tr>
+                        <td colspan="6" class="text-center">No allocations found.</td>
+                     </tr>
+                  @endforelse
                   </tbody>
                </table>
             </div>

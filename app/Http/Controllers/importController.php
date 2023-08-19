@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exports\customers as export;
-use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel as ExcelData;
-
 use App\Imports\customers;
-
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Facades\Excel as ExcelData;
 
 class importController extends Controller
 {

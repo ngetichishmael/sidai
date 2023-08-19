@@ -12,7 +12,7 @@ class ReconciledProductsController extends Controller
 {
     public function index2(Request $request, $warehouse_code)
     {
-        $usercode = $request->user()->name;
+        $usercode = $request->user()->user_code;
         $id = $request->user()->id;
         $request = $request->collect();
 
@@ -29,12 +29,14 @@ class ReconciledProductsController extends Controller
             $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
             $reconciled_products->save();
 
-            DB::table('inventory_allocated_items')
+            $is=DB::table('inventory_allocated_items')
                 ->where('created_by', $usercode)
                 ->where('product_code',$data['productID'])
                 ->decrement('allocated_qty', $data['amount'], [
                     'updated_at' => now(),
                 ]);
+
+            info("amount is ".$data['amount']);
             DB::table('inventory_allocated_items')
                 ->where('allocated_qty', '<', 1)
                 ->delete();

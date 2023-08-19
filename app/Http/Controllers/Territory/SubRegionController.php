@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Territory;
 
-use App\Models\Region;
-use App\Models\Subregion;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\RegionalBreakdown;
+use App\Models\Region;
 use App\Models\Relationship;
+use App\Models\Subregion;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class SubRegionController extends Controller
 {

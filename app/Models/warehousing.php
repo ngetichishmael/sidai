@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\products\product_information;
 use App\Models\products\ProductSku;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\products\product_information;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class warehousing extends Model
 {
@@ -53,5 +52,10 @@ class warehousing extends Model
    public function ReconciledProducts()
    {
       return $this->hasMany(ReconciledProducts::class, 'warehouse_code','warehouse_code');
+   }
+
+   public function stockRequisitions()
+   {
+      return $this->hasMany(StockRequisition::class, 'warehouse_code', 'warehouse_code');
    }
 }

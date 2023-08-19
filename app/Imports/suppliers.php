@@ -2,12 +2,11 @@
 
 namespace App\Imports;
 
+use App\Models\suppliers\suppliers as SuppliersSuppliers;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Models\suppliers\supplier_address as SuppliersSupplier_address;
-use App\Models\suppliers\suppliers as SuppliersSuppliers;
-use Illuminate\Support\Facades\Auth;
 
 class suppliers implements ToCollection, WithHeadingRow
 {

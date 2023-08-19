@@ -2,13 +2,11 @@
 
 namespace App\Http\Livewire\Target;
 
-use Carbon\Carbon;
-use Livewire\Component;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TargetExport;
-use App\Models\SalesTarget;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {

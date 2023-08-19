@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Relationship;
 use App\Models\Subregion;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AreaController extends Controller
 {

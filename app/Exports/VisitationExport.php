@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Models\User;
-use App\Models\Orders;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromView;

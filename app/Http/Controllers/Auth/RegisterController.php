@@ -1,19 +1,19 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Mail\systemMail;
 use App\Models\business;
-use App\Models\warehousing;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Models\laratrust\Role_user;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use App\Models\warehousing;
 use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail as FacadesMail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {

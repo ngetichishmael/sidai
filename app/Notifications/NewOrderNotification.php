@@ -4,14 +4,13 @@ namespace App\Notifications;
 
 use App\Models\customers;
 use App\Models\Order_items;
-use App\Models\Orders;
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
+use function Symfony\Component\Translation\t;
 
 class NewOrderNotification extends Notification implements ShouldQueue
 {
@@ -20,6 +19,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
    private $order;
    private $orderitems;
    private $distributor;
+   private $sales;
+   private  $sales_number;
    /**
     * @var mixed
     */
@@ -31,9 +32,11 @@ class NewOrderNotification extends Notification implements ShouldQueue
      * @return void
      */
 
-   public function __construct($order, $distributor)
+   public function __construct($order, $distributor, $sales, $sales_number)
    {
       $this->order = $order;
+      $this->sales = $sales;
+      $this->sales_number = $sales_number;
       $this->distributor = $distributor;
       $this->orderitems = Order_items::where('order_code', $this->order->order_code)->get();
       Log::debug($this->order->order_code);
@@ -71,13 +74,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
          $customer=customers::find($this->order->customerID);
          if (!empty($customer)) {
            $orderitems=$this->orderitems;
-//            foreach ($orderitems as $item) {
-//               $orderDetails .= $item->product_name . "\t\t" . $item->quantity . "\n";
-//            }
          }
         $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude . ',' . $customer->longitude;
-//         $message="A new order has been placed for ".$customer->customer_name;
-//         $location= "Customer Location Pin: " . $mapLink;
          $customer=$customer->customer_name;
          Log::debug('----------------------------------'. $this->orderitems);
          Log::debug('*****************************'. $orderitems);
@@ -89,6 +87,8 @@ class NewOrderNotification extends Notification implements ShouldQueue
                'ordercode'=>$this->order->order_code,
                'name'=>$this->distributor,
                'orderitems'=>$this->orderitems,
+               'sales'=>$this->sales,
+               'sales_number'=>$this->sales_number,
          ]);
       }
     }
@@ -101,7 +101,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
     public function toArray($notifiable)
     {
-Log::debug("in toarray db notifiable");
+      Log::debug("in toarray db notifiable");
        $orderDetails = '';
        if ($this->order){
           $customer=customers::find($this->order->customerID);

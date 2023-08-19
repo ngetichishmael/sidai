@@ -2,14 +2,12 @@
 
 namespace App\Http\Livewire\Visits;
 
-use App\Models\User;
 use App\Exports\VisitationExport;
-use Maatwebsite\Excel\Facades\Excel;
-use Carbon\Carbon;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\visitschedule;
-use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Index extends Component
 {
@@ -26,7 +24,7 @@ class Index extends Component
    public function data()
    {
       $query = User::withCount('Checkings')->where('route_code', '=', Auth::user()->route_code);
-      
+
 
       return $query->get();
    }

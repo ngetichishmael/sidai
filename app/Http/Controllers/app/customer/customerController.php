@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers\app\customer;
 
-use App\Helpers\Helper;
-use App\Models\activity_log;
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Area;
+use App\Models\country;
+use App\Models\customer\customers;
+use App\Models\customer\groups;
 use App\Models\customer_group;
 use App\Models\price_group;
-use App\Models\customer\customers;
-use App\Models\country;
-use App\Models\customer\groups;
 use App\Models\PriceGroup;
 use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\suppliers\supplier_address;
+use App\Models\User;
+use Carbon\Carbon;
 use File;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
@@ -90,13 +89,13 @@ class customerController extends Controller
 
    public function details($id)
    {
-      $customer = Customers::find($id);
-      return view('app.customers.show', ['customer' => $customer]);
+      
+      return view('app.customers.show', ['id' => $id,]);
    }
    public function creditordetails($id)
    {
-      $customer = customers::find($id);
-      return view('app.creditors.show', ['customer' => $customer]);
+      // $customer = customers::find($id);
+      return view('app.creditors.show', ['id' => $id]);
    }
 
    public function approvecreditor($id)
@@ -250,9 +249,9 @@ class customerController extends Controller
    public function edit($id)
    {
 
-      $regions = Region::all();
-      $subregions = Subregion::all();
-      $areas = Area::all();
+      // $regions = Region::all();
+      // $subregions = Subregion::all();
+      // $areas = Area::all();
       $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
@@ -263,10 +262,11 @@ class customerController extends Controller
          'subregion_id' => $subregion_id,
          'region_id' => $region_id,
       ]);
+      $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
-         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'prices')
+         compact('customer', 'country', 'groups', 'prices','regions')
       );
    }
    public function editcreditor($id)
@@ -307,8 +307,8 @@ $region=
       $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
       $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
       $customer->route = $request->route ?? $customer->route;
-      $customer->route_code = $request->territory ?? $customer->territory;
-      $customer->zone_id = $request->territory ?? $customer->territory;
+      $customer->route_code = $request->route ?? $customer->territory;
+      $customer->zone_id = $request->region ?? $customer->territory;
       $customer->branch = $request->branch ?? $customer->branch;
       $customer->email = $request->email ?? $customer->email;
       $customer->phone_number = $request->phone_number ?? $customer->phone_number;

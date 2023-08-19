@@ -7,14 +7,12 @@ use App\Models\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Log;
 
 class AuthGates
 {
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
-        dd($user->roles);
         if (!app()->runningInConsole() && $user) {
             $roles            = Role::with('permissions')->get();
             $permissionsArray = [];
