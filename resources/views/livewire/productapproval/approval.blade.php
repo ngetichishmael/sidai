@@ -8,7 +8,7 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <th>#</th>
-                            <th>Sales Name</th>
+                            <th>Sales Person's Name</th>
                             <th>Status</th>
                             <th>Created On</th>
                             <th>Action</th>
