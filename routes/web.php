@@ -322,22 +322,23 @@ Auth::routes(['verify' => true]);
       //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
    // Routes for reports
    Route::middleware('web')->group(function () {
-      Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
-      Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
-      Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
-      Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
-      Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
-      Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
-      Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
-      Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
-      Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
-      Route::get('reports/payments-report', 'app\ReportsController@reports')->name('payments.reports');
-      Route::get('reports/distributors', 'app\ReportsController@reports')->name('distributor.reports');
-      Route::get('reports/region-report', 'app\ReportsController@reports')->name('regional.reports');
-      Route::get('reports/customers-report', 'app\ReportsController@reports')->name('clients.reports');
-      Route::get('reports/inventory-report', 'app\ReportsController@reports')->name('inventory.reports');
+      Route::group(['middleware' => ['auth', \App\Http\Middleware\CheckUserRole::class]], function () {
+         Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
+         Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
+         Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
+         Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
+         Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
+         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
+         Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
+         Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
+         Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
+         Route::get('reports/payments-report', 'app\ReportsController@reports')->name('payments.reports');
+         Route::get('reports/distributors', 'app\ReportsController@reports')->name('distributor.reports');
+         Route::get('reports/region-report', 'app\ReportsController@reports')->name('regional.reports');
+         Route::get('reports/customers-report', 'app\ReportsController@reports')->name('clients.reports');
+         Route::get('reports/inventory-report', 'app\ReportsController@reports')->name('inventory.reports');
+      });
    });
-
    //Routes for reports
    Route::get('reports/supplier-report/{id}', ['uses' => 'app\ReportsController@supplierDetails', 'as' => 'supplierDetailed.reports']);
    Route::get('reports/payments-report/{id}', ['uses' => 'app\ReportsController@paymentsDetails', 'as' => 'paymentsdetails.reports']);

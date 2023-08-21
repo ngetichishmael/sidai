@@ -22,70 +22,39 @@ class ReportsController extends Controller
    {
       $routeName = $request->route()->getName();
       $middleware = $request->route()->middleware();
-//      if (in_array('web', $middleware)) {
-//         switch ($routeName) {
-//            case 'preorders.reports':
-//               return view('app.Reports.preorders');
-//            case 'vansales.reports':
-//               return view('app.Reports.vansales');
-//            case 'delivery.reports':
-//               return view('app.Reports.delivery');
-//            case 'sidai.reports':
-//               return view('app.Reports.users');
-//            case 'warehouse.reports':
-//               return view('app.Reports.warehouse');
-//            case 'supplier.reports':
-//               return view('app.Reports.supplier');
-//            case 'visitation.reports':
-//               return view('app.Reports.visitation');
-//            case 'target.reports':
-//               return view('app.Reports.target');
-//            case 'payments.reports':
-//               return view('app.Reports.payments');
-//            case 'distributor.reports':
-//               return view('app.Reports.distributor');
-//            case 'regional.reports':
-//               return view('app.Reports.regional');
-//            case 'clients.reports':
-//               return view('app.Reports.customers');
-//            case 'inventory.reports':
-//               return view('app.Reports.inventory');
-//            default:
-//               return view('app.users.reports');
-//         }
-//      }
-      $routeName = $request->route()->getName();
-      $user = Auth::user();
-
-      switch ($routeName) {
-         case 'preorders.reports':
-         case 'vansales.reports':
-         case 'delivery.reports':
-         case 'supplier.reports':
-         case 'visitation.reports':
-         case 'target.reports':
-         case 'payments.reports':
-         case 'distributor.reports':
-         case 'regional.reports':
-         case 'sidai.reports':
-            if ($user && in_array($user->role, ['shop-attendee'])) {
+      if (in_array('web', $middleware)) {
+         switch ($routeName) {
+            case 'preorders.reports':
+               return view('app.Reports.preorders');
+            case 'vansales.reports':
+               return view('app.Reports.vansales');
+            case 'delivery.reports':
+               return view('app.Reports.delivery');
+            case 'sidai.reports':
                return view('app.Reports.users');
-            }
-            break;
-         case 'warehouse.reports':
-            if ($user && in_array($user->role, ['shop-attendee'])) {
-               return redirect()->route('unauthorized');
-            } else {
+            case 'warehouse.reports':
                return view('app.Reports.warehouse');
-            }
-         case 'inventory.reports':
-            if ($user && in_array($user->role, ['shop-attendee'])) {
-               return redirect()->route('unauthorized');
-            } else {
+            case 'supplier.reports':
+               return view('app.Reports.supplier');
+            case 'visitation.reports':
+               return view('app.Reports.visitation');
+            case 'target.reports':
+               return view('app.Reports.target');
+            case 'payments.reports':
+               return view('app.Reports.payments');
+            case 'distributor.reports':
+               return view('app.Reports.distributor');
+            case 'regional.reports':
+               return view('app.Reports.regional');
+            case 'clients.reports':
+               return view('app.Reports.customers');
+            case 'inventory.reports':
                return view('app.Reports.inventory');
-            }
-            return view('app.users.reports');
+            default:
+               return view('app.users.reports');
+         }
       }
+
    }
    public function supplierDetails($id)
    {

@@ -70,52 +70,41 @@ class inventoryController extends Controller
          Session()->flash('error','Not products selected');
          return Redirect::back();
       }else{
-//         foreach ($selectedProducts as $productId) {
-//            $product = RequisitionProduct::find($productId);
-//
-//            if ($product) {
          foreach ($selectedProducts as $selectedProduct) {
             list($productId, $requisition_id) = explode('|', $selectedProduct);
+
             $requisitionProduct = RequisitionProduct::where('requisition_id', $requisition_id)
                ->where('product_id', $productId)
                ->first();
-            $allocatedQuantity = $allocateQuantities[$productId];
-            $requisitionProduct->allocated_quantity = $allocatedQuantity;
-            $requisitionProduct->save();
+
+//            if (isset($allocateQuantities[$productId])) {
+//               $allocatedQuantity = $allocateQuantities[$productId];
+//               $requisitionProduct->allocated_quantity = $allocatedQuantity;
+//               dd($requisitionProduct);
+//               $requisitionProduct->save();
+//            }
+//            $allocatedQuantity = $allocateQuantities[$productId];
+
             $r=StockRequisition::where('id',$requisition_id)->first();
             $warehouses=$r->warehouse_code;
+
             if ($requisitionProduct) {
+               if (isset($allocateQuantities[$productId])) {
+                  $allocatedQuantity = min($allocateQuantities[$productId], $requisitionProduct->quantity);
+                  $requisitionProduct->allocated_quantity = $allocatedQuantity;
+                  $requisitionProduct->save();
+               }
+
                if ($request->has('approve')) {
                   $requisitionProduct->update(['approval' => 1]);
                  StockRequisition::where('id',$requisition_id)->update([
                      'status'=>'Approved'
                   ]);
-//               $image_path = 'image/92Ct1R2936EUcEZ1hxLTFTUldcSetMph6OGsWu50.png';
-//               $value = [
-//                  'productID' => $product->id,
-//                  'qty' => $product->quantity,
-//               ];
-//
-//               $stocked = product_inventory::find($product->id);
-//               StockLiftHelper::updateOrCreateItems(
-//                  $user_code,
-//                  $business_code,
-//                  $value,
-//                  $image_path,
-//                  $random,
-//                  $stocked
-//               );
                } elseif ($request->has('disapprove')) {
                   $requisitionProduct->update(['approval' => 0]);
                   StockRequisition::where('id',$requisition_id)->update([
-                     'status'=>'Approved'
+                     'status'=>'Disapproved'
                   ]);
-//               items::where('product_code', $product->productID)
-//                  ->decrement('allocated_qty', $product->quantity);
-//
-//               product_inventory::where('productID', $product->productID)
-//                  ->increment('current_stock', $product->quantity);
-                  //product_inventory::whereId($productId)->increment('current_stock', $product->quantity);
                }
             }
          }

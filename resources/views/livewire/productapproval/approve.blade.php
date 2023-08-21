@@ -35,7 +35,8 @@
                                   <td>{!! $product->ProductInformation->product_name ??'' !!}</td>
                                   <td>{!! $product->ProductInformation->sku_code??'' !!}</td>
                                   <td>{!! $product->quantity ?? '' !!}</td>
-                                  <td><input type="number" name="allocate[{{ $product->id }}]" class="form-control" placeholder="max {!! $product->quantity !!}" max="{!! $product->quantity !!}" value="{!! old('allocate.'.$product->id, $product->quantity) !!}" required>
+                                  <td>
+                                     <input type="number" name="allocate[{{ $product->product_id }}]" class="form-control" min="0" max="{{ $product->quantity }}" value="{{ old('allocate.'.$product->product_id) }}">
                                   </td>
 {{--                                  <td>{!! $product->ProductInformation->warehouse->name??'' !!}</td>--}}
                                   @if ($product->approval === 1)
