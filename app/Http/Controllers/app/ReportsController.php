@@ -12,6 +12,7 @@ use App\Models\Subregion;
 use App\Models\User;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
@@ -54,9 +55,7 @@ class ReportsController extends Controller
          }
       }
 
-      return view('app.users.reports');
    }
-
    public function supplierDetails($id)
    {
       $orders = Orders::where('SupplierID', $id)->get();

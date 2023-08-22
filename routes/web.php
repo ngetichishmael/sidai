@@ -2,6 +2,7 @@
 
 use App\Events\SendMessage;
 use App\Http\Controllers\Api\TestingController;
+use App\Http\Controllers\app\inventoryController;
 use App\Http\Controllers\SupportTicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -321,22 +322,23 @@ Auth::routes(['verify' => true]);
       //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
    // Routes for reports
    Route::middleware('web')->group(function () {
-      Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
-      Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
-      Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
-      Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
-      Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
-      Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
-      Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
-      Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
-      Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
-      Route::get('reports/payments-report', 'app\ReportsController@reports')->name('payments.reports');
-      Route::get('reports/distributors', 'app\ReportsController@reports')->name('distributor.reports');
-      Route::get('reports/region-report', 'app\ReportsController@reports')->name('regional.reports');
-      Route::get('reports/customers-report', 'app\ReportsController@reports')->name('clients.reports');
-      Route::get('reports/inventory-report', 'app\ReportsController@reports')->name('inventory.reports');
+      Route::group(['middleware' => ['auth', \App\Http\Middleware\CheckUserRole::class]], function () {
+         Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
+         Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
+         Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
+         Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
+         Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
+         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
+         Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
+         Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
+         Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
+         Route::get('reports/payments-report', 'app\ReportsController@reports')->name('payments.reports');
+         Route::get('reports/distributors', 'app\ReportsController@reports')->name('distributor.reports');
+         Route::get('reports/region-report', 'app\ReportsController@reports')->name('regional.reports');
+         Route::get('reports/customers-report', 'app\ReportsController@reports')->name('clients.reports');
+         Route::get('reports/inventory-report', 'app\ReportsController@reports')->name('inventory.reports');
+      });
    });
-
    //Routes for reports
    Route::get('reports/supplier-report/{id}', ['uses' => 'app\ReportsController@supplierDetails', 'as' => 'supplierDetailed.reports']);
    Route::get('reports/payments-report/{id}', ['uses' => 'app\ReportsController@paymentsDetails', 'as' => 'paymentsdetails.reports']);
@@ -402,8 +404,11 @@ Auth::routes(['verify' => true]);
    Route::post('inventory/allocate/user', ['uses' => 'app\inventoryController@allocate_user', 'as' => 'inventory.allocate.user']);
    Route::get('inventory/allocate/{code}/items', ['uses' => 'app\inventoryController@allocate_items', 'as' => 'inventory.allocate.items']);
    //stock approval
-   Route::get('warehousing/all/stock-requisition', ['uses' => 'app\inventoryController@approval', 'as' => 'inventory.approval']);
-   Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
+      Route::get('warehousing/all/requisitions/{warehouse_code}', [InventoryController::class, 'approval'])
+         ->name('inventory.approval');
+      Route::get('warehousing/approved/requisitions/{warehouse_code}', ['uses' => 'app\inventoryController@approved', 'as' => 'inventory.approved']);
+      Route::get('warehousing/all', ['uses' => 'app\inventoryController@warehouses', 'as' => 'inventory.warehouses']);
+      Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products
    Route::get('warehousing/{code}/products', ['uses' => 'app\warehousingController@products', 'as' => 'warehousing.products']);
    Route::get('warehousing/assign', ['uses' => 'app\warehousingController@assign', 'as' => 'warehousing.assign']);

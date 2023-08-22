@@ -28,32 +28,33 @@ class StockRequisitionController extends Controller
         return response()->json($stockRequisitions);
     }
 
-    public function store(Request $request)
-    {
-        $requisitionData = $request->validate([
-            'requisition_products' => 'required|array',
-            'requisition_products.*.product_id' => 'required|integer',
-            'requisition_products.*.quantity' => 'required|integer',
-        ]);
+   public function store(Request $request, $warehouse_code)
+   {
+      $requisitionData = $request->validate([
+         'requisition_products' => 'required|array',
+         'requisition_products.*.product_id' => 'required|integer',
+         'requisition_products.*.quantity' => 'required|integer',
+      ]);
 
-        $stockRequisition = StockRequisition::create(
-            [
-                "sales_person" => $request->user()->user_code,
-                "user_id" => $request->user()->id,
-                "requisition_date" => Carbon::now(),
-                "status" => "Waiting Approval",
+      $stockRequisition = StockRequisition::create(
+         [
+//                "user_id" => $request->user()->user_code,
+            "user_id" => $request->user()->id,
+            "requisition_date" => Carbon::now(),
+            "warehouse_code" => $warehouse_code,
+            "status" => "Waiting Approval",
 
-            ]
-        );
-        foreach ($requisitionData['requisition_products'] as $productData) {
-            RequisitionProduct::create([
-                'requisition_id' => $stockRequisition->id,
-                'product_id' => $productData['product_id'],
-                'quantity' => $productData['quantity'],
-            ]);
-        }
-        return response()->json("Stock requisition request successful", 201);
-    }
+         ]
+      );
+      foreach ($requisitionData['requisition_products'] as $productData) {
+         RequisitionProduct::create([
+            'requisition_id' => $stockRequisition->id,
+            'product_id' => $productData['product_id'],
+            'quantity' => $productData['quantity'],
+         ]);
+      }
+      return response()->json("Stock requisition request successful", 201);
+   }
     public function show(Request $request)
     {
         $stockRequisition = StockRequisition::with('RequisitionProducts')

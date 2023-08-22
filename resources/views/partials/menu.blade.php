@@ -117,7 +117,7 @@
                         {{--                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li> --}}
 
                         <li style="padding-left: 50px"><a class="d-flex align-items-center"
-                                href="{!! route('inventory.approval') !!}"><span class="menu-item text-truncate">Approve
+                                href="{!! route('inventory.warehouses') !!}"><span class="menu-item text-truncate">Approve
                                     Stock</span></a></li>
                         <li style="padding-left: 50px"><a class="d-flex align-items-center"
                                 href="{!! route('supplier') !!}">

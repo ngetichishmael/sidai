@@ -9,6 +9,7 @@ use App\Models\Order_items;
 use App\Models\Orders;
 use App\Models\products\product_information;
 use App\Models\Subregion;
+use App\Models\warehouse_assign;
 use App\Models\warehousing;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,25 @@ class Warehouse extends Component
    }
    public function data()
    {
-      $query = warehousing::with('manager')->withCount('Products')->whereNotNull('warehouse_code')->get();
+      $roles = ['Shop-Attendee'];
+
+      if (auth()->check() && in_array(auth()->user()->account_type, $roles)) {
+         $assigned = warehouse_assign::where('manager', auth()->user()->id)->first();
+
+         if ($assigned) {
+            $warehouseCode = $assigned->warehouse_code;
+            $query = warehousing::where('warehouse_code', $warehouseCode)
+               ->with('manager')
+               ->withCount('Products')
+               ->whereNotNull('warehouse_code')
+               ->get();
+         } else {
+         $query = warehousing::with('manager')
+            ->withCount('Products')
+            ->whereNotNull('warehouse_code')
+            ->get();
+      }
+
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");

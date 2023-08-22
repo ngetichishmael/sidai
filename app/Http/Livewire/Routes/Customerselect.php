@@ -6,7 +6,7 @@ use App\Models\Area;
 use App\Models\customer\customers;
 use Livewire\Component;
 
-
+//use App\Models\customers;
 class Customerselect extends Component
 {
     public $customer_count = 0;
@@ -19,7 +19,7 @@ class Customerselect extends Component
             'routes' => $routes,
             'customers' => $this->customer()
          ]);
-         
+
     }
     public function customer()
     {

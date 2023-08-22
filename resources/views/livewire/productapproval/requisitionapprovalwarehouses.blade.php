@@ -21,48 +21,21 @@
             <th width="1%">#</th>
             <th>Name</th>
             <th>Region</th>
-            <th>Sub Region</th>
-            {{--                @if(Auth::user()->account_type =='NSM' || Auth::user()->account_type =='RSM' )--}}
-            {{--                   <th>Shop Attendee Name</th>--}}
-            {{--                @endif--}}
-            <th>Products Counts</th>
-            <th>Action</th>
+            <th>Requisitions Counts</th>
+            <th>Action | View</th>
             </thead>
             <tbody>
             @foreach($warehouses as $count=>$warehouse)
-               @if(Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id || Auth::user()->account_type == 'Shop-Attendee' && $warehouse->manager == Auth::user()->user_code)
                   <tr>
                      <td>{!! $count+1 !!}</td>
                      <td>{!! $warehouse->name !!}</td>
                      <td>{!! $warehouse->region->name ?? '' !!}</td>
-                     <td>{!! $warehouse->region->subregion->name ?? '' !!}</td>
-                     {{--                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
-                     <td>{!! $warehouse->product_information_count !!}</td>
+                     <td>{!! $warehouse->approval_count ?? 0 !!}</td>
                      <td>
-                        {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
-                        <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #B6121B;color:white">Inventory</a>
+                        <a href="{!! route('inventory.approval',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #52b3dc;color:white">Waiting Approvals</a>
+                        <a href="{!! route('inventory.approved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #70b467;color:white">Approved</a>
                      </td>
                   </tr>
-               @elseif(Auth::user()->account_type == 'Admin' || Auth::user()->account_type == 'NSM')
-                  <tr>
-                     <td>{!! $count+1 !!}</td>
-                     <td>{!! $warehouse->name ?? '' !!}</td>
-                     <td>{!! $warehouse->region->name ?? ''!!}</td>
-                     <td>{!! $warehouse->subregion->name ?? '' !!}</td>
-                     {{--                         <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
-                     <td>{!! $warehouse->product_information_count !!}</td>
-                     <td>
-                        <div class="dropdown" >
-                           <button class="btn btn-md btn-primary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                              <i data-feather="settings"></i>
-                           </button>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a href="{!! route('warehousing.show',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color:#6df16d; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Details</a>
-                           </div>
-                        </div>
-                     </td>
-                  </tr>
-               @endif
             @endforeach
             </tbody>
          </table>
