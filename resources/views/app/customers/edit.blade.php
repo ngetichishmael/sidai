@@ -102,8 +102,8 @@
                                             value="{{ $customer->phone_number }}" />
                                     </div>
                                 </div>
-                                @livewire('customers.region')
-                                {{-- <div class="col-md-6 col-12">
+                                {{-- @livewire('customers.regionedit') --}}
+                                <div class="col-md-6 col-12">
                                     <label>Region</label>
                                     <select wire:model='region' class="form-control" name="zone">
                                         <option value="">Region</option>
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control" name="territory">
+                                    <select class="form-control" name="route">
                                         <option value="">Route</option>
                                         @foreach ($areas as $area)
                                             <option value="{{ $area->id }}"
@@ -138,7 +138,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                </div> --}}
+                                </div>
 
                             </div>
                                
