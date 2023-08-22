@@ -117,7 +117,7 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub Region</label>
-                                    <select wire:model='regions'class="form-control" name="region">
+                                    <select wire:model='regions'class="form-control select2" name="region">
                                         <option value="">Region</option>
                                         @foreach ($subregions as $subregion)
                                             <option value="{{ $subregion->id ?? ''}}"
@@ -128,7 +128,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control" name="territory">
+                                    <select class="form-control select2" name="route">
                                         <option value="">Route</option>
                                         @foreach ($areas as $area)
                                             <option value="{{ $area->id }}"
