@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\app\supplier;
 
-use App\Models\activity_log;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\suppliers\suppliers;
-use App\Models\suppliers\category;
+use App\Models\activity_log;
 use App\Models\country;
+use App\Models\suppliers\category;
+use App\Models\suppliers\suppliers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 

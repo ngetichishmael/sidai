@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Checkin;
 
-use Livewire\Component;
 use App\Models\customer\checkin;
-use Livewire\WithPagination;
 use Auth;
-use Carbon\Carbon;
+use Livewire\Component;
+use Livewire\WithPagination;
+
 class Index extends Component
 {
    use WithPagination;

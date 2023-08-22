@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\OutletType;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class OutletSeeder extends Seeder
 {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Customers;
 
-use App\Exports\customers as ExportsCustomers;
+use App\Exports\CustomersExport;
 use App\Models\customers;
 use App\Models\customer_group;
 use App\Models\Region;
@@ -118,7 +118,7 @@ class Dashboard extends Component
     }
     public function export()
     {
-        return Excel::download(new ExportsCustomers, 'customers.xlsx');
+        return Excel::download(new CustomersExport, 'customers.xlsx');
     }
     public function deactivate($id)
     {

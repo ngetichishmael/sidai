@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Orders;
-use App\Models\Delivery;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\Delivery_items;
-use App\Models\inventory\items;
-use App\Models\customer\customers;
 use App\Http\Controllers\Controller;
+use App\Models\customer\customers;
+use App\Models\Delivery;
+use App\Models\Delivery_items;
 use App\Models\inventory\allocations;
+use App\Models\inventory\items;
+use App\Models\Orders;
 use App\Models\products\product_inventory;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * @group Deliveries
@@ -117,7 +117,7 @@ class deliveryController extends Controller
                     ],
                     [
                         "business_code" => $business_code,
-                        "status" => "Waiting acceptance",
+                        "status" => "pending",
                         "created_by" => $user_code,
                         "updated_by" => $user_code
                     ]
@@ -141,6 +141,40 @@ class deliveryController extends Controller
                 'delivery_code',
                 $value["delivery_code"]
             )->get();
+            
+            foreach ($delivery_items as $delivery_item) {
+                items::updateOrCreate(
+                    [
+                        'product_code' => $delivery_item->productID,
+                        'created_by' => $user_code
+                    ],
+                    [
+                        'business_code' => $business_code,
+                        'allocation_code' => $random,
+                        'current_qty' => $delivery_item->allocated_quantity,
+                        'allocated_qty' => $delivery_item->allocated_quantity,
+                        'image' => $delivery_item->delivery_code,
+                        'returned_qty' => 0,
+                        'created_by' => $user_code,
+                        'updated_by' => $user_code
+                    ]
+                );
+                product_inventory::where('productID', $delivery_item->productID)
+                    ->decrement('current_stock', $delivery_item->allocated_quantity);
+                allocations::updateOrCreate(
+                    [
+                        "allocation_code" => $random,
+                        "sales_person" => $user_code
+                    ],
+                    [
+                        "business_code" => $business_code,
+                        "status" => "pending",
+                        "created_by" => $user_code,
+                        "updated_by" => $user_code
+                    ]
+                );
+            }
+            
         }
     }
 

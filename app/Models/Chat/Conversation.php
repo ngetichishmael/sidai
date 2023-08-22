@@ -2,7 +2,6 @@
 
 namespace App\Models\Chat;
 
-use App\Models\Chat\Message;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

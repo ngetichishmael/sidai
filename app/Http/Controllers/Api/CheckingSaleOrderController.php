@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\inventory\allocations;
+use App\Models\Order_items;
 use App\Models\Orders;
 use App\Models\Orders as Order;
-use App\Models\Order_items;
 use App\Models\products\product_information;
 use App\Models\Region;
 use App\Models\suppliers\suppliers;
-use App\Models\User;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,15 +73,16 @@ class CheckingSaleOrderController extends Controller
                         "userID" => $user_code,
                     ]
                 );
-                DB::table('inventory_allocated_items')
-                    ->where('product_code', $value["productID"])
-                    ->decrement(
-                        'allocated_qty',
-                        $quantity,
-                        [
-                            'updated_at' => now(),
-                        ]
-                    );
+               $checkitems=DB::table('inventory_allocated_items')
+                  ->where('product_code',$value["productID"])->where('created_by', $user_code)
+                  ->decrement(
+                     'allocated_qty',
+                     $value["qty"],
+                     [
+                        'updated_at' => now(),
+                     ]
+                  );
+
                 Order::updateOrCreate(
                     [
 
@@ -269,7 +271,7 @@ class CheckingSaleOrderController extends Controller
                     "userID" => $user_code,
                 ]
             );
-            $orderId = Order::updateOrCreate(
+            $order = Order::updateOrCreate(
                 [
                     'order_code' => $random,
                 ],
@@ -310,13 +312,21 @@ class CheckingSaleOrderController extends Controller
                 ->increment('AchievedOrdersTarget', $value["qty"]);
         }
         if ($distributor != 1 && $distributor != null) {
-            $usersToNotify = Suppliers::findOrFail($distributor);
-            $number = $usersToNotify->phone_number;
-            $order_code = $random;
-            $this->sendOrder($number, $order_code);
+//            $usersToNotify = Suppliers::findOrFail($distributor);
+//            $number = $usersToNotify->phone_number;
+//            $order_code = $random;
+//            $this->sendOrder($number, $order_code);
 
-//         $usersToNotify = Suppliers::findOrFail($distributor);
-//         Notification::send($usersToNotify, new NewOrderNotification($orderId->id));
+           $usersToNotify = Suppliers::findOrFail($distributor);
+           $number = $usersToNotify->phone_number;
+           $order_code = $random;
+           $this->sendOrder($number, $order_code);
+           $distributor = $usersToNotify->name;
+           $distributorid = $usersToNotify->id;
+           $sales=$request->user()->name;
+           $sales_number =$request->user()->phone_number;
+//               Notification::send($usersToNotify, new NewOrderNotification($orderId));
+           SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid, $sales, $sales_number);
         }
         $ativity_rand = Str::random(20);
         $activityLog = new activity_log();
@@ -387,7 +397,6 @@ class CheckingSaleOrderController extends Controller
                 $response = curl_exec($curl);
                 curl_close($curl);
                 return $response;
-
             } catch (ExceptionHandler $e) {
                 return response()->json(['message' => 'Error occurred while trying to send OTP code']);
             }

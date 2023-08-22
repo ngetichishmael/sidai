@@ -1,20 +1,14 @@
 <?php
 
+use App\Events\SendMessage;
 use App\Http\Controllers\Api\TestingController;
-//use App\Http\Controllers\Chat\ChatController;
-use App\Http\Controllers\app\customer\customerController;
-//use App\Http\Controllers\Chat\SocketsController;
-use App\Http\Controllers\PermissionsController2;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\RolesController2;
 use App\Http\Controllers\SupportTicketController;
-use App\Http\Livewire\Chat\Main;
-use BeyondCode\LaravelWebSockets\Apps\AppProvider;
-use BeyondCode\LaravelWebSockets\Dashboard\DashboardLogger;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Events\SendMessage;
-use Illuminate\Http\Request;
+
+//use App\Http\Controllers\Chat\ChatController;
+//use App\Http\Controllers\Chat\SocketsController;
 
 require __DIR__ . '/admin.php';
 require __DIR__ . '/others.php';
@@ -230,6 +224,7 @@ Auth::routes(['verify' => true]);
    Route::post('users/post/import', ['uses' => 'app\usersController@import', 'as' => 'users.post.import']);
 
    Route::get('/get-users', 'app\usersController@getUsers')->name('get.users');
+   Route::get('/get-subregions', 'app\usersController@getSubregions')->name('get.subregions');
    Route::get('/get-distributors', 'app\usersController@getDistributors')->name('get.distributors');
 
    //export products
@@ -284,6 +279,7 @@ Auth::routes(['verify' => true]);
    Route::get('lifted/items/{allocation_code}', ['uses' => 'app\products\StockLiftController@items', 'as' => 'lifted.items']);
    //stock Reconciliations
    Route::get('stock-Reconciliations', ['uses' => 'app\products\inventoryController@stockrecon', 'as' => 'stock.recon']);
+   Route::get('salesperson/reconciled/{warehouse_code}', ['uses' => 'app\products\inventoryController@salesperson', 'as' => 'stock.salesperson']);
    Route::get('products/reconciled/{warehouse_code}', ['uses' => 'app\products\inventoryController@reconciled', 'as' => 'stock.reconciled']);
 
    /* === product category === */

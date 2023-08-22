@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResource;
 use App\Models\customer\customers;
 use App\Models\Delivery;
-use App\Models\Orders;
 use App\Models\User;
 use Illuminate\Http\Request;
 

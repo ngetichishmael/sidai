@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomerComment;
 use App\Http\Requests\StoreCustomerCommentRequest;
 use App\Http\Requests\UpdateCustomerCommentRequest;
+use App\Models\CustomerComment;
 
 class CustomerCommentController extends Controller
 {

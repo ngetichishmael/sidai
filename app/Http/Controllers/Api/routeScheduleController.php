@@ -4,17 +4,12 @@ namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\customer\customers;
-use App\Models\Routes;
-use App\Models\Route_customer;
-use App\Models\Route_sales;
-use App\Models\User;
 use Auth;
-use Helper;
-use Session;
 use DB;
+use Helper;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use Session;
 
 class routeScheduleController extends Controller
 {
@@ -35,7 +30,7 @@ class routeScheduleController extends Controller
      ->select('routes.name','route_sales.userID','routes.route_code','routes.status','routes.Type','routes.start_date','routes.end_date',
      'customers.id as customer_id','customers.account','customers.customer_name','customers.address',
      'customers.email','customers.phone_number','customers.latitude','customers.longitude')
-     
+
 
      ->get();
      return response()->json([

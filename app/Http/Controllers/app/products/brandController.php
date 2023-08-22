@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\app\products;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Models\products\brand;
 use App\Http\Controllers\Controller;
+use App\Models\products\brand;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Str;
 
 class brandController extends Controller
 {

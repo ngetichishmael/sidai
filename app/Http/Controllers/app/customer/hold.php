@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\app\customer;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\customer\customers;
-use App\Models\customer\checkin;
-use App\Models\products\product_information;
-use App\Models\Order_edit_reason;
-use App\Models\Orders;
-use App\Models\Order_items;
-use App\Models\Cart;
 use App\Models\business;
+use App\Models\Cart;
+use App\Models\customer\checkin;
+use App\Models\customer\customers;
+use App\Models\Order_edit_reason;
+use App\Models\Order_items;
+use App\Models\Orders;
+use App\Models\products\product_information;
 use Auth;
 use Helper;
-use Session;
+use Illuminate\Http\Request;
 use PDF;
+use Session;
 
 class checkinController extends Controller
 {

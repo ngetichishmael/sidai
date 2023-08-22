@@ -45,7 +45,6 @@
                         <th>Region</th>
                         <th>Subregion</th>
                         <th>Town</th>
-                        <th>Customer Type</th>
                         <th>Created By</th>
                         <th>Created Date</th>
                         <th width="15%">Action</th>
@@ -64,7 +63,7 @@
                             <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
                             {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
                             <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
-                            <td>{!! $contact->customer_type !!}</td>
+                            
                             <td>
                                 {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
@@ -77,16 +76,20 @@
                                         class="mr-2 btn btn-md dropdown-toggle" type="button" id="dropdownMenuButton"
                                         data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"
                                         data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                                        <i data-feather="settings"></i>
+                                        <i data-feather="eye"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a href="{{ route('customer.edit', $contact->id) }}" type="button"
-                                            class="dropdown-item btn btn-sm" style="color:#7cc7e0 ;font-weight: bold"><i
-                                                data-feather="edit"></i> &nbsp;Edit</a>
-                                        <a href="{{ route('creditor.details', $contact->id) }}" type="button"
-                                            class="dropdown-item btn btn-sm"
-                                            style="color:#6df16d ; font-weight: bold"><i data-feather="eye"></i>&nbsp;
-                                            View</a>
+                                                <a class="dropdown-item"
+                                            href="{{ route('customer.edit', $contact->id) }}">
+                                            <i data-feather='edit' class="mr-50"></i>
+                                            <span>Edit</span>
+                                        </a>
+                                        
+                                            <a class="dropdown-item"
+                                            href="{{ route('creditor.details', $contact->id) }}">
+                                            <i data-feather='eye' class="mr-50"></i>
+                                            <span>View</span>
+                                        </a>
                                         {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a> --}}
 
                                         @if ($contact->approval === 'Approved')

@@ -2,8 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\User;
-use App\Models\Orders;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\FromView;

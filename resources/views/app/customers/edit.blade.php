@@ -68,7 +68,7 @@
 
                                         @foreach ($groups as $group)
                                             <option value="{{ $group->group_name }}"
-                                                @if ($group->group_name == $customer->group_name) selected @endif>
+                                                @if ($group->group_name == $customer->customer_group) selected @endif>
                                                 {{ $group->group_name }}
                                             </option>
                                         @endforeach
@@ -102,9 +102,10 @@
                                             value="{{ $customer->phone_number }}" />
                                     </div>
                                 </div>
+                                {{-- @livewire('customers.region') --}}
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select id="regionId" class="form-control" name="zone">
+                                    <select id="regionId" class="form-control select2" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"

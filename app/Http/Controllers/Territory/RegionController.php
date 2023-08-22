@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Territory;
 
-use App\Models\Region;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Imports\RegionalImport;
+use App\Models\Region;
 use App\Models\Relationship;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RegionController extends Controller

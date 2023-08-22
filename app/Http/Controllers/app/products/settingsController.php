@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\app\finance\products;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\finance\products\product_information;
-use Helper;
 use Auth;
+use Helper;
+use Illuminate\Http\Request;
 use Session;
+
 class settingsController extends Controller
 {
    public function __construct(){

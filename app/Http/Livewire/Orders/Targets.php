@@ -2,11 +2,10 @@
 
 namespace App\Http\Livewire\Orders;
 
-use Carbon\Carbon;
-use App\Models\User;
-use Livewire\Component;
 use App\Models\OrdersTarget;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Carbon\Carbon;
+use Livewire\Component;
 
 class Targets extends Component
 {

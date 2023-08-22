@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\app\Map\MapsController;
 use Illuminate\Support\Facades\Route;
-use Knuckles\Scribe\Annotations as Scribe;
 
 /*
 |--------------------------------------------------------------------------

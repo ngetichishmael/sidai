@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\app\Target;
 
+use App\Http\Controllers\Controller;
 use App\Models\VisitsTarget;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class VisitsController extends Controller

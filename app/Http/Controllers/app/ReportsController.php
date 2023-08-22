@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\app;
 
+use App\Http\Controllers\Controller;
 use App\Models\Area;
-use App\Models\User;
+use App\Models\customer\customers;
+use App\Models\Order_items;
 use App\Models\Orders;
+use App\Models\products\product_information;
 use App\Models\Subregion;
+use App\Models\User;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
-use App\Models\customer\customers;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
-use App\Models\Order_items;
-use App\Models\products\product_information;
 
 class ReportsController extends Controller
 {
@@ -21,11 +21,8 @@ class ReportsController extends Controller
    {
       $routeName = $request->route()->getName();
       $middleware = $request->route()->middleware();
-
       if (in_array('web', $middleware)) {
          switch ($routeName) {
-            case 'users.reports':
-               return view('app.users.reports');
             case 'preorders.reports':
                return view('app.Reports.preorders');
             case 'vansales.reports':
@@ -56,6 +53,8 @@ class ReportsController extends Controller
                return view('app.users.reports');
          }
       }
+
+      return view('app.users.reports');
    }
 
    public function supplierDetails($id)

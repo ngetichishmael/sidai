@@ -1,7 +1,7 @@
 <?php
 namespace Database\Seeders;
-use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class RequisitionProductsTableSeeder extends Seeder
@@ -21,11 +21,11 @@ class RequisitionProductsTableSeeder extends Seeder
          DB::table('requisition_products')->truncate();
          // Create sample requisition products
          $requisitionProducts = [];
- 
+
          foreach ($stockRequisitionIds as $requisitionId) {
              for ($i = 0; $i < 3; $i++) { // Generate 3 requisition products per stock requisition
                  $productId = $productIds->random();
- 
+
                  $requisitionProducts[] = [
                      'product_id' => $productId,
                      'requisition_id' => $requisitionId,
@@ -37,7 +37,7 @@ class RequisitionProductsTableSeeder extends Seeder
                  ];
              }
          }
- 
+
          // Insert seed data
          DB::table('requisition_products')->insert($requisitionProducts);
     }

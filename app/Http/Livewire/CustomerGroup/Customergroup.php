@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\CustomerGroup;
 
+use App\Models\customer_group;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\customer_group;
 
 class Customergroup extends Component
 {

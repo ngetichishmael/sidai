@@ -3,11 +3,10 @@
 namespace App\Http\Livewire\Warehousing;
 
 use App\Models\Region;
-use Livewire\Component;
-use App\Models\customers;
 use App\Models\warehousing;
-use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
@@ -31,7 +30,7 @@ class Index extends Component
          $query->whereIn('region_id', $this->filter());
       })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
-         
+
 
       return view('livewire.warehousing.index', [
          'warehouses' => $warehouses,

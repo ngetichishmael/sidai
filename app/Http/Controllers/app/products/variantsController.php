@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\app\finance\products;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\finance\products\product_information;
-use App\Models\finance\products\product_price;
-use App\Models\finance\products\product_inventory;
-use App\Models\finance\products\product_gallery;
-use App\Models\finance\products\attributes; 
 use App\Models\finance\currency;
+use App\Models\finance\products\attributes;
+use App\Models\finance\products\product_gallery;
+use App\Models\finance\products\product_information;
+use App\Models\finance\products\product_inventory;
+use App\Models\finance\products\product_price;
 use App\Models\finance\tax;
 use Auth;
 use Finance;
-use Session;
 use Helper;
-use Wingu;
+use Illuminate\Http\Request;
 use Input;
+use Session;
+use Wingu;
 
 class variantsController extends Controller
 {
@@ -59,7 +59,7 @@ class variantsController extends Controller
    */
    public function create()
    {
-      
+
    }
 
    /**
@@ -164,7 +164,7 @@ class variantsController extends Controller
    */
    public function show($id)
    {
-      
+
    }
 
    /**
@@ -214,7 +214,7 @@ class variantsController extends Controller
          'variant' => 'required',
       ]);
 
-     
+
       //product information
       $product = product_information::where('businessID',Auth::user()->businessID)->where('id',$id)->first();
       $product->sku_code = $request->sku_code;

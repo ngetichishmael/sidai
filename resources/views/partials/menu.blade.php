@@ -18,6 +18,7 @@
                         Dashboards</span>
                 </a>
             </li>
+{{--           @dd(\Illuminate\Support\Facades\Auth::user())--}}
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                 <li class="nav-item {!! Nav::isRoute('customer') !!}">
                     <a class="d-flex align-items-center" href="#">
@@ -293,6 +294,7 @@
 </li>
 </ul>
 </li>
+           @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
     <li class="nav-item {!! Nav::isResource('reports') !!}">
         <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
@@ -300,7 +302,8 @@
                 All Reports</span></a>
     </li>
               @endhaspermissionto
-<li class="nav-item {!! Nav::isResource('activity')!!}">
+           @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+           <li class="nav-item {!! Nav::isResource('activity')!!}">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
 <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
 </a>

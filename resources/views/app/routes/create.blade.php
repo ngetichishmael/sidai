@@ -67,11 +67,12 @@
                           @endforeach
                        </select>
                     </div>
-                   <div class="form-group col-md-6 mb-1">
-                      <label for="">Add sales people to Route</label>
-                      {!! Form::select('sales_persons[]', [], null, ['class' => 'form-control select2', 'name' => 'user', 'id' => 'user', 'multiple' => '']) !!}
-                   </div>
-
+                    <div class="form-group col-md-6 mb-1">
+                        <label for="">Add sales people to Route</label>
+                        <select name="user[]" class="form-control select2" id="user" multiple>
+                            <!-- Options will be added using AJAX -->
+                        </select>
+                    </div>
                     <div class="form-group mb-1">
                         <button class="btn" style="background-color: #B6121B;color:white" type="submit">Save Information</button>
                     </div>
@@ -83,30 +84,30 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
        $(document).ready(function() {
-          $('#account_type').on('change', function() {
-             var accountType = $(this).val();
-             if (accountType) {
-                $.ajax({
-                   url: '{{ route('get.users') }}',
-                   type: 'GET',
-                   data: { account_type: accountType },
-                   success: function(data) {
-                      $('#user').empty();
-                      $('#user').append('<option value="">Select Sales Person</option>');
-                      data.users.forEach(function(user) {
-                         $('#user').append('<option value="' + user.id + '">' + user.name + '</option>');
-                      });
-                   },
-                   error: function() {
-                      console.log('Error occurred during AJAX request.');
-                   }
-                });
-             } else {
-                $('#user').empty();
-                $('#user').append('<option value="">Select Sales Person</option>');
-             }
-          });
-       });
+      $('#account_type').on('change', function() {
+         var accountType = $(this).val();
+         if (accountType) {
+            $.ajax({
+               url: '{{ route('get.users') }}',
+               type: 'GET',
+               data: { account_type: accountType },
+               success: function(data) {
+                  $('#user').empty();
+                  $('#user').append('<option value="">Select Sales Person</option>');
+                  data.users.forEach(function(user) {
+                     $('#user').append('<option value="' + user.id + '">' + user.name + '</option>');
+                  });
+               },
+               error: function() {
+                  console.log('Error occurred during AJAX request.');
+               }
+            });
+         } else {
+            $('#user').empty();
+            $('#user').append('<option value="">Select Sales Person</option>');
+         }
+      });
+   });
     </script>
 
 

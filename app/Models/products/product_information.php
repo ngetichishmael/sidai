@@ -3,9 +3,8 @@
 namespace App\Models\products;
 
 use App\Models\warehousing;
-use Illuminate\Database\Eloquent\Model;
 use Auth;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Model;
 
 class product_information extends Model
 {
