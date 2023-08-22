@@ -104,10 +104,10 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select wire:model='region' class="form-control" name="zone">
+                                    <select class="form-control" name="zone" id="regionSelect">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id  ?? ''}}"
+                                            <option value="{{ $region->id}}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
                                                 {{ $region->name }}
                                             </option>
@@ -117,25 +117,14 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub Region</label>
-                                    <select wire:model='regions'class="form-control select2" name="region">
-                                        <option value="">Region</option>
-                                        @foreach ($subregions as $subregion)
-                                            <option value="{{ $subregion->id ?? ''}}"
-                                                @if ($subregion->id == $customer->subregion_id) selected @endif>{{ $subregion->name }}
-                                            </option>
-                                        @endforeach
+                                    <select class="form-control select2" name="region" id="subRegionSelect">
+                                        
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control select2" name="route">
-                                        <option value="">Route</option>
-                                        @foreach ($areas as $area)
-                                            <option value="{{ $area->id }}"
-                                                @if ($area->id == $customer->zone_id) selected @endif>
-                                                {{ $area->name }}
-                                            </option>
-                                        @endforeach
+                                    <select class="form-control select2" name="route" id="#routeSelect">
+                                        
                                     </select>
                                 </div>
 
@@ -153,7 +142,41 @@
             </div>
         </div>
     </section>
-    <!-- Basic Floating Label Form section end -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+    // Region dropdown change event
+    $('#regionSelect').on('change', function () {
+        var regionId = $(this).val();
+
+        // Make an AJAX request to fetch subregions based on the selected region
+        $.ajax({
+            url: '/get-subregions/' + regionId,
+            type: 'GET',
+            success: function (data) {
+                // Populate the subregion dropdown with new options
+                $('#subRegionSelect').html(data);
+            }
+        });
+    });
+
+    // Sub Region dropdown change event
+    $('#subRegionSelect').on('change', function () {
+        var subRegionId = $(this).val();
+
+        // Make an AJAX request to fetch routes based on the selected subregion
+        $.ajax({
+            url: '/get-routes/' + subRegionId,
+            type: 'GET',
+            success: function (data) {
+                // Populate the route dropdown with new options
+                $('#routeSelect').html(data);
+            }
+        });
+    });
+});
+</script>
 
 @endsection
 {{-- page scripts --}}

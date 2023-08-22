@@ -26,12 +26,27 @@ class usersController extends Controller
 
       return response()->json(['users' => $users]);
    }
-   public function getSubregions(Request $request)
+   public function getSubregions($regionId)
    {
-      $regions = $request->input('regions');
-      $subregions = Subregion::where('region_id', $regions)->get();
+      $subregions = Subregion::where('region_id', $regionId)->get();
 
-      return response()->json(['subregions' => $subregions]);
+    $options = '<option value="">Sub Region</option>';
+    foreach ($subregions as $subregion) {
+        $options .= '<option value="' . $subregion->id . '">' . $subregion->name . '</option>';
+    }
+
+    return $options;
+   }
+   public function getRoutes($subRegionId)
+   {
+      $routes = Area::where('subregion_id', $subRegionId)->get();
+
+    $options = '<option value="">Route</option>';
+    foreach ($routes as $route) {
+        $options .= '<option value="' . $route->id . '">' . $route->name . '</option>';
+    }
+
+    return $options;
    }
    public function getDistributors(Request $request)
    {
