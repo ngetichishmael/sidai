@@ -39,9 +39,9 @@ class Warehouse extends Component
    }
    public function data()
    {
-      $roles = ['Shop-Attendee'];
+      $dataAccessLevel = $this->user->roles()->pluck('data_access_level')->first();
 
-      if (auth()->check() && in_array(auth()->user()->account_type, $roles)) {
+      if (auth()->check() && $dataAccessLevel=='route') {
          $assigned = warehouse_assign::where('manager', auth()->user()->id)->first();
 
          if ($assigned) {
@@ -51,25 +51,82 @@ class Warehouse extends Component
                ->withCount('Products')
                ->whereNotNull('warehouse_code')
                ->get();
-         } else {
+            if (!is_null($this->start)) {
+               if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+                  $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+               } else {
+                  if (is_null($this->end)) {
+                     $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+                  }
+                  $query->whereBetween('created_at', [$this->start, $this->end]);
+               }
+            }
+            return $query;
+         }else{
+            return $query=[];
+         }
+      }else if(auth()->check() && $dataAccessLevel=='subregional') {
+         $subregions=Subregion::where('region_id', $this->user->region_id)->get();
+         if (!empty($subregions)) {
+            $query = warehousing::whereIn('subregion_id', $subregions->pluck('id'))->with('manager')
+               ->withCount('Products')
+               ->whereNotNull('warehouse_code')
+               ->get();
+            if (!is_null($this->start)) {
+               if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+                  $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+               } else {
+                  if (is_null($this->end)) {
+                     $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+                  }
+                  $query->whereBetween('created_at', [$this->start, $this->end]);
+               }
+            }
+
+            return $query;
+         }else{
+            return $query=[];
+         }
+      }
+      else if(auth()->check() && $dataAccessLevel=='all') {
          $query = warehousing::with('manager')
             ->withCount('Products')
             ->whereNotNull('warehouse_code')
             ->get();
-      }
-
-      if (!is_null($this->start)) {
-         if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-            $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
-         } else {
-            if (is_null($this->end)) {
-               $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+         if (!is_null($this->start)) {
+            if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+               $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+            } else {
+               if (is_null($this->end)) {
+                  $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+               }
+               $query->whereBetween('created_at', [$this->start, $this->end]);
             }
-            $query->whereBetween('created_at', [$this->start, $this->end]);
          }
+
+         return $query;
+      }else if(auth()->check() && $dataAccessLevel=='regional') {
+            $query = warehousing::where('region_id', $this->user->region_id)->with('manager')
+               ->withCount('Products')
+               ->whereNotNull('warehouse_code')
+               ->get();
+            if (!is_null($this->start)) {
+               if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+                  $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+               } else {
+                  if (is_null($this->end)) {
+                     $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+                  }
+                  $query->whereBetween('created_at', [$this->start, $this->end]);
+               }
+            }
+
+            return $query;
+
+      }else{
+         return $query=[];
       }
 
-      return $query;
    }
    public function export()
    {

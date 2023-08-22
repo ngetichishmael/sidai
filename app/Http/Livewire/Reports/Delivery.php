@@ -19,6 +19,9 @@ class Delivery extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $orderBy = 'id';
+   public $orderAsc = true;
+
    public function render()
    {
       $count = 1;
@@ -41,9 +44,10 @@ class Delivery extends Component
          }
       }
 
-      return $query->paginate(10);
+      return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+         ->paginate(25);
    }
-   public function filter(): array
+   public function filter2(): array
    {
 
       $array = [];
@@ -65,6 +69,47 @@ class Delivery extends Component
          return $array;
       }
       return $customers->toArray();
+   }
+   public function filter(): array
+   {
+
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->user_code;
+      $dataAccessLevel = $user->roles()->pluck('data_access_level')->first();
+      $subregions = Subregion::where('region_id', $user->region_id)->pluck('id');
+      $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
+      if (auth()->check() && $dataAccessLevel == 'route') {
+         $customers = \App\Models\customer\customers::whereIn('route', $areas)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'subregional') {
+         $customers = customers::whereIn('subregion_id', $subregions)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'regional') {
+         $customers = customers::where('region_id', $user->region_id)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'all') {
+         $customers = customers::all()->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }
+      else{
+         return $array;
+      }
+//      if (!$user->account_type === 'RSM') {
+//         return $array;
+//      }
    }
    public function export()
    {

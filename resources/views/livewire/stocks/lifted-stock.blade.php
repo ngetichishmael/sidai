@@ -9,11 +9,21 @@
 {{--            <option value="">Delivered</option>--}}
 {{--        </select>--}}
 {{--    </div>--}}
-    <div class="col-md-3">
+   <div class="mb-2 row">
+      <div class="col-md-9">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"
             placeholder="Enter customer name, email address or phone number">
     </div>
+   <div class="col-md-3">
+      <label for="">Items Per</label>
+      <select wire:model="perPage" class="form-control">`
+         <option value="10" selected>10</option>
+         <option value="25">25</option>
+         <option value="50">50</option>
+         <option value="100">100</option>
+      </select>
+   </div>
 </div>
 <br>
 <br>
@@ -38,17 +48,17 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($lifted as $key => $lifted)
+                            @foreach ($lifted as $key => $lift)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     {{-- <td>{{ $lifted->code }}</td> --}}
                                     {{-- <td>{{ $lifted->name }}</td> --}}
-                                    <td>{{ $lifted->user_name }}</td>
-                                    <td>{{ $lifted->qty??'' }}</td>
-                                    <td>{{ $lifted->user_region??'' }}</td>
-                                    <td>{{ $lifted->warehouse }}</td>
-                                    <td>{{ $lifted->date }}</td>
-                                    <td><a href="{{ URL('lifted/items/' . $lifted->code) }}" class="btn btn-sm"
+                                    <td>{{ $lift->user_name }}</td>
+                                    <td>{{ $lift->qty??'' }}</td>
+                                    <td>{{ $lift->user_region??'' }}</td>
+                                    <td>{{ $lift->warehouse }}</td>
+                                    <td>{{ $lift->date }}</td>
+                                    <td><a href="{{ URL('lifted/items/' . $lift->code) }}" class="btn btn-sm"
                                             style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
                                 </tr>
                             @endforeach
@@ -58,7 +68,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{-- <div class="mt-1">{!! $preorders->links() !!}</div> --}}
+               <div class="mt-1">{{ $lifted->links() }}</div>
             </div>
         </div>
     </div>

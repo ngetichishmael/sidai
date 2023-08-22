@@ -15,6 +15,10 @@ class Index extends Component
    public $start;
    public $end;
    use WithPagination;
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       return view('livewire.visits.index', [
@@ -23,9 +27,13 @@ class Index extends Component
    }
    public function data()
    {
-      $query = User::withCount('Checkings')->where('route_code', '=', Auth::user()->route_code);
-
-
+      $dataAccessLevel = $this->user->roles()->pluck('data_access_level')->first();
+      if (auth()->check() && $dataAccessLevel == 'regional') {
+         $query = User::withCount('Checkings')->where('region_id', '=', Auth::user()->region_id);
+      }
+      else if (auth()->check() && $dataAccessLevel == 'all') {
+         $query = User::withCount('Checkings');
+      }
       return $query->get();
    }
    public function export()

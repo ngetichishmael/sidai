@@ -36,7 +36,7 @@
     <div class="card card-default">
         <div class="card-body">
             <div class="pt-0 card-datatable">
-                <table class="table table-striped table-bordered zero-configuration table-responsive">
+                <table class="table table-striped table-bordered zero-configuration">
                     <thead>
                         <tr>
                            <th width="1%">#</th>

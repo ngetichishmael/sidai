@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Target;
 
 use App\Exports\TargetExport;
+use App\Models\Area;
+use App\Models\Subregion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -14,6 +17,12 @@ class Index extends Component
    public $start;
    public $end;
    use WithPagination;
+   public $orderBy = 'users.id';
+   public $orderAsc = true;
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
    public function render()
    {
       return view('livewire.target.index', [
@@ -22,8 +31,15 @@ class Index extends Component
    }
    public function data()
    {
-      $result = DB::table('users AS u')
-         ->select(
+      $dataAccessLevel = $this->user->roles()->pluck('data_access_level')->first();
+      $subregions = Subregion::where('region_id', $this->user->region_id)->pluck('id');
+      $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
+      if (auth()->check() && $dataAccessLevel == 'all') {
+         $result = DB::table('users AS u');
+      }else{
+         $result = DB::table('users AS u')->where('region_id', $this->user->region_id);
+      }
+      $result->select(
             'u.name AS user_name',
             'u.account_type AS user_type',
             'lt.LeadsTarget AS leads_target',
@@ -40,7 +56,7 @@ class Index extends Component
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->get();
-      return $result;
+      return $result->paginate(25);
    }
    public function export()
    {
