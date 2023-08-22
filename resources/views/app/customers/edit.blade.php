@@ -26,7 +26,7 @@
     <section id="multiple-column-form">
         <div class="row">
             <div class="col-8">
-                 <div class="card">
+                <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Customers</h4>
                     </div>
@@ -45,7 +45,7 @@
                                             value="{{ $customer->customer_name }}" />
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
@@ -53,7 +53,7 @@
                                             value="{{ $customer->contact_person }}" name="contact_person" />
                                     </div>
                                 </div>
-                               
+
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
@@ -90,8 +90,8 @@
                                 <div class="col-md-6 col-12">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
-                                        <input type="email" id="last-name-column" class="form-control"
-                                            placeholder="Email" name="email" value="{{ $customer->email }}" />
+                                        <input type="email" id="last-name-column" class="form-control" placeholder="Email"
+                                            name="email" value="{{ $customer->email }}" />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -102,10 +102,10 @@
                                             value="{{ $customer->phone_number }}" />
                                     </div>
                                 </div>
-                                {{-- @livewire('customers.regionedit') --}}
+                                {{-- @livewire('customers.region') --}}
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select class="form-control" name="zone" id="regionSelect">
+                                    <select id="regionId" class="form-control select2" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
@@ -118,23 +118,20 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub Region</label>
-                                    <select class="form-control select2" name="region" id="subRegionSelect">
-                                        <option value="">Region</option>
-                                        
+                                    <select id="subregionId" class="form-control" name="region">
+
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control select2" name="route" id="routeSelect">
-                                        <option value="">Route</option>
-                                        
+                                    <select id="areaId" class="form-control" name="territory">
                                     </select>
                                 </div>
 
                             </div>
-                               
                             <div class="my-1 col-sm-9 offset-sm-3">
-                                <button type="submit" class="mr-1 btn" style="background-color: #B6121B;color:white">Update</button>
+                                <button type="submit" class="mr-1 btn"
+                                    style="background-color: #B6121B;color:white">Update</button>
                                 <a href="{{ route('customer') }}" class="btn btn-outline-secondary">Cancel</a>
                             </div>
                         </form>
@@ -147,37 +144,90 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-       $(document).ready(function () {
-        $('#regionSelect').on('change', function () {
-            var regionId = $(this).val();
-    
-            // Make an AJAX request to fetch subregions based on the selected region
-            $.ajax({
-                url: '/get-subregions/' + regionId,
-                type: 'GET',
-                success: function (data) {
-                    // Populate the subregion dropdown with new options
-                    $('#subRegionSelect').html(data);
-                }
-            });
+        const baseUrl = window.location.origin;
+
+        function populateSubregions(regionId) {
+            const subregionSelect = document.getElementById('subregionId');
+            subregionSelect.innerHTML = '<option value="">Subregion</option>';
+            if (!regionId) {
+                return;
+            }
+            const fetchUrl = `${baseUrl}/api/get/subregion/${regionId}`;
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(subregion => {
+                            const option = document.createElement('option');
+                            option.value = subregion.id;
+                            option.textContent = subregion.name;
+                            subregionSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
+
+        function populateAreas(subregionId) {
+            const areaSelect = document.getElementById('areaId');
+
+            areaSelect.innerHTML = '<option value="">Route</option>';
+
+            if (!subregionId) {
+                return;
+            }
+
+
+            const fetchUrl = `${baseUrl}/api/get/area/${subregionId}`;
+
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(area => {
+                            const option = document.createElement('option');
+                            option.value = area.id;
+                            option.textContent = area.name;
+                            areaSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
+
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialRegionId = document.getElementById('regionId').value;
+            populateSubregions(initialRegionId);
         });
-    
-        // Sub Region dropdown change event
-        $('#subRegionSelect').on('change', function () {
-            var subRegionId = $(this).val();
-    
-            // Make an AJAX request to fetch routes based on the selected subregion
-            $.ajax({
-                url: '/get-routes/' + subRegionId,
-                type: 'GET',
-                success: function (data) {
-                    // Populate the route dropdown with new options
-                    $('#routeSelect').html(data);
-                }
-            });
+
+        // Listen for region selection changes
+        document.getElementById('regionId').addEventListener('change', function() {
+            const selectedRegionId = this.value;
+            populateSubregions(selectedRegionId);
         });
-    });
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialSubRegionId = document.getElementById('subregionId').value;
+            populateAreas(initialRegionId);
+        });
+
+        // Listen for region selection changes
+        document.getElementById('subregionId').addEventListener('change', function() {
+            const selectedSubRegionId = this.value;
+            populateAreas(selectedSubRegionId);
+        });
     </script>
+
+
 @endsection
 {{-- page scripts --}}
 @section('scripts')

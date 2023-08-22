@@ -252,4 +252,11 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::get('/get/targets/{type}', [TargetsUIController::class, "getTarget"])->name('getUITargets');
     Route::get('/testing/notification', [\App\Http\Controllers\Api\checkinController::class, "sendNotification"])->name('testing')->middleware('auth:sanctum');
+
+    Route::get('support/{ticket_id}/messages', 'SupportTicketController@getMessages')->middleware('auth:sanctum');
+    Route::get('/support/{id}', 'SupportTicketController@show')->middleware('auth:sanctum');
+
+    Route::get('/get/subregion/{id}', 'GetRegionsController@getSubRegions')->name('getUISubregions');
+    Route::get('/get/area/{id}', 'GetRegionsController@getAreas')->name('getUIAreas');
+
 });
