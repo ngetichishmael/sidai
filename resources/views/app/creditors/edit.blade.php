@@ -104,10 +104,10 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select class="form-control" name="zone" id="regionSelect">
+                                    <select id="regionId" class="form-control select2" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id}}"
+                                            <option value="{{ $region->id }}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
                                                 {{ $region->name }}
                                             </option>
@@ -117,14 +117,13 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub Region</label>
-                                    <select class="form-control select2" name="region" id="subRegionSelect">
-                                        
+                                    <select id="subregionId" class="form-control" name="region">
+
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control select2" name="route" id="#routeSelect">
-                                        
+                                    <select id="areaId" class="form-control" name="route">
                                     </select>
                                 </div>
 
@@ -143,40 +142,89 @@
         </div>
     </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const baseUrl = window.location.origin;
 
-<script>
-   $(document).ready(function () {
-    // Region dropdown change event
-    $('#regionSelect').on('change', function () {
-        var regionId = $(this).val();
-
-        // Make an AJAX request to fetch subregions based on the selected region
-        $.ajax({
-            url: '/get-subregions/' + regionId,
-            type: 'GET',
-            success: function (data) {
-                // Populate the subregion dropdown with new options
-                $('#subRegionSelect').html(data);
+        function populateSubregions(regionId) {
+            const subregionSelect = document.getElementById('subregionId');
+            subregionSelect.innerHTML = '<option value="">Subregion</option>';
+            if (!regionId) {
+                return;
             }
-        });
-    });
+            const fetchUrl = `${baseUrl}/api/get/subregion/${regionId}`;
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(subregion => {
+                            const option = document.createElement('option');
+                            option.value = subregion.id;
+                            option.textContent = subregion.name;
+                            subregionSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
 
-    // Sub Region dropdown change event
-    $('#subRegionSelect').on('change', function () {
-        var subRegionId = $(this).val();
+        function populateAreas(subregionId) {
+            const areaSelect = document.getElementById('areaId');
 
-        // Make an AJAX request to fetch routes based on the selected subregion
-        $.ajax({
-            url: '/get-routes/' + subRegionId,
-            type: 'GET',
-            success: function (data) {
-                // Populate the route dropdown with new options
-                $('#routeSelect').html(data);
+            areaSelect.innerHTML = '<option value="">Route</option>';
+
+            if (!subregionId) {
+                return;
             }
+
+
+            const fetchUrl = `${baseUrl}/api/get/area/${subregionId}`;
+
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(area => {
+                            const option = document.createElement('option');
+                            option.value = area.id;
+                            option.textContent = area.name;
+                            areaSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
+
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialRegionId = document.getElementById('regionId').value;
+            populateSubregions(initialRegionId);
         });
-    });
-});
-</script>
+
+        // Listen for region selection changes
+        document.getElementById('regionId').addEventListener('change', function() {
+            const selectedRegionId = this.value;
+            populateSubregions(selectedRegionId);
+        });
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialSubRegionId = document.getElementById('subregionId').value;
+            populateAreas(initialRegionId);
+        });
+
+        // Listen for region selection changes
+        document.getElementById('subregionId').addEventListener('change', function() {
+            const selectedSubRegionId = this.value;
+            populateAreas(selectedSubRegionId);
+        });
+    </script>
 
 @endsection
 {{-- page scripts --}}

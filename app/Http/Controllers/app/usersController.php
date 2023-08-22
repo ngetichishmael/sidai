@@ -26,28 +26,6 @@ class usersController extends Controller
 
       return response()->json(['users' => $users]);
    }
-   public function getSubregions($regionId)
-   {
-      $subregions = Subregion::where('region_id', $regionId)->get();
-
-    $options = '<option value="">Sub Region</option>';
-    foreach ($subregions as $subregion) {
-        $options .= '<option value="' . $subregion->id . '">' . $subregion->name . '</option>';
-    }
-
-    return $options;
-   }
-   public function getRoutes($subRegionId)
-   {
-      $routes = Area::where('subregion_id', $subRegionId)->get();
-
-    $options = '<option value="">Route</option>';
-    foreach ($routes as $route) {
-        $options .= '<option value="' . $route->id . '">' . $route->name . '</option>';
-    }
-
-    return $options;
-   }
    public function getDistributors(Request $request)
    {
       $distributors = suppliers::whereNotIn('name', ['Sidai', 'sidai'])->orWhereNull('name')->orWhere('name', '')

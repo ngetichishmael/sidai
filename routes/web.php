@@ -225,8 +225,6 @@ Auth::routes(['verify' => true]);
    Route::post('users/post/import', ['uses' => 'app\usersController@import', 'as' => 'users.post.import']);
 
    Route::get('/get-users', 'app\usersController@getUsers')->name('get.users');
-   Route::get('/get-subregions/{regionId}', 'app\usersController@getSubregions')->name('get.subregions');
-   Route::get('/get-routes/{subRegionId}', 'app\usersController@getRoutes')->name('get.routes');
    Route::get('/get-distributors', 'app\usersController@getDistributors')->name('get.distributors');
 
    //export products
