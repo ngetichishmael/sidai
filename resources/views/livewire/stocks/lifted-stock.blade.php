@@ -27,6 +27,14 @@
 </div>
 <br>
 <br>
+   <div>
+      <label class="btn btn-primary active">
+         <input type="radio" name="distributor_toggle" id="distributorToggle" autocomplete="off" checked> Distributor
+      </label>
+      <label class="btn btn-primary">
+         <input type="radio" name="distributor_toggle" id="sidaiToggle" autocomplete="off"> Sidai-Warehouse
+      </label>
+   </div>
 <div class="row">
     <div class="col-md-12">
         <div class="card card-inverse">
@@ -41,7 +49,8 @@
                                 <th>Sales Agent</th>
                                 <th>Quantity</th>
                                 <th>Region</th>
-                                <th>Source</th>
+{{--                                <th>Warehouse</th>--}}
+                                <th>Source(Warehouse/Distributor)</th>
                                 <th>Date</th>
                                 <th>Action</th>
                             </tr>
@@ -56,15 +65,16 @@
                                     <td>{{ $lift->user_name }}</td>
                                     <td>{{ $lift->qty??'' }}</td>
                                     <td>{{ $lift->user_region??'' }}</td>
-                                    <td>{{ $lift->warehouse }}</td>
+                                    <td>@if($lift->distributor==null || $lift->distributor==1)
+                                           {{"Warehouse ".$lift->warehouse}}
+                                       @else
+                                          {{$lift->distributors->name ?? 'Another distributor'}}
+                                    @endif</td>
                                     <td>{{ $lift->date }}</td>
                                     <td><a href="{{ URL('lifted/items/' . $lift->code) }}" class="btn btn-sm"
                                             style="color:white;background-color:rgb(202, 50, 50)">View</a></td>
                                 </tr>
                             @endforeach
-
-
-
                         </tbody>
                     </table>
                 </div>
