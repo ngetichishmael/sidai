@@ -11,7 +11,7 @@
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-{{--                     <li class="breadcrumb-item"><a href="#">Products</a></li>--}}
+                     <li class="breadcrumb-item"><a href="/warehousing/all">Warehouse List</a></li>
                      <li class="breadcrumb-item active">Products Approval</li>
                   </ol>
                </div>
@@ -19,10 +19,11 @@
          </div>
       </div>
    </div>
-   @livewire('productapproval.approval')
+{{--   @livewire('productapproval.approval', :warehouse_code=$warehouse_code)--}}
+   @livewire('productapproval.approval', ['warehouse_code' => $warehouse_code])
 
 @endsection
-{{-- page scripts --}}
+{{-- page scripts --}},
 @section('scripts')
 
 @endsection

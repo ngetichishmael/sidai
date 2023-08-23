@@ -20,12 +20,27 @@ class Index extends Component
     public $start;
     public $end;
     use WithPagination;
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
     public function render()
     {
-        $regions = Region::all();
-        return view('livewire.regional.index', [
-            'regions' => $regions,
-        ]);
+       $dataAccessLevel = $this->user->roles()->pluck('data_access_level')->first();
+
+       if (auth()->check() && $dataAccessLevel == 'regional') {
+          $regions = Region::findOrFail($this->user->region_id);
+          return view('livewire.regional.index', [
+             'regions' => [$regions],
+          ]);
+       }else if (auth()->check() && $dataAccessLevel == 'all'){
+          $regions = Region::all();
+          return view('livewire.regional.index', [
+             'regions' => $regions,
+          ]);
+       }else{
+          return redirect()->route('unauthorized');
+       }
     }
     public function customers($id)
     {
@@ -51,6 +66,7 @@ class Index extends Component
         $deliveries = Delivery::whereIn('order_code', $orders)->count();
         return $deliveries ?? 0;
     }
+
     public function filter(): array
     {
 

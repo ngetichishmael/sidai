@@ -141,6 +141,7 @@
         </div>
     </section>
     <!-- Basic Floating Label Form section end -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         const baseUrl = window.location.origin;

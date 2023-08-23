@@ -12,6 +12,7 @@ use App\Models\Subregion;
 use App\Models\User;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ReportsController extends Controller
@@ -21,6 +22,7 @@ class ReportsController extends Controller
    {
       $routeName = $request->route()->getName();
       $middleware = $request->route()->middleware();
+      $dataAccessLevel = Auth::user()->roles()->pluck('data_access_level')->first();
       if (in_array('web', $middleware)) {
          switch ($routeName) {
             case 'preorders.reports':
@@ -30,13 +32,22 @@ class ReportsController extends Controller
             case 'delivery.reports':
                return view('app.Reports.delivery');
             case 'sidai.reports':
-               return view('app.Reports.users');
+               if (auth()->check() && in_array($dataAccessLevel, ['all', 'regional'])){
+                  return view('app.Reports.users');
+               }  else{
+                  return redirect()->route('unauthorized');
+               }
+
             case 'warehouse.reports':
                return view('app.Reports.warehouse');
             case 'supplier.reports':
                return view('app.Reports.supplier');
             case 'visitation.reports':
+               if (auth()->check() && in_array($dataAccessLevel, ['all', 'regional'])){
                return view('app.Reports.visitation');
+            }  else{
+               return redirect()->route('unauthorized');
+            }
             case 'target.reports':
                return view('app.Reports.target');
             case 'payments.reports':
@@ -54,9 +65,7 @@ class ReportsController extends Controller
          }
       }
 
-      return view('app.users.reports');
    }
-
    public function supplierDetails($id)
    {
       $orders = Orders::where('SupplierID', $id)->get();

@@ -104,10 +104,10 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select wire:model='region' class="form-control" name="zone">
+                                    <select id="regionId" class="form-control select2" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id  ?? ''}}"
+                                            <option value="{{ $region->id }}"
                                                 @if ($region->id == $customer->region_id) selected @endif>
                                                 {{ $region->name }}
                                             </option>
@@ -117,25 +117,13 @@
 
                                 <div class="col-md-6 col-12">
                                     <label>Sub Region</label>
-                                    <select wire:model='regions'class="form-control" name="region">
-                                        <option value="">Region</option>
-                                        @foreach ($subregions as $subregion)
-                                            <option value="{{ $subregion->id ?? ''}}"
-                                                @if ($subregion->id == $customer->subregion_id) selected @endif>{{ $subregion->name }}
-                                            </option>
-                                        @endforeach
+                                    <select id="subregionId" class="form-control" name="region">
+
                                     </select>
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select class="form-control" name="territory">
-                                        <option value="">Route</option>
-                                        @foreach ($areas as $area)
-                                            <option value="{{ $area->id }}"
-                                                @if ($area->id == $customer->zone_id) selected @endif>
-                                                {{ $area->name }}
-                                            </option>
-                                        @endforeach
+                                    <select id="areaId" class="form-control" name="route">
                                     </select>
                                 </div>
 
@@ -153,7 +141,90 @@
             </div>
         </div>
     </section>
-    <!-- Basic Floating Label Form section end -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const baseUrl = window.location.origin;
+
+        function populateSubregions(regionId) {
+            const subregionSelect = document.getElementById('subregionId');
+            subregionSelect.innerHTML = '<option value="">Subregion</option>';
+            if (!regionId) {
+                return;
+            }
+            const fetchUrl = `${baseUrl}/api/get/subregion/${regionId}`;
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(subregion => {
+                            const option = document.createElement('option');
+                            option.value = subregion.id;
+                            option.textContent = subregion.name;
+                            subregionSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
+
+        function populateAreas(subregionId) {
+            const areaSelect = document.getElementById('areaId');
+
+            areaSelect.innerHTML = '<option value="">Route</option>';
+
+            if (!subregionId) {
+                return;
+            }
+
+
+            const fetchUrl = `${baseUrl}/api/get/area/${subregionId}`;
+
+            fetch(fetchUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        console.error('Error:', data.error);
+                    } else {
+                        data.data.forEach(area => {
+                            const option = document.createElement('option');
+                            option.value = area.id;
+                            option.textContent = area.name;
+                            areaSelect.appendChild(option);
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error when fetching subregions:', error);
+                });
+        }
+
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialRegionId = document.getElementById('regionId').value;
+            populateSubregions(initialRegionId);
+        });
+
+        // Listen for region selection changes
+        document.getElementById('regionId').addEventListener('change', function() {
+            const selectedRegionId = this.value;
+            populateSubregions(selectedRegionId);
+        });
+        // Trigger initial population of subregions
+        document.addEventListener('DOMContentLoaded', function() {
+            const initialSubRegionId = document.getElementById('subregionId').value;
+            populateAreas(initialRegionId);
+        });
+
+        // Listen for region selection changes
+        document.getElementById('subregionId').addEventListener('change', function() {
+            const selectedSubRegionId = this.value;
+            populateAreas(selectedSubRegionId);
+        });
+    </script>
 
 @endsection
 {{-- page scripts --}}

@@ -4,9 +4,15 @@ namespace App\Http\Livewire\Stocks;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class LiftedStock extends Component
 {
+   use WithPagination;
+   protected $paginationTheme = 'bootstrap';
+   public $perPage = 25;
+   public $orderBy = 'inventory_allocations.id';
+   public $orderAsc = true;
     public function render()
     {
         $lifted = DB::table('inventory_allocations')
@@ -21,7 +27,8 @@ class LiftedStock extends Component
                 'inventory_allocations.updated_at as date',
                 'warehouse.name as warehouse',
                 'users.name as user_name','regions.name as user_region')
-            ->get();
+           ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+           ->paginate($this->perPage);
 
         return view('livewire.stocks.lifted-stock', [
             'lifted' => $lifted,

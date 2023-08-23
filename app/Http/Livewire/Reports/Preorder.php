@@ -20,7 +20,8 @@ class Preorder extends Component
    public $start;
    public $end;
    public $search = null;
-
+   public $orderBy = 'id';
+   public $orderAsc = true;
    public $user;
 
    public function __construct()
@@ -39,13 +40,12 @@ class Preorder extends Component
    public function data()
    {
       $query = Orders::with('User', 'Customer')->withCount('OrderItems');
-      
 
-      if ($this->user->account_type === 'RSM') {
-         $query->whereIn('customerID', $this->filter());
-      }
+//      if ($this->user->account_type === 'RSM') {
+//         $query->whereIn('customerID', $this->filter());
+//      }
 
-      $query->where('order_type', 'Pre Order');
+      $query->whereIn('customerID', $this->filter())->where('order_type', 'Pre Order');
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
@@ -57,30 +57,49 @@ class Preorder extends Component
          }
       }
 
-      return $query->paginate(7);
+      return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+         ->paginate(25);
    }
    public function filter(): array
    {
 
       $array = [];
-      $user = Auth::user();
-      $user_code = $user->route_code;
-      if (!$user->account_type === 'RSM') {
-         return $array;
-      }
-      $subregions = Subregion::where('region_id', $user_code)->pluck('id');
-      if ($subregions->isEmpty()) {
-         return $array;
-      }
+//      $user = $this->user;
+      $user_code = $this->user->user_code;
+      $dataAccessLevel = $this->user->roles()->pluck('data_access_level')->first();
+      $subregions = Subregion::where('region_id', $this->user->region_id)->pluck('id');
       $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
-      if ($areas->isEmpty()) {
+      if (auth()->check() && $dataAccessLevel == 'route') {
+         $customers = customers::whereIn('route', $areas)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'subregional') {
+         $customers = customers::whereIn('subregion_id', $subregions)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'regional') {
+         $customers = customers::where('region_id', $this->user->region_id)->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }elseif (auth()->check() && $dataAccessLevel == 'all') {
+         $customers = customers::all()->pluck('id');
+         if ($customers->isEmpty()) {
+            return $array;
+         }
+         return $customers->toArray();
+      }
+         else{
          return $array;
       }
-      $customers = customers::whereIn('route_code', $areas)->pluck('id');
-      if ($customers->isEmpty()) {
-         return $array;
-      }
-      return $customers->toArray();
+//      if (!$user->account_type === 'RSM') {
+//         return $array;
+//      }
    }
    public function export()
    {

@@ -26,13 +26,6 @@ class usersController extends Controller
 
       return response()->json(['users' => $users]);
    }
-   public function getSubregions(Request $request)
-   {
-      $regions = $request->input('regions');
-      $subregions = Subregion::where('region_id', $regions)->get();
-
-      return response()->json(['subregions' => $subregions]);
-   }
    public function getDistributors(Request $request)
    {
       $distributors = suppliers::whereNotIn('name', ['Sidai', 'sidai'])->orWhereNull('name')->orWhere('name', '')
