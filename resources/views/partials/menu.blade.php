@@ -31,7 +31,7 @@
                                 <span class="menu-item text-truncate">Customers</span></a>
                         </li>
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
-                                href="{{ route('creditors') }}">
+                                href="{{ route('creditor') }}">
                                 <span class="menu-item text-truncate">Creditors</span></a>
                         </li>
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
