@@ -24,7 +24,8 @@ class StockLiftHelper
       $value,
       $image_path,
       $random,
-      $stocked
+      $stocked,
+      $distributor
    ) {
       $currentQty = $stocked ? $stocked['current_stock'] : 0;
       $allocatedQty = $value['qty'];
@@ -53,11 +54,13 @@ class StockLiftHelper
       allocations::updateOrCreate(
          [
             "allocation_code" => $random,
-            "sales_person" => $user_code
+            "sales_person" => $user_code,
+
          ],
          [
             "business_code" => $business_code,
             "status" => "Waiting acceptance",
+            "distributor"=>$distributor,
             "created_by" => $user_code,
             "updated_by" => $user_code
          ]

@@ -403,10 +403,11 @@
    </style>
 </head>
 <body class="antialiased">
-<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-<h1>Access Denied</h1>
-<p>You do not have the required permissions to access this page.</p>
+<div class="misc-inner p-2 p-sm-3">
+   <div class="w-100 text-center">
+      <h2 class="mb-1">You are not authorized! 🔐</h2>
+      <p class="mb-2">Sorry, but you do not have the necessary permissions to access this page.</p>
+      <img class="img-fluid" src="{{asset('images/pages/not-authorized.svg')}}" alt="Not authorized page" />
    </div>
 </div>
 </body>

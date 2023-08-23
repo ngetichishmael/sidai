@@ -67,7 +67,7 @@ class productsController extends Controller
          'brand',
          'category',
          'warehouse_code'
-      )
+      )->distinct('product_information.product_name')
       ->get();
 //}
       return response()->json([
