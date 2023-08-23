@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Http\Livewire\Warehousing;
+
+use App\Models\products\product_information;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class Products extends Component
+{
+   use WithPagination;
+   protected $paginationTheme = 'bootstrap';
+   public $perPage = 25;
+   public $orderBy = 'id';
+   public $orderAsc = true;
+   public ?string $search = null;
+   public $warehouse;
+
+   public function mount($warehouse)
+   {
+      $this->warehouse = $warehouse;
+   }
+    public function render()
+    {
+       $products = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')->where('warehouse_code', $this->warehouse)->paginate($this->perPage);
+
+        return view('livewire.warehousing.products', ['products'=>$products]);
+    }
+}
