@@ -74,7 +74,6 @@ class ReconciledProductsController extends Controller
              $is = DB::table('inventory_allocated_items')
                 ->where('created_by', $usercode)
                 ->where('product_code', $data['productID'])
-                ->where('distributor', $distributor)
                 ->decrement('allocated_qty', $data['amount'], [
                    'updated_at' => now(),
                 ]);
