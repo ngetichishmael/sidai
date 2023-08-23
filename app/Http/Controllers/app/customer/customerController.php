@@ -92,11 +92,7 @@ class customerController extends Controller
       
       return view('app.customers.show', ['id' => $id,]);
    }
-   public function creditordetails($id)
-   {
-      // $customer = customers::find($id);
-      return view('app.creditors.show', ['id' => $id]);
-   }
+   
 
    public function approvecreditor($id)
    {
@@ -118,7 +114,7 @@ class customerController extends Controller
       $activityLog->ip_address ="";
       $activityLog->save();
 
-      return redirect()->route('creditors');
+      return redirect()->route('creditor');
    }
    public function approvecustomer($id)
    {
@@ -243,7 +239,7 @@ class customerController extends Controller
 
       Session::flash('success', 'Customer successfully Creditor Added');
 
-      return redirect()->route('creditors');
+      return redirect()->route('creditor');
    }
 
    public function edit($id)
@@ -256,39 +252,18 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-      $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
-      $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
-      $customer->update([
-         'subregion_id' => $subregion_id,
-         'region_id' => $region_id,
-      ]);
+         // dd($customer);
+      // $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
+      // $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
+      // $customer->update([
+      //    'subregion_id' => $subregion_id,
+      //    'region_id' => $region_id,
+      // ]);
       $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
-      );
-   }
-   public function editcreditor($id)
-   {
-      $regions = Region::all();
-      $subregions = Subregion::all();
-      $areas = Area::all();
-      $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
-      $customer = customers::where('customers.id', $id)
-         ->select('*', 'customers.id as customerID')
-         ->first();
-      $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
-      $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
-      $customer->update([
-         'subregion_id' => $subregion_id,
-         'region_id' => $region_id,
-      ]);
-      $groups = customer_group::all();
-      $prices = price_group::all();
-      $pricing = PriceGroup::get();
-      return view('app.creditors.edit',
-         compact('customer', 'country', 'regions', 'subregions', 'areas', 'groups', 'pricing','prices')
       );
    }
 
@@ -299,21 +274,23 @@ class customerController extends Controller
       ]);
 $region=
       $customer = customers::where('id', $id)->first();
-      $customer->customer_name = $request->customer_name ?? $customer->customer_name;
-      $customer->id_number = $request->id_number ?? $customer->id_number;
+      $customer->customer_name = $request->customer_name;
+      $customer->id_number = $request->id_number??'';
       $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
-      $customer->address = $request->address ?? $customer->address;
-      $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
-      $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
-      $customer->route = $request->route ?? $customer->route;
-      $customer->route_code = $request->route ?? $customer->territory;
-      $customer->region_id = $request->zone ?? $customer->territory;
-      $customer->subregion_id = $request->region ?? $customer->territory;
-      $customer->zone_id = $request->region ?? $customer->territory;
-      $customer->branch = $request->branch ?? $customer->branch;
-      $customer->email = $request->email ?? $customer->email;
-      $customer->phone_number = $request->phone_number ?? $customer->phone_number;
+      $customer->telephone = $request->telephone??'';
+      $customer->address = $request->address;
+      $customer->price_group = $request->pricing_category;
+      $customer->customer_secondary_group = $request->customer_secondary_group??'';
+      $customer->route = $request->territory;
+      $customer->route_code = $request->territory;
+      $customer->region_id = $request->zone;
+      $customer->customer_type = "normal";
+      $customer->approval = "approved";
+      $customer->subregion_id = $request->region;
+      $customer->zone_id = $request->region;
+      $customer->branch = $request->branch??'';
+      $customer->email = $request->email;
+      $customer->phone_number = $request->phone_number??'';
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
@@ -337,36 +314,7 @@ $region=
 
       return redirect()->route('customer');
    }
-   public function updatecreditor(Request $request, $id)
-   {
-      $this->validate($request, [
-         'customer_name' => 'required'
-      ]);
-
-      $customer = customers::where('id', $id)->first();
-      $customer->customer_name = $request->customer_name ?? $customer->customer_name;
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone;
-      $customer->price_group = $request->pricing_category ?? $customer->pricing_category;
-      $customer->customer_group = $request->customer_group ?? $customer->customer_group;
-      $customer->customer_secondary_group = $request->customer_secondary_group ?? $customer->customer_secondary_group;
-      $customer->route = $request->route ?? $customer->route;
-      $customer->route_code = $request->route ?? $customer->route;
-      $customer->zone_id = $request->zone ?? $customer->territory;
-      $customer->region_id = $request->zone ?? $customer->territory;
-      $customer->subregion_id = $request->region ?? $customer->territory;
-      $customer->branch = $request->branch ?? $customer->branch;
-      $customer->email = $request->email ?? $customer->email;
-      $customer->phone_number = $request->phone_number ?? $customer->phone_number;
-      $customer->business_code = FacadesAuth::user()->business_code;
-      $customer->created_by = FacadesAuth::user()->user_code;
-      $customer->save();
-
-
-      Session::flash('success', 'Creditor updated successfully');
-
-      return redirect()->route('creditors');
-   }
+   
 
 
    public function delete($id)

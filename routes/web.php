@@ -96,6 +96,14 @@ Auth::routes(['verify' => true]);
       'destroy' => 'customer.destroy',
       'store' => 'customer.store',
    ]);
+   Route::resource('creditor', app\customer\creditorController::class)->names([
+      'index' => 'creditor',
+      'show' => 'creditor.show',
+      'edit' => 'creditor.edit',
+      'update' => 'creditor.update',
+      'destroy' => 'creditor.destroy',
+      'store' => 'creditor.store',
+   ]);
 //      Route::get('/customer', [customerController::class, 'index'])->name('customer');
 //      Route::get('/customer/{id}', [customerController::class, 'show'])->name('customer.show');
 //      Route::get('/customer/{id}/edit', [customerController::class, 'edit'])->name('customer.edit');
@@ -103,17 +111,18 @@ Auth::routes(['verify' => true]);
 //      Route::delete('/customer/{id}', [customerController::class, 'destroy'])->name('customer.destroy');
 //      Route::get('/customer/create', [customerController::class, 'create'])->name('customer.create');
 //      Route::post('/customer', [customerController::class, 'store'])->name('customer.store');
-   Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
+   // Route::get('creditors', ['uses' => 'app\customer\customerController@creditor', 'as' => 'creditors']);
    Route::get('approveCreditors', ['uses' => 'app\customer\customerController@approveCreditors', 'as' => 'approveCreditors']);
    Route::get('approveCustomers', ['uses' => 'app\customer\customerController@approveCustomers', 'as' => 'approvecustomers']);
-   Route::get('creditors/pending', ['uses' => 'app\customer\customerController@pendingcreditor', 'as' => 'pending.creditors']);
-   Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
-   Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
+   // Route::get('creditors/pending', ['uses' => 'app\customer\customerController@pendingcreditor', 'as' => 'pending.creditors']);
+   // Route::get('creditor/create', ['uses' => 'app\customer\customerController@createcreditor', 'as' => 'creditor.create']);
+   // Route::get('creditor/{id}/edit', ['uses' => 'app\customer\customerController@editcreditor', 'as' => 'creditor.edit']);
    Route::get('customer/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
-   Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@creditordetails', 'as' => 'creditors.details']);
-   Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
-   Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
-   Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
+   Route::get('creditor/{id}/details', ['uses' => 'app\customer\creditorController@details', 'as' => 'creditor.info']);
+   // Route::get('creditor/{id}/details', ['uses' => 'app\customer\customerController@creditordetails', 'as' => 'creditors.details']);
+   // Route::post('creditor/{id}/update', ['uses' => 'app\customer\customerController@updatecreditor', 'as' => 'creditor.update']);
+   // Route::post('creditor/store', ['uses' => 'app\customer\customerController@storecreditor', 'as' => 'creditor.store']);
+    Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);
    Route::get('customer/{id}/approve', ['uses' => 'app\customer\customerController@approvecustomer', 'as' => 'customer.approve']);
    /* === customer checkin === */
    Route::get('customer/checkins', ['uses' => 'app\customer\checkinController@index', 'as' => 'customer.checkin.index']);

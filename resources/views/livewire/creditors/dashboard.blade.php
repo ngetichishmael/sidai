@@ -72,7 +72,7 @@
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
                             <td>
-                                <a href="{{ route('creditors.details', $contact->id) }}"
+                                <a href="{{ route('creditor.info', $contact->id) }}"
                                     class="btn btn-sm" style="background-color: #B6121B;color:white">View</a>
                                 <a href="{{ route('creditor.edit', $contact->id) }}"
                                     class="btn btn-sm" style="background-color: #B6121B; color:white">Edit</a>

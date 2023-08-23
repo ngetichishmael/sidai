@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <form class="form" method="POST"
-                            action="{{ route('customer.update', ['customer' => $customer]) }}">
+                            action="{{ route('creditor.update', ['creditor' => $customer]) }}">
 
                             @method('PUT')
                             @csrf
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="col-md-6 col-12">
                                     <label>Route</label>
-                                    <select id="areaId" class="form-control" name="route">
+                                    <select id="areaId" class="form-control" name="territory">
                                     </select>
                                 </div>
 
@@ -132,7 +132,7 @@
                             <div class="row">
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn" style="background-color: #B6121B;color:white">Update</button>
-                                <a href="{{ route('creditors') }}" class="btn btn-outline-secondary">Cancel</a>
+                                <a href="{{ route('creditor') }}" class="btn btn-outline-secondary">Cancel</a>
                             </div>
                             </div>
                         </form>
