@@ -28,7 +28,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Product Name</th>
-                                <th>Image</th>
+                                <th>Allocated Quantity</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,15 +36,17 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->productInformation->product_name }}</td>
-                                    <td>
-                                        @if ($item->productInformation->image)
-                                            <img src="{{ $item->productInformation->image }}"
-                                                alt="{{ $item->productInformation->product_name }}"
-                                                style="max-width: 100px; max-height: 100px;">
-                                        @else
-                                            No Image Available
-                                        @endif
-                                    </td>
+                                    <td>{{ $item->allocated_qty }}</td>
+{{--                                    <td>{{ $item->returned_quantity }}</td>--}}
+{{--                                    <td>--}}
+{{--                                        @if ($item->productInformation->image)--}}
+{{--                                            <img src="{{ $item->productInformation->image }}"--}}
+{{--                                                alt="{{ $item->productInformation->product_name }}"--}}
+{{--                                                style="max-width: 100px; max-height: 100px;">--}}
+{{--                                        @else--}}
+{{--                                            No Image Available--}}
+{{--                                        @endif--}}
+{{--                                    </td>--}}
                                 </tr>
                             @endforeach
 
@@ -55,6 +57,17 @@
                 </div>
             </div>
         </div>
+       <div class="col-md-4 mt-5">
+          <div class="card">
+          @if ($item->productInformation->image)
+                                                      <img src="{{ '/storage/image/'.$item->productInformation->image ?? $item->productInformation->image}}"
+                                                          alt="{{ $item->productInformation->image}}"
+                                                          style="max-width: 100px; max-height: 100px;">
+                                                  @else
+                                                      No Image Available
+                                                  @endif
+       </div>
+       </div>
     </div>
 @endsection
 {{-- page scripts --}}

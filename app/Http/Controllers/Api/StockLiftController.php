@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\DistributorStockLiftHelper;
 use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
 use App\Models\products\product_inventory;
@@ -51,14 +52,29 @@ class StockLiftController extends Controller
 //      }
       foreach ($data as $value) {
          $stocked = $stockedProducts->get($value['productID']);
-         StockLiftHelper::updateOrCreateItems(
-            $user_code,
-            $business_code,
-            $value,
-            $image_path,
-            $random,
-            $stocked
-         );
+         if ($request->distributor == 1 || $request->distributor ==null) {
+            $distributor=1;
+            StockLiftHelper::updateOrCreateItems(
+               $user_code,
+               $business_code,
+               $value,
+               $image_path,
+               $random,
+               $stocked,
+               $distributor
+            );
+         }else{
+            $distributor=$request->distributor;
+            DistributorStockLiftHelper::updateOrCreateItems(
+               $user_code,
+               $business_code,
+               $value,
+               $image_path,
+               $random,
+               $stocked,
+               $distributor
+            );
+         }
       }
       return response()->json([
          "success" => true,

@@ -17,6 +17,10 @@ class inventory_allocated_items extends Model
     {
         return $this->belongsTo(InventoryAllocated::class);
     }
+   public function Allocations(): BelongsTo
+   {
+      return $this->belongsTo(InventoryAllocation::class);
+   }
     public function productInformation(): HasOne
     {
         return $this->hasOne(product_information::class, 'id', 'product_code');

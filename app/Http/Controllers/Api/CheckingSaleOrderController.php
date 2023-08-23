@@ -238,7 +238,7 @@ class CheckingSaleOrderController extends Controller
     {
 //       $checkin = customers::whereId($checkinCode)->first();
 
-       $region = Region::where('id', $request->user()->region_id)->first();
+       $region = Region::where('id', auth()->user()->region_id)->first();
        $regionCode = strtoupper(substr($region->name, 0, 3));
        $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
        $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
@@ -323,8 +323,8 @@ class CheckingSaleOrderController extends Controller
            $this->sendOrder($number, $order_code);
            $distributor = $usersToNotify->name;
            $distributorid = $usersToNotify->id;
-           $sales=$request->user()->name;
-           $sales_number =$request->user()->phone_number;
+           $sales=auth()->user()->name;
+           $sales_number =auth()->user()->phone_number;
 //               Notification::send($usersToNotify, new NewOrderNotification($orderId));
            SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid, $sales, $sales_number);
         }
