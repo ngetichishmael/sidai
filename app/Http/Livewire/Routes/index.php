@@ -12,6 +12,7 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public $perPage = 10;
     public $search = '';
+
     public function render()
     {
 
