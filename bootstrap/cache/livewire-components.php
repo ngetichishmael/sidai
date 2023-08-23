@@ -22,7 +22,6 @@
   'customers.orderdetails' => 'App\\Http\\Livewire\\Customers\\Orderdetails',
   'customers.payment' => 'App\\Http\\Livewire\\Customers\\Payment',
   'customers.region' => 'App\\Http\\Livewire\\Customers\\Region',
-  'customers.regionedit' => 'App\\Http\\Livewire\\Customers\\Regionedit',
   'customers.view' => 'App\\Http\\Livewire\\Customers\\View',
   'customers.visit' => 'App\\Http\\Livewire\\Customers\\Visit',
   'dashboard.brand-chart' => 'App\\Http\\Livewire\\Dashboard\\BrandChart',
@@ -119,4 +118,5 @@
   'visits.users.view' => 'App\\Http\\Livewire\\Visits\\Users\\View',
   'warehousing.assign-shop-attendee' => 'App\\Http\\Livewire\\Warehousing\\AssignShopAttendee',
   'warehousing.index' => 'App\\Http\\Livewire\\Warehousing\\Index',
+  'warehousing.products' => 'App\\Http\\Livewire\\Warehousing\\Products',
 );
