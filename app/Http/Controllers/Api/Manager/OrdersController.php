@@ -145,7 +145,7 @@ class OrdersController extends Controller
                 $activityLog = new activity_log();
                 $activityLog->activity = 'Allocate an order to a Distributor';
                 $activityLog->user_code = auth()->user()->user_code;
-                $activityLog->section = 'Order Allocation';
+                $activityLog->section = 'Mobile';
                 $activityLog->action = 'Order allocated to distributor' . $distributor->name . ' ';
                 $activityLog->userID = auth()->user()->id;
                 $activityLog->activityID = $random;
@@ -243,7 +243,7 @@ class OrdersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Allocate an order to a User';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Order Allocation';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'Order allocated to user ' . $request->user_code . ' Role ' . $request->account_type . '';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;
@@ -289,7 +289,7 @@ class OrdersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Manager order allocation';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Allocate orders';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'Manager ' . auth()->user()->name . ' allocated order ' . $order_code . ' to ' . $sales_person . ' of customer ' . $customerID;
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;
@@ -322,6 +322,9 @@ class OrdersController extends Controller
 
             }
         }
+       $action="Viewed allocated items";
+       $activity="Viewd Allocated items on mobile managers app";
+       $this->activitylogs($action, $activity);
         return response()->json([
             'status' => 200,
             'success' => true,
@@ -362,7 +365,9 @@ class OrdersController extends Controller
                     'approved_by' => Auth()->user()->user_code,
                     'is_approved' => 'yes',
                 ]);
-            // return success response
+           $action="Item approval";
+           $activity="Approved items for allocation code ".$allocation_code;
+           $this->activitylogs($action, $activity);
             return response()->json([
                 'status' => 200,
                 'success' => true,
@@ -409,7 +414,9 @@ class OrdersController extends Controller
                     'disapproved_by' => Auth()->user()->user_code,
                     'is_approved' => 'no',
                 ]);
-            // return success response
+           $action="Item disapproval";
+           $activity="Disapproved items for allocation code ".$allocation_code;
+           $this->activitylogs($action, $activity);
             return response()->json([
                 'status' => 200,
                 'success' => true,
@@ -500,4 +507,17 @@ class OrdersController extends Controller
             ),
         ]);
     }
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
+   }
 }

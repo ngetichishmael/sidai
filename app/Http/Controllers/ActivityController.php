@@ -43,7 +43,7 @@ class ActivityController extends Controller
    public function show($id)
    {
       $activity = activity_log::whereId($id)->first();
-      $activities=activity_log::where('user_code',$activity->user_code )->get();
+      $activities=activity_log::where('user_code',$activity->user_code )->orderBy('id', 'desc')->get();
       $user =User::where('user_code', $activity->user_code)->get();
       return view('livewire.activity.view',compact('activity', 'activities','user'));
    }

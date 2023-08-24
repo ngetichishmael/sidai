@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Illuminate\Http\Request;
@@ -31,6 +32,9 @@ class RequisitionController extends Controller
        }else
        $requisitions = StockRequisition::where("status","Waiting Approval")->with('user')->withCount('RequisitionProducts', 'ApprovedRequisitionProducts')
           ->orderBy('id', 'DESC')->get();
+       $action="Viewed Stock requisition";
+       $activity="Viewed Stock requisition which has status Waiting Approval";
+       $this->activitylogs($action, $activity);
 
        return response()->json([
           'status' => 200,
@@ -104,6 +108,9 @@ class RequisitionController extends Controller
             }
          }
       }
+      $action="Allocated products to sales person";
+      $activity="Viewed Stock requisition which has status Waiting Approval";
+      $this->activitylogs($action, $activity);
       return response()->json([
          'status' => 200,
          'success' => true,
@@ -120,6 +127,19 @@ class RequisitionController extends Controller
     {
         //
     }
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
+   }
     public function approve(Request $request)
     {
        $validator           =  Validator::make($request->all(), [
