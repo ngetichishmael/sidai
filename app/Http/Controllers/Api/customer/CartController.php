@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\customers;
 use App\Models\CustomerCart;
@@ -23,6 +24,9 @@ class CartController extends Controller
       $customer = customers::find($request->customer_id);
       if (!empty($customer)){
          customers::whereId($request->id)->update([ 'is_creditor'=>$request->is_creditor]);
+         $action="Updating customer to creditor";
+         $activity="Customer ".$customer->customer_name ." Creditor status updated successfully";
+         $this->activitylogs($action, $activity);
          return response()->json([
             "success" => true,
             "message" => "Customer Creditor status updated successfully",
@@ -55,7 +59,9 @@ class CartController extends Controller
             ->where('product_id', $request->product_id)
             ->increment('quantity', $request->quantity);
       }
-
+      $action="Added products to cart";
+      $activity="Added products to Cart for customer checkin ".$checker ?? '';
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "message" => "Product added to cart successfully",
@@ -66,6 +72,9 @@ class CartController extends Controller
    }
    public function getCartItems(Request $request)
    {
+      $action="getting cart items";
+      $activity="Get all cart items";
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "message" => "Get all cart items",
@@ -86,7 +95,9 @@ class CartController extends Controller
             ->where('product_id', $request->product_id)
             ->delete();
       }
-
+      $action="Deleted Items from cart";
+      $activity="Products removed from cart";
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "message" => "Product removed successfully",
@@ -94,6 +105,9 @@ class CartController extends Controller
    }
    public function clearCart(Request $request)
    {
+      $action="Cleared Cart items";
+      $activity="Cleared all items from cart";
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "message" => "Product removed successfully",
@@ -173,6 +187,9 @@ class CartController extends Controller
             'taxvalue' => 0,
          ]);
       }
+      $action="Checked out customer checkin";
+      $activity="Checked out order code ".$order_code ." for customer ".$customer->customer_name;
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "status" => 200,
@@ -198,6 +215,9 @@ class CartController extends Controller
       }])
          ->where('customerID', $id)->where('order_status', 'Pending Delivery')
          ->get();
+      $action="Getting pending deliveries";
+      $activity="Getting All Pending Deliveries with their Delivery Items, products and price for customer ".$code->customer ?? '';
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "status" => 200,
@@ -223,6 +243,9 @@ class CartController extends Controller
       }])
          ->where('customerID', $id)
          ->get();
+      $action="Getting All Deliveries";
+      $activity="Getting All Deliveries with their Delivery Items, products and price for customer ".$code->customer_name ?? '';
+      $this->activitylogs($action, $activity);
 
       return response()->json([
          "success" => true,
@@ -266,4 +289,24 @@ class CartController extends Controller
          'fcm_token'=>$request->fmc_token
       ]);
    }
+
+   /**
+    * @param $activity
+    * @param $action
+    * @return void
+    */
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
+   }
 }
+

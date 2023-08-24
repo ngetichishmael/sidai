@@ -4,9 +4,11 @@ namespace App\Http\Controllers\api\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
+use App\Models\activity_log;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -130,6 +132,9 @@ class UsersController extends Controller
         $suspension = User::where('user_code', $request->user_code)->update([
             'status' => 'suspended',
         ]);
+       $action="Suspended user";
+       $activity="suspended account for user ".$suspension->name;
+       $this->activitylogs($action, $activity);
         return response()->json([
             "success" => true,
             "status" => 200,
@@ -142,6 +147,9 @@ class UsersController extends Controller
         $suspension = User::where('user_code', $request->user_code)->update([
             'status' => 'Active',
         ]);
+       $action="Activated user status";
+       $activity="activated status for user ".$suspension->name;
+       $this->activitylogs($action, $activity);
         return response()->json([
             "success" => true,
             "status" => 200,
@@ -149,4 +157,17 @@ class UsersController extends Controller
             "suspension" => $suspension,
         ]);
     }
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
+   }
 }
