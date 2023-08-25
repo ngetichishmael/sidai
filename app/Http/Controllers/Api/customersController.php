@@ -580,7 +580,7 @@ class customersController extends Controller
         return response()->json([
             "success" => true,
             "status" => 200,
-            "message" => "Customer added successfully",
+            "message" => "Customer deliveries",
             "delivery" => $delivery,
             "products" => $products,
         ]);
