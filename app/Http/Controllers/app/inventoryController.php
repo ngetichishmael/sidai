@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\app;
 
+use App\Models\products\product_inventory;
 use App\Models\RequisitionProduct;
 use App\Models\StockRequisition;
 use Illuminate\Support\Facades\Redirect;
@@ -90,6 +91,11 @@ class inventoryController extends Controller
 
             if ($requisitionProduct) {
                if (isset($allocateQuantities[$productId])) {
+                  $check=product_inventory::where('productID', $productId)->first();
+                  if ($check->current_stock < $allocateQuantities[$productId]){
+                     Session()->flash('error','Current stock '.$check->current_stock .' is less than your allocation quantity of '. $allocateQuantities[$productId]);
+                     return Redirect::back();
+                  }
                   $allocatedQuantity = min($allocateQuantities[$productId], $requisitionProduct->quantity);
                   $requisitionProduct->allocated_quantity = $allocatedQuantity;
                   $requisitionProduct->save();
