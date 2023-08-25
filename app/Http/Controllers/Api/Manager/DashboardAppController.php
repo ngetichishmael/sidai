@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\customer\checkin;
 use App\Models\customer\customers;
 use App\Models\inventory\allocations;
@@ -10,6 +11,7 @@ use App\Models\Orders;
 use App\Models\survey\survey;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DashboardAppController extends Controller
 {
@@ -94,6 +96,9 @@ class DashboardAppController extends Controller
 
          'custom_data' => $this->custom($request)->getData(),
       ];
+      $action="Viewed Managers Dashboard ";
+      $activity="Viewed Managers Dashboard on Mobile App";
+      $this->activitylogs($action, $activity);
       return response()->json($data, 200);
    }
    public function custom(Request $request)
@@ -117,5 +122,19 @@ class DashboardAppController extends Controller
       ];
       return response()->json($data, 200);
 
+   }
+
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
    }
 }

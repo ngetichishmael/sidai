@@ -50,6 +50,9 @@
                      </tr>
                      </thead>
                      <tbody class="font-small-3">
+                     @if(empty($roles))
+                        <div class="col-span-5"></div>
+                     @endif
                      @foreach ($roles as $key => $role)
                         <tr>
                            <td>{{ $role->name }}</td>
@@ -202,19 +205,19 @@
                </button>
             </div>
             <div class="modal-body">
-               {!! Form::open(['route' => ['roles.update', $role->id], 'method' => 'PUT']) !!}
+               {!! Form::open(['route' => ['roles.update', $role->id ?? ''], 'method' => 'PUT']) !!}
                @csrf
                <div class="form-group">
                   {!! Form::label('name', 'Name') !!}
-                  {!! Form::text('name', $role->name, ['class' => 'form-control', 'placeholder' => 'Enter Role Name']) !!}
+                  {!! Form::text('name', $role->name ?? '', ['class' => 'form-control', 'placeholder' => 'Enter Role Name']) !!}
                </div>
                <div class="form-group">
                   {!! Form::label('display_name', 'Display Name') !!}
-                  {!! Form::text('display_name', $role->display_name, ['class' => 'form-control', 'placeholder' => 'Enter Display Name']) !!}
+                  {!! Form::text('display_name', $role->display_name ?? '', ['class' => 'form-control', 'placeholder' => 'Enter Display Name']) !!}
                </div>
                <div class="form-group">
                   {!! Form::label('description', 'Description') !!}
-                  {!! Form::text('description', $role->description, ['class' => 'form-control', 'placeholder' => 'Enter Description']) !!}
+                  {!! Form::text('description', $role->description ?? '', ['class' => 'form-control', 'placeholder' => 'Enter Description']) !!}
                </div>
                <div class="form-group form-group-default required mb-1">
                   {!! Form::label('platform', 'Platform', ['class' => 'control-label']) !!}

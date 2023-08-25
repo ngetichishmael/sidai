@@ -13,6 +13,7 @@ use App\Models\order_payments;
 use App\Models\Orders;
 use App\Models\Orders as Order;
 use App\Models\products\product_information;
+use App\Models\products\product_inventory;
 use App\Models\products\product_price;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
@@ -20,6 +21,7 @@ use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
@@ -119,7 +121,7 @@ class ordersController extends Controller
         $items = Order_items::where('order_code', $order->order_code)->get();
         $users = User::orderby('name', 'desc')->get();
         $warehouses = warehousing::orderby('id', 'desc')->get();
-        $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
+        $distributors = suppliers::whereRaw('LOWER(name) NOT IN (?, ?)', ['Sidai', 'sidai'])->whereIn('status', ['Active', 'active'])
             ->orWhereNull('status')
             ->orWhere('status', '')
             ->orderby('name', 'desc')->get();
@@ -188,7 +190,7 @@ class ordersController extends Controller
                 $activityLog = new activity_log();
                 $activityLog->activity = 'Allocate an order to a Distributor';
                 $activityLog->user_code = auth()->user()->user_code;
-                $activityLog->section = 'Order Allocation';
+                $activityLog->section = 'Web';
                 $activityLog->action = 'Order allocated to distributor' . $distributor->name . ' ';
                 $activityLog->userID = auth()->user()->id;
                 $activityLog->activityID = $random;
@@ -201,7 +203,13 @@ class ordersController extends Controller
                 return redirect()->route('orders.pendingorders');
             }
         }
-
+       for ($i = 0; $i < count($request->allocate); $i++) {
+          $check = product_inventory::where('productID', $request->item_code[$i])->first();
+          if ($check->current_stock < $request->allocate[$i]) {
+             Session()->flash('error', 'Current stock ' . $check->current_stock . ' is less than your allocation quantity of ' .$request->allocate[$i]);
+             return Redirect::back();
+          }
+       }
         $delivery = Delivery::updateOrCreate(
             [
                 "business_code" => Str::random(20),
@@ -261,14 +269,14 @@ class ordersController extends Controller
                 "updated_qty" => $quantity,
             ]);
         }
-        $random = Str::random(20);
+        $rdm = Str::random(20);
         $activityLog = new activity_log();
         $activityLog->activity = 'Allocate an order to a User';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Order Allocation';
+        $activityLog->section = 'Web';
         $activityLog->action = 'Order allocated to user ' . $request->name . ' Role ' . $request->account_type . '';
         $activityLog->userID = auth()->user()->id;
-        $activityLog->activityID = $random;
+        $activityLog->activityID = $rdm;
         $activityLog->ip_address = "";
         $activityLog->save();
         Session::flash('success', 'Delivery created and orders allocated to a user');
@@ -310,7 +318,7 @@ class ordersController extends Controller
                 $activityLog = new activity_log();
                 $activityLog->activity = 'Allocate an order to a Distributor';
                 $activityLog->user_code = auth()->user()->user_code;
-                $activityLog->section = 'Order Allocation';
+                $activityLog->section = 'Web';
                 $activityLog->action = 'Order allocated to distributor' . $distributor->name . ' ';
                 $activityLog->userID = auth()->user()->id;
                 $activityLog->activityID = $random;
@@ -386,7 +394,7 @@ class ordersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Allocate an order to a User';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Order Allocation';
+        $activityLog->section = 'Web';
         $activityLog->action = 'Order allocated to user ' . $request->name . ' Role ' . $request->account_type . '';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;
@@ -430,7 +438,7 @@ class ordersController extends Controller
                 $activityLog = new activity_log();
                 $activityLog->activity = 'Re-allocate an order to a Distributor';
                 $activityLog->user_code = auth()->user()->user_code;
-                $activityLog->section = 'Order Re-allocation';
+                $activityLog->section = 'Web';
                 $activityLog->action = 'Order Re-allocated to distributor' . $distributor->name . ' ';
                 $activityLog->userID = auth()->user()->id;
                 $activityLog->activityID = $random;
@@ -544,7 +552,7 @@ class ordersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Re-Allocate an order to a User';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Order Re-Allocation';
+        $activityLog->section = 'Web';
         $activityLog->action = 'Order re-allocated to user ' . $request->name . ' Role ' . $request->account_type . ' ';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api\manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\customers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -31,11 +33,26 @@ class CustomerController extends Controller
       }
       $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
          ->get();
+      $action="Getting customers";
+      $activity="Getting customers using managers app";
+      $this->activitylogs($action, $activity);
       return response()->json([
          "success" => true,
          "status" => 200,
          "data" => $customers,
       ]);
    }
-
+   public function activitylogs($activity,$action): void
+   {
+      $rdm = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = $activity;
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action =  $action;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $rdm;
+      $activityLog->ip_address = session('login_ip');
+      $activityLog->save();
+   }
 }

@@ -100,6 +100,7 @@ class Dashboard extends Component
             })
             ->whereIn('supplierID', [1, '', null])
             ->where('order_status', 'DELIVERED')
+           ->orderBy('id', 'desc')
             ->sum('price_total');
     }
 
@@ -223,7 +224,7 @@ class Dashboard extends Component
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
             })
-            ->where('order_status', 'DELIVERED')
+            ->where('order_status', 'DELIVERED')->orderBy('id', 'desc')
             ->paginate($this->perVansale);
     }
 
@@ -237,7 +238,7 @@ class Dashboard extends Component
                     ->orWhere('supplierID', 1);
             })->where(function (Builder $query) {
             $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
-        })
+        })->orderBy('id', 'desc')
             ->paginate($this->perPreorder);
     }
 
