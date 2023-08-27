@@ -42,6 +42,24 @@ class CustomerController extends Controller
          "data" => $customers,
       ]);
    }
+   public function getUnapprovedCustomers(Request $request)
+   {
+      if ($request->user()->account_type ==='RSM') {
+         $customers = customers::where('approval','waiting_approval')->where('customer_type','normal')
+            ->where('region_id', Auth::user()->region_id)
+            ->get();
+      }
+      $customers = customers::where('approval','waiting_approval')->where('customer_type','normal')
+         ->get();
+      $action="Getting customers";
+      $activity="Getting customers using managers app";
+      $this->activitylogs($action, $activity);
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $customers,
+      ]);
+   }
    public function activitylogs($activity,$action): void
    {
       $rdm = Str::random(20);
