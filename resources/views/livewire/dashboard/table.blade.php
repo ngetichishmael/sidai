@@ -290,7 +290,7 @@
    </section>
    <section class="app-user-list" id="systemUsers">
       <div class="card">
-         <h5 class="card-header">System Users</h5>
+         <h5 class="card-header">Visits Schedule</h5>
          <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
             <div class="col-md-2">
                <div class="form-group">
@@ -314,26 +314,22 @@
                <thead class="thead-light">
                <tr>
                   <td>#</td>
-                  <th>Name</th>
-                  <th>Phone</th>
-                  <th>Email</th>
-                  <th>Region</th>
-                  <th>Account Type</th>
-                  <th>Status</th>
+                  <th>Shop ID</th>
                   <th>Date</th>
+                  <th>Type</th>
+                  <th>Visited Status</th>
+                  <th>Created on</th>
                </tr>
                </thead>
                <tbody>
-               @forelse ($getUserTotal as $key=>$sale)
+               @forelse ($getTotalVisits as $key=>$visit)
                   <tr>
                      <td>{{ $key + 1 }}</td>
-                     <td>{{ $sale->name }}</td>
-                     <td>{{ $sale->phone_number ?? ''}}</td>
-                     <td>{{ $sale->email ?? ''}}</td>
-                     <td>{{ $sale->Region->name ?? ''}}</td>
-                     <td>{{ $sale->account_type ?? ''}}</td>
-                     <td>{{ $sale->status }}</td>
-                     <td>{{ $sale->created_at }}</td>
+                     <td>{{ $visit->shopID }}</td>
+                     <td>{{ $visit->Date ?? ''}}</td>
+                     <td>{{ $visit->Type ?? ''}}</td>
+                     <td>{{ $visit->VisitedStatus ?? ''}}</td>
+                     <td>{{ $visit->created_at ?? ''}}</td>
                   </tr>
                @empty
                   <x-emptyrow>
@@ -342,7 +338,7 @@
                @endforelse
                </tbody>
             </table>
-            {{ $orderfullmentTotal->links() }}
+            {{-- {{ $orderfullmentTotal->links() }} --}}
          </div>
       </div>
    </section>

@@ -2,18 +2,19 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Models\customer\checkin;
-use App\Models\customers;
-use App\Models\Delivery;
-use App\Models\order_payments as OrderPayment;
-use App\Models\Orders;
-use App\Models\suppliers\suppliers;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use App\Models\Orders;
 use Livewire\Component;
+use App\Models\Delivery;
+use App\Models\customers;
 use Livewire\WithPagination;
+use App\Models\visitschedule;
+use App\Models\customer\checkin;
+use Illuminate\Support\Facades\DB;
+use App\Models\suppliers\suppliers;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\order_payments as OrderPayment;
 
 class Dashboard extends Component
 {
@@ -31,7 +32,7 @@ class Dashboard extends Component
     public $perVisits = 10;
     public $perOrderFulfilment = 10;
     public $perActiveUsers = 10;
-    public $perUserTotal = 10;
+    public $perVisitTotal = 10;
 
     // Individual functions for data retrieval
     public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
@@ -252,13 +253,13 @@ class Dashboard extends Component
             })
             ->paginate($this->perActiveUsers);
     }
-    public function getUserTotal()
+    public function getTotalVisits()
     {
-        return User::where('account_type', '!=', 'Customer')->with('Region')
+        return visitschedule::whereNotNull('shopID')
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
             })
-            ->paginate($this->perUserTotal);
+            ->paginate($this->perVisitTotal);
     }
     public function getOrderFullmentTotal()
     {
@@ -365,7 +366,7 @@ class Dashboard extends Component
             'vansalesTotal' => $this->getVanSalesTotal(),
             'preorderTotal' => $this->getPreOrderTotal(),
             'activeUserTotal' => $this->getActiveUserTotal(),
-            'getUserTotal' => $this->getUserTotal(),
+            'getTotalVisits' => $this->getTotalVisits(),
             'orderfullmentTotal' => $this->getOrderFullmentTotal(),
             'visitsTotal' => $this->getVisitsTotal(),
             'customersCountTotal' => $this->getCustomersCountTotal(),
@@ -422,7 +423,7 @@ class Dashboard extends Component
         $this->getVanSalesTotal();
         $this->getPreOrderTotal();
         $this->getActiveUserTotal();
-        $this->getUserTotal();
+        $this->getTotalVisits();
         $this->getOrderFullmentTotal();
         $this->getVisitsTotal();
         $this->getCustomersCountTotal();
