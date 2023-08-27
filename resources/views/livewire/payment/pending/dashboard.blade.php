@@ -40,9 +40,9 @@
                             <td>{{ number_format($deliver->Order->price_total ?? 0) }}</td>
                             <td>{{ number_format($deliver->Order->balance ?? 0) }}</td>
                             {{-- <td>{{ $deliver->delivery_status }}</td> --}}
-                            <td>@if ($deliver->Order->balance === 0)
+                            <td>@if ($deliver && $deliver->Order && $deliver->Order->balance === 0)
                                 Complete
-                                @elseif ($deliver->Order->balance >1)
+                                @elseif ($deliver && $deliver->Order && $deliver->Order->balance > 1)
                                 Pending
                                 @else
                                 Overpaid
