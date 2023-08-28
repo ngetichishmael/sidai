@@ -5,6 +5,7 @@ use App\Models\Branches;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
+use App\Models\warehousing;
 use Hr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,11 +69,11 @@ class inventoryController extends Controller{
          ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
          ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
          ->where('reconciled_products.warehouse_code', $warehouse_code)
-         ->select('users.name as user','reconciled_products.created_at as date', DB::raw('SUM(reconciled_products.amount) as total_amount', ))
+         ->select('users.name as user','reconciled_products.id as id','reconciled_products.created_at as date', DB::raw('SUM(reconciled_products.amount) as total_amount', ))
          ->groupBy('users.name')
          ->get();
-
-      return view('app.items.salespersons', ['sales' => $sales, 'warehouse'=>$warehouse_code]);
+      $warehouse_name=warehousing::find($warehouse_code);
+      return view('app.items.salespersons', ['sales' => $sales, 'warehouse'=>$warehouse_code, 'warehouse_name'=>$warehouse_name]);
    }
    public function reconciled($reconciliation_id)
    {
