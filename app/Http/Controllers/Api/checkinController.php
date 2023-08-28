@@ -83,14 +83,7 @@ class checkinController extends Controller
       $checkin->business_code  = $customer->business_code;
       $checkin->save();
 
-      //record activity
-      // $activities = '<b>'.$user->name.'</b> Has <b>Checked-in</b> to <i> '.$customer->customer_name.'</i> @ '.date('H:i:s');
-      // $section = 'Customer';
-      // $action = 'Checkin';
-      // $business_code = $customer->business_code;
-      // $activityID = $checkin->code;
-
-      // Helper::activity($activities,$section,$action,$activityID,$business_code);
+      
       DB::table('visits_targets')
          ->where('user_code', $request->user_code)
          ->increment('AchievedVisitsTarget');

@@ -32,6 +32,7 @@ class Orders extends Model
       return $this->hasOne(Order_items::class, 'order_code', 'order_code');
    }
 
+
    /**
     * Get all of the OrderItems for the Orders
     *

@@ -549,17 +549,20 @@ class customersController extends Controller
      * @param string $customerID this is the customer ID
      * @param string $business_code this is the Business code
      **/
-    public function deliveries($customerID, $business_code)
-    {
-        $delivery = Delivery::where('customer', $customerID)->where('business_code', $business_code)->orderby('id', 'desc')->get();
+    public function deliveries($customerID)
+{
+    $deliveries = Delivery::with('DeliveryItems')
+        ->where('customer', $customerID)
+        ->orderby('id', 'desc')
+        ->get();
 
-        return response()->json([
-            "success" => true,
-            "status" => 200,
-            "message" => "Customer Deliveries",
-            "data" => $delivery,
-        ]);
-    }
+    return response()->json([
+        "success" => true,
+        "status" => 200,
+        "message" => "Customer Deliveries",
+        "data" => $deliveries,
+    ]);
+}
 
     /**
      * Customer deliveries
@@ -593,16 +596,19 @@ class customersController extends Controller
      * @param string $customerID this is the customer ID
      **/
     public function orders($customerID)
-    {
-        $orders = Orders::where('customerID', $customerID)->orderby('orders.id', 'desc')->get();
+{
+    $orders = Orders::with('OrderItems')
+        ->where('customerID', $customerID)
+        ->orderby('orders.id', 'desc')
+        ->get();
 
-        return response()->json([
-            "success" => true,
-            "status" => 200,
-            "message" => "Customer orders",
-            "orders" => $orders,
-        ]);
-    }
+    return response()->json([
+        "success" => true,
+        "status" => 200,
+        "message" => "Customer orders",
+        "orders" => $orders,
+    ]);
+}
 
     /**
      * Order details
