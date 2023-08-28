@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('customers/{code}/details', 'customersController@details')->middleware('auth:sanctum');
     Route::post('customer/request/toBeCreditor', 'customersController@RequestToBeCreditor')->middleware('auth:sanctum');
     Route::post('customer/creditor/status', 'customersController@creditorStatus')->middleware('auth:sanctum');
-    Route::get('customers/{customerID}/{businessCode}/deliveries', 'customersController@deliveries')->middleware('auth:sanctum');
+    Route::get('customers/{customerID}/deliveries', 'customersController@deliveries')->middleware('auth:sanctum');
     Route::get('customers/delivery/{code}/details', 'customersController@delivery_details')->middleware('auth:sanctum');
     Route::get('customers/{customerID}/orders', 'customersController@orders')->middleware('auth:sanctum');
     Route::get('customer/groups', 'customersController@groups')->middleware('auth:sanctum');
@@ -100,7 +100,8 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('checkin/{checkinCode}/order/{itemID}/delete/item', ['uses' => 'checkinController@order_delete_item', 'as' => 'checkin.order.delete.item']);
     Route::post('checkin/checkinCode/cancel', ['uses' => 'checkinController@order_cancellation', 'as' => 'checkin.order.cancellation']);
 
-    Route::get('checkin/{checkinCode}/visits', ['uses' => 'checkinController@visits', 'as' => 'checkin.visits']);
+    // Route::get('/check-visit/{user_id}/{customer_id}', ['uses' =>'checkinController@checkVisit', 'as' => 'checkVisits']);
+    Route::get('checkin/{checkinCode}/visits', ['uses' => 'checkinController@checkin', 'as' => 'checkin.visits']);
     Route::post('checkin/{checkinCode}/visit/add', ['uses' => 'checkinController@visit_add', 'as' => 'checkin.visit.add']);
 
     //checkin visits *History *
