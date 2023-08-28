@@ -34,6 +34,7 @@ Route::group(['namespace' => 'Api'], function () {
    Route::post('signup', 'AuthController@userSignUp');
    Route::middleware(['auth:sanctum'])->group(function () {
       Route::get('/manager/customers', [CustomerController::class, 'getCustomers']);
+      Route::get('/manager/unapproved_customers', [CustomerController::class, 'getUnapprovedCustomers']);
       Route::get('/manager/users', [UsersController::class, 'getUsers']);
       Route::get('/manager/account_types', [UsersController::class, 'accountTypes']);
       Route::get('/manager/distributors', [UsersController::class, 'distributors']);

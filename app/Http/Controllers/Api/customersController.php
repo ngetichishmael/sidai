@@ -315,6 +315,7 @@ class customersController extends Controller
             'route_code' => $request->route_code,
             'route' => $request->route_code,
             'customer_group' => $request->outlet,
+            'customer_type' =>'normal',
             'approval' => "waiting_approval",
             'price_group' => $request->outlet,
             'region_id' => optional($route->subregion->region)->id,
@@ -580,7 +581,7 @@ class customersController extends Controller
         return response()->json([
             "success" => true,
             "status" => 200,
-            "message" => "Customer added successfully",
+            "message" => "Customer deliveries",
             "delivery" => $delivery,
             "products" => $products,
         ]);

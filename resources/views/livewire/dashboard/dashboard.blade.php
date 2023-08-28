@@ -311,20 +311,21 @@
                 </div>
             </div>
         </div>
-        <div class="row match-height">
-            <div class="col-lg-12 col-12">
-                <div class="card card-company-table">
-                    <div class="p-0 card-body">
-                        <div class="table-responsive">
-                            <div>
-                                @livewire('individual.leads')
-                            </div>
+        
+        @include('livewire.dashboard.table')
+    </div>
+    <div class="row match-height">
+        <div class="col-lg-12 col-12">
+            <div class="card card-company-table">
+                <div class="p-0 card-body">
+                    <div class="table-responsive">
+                        <div>
+                            @livewire('individual.leads')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @include('livewire.dashboard.table')
     </div>
     <br />
 </div>
