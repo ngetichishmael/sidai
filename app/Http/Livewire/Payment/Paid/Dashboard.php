@@ -17,6 +17,7 @@ class Dashboard extends Component
     protected $paginationTheme = 'bootstrap';
     public $fromDate;
     public $toDate;
+    public $search;
 
     public $paymentMethod = 'PaymentMethods.Mpesa';
 

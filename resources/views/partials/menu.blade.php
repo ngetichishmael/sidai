@@ -1,5 +1,5 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    <div class="navbar-header mb-3 mt-0">
+    <div class="navbar-header mb-3 mt-0 text-center">
         <ul class="nav navbar-nav flex-row ">
             <li class="nav-item me-auto">
                 <a class="" href="#">
