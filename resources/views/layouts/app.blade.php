@@ -6,8 +6,8 @@
 
 <!-- BEGIN: Body-->
 {{--<script src="{{ mix('js/app.js') }}"></script>--}}
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-<link rel="stylesheet" href="{{ asset('css/chat.css') }}">
+{{--<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
+{{--<link rel="stylesheet" href="{{ asset('css/chat.css') }}">--}}
 {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
 @livewireScripts
 <body class="vertical-layout vertical-menu-modern navbar-floating footer-static" data-open="click"
