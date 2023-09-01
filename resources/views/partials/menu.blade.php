@@ -1,5 +1,9 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+<<<<<<< HEAD
     <div class="navbar-header mb-3 mt-0 text-center">
+=======
+    <div class="navbar-header mb-4 mt-0">
+>>>>>>> 5d6d8826d050cd40e40c0607f1e5c2b7c5148b19
         <ul class="nav navbar-nav flex-row ">
             <li class="nav-item me-auto">
                 <a class="" href="#">
@@ -8,6 +12,7 @@
                 </a>
             </li>
         </ul>
+
     </div>
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
@@ -268,7 +273,7 @@
 {{--                 </a>--}}
 {{--              </li>--}}
            <li class="nav-item {!! Nav::isResource('chat') !!}">
-                 <a class="d-flex align-items-center" href="{{url('chatify')}}" >
+                 <a class="d-flex align-items-center" href="{{url('chats')}}" >
                     <i data-feather="message-circle"></i>
                     <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>
                  </a>

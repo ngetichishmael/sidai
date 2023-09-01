@@ -1,0 +1,4 @@
+[2023-09-01 17:19:19][1] Processing: App\Notifications\NewOrderNotification
+[2023-09-01 17:19:19][1] Failed:     App\Notifications\NewOrderNotification
+[2023-09-01 17:19:19][2] Processing: App\Notifications\NewOrderNotification
+[2023-09-01 17:19:19][2] Failed:     App\Notifications\NewOrderNotification

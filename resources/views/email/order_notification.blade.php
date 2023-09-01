@@ -82,10 +82,7 @@
       }
 
       table, td { color: #000000; } </style>
-
-
-
-   <!--[if !mso]><!--><link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" type="text/css"><!--<![endif]-->
+  <!--[if !mso]><!--><link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet" type="text/css"><!--<![endif]-->
 
 </head>
 
@@ -137,9 +134,6 @@
                </div>
             </div>
          </div>
-
-
-
          <div class="u-row-container" style="padding: 0px;background-color: transparent">
             <div class="u-row" style="Margin: 0 auto;min-width: 320px;max-width: 600px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
                <div style="border-collapse: collapse;display: table;width: 100%;height: 100%;background-color: transparent;">
@@ -247,9 +241,9 @@
 {{--                                             @endforeach--}}
 {{--                                             </tbody>--}}
 {{--                                          </table>--}}
-{{--                                       @endif--}}
+                                       @endif
                                        <p>&nbsp;</p><p>&nbsp;</p>
-                                          <p>Incase of any questions please contact sales representative {{ $sales}} ; phone {{$sales_number}} to allign on the order. Thank you for being part of our team.</p>
+                                          <p>Incase of any questions please contact sales representative {{ $sales}} ; phone {{$sales_number}} to align on the order. Thank you for being part of our team.</p>
 {{--                                       <p>Thank you for using Sidai! For assistance, please contact us at CRM@sidai.com or through the app chat section.</p>--}}
                                     </div>
 
