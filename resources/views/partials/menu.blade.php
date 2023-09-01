@@ -1,9 +1,6 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-<<<<<<< HEAD
+
     <div class="navbar-header mb-3 mt-0 text-center">
-=======
-    <div class="navbar-header mb-4 mt-0">
->>>>>>> 5d6d8826d050cd40e40c0607f1e5c2b7c5148b19
         <ul class="nav navbar-nav flex-row ">
             <li class="nav-item me-auto">
                 <a class="" href="#">
