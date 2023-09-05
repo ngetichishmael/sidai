@@ -21,7 +21,13 @@ class Index extends Component
    public $selectedData = [];
    public $title;
    public $body;
+   protected $listeners = ['closeModal' => 'closeModal'];
 
+   public function closeModal()
+   {
+      dd("here");
+      $this->showModal = false;
+   }
    public function mount($role)
    {
       $this->role = $role;

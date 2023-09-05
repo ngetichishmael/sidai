@@ -14,7 +14,7 @@ use function Symfony\Component\Translation\t;
 
 class NewOrderNotification extends Notification implements ShouldQueue
 {
-    use Queueable, SerializesModels;
+    use SerializesModels, Queueable;
 //    private $details;
    private $order;
    private $orderitems;
@@ -39,16 +39,9 @@ class NewOrderNotification extends Notification implements ShouldQueue
       $this->sales_number = $sales_number;
       $this->distributor = $distributor;
       $this->orderitems = Order_items::where('order_code', $this->order->order_code)->get();
-      Log::debug($this->order->order_code);
-      Log::debug($this->orderitems);
+//      Log::debug($this->order->order_code);
+//      Log::debug($this->orderitems);
    }
-
-//    public function __construct()
-//    {
-//        $this->details=$details;
-//       $this->user = $user;
-//       $this->orderId = $orderId;
-//    }
 
     /**
      * Get the notification's delivery channels.
@@ -58,7 +51,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
        public function via($notifiable)
     {
-       return ['mail', 'database'];
+       return ['mail'];
     }
 
     /**
@@ -75,10 +68,10 @@ class NewOrderNotification extends Notification implements ShouldQueue
          if (!empty($customer)) {
            $orderitems=$this->orderitems;
          }
-        $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude . ',' . $customer->longitude;
+          Log::debug('Customer---------------- '.$customer);
+        $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude ?? '0'. ',' . $customer->longitude ?? '';
          $customer=$customer->customer_name;
-         Log::debug('----------------------------------'. $this->orderitems);
-         Log::debug('*****************************'. $orderitems);
+//         dd(gettype($orderitems));
          return (new MailMessage)
             ->subject('New Order Notification')
             ->view('email.order_notification', [
@@ -102,19 +95,19 @@ class NewOrderNotification extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
       Log::debug("in toarray db notifiable");
-       $orderDetails = '';
-       if ($this->order){
-          $customer=customers::find($this->order->customerID);
-          foreach ($this->order->items as $item) {
-             $orderDetails .= $item->product_name . "\t\t" . $item->quantity . "\n";
-          }
+        $orderDetails = '';
+        if ($this->order && $this->order->items) { // Check if $this->order and $this->order->items are not null
+            $customer = customers::find($this->order->customerID);
+            foreach ($this->order->items as $item) {
+                $orderDetails .= $item->product_name . "\t\t" . $item->quantity . "\n";
+            }
 
           $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude . ',' . $customer->longitude;
 
           return [
            'name' => $this->user->name,
            'user_code' => $this->user->user_code,
-               'title' => 'A new order has been placed from the Test Shop.',
+              'title' => 'A new order has been placed from the Test Shop.',
               'body'=>[
 //                 'Location: ' =>$mapLink,
               'Order details: ',
