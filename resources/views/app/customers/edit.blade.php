@@ -105,7 +105,7 @@
                                 {{-- @livewire('customers.region') --}}
                                 <div class="col-md-6 col-12">
                                     <label>Region</label>
-                                    <select id="regionId" class="form-control select2" name="zone">
+                                    <select id="regionId" class="form-control" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
                                             <option value="{{ $region->id }}"
