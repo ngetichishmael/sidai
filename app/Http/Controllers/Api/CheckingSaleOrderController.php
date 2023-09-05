@@ -50,21 +50,37 @@ class CheckingSaleOrderController extends Controller
       $total = 0;
       $region = Region::where('id', $request->user()->region_id)->first();
       $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+      //$orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+      
+      $latestOrder = Orders::where('order_code', 'like', $regionCode . '%')
+	          ->orderBy('created_at', 'desc')
+	      ->first();
+
+      if ($latestOrder) {
+	          // Extract the order number and increment it
+	          $latestOrderNumber = intval(substr($latestOrder->order_code, 4));
+	              $orderCount = $latestOrderNumber + 1;
+	      } else {
+	                  // No previous orders in this region, start from 1
+	                      $orderCount = 1;
+	                      }
+
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $random = $regionCode . '-' . $orderNumber;
+      $ordercode = $regionCode . '-' . $orderNumber;
       $request = $request->collect();
+      //info("all infomation sent ".$request->all());
       if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
          foreach ($request[0]['cartItem'] as $value) {
-            info($value);
+		 info($value["productID"]);
             $quantity = $value['qty'] ?? 1;
             $price_total = $quantity * $value["price"];
             $total += $price_total;
             $product = product_information::with('ProductPrice')->where('id', $value["productID"])->first();
-            Cart::updateOrCreate(
+	    info($product);
+	    Cart::updateOrCreate(
                [
                   'checkin_code' => $checkinCode,
-                  "order_code" => $random,
+                  "order_code" => $ordercode,
                ],
                [
                   'productID' => $value["productID"],
@@ -89,7 +105,7 @@ class CheckingSaleOrderController extends Controller
             Order::updateOrCreate(
                [
 
-                  'order_code' => $random,
+                  'order_code' => $ordercode,
                ],
                [
                   'user_code' => $user_code,
@@ -108,7 +124,7 @@ class CheckingSaleOrderController extends Controller
                ]
             );
             Order_items::create([
-               'order_code' => $random,
+               'order_code' => $ordercode,
                'productID' => $value["productID"],
                'product_name' => $product->product_name,
                'quantity' => $quantity,
@@ -126,7 +142,7 @@ class CheckingSaleOrderController extends Controller
          return response()->json([
             "success" => false,
             "message" => "Could not perform the operation",
-            "order_code" => $random,
+            "order_code" => $ordercode,
          ]);
       }
 
@@ -135,7 +151,7 @@ class CheckingSaleOrderController extends Controller
       $activityLog->activity = 'Product added to vansale order';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'Vansale order';
-      $activityLog->action = 'Vansale order made by' . auth()->user()->name . ' order code  ' . $random;
+      $activityLog->action = 'Vansale order made by' . auth()->user()->name . ' order code  ' . $ordercode;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = "";
@@ -144,7 +160,7 @@ class CheckingSaleOrderController extends Controller
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
-         "order_code" => $random,
+         "order_code" => $ordercode,
          "data" => $checkin,
       ]);
    }
@@ -243,26 +259,39 @@ class CheckingSaleOrderController extends Controller
 //       $checkin = customers::whereId($checkinCode)->first();
       $region = Region::where('id', auth()->user()->region_id)->first();
       $regionCode = strtoupper(substr($region->name, 0, 3));
-      $orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
+     // $order_get = Orders::where('order_code', 'like', $regionCode . '%')->orderBy("id", "desc")->first();
+   $latestOrder = Orders::where('order_code', 'like', $regionCode . '%')
+	       ->orderBy('created_at', 'desc')
+           ->first();
+
+      if ($latestOrder) {
+	        $latestOrderNumber = intval(substr($latestOrder->order_code, 4));
+	               $orderCount = $latestOrderNumber + 1;
+	               } else {
+	                   // No previous orders in this region, start from 1
+	                      $orderCount = 1;
+	                       }
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
-      $random = $regionCode . '-' . $orderNumber;
-//      dd($random);
+      $ordercode = $regionCode . '-' . $orderNumber;
+     
 //      if (empty($orderCode)){
 //         $orderCode = Helper::generateRandomString(8);
 //      }
 //      $orderCode = Helper::generateRandomString(8);
       $user_code = $request->user()->user_code;
-      $request = $request->collect();
+      $request1 = $request->collect();
       $total = 0;
+      info($request1);
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
-      foreach ($request as $value) {
+      foreach ($request1 as $value) {
          $price_total = $value["qty"] * $value["price"];
          $total += $price_total;
          $product = product_information::whereId($value["productID"])->first();
-         Cart::updateOrCreate(
+			info($product);      
+	 Cart::updateOrCreate(
             [
                'checkin_code' => Str::random(20),
-               "order_code" => $random,
+               "order_code" => $ordercode,
             ],
             [
                'productID' => $value["productID"],
@@ -276,7 +305,7 @@ class CheckingSaleOrderController extends Controller
          );
          $order = Order::updateOrCreate(
             [
-               'order_code' => $random,
+               'order_code' => $ordercode,
             ],
             [
                'user_code' => $user_code,
@@ -296,7 +325,7 @@ class CheckingSaleOrderController extends Controller
             ]
          );
          Order_items::create([
-            'order_code' => $random,
+            'order_code' => $ordercode,
             'productID' => $value["productID"],
             'product_name' => $product->product_name,
             'quantity' => $value["qty"],
@@ -322,7 +351,7 @@ class CheckingSaleOrderController extends Controller
 
          $usersToNotify = Suppliers::findOrFail($distributor);
          $number = $usersToNotify->phone_number;
-         $order_code = $random;
+         $order_code = $ordercode;
          $this->sendOrder($number, $order_code);
          $distributor = $usersToNotify->name;
 //           $distributorid = $usersToNotify->id;
@@ -337,7 +366,7 @@ class CheckingSaleOrderController extends Controller
       $activityLog->activity = 'Product added to order';
       $activityLog->user_code = auth()->user()->user_code;
       $activityLog->section = 'New sales order';
-      $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  ' . $random;
+      $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  ' . $ordercode;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = "";
@@ -345,7 +374,7 @@ class CheckingSaleOrderController extends Controller
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
-         "order_code" => $random,
+         "order_code" => $ordercode,
          "data" => null,
       ]);
    }
