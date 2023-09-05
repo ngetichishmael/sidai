@@ -40,7 +40,8 @@ class StockRequisitionController extends Controller
          [
 //                "user_id" => $request->user()->user_code,
             "user_id" => $request->user()->id,
-            "requisition_date" => Carbon::now(),
+	  "sales_person"=>$request->user()->user_code,
+	    "requisition_date" => Carbon::now(),
             "warehouse_code" => $warehouse_code,
             "status" => "Waiting Approval",
 
