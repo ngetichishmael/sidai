@@ -28,14 +28,14 @@
             <div class="card card-congratulation-medal">
                 <div class="card-body">
                     <h5>Welcome once again 🎉 </h5>
-                    <p class="card-text font-small-3">Feel free to explore around</p>
+                    <p class="card-text font-small-3">Feel free to explore around.</p>
                     <h3 class="mb-75 mt-2 pt-50">
                         <?php
                         // Calculate the sum total
                         $sumTotal = $Cash + $Mpesa + $Cheque + $total;
                         ?>
 
-                        <a href="javascript:void(0);"> {{ number_format($sumTotal) }} </a>
+                        <a href="javascript:void(0);" style="color: green"> {{ number_format($sumTotal) }} </a>
                     </h3>
                     <button type="button" class="btn btn-primary">View Sales</button>
                     <img src="{{ asset('images/illustration/badge.jpg') }}" class="congratulation-medal"
