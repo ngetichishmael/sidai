@@ -6,6 +6,7 @@ use App\Models\customer_group;
 use App\Models\customers;
 use App\Models\Region;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -114,6 +115,7 @@ class Approve extends Component
       customers::whereId($id)->update(
          ['approval' => "approved"]
       );
+      Session::flash('success', 'Customer Approved!');
       return redirect()->to('/approveCustomers');
    }
    public function dissaproveCustomer($id)
