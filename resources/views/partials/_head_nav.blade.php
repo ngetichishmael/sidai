@@ -8,7 +8,7 @@
             </ul>
             <ul class="nav navbar-nav bookmark-icons">
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="#" title="Chat"><i class="ficon"
+                    <a class="nav-link" href="/chats" title="Chat"><i class="ficon"
                             data-feather="message-square"></i></a>
                 </li>
             </ul>

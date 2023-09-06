@@ -104,4 +104,31 @@ class routesController extends Controller
 
         return redirect()->route('routes.index');
     }
+   public function edit1($id, $code)
+   {
+      $route_sales=Route_sales::findOrFail($id);
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
+      $customers = customers::where()->where('business_code', Auth::user()->business_code)->pluck('customer_name', 'id');
+      $salesPeople = User::where('business_code', Auth::user()->business_code)->where('account_type', 'RSM')->pluck('name', 'id');
+      return view('app.routes.edit', ['customers' => $customers, 'salesPeople' => $salesPeople, 'account_types' => $account_types, ]);
+   }
+
+   public function edit($id)
+   {
+      $route = Routes::findOrFail($id);
+      $selectedSalespeople=[];
+      $selectedAccounttype='';
+
+         $customers = customers::all();
+         $salespeople = User::all();
+      $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
+
+      if ( $route) {
+         $code =$route->route_code;
+         $selectedSalespeople = Route_sales::where('routeID', $code)->select('userID')->get();
+         return view('app.routes.edit', compact('route', 'customers', 'account_types','salespeople', 'selectedSalespeople'));
+      }
+      return view('app.routes.edit', compact('route', 'customers', 'salespeople', 'account_types', 'selectedAccounttype', 'selectedSalespeople'));
+
+   }
 }

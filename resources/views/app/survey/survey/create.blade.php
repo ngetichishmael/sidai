@@ -60,14 +60,15 @@
                   <div class="row">
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label for="">Start Date</label>
-                           {!! Form::date('start_date',null,['class'=>'form-control'],'required') !!}
+                           <label for="start_date">Start Date</label>
+                           {!! Form::date('start_date',null,['class' => 'form-control', 'id' => 'start_date', 'required']) !!}
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="form-group">
-                           <label for="">End Date</label>
-                           {!! Form::date('end_date',null,['class'=>'form-control']) !!}
+                           <label for="end_date">End Date</label>
+                           {!! Form::date('end_date',null,['class' => 'form-control', 'id' => 'end_date']) !!}
+                           <span id="end-date-error" class="text-danger"></span>
                         </div>
                      </div>
                   </div>
@@ -100,4 +101,43 @@
          {!! Form::close() !!}
       </div>
    </div>
+   <script>
+      document.addEventListener("DOMContentLoaded", function () {
+         const startDateInput = document.getElementById("start_date");
+         const endDateInput = document.getElementById("end_date");
+         const endDateError = document.getElementById("end-date-error");
+
+         startDateInput.addEventListener("input", function () {
+            // Parse date values and compare them
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+               // Show the error message
+               endDateError.textContent = "End date cannot be earlier than start date";
+               endDateInput.value = ""; // Clear the end date input
+            } else {
+               // Clear the error message if dates are valid
+               endDateError.textContent = "";
+            }
+         });
+
+         endDateInput.addEventListener("input", function () {
+            // Parse date values and compare them
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+               // Show the error message
+               endDateError.textContent = "End date cannot be earlier than start date";
+               endDateInput.value = ""; // Clear the end date input
+            } else {
+               // Clear the error message if dates are valid
+               endDateError.textContent = "";
+            }
+         });
+      });
+   </script>
+
+
 @endsection

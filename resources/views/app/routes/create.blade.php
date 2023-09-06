@@ -40,11 +40,12 @@
                     <div class="row mb-1">
                         <div class="form-group col-md-4">
                             <label for="">Start Date</label>
-                            {!! Form::date('start_date', null, ['class' => 'form-control', 'required' => '']) !!}
+                            {!! Form::date('start_date', null, ['class' => 'form-control', 'id' => 'start_date', 'required'=>'']) !!}
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">End Date</label>
-                            {!! Form::date('end_date', null, ['class' => 'form-control', 'required' => '']) !!}
+                            {!! Form::date('end_date', null, ['class' => 'form-control', 'id' => 'end_date', 'required'=>'']) !!}
+                           <span id="end-date-error" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Status</label>
@@ -110,6 +111,34 @@
    });
     </script>
 
+    <script>
+       document.addEventListener("DOMContentLoaded", function () {
+          const startDateInput = document.getElementById("start_date");
+          const endDateInput = document.getElementById("end_date");
+
+          startDateInput.addEventListener("input", function () {
+             // Parse date values and compare them
+             const startDate = new Date(startDateInput.value);
+             const endDate = new Date(endDateInput.value);
+
+             if (startDate > endDate) {
+                // If the start date is later than the end date, reset the end date
+                endDateInput.value = "";
+             }
+          });
+
+          endDateInput.addEventListener("input", function () {
+             // Parse date values and compare them
+             const startDate = new Date(startDateInput.value);
+             const endDate = new Date(endDateInput.value);
+
+             if (startDate > endDate) {
+                // If the end date is earlier than the start date, reset the end date
+                endDateInput.value = "";
+             }
+          });
+       });
+    </script>
 
 @endsection
 {{-- page scripts --}}
