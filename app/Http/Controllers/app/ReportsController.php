@@ -102,7 +102,14 @@ class ReportsController extends Controller
    }
    public function deliveryitems($order_code)
    {
-      $items = Order_items::where('order_code', $order_code)->get();
+      $items = Order_items::join('product_information', 'product_information.id', '=', 'order_items.productID')
+            ->select(
+                'order_items.id',
+                'order_items.product_name as name',
+                'product_information.sku_code as code'
+            )
+            ->groupBy('order_items.id')
+            ->where('order_code', $order_code)->get();
       return view('app.items.delivery', ['items' => $items]);
    }
    public function tsr()

@@ -35,8 +35,8 @@
                   @foreach ($items as $key=>$item)
                   <tr>
                      <td>{{ $key+1 }}</td>
-                     <td>{{ $item->product_name }}</td>
-                     <td></td>
+                     <td>{{ $item->name }}</td>
+                     <td>{{ $item->code }}</td>
                  </tr>
                   @endforeach
                    
