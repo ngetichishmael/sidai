@@ -37,7 +37,7 @@
                             <td>{!! $route->status !!}</td>
                             <td>{!! $route->start_date !!}</td>
                             <td>{!! $route->end_date !!}</td>
-                            <td><a href="" class="btn btn-sm" style="background-color: brown;color:white">Edit</a></td>
+                            <td><a href="{{ route('route.edit',['id' => $route->id]) }}" class="btn btn-sm" style="background-color: brown;color:white">Edit</a></td>
                         </tr>
                     @endforeach
                 </tbody>
