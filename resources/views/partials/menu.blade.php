@@ -269,12 +269,12 @@
 {{--                    <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>--}}
 {{--                 </a>--}}
 {{--              </li>--}}
-           <li class="nav-item {!! Nav::isResource('chat') !!}">
-                 <a class="d-flex align-items-center" href="{{url('chats')}}" >
-                    <i data-feather="message-circle"></i>
-                    <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>
-                 </a>
-              </li>
+{{--           <li class="nav-item {!! Nav::isResource('chat') !!}">--}}
+{{--                 <a class="d-flex align-items-center" href="{{url('chats')}}" >--}}
+{{--                    <i data-feather="message-circle"></i>--}}
+{{--                    <span class="menu-title text-truncate" data-i18n="Invoice">Chats</span>--}}
+{{--                 </a>--}}
+{{--              </li>--}}
            @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
 <li class="nav-item {!! Nav::isResource('survey') !!}">

@@ -353,6 +353,7 @@ Auth::routes(['verify' => true]);
    Route::get('routes/create', ['uses' => 'app\routesController@create', 'as' => 'routes.create']);
    Route::post('routes/store', ['uses' => 'app\routesController@store', 'as' => 'routes.store']);
    Route::get('routes/{code}/update', ['uses' => 'app\routesController@update', 'as' => 'routes.update']);
+   Route::get('route/edit/{id}', ['uses' => 'app\routesController@edit', 'as' => 'route.edit']);
    Route::get('routes/{code}/view', ['uses' => 'app\routesController@view', 'as' => 'routes.view']);
 
 
