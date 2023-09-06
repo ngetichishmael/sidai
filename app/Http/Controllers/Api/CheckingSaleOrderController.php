@@ -51,7 +51,7 @@ class CheckingSaleOrderController extends Controller
       $region = Region::where('id', $request->user()->region_id)->first();
       $regionCode = strtoupper(substr($region->name, 0, 3));
       //$orderCount = Orders::where('order_code', 'like', $regionCode . '%')->count() + 1;
-      
+
       $latestOrder = Orders::where('order_code', 'like', $regionCode . '%')
 	          ->orderBy('created_at', 'desc')
 	      ->first();
@@ -137,6 +137,10 @@ class CheckingSaleOrderController extends Controller
                'created_at' => now(),
                'updated_at' => now(),
             ]);
+
+            DB::table('orders_targets')
+               ->where('user_code', $user_code)
+               ->increment('AchievedOrdersTarget', $value["qty"]);
          }
       } else {
          return response()->json([
@@ -273,7 +277,7 @@ class CheckingSaleOrderController extends Controller
 	                       }
       $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
       $ordercode = $regionCode . '-' . $orderNumber;
-     
+
 //      if (empty($orderCode)){
 //         $orderCode = Helper::generateRandomString(8);
 //      }
@@ -287,7 +291,7 @@ class CheckingSaleOrderController extends Controller
          $price_total = $value["qty"] * $value["price"];
          $total += $price_total;
          $product = product_information::whereId($value["productID"])->first();
-			info($product);      
+			info($product);
 	 Cart::updateOrCreate(
             [
                'checkin_code' => Str::random(20),
