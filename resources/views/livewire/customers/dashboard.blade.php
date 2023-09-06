@@ -25,7 +25,7 @@
                 placeholder="Enter customer name, email address or phone number">
         </div>
         <div class="col-md-3">
-            <label for="">Items Per</label>
+            <label for="">Items Per page</label>
             <select wire:model="perPage" class="form-control">`
                 <option value="10" selected>10</option>
                 <option value="25">25</option>

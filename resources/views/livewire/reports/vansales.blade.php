@@ -27,13 +27,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-3">
-        <label for="">Status</label>
-        <select wire:model="status" class="form-control">
-            <option value="" selected>select</option>
-            <option value=""></option>
-        </select>
-    </div>
+    
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"

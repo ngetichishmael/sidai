@@ -11,9 +11,12 @@
     </div>
     <div class="col-md-3">
         <label for="">User Category</label>
-        <select wire:model="" class="form-control" disabled>`
+        <select wire:model="" class="form-control">`
             <option value="" selected>select</option>
-            <option value=""></option>
+            <option value="nsm">NSM</option>
+            <option value="rsm">RSM</option>
+            <option value="tsr">TSR</option>
+            <option value="shop-attendee">Shop-Attendee</option>
 
         </select>
     </div>
@@ -25,16 +28,7 @@
         </button>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3">
-        <label for="">Status</label>
-        <select wire:model="" class="form-control">`
-            <option value="" selected>select</option>
-            <option value=""></option>
 
-        </select>
-    </div>
-</div>
 <br>
 <div class="row">
     @include('partials.stickymenu')

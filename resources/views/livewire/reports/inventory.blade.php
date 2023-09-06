@@ -10,13 +10,10 @@
            placeholder="YYYY-MM-DD HH:MM" required />
    </div>
    <div class="col-md-3">
-       <label for="">User Category</label>
-       <select wire:model="" class="form-control" disabled>`
-           <option value="" selected>select</option>
-           <option value=""></option>
-
-       </select>
-   </div>
+    <label for="">Search by warehouse name</label>
+    <input type="text" wire:model="search" class="form-control"
+        placeholder="Enter customer name, email address or phone number">
+</div>
    <div class="col-md-3">
        <button type="button" class="btn btn-icon btn-outline-success" wire:click="" wire:loading.attr="disabled"
            data-toggle="tooltip" data-placement="top" title="Export Excel">
@@ -26,20 +23,7 @@
    </div>
 </div>
 <br>
-<div class="row">
-    <div class="col-md-3">
-        <label for="">Status</label>
-        <select wire:model="status" class="form-control">
-            <option value="" selected>select</option>
-            <option value=""></option>
-        </select>
-    </div>
-    <div class="col-md-3">
-        <label for="">Search by name, route, region</label>
-        <input type="text" wire:model="search" class="form-control"
-            placeholder="Enter customer name, email address or phone number">
-    </div>
-</div>
+
 <br>
 @include('partials.stickymenu')
 <br>

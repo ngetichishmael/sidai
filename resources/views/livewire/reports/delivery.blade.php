@@ -10,11 +10,11 @@
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
-        <label for="">User Category</label>
-        <select wire:model="" class="form-control">`
+        <label for="">Status</label>
+        <select wire:model="status" class="form-control">
             <option value="" selected>select</option>
-            <option value=""></option>
-
+            <option value="complete delivery">Complete Delivery</option>
+            <option value="not delivered">Not Delivered</option>
         </select>
     </div>
     <div class="col-md-3">
@@ -27,13 +27,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-3">
-        <label for="">Status</label>
-        <select wire:model="status" class="form-control">
-            <option value="" selected>select</option>
-            <option value=""></option>
-        </select>
-    </div>
+    
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"

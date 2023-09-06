@@ -10,12 +10,15 @@
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
-        <label for="">User Category</label>
-        <select wire:model="userCategory" class="form-control">
+        <label for="">Status</label>
+        <select wire:model="status" class="form-control">
             <option value="" selected>select</option>
-            <option value=""></option>
+            <option value="">Pending Delivery</option>
+            <option value="">Waiting Acceptance</option>
+            <option value="">Delivered</option>
         </select>
     </div>
+
     <div class="col-md-3">
         <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
             data-toggle="tooltip" data-placement="top" title="Export Excel">
@@ -26,16 +29,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-3">
-        <label for="">Status</label>
-        <select wire:model="status" class="form-control">
-            <option value="" selected>select</option>
-            <option value=""></option>
-            <option value="">Pending Delivery</option>
-            <option value="">Waiting Acceptance</option>
-            <option value="">Delivered</option>
-        </select>
-    </div>
+    
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"
