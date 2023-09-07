@@ -64,7 +64,8 @@ class Dashboard extends Component
             ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
       })
       ->where('customer_type', 'creditor')
-      ->where('approval', 'approved');
+      ->where('approval', 'approved')
+      ->where('creditor_status','approved');
       if ($this->user->account_type === "RSM") {
          $aggregate->whereIn('regions.id', $this->filter());
       }
