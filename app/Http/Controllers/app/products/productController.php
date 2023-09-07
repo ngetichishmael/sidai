@@ -66,11 +66,9 @@ class productController extends Controller
     */
    public function store(Request $request)
    {
+      //Rule::unique('product_information', 'product_name')->ignore($request->id),'string',
       $this->validate($request, [
-         'product_name' => [
-            'required',
-            Rule::unique('product_information', 'product_name')->ignore($request->id),'string',
-         ],
+         'product_name' =>'required',
          'buying_price' => 'required',
          'selling_price' => 'required',
          'distributor_price' => 'required',
