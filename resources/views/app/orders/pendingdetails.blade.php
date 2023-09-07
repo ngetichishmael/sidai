@@ -145,8 +145,11 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
+                           <div class="logo-wrapper">
+                              <img style="height:50px;" src={{ asset('app-assets/images/sidaiweblogo.png') }} alt="sidai" />
+                           </div>
                             <div>
-                                <span class="text-sm text-grey-m2 align-middle">To:</span>
+                                <span class="text-sm text-grey-m2 align-middle">Customer Name:</span>
                                 <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name }}</span>
                             </div>
                             <div class="text-grey-m2">
@@ -208,7 +211,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                                Extra note such as company or payment information...
+{{--                                Extra note such as company or payment information...--}}
                             </div>
 
                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">

@@ -69,7 +69,7 @@
                                 </td>
                                 <td>{!! $user->phone_number !!}</td>
                                 <td>{!! $user->Region->name ?? '' !!}</td>
-                                <td style="color: {!! $user->status == 'Active' ? 'green' : 'orangered' !!}">{!! $user->status !!}</td>
+                               <td style="color: {{ $user->status == 'Active' ? 'green' : 'orange' }};">{{ $user->status }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button style="background-color: #B6121B;color:white"

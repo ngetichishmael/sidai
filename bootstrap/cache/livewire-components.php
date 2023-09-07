@@ -59,6 +59,7 @@
   'productapproval.approved' => 'App\\Http\\Livewire\\Productapproval\\Approved',
   'productapproval.requisitionapprovalwarehouses' => 'App\\Http\\Livewire\\Productapproval\\Requisitionapprovalwarehouses',
   'productapproval.approve_item' => 'App\\Http\\Livewire\\Productapproval\\approve_item',
+  'productapproval.approved_item' => 'App\\Http\\Livewire\\Productapproval\\approved_item',
   'products.products' => 'App\\Http\\Livewire\\Products\\Products',
   'regional.index' => 'App\\Http\\Livewire\\Regional\\Index',
   'regionselect.dynamicselect' => 'App\\Http\\Livewire\\Regionselect\\Dynamicselect',

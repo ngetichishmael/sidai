@@ -14,6 +14,10 @@ class LiftedStock extends Component
    public $perPage = 25;
    public $orderBy = 'inventory_allocations.id';
    public $orderAsc = true;
+   public $fromDate;
+   public $toDate;
+   public $search;
+   public $source ='Sidai';
     public function render()
     {
 //        $lifted = DB::table('inventory_allocations')
@@ -44,6 +48,30 @@ class LiftedStock extends Component
              'warehouse.name as warehouse',
              'users.name as user_name', 'regions.name as user_region')
           ->with('distributors')
+          ->when($this->source === 'Sidai', function ($query) {
+             // If source is 'Sidai', filter records where distributor is 1 or null
+             return $query->where('inventory_allocations.distributor', 1)->orWhereNull('inventory_allocations.distributor');
+          })
+          ->when($this->source === 'Distributor', function ($query) {
+             // If source is 'Distributor', filter records where distributor is not 1 or null
+             return $query->where('inventory_allocations.distributor', '!=', 1)->whereNotNull('inventory_allocations.distributor');
+          })
+          ->when($this->fromDate, function ($query) {
+             $query->whereDate('inventory_allocations.updated_at', '>=', $this->fromDate);
+          })
+          ->when($this->toDate, function ($query) {
+             $query->whereDate('inventory_allocations.updated_at', '<=', $this->toDate);
+          })
+          ->when($this->search, function ($query) {
+             $query->where(function ($query) {
+                $query->where('regions.name', 'like', '%' . $this->search . '%')
+                   ->orWhere('users.name', 'like', '%' . $this->search . '%')
+                   ->orWhere('inventory_allocations.distributor', 'like', '%' . $this->search . '%')
+                   ->orWhere('warehouse.name', 'like', '%' . $this->search . '%')
+                   ->orWhere('product_information.product_name', 'like', '%' . $this->search . '%');
+             });
+          })
+          ->groupBy('inventory_allocations.allocation_code')
           ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
           ->paginate($this->perPage);
         return view('livewire.stocks.lifted-stock', [
