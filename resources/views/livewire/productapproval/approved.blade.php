@@ -11,7 +11,7 @@
                   <th>Sales Name</th>
                   <th>Status</th>
                   <th>Created On</th>
-{{--                  <th>Action</th>--}}
+                  <th>Action</th>
                   </thead>
                   <tbody>
                   @foreach ($requisitions as $count => $requisition)
@@ -41,10 +41,10 @@
                            <td style="color: #B6121B">Data Unavailable</td>
                         @endif
                         <td>{!! date('F jS, Y', strtotime($requisition->created_at)) !!}</td>
-{{--                        <td>--}}
-{{--                           <a href="{!! route('inventory.approve', [$requisition->id]) !!}" class="btn btn-sm"--}}
-{{--                              style="background-color: #B6121B;color:white">view</a>--}}
-{{--                        </td>--}}
+                        <td>
+                           <a href="{!! route('inventory.approveditems', [$requisition->id]) !!}" class="btn btn-sm"
+                              style="background-color: #B6121B;color:white">view stocks</a>
+                        </td>
                      </tr>
                   @endforeach
                   </tbody>

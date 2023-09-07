@@ -396,6 +396,7 @@ Auth::routes(['verify' => true]);
       Route::get('warehousing/all/requisitions/{warehouse_code}', [InventoryController::class, 'approval'])
          ->name('inventory.approval');
       Route::get('warehousing/approved/requisitions/{warehouse_code}', ['uses' => 'app\inventoryController@approved', 'as' => 'inventory.approved']);
+      Route::get('warehousing/approvedItems/requisitions/{warehouse_code}', ['uses' => 'app\inventoryController@approvedItems', 'as' => 'inventory.approveditems']);
       Route::get('warehousing/all', ['uses' => 'app\inventoryController@warehouses', 'as' => 'inventory.warehouses']);
       Route::get('warehousing/approved/{requisition_id}', ['uses' => 'app\products\productController@approvestock', 'as' => 'product.approvestock']);
    //products

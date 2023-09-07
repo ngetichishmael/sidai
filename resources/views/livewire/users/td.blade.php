@@ -63,7 +63,7 @@
                             {!! $user->email !!}
                          </td>
                          <td>{!! $user->phone_number !!}</td>
-                         <td style="color: {!! $user->status == 'Active' ? 'green' : 'orangered' !!}">{!! $user->status !!}</td>
+                         <td style="color: {{ $user->status == 'Active' ? 'green' : 'orange' }};">{{ $user->status }}</td>
                          <td>
                             <div class="dropdown" >
                                <button style="background-color: #B6121B;color:white" class="btn btn-md dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" data-bs-auto-close="outside">

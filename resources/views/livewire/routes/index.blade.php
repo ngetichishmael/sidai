@@ -35,8 +35,8 @@
                             <td>{!! $route->user->name ?? "" !!}</td>
                             <td>{!! $route->name !!}</td>
                             <td>{!! $route->status !!}</td>
-                            <td>{!! $route->start_date !!}</td>
-                            <td>{!! $route->end_date !!}</td>
+                           <td>{!! date('Y-m-d', strtotime($route->start_date)) !!}</td>
+                           <td>{!! date('Y-m-d', strtotime($route->end_date)) !!}</td>
                             <td><a href="{{ route('route.edit',['id' => $route->id]) }}" class="btn btn-sm" style="background-color: brown;color:white">Edit</a></td>
                         </tr>
                     @endforeach

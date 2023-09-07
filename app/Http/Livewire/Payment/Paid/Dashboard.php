@@ -43,6 +43,7 @@ class Dashboard extends Component
                 ->orderBy('order_payments.updated_at', 'desc')
                 ->groupBy('amount')
                 ->get();
+        dd($payments);
       return view('livewire.payment.paid.dashboard', [
          'payments' => $payments
       ]);

@@ -138,9 +138,9 @@ class CheckingSaleOrderController extends Controller
                'updated_at' => now(),
             ]);
 
-            DB::table('orders_targets')
+            DB::table('sales_targets')
                ->where('user_code', $user_code)
-               ->increment('AchievedOrdersTarget', $value["qty"]);
+               ->increment('AchievedSalesTarget', $value["qty"]);
          }
       } else {
          return response()->json([

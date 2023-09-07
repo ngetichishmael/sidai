@@ -16,11 +16,11 @@ class deliveryController extends Controller
    {
       $total = 0;
       $subtotal = 0;
-      $deliveries = Delivery::with('User', 'OrderItems')
+      $deliveries = Delivery::with('User', 'OrderItems','Customer')
          ->where('order_code', $code)
-         ->select('*')
+         ->select('*')->first();
          // ->limit(1)
-         ->get();
+//         ->get();
       return view('app.delivery.invoice', compact('deliveries', 'code', 'total', 'subtotal'));
    }
 }

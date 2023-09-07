@@ -56,6 +56,9 @@ class inventoryController extends Controller
    public function approve($id){
       return view('app.inventory.approve_items', compact('id'));
    }
+   public function approvedItems($id){
+      return view('app.inventory.approved_items', compact('id'));
+   }
 
    public function handleApproval(Request $request)
    {
