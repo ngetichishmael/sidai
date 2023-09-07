@@ -60,10 +60,12 @@
        <div class="col-md-4 mt-5">
           <div class="card">
           @if ($item->productInformation->image)
-                                                      <img src="{{ '/storage/image/'.$item->productInformation->image ?? $item->productInformation->image}}"
-                                                          alt="{{ $item->productInformation->image}}"
-                                                          style="max-width: 100px; max-height: 100px;">
-                                                  @else
+{{--                                                      <img src="{{ '/storage/'.$item->productInformation->image ?? $item->productInformation->image}}"--}}
+{{--                                                          alt="{{ $item->productInformation->image}}"--}}
+{{--                                                          style="max-width: 100px; max-height: 100px;">--}}
+                <img src="{{ asset('storage/' . $item->productInformation->image) }}" alt="{{ $item->productInformation->image }}" style="max-width: 100px; max-height: 100px;">
+
+             @else
                                                       No Image Available
                                                   @endif
        </div>
