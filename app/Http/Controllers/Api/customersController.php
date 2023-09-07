@@ -12,12 +12,12 @@ use App\Models\customer\customers;
 use App\Models\customer_groups;
 use App\Models\Delivery;
 use App\Models\Delivery_items;
+use App\Models\Orders;
 use App\Models\Order_items;
 use App\Models\order_payments;
-use App\Models\Orders;
 use App\Models\Region;
-use App\Models\Route_customer;
 use App\Models\Routes;
+use App\Models\Route_customer;
 use App\Models\Subregion;
 use App\Models\User;
 use Carbon\Carbon;
@@ -274,17 +274,6 @@ class customersController extends Controller
             ], 403);
         }
 
-        // if($request->hasFile('image')){
-        //    $destination_path = 'public/image';
-        //    $image = $request->file('image');
-        //    $image_name = $image->getClientOriginalName();
-        //    $path = $image->storeAs($destination_path,$image_name);
-        //    if($path){
-        //       $image_path= $destination_path.'/'.$image_name;
-        //    }
-
-        // }
-
         $image_path = $request->file('image')->store('app-assets/images', 'public');
         $emailData = $request->email ?? $request->customer_name . Str::random(3) . '@gmail.com';
         $route = Area::with('subregion.region')->find($request->route_code);
@@ -315,7 +304,7 @@ class customersController extends Controller
             'route_code' => $request->route_code,
             'route' => $request->route_code,
             'customer_group' => $request->outlet,
-            'customer_type' =>'normal',
+            'customer_type' => 'normal',
             'approval' => "waiting_approval",
             'price_group' => $request->outlet,
             'region_id' => optional($route->subregion->region)->id,
@@ -326,6 +315,17 @@ class customersController extends Controller
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
             ->increment('AchievedLeadsTarget');
+        DB::table('customers as c')
+            ->join('areas as a', 'c.route_code', '=', 'a.id')
+            ->join('subregions as s', 'a.subregion_id', '=', 's.id')
+            ->join('regions as r', 's.region_id', '=', 'r.id')
+            ->update([
+                'c.region_id' => DB::raw('r.id'),
+                'c.zone_id' => DB::raw('a.id'),
+                'c.unit_id' => DB::raw('a.id'),
+                'c.route' => DB::raw('a.id'),
+                'c.subregion_id' => DB::raw('s.id'),
+            ]);
 
         $random = Str::random(20);
         $activityLog = new activity_log();
@@ -550,19 +550,19 @@ class customersController extends Controller
      * @param string $business_code this is the Business code
      **/
     public function deliveries($customerID)
-{
-    $deliveries = Delivery::with('DeliveryItems')
-        ->where('customer', $customerID)
-        ->orderby('id', 'desc')
-        ->get();
+    {
+        $deliveries = Delivery::with('DeliveryItems')
+            ->where('customer', $customerID)
+            ->orderby('id', 'desc')
+            ->get();
 
-    return response()->json([
-        "success" => true,
-        "status" => 200,
-        "message" => "Customer Deliveries",
-        "data" => $deliveries,
-    ]);
-}
+        return response()->json([
+            "success" => true,
+            "status" => 200,
+            "message" => "Customer Deliveries",
+            "data" => $deliveries,
+        ]);
+    }
 
     /**
      * Customer deliveries
@@ -596,19 +596,19 @@ class customersController extends Controller
      * @param string $customerID this is the customer ID
      **/
     public function orders($customerID)
-{
-    $orders = Orders::with('OrderItems')
-        ->where('customerID', $customerID)
-        ->orderby('orders.id', 'desc')
-        ->get();
+    {
+        $orders = Orders::with('OrderItems')
+            ->where('customerID', $customerID)
+            ->orderby('orders.id', 'desc')
+            ->get();
 
-    return response()->json([
-        "success" => true,
-        "status" => 200,
-        "message" => "Customer orders",
-        "orders" => $orders,
-    ]);
-}
+        return response()->json([
+            "success" => true,
+            "status" => 200,
+            "message" => "Customer orders",
+            "orders" => $orders,
+        ]);
+    }
 
     /**
      * Order details
