@@ -21,6 +21,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -355,9 +356,20 @@ class OrdersController extends Controller
         }
         $productID = $request->productID;
         $allocation_code = $request->allocation_code;
+
         if (items::where('allocation_code', $allocation_code)
             ->where('product_code', $productID)
             ->exists()) {
+           $q=items::where('allocation_code', $allocation_code)
+              ->where('product_code', $productID)->first();
+           $check=product_inventory::where('productID', $productID)->first();
+           if ($check->current_stock < $q ){
+              return response()->json([
+                 'status' => 404,
+                 'success' => false,
+                 'message' => 'Item quantities is not enough for allocations',
+              ], 404);
+           }
             items::where('allocation_code', $allocation_code)
                 ->where('product_code', $productID)
                 ->update([
