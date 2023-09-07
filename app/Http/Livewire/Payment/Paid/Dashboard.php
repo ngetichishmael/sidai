@@ -26,7 +26,7 @@ class Dashboard extends Component
         $payments = order_payments::join('orders', 'orders.order_code', '=', 'order_payments.order_id')
             ->join('customers', 'customers.id', '=', 'orders.customerID')
             ->join('users', 'customers.created_by', '=', 'users.id')
-            ->where('payment_method', $this->paymentMethod)
+//            ->where('payment_method', $this->paymentMethod)
             ->when($this->search, function ($query, $search) {
         return $query->where(function ($subquery) use ($search) {
             $subquery->where('order_payments.reference_number', 'LIKE', '%' . $search . '%')
@@ -43,7 +43,6 @@ class Dashboard extends Component
                 ->orderBy('order_payments.updated_at', 'desc')
                 ->groupBy('amount')
                 ->get();
-        dd($payments);
       return view('livewire.payment.paid.dashboard', [
          'payments' => $payments
       ]);
