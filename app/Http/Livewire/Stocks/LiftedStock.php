@@ -48,6 +48,11 @@ class LiftedStock extends Component
              'warehouse.name as warehouse',
              'users.name as user_name', 'regions.name as user_region')
           ->with('distributors')
+          ->selectSub(function ($query) {
+             $query->from('inventory_allocated_items')
+                ->selectRaw('SUM(current_qty)')
+                ->whereColumn('inventory_allocated_items.allocation_code', 'inventory_allocations.allocation_code');
+          }, 'total_qty')
           ->when($this->source === 'Sidai', function ($query) {
              // If source is 'Sidai', filter records where distributor is 1 or null
              return $query->where('inventory_allocations.distributor', 1)->orWhereNull('inventory_allocations.distributor');
@@ -57,10 +62,10 @@ class LiftedStock extends Component
              return $query->where('inventory_allocations.distributor', '!=', 1)->whereNotNull('inventory_allocations.distributor');
           })
           ->when($this->fromDate, function ($query) {
-             $query->whereDate('inventory_allocations.updated_at', '>=', $this->fromDate);
+             $query->whereDate('inventory_allocations.created_at', '>=', $this->fromDate);
           })
           ->when($this->toDate, function ($query) {
-             $query->whereDate('inventory_allocations.updated_at', '<=', $this->toDate);
+             $query->whereDate('inventory_allocations.created_at', '<=', $this->toDate);
           })
           ->when($this->search, function ($query) {
              $query->where(function ($query) {
