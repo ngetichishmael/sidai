@@ -6,6 +6,7 @@ use App\Models\customers;
 use App\Models\Delivery;
 use App\Models\Region;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\order_payments;
 use Livewire\WithPagination;
@@ -25,8 +26,8 @@ class Dashboard extends Component
     {
         $payments = order_payments::join('orders', 'orders.order_code', '=', 'order_payments.order_id')
             ->join('customers', 'customers.id', '=', 'orders.customerID')
-            ->join('users', 'customers.created_by', '=', 'users.id')
-//            ->where('payment_method', $this->paymentMethod)
+            ->join('users', 'customers.created_by', '=', 'users.user_code')
+            ->where('payment_method', $this->paymentMethod)
             ->when($this->search, function ($query, $search) {
         return $query->where(function ($subquery) use ($search) {
             $subquery->where('order_payments.reference_number', 'LIKE', '%' . $search . '%')
@@ -42,8 +43,11 @@ class Dashboard extends Component
                 })
                 ->orderBy('order_payments.updated_at', 'desc')
                 ->groupBy('amount')
+//                  ->groupBy('order_payments.id')
                 ->get();
-      return view('livewire.payment.paid.dashboard', [
+
+info($payments);
+       return view('livewire.payment.paid.dashboard', [
          'payments' => $payments
       ]);
    }
