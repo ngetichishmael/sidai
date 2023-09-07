@@ -50,7 +50,7 @@ class LiftedStock extends Component
           ->with('distributors')
           ->selectSub(function ($query) {
              $query->from('inventory_allocated_items')
-                ->selectRaw('SUM(current_qty)')
+                ->selectRaw('SUM(allocated_qty)')
                 ->whereColumn('inventory_allocated_items.allocation_code', 'inventory_allocations.allocation_code');
           }, 'total_qty')
           ->when($this->source === 'Sidai', function ($query) {
