@@ -47,8 +47,19 @@ $invoice-card-body-padding: 2.5rem;
     .invoice-number {
       font-weight: 600;
     }
+     .invoice-names {
+        font-weight: 600;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+     }
+
   }
-  .invoice-date-wrapper {
+   .dotted-underline {
+      border-bottom: 1px dotted #232323;
+      display: inline-block;
+   }
+
+   .invoice-date-wrapper {
     display: flex;
     align-items: center;
 

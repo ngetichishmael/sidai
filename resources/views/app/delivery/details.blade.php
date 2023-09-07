@@ -130,7 +130,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('app.dashboard') }}">Home</a></li>
                             <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Delivery</a></li>
-                            <li class="breadcrumb-item active">{!! $code !!}</li>
+                            <li class="breadcrumb-item active">{!! $code ?? '' !!}</li>
                             <li class="breadcrumb-item active">Details</li>
                         </ol>
                     </div>
@@ -159,7 +159,7 @@
                         @foreach ($deliveries as $count => $deliver)
                             <h4 class="invoice-title">
                                 <strong>Delivery Code: </strong>
-                                <span class="invoice-number">{{ $deliver->delivery_code }}</span>
+                                <span class="invoice-number">{{ $deliver->delivery_code ?? '' }}</span>
                             </h4>
                             <div class="invoice-date-wrapper">
                                 <strong>Delivery Date:</strong>
@@ -213,22 +213,16 @@
             <hr class="invoice-spacing" />
             <div class="pb-0 card-body invoice-padding">
                 <div class="row invoice-sales-total-wrapper">
-                    <div class="order-2 mt-3 col-md-6 order-md-1 mt-md-0">
-                        <p class="mb-0 card-text">
-                            <span class="font-weight-bold"><strong>Salesperson:</strong></span> <span class="ml-75">
-                                {{ $deliver->User->name }}</span>
-                        </p>
-                    </div>
                     <div class="order-2 col-md-6 d-flex justify-content-end col-md-2">
                         <div class="col-6">
                             <div class="invoice-total-item">
                                 <p class="invoice-total-title"><strong>Subtotal:</strong></p>
-                                <p class="invoice-total-amount">KSH {{ number_format($subtotal) }}</p>
+                                <p class="invoice-total-amount">KSH {{ number_format($subtotal) ?? 0 }}</p>
                             </div>
                             <hr class="my-50" />
                             <div class="invoice-total-item">
                                 <p class="invoice-total-title"><strong>Total:</strong></p>
-                                <p class="invoice-total-amount">KSH: {{ number_format($total) }}</p>
+                                <p class="invoice-total-amount">KSH: {{ number_format($total) ?? 0}}</p>
                             </div>
                         </div>
                     </div>

@@ -54,8 +54,8 @@
                         <th width="1%">#</th>
                         <th>Customer</th>
                         <th>Sales Person</th>
-                        <th>Amount (Ksh.)</th>
-                        <th>Balance (Ksh.)</th>
+                        <th>Amount</th>
+                        <th>Balance</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </thead>
@@ -71,8 +71,9 @@
                                <td title="{{ $order->User->name ?? null }}">
                                   {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
-                                <td>{{ number_format($order->price_total) }}</td>
-{{--                                <td>{{ number_format($order->balance) }}</td>--}}
+                               <td class="{{ $order->balance > 0 ? 'redorange-text' : '' }}">
+                               {{ number_format($order->balance) }}
+                               </td>
                                <td>{{$order->created_at}}</td>
 
                                <td>

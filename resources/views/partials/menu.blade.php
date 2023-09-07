@@ -140,11 +140,13 @@
                 </li>
            @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+           @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
                 <li class="nav-item {!! Nav::isResource('users') !!}">
                     <a class="d-flex align-items-center" href="{{route('users.list')}}">
                         <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
                             Users</span>
                     </a>
+                   @endif
 {{--                    <ul class="menu-content">--}}
 {{--                        @if (Auth::check() && Auth::user()->account_type == 'Admin')--}}
 {{--                            <li style="padding-left: 50px"><a class="d-flex align-items-center"--}}
@@ -199,11 +201,13 @@
                             class="menu-title text-truncate" data-i18n="Invoice">Regions</span></a>
                     <ul class="menu-content">
                        @hasdataaccessto(['all','regional'])
+                       @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
                         <li style="padding-left: 50px">
                             <a class="d-flex align-items-center nav-item {!! Nav::isResource('regions') !!}"
                                 href="{{ route('regions') }}"><span
                                     class="menu-item text-truncate">Regions</span></a>
                         </li>
+                       @endif
                        @endhasdataaccessto
                        @hasdataaccessto(['all','subregional'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
@@ -277,6 +281,7 @@
 {{--              </li>--}}
            @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+              @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
 <li class="nav-item {!! Nav::isResource('survey') !!}">
 <a class="d-flex align-items-center" href="#">
 <i data-feather="clipboard"></i><span class="menu-title text-truncate">Survey</span>
@@ -296,13 +301,16 @@
 </li>
 </ul>
 </li>
+              @endif
            @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
+              @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
     <li class="nav-item {!! Nav::isResource('reports') !!}">
         <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
                 data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                 All Reports</span></a>
     </li>
+              @endif
               @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
            <li class="nav-item {!! Nav::isResource('activity')!!}">

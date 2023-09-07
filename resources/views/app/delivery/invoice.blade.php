@@ -129,7 +129,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/sokoflowadmin">Home</a></li>
-                            <li class="breadcrumb-item"><a href="{!! route('orders.index') !!}">Delivery</a></li>
+                            <li class="breadcrumb-item"><a href="/delivery">Delivery</a></li>
                             <li class="breadcrumb-item active">{!! $code !!}</li>
                             <li class="breadcrumb-item active">Details</li>
                         </ol>
@@ -141,8 +141,7 @@
     @include('partials._messages')
     <!-- Invoice -->
     <div class="row">
-       <div class="col-md-8">
-{{--    <div class="col-xl-9 col-md-8 col-12">--}}
+    <div class="col-xl-9 col-l-10 col-md-8 col-sm-12">
         <div class="card invoice-preview-card">
             <div class="pb-0 card-body invoice-padding">
                 <!-- Header starts -->
@@ -151,23 +150,35 @@
                         <div class="logo-wrapper">
                             <img style="height:50px;" src={{ asset('app-assets/images/sidaiweblogo.png') }} alt="sidai" />
                         </div>
-                        <p class="card-text mb-25">Baobab House, Ground Floor, Wing A</p>
-                       <p> Westlands Office Park, Waiyaki </p>
-                        <p class="card-text mb-25">P.O. Box 15478-00100 City Square, Nairobi</p>
-                        <p class="mb-0 card-text">+254 748 424 757, +254 724 032 354</p>
-                        <p class="mb-0 card-text">info@deveint.com</p>
-                    </div>
+
+                          <div class="invoice-title mt-1 mb-1">
+                             <strong>Customer Name : </strong>
+                             <span class="invoice-name">&nbsp;{{ $deliveries->Customer->customer_name ?? '' }}</span><br/>
+                             <strong>Order Code : </strong>
+                             <span class="invoice-name mt-1">&nbsp;{{ $deliveries->order_code ?? '' }}</span><br/>
+                             <strong>Date Processed :</strong>
+                             <span class="invoice-name mt-1">&nbsp;{{ $deliveries->created_at ?? '' }}</span><br/>
+                             <strong>Status :</strong>
+                             <span class="invoice-name">&nbsp;{{ $deliveries->delivery_status ?? '' }}</span><br/>
+                             <div class="order-2 mt-3 col-md-6 order-md-1 mt-md-0">
+                                <p class="mb-0 card-text">
+                                   <span class="font-weight-bold"><strong>Salesperson:</strong></span> <span class="ml-75"> {{ $deliver->User->name ?? '' }}</span>
+                                </p>
+                             </div>
+                          </div>
+
+                       </div>
 
                     <div class="mt-2 mt-md-0">
 
-                       @foreach ($deliveries as $count => $deliver)
+{{--                       @foreach ($deliveries as $count => $deliver)--}}
                         <h4 class="invoice-title">
                             <strong>Delivery Code: </strong>
-                            <span class="invoice-number">{{ $deliver->delivery_code }}</span>
+                            <span class="invoice-number">{{ $deliveries->delivery_code }}</span>
                         </h4>
                         <div class="invoice-date-wrapper">
                             <strong>Delivery Date:</strong>
-                            <span class="invoice-date">{{ $deliver->delivered_time ?? 'Not Set' }}</span>
+                            <span class="invoice-date">{{ $deliveries->delivered_time ?? 'Not Set' }}</span>
                         </div>
                     </div>
 
@@ -191,7 +202,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($deliver->OrderItems as $key => $value)
+                            @foreach ($deliveries->OrderItems as $key => $value)
                                 <tr>
                                     <td class="py-1">
                                         <p class="card-text font-weight-bold mb-25">{{ $value->product_name }}</p>
@@ -222,7 +233,7 @@
                     <div class="row invoice-sales-total-wrapper">
                         <div class="order-2 mt-3 col-md-6 order-md-1 mt-md-0">
                             <p class="mb-0 card-text">
-                                <span class="font-weight-bold"><strong>Salesperson:</strong></span> <span class="ml-75"> {{ $deliver->User->name }}</span>
+{{--                                <span class="font-weight-bold"><strong>Salesperson:</strong></span> <span class="ml-75"> {{ $deliver->User->name ?? '' }}</span>--}}
                             </p>
                         </div>
                         <div class="order-2 col-md-6 d-flex justify-content-end col-md-2">
@@ -240,7 +251,7 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+{{--            @endforeach--}}
             <!-- Invoice Description ends -->
 
             <hr class="invoice-spacing" />
@@ -250,16 +261,15 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-xl-3 col-l-2 col-md-4 col-sm-12">
     <div class="card">
-       <div class="card-header font-bolder font-medium"><h4><b>Delivery Note</b></h4></div>
+       <div class="card-header font-bolder font-medium"><h4><b class="dotted-underline">Delivery Note </b></h4></div>
        <div class="card-body">
           <h5>
-             <br>
-             <b>{{$deliver->delivery_note ?? ''}}</b><br>
+             {{$deliveries->delivery_note ?? ''}}<br/>
           </h5>
           <h6>
-             <b>{{$deliver->note ?? ''}}</b><br>
+             {{$deliveries->Note ?? ''}}<br>
           </h6>
           <hr>
        </div>
