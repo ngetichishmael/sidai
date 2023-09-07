@@ -129,7 +129,7 @@ class StockRequisitionController extends Controller
             ]);
         }
         foreach ($selectedProducts as $productId) {
-            $product = RequisitionProduct::where('requisition_id', $request->requisition_id)->where('product_id', $productId)->first();
+            $product = RequisitionProduct::where('requisition_id', $request->requistion_id)->where('product_id', $productId)->first();
 
             info($product);
             if ($product) {
