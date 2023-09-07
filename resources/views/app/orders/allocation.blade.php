@@ -33,7 +33,7 @@
         <div class="col-md-10">
             <div class="card">
                 <div class="card-body">
-                   <h4>Assign Order To User of customer <u>{{$order->customer->customer_name}}</u>, Order Code <u>{!! $order->order_code !!}</u></h4>
+                   <h4>Assign Order To User of customer <u>{{$order->customer->customer_name ?? ''}}</u>, Order Code <u>{!! $order->order_code ??'' !!}</u></h4>
                     <hr>
                    <div class="row">
                       <div class="form-group col-md-4">
