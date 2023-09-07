@@ -21,7 +21,9 @@
                     <tr>
                         <th width="1%">#</th>
                         <th>Sales Person</th>
-                        <th>Route Name</th>
+                        <th>Description</th>
+                        <th>Customer</th>
+                        {{-- <th>Route Name</th> --}}
                         <th>Status</th>
                         <th>End Date</th>
                     </tr>
@@ -31,9 +33,9 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->user->name ?? "" !!}</td>
-                            <td>{!! $route->name !!}</td>
+                            {{-- <td>{!! $route->name !!}</td> --}}
                             <td>{!! $route->status !!}</td>
-                            <td>{!! $route->end_date !!}</td>
+                            <td>{!! date('Y-m-d', strtotime($route->end_date)) !!}</td>
                         </tr>
                     @endforeach
                 </tbody>
