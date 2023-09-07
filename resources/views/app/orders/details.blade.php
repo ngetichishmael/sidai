@@ -150,7 +150,7 @@
                         <div class="col-sm-6 mt-1"> <span class="text-700"><b>Customer Details</b></span>
                             <div class="mt-1">
                                 <span class="text-600 text-grey-m2 align-middle"> Name:</span>
-                                <span class="text-500 text-110 text-blue align-middle">{{ $test->customer_name }}</span>
+                                <span class="text-500 text-110 text-blue align-middle">{{ $test->customer_name??'' }}</span>
                             </div>
                             <div class="text-grey-m2">
                                 <div class="my-1 text-600">

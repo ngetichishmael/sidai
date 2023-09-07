@@ -18,6 +18,7 @@ class Index extends Component
 
         $routes = Routes::with("user")->whereHas('user')->where('Type', 'Assigned')
             ->orderBy('created_at', 'desc')->paginate($this->perPage);
+          
         return view('livewire.routes.index', compact('routes'));
     }
 }
