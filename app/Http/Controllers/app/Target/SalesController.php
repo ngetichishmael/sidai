@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\app\Target;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\SalesTarget;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class SalesController extends Controller
@@ -46,10 +47,14 @@ class SalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show(Request $request, $user_code)
+   {
+      $name = User::where('user_code', $user_code)->pluck('name')->implode('');
+      return view('livewire.sales.layout-view', [
+         'user_code' => $user_code,
+         'name' => $name
+      ]);
+   }
 
     /**
      * Show the form for editing the specified resource.

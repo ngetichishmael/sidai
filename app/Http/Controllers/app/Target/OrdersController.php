@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\app\Target;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\OrdersTarget;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 
 class OrdersController extends Controller
@@ -46,10 +47,14 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
+    public function show($user_code)
+   {
+      $name = User::where('user_code', $user_code)->pluck('name')->implode('');
+      return view('livewire.orders.layout-view', [
+         'user_code' => $user_code,
+         'name' => $name
+      ]);
+   }
 
     /**
      * Show the form for editing the specified resource.

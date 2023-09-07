@@ -1,84 +1,82 @@
 <div>
-   <div class="row mb-2">
 
-       <div class="col-md-9">
-           <label for="">Search</label>
-           <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search ...">
-           <!-- Button trigger modal -->
-           <div class="mt-1">
-            <a href="{{ route('order.target.create') }}" type="button" class="btn" style="background-color: #B6121B;color:white">
-                New Target
-            </a>
+            
+    <div class="card">
+                <h5 class="card-header"></h5>
+                <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
+                    <div class="col-md-3 user_role">
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i data-feather="search"></i></span>
+                            </div>
+                            <input  wire:model.debounce.300ms="search" type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 user_role">
+                        <div class="form-group">
+                            <label for="selectSmall">Per Page</label>
+                            <select wire:model="perPage" class="form-control form-control-sm" id="selectSmall">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+           
+    
+            
+                 <div class="col-md-6 d-flex justify-content-end">
+                        <div class="demo-inline-spacing">
+                            <a href="{{ route('order.target.create') }}" class="btn btn-outline-secondary" style="background-color: brown;color:white">New Target</a>
+                 
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+    
+    
+        <div class="card card-default">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="1%">#</th>
+                            <th>Sales Person</th>
+                            <th>Target</th>
+                            <th>Achieved</th>
+                            <th>Deadline</th>
+                            <th>Success Ratio</th>
+                            <th>Action</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($targets as $key=>$target)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $target->name }}</td>
+                                <td>{{ $target->TargetsOrder->OrdersTarget ?? 0 }}</td>
+                                <td>{{ $target->TargetsOrder->AchievedOrdersTarget ?? 0 }}</td>
+                                <td>{{ $target->TargetsOrder->Deadline ?? '' }}</td>
+                                <td>
+                                    {{ $this->getSuccessRatio($target->TargetsOrder->AchievedOrdersTarget ?? 0, $target->TargetsOrder->OrdersTarget ?? 0) }}%
+                                </td>
+                                <td><a href="{{ route('orderstarget.edit', $target->user_code) }}" class="btn btn-outline-info btn-sm">Edit</a>
+                                <a href="{{ route('order.target.show', [
+                                    'order' => $target->user_code,
+                                ]) }}" class="btn btn-outline-info btn-sm">View</a></td>
+                               
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" align="center">No Targets Available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
-       </div>
-       <div class="col-md-3">
-           <label for="">Items Per</label>
-           <select wire:model="perPage" class="form-control">`
-               <option value="10" selected>10</option>
-               <option value="25">25</option>
-               <option value="50">50</option>
-               <option value="100">100</option>
-           </select>
-       </div>
-   </div>
-   <div class="card card-default">
-       <div class="card-body">
-           <table class="table table-striped table-bordered">
-               <thead>
-                   <tr>
-                       <th width="1%">#</th>
-                       <th>Sales Person</th>
-                       <th>Target</th>
-                       <th>Achieved</th>
-                       <th>Dead Line</th>
-                       <th>Count Down</th>
-                       <th>Action</th>
-                   </tr>
-               </thead>
-               <tbody>
-                  @forelse ($orders as $order)
-                      <tr>
-                          <td>{{ $order->id }}</td>
-                          <td>{{ $order->User()->pluck('name')->implode('') }}</td>
-                          <td>{{ number_format($order->OrdersTarget) }}</td>
-                          <td>{{ number_format($order->AchievedOrdersTarget) }}</td>
-                          <td>{{ $order->Deadline }}</td>
-                          <td>
-                              @if ($today < $order->Deadline)
-                                  <button type="button" class="btn btn-outline-success">
-                                      <i data-feather="star" class="mr-25"></i>
-                                      <span>
-                                          @php
-                                              $now = time();
-                                              $deadline = strtotime($order->Deadline);
-                                              $datediff = $deadline-$now;
-                                              echo round($datediff / (60 * 60 * 24));
-                                          @endphp
-                                      </span>
-                                  </button>
-                              @else
-                                  <button type="button" class="btn btn-outline-danger">
-                                     <i data-feather="alert-triangle" class="mr-25"></i>
-                                     <span>
-                                         @php
-                                             $now = time();
-                                             $deadline = strtotime($order->Deadline);
-                                             $datediff = $deadline-$now;
-                                             echo round($datediff / (60 * 60 * 24));
-                                         @endphp
-                                     </span>
-                                 </button>
-                              @endif
-                          </td>
-                          <td><a href="{{ route('orderstarget.edit',$order->user_code) }}" class="btn btn-outline-info btn-sm">Edit</a></td>
-                      </tr>
-                  @empty
-                      <tr>
-                          <td colspan="4"> No orders Available</td>
-                      </tr>
-                  @endforelse
-              </tbody>
-           </table>
-       </div>
-   </div>
-</div>
+    </div>
+    

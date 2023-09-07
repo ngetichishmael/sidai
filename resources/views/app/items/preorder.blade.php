@@ -37,7 +37,6 @@
                      <td>{{ $key+1 }}</td>
                      <td>{{ $item->name }}</td>
                      <td>{{ $item->code }}</td>
-                     
                  </tr>
                   @endforeach
                    
