@@ -245,7 +245,6 @@ class usersController extends Controller
          'phone_number' => 'required',
          'account_type' => 'required',
       ]);
-
       $user=User::updateOrCreate(
          [
             "user_code" => $user_code,
@@ -258,6 +257,7 @@ class usersController extends Controller
             "account_type" => $request->account_type,
             "status" => 'Active',
             "region_id" => $request->region,
+            "route_code" => $request->region,
 
          ]
       );
