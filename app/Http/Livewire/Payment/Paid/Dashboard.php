@@ -41,7 +41,7 @@ class Dashboard extends Component
                 ->when($this->toDate, function ($query) {
                     return $query->whereDate('order_payments.created_at', '<=', $this->toDate);
                 })
-                ->orderBy('order_payments.updated_at', 'desc')
+                ->orderBy('order_payments.id', 'desc')
                 ->groupBy('amount')
 //                  ->groupBy('order_payments.id')
                 ->get();
