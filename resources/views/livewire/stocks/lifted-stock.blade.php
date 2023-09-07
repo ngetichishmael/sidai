@@ -70,7 +70,7 @@
                   {{-- <td>{{ $lifted->code }}</td> --}}
                   {{-- <td>{{ $lifted->name }}</td> --}}
                   <td>{{ $lift->user_name }}</td>
-                  <td>{{ $lift->qty??'' }}</td>
+                  <td>{{ $lift->total_qty ??'' }}</td>
                   <td>{{ $lift->user_region??'' }}</td>
                   <td>@if($lift->distributor==null || $lift->distributor==1)
                         {{"Warehouse ".$lift->warehouse}}
