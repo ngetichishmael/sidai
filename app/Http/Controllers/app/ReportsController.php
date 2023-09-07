@@ -74,10 +74,6 @@ class ReportsController extends Controller
 
    public function preorderitems($order_code)
    {
-      // $items = Order_items::join('product_information', 'on','product_information.id','=','order_items.productID')
-      // ->where('order_items.order_code', $order_code)
-      // ->select('order_items.product_name as name','product_information.sku_code as code')
-      // ->get();
       $items = Order_items::join('product_information', 'product_information.id', '=', 'order_items.productID')
             ->select(
                 'order_items.id',

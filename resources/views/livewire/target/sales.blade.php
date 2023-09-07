@@ -1,84 +1,82 @@
 <div>
-   <div class="row mb-2">
-
-       <div class="col-md-9">
-           <label for="">Search</label>
-           <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search ...">
-           <!-- Button trigger modal -->
-           <div class="mt-1">
-            <a href="{{ route('sales.target.create') }}" type="button" class="btn" style="background-color: #B6121B;color:white">
-                New Target
-            </a>
+       
+    <div class="card">
+                <h5 class="card-header"></h5>
+                <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
+                    <div class="col-md-3 user_role">
+                        <div class="input-group input-group-merge">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i data-feather="search"></i></span>
+                            </div>
+                            <input  wire:model.debounce.300ms="search" type="text" id="fname-icon" class="form-control" name="fname-icon" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div class="col-md-2 user_role">
+                        <div class="form-group">
+                            <label for="selectSmall">Per Page</label>
+                            <select wire:model="perPage" class="form-control form-control-sm" id="selectSmall">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+           
+    
+            
+                 <div class="col-md-6 d-flex justify-content-end">
+                        <div class="demo-inline-spacing">
+                            <a href="{{ route('sales.target.create') }}" class="btn btn-outline-secondary" style="background-color: brown;color:white">Add Target</a>
+                 
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+    
+    
+        <div class="card card-default">
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th width="1%">#</th>
+                            <th>Sales Person</th>
+                            <th>Target</th>
+                            <th>Achieved</th>
+                            <th>Deadline</th>
+                            <th>Success Ratio</th>
+                            <th>Action</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($targets as $key=>$target)
+                            <tr>
+                                <td>{{ $key + 1 }}</td>
+                                <td>{{ $target->name }}</td>
+                                <td>{{ $target->TargetSale->SalesTarget }}</td>
+                                <td>{{ $target->TargetSale->AchievedSalesTarget }}</td>
+                                <td>{{ $target->TargetSale->Deadline }}</td>
+                                <td>
+                                    {{ $this->getSuccessRatio($target->TargetSale->AchievedSalesTarget, $target->TargetSale->SalesTarget) }}%
+                                </td>
+                                    <td><a href="{{ route('salestarget.edit', $target->user_code) }}" class="btn btn-outline-info btn-sm">Edit</a>
+                                    <a href="{{ route('sales.target.show', [
+                                        'sale' => $target->user_code,
+                                    ]) }}" class="btn btn-outline-info btn-sm">View</a></td>
+                                
+    
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7">No Targets Available</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
-       </div>
-       <div class="col-md-3">
-           <label for="">Items Per</label>
-           <select wire:model="perPage" class="form-control">`
-               <option value="10" selected>10</option>
-               <option value="25">25</option>
-               <option value="50">50</option>
-               <option value="100">100</option>
-           </select>
-       </div>
-   </div>
-   <div class="card card-default">
-       <div class="card-body">
-           <table class="table table-striped table-bordered">
-               <thead>
-                   <tr>
-                       <th width="1%">#</th>
-                       <th>Sales Person</th>
-                       <th>Target</th>
-                       <th>Achieved</th>
-                       <th>Dead Line</th>
-                       <th>Count Down</th>
-                       <th>Action</th>
-                   </tr>
-               </thead>
-               <tbody>
-                  @forelse ($sales as $sale)
-                      <tr>
-                          <td>{{ $sale->id }}</td>
-                          <td>{{ $sale->User()->pluck('name')->implode('') }}</td>
-                          <td>{{ number_format($sale->SalesTarget) }}</td>
-                          <td>{{ number_format($sale->AchievedSalesTarget) }}</td>
-                          <td>{{ $sale->Deadline }}</td>
-                          <td>
-                           @if ($today < $sale->Deadline)
-                           <button type="button" class="btn btn-outline-success">
-                               <i data-feather="star" class="mr-25"></i>
-                               <span>
-                                   @php
-                                       $now = time();
-                                       $deadline = strtotime($sale->Deadline);
-                                       $datediff = $deadline-$now;
-                                       echo round($datediff / (60 * 60 * 24));
-                                   @endphp
-                               </span>
-                           </button>
-                       @else
-                           <button type="button" class="btn btn-outline-danger">
-                              <i data-feather="alert-triangle" class="mr-25"></i>
-                              <span>
-                                  @php
-                                      $now = time();
-                                      $deadline = strtotime($sale->Deadline);
-                                      $datediff = $deadline-$now;
-                                      echo round($datediff / (60 * 60 * 24));
-                                  @endphp
-                              </span>
-                          </button>
-                       @endif
-                          </td>
-                          <td><a href="{{ route('salestarget.edit',$sale->user_code) }}" class="btn btn-outline-info btn-sm">Edit</a></td>
-                      </tr>
-                  @empty
-                      <tr>
-                          <td colspan="4"> No Sales Available</td>
-                      </tr>
-                  @endforelse
-              </tbody>
-           </table>
-       </div>
-   </div>
-</div>
+    </div>
+    

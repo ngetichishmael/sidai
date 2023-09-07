@@ -127,19 +127,29 @@ class User extends Authenticatable implements MustVerifyEmail
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-   public function TargetsOrder(): HasMany
-   {
-      return $this->hasMany(OrdersTarget::class, 'user_code', 'user_code');
-   }
+   // public function TargetsOrder(): HasMany
+   // {
+   //    return $this->hasMany(OrdersTarget::class, 'user_code', 'user_code');
+   // }
+   public function TargetsOrder(): HasOne
+    {
+        return $this->hasOne(OrdersTarget::class, 'user_code', 'user_code')
+            ->latest('created_at');
+    }
    /**
     * Get all of the TargetsVisit for the User
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-   public function TargetsVisit(): HasMany
-   {
-      return $this->hasMany(VisitsTarget::class, 'user_code', 'user_code');
-   }
+   // public function TargetsVisit(): HasMany
+   // {
+   //    return $this->hasMany(VisitsTarget::class, 'user_code', 'user_code');
+   // }
+   public function TargetsVisit(): HasOne
+    {
+        return $this->hasOne(VisitsTarget::class, 'user_code', 'user_code')
+            ->latest('created_at');
+    }
    /**
     * Get the Region that owns the User
     *

@@ -53,7 +53,7 @@ class Preorder extends Component
             $query->whereBetween('created_at', [$this->start, $this->end]);
          }
       }
-
+     
       return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
          ->paginate(25);
    }

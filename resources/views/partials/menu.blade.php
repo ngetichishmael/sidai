@@ -237,14 +237,14 @@
 <i data-feather='compass'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
    Scheduling</span>
 </a>
-<ul class="menu-content">
-<li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {!! route('routes.index') !!}">
-<span class="menu-item text-truncate">Assigned</span></a>
-</li>
-<li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('routes.individual') !!}">
-<span class="menu-item text-truncate">Individual</span></a>
-</li>
-</ul>
+    <ul class="menu-content">
+    <li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {!! route('routes.index') !!}">
+    <span class="menu-item text-truncate">Assigned</span></a>
+    </li>
+    <li style="padding-left: 50px"><a class="d-flex align-items-center" href="{!! route('routes.individual') !!}">
+    <span class="menu-item text-truncate">Individual</span></a>
+    </li>
+    </ul>
 </li>
 
 <li class="nav-item {!! Nav::isResource('stocklift') !!}">
