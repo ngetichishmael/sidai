@@ -23,8 +23,8 @@
                                   <td>{!! $count + 1 !!}</td>
                                   <td>{!! $product->ProductInformation->product_name ?? '' !!}</td>
                                   <td>{!! $product->ProductInformation->sku_code ?? '' !!}</td>
-                                  <td>{!! $product->allocated_quantity ?? '' !!}</td>
                                   <td>{!! $product->quantity ?? '' !!}</td>
+                                  <td>{!! $product->allocated_quantity ?? '' !!}</td>
                                   @if ($product->approval === 1)
                                   <td style="color: green">Approved</td>
                                   @else
