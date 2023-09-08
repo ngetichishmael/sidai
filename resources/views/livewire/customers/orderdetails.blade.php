@@ -17,7 +17,9 @@
                        <tr>
                            <td>{{ $order->order_code }}</td>
                            <td>{{ $order->price_total }}</td>
-                           <td>{{ $order->payment_status }}</td>
+                           <td>@if ($order->payment_status == "pending payment")
+                            <p style="color: red">Pending Payment</p>                               
+                           @endif</td>
                            <td>{{ $order->order_status }}</td>
                            <td>{{ $order->created_at->format('Y-m-d') }}</td>
                        </tr>
