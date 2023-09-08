@@ -44,6 +44,11 @@ class UsersController extends Controller
                     ]
                 )->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->get()
             );
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $users,
+           ]);
         } else {
             $users = UserResource::collection(
                 User::withCount('Customers')->with(
@@ -52,12 +57,13 @@ class UsersController extends Controller
                     ]
                 )->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->get()
             );
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $users,
+           ]);
         }
-        return response()->json([
-            "success" => true,
-            "status" => 200,
-            "data" => $users,
-        ]);
+
     }
     public function usersList(Request $request)
     {
