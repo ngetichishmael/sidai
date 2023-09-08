@@ -78,7 +78,7 @@ class UserResource extends JsonResource
    public function order($value)
    {
       $array = array();
-      if ($value) {
+       if (is_array($value)) {
          foreach ($value as $keys) {
             $array["id"] = $keys["id"];
             $array["OrderTarget"] = $keys["OrdersTarget"];
@@ -98,7 +98,7 @@ class UserResource extends JsonResource
    public function lead($value)
    {
       $array = array();
-      if ($value) {
+       if (is_array($value)) {
          foreach ($value as $keys) {
             $array["id"] = $keys["id"];
             $array["LeadTarget"] = $keys["LeadsTarget"];
@@ -118,7 +118,7 @@ class UserResource extends JsonResource
    public function visit($value)
    {
       $array = array();
-      if ($value) {
+       if (is_array($value)) {
          foreach ($value as $keys) {
          $array["id"] = $keys["id"];
          $array["VisitTarget"] = $keys["VisitsTarget"];
