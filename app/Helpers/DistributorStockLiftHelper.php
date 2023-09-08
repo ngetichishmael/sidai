@@ -17,7 +17,8 @@ class DistributorStockLiftHelper
       $image_path,
       $random,
       $stocked,
-      $distributor
+      $distributor,
+      $status
    ) {
       $currentQty = $stocked ? $stocked['current_stock'] : 0;
       $allocatedQty = $value['qty'];
@@ -50,7 +51,7 @@ class DistributorStockLiftHelper
          ],
          [
             "business_code" => $business_code,
-            "status" => "Waiting acceptance",
+            "status" => $status,
             "distributor"=>$distributor,
             "created_by" => $user_code,
             "updated_by" => $user_code
