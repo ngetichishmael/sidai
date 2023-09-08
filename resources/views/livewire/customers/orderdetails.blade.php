@@ -18,7 +18,13 @@
                            <td>{{ $order->order_code }}</td>
                            <td>{{ $order->price_total }}</td>
                            <td>@if ($order->payment_status == "Pending Payment")
-                            <p style="color: red">Pending Payment</p>                               
+                            <p style="color: red">Pending Payment</p>
+                            @elseif ($order->payment_status == "PARTIAL PAID")
+                                <p style="color: orange">Partially Paid</p>
+                            @elseif ($order->payment_status == "PAID")
+                                <p style="color: green">Paid</p>
+                            @else 
+                            <p style="color: red">Unknown Status</p>                              
                            @endif</td>
                            <td>{{ $order->order_status }}</td>
                            <td>{{ $order->created_at->format('Y-m-d') }}</td>
