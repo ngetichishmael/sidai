@@ -130,7 +130,7 @@ class StockRequisitionController extends Controller
         }
         foreach ($selectedProducts as $productId) {
             $product = RequisitionProduct::where('requisition_id', $request->requistion_id)->where('product_id', $productId)->first();
-
+            $distributor=1;
             info($product);
             if ($product) {
                 $value = [
@@ -145,7 +145,8 @@ class StockRequisitionController extends Controller
                     $value,
                     $image_path,
                     $random,
-                    $stocked
+                    $stocked,
+                   $distributor,
                 );
             }
         }
