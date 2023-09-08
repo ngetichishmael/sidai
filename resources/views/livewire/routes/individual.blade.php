@@ -33,6 +33,8 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->user->name ?? "" !!}</td>
+                            <td></td>
+                            <td></td>
                             {{-- <td>{!! $route->name !!}</td> --}}
                             <td>{!! $route->status !!}</td>
                             <td>{!! date('Y-m-d', strtotime($route->end_date)) !!}</td>
