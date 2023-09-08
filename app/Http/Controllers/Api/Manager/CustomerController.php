@@ -13,9 +13,19 @@ class CustomerController extends Controller
 {
    public function getCustomers2()
    {
-      $customers = customers::with(['number_visited','orders.orderItems'])
-         ->where('region_id', Auth::user()->region_id)
-         ->get();
+      if (Auth->user()->account_type ==='RSM') {
+         $customers = customers::with(['number_visited', 'orders.orderItems'])
+            ->where('region_id', Auth::user()->region_id)
+            ->get();
+
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $customers,
+         ]);
+      }else
+         $customers = customers::with(['number_visited', 'orders.orderItems'])
+            ->get();
 
       return response()->json([
          "success" => true,
@@ -26,11 +36,20 @@ class CustomerController extends Controller
    }
    public function getCustomers(Request $request)
    {
+
       if ($request->user()->account_type ==='RSM') {
          $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
             ->where('region_id', Auth::user()->region_id)
             ->get();
-      }
+         $action="Getting customers";
+         $activity="Getting customers using managers app";
+         $this->activitylogs($action, $activity);
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $customers,
+         ]);
+      }else
       $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
          ->get();
       $action="Getting customers";
@@ -44,10 +63,19 @@ class CustomerController extends Controller
    }
    public function getUnapprovedCustomers(Request $request)
    {
+      $customers = customers::where('approval','waiting_approval')->where('customer_type','normal');
       if ($request->user()->account_type ==='RSM') {
          $customers = customers::where('approval','waiting_approval')->where('customer_type','normal')
             ->where('region_id', Auth::user()->region_id)
             ->get();
+         $action="Getting customers";
+         $activity="Getting customers using managers app";
+         $this->activitylogs($action, $activity);
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $customers,
+         ]);
       }
       $customers = customers::where('approval','waiting_approval')->where('customer_type','normal')
          ->get();
