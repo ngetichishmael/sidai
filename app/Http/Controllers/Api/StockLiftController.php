@@ -24,7 +24,7 @@ class StockLiftController extends Controller
       $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);
-
+$message='';
       if ($validator->fails()) {
          return response()->json([
             "status" => 401,
@@ -78,7 +78,7 @@ class StockLiftController extends Controller
       }
       return response()->json([
          "success" => true,
-         "message" => "All Available Product Information",
+         "message" => $message,
          "Result" => "Successful"
       ]);
    }
