@@ -80,16 +80,29 @@ class UserResource extends JsonResource
       $array = array();
 
       foreach ($value as $keys) {
-         $array["id"] = $keys["id"];
-         $array["OrderTarget"] = $keys["OrdersTarget"];
-         $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
-         $array["Deadline"] = $keys["Deadline"];
+//         $array["id"] = $keys["id"];
+//         $array["OrderTarget"] = $keys["OrdersTarget"];
+//         $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
+//         $array["Deadline"] = $keys["Deadline"];
+
+         $item = [];
+         $item["id"] = $keys["id"];
+         $item["OrderTarget"] = $keys["OrdersTarget"];
+         $item["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
+         $item["Deadline"] = $keys["Deadline"];
+         $array[] = $item;
       }
       if (empty($array)) {
-         $array["id"] = 0;
-         $array["OrderTarget"] = "0";
-         $array["AchievedOrderTarget"] = "0";
-         $array["Deadline"] = Carbon::now()->format('Y-d-m');
+//         $array["id"] = 0;
+//         $array["OrderTarget"] = "0";
+//         $array["AchievedOrderTarget"] = "0";
+//         $array["Deadline"] = Carbon::now()->format('Y-d-m');
+         $item = [];
+         $item["id"] = 0;
+         $item["OrderTarget"] = "0";
+         $item["AchievedOrderTarget"] = "0";
+         $item["Deadline"] = Carbon::now()->format('Y-d-m');
+         $array[] = $item;
       }
       return $array;
    }
