@@ -59,8 +59,8 @@ class StockLiftHelper
          ],
          [
             "business_code" => $business_code,
-            "status" => "Accepted",
-            "distributor"=>$distributor,
+            "status" => "Waiting acceptance",
+            "distributor"=>$distributor ?? 1,
             "created_by" => $user_code,
             "updated_by" => $user_code
          ]
