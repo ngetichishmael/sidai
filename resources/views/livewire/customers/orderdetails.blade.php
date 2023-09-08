@@ -17,7 +17,7 @@
                        <tr>
                            <td>{{ $order->order_code }}</td>
                            <td>{{ $order->price_total }}</td>
-                           <td>@if ($order->payment_status == "pending payment")
+                           <td>@if ($order->payment_status == "Pending Payment")
                             <p style="color: red">Pending Payment</p>                               
                            @endif</td>
                            <td>{{ $order->order_status }}</td>
