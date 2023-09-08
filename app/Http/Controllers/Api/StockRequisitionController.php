@@ -137,6 +137,7 @@ class StockRequisitionController extends Controller
                     'productID' => $product->product_id,
                     'qty' => $product->quantity,
                 ];
+                $status='Accepted';
 
                 $stocked = product_inventory::find($product->product_id);
                 StockLiftHelper::updateOrCreateItems(
@@ -147,6 +148,7 @@ class StockRequisitionController extends Controller
                     $random,
                     $stocked,
                    $distributor,
+                   $status,
                 );
             }
         }

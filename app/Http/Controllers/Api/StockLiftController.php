@@ -34,7 +34,7 @@ $message='';
       }
 
       $image_path = $request->file('image')->store('image', 'public');
-
+$status="Waiting acceptance";
       $data = json_decode($request->products, true);
       $productIDs = array_column($data, 'productID');
       $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
@@ -61,7 +61,8 @@ $message='';
                $image_path,
                $random,
                $stocked,
-               $distributor
+               $distributor,
+               $status,
             );
          }else{
             $distributor=$request->distributor;
@@ -72,7 +73,8 @@ $message='';
                $image_path,
                $random,
                $stocked,
-               $distributor
+               $distributor,
+               $status
             );
          }
       }
