@@ -133,17 +133,17 @@ class ReportsController extends Controller
    }
    public function rsm()
    {
-      $rsms = User::where('account_type', 'RSM')->get();
+      $rsms = User::withCount('Orders')->where('account_type', 'RSM')->get();
       return view('app.items.rsm', ['rsms' => $rsms]);
    }
    public function nsm()
    {
-      $nsms = User::where('account_type', 'NSM')->get();
+      $nsms = User::withCount('Orders')->where('account_type', 'NSM')->get();
       return view('app.items.nsm', ['nsms' => $nsms]);
    }
    public function shopattendee()
    {
-      $attendee = User::where('account_type', 'Shop-Attendee')->get();
+      $attendee = User::withCount('Orders')->where('account_type', 'Shop-Attendee')->get();
       return view('app.items.attendee', ['attendee' => $attendee]);
    }
    public function paymentsDetails($id)
