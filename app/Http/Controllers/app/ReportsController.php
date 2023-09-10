@@ -110,7 +110,7 @@ class ReportsController extends Controller
    }
    public function tsr()
    {
-      $tsrs = User::where('account_type', 'TSR')->get();
+      $tsrs = User::withCount('Orders')->where('account_type', 'TSR')->get();
       return view('app.items.tsr', ['tsrs' => $tsrs]);
    }
    public function customer()

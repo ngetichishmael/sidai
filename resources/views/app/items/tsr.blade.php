@@ -38,7 +38,7 @@
                   <tr>
                      <td>{{ $key+1 }}</td>
                      <td>{{ $tsr->name }}</td>
-                     <td></td>
+                     <td>{{$tsr->orders_count}}</td>
                      <td>{{ $tsr->Region->name??'' }}</td>
                      <td>{{ $tsr->Subregion->name??'' }}</td>
                  </tr>

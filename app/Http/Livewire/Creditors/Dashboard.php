@@ -2,16 +2,18 @@
 
 namespace App\Http\Livewire\Creditors;
 
-use App\Exports\customers as ExportsCustomers;
-use App\Models\customer_group;
-use App\Models\customers;
-use App\Models\Region;
 use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Orders;
+use App\Models\Region;
 use Livewire\Component;
+use App\Models\customers;
 use Livewire\WithPagination;
+use App\Models\customer_group;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\customers as ExportsCustomers;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Dashboard extends Component
 {
@@ -107,6 +109,35 @@ class Dashboard extends Component
       $user = User::where('user_code', $user_code)->pluck('name')->implode('');
       return $user;
    }
+
+   public function OrdersCount($id){
+      return Orders::where('customerID',$id)->count();
+
+   }
+   public function notSettledOrders($id) {
+      $result = Orders::join('order_payments', 'orders.order_code', 'order_payments.order_id')
+          ->where('customerID', $id)
+          ->where('order_payments.balance', '>', 0)
+          ->select(
+              DB::raw('COUNT(order_payments.order_id) as count'),
+              DB::raw('SUM(order_payments.balance) as sum')
+          )
+          ->first(); // Use first() to retrieve a single row
+  
+      if ($result) {
+          return [
+              'count' => $result->count ?? 0,
+              'sum' => $result->sum ?? 0,
+          ];
+      } else {
+          return [
+              'count' => 0,
+              'sum' => 0,
+          ];
+      }
+  }
+  
+
    public function updatedRegional()
    {
       // dd($this->regional);
