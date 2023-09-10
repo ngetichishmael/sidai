@@ -38,7 +38,7 @@
                   <tr>
                      <td>{{ $key+1 }}</td>
                      <td>{{ $attende->name }}</td>
-                     <td></td>
+                     <td>{{$attende->orders_count}}</td>
                      <td>{{ $attende->Region->name??'' }}</td>
                      <td>{{ $attende->Subregion->name??'' }}</td>
                  </tr>

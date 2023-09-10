@@ -38,7 +38,7 @@
                   <tr>
                      <td>{{ $key+1 }}</td>
                      <td>{{ $nsm->name }}</td>
-                     <td></td>
+                     <td>{{$nsm->orders_count}}</td>
                      <td>{{ $nsm->Region->name??'Not found' }}</td>
                      <td>{{ $nsm->Subregion->name??'Not found' }}</td>
                  </tr>
