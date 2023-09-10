@@ -41,6 +41,9 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
+                        <th>Orders</th>
+                        <th>Un-Settled Orders</th>
+                        <th>Balance</th>
                         <th>Region</th>
                         <th>Town</th>
                         <th>Created By</th>
@@ -53,6 +56,10 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
+                            <td>{{ $this->OrdersCount($contact->id) }}</td>
+                            <td>{{ $this->notSettledOrders($contact->id)['count'] }}</td>
+                            <td>{{ $this->notSettledOrders($contact->id)['sum'] }}</td>
+
 
                             <td class="cell-fit">
                                 {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
