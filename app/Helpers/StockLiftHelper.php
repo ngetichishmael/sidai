@@ -25,11 +25,12 @@ class StockLiftHelper
       $image_path,
       $random,
       $stocked,
-      $distributor
+      $distributor,
+      $status
    ) {
       $currentQty = $stocked ? $stocked['current_stock'] : 0;
       $allocatedQty = $value['qty'];
-      info("quantity       ". $allocatedQty);
+      info("requested quantity       ". $allocatedQty);
       info(" current qty   ". $allocatedQty);
       items::updateOrCreate(
          [
@@ -59,7 +60,7 @@ class StockLiftHelper
          ],
          [
             "business_code" => $business_code,
-            "status" => "Waiting acceptance",
+            "status" => $status,
             "distributor"=>$distributor ?? 1,
             "created_by" => $user_code,
             "updated_by" => $user_code

@@ -130,13 +130,14 @@ class StockRequisitionController extends Controller
         }
         foreach ($selectedProducts as $productId) {
             $product = RequisitionProduct::where('requisition_id', $request->requistion_id)->where('product_id', $productId)->first();
-
+            $distributor=1;
             info($product);
             if ($product) {
                 $value = [
                     'productID' => $product->product_id,
                     'qty' => $product->quantity,
                 ];
+                $status='Accepted';
 
                 $stocked = product_inventory::find($product->product_id);
                 StockLiftHelper::updateOrCreateItems(
@@ -145,7 +146,9 @@ class StockRequisitionController extends Controller
                     $value,
                     $image_path,
                     $random,
-                    $stocked
+                    $stocked,
+                   $distributor,
+                   $status,
                 );
             }
         }

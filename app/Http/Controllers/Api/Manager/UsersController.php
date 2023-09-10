@@ -36,7 +36,7 @@ class UsersController extends Controller
 
     public function getUsers(Request $request)
     {
-        if ($request->account_type == 'RSM') {
+        if ($request->user()->account_type == "RSM") {
             $users = UserResource::collection(
                 User::withCount('Customers')->with(
                     [
@@ -44,6 +44,11 @@ class UsersController extends Controller
                     ]
                 )->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->where('region_id', '=', $request->user()->region_id)->get()
             );
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $users,
+           ]);
         } else {
             $users = UserResource::collection(
                 User::withCount('Customers')->with(
@@ -52,19 +57,20 @@ class UsersController extends Controller
                     ]
                 )->whereIn('account_type', ['TSR', 'TD', 'Shop-Attendee'])->get()
             );
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $users,
+           ]);
         }
-        return response()->json([
-            "success" => true,
-            "status" => 200,
-            "data" => $users,
-        ]);
+
     }
     public function usersList(Request $request)
     {
         $accountType = $request->input('account_type');
         $route_code = $request->User()->route_code;
 
-        if ($request->account_type == 'RSM' || 'rsm') {
+        if ($request->user()->account_type == 'RSM' || 'rsm') {
 
             $users = User::where('account_type', $accountType)
                 ->whereNotIn('account_type', ['Customer', 'Admin'])
@@ -76,7 +82,7 @@ class UsersController extends Controller
                 "status" => 200,
                 "data" => $users,
             ]);
-        } else if ($request->account_type == 'NMS' || 'nsm') {
+        } else if ($request->user()->account_type == 'NMS' || 'nsm') {
             $users = User::where('account_type', $accountType)
                 ->whereNotIn('account_type', ['Customer', 'Admin'])
                 ->where('status', 'Active')
