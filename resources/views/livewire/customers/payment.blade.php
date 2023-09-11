@@ -14,6 +14,7 @@
                </thead>
                <tbody>
                    @foreach ($payments as $payment)
+                      @if (!empty($payment) && is_object($payment))
                        <tr>
                            <td>{{ $payment->order_id ?? ''}}</td>
                            <td>{{ $payment->amount ?? 0}}</td>
@@ -21,6 +22,9 @@
                            <td>{{ $this->pluckLastPart($payment->payment_method ?? '') }}</td>
                            <td>{{ $payment->created_at->format('Y-m-d') ?? ''}}</td>
                        </tr>
+              @else
+                         <td class="col-span-5">No payment data available</td>
+              @endif
                    @endforeach
            </table>
        </div>
