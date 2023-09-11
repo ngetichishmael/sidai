@@ -20,19 +20,20 @@ class Dashboard extends Component
 
 
    public function render()
-   {
+{
+    $searchTerm = '%' . $this->search . '%';
+    $activities = activity_log::with('user')
+        ->where(function ($query) use ($searchTerm) {
+            $query->where('user_code', 'like', $searchTerm)
+                ->orWhere('activity', 'like', $searchTerm)
+                ->orWhere('action', 'like', $searchTerm)
+                ->orWhere('section', 'like', $searchTerm);
+        })
+        ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
+        ->paginate($this->perPage);
 
-      $searchTerm = '%' . $this->search . '%';
-      $activities = activity_log::with('user')
-         ->whereLike(
-            [ 'user_code', 'activity', 'action', 'section'],
-            $searchTerm
-         )
-         ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
-         ->paginate($this->perPage);
-
-      return view('livewire.activity.dashboard', [
-         'activities' => $activities
-      ]);
-   }
+    return view('livewire.activity.dashboard', [
+        'activities' => $activities
+    ]);
+}
 }
