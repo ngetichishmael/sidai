@@ -15,11 +15,11 @@
                <tbody>
                    @foreach ($payments as $payment)
                        <tr>
-                           <td>{{ $payment->order_id }}</td>
-                           <td>{{ $payment->amount }}</td>
-                           <td>{{ $payment->balance }}</td>
+                           <td>{{ $payment->order_id ?? ''}}</td>
+                           <td>{{ $payment->amount ?? 0}}</td>
+                           <td>{{ $payment->balance ?? 0}}</td>
                            <td>{{ $this->pluckLastPart($payment->payment_method) }}</td>
-                           <td>{{ $payment->created_at->format('Y-m-d') }}</td>
+                           <td>{{ $payment->created_at->format('Y-m-d') ?? ''}}</td>
                        </tr>
                    @endforeach
            </table>
