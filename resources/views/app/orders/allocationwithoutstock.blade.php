@@ -38,16 +38,16 @@
                     </h4>
                     <hr>
                     <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="">Assign Stock To</label>
-                            <select name="user" class="form-control select" id="user" required>
-                                <option value="">Choose User</option>
-                                @foreach ($users as $user)
-                                    <option value="{!! $user->user_code !!}">{!! $user->name !!}</option>
-                                @endforeach
-                                <option value="distributors">Distributors</option>
-                            </select>
-                        </div>
+                       <div class="form-group col-md-4">
+                          <label for="">Assign Stock To</label>
+                          <select name="account_type" class="form-control select" id="account_type" required>
+                             <option value="">Choose User Type</option>
+                             @foreach ($account_types as $account)
+                                <option value="{!! $account->account_type !!}">{!! $account->account_type !!}</option>
+                             @endforeach
+                             <option value="distributors">Distributors</option>
+                          </select>
+                       </div>
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="">Choose User</label>
