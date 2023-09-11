@@ -15,7 +15,7 @@
 
                          <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
                              width="100" alt="User avatar">
-                         <h4 class="mb-2">{{ Str::upper($customer->customer_name??'') }}</h4>
+                         <h4 class="mb-2">{{ Str::upper($customer->customer_name ?? '') }}</h4>
 
                      </div>
                  </div>
@@ -70,7 +70,7 @@
                              <span class="fw-semibold me-1">Creator:</span>
                              <span>{{ $customer->Creator->name??'' }}</span>
                          </li>
-                    
+
                     <div class="my-1 col-sm-9 offset-sm-3">
                         <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-success">Approve To Creditor</a>
                     </div>

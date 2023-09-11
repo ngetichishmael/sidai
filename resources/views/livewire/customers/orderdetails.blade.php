@@ -15,11 +15,11 @@
                <tbody>
                    @foreach ($orders as $order)
                        <tr>
-                           <td>{{ $order->order_code }}</td>
-                           <td>{{ $order->price_total }}</td>
-                           <td>{{ $order->payment_status }}</td>
-                           <td>{{ $order->order_status }}</td>
-                           <td>{{ $order->created_at->format('Y-m-d') }}</td>
+                           <td>{{ $order->order_code  ?? ''}}</td>
+                           <td>{{ $order->price_total ?? ''}}</td>
+                           <td>{{ $order->payment_status ?? ''}}</td>
+                           <td>{{ $order->order_status ?? '' }}</td>
+                           <td>{{ $order->created_at->format('Y-m-d') ?? \Carbon\Carbon::now()}}</td>
                        </tr>
                    @endforeach
            </table>
