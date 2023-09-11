@@ -1,6 +1,6 @@
 <div>
     <div class="mb-1 row">
-        <div class="col-md-3">
+        {{-- <div class="col-md-3">
             <label for="">Filter By Region</label>
             <select wire:model="regional" class="form-control">`
                 <option value="" selected>select</option>
@@ -8,7 +8,7 @@
                     <option value="{{ $region->name }}">{{ $region->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div> --}}
         <div class="col-md-3">
             <label for="">Flter By Group</label>
             <select wire:model="group" class="form-control">
