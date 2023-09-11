@@ -4,10 +4,10 @@ namespace App\Http\Resources;
 
 use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use function MongoDB\BSON\toJSON;
 
 class UserResource extends JsonResource
 {
-
    /**
     * Transform the resource into an array.
     *
@@ -78,53 +78,49 @@ class UserResource extends JsonResource
    public function order($value)
    {
       $array = array();
-       if (is_array($value)) {
-         foreach ($value as $keys) {
-            $array["id"] = $keys["id"];
-            $array["OrderTarget"] = $keys["OrdersTarget"];
-            $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
-            $array["Deadline"] = $keys["Deadline"];
-         }
-      }else {
-         if (empty($array)) {
-            $array["id"] = 0;
-            $array["OrderTarget"] = "0";
-            $array["AchievedOrderTarget"] = "0";
-            $array["Deadline"] = Carbon::now()->format('Y-d-m');
-         }
+
+      foreach ($value as $keys) {
+         $array["id"] = $keys["id"];
+         $array["OrderTarget"] = $keys["OrdersTarget"];
+         $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
+         $array["Deadline"] = $keys["Deadline"];
+      }
+      if (empty($array)) {
+         $array["id"] = 0;
+         $array["OrderTarget"] = "0";
+         $array["AchievedOrderTarget"] = "0";
+         $array["Deadline"] = Carbon::now()->format('Y-d-m');
       }
       return $array;
    }
    public function lead($value)
    {
       $array = array();
-       if (is_array($value)) {
-         foreach ($value as $keys) {
-            $array["id"] = $keys["id"];
-            $array["LeadTarget"] = $keys["LeadsTarget"];
-            $array["AchievedLeadTarget"] = $keys["AchievedLeadsTarget"];
-            $array["Deadline"] = $keys["Deadline"];
-         }
-      }else {
-         if (empty($array)) {
-            $array["id"] = 0;
-            $array["LeadTarget"] = "0";
-            $array["AchievedLeadTarget"] = "0";
-            $array["Deadline"] = Carbon::now()->format('Y-d-m');
-         }
+
+      foreach ($value as $keys) {
+         $array["id"] = $keys["id"];
+         $array["LeadTarget"] = $keys["LeadsTarget"];
+         $array["AchievedLeadTarget"] = $keys["AchievedLeadsTarget"];
+         $array["Deadline"] = $keys["Deadline"];
+      }
+      if (empty($array)) {
+         $array["id"] = 0;
+         $array["LeadTarget"] = "0";
+         $array["AchievedLeadTarget"] = "0";
+         $array["Deadline"] = Carbon::now()->format('Y-d-m');
       }
       return $array;
    }
    public function visit($value)
    {
       $array = array();
-       if (is_array($value)) {
-         foreach ($value as $keys) {
+
+      foreach ($value as $keys) {
          $array["id"] = $keys["id"];
          $array["VisitTarget"] = $keys["VisitsTarget"];
          $array["AchievedVisitTarget"] = $keys["AchievedVisitsTarget"];
          $array["Deadline"] = $keys["Deadline"];
-      }}else
+      }
       if (empty($array)) {
          $array["id"] = 0;
          $array["VisitTarget"] = "0";

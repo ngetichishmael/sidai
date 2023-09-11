@@ -413,6 +413,7 @@ class ordersController extends Controller
         $supplierID = null;
         $order_code = Str::random(20);
         $totalSum = 0;
+        info($request->all());
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->user);
             if ($distributor) {
@@ -453,7 +454,14 @@ class ordersController extends Controller
                 return redirect()->route('orders.pendingdeliveries');
             }
         }
-
+       for ($i = 0; $i < count($request->allocate); $i++) {
+          $check = product_inventory::where('productID', $request->item_code[$i])->first();
+          info($check);
+          if ($check->current_stock < $request->allocate[$i]) {
+             Session()->flash('error', 'Current stock ' . $check->current_stock . ' is less than your allocation quantity of ' .$request->allocate[$i]);
+             return Redirect::back();
+          }
+       }
         $delivery = Delivery::updateOrCreate(
             [
                 "business_code" => Str::random(20),
