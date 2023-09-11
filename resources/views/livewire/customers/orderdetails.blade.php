@@ -15,6 +15,7 @@
                <tbody>
                    @foreach ($orders as $order)
                        <tr>
+<<<<<<< HEAD
                            <td>{{ $order->order_code }}</td>
                            <td>{{ $order->price_total }}</td>
                            <td>@if ($order->payment_status == "Pending Payment")
@@ -28,6 +29,13 @@
                            @endif</td>
                            <td>{{ $order->order_status }}</td>
                            <td>{{ $order->created_at->format('Y-m-d') }}</td>
+=======
+                           <td>{{ $order->order_code  ?? ''}}</td>
+                           <td>{{ $order->price_total ?? ''}}</td>
+                           <td>{{ $order->payment_status ?? ''}}</td>
+                           <td>{{ $order->order_status ?? '' }}</td>
+                           <td>{{ $order->created_at->format('Y-m-d') ?? \Carbon\Carbon::now()}}</td>
+>>>>>>> 8ae5107fa4c83cb095e690be099e534006507c6c
                        </tr>
                    @endforeach
            </table>

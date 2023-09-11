@@ -413,7 +413,7 @@ class ordersController extends Controller
         $supplierID = null;
         $order_code = Str::random(20);
         $totalSum = 0;
-        info($request->all());
+//       dd($request->all());
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->user);
             if ($distributor) {
@@ -478,7 +478,7 @@ class ordersController extends Controller
         );
         $user_code = $request->user()->user_code;
         $business_code = $request->user()->business_code;
-        $random = Str::random(20);
+        $random = $order_code;
         $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
         for ($i = 0; $i < count($request->allocate); $i++) {
             $pricing = product_price::whereId($request->item_code[$i])->first();
@@ -514,7 +514,7 @@ class ordersController extends Controller
                     "price" => $pricing->selling_price,
                     "amount" => $request->price[$i],
                     "total_amount" => $request->price[$i],
-                    "userID" => $user_code,
+                    "userID" =>  $request->user,
                 ]
             );
             Order::updateOrCreate(
@@ -522,7 +522,7 @@ class ordersController extends Controller
                     'order_code' => $random,
                 ],
                 [
-                    'user_code' => $user_code,
+                    'user_code' =>  $request->user,
                     'customerID' => $request->customer,
                     'price_total' => $request->product[$i],
                     'balance' => $request->product[$i],
@@ -534,7 +534,7 @@ class ordersController extends Controller
                     'reallocated_from_order' => $request->order_code,
                     'order_type' => 'Pre Order',
                     'delivery_date' => now(),
-                    'business_code' => $user_code,
+                    'business_code' => $request->user()->business_code,
                     'updated_at' => now(),
                 ]
             );
