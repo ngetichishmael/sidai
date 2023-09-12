@@ -23,6 +23,8 @@ class Preorder extends Component
    public $orderBy = 'id';
    public $orderAsc = true;
    public $user;
+   public $status = null;
+
 
    public function __construct()
    {
