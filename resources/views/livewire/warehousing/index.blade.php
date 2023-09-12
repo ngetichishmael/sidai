@@ -33,7 +33,7 @@
                    @if(Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id || Auth::user()->account_type == 'Shop-Attendee' && $warehouse->manager == Auth::user()->user_code)
                    <tr>
                       <td>{!! $count+1 !!}</td>
-                      <td>{!! $warehouse->name !!}</td>
+                      <td>{!! $warehouse->name ?? ''!!}</td>
                       <td>{!! $warehouse->region->name ?? '' !!}</td>
                       <td>{!! $warehouse->region->subregion->name ?? '' !!}</td>
 {{--                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
