@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Warehousing;
 
 use App\Models\Region;
+use App\Models\warehouse_assign;
 use App\Models\warehousing;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -25,13 +26,21 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
+      if (strcasecmp(Auth::user()->account_type, 'shop-Attendee') == 0) {
+         $check=warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->get();
+         $warehouses = warehousing::whereIn('warehouse_code',$check)->with('manager', 'region', 'subregion')->withCount('productInformation')
+            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->paginate($this->perPage);
+         return view('livewire.warehousing.index', [
+            'warehouses' => $warehouses,
+            'searchTerm' => $searchTerm
+         ]);
+
+      }else
       $warehouses = warehousing::with('manager', 'region', 'subregion')->withCount('productInformation')
       ->when($this->user->account_type === "RSM",function($query){
          $query->whereIn('region_id', $this->filter());
       })
-         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->simplePaginate($this->perPage);
-
-
+         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->paginate($this->perPage);
       return view('livewire.warehousing.index', [
          'warehouses' => $warehouses,
          'searchTerm' => $searchTerm
@@ -53,3 +62,4 @@ class Index extends Component
       return $regions->toArray();
    }
 }
+

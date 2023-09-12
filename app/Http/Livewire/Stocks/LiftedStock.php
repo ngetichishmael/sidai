@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Stocks;
 
 use App\Models\InventoryAllocation;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -76,11 +79,31 @@ class LiftedStock extends Component
                    ->orWhere('product_information.product_name', 'like', '%' . $this->search . '%');
              });
           })
-          ->groupBy('inventory_allocations.allocation_code')
-          ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+          ->groupBy('inventory_allocations.allocation_code');
+       if (strcasecmp(Auth::user()->account_type, 'Shop-Attendee') == 0) {
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)
+             ->select('warehouse_code')
+             ->pluck('warehouse_code');
+          $lifted = $lifted->whereIn('warehouse.warehouse_code', $check)
+             ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+             ->paginate($this->perPage);
+       } else if ((strcasecmp(Auth::user()->account_type, 'RSM') == 0)) {
+          $check = warehousing::where('region_id', Auth::user()->region_id)
+             ->select('warehouse_code')
+             ->pluck('warehouse_code');
+          $lifted = $lifted->whereIn('warehouse.warehouse_code', $check)
+             ->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+             ->paginate($this->perPage);
+       }else{
+       $lifted = $lifted->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
           ->paginate($this->perPage);
-        return view('livewire.stocks.lifted-stock', [
-            'lifted' => $lifted,
-        ]);
+    }
+
+       return view('livewire.stocks.lifted-stock', [
+          'lifted' => $lifted,
+       ]);
+       return view('livewire.stocks.lifted-stock', [
+          'lifted' => $lifted,
+       ]);
     }
 }

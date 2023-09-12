@@ -413,7 +413,7 @@ class ordersController extends Controller
         $supplierID = null;
         $order_code = Str::random(20);
         $totalSum = 0;
-//       dd($request->all());
+       //dd($request->all());
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->user);
             if ($distributor) {
@@ -524,8 +524,8 @@ class ordersController extends Controller
                 [
                     'user_code' =>  $request->user,
                     'customerID' => $request->customer,
-                    'price_total' => $request->product[$i],
-                    'balance' => $request->product[$i],
+                    'price_total' => $request->price[$i],
+                    'balance' => $request->price[$i],
                     'order_status' => 'Waiting Acceptance',
                     'payment_status' => 'Pending Payment',
                     'qty' => $request->allocate[$i],
@@ -558,14 +558,14 @@ class ordersController extends Controller
                 ->where('user_code', $user_code)
                 ->increment('AchievedOrdersTarget', $request->allocate[$i]);
         }
-        $random = Str::random(20);
+        $rand = Str::random(20);
         $activityLog = new activity_log();
         $activityLog->activity = 'Re-Allocate an order to a User';
         $activityLog->user_code = auth()->user()->user_code;
         $activityLog->section = 'Web';
-        $activityLog->action = 'Order re-allocated to user ' . $request->name . ' Role ' . $request->account_type . ' ';
+        $activityLog->action = 'Order re-allocated '.$random.' to user ' . $request->name . ' Role ' . $request->account_type . ' ';
         $activityLog->userID = auth()->user()->id;
-        $activityLog->activityID = $random;
+        $activityLog->activityID = $rand;
         $activityLog->ip_address = "";
         $activityLog->save();
         Session::flash('success', 'Orders re-allocated to the user');
