@@ -76,7 +76,7 @@
                                     {{ Str::limit($order->User->name ?? null, 10) }}</td>
 {{--                                <td>{{ number_format($order->Order->price_total) }}</td>--}}
                                <td>{{ number_format(floatval($order->Order->price_total)) }}</td>
-                               <td>{{ number_format($order->Order->balance) }}</td>
+                               <td>{{ number_format(floatval($order->Order->balance)) }}</td>
                                 <td>{{ $order->created_at }}</td>
                                 <td>
                                     <div class="dropdown">

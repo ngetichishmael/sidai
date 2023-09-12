@@ -30,14 +30,13 @@
              </thead>
              <tbody>
                 @foreach($warehouses as $count=>$warehouse)
-                   @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || (strtolower(Auth::user()->account_type == 'Shop-Attendee')==0) && $warehouse->manager == Auth::user()->user_code)
-{{--         @if(Auth::check() && in_array(strtolower(Auth::user()->account_type), ["admin", "nsm", "rsm"]))--}}
+                   @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || (strtolower(Auth::user()->account_type) == 'shop-attendee') && $warehouse->manager == Auth::user()->user_code)
                   <tr>
                       <td>{!! $count+1 !!}</td>
-                      <td>{!! $warehouse->name ?? ''!!}</td>
+                      <td>{{ $warehouse->name ?? ''}}</td>
                       <td>{!! $warehouse->region->name ?? '' !!}</td>
-                      <td>{!! $warehouse->region->subregion->name ?? '' !!}</td>
-{{--                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
+                     <td>{{ $warehouse->subregion->name ?? '' }}</td>
+                     {{--  <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
                       <td>{!! $warehouse->product_information_count !!}</td>
                       <td>
  {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
