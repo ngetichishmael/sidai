@@ -11,11 +11,11 @@
     </div>
     <div class="col-md-3">
         <label for="">Status</label>
-        <select wire:model="status" class="form-control">
+        <select wire:model="search" class="form-control">
             <option value="" selected>select</option>
-            <option value="">Pending Delivery</option>
-            <option value="">Waiting Acceptance</option>
-            <option value="">Delivered</option>
+            <option value="Waiting Acceptance">Waiting Acceptance</option>
+            <option value="Pending Delivery">Pending Delivery</option>
+            <option value="DELIVERED">Delivered</option>
         </select>
     </div>
 
@@ -32,7 +32,7 @@
     
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
-        <input type="text" wire:model="search" class="form-control"
+        <input type="text" wire:model="status" class="form-control"
             placeholder="Enter customer name, email address or phone number">
     </div>
 </div>

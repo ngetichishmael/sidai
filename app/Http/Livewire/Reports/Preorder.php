@@ -55,6 +55,12 @@ class Preorder extends Component
             $query->whereBetween('created_at', [$this->start, $this->end]);
          }
       }
+      if (!is_null($this->search)) {
+         $query->where(function ($q) {
+             $q->where('order_status', 'LIKE', '%' . $this->search . '%');
+               //   ->orWhere('other_column_name', 'LIKE', '%' . $this->search . '%'); 
+         });
+     }
      
       return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
          ->paginate(25);
