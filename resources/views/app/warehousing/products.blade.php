@@ -9,7 +9,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-12">
-               <h2 class="content-header-title float-start mb-0"><i data-feather="list"></i> Warehouse {!! $warehouse->name !!} </h2>
+               <h2 class="content-header-title float-start mb-0"><i data-feather="list"></i> Warehouse {!! $warehouse->name ?? '' !!} </h2>
 {{--               <h2 class="content-header-title float-start mb-0">Edit Warehouse </h2>--}}
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">

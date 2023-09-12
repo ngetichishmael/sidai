@@ -12,7 +12,7 @@
                   <ol class="breadcrumb">
                      <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
                      <li class="breadcrumb-item"><a href="/warehousing/all">Warehouse List</a></li>
-                     <li class="breadcrumb-item active">Products Approval</li>
+                     <li class="breadcrumb-item ">Products Approval</li>
                   </ol>
                </div>
             </div>
