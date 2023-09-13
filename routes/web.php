@@ -316,7 +316,7 @@ Auth::routes(['verify' => true]);
          Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
          Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
-         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
+         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');  
          Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
          Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
          Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
