@@ -30,13 +30,13 @@
              </thead>
              <tbody>
                 @foreach($warehouses as $count=>$warehouse)
-                   @if(Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id || Auth::user()->account_type == 'Shop-Attendee' && $warehouse->manager == Auth::user()->user_code)
-                   <tr>
+                   @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || (strtolower(Auth::user()->account_type) == 'shop-attendee') && $warehouse->manager == Auth::user()->user_code)
+                  <tr>
                       <td>{!! $count+1 !!}</td>
-                      <td>{!! $warehouse->name ?? ''!!}</td>
+                      <td>{{ $warehouse->name ?? ''}}</td>
                       <td>{!! $warehouse->region->name ?? '' !!}</td>
-                      <td>{!! $warehouse->region->subregion->name ?? '' !!}</td>
-{{--                     <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
+                     <td>{{ $warehouse->subregion->name ?? '' }}</td>
+                     {{--  <td>{!! $warehouse->manager->name ?? 'NA' !!}</td>--}}
                       <td>{!! $warehouse->product_information_count !!}</td>
                       <td>
  {{--                        <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" class="btn btn-primary btn-sm">Edit</a>--}}
@@ -58,21 +58,25 @@
                                </button>
                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a href="{!! route('warehousing.show',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color:#6df16d; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Details</a>
-                                  <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color:#fd6b37;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit Details</a>
-                                  <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Inventory</a>
-                                  <a href="{!! route('warehousing.assign',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #dc2059; font-weight: bold"><i data-feather="plus"></i>&nbsp; Assign Shop Attendees</a>
-                               </div>
-                            </div>
-                         </td>
-                      </tr>
-                   @endif
-                @endforeach
-             </tbody>
-          </table>
-          {!! $warehouses->links() !!}
-       </div>
-    </div>
- </div>
- @section('scripts')
+                     @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+                     <a href="{!! route('warehousing.edit',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color:#fd6b37;font-weight: bold"><i data-feather="edit"></i> &nbsp;Edit Details</a>
+                                  @endif
+                                     <a href="{!! route('warehousing.products',$warehouse->warehouse_code) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="eye"></i>&nbsp; View Inventory</a>
+                     @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+                  <a href="{!! route('warehousing.assign',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #dc2059; font-weight: bold"><i data-feather="plus"></i>&nbsp; Assign Shop Attendees</a>
+               @endif
+</div>
+</div>
+</td>
+</tr>
+@endif
+@endforeach
+</tbody>
+</table>
+{!! $warehouses->links() !!}
+</div>
+</div>
+</div>
+@section('scripts')
 
- @endsection
+@endsection
