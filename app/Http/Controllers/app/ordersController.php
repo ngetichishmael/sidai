@@ -417,7 +417,7 @@ class ordersController extends Controller
         info("order code generated ".$order_code);
         $totalSum = 0;
        $business_code = $request->user()->business_code;
-       dd($request->all());
+//       dd($request->all());
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->user);
             if ($distributor) {
