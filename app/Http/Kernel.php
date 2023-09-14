@@ -72,5 +72,6 @@ class Kernel extends HttpKernel
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
        'checkDataAccessLevel' => \App\Http\Middleware\CheckDataAccessLevel::class,
+       'dashboard_permissions' => \App\Http\Middleware\CheckDashboardPermissions::class,
     ];
 }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -238,7 +239,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
    public function hasPermission($permission)
    {
+//      info($permission);
       return $this->permissions->contains('name', $permission);
+   }
+   public function hasAnyPermission(...$permissions)
+   {
+      DB::enableQueryLog();
+      return $this->permissions->whereIn('name', $permissions)->count() > 0;
    }
 
 }

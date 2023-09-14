@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +22,33 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
+//   use AuthenticatesUsers {
+//      authenticated as protected traitAuthenticated;
+//   }
+
+
+   protected function authenticated(Request $request, $user)
+   {
+//      $requiredPermissions = ['admin_dashboard', 'manager_dashboard', 'shop_attendee_dashboard'];
+//      info($user);
+//      foreach ($requiredPermissions as $permission) {
+//         info($user->hasPermission($permission));
+//         if ($user->hasPermission($permission)) {
+//            return redirect()->intended($this->redirectTo);
+//         }
+//      }
+
+      if (strcasecmp($user->account_type, 'Admin') == 0 ||
+         strcasecmp($user->account_type, 'RSM') == 0 ||
+         strcasecmp($user->account_type, 'NSM') == 0 ||
+         strcasecmp($user->account_type, 'Shop-Attendee') == 0) {
+         return redirect()->intended($this->redirectTo);
+      }
+      // User didn't have any of the required permissions, so log them out.
+      Auth::logout();
+     // return redirect()->route('login')->withErrors(['permissions' => 'Unauthorized']);
+      return redirect()->route('login')->with('error', 'You do not have permission to access the dashboard.');
+   }
 
     /**
      * Where to redirect users after login.

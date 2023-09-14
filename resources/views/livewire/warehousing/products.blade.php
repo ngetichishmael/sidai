@@ -4,7 +4,7 @@
             <label for=""></label>
             <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search Product">
          </div>
-         @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && Auth::user()->account_type == "Shop-Attendee")
+{{--         @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM" || Auth::check() && (strtolower(Auth::user()->account_type == "shop-attendee")==0))--}}
             <div class="col-md-3">
                <label for="">Items Per</label>
                <select wire:model="perPage" class="form-control">`
@@ -28,15 +28,15 @@
                   <th>Current Stock</th>
                   <th>Date</th>
                   <th>time</th>
-                  @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
+{{--                  @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")--}}
                      <th>Actions</th>
-                  @endif
+{{--                  @endif--}}
                </tr>
                </thead>
                <tbody>
-               @endif
+
                @foreach($products as $key => $product)
-                  @if((Auth::check() && Auth::user()->account_type == "RSM") || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "Admin" )
+{{--                  @if((Auth::check() && Auth::user()->account_type == "RSM") || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "Admin" )--}}
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
@@ -61,9 +61,12 @@
                                  <i data-feather="settings"></i>
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                 <a href="{{ route('products.restock', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="plus"></i> &nbsp;Re-stock</a>
-                                 @if (Auth::user()->account_type ==="Admin")
+                                 <a href="{{ route('products.restock', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="plus"></i> &nbsp;Restock</a>
+                                 @if (Auth::user()->account_type == "Admin" || Auth::user()->account_type ==="NSM")
                                     <a href="{{ route('products.view', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="plus"></i>&nbsp; Update Price</a>
+                                 @endif
+                                 @if (Auth::user()->account_type == "Admin" || Auth::user()->account_type ==="NSM")
+                                    <a href="#" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="plus"></i>&nbsp;Restock History</a>
                                  @endif
 
                               </div>
@@ -72,7 +75,7 @@
 
                         </td>
                      </tr>
-                  @endif
+
                @endforeach
 
                </tbody>
