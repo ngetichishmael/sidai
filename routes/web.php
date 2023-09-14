@@ -3,6 +3,7 @@
 use App\Events\SendMessage;
 use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\app\inventoryController;
+use App\Http\Controllers\Auth\CustomLoginController;
 use App\Http\Controllers\SupportTicketController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,14 @@ Route::get('signup', 'Auth\RegisterController@signup_form')->name('signup.page')
 Route::post('signup/account', 'Auth\RegisterController@signup')->name('signup');
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('api/tests', [TestingController::class, 'test']);
-Auth::routes(['verify' => true]);
 
+Auth::routes(['verify' => true]);
+//Route::post('/login', [CustomLoginController::class, 'attemptLogin'])->name('login');
+
+Route::middleware('web')->group(function () {
 //Route::group(['middleware' => ['verified']], function () {
    Route::group(['middleware' => 'auth'], function () {
+//Route::middleware(['auth', 'dashboard_permissions'])->group(function () {
    Route::get('dashboard', 'app\sokoflowController@dashboard')->name('app.dashboard');
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
 
@@ -309,7 +314,7 @@ Auth::routes(['verify' => true]);
 
       //   Route::get('rider', ['uses' => 'app\usersController@technical', 'as' => 'rider']);
    // Routes for reports
-   Route::middleware('web')->group(function () {
+
 //      Route::group(['middleware' => ['auth', \App\Http\Middleware\CheckUserRole::class]], function () {
          Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
          Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
@@ -325,8 +330,8 @@ Auth::routes(['verify' => true]);
          Route::get('reports/region-report', 'app\ReportsController@reports')->name('regional.reports')->middleware('checkDataAccessLevel:all,regional');
          Route::get('reports/customers-report', 'app\ReportsController@reports')->name('clients.reports');
          Route::get('reports/inventory-report', 'app\ReportsController@reports')->name('inventory.reports');
-//      });
-   });
+
+  // });
    //Routes for reports
    Route::get('reports/supplier-report/{id}', ['uses' => 'app\ReportsController@supplierDetails', 'as' => 'supplierDetailed.reports']);
    Route::get('reports/payments-report/{id}', ['uses' => 'app\ReportsController@paymentsDetails', 'as' => 'paymentsdetails.reports']);
@@ -469,34 +474,6 @@ Auth::routes(['verify' => true]);
    Route::get('activity', ['uses' => 'ActivityController@index', 'as' => 'activity.index']);
    Route::get('activity/show/{id}', ['uses' => 'ActivityController@show', 'as' => 'activity.show']);
 
-   //chats endpoints
-//   Route::get('socket/index', [SocketsController::class, 'index'])->name('socket.index');
-//   Route::get('chats/{chat}', 'ChatController@show');
-//   Route::get('/chats/index', [ChatController::class, 'index'])->name('chats.index');
-//   Route::post('chats/{chat}/messages', 'MessageController@store');
-//   Route::get('/messages/{receiverId}', [ChatController::class, 'messagesIndex'])->name('messages.index');
-//
-//   Route::get('socket/index', function (AppProvider $appProvider) {
-//      return view('app/chat/index', [
-//         "port" => env("LARAVEL_WEBSOCKETS_PORT"),
-//         "host" => env("LARAVEL_WEBSOCKETS_HOST"),
-//         "authEndpoint" => "/api/socket/connect",
-//         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-//         "apps" => $appProvider->all()
-//      ]);
-//   })->name('socket.index');
-
-
-
-   //   Route::get('/', function (AppProvider $appProvider) {
-   //      return view('chat-app-example', [
-   //         "port" => "6001",
-   //         "host" => "127.0.0.1",
-   //         "authEndpoint" => "/api/sockets/connect",
-   //         "logChannel" => DashboardLogger::LOG_CHANNEL_PREFIX,
-   //         "apps" => $appProvider->all()
-   //      ]);
-   //   });
 
    Route::post("/chat/send", function (Request $request) {
       $message = $request->input("message", null);
@@ -542,3 +519,4 @@ Auth::routes(['verify' => true]);
       Route::delete('/permissions/{permission}', 'PermissionsController@destroy')->name('permissions.destroy');
       Route::get('/unauthorized', 'PermissionsController@unauthorized')->name('unauthorized');
    });
+});

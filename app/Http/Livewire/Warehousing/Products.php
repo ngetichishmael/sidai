@@ -23,8 +23,17 @@ class Products extends Component
    }
     public function render()
     {
-       $products = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')->where('warehouse_code', $this->warehouse)->paginate($this->perPage);
+//       $products = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')->where('warehouse_code', $this->warehouse)->paginate($this->perPage);
 
+       $query = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')
+          ->where('warehouse_code', $this->warehouse);
+
+       if ($this->search) {
+          $query->where('product_name', 'like', '%' . $this->search . '%');
+       }
+
+       $products = $query->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+          ->paginate($this->perPage);
         return view('livewire.warehousing.products', ['products'=>$products]);
     }
 }
