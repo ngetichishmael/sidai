@@ -102,6 +102,7 @@ class ordersController extends Controller
         $order = Orders::where('order_code', $code)->first();
         // dd($code);
         $items = Order_items::where('order_code', $order->order_code)->get();
+        //dd($items);
         $sub = Order_items::select('allocated_subtotal')->where('order_code', $order->order_code)->get();
         $total = Order_items::select('allocated_totalamount')->where('order_code', $order->order_code)->get();
         $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
@@ -407,13 +408,16 @@ class ordersController extends Controller
     }
     public function reAllocateOrders(Request $request)
     {
+//       dd($request->all());
         $this->validate($request, [
             'user' => 'required',
         ]);
         $supplierID = null;
         $order_code = Str::random(20);
+        info("order code generated ".$order_code);
         $totalSum = 0;
-       //dd($request->all());
+       $business_code = $request->user()->business_code;
+//       dd($request->all());
         if ($request->account_type === "distributors") {
             $distributor = suppliers::find($request->user);
             if ($distributor) {
@@ -456,7 +460,7 @@ class ordersController extends Controller
         }
        for ($i = 0; $i < count($request->allocate); $i++) {
           $check = product_inventory::where('productID', $request->item_code[$i])->first();
-          info($check);
+          info("check product ".$check);
           if ($check->current_stock < $request->allocate[$i]) {
              Session()->flash('error', 'Current stock ' . $check->current_stock . ' is less than your allocation quantity of ' .$request->allocate[$i]);
              return Redirect::back();
@@ -464,7 +468,7 @@ class ordersController extends Controller
        }
         $delivery = Delivery::updateOrCreate(
             [
-                "business_code" => Str::random(20),
+                "business_code" => $business_code,
                 "customer" => $request->customer,
                 "order_code" => $order_code,
             ],
@@ -476,12 +480,13 @@ class ordersController extends Controller
                 "created_by" => Auth::user()->user_code,
             ]
         );
+       info("delivery ".$delivery);
         $user_code = $request->user()->user_code;
-        $business_code = $request->user()->business_code;
         $random = $order_code;
         $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
         for ($i = 0; $i < count($request->allocate); $i++) {
             $pricing = product_price::whereId($request->item_code[$i])->first();
+            info("pricing ".$pricing);
             $totalSum += $request->price[$i];
             Delivery_items::updateOrCreate(
                 [

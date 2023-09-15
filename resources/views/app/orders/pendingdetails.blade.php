@@ -157,8 +157,12 @@
                                     Address, <span class="text-blue">{!! $test->address !!}</span>
                                 </div>
                                 <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
-                                        class="text-600">(+254){!! $test->phone_number !!}</b></div>
+                                        class="text-600">  (+254){!! $test->phone_number !!}</b></div>
                             </div>
+                           <div class="mt-1 mb-3">
+                              <span class="text-sm text-grey-m2 align-middle">Order Assigned To: </span>
+                              <span class="text-600 text-110 text-blue align-middle">  {{ $order->user->name ?? "N/A"}}</span>
+                           </div>
                         </div>
                         <!-- /.col -->
 
@@ -261,8 +265,15 @@
                                <hr>
 
                                @foreach ($items as $key => $item)
+                                  @if ($items->isEmpty())
+                                     <div class="col-md-12 ml-5">
+                                        <div class="form-group">
+                                           <label for="">No unallocated Items for this order...</label>
+                                        </div>
+                                     </div>
+                                  @else
                                   @if ((int)$item->allocated_quantity < (int)$item->quantity )
-                                  <input type="hidden" name="item_code[]" value="{!! $item->productID !!}">
+                                  <input type="text" name="item_code[]" value="{!! $item->productID !!}">
                                   <div class="mb-1 row mt-2">
                                      <div class="col-md-4">
                                         <div class="form-group">
@@ -307,6 +318,7 @@
                                         }
                                      </script>
                                      @endif
+                                  @endif
                                @endforeach
                                @if ($items->isEmpty())
                                   <div class="col-md-12 ml-5">
