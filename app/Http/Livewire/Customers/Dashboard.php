@@ -106,7 +106,6 @@ class Dashboard extends Component
     }
     public function updatedRegional()
     {
-        // dd($this->regional);
         $this->search = null;
         $this->render();
     }
