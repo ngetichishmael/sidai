@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Orders;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Delivery;
 use App\Models\customers;
@@ -33,7 +36,6 @@ class Dashboard extends Component
     public $perOrderFulfilment = 10;
     public $perActiveUsers = 10;
     public $perVisitTotal = 10;
-
     // Individual functions for data retrieval
     public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
     {
@@ -49,6 +51,30 @@ class Dashboard extends Component
     }
     public function getCashAmount()
     {
+       $loggedUser=Auth::user()->account_type;
+       if (strcasecmp($loggedUser, "shop_attendee") === 0){
+          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+          if (!empty($assignedwarehouse)){
+             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+             if (!empty($warehouse)) {
+                $orderPayments = OrderPayment::where('payment_method', 'PaymentMethods.Cash')
+                   ->whereHas('user', function ($query) use ($warehouse) {
+                      $query->where('region_id', $warehouse->region_id);
+                   })
+                   ->whereBetween('updated_at', [$this->startDate, $this->endDate])
+                   ->sum('amount');
+                return $orderPayments;
+             }
+          }
+       } elseif (strcasecmp($loggedUser, "rsm") === 0){
+          $user=Auth::user();
+          return OrderPayment::where('payment_method', 'PaymentMethods.Cash')
+             ->whereHas('user', function ($query) use ($user ){
+                $query->where('region_id', $user->region_id);
+             })
+             ->whereBetween('updated_at', [$this->startDate, $this->endDate])
+             ->sum('amount');
+       }else
         return OrderPayment::where('payment_method', 'PaymentMethods.Cash')
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
@@ -58,11 +84,27 @@ class Dashboard extends Component
 
     public function getMpesaAmount()
     {
-        return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
-            ->where(function (Builder $query) {
+       $loggedUser=Auth::user()->account_type;
+       if (strcasecmp($loggedUser, "shop_attendee") === 0){
+          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+          if (!empty($assignedwarehouse)){
+             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+             if (!empty($warehouse)) {
+                return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
+                   ->whereHas('user', function ($query) use ($warehouse) {
+                      $query->where('region_id', $warehouse->region_id);
+                   })->whereBetween('updated_at', [$this->startDate, $this->endDate])->sum('amount');
+             }}}elseif (strcasecmp($loggedUser, "rsm") === 0) {
+          $user = Auth::user();
+          return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
+             ->whereHas('user', function ($query) use ($user ){
+                $query->where('region_id', $user->region_id);
+             })->whereBetween('updated_at', [$this->startDate, $this->endDate])->sum('amount');
+       }else
+          return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
+             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'updated_at', $this->startDate, $this->endDate);
-            })
-            ->sum('amount');
+             })->sum('amount');
     }
 
     public function getChequeAmount()

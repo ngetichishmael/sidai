@@ -20,11 +20,11 @@ class StockLiftController extends Controller
       $user_code = $user->user_code;
       $business_code = $user->business_code;
       $random = Str::random(20);
-//      info("Stock Lift");
+     info("Stock Lift");
       $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);
-$message='';
+      $message='';
       if ($validator->fails()) {
          return response()->json([
             "status" => 401,
@@ -34,7 +34,8 @@ $message='';
       }
 
       $image_path = $request->file('image')->store('image', 'public');
-$status="Waiting acceptance";
+      info($image_path);
+      $status="Waiting acceptance";
       $data = json_decode($request->products, true);
       $productIDs = array_column($data, 'productID');
       $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');
