@@ -150,14 +150,14 @@
                            </div>
                             <div>
                                 <span class="text-sm text-grey-m2 align-middle">Customer Name:</span>
-                                <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name }}</span>
+                                <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name ??''}}</span>
                             </div>
                             <div class="text-grey-m2">
                                 <div class="my-1">
-                                    Address, <span class="text-blue">{!! $test->address !!}</span>
+                                    Address, <span class="text-blue">{!! $test->address ??'' !!}</span>
                                 </div>
                                 <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
-                                        class="text-600">  (+254){!! $test->phone_number !!}</b></div>
+                                        class="text-600">  (+254){!! $test->phone_number??'' !!}</b></div>
                             </div>
                            <div class="mt-1 mb-3">
                               <span class="text-sm text-grey-m2 align-middle">Order Assigned To: </span>
