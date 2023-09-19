@@ -37,11 +37,12 @@ class LoginController extends Controller
 //            return redirect()->intended($this->redirectTo);
 //         }
 //      }
+      info($user->account_type);
 
       if (strcasecmp($user->account_type, 'Admin') == 0 ||
          strcasecmp($user->account_type, 'RSM') == 0 ||
          strcasecmp($user->account_type, 'NSM') == 0 ||
-         strcasecmp($user->account_type, 'Shop-Attendee') == 0) {
+         strcasecmp($user->account_type, 'shop-attendee') == 0) {
          return redirect()->intended($this->redirectTo);
       }
       // User didn't have any of the required permissions, so log them out.

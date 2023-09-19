@@ -57,17 +57,84 @@
                 </div>
             </div>
         </div>
-       <div class="col-md-4 mt-5">
+       <div class="col-md-3 mt-0">
           <div class="card">
           @if ($item->productInformation->image)
-{{--                                                      <img src="{{ '/storage/'.$item->productInformation->image ?? $item->productInformation->image}}"--}}
-{{--                                                          alt="{{ $item->productInformation->image}}"--}}
-{{--                                                          style="max-width: 100px; max-height: 100px;">--}}
-                <img src="{{ asset('storage/' . $item->productInformation->image) }}" alt="{{ $item->productInformation->image }}" style="max-width: 100px; max-height: 100px;">
+{{--            <img src="{{ '/storage/'.$item->image ?? $item->productInformation->image}}"--}}
+{{--             alt="{{ $item->image}}" style="max-width: 150px; max-height: 120px;">--}}
+                <div class="card">
+                   <div class="card-body text-center">
+                      <img
+                         src="{{ '/storage/'.$item->image ?? $item->productInformation->image }}"
+                         alt="{{ $item->image }}"
+                         style="max-width: 150px; max-height: 120px; cursor: pointer;"
+                         onclick="showFullImage('{{ '/storage/'.$item->image ?? $item->productInformation->image }}')"
+                      >
+                   </div>
+                </div>
 
+                <!-- Modal for displaying the full image -->
+                <div id="imageModal" class="modal">
+                   <span class="close" onclick="closeModal()">&times;</span>
+                   <img id="fullImage" class="modal-content">
+                </div>
+
+                <style>
+                   .card {
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      height: 200px; /* Adjust the height as needed */
+                   }
+
+                   /* Styles for the modal */
+                   .modal {
+                      display: none;
+                      position: fixed;
+                      z-index: 1;
+                      padding: 200px 50px 10px;
+                      /*left: 0px;*/
+                      top: 80px;
+                      width: 100%;
+                      height: 100%;
+                      background-color: rgba(0, 0, 0, 0.7);
+                   }
+
+                   .modal-content {
+                      display: block;
+                      margin: 0 auto;
+                      max-width: 80%;
+                      max-height: 80%;
+                   }
+
+                   .close {
+                      position: absolute;
+                      top: 20px;
+                      right: 20px;
+                      font-size: 30px;
+                      cursor: pointer;
+                      color: #fff;
+                   }
+                </style>
+
+                <script>
+                   function showFullImage(imageUrl) {
+                      var modal = document.getElementById('imageModal');
+                      var fullImage = document.getElementById('fullImage');
+                      fullImage.src = imageUrl;
+                      fullImage.style.width = 'auto';  // Set the width to auto
+                      fullImage.style.height = 'auto'; // Set the height to auto
+                      modal.style.display = 'block';
+                   }
+
+                   function closeModal() {
+                      var modal = document.getElementById('imageModal');
+                      modal.style.display = 'none';
+                   }
+                </script>
              @else
-                                                      No Image Available
-                                                  @endif
+               No Image Available
+             @endif
        </div>
        </div>
     </div>
