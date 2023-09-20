@@ -23,7 +23,7 @@ class sokoflowController extends Controller
    public function dashboard()
    {
 
-    
+
       return view('app.dashboard.dashboard');
 
    }
@@ -32,5 +32,11 @@ class sokoflowController extends Controller
    public function user_summary()
    {
       return view('app.dashboard.user-summary');
+   }
+   public function allocated(){
+      return view('app.dashboard.allocated');
+   }
+   public function allocatedusers(){
+      return view('app.dashboard.allocatedusers');
    }
 }

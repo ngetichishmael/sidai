@@ -1,25 +1,52 @@
 <div>
-    <div class="col-xl-12 col-md-12 col-12">
-        <div class="card">
-            <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="validationTooltip01">Start Date</label>
-                        <input wire:model="startDate" name="startDate" type="date" class="form-control"
-                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="validationTooltip01">End Date</label>
-                        <input wire:model="endDate" name="startDate" type="date" class="form-control"
-                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />
-                    </div>
-                </div>
+   <div class="col-xl-12 col-md-12 col-12">
+      <div class="card">
+         <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+               <a type="button" href="{{ route('dashboard.allocated.users') }}" class="btn btn-lg rounded-2" style="background: #B6121B; color: white">Stock Holdings</a>
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input wire:model="startDate" name="startDate" type="date" class="form-control" id="startDate" placeholder="YYYY-MM-DD" required />
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="endDate">End Date</label>
+                        <input wire:model="endDate" name="endDate" type="date" class="form-control" id="endDate" placeholder="YYYY-MM-DD" required />
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
+         </div>
+      </div>
+   </div>
 
-    </div>
+   {{--    <div class="col-xl-12 col-md-12 col-12">--}}
+{{--        <div class="card">--}}
+{{--           <div class="pt-0 pb-2 d-flex justify-content-start col-md-4" >--}}
+{{--              <a type="button" href="{{ route('dashboard.allocated.users') }}" class="btn-primary btn-lg rounded-2">Stock  Holdings</a>--}}
+{{--           </div>--}}
+{{--            <div class="pt-0 pb-2 d-flex justify-content-end align-items-center mx-50 row ">--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="validationTooltip01">Start Date</label>--}}
+{{--                        <input wire:model="startDate" name="startDate" type="date" class="form-control"--}}
+{{--                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="col-md-4">--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="validationTooltip01">End Date</label>--}}
+{{--                        <input wire:model="endDate" name="startDate" type="date" class="form-control"--}}
+{{--                            id="validationTooltip01" placeholder="YYYY-MM-DD HH:MM" required />--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
 
 
     <div class="row match-height">
@@ -311,7 +338,7 @@
                 </div>
             </div>
         </div>
-        
+
         @include('livewire.dashboard.table')
     </div>
     <div class="row match-height">
