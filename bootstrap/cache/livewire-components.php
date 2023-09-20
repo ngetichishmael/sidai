@@ -24,6 +24,8 @@
   'customers.region' => 'App\\Http\\Livewire\\Customers\\Region',
   'customers.view' => 'App\\Http\\Livewire\\Customers\\View',
   'customers.visit' => 'App\\Http\\Livewire\\Customers\\Visit',
+  'dashboard.allocatedusers' => 'App\\Http\\Livewire\\Dashboard\\Allocatedusers',
+  'dashboard.allocations' => 'App\\Http\\Livewire\\Dashboard\\Allocations',
   'dashboard.brand-chart' => 'App\\Http\\Livewire\\Dashboard\\BrandChart',
   'dashboard.catergory-chart' => 'App\\Http\\Livewire\\Dashboard\\CatergoryChart',
   'dashboard.dashboard' => 'App\\Http\\Livewire\\Dashboard\\Dashboard',
