@@ -15,8 +15,8 @@
                         @foreach ($subregions as $key => $subregion)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $subregion->name }}</td>
-                                <td>{{ $subregion->Region->name }}</td>
+                                <td>{{ $subregion->name ?? '' }}</td>
+                                <td>{{ $subregion->Region->name ?? '' }}</td>
                                <td>{{$customer_counts->where('subregion_id','=',$subregion->id)->count()}}</td>
                             </tr>
                         @endforeach

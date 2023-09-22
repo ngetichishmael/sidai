@@ -14,7 +14,7 @@
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Sub Regions</a></li>
+                            <li class="breadcrumb-item"><a href="/subregions">Sub Regions</a></li>
                             <li class="breadcrumb-item active"><a href="#">All</a></li>
                         </ol>
                     </div>
@@ -51,7 +51,7 @@
                                                             name="region" required>
                                                             <option value="">Select Region</option>
                                                             @foreach ($regions as $region)
-                                                                <option value="{{ $region->id }}">{{ $region->name }}
+                                                                <option value="{{ $region->id }}">{{ $region->name ?? '' }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
