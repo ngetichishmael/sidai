@@ -35,11 +35,11 @@
                   @foreach ($subregions as $subregion)
                   <tr>
                      <td>{{ $count++ }}</td>
-                     <td>{{ $subregion->name }}</td>
+                     <td>{{ $subregion->name ?? ''}}</td>
                      <td><a href="{{ route('routes.reports',['id'=>$subregion->id]) }}" class="btn btn-sm" style="background-color: brown;color:white">View</a></td>
                  </tr>
                   @endforeach
-                    
+
                  </tbody>
               </table>
            </div>

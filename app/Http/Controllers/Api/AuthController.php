@@ -50,7 +50,7 @@ class AuthController extends Controller
             $query->where('email', $request->email)
                 ->orWhere('phone_number', $request->email);
         })
-            ->whereIn('account_type', ['TD', 'TSR', 'RSM'])
+            ->whereIn('account_type', ['TD', 'TSR', 'RSM', 'NSM'])
             ->first();
         if ($user == null) {
             return response()->json(
