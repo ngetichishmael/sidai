@@ -122,8 +122,8 @@
                       var modal = document.getElementById('imageModal');
                       var fullImage = document.getElementById('fullImage');
                       fullImage.src = imageUrl;
-                      fullImage.style.width = 'auto';  // Set the width to auto
-                      fullImage.style.height = 'auto'; // Set the height to auto
+                      fullImage.style.width = 'auto';
+                      fullImage.style.height = 'auto';
                       modal.style.display = 'block';
                    }
 

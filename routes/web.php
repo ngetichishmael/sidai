@@ -33,6 +33,8 @@ Route::middleware('web')->group(function () {
 //Route::middleware(['auth', 'dashboard_permissions'])->group(function () {
    Route::get('dashboard', 'app\sokoflowController@dashboard')->name('app.dashboard');
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
+      Route::get('dashboard/allocated', ['uses' => 'app\sokoflowController@allocated', 'as' => 'dashboard.allocated']);
+      Route::get('dashboard/allocated/users', ['uses' => 'app\sokoflowController@allocatedusers', 'as' => 'dashboard.allocated.users']);
 
 //      Route::get('/users',App\Http\Controllers\Chat\CreateChat::class)->name('users');
 //      Route::get('/chat{key?}',Main::class)->name('chat');
@@ -317,7 +319,7 @@ Route::middleware('web')->group(function () {
          Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
          Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
-         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');  
+         Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
          Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
          Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
          Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
