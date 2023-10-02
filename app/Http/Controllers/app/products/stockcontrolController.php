@@ -552,4 +552,11 @@ class stockcontrolController extends Controller
 
         return redirect()->back();
     }
+   public function restockHistory($id, $warehousecode)
+   {
+      $product = product_information::find($id);
+      $warehousecode = $warehousecode;
+      return view('app.warehousing.restockhistory', compact('product', 'warehousecode'));
+   }
+
 }

@@ -126,4 +126,5 @@
   'warehousing.assign-shop-attendee' => 'App\\Http\\Livewire\\Warehousing\\AssignShopAttendee',
   'warehousing.index' => 'App\\Http\\Livewire\\Warehousing\\Index',
   'warehousing.products' => 'App\\Http\\Livewire\\Warehousing\\Products',
+  'warehousing.restockedhistory' => 'App\\Http\\Livewire\\Warehousing\\Restockedhistory',
 );

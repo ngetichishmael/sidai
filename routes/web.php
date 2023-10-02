@@ -284,6 +284,7 @@ Route::middleware('web')->group(function () {
    Route::get('warehousing/products/category/{id}/edit', ['uses' => 'app\products\categoryController@edit', 'as' => 'product.category.edit']);
    Route::post('warehousing/product.category/{id}/update', ['uses' => 'app\products\categoryController@update', 'as' => 'product.category.update']);
    Route::get('warehousing/products/category/{id}/destroy', ['uses' => 'app\products\categoryController@destroy', 'as' => 'product.category.destroy']);
+   Route::get('warehousing/products/restock_history/{id}/{warehousecode}', ['uses' => 'app\products\stockcontrolController@restockHistory', 'as' => 'product.restock.history']);
 
    /* === product brands === */
    Route::get('warehousing/products/brand', ['uses' => 'app\products\brandController@index', 'as' => 'product.brand']);
