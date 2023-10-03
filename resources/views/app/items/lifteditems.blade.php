@@ -11,7 +11,9 @@
                     <h2 class="content-header-title float-start mb-0">Stock Lifts | items</h2>
                     <div class="breadcrumb-wrapper">
                         <ol class="breadcrumb">
-                            {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
+                           <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+                           <li class="breadcrumb-item"><a href="/stock-lifts">Stock Lifts</a></li>
+                           <li class="breadcrumb-item-active"><a href="#">Lifted Items</a></li>
                         </ol>
                     </div>
                 </div>
@@ -58,11 +60,11 @@
             </div>
         </div>
        <div class="col-md-3 mt-0">
-          <div class="card">
+          <div class="card i">
           @if ($item->productInformation->image)
 {{--            <img src="{{ '/storage/'.$item->image ?? $item->productInformation->image}}"--}}
 {{--             alt="{{ $item->image}}" style="max-width: 150px; max-height: 120px;">--}}
-                <div class="card">
+                <div class="card i">
                    <div class="card-body text-center">
                       <img
                          src="{{ '/storage/'.$item->image ?? $item->productInformation->image }}"
@@ -80,7 +82,7 @@
                 </div>
 
                 <style>
-                   .card {
+                   .card .i {
                       display: flex;
                       justify-content: center;
                       align-items: center;

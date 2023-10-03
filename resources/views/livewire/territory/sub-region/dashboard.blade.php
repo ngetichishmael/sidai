@@ -9,6 +9,7 @@
                             <th>Sub-regions</th>
                             <th>Region</th>
                            <th>Customers</th>
+{{--                           <th>Edit</th>--}}
                         </tr>
                     </thead>
                     <tbody>
@@ -18,6 +19,8 @@
                                 <td>{{ $subregion->name ?? '' }}</td>
                                 <td>{{ $subregion->Region->name ?? '' }}</td>
                                <td>{{$customer_counts->where('subregion_id','=',$subregion->id)->count()}}</td>
+{{--                               <td> <a href="{{ route('subregions.edit', $subregion->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;">&nbsp;Edit</a>--}}
+                               </td>
                             </tr>
                         @endforeach
                     </tbody>
