@@ -61,16 +61,20 @@ class routesController extends Controller
         ]);
 
         $code = Str::random(20);
-        $route = new Routes;
-        $route->business_code = Auth::user()->business_code;
-        $route->route_code = $code;
-        $route->name = $request->name;
-        $route->status = $request->status;
-        $route->Type = "Assigned";
-        $route->start_date = $request->start_date;
-        $route->end_date = $request->end_date;
-        $route->created_by = Auth::user()->user_code;
-        $route->save();
+        $userIds = $request->user;
+
+        foreach ($userIds as $userId) {
+            $route = new Routes;
+            $route->business_code = Auth::user()->business_code;
+            $route->route_code = $code;
+            $route->name = $request->name;
+            $route->status = $request->status;
+            $route->Type = "Assigned";
+            $route->start_date = $request->start_date;
+            $route->end_date = $request->end_date;
+            $route->created_by = $userId; 
+            $route->save();
+        }
         $customers = customers::where('route', $request->route_id)->pluck('id');
 
         //save customers

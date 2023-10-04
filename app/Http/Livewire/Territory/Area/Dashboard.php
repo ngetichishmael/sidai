@@ -14,10 +14,15 @@ class Dashboard extends Component
    public $perPage = 20;
    public $sortField = 'id';
    public $sortAsc = true;
+   public $searchTerm = null;
    public function render()
    {
-      $areas = Area::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-         ->paginate($this->perPage);
+         $areas = Area::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+        ->when($this->searchTerm, function ($query, $searchTerm) {
+            return $query->where('name', 'like', '%' . $searchTerm . '%');
+        })
+        ->paginate($this->perPage);
+  
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.area.dashboard', [
          'areas' => $areas,
