@@ -1,3 +1,10 @@
+<div class="mb-1 row">
+    <div class="col-md-3">
+        <label for="">Search by route</label>
+        <input type="text" wire:model="searchTerm" class="form-control"
+            placeholder="Enter route name">
+    </div>
+</div>
 <div class="col-md-8">
     <div class="card card-inverse">
         <div class="card-body">
