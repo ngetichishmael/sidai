@@ -26,30 +26,6 @@ class productsController extends Controller
       $route_code = $request->user()->route_code;
       $region_id = $request->user()->region_id;
       $region = Region::whereId($region_id)->first();
-//      if ($region){
-//         $warehouses = warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
-//      $products = product_information::whereIn('warehouse_code', [$warehouses])->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
-//         ->join('product_price', 'product_price.productID', '=', 'product_information.id')
-//         ->select(
-//            'product_price.branch_id as region',
-//            'product_information.id as productID',
-//            'product_information.created_at as date',
-//            'product_price.buying_price as wholesale_price',
-//            'product_price.selling_price as retail_price',
-//            'product_price.distributor_price as distributor_price',
-//            'product_information.product_name as product_name',
-//            'product_inventory.current_stock as stock',
-//            'product_information.created_at as date',
-//            'product_information.business_code as business_code',
-//            'sku_code',
-//            'brand',
-//            'category',
-//            'warehouse_code'
-//         )
-//         ->get();
-//   }
-//   else
-//{
    $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
       ->join('product_price', 'product_price.productID', '=', 'product_information.id')
       ->select(
@@ -135,7 +111,7 @@ class productsController extends Controller
    {
       $route_code = $request->user()->route_code;
       $region_id = Region::whereId($route_code)->first();
-      $products = product_information::where("warehouse_code", $warehouseCode)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $products = product_information::where("warehouse_code",$warehouseCode)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',

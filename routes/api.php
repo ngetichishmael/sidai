@@ -37,7 +37,7 @@ require __DIR__ . '/manager/api.php';
 require __DIR__ . '/customer/api.php';
 require __DIR__ . '/total/api.php';
 Route::group(['namespace' => 'Api'], function () {
-
+   Route::apiResource('app-versions', 'AppVersionController');
     //customers
     Route::get('customers/{businessCode}', 'customersController@index')->middleware('auth:sanctum');
     Route::post('customers/add-customer', 'customersController@add_customer')->middleware('auth:sanctum');
