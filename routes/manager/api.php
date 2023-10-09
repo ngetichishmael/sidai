@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
+use App\Http\Controllers\Api\Manager\ProductsController;
 use App\Http\Controllers\Api\Manager\RequisitionController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
@@ -101,5 +102,12 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('manager/approve/{id}',  [RequisitionController::class ,'approve']);
       Route::post('manager/approve/requisitions', [RequisitionController::class ,'handleApproval']);
 
+      //adding products
+      Route::get('managers/all/products', [ProductsController::class,'index']);
+      Route::get('managers/products/categories', [ProductsController::class,'categories']);
+      Route::post('managers/products/store', [ProductsController::class, 'store']);
+      Route::get('managers/products/{id}/edit', [ProductsController::class, 'edit']);
+      Route::post('managers/products/{id}/restock', [ProductsController::class, 'restock']);
+      Route::get('managers/products/{id}/details', [ProductsController::class, 'details']);
    });
 });
