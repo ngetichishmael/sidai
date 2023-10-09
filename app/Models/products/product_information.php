@@ -16,7 +16,7 @@ class product_information extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasOne
     */
-   public function ProductPrice()
+   public function ProductPrice(): \Illuminate\Database\Eloquent\Relations\HasOne
    {
       return $this->hasOne(product_price::class, 'productID', 'id');
    }

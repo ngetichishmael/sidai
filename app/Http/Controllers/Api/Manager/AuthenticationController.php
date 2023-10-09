@@ -7,6 +7,7 @@ use App\Models\activity_log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
@@ -43,7 +44,11 @@ class AuthenticationController extends Controller
          $query->where('email', $request->phone_number)
             ->orWhere('phone_number', $request->phone_number);
       })
-         ->whereIn('account_type', ['RSM','NSM'])
+//         ->whereIn('account_type', ['RSM','NSM','shop-attendee'])
+         ->where(function ($query) {
+            $query->whereIn(DB::raw('LOWER(account_type)'), ['rsm', 'nsm', 'shop-attendee'])
+               ->orWhereIn(DB::raw('UPPER(account_type)'), ['RSM', 'NSM', 'SHOP-ATTENDEE']);
+         })
          ->first();
       if ($user == null) {
          return response()->json(
