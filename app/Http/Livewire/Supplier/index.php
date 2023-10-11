@@ -26,7 +26,7 @@ class index extends Component
       $customers = customers::where('customer_group', 'Distributor')->get();
 
       foreach ($customers as $customer) {
-         $existingSupplier = suppliers::where('customer_id', $customer->id)->where('customer_name', $customer->customer_name)->first();
+         $existingSupplier = suppliers::where('customer_id', $customer->id)->where('name', $customer->customer_name)->first();
          if (!$existingSupplier) {
             $supplier = new suppliers();
             $supplier->email = $customer->email;
@@ -35,7 +35,7 @@ class index extends Component
             $supplier->telephone = $customer->telephone ?? $customer->phone_number;
             $supplier->status = "Active";
             $supplier->customer_id = $customer->id;
-            $supplier->business_code = Auth::user()->business_code;
+            $supplier->business_code = $customer->created_by;
             $supplier->save();
          }
       }
