@@ -314,10 +314,8 @@ class customersController extends Controller
             'unit_id' => $request->route_code,
             'image' => $image_path,
         ]);
-       $isdistributor=suppliers::where('name', $request->outlet)->first();
-       info($isdistributor);
-       info($request->outlet);
-       if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
+
+       if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
           $primary = new suppliers;
           $primary->email = $emailData;
           $primary->name = $request->customer_name;
@@ -430,8 +428,8 @@ class customersController extends Controller
         $customer->unit_id = $request->route_code;
         $customer->image = $image_path;
         $customer->save();
-       $isdistributor=suppliers::where('name', $request->customer_group)->first();
-       if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
+
+       if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
           $primary = new suppliers;
           $primary->email = $emailData;
           $primary->name = $request->customer_name;
