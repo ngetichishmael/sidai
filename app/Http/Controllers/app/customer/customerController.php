@@ -181,8 +181,8 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
-      $isdistributor=suppliers::where('name', $request->customer_group)->first();
-      if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
+
+      if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
          $primary = new suppliers;
          $primary->email = $request->email;
          $primary->name = $request->customer_name;
@@ -233,8 +233,8 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
-      $isdistributor=suppliers::where('name', $request->customer_group)->first();
-      if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
+
+      if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
          $primary = new suppliers;
          $primary->email = $emailData;
          $primary->name = $request->customer_name;
@@ -323,7 +323,7 @@ class customerController extends Controller
       ]);
 
       // Check for Distributor
-      if ($request->input('customer_group') === 'Distributor' || $request->input('customer_group') === 'Distributors') {
+      if (($request->input('customer_group') === 'Distributor') || ($request->input('customer_group') === 'Distributors')) {
          suppliers::updateOrCreate(
             ['name' => $request->input('customer_name')],
             [
