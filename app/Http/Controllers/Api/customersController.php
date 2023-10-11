@@ -315,6 +315,8 @@ class customersController extends Controller
             'image' => $image_path,
         ]);
        $isdistributor=suppliers::where('name', $request->outlet)->first();
+       info($isdistributor);
+       info($request->outlet);
        if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
           $primary = new suppliers;
           $primary->email = $emailData;
