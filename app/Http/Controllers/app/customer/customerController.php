@@ -182,7 +182,7 @@ class customerController extends Controller
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
       $isdistributor=suppliers::where('name', $request->customer_group)->first();
-      if ($isdistributor!=null && $isdistributor ==='Distributor') {
+      if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
          $primary = new suppliers;
          $primary->email = $request->email;
          $primary->name = $request->customer_name;
@@ -212,7 +212,8 @@ class customerController extends Controller
          'customer_name' => 'required',
          'id_number' => 'required',
       ]);
-
+      $customerNameWithoutSpaces = str_replace(' ', '', $request->customer_name);
+      $emailData = $request->email ?? $customerNameWithoutSpaces . Str::random(3) . '@gmail.com';
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
       $customer->id_number =$request->id_number;
@@ -232,9 +233,9 @@ class customerController extends Controller
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
       $isdistributor=suppliers::where('name', $request->customer_group)->first();
-      if ($isdistributor!=null && $isdistributor ==='Distributor') {
+      if ($isdistributor!=null && ($isdistributor ==='Distributor'|| $isdistributor ==='Distributors')) {
          $primary = new suppliers;
-         $primary->email = $request->email;
+         $primary->email = $emailData;
          $primary->name = $request->customer_name;
          $primary->phone_number = $request->phone_number;
          $primary->telephone = $request->telephone;
@@ -242,7 +243,7 @@ class customerController extends Controller
          $primary->business_code = Auth::user()->business_code;
          $primary->save();
       }
-      $emailData = $request->email == null ? null : $request->email;
+//      $emailData = $request->email == null ? null : $request->email;
       $random=Str::random(10);
       $user = new User();
       $user->name = $request->customer_name;
@@ -320,7 +321,7 @@ class customerController extends Controller
       ]);
 
       // Check for Distributor
-      if ($request->input('customer_group') === 'Distributor') {
+      if ($request->input('customer_group') === 'Distributor' || $request->input('customer_group') === 'Distributors') {
          suppliers::updateOrCreate(
             ['name' => $request->input('customer_name')],
             [
