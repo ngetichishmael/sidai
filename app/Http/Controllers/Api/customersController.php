@@ -324,6 +324,7 @@ class customersController extends Controller
           $primary->phone_number = $request->phone_number;
           $primary->telephone = $request->telephone ?? $request->phone_number;
           $primary->status = "Active";
+          $primary->customer_id=$customer->id;
           $primary->business_code = Auth::user()->business_code;
           $primary->save();
        }
@@ -436,6 +437,7 @@ class customersController extends Controller
           $primary->name = $request->customer_name;
           $primary->phone_number = $request->phone_number;
           $primary->telephone = $request->telephone;
+          $primary->customer_id=$customer->id;
           $primary->status = "Active";
           $primary->business_code = Auth::user()->business_code;
           $primary->save();
