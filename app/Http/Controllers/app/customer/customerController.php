@@ -14,6 +14,7 @@ use App\Models\PriceGroup;
 use App\Models\Region;
 use App\Models\Subregion;
 use App\Models\suppliers\supplier_address;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Carbon\Carbon;
 use File;
@@ -89,10 +90,10 @@ class customerController extends Controller
 
    public function details($id)
    {
-      
+
       return view('app.customers.show', ['id' => $id,]);
    }
-   
+
 
    public function approvecreditor($id)
    {
@@ -180,7 +181,17 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
-
+      $isdistributor=suppliers::where('name', $request->customer_group)->first();
+      if ($isdistributor!=null && $isdistributor ==='Distributor') {
+         $primary = new suppliers;
+         $primary->email = $request->email;
+         $primary->name = $request->customer_name;
+         $primary->phone_number = $request->phone_number;
+         $primary->telephone = $request->telephone;
+         $primary->status = "Active";
+         $primary->business_code = Auth::user()->business_code;
+         $primary->save();
+      }
       Session::flash('success', 'Customer successfully Added');
       $random = Str::random(20);
       $activityLog = new activity_log();
@@ -220,7 +231,17 @@ class customerController extends Controller
       $customer->business_code = FacadesAuth::user()->business_code;
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
-
+      $isdistributor=suppliers::where('name', $request->customer_group)->first();
+      if ($isdistributor!=null && $isdistributor ==='Distributor') {
+         $primary = new suppliers;
+         $primary->email = $request->email;
+         $primary->name = $request->customer_name;
+         $primary->phone_number = $request->phone_number;
+         $primary->telephone = $request->telephone;
+         $primary->status = "Active";
+         $primary->business_code = Auth::user()->business_code;
+         $primary->save();
+      }
       $emailData = $request->email == null ? null : $request->email;
       $random=Str::random(10);
       $user = new User();
@@ -234,7 +255,7 @@ class customerController extends Controller
       $user->status="Active";
       $user->region=Auth::user()->region_id;
       $user->business_code = Auth::user()->business_code;
-      $user->password = "password";
+      $user->password = Hash::make("password");
       $user->save();
 
       Session::flash('success', 'Customer successfully Creditor Added');
@@ -272,29 +293,45 @@ class customerController extends Controller
       $this->validate($request, [
          'customer_name' => 'required'
       ]);
-$region=
-      $customer = customers::where('id', $id)->first();
-      $customer->customer_name = $request->customer_name;
-      $customer->id_number = $request->id_number??'';
-      $customer->contact_person = $request->contact_person;
-      $customer->telephone = $request->telephone??'';
-      $customer->address = $request->address;
-      $customer->price_group = $request->pricing_category;
-      $customer->customer_secondary_group = $request->customer_secondary_group??'';
-      $customer->route = $request->territory;
-      $customer->route_code = $request->territory;
-      $customer->region_id = $request->zone;
-      $customer->customer_type = "normal";
-      $customer->approval = "approved";
-      $customer->subregion_id = $request->region;
-      $customer->zone_id = $request->region;
-      $customer->branch = $request->branch??'';
-      $customer->email = $request->email;
-      $customer->phone_number = $request->phone_number??'';
-      $customer->business_code = FacadesAuth::user()->business_code;
-      $customer->created_by = FacadesAuth::user()->user_code;
-      $customer->save();
+      $customer = customers::find($id);
 
+      if (!$customer) {
+         // Handle the case where the customer does not exist.
+         return redirect()->back()->with('error', 'Customer not found');
+      }
+      $customer->update([
+         'customer_name' => $request->input('customer_name'),
+         'id_number' => $request->input('id_number', ''),
+         'contact_person' => $request->input('contact_person'),
+         'telephone' => $request->input('telephone', ''),
+         'address' => $request->input('address'),
+         'price_group' => $request->input('pricing_category'),
+         'customer_secondary_group' => $request->input('customer_secondary_group', ''),
+         'route' => $request->input('territory'),
+         'route_code' => $request->input('territory'),
+         'region_id' => $request->input('zone'),
+         'customer_type' => 'normal',
+         'approval' => 'approved',
+         'subregion_id' => $request->input('region'),
+         'zone_id' => $request->input('region'),
+         'branch' => $request->input('branch', ''),
+         'email' => $request->input('email'),
+         'phone_number' => $request->input('phone_number', ''),
+      ]);
+
+      // Check for Distributor
+      if ($request->input('customer_group') === 'Distributor') {
+         suppliers::updateOrCreate(
+            ['name' => $request->input('customer_name')],
+            [
+               'email' => $request->input('email'),
+               'phone_number' => $request->input('phone_number'),
+               'telephone' => $request->input('telephone'),
+               'status' => 'Active',
+               'business_code' => auth()->user()->business_code,
+            ]
+         );
+      }
       $user=User::where('user_code', $customer->user_code)->first();
       if ($user != null || !empty($user)) {
          $user->region_id = $request->region ?? Auth::user()->region_id ?? null;
@@ -314,7 +351,7 @@ $region=
 
       return redirect()->route('customer');
    }
-   
+
 
 
    public function delete($id)
