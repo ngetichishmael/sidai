@@ -315,7 +315,7 @@ class customersController extends Controller
             'image' => $image_path,
         ]);
 
-       if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
+       if (($request->outlet!=null) && (($request->outlet ==='Distributor')|| ($request->outlet ==='Distributors'))) {
           $primary = new suppliers;
           $primary->email = $emailData;
           $primary->name = $request->customer_name;
@@ -429,7 +429,7 @@ class customersController extends Controller
         $customer->image = $image_path;
         $customer->save();
 
-       if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
+       if (($request->outlet!=null) && (($request->outlet ==='Distributor')|| ($request->outlet ==='Distributors'))) {
           $primary = new suppliers;
           $primary->email = $emailData;
           $primary->name = $request->customer_name;
