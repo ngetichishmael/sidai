@@ -113,6 +113,7 @@ Route::middleware('web')->group(function () {
    ]);
    Route::get('approveCreditors', ['uses' => 'app\customer\customerController@approveCreditors', 'as' => 'approveCreditors']);
    Route::get('approveCustomers', ['uses' => 'app\customer\customerController@approveCustomers', 'as' => 'approvecustomers']);
+   Route::post('customers/approve', ['uses' => 'app\customer\customerController@handleApproval', 'as' => 'customer.handleApproval']);
    Route::get('customer/{id}/details', ['uses' => 'app\customer\customerController@details', 'as' => 'creditor.details']);
    Route::get('creditor/{id}/details', ['uses' => 'app\customer\creditorController@details', 'as' => 'creditor.info']);
     Route::get('creditor/{id}/approve', ['uses' => 'app\customer\customerController@approvecreditor', 'as' => 'creditor.approve']);

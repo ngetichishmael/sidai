@@ -17,6 +17,8 @@
     </div>
     <div class="card card-default">
         <div class="card-body">
+            <form method="POST" action="{{ route('customer.handleApproval') }}">
+                @csrf
             <div class="card-datatable table-responsive">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -26,7 +28,6 @@
                     <th>Region</th>
                     <th>Sub-region</th>
                     <th>Route</th>
-                    {{-- <th>Customer Type</th> --}}
                     <th>Created By</th>
                     <th>Date</th>
                     <th width="15%">Action</th>
@@ -43,26 +44,22 @@
                                 {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
                             </td>
                             <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
-                            {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
                             <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
-                            {{-- <td>{!! $contact->customer_type !!}</td> --}}
                             <td>
                                 {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
-                            <td>
-                                @if ($contact->creditor_approved === 0 || $contact->creditor_approved === 2 || @empty($contact->creditor_approved) )
-                                    <button wire:click.prevent="approveCustomer({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to APPROVE this Customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-success btn-sm">Approve</button>
-                               @elseif ($contact->creditor_approved === 1)
-                                    <button wire:click.prevent="disapproveCustomer({{ $contact->id }})"
-                                        onclick="confirm('Are you sure you want to DISAPPROVE this Customer?')||event.stopImmediatePropagation()"
-                                        type="button" class="btn btn-danger btn-sm">Disapprove</button>
-                                @endif
-                            </td>
+
+                            @if ($contact->approval === "approved")
+                                  <td style="color: green">Approved</td>
+                                  @elseif($contact->approval === "waiting_approval")
+                                  <td>
+                                       <input type="checkbox" name="selected_customers[]" value="{{ $contact->customer_id }}">
+                                 </td>
+                                  @endif
+                                  
                             </tr>
                         @empty
                             <div>
@@ -73,6 +70,8 @@
                         @endforelse
                     </tbody>
                 </table>
+                <button type="submit" class=" mt-1 pl-3 btn btn-primary" name="approve">Approve and Continue </button>
+                </form>
 
                 <div class="mt-1">
                     {{ $contacts->links() }}
