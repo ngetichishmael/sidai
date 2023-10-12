@@ -8,17 +8,7 @@
                     <div class="card-body">
                        <form method="POST" action="{{ route('inventory.handleApproval') }}">
                           @csrf
-{{--                          <div class="form-group mb-1 mt-2 ml-0 pe-0 col-md-5">--}}
-{{--                             <label for="warehouse" style="color: #d5512d">Warehouse:--}}
-{{--                                <input class="focus:bg-gray-400" readonly value="{{}}">--}}
-{{--                             <select id="warehouse" class="form-control select2" name="warehouse_code" required>--}}
-{{--                                <option value="" class="focus:bg-gray-400">Select a Warehouse</option>--}}
-{{--                                @foreach($warehouses as $warehouse)--}}
-{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
-{{--                                   <option value="{{ $warehouse->warehouse_code }}">{{ $warehouse->name }}</option>--}}
-{{--                                @endforeach--}}
-{{--                             </select>--}}
-{{--                          </div>--}}
+
                           <table class="table table-bordered table-striped">
                             <thead>
                                 <th>#</th>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\app\customer;
 
+<<<<<<< HEAD
+=======
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\Area;
@@ -17,13 +19,29 @@ use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Carbon\Carbon;
+>>>>>>> 07fae36d1c2cd73a3dbe83cabce5403d446b8f89
 use File;
+use Carbon\Carbon;
+use App\Models\Area;
+use App\Models\User;
+use App\Models\Region;
+use App\Models\country;
+use App\Models\Subregion;
+use App\Models\PriceGroup;
+use App\Models\price_group;
+use Illuminate\Support\Str;
+use App\Models\activity_log;
 use Illuminate\Http\Request;
+use App\Models\customer_group;
+use App\Models\customer\groups;
+use App\Models\customer\customers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Redirect;
+use App\Models\suppliers\supplier_address;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class customerController extends Controller
 {
@@ -94,6 +112,26 @@ class customerController extends Controller
       return view('app.customers.show', ['id' => $id,]);
    }
 
+   public function handleApproval(Request $request)
+   {
+      $selectedCustomers = $request->input('selected_customers');
+      $user = $request->user();
+      $warehouses='';
+      $user_code = $user->user_code;
+      $business_code = $user->business_code;
+      $random = Str::random(20);
+      if (empty($selectedCustomers)) {
+         Session()->flash('error','No Customer selected');
+         return Redirect::back();
+      }else{
+         foreach ($selectedCustomers as $selectedCustomer) {
+            Customers::where('id', $selectedCustomer)->update(['approval' => 'approved']);
+         }
+      }
+      Session()->flash('success','Successfully Approved Customers');
+      return redirect('approveCustomers');
+   }
+   
 
    public function approvecreditor($id)
    {

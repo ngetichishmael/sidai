@@ -52,7 +52,7 @@ class inventoryController extends Controller
    {
       return view('app.inventory.warehouses');
    }
-
+   
    public function approve($id){
       return view('app.inventory.approve_items', compact('id'));
    }

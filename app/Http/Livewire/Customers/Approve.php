@@ -23,6 +23,7 @@ class Approve extends Component
    public ?string $regional = null;
 
    public $user;
+   public $customer_id;
 
    public function __construct()
    {
@@ -49,6 +50,8 @@ class Approve extends Component
       $aggregate = customers::select(
          'customers.customer_name as customer_name',
          'customers.phone_number as customer_number',
+         'customers.approval as approval',
+         'customers.id as customer_id',
          'regions.name as region_name',
          'subregions.name as subregion_name',
          'areas.name as area_name',
