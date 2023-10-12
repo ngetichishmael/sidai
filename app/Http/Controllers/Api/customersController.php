@@ -19,6 +19,7 @@ use App\Models\Region;
 use App\Models\Routes;
 use App\Models\Route_customer;
 use App\Models\Subregion;
+use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -275,8 +276,9 @@ class customersController extends Controller
         }
 
         $image_path = $request->file('image')->store('app-assets/images', 'public');
-        $emailData = $request->email ?? $request->customer_name . Str::random(3) . '@gmail.com';
-        $route = Area::with('subregion.region')->find($request->route_code);
+       $customerNameWithoutSpaces = str_replace(' ', '', $request->customer_name);
+       $emailData = $request->email ?? $customerNameWithoutSpaces . Str::random(3) . '@gmail.com';
+       $route = Area::with('subregion.region')->find($request->route_code);
         $user = User::create([
             'name' => $request->customer_name,
             'email' => $emailData,
@@ -312,6 +314,19 @@ class customersController extends Controller
             'unit_id' => $request->route_code,
             'image' => $image_path,
         ]);
+
+       if (($request->outlet!=null) && (($request->outlet ==='Distributor')|| ($request->outlet ==='Distributors'))) {
+          $primary = new suppliers;
+          $primary->email = $emailData;
+          $primary->name = $request->customer_name;
+          $primary->phone_number = $request->phone_number;
+          $primary->telephone = $request->telephone ?? $request->phone_number;
+          $primary->status = "Active";
+          $primary->customer_id=$customer->id;
+          $primary->business_code = Auth::user()->business_code;
+          $primary->save();
+       }
+
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
             ->increment('AchievedLeadsTarget');
@@ -372,8 +387,9 @@ class customersController extends Controller
 
         $random = Str::random(3);
         $image_path = $request->file('image')->store('image', 'public');
-        $emailData = $request->email !== null ? $request->email : $request->customer_name . $random . '@gmail.com';
-        $random = Str::random(20);
+       $customerNameWithoutSpaces = str_replace(' ', '', $request->customer_name);
+       $emailData = $request->email ?? $customerNameWithoutSpaces . Str::random(3) . '@gmail.com';
+       $random = Str::random(20);
         $route = Routes::where('id', $request->route_code)->first();
         $subregion = Subregion::where('id', $route->subregion_id)->first();
         $region = Region::where('id', $subregion->region_id)->first();
@@ -412,6 +428,18 @@ class customersController extends Controller
         $customer->unit_id = $request->route_code;
         $customer->image = $image_path;
         $customer->save();
+
+       if (($request->outlet!=null) && (($request->outlet ==='Distributor')|| ($request->outlet ==='Distributors'))) {
+          $primary = new suppliers;
+          $primary->email = $emailData;
+          $primary->name = $request->customer_name;
+          $primary->phone_number = $request->phone_number;
+          $primary->telephone = $request->telephone;
+          $primary->customer_id=$customer->id;
+          $primary->status = "Active";
+          $primary->business_code = Auth::user()->business_code;
+          $primary->save();
+       }
 
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)

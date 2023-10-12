@@ -3,8 +3,10 @@
 namespace App\Http\Livewire\Supplier;
 
 use App\Exports\SupplierExport;
+use App\Models\customers;
 use App\Models\suppliers\suppliers;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,6 +23,22 @@ class index extends Component
    protected $paginationTheme = 'bootstrap';
    public function render()
    {
+      $customers = customers::where('customer_group', 'Distributor')->get();
+
+      foreach ($customers as $customer) {
+         $existingSupplier = suppliers::where('customer_id', $customer->id)->where('name', $customer->customer_name)->first();
+         if (!$existingSupplier) {
+            $supplier = new suppliers();
+            $supplier->email = $customer->email;
+            $supplier->name = $customer->customer_name;
+            $supplier->phone_number = $customer->phone_number;
+            $supplier->telephone = $customer->telephone ?? $customer->phone_number;
+            $supplier->status = "Active";
+            $supplier->customer_id = $customer->id;
+            $supplier->business_code = $customer->created_by;
+            $supplier->save();
+         }
+      }
       return view('livewire.supplier.index', [
          'suppliers' => $this->data()
       ]);

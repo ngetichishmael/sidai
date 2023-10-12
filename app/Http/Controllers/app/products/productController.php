@@ -79,7 +79,7 @@ class productController extends Controller
       $product_code = Str::random(20);
       $product = new product_information;
       $product->product_name = $request->product_name;
-      $product->sku_code =  Str::random(20);
+      $product->sku_code =  $request->sku_code ?? Str::random(20);
       $product->url = Str::slug($request->product_name);
       $product->brand = $request->brandID;
       $product->supplierID = $request->supplierID;
@@ -135,7 +135,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating Product';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Add Product';
+      $activityLog->section = 'web';
       $activityLog->action = 'Product '.$product->product_name .'added in warehouse'.$code;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
@@ -235,7 +235,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Importing Products';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Imported Products';
+      $activityLog->section = 'web';
       $activityLog->action = 'Products '.$product->product_name .'added in warehouse'.$code;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
@@ -302,8 +302,6 @@ class productController extends Controller
       $product_information = product_information::whereId($id)->first();
       $product_price = product_price::where('productID', $id)->first();
       $product_inventory = product_inventory::where('productID', $id)->first();
-
-
       return view('app.products.edit', [
          'id' => $id,
          'brands' => $brands,
@@ -331,7 +329,6 @@ class productController extends Controller
 
       return view('app.products.restock', [
          'id' => $id,
-         'brands' => $brands,
          'categories' => $categories,
          'brands' => $brands,
          'suppliers' => $suppliers,
@@ -377,7 +374,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Price Updating';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Product update ';
+      $activityLog->section = 'web';
       $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
@@ -431,10 +428,10 @@ class productController extends Controller
       session()->flash('success', 'Product successfully restocked!');
       $random=Str::random(20);
       $activityLog = new activity_log();
-      $activityLog->activity = 'Product updating';
+      $activityLog->activity = 'Product restocked';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Product update ';
-      $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
+      $activityLog->section = 'web ';
+      $activityLog->action = 'Product '.$request->product_name .' restocked';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
       $activityLog->ip_address = $request->ip();
@@ -522,7 +519,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Product updating';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Product update ';
+      $activityLog->section = 'web';
       $activityLog->action = 'Product '.$request->product_name .' successfully updated ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
@@ -544,7 +541,7 @@ class productController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Stock Approval';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Stock Approved ';
+      $activityLog->section = 'web';
       $activityLog->action = 'Product '.$approveproduct->product_name .' Successfully Approved  ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;

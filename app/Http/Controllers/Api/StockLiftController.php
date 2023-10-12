@@ -100,7 +100,7 @@ class StockLiftController extends Controller
         `product_price`.`selling_price` as `price`,
         `product_price`.`selling_price` as `wholesale_price`,
         `product_price`.`buying_price` as `retail_price`,
-        `product_price`.`default_price` as `distributor_price`,
+        `product_price`.`distributor_price` as `distributor_price`,
         `product_inventory`.`current_stock` AS `current stock`
             FROM
                 `product_information`
