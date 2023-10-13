@@ -34,7 +34,7 @@ class Approval extends Component
    {
       $requisitions = StockRequisition::with('user')->withCount('RequisitionProducts', 'ApprovedRequisitionProducts')
          ->where('warehouse_code', $this->warehouse_code)
-         ->where('status' , '=','Waiting Approval')
+         ->whereIn('status' , ['Waiting Approval'])
        ->orderBy('id', 'DESC')->paginate($this->perPage);
       return view('livewire.productapproval.approval', compact('requisitions'));
    }

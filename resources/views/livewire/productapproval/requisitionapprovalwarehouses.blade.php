@@ -22,7 +22,7 @@
             <th>Name</th>
             <th>Region</th>
             <th>Requisitions Counts</th>
-            <th>Action | View</th>
+            <th width="50%">Action | View</th>
             </thead>
             <tbody>
             @foreach($warehouses as $count=>$warehouse)
@@ -34,6 +34,7 @@
                      <td>
                         <a href="{!! route('inventory.approval',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #52b3dc;color:white">Waiting Approvals</a>
                         <a href="{!! route('inventory.approved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #70b467;color:white">Approved</a>
+                        <a href="{!! route('inventory.unapproved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #fc7d50;color:white">Unapproved</a>
                      </td>
                   </tr>
             @endforeach

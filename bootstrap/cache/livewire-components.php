@@ -62,6 +62,7 @@
   'productapproval.approval' => 'App\\Http\\Livewire\\Productapproval\\Approval',
   'productapproval.approved' => 'App\\Http\\Livewire\\Productapproval\\Approved',
   'productapproval.requisitionapprovalwarehouses' => 'App\\Http\\Livewire\\Productapproval\\Requisitionapprovalwarehouses',
+  'productapproval.unapproved' => 'App\\Http\\Livewire\\Productapproval\\Unapproved',
   'productapproval.approve_item' => 'App\\Http\\Livewire\\Productapproval\\approve_item',
   'productapproval.approved_item' => 'App\\Http\\Livewire\\Productapproval\\approved_item',
   'products.products' => 'App\\Http\\Livewire\\Products\\Products',

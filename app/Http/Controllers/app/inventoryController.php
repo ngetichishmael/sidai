@@ -48,11 +48,15 @@ class inventoryController extends Controller
    {
       return view('app.inventory.approved',compact('warehouse_code'));
    }
+   public function unapproved($warehouse_code)
+   {
+      return view('app.inventory.unapproved',compact('warehouse_code'));
+   }
    public function warehouses()
    {
       return view('app.inventory.warehouses');
    }
-   
+
    public function approve($id){
       return view('app.inventory.approve_items', compact('id'));
    }

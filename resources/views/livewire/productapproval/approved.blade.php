@@ -15,6 +15,11 @@
                   </thead>
                   <tbody>
                   @foreach ($requisitions as $count => $requisition)
+                     @if(empty($requisition))
+                        <tr>
+                           <td class="col-span-5"> No Records found!...</td>
+                        </tr>
+                     @endif
                      <tr>
                         <td>{!! $count + 1 !!}</td>
                         <td>{{ $requisition->user->name ?? '' }}</td>
