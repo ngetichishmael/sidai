@@ -45,7 +45,7 @@
                             </tbody>
                           </table>
                           <button type="submit" class=" mt-1 pl-3 btn btn-primary" name="approve">Approve and Continue </button>
-{{--                          <button type="submit" class=" mt-1 pr-3 btn btn-danger" name="disapprove">Disapprove  and Continue</button>--}}
+                          <button type="submit" class=" mt-1 pr-3 btn btn-danger" name="disapprove">Disapprove  and Continue</button>
                        </form>
                     </div>
                 </div>
