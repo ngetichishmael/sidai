@@ -198,6 +198,8 @@ Route::middleware('web')->group(function () {
    Route::get('warehousing/products', ['uses' => 'app\products\productController@index', 'as' => 'product.index']);
    Route::get('warehousing/products/create', ['uses' => 'app\products\productController@create', 'as' => 'products.create']);
    Route::post('warehousing/products/store', ['uses' => 'app\products\productController@store', 'as' => 'products.store']);
+   Route::get('warehousing/products/add-common-products', ['uses' => 'app\products\productController@addCommonProducts', 'as' => 'products.add-common-products']);
+   Route::post('warehousing/products/StoreCommonProducts', ['uses' => 'app\products\productController@StoreCommonProducts', 'as' => 'products.StoreCommonProducts']);
    Route::post('warehousing/products/upload', ['uses' => 'app\products\productController@upload', 'as' => 'products.upload']);
    Route::get('warehousing/products/{id}/edit', ['uses' => 'app\products\productController@edit', 'as' => 'products.edit']);
    Route::get('warehousing/products/{id}/restock', ['uses' => 'app\products\productController@restock', 'as' => 'products.restock']);

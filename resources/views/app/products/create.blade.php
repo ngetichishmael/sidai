@@ -23,16 +23,22 @@
         <div class="container">
             <section class="bs-validation card">
                 <div class="row">
-                    <div class="col-md-6 col-12">
+                    <div class="col-md-12 col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Product Information</h4>
                             </div>
-                            <div class="card-body">
-                                <div class="mb-2 form-group">
+                            <div class="card-body row">
+                                <div class="mb-2 form-group col-md-6">
                                     <label class="form-label" for="basic-addon-name">Product Name</label>
                                     <input type="text" id="basic-addon-name" class="form-control"
                                         placeholder="Enter Product Name" aria-label="Name" name="product_name"
+                                        aria-describedby="basic-addon-name" required />
+                                </div>
+                                <div class="mb-2 form-group  col-md-6">
+                                    <label class="form-label" for="basic-addon-name">Product SKU Code</label>
+                                    <input type="text" id="basic-addon-name" class="form-control"
+                                        placeholder="Enter Product SKU Code" aria-label="sku_code" name="sku_code"
                                         aria-describedby="basic-addon-name" required />
                                 </div>
 {{--                               <div class="mb-2 form-group">--}}
@@ -53,7 +59,7 @@
 {{--                                     @endforeach--}}
 {{--                                  </select>--}}
 {{--                               </div>--}}
-                               <div class="mb-2 form-group">
+                               <div class="mb-2 form-group  col-md-6">
                                   <label for="select-country1">Product Catergory</label>
                                   <select name="category" id="category" class="form-control select2">
                                      <option value="">--Please choose the catergory--</option>

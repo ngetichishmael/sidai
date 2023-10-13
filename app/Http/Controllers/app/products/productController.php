@@ -17,6 +17,8 @@ use App\Models\RequisitionProduct;
 use App\Models\suppliers\supplier_address;
 use App\Models\suppliers\suppliers;
 use App\Models\tax;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -57,24 +59,66 @@ class productController extends Controller
 
       return view('app.products.create', compact('categories', 'suppliers', 'brands', 'code'));
    }
+   public function addCommonProducts()
+   {
+      $categories = category::all()->pluck('name', 'id');
+      $suppliers = suppliers::all()->pluck('name', 'id');
+      $brands = brand::all()->pluck('name', 'id');
+      $user=Auth::user();
+      $account='';
+      $code='';
+      if($user->account_type=='Shop-Attendee'){
+         $wh=warehouse_assign::where('manager','=',$user->user_code)->select('warehouse_code')->first();
+         $code=warehousing::where('warehouse_code',$wh->warehouse_code)->first();
+         $account='s-a';
+         if (empty($code)||$code==null){
+            return redirect()->back()->withErrors("You have not been assigned a warehouse yet!!!");
+         }
+      }
+      if ($user->account_type=='RSM'){
+         $account='rsm';
+         $code=[];
+         $whs=warehousing::where('region_id','=',$user->region_id)->where('status', '=', 'Active')->select('warehouse_code', 'name')->get();
+         foreach ($whs as $wh){
+            $code[]= $wh;
+         }
+      }
+      if ($user->account_type=='NSM' || $user->account_type=='Admin'){
+         $whs=warehousing::where('status', '=', 'Active')->select('warehouse_code', 'name')->get();
+         $account='nsm-admin';
+         $code=[];
+         foreach ($whs as $wh){
+            $code[]= $wh;
+         }
+      }
+
+      return view('app.products.createCommonProducts', compact('account','categories', 'suppliers', 'brands', 'code'));
+   }
 
    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
-    * @return \Illuminate\Http\Response
+    * @return \Illuminate\Http\RedirectResponse
     */
    public function store(Request $request)
    {
       //Rule::unique('product_information', 'product_name')->ignore($request->id),'string',
       $this->validate($request, [
          'product_name' =>'required',
+         'sku_code' => 'required|unique:product_information',
          'buying_price' => 'required',
          'selling_price' => 'required',
          'distributor_price' => 'required',
          'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
       ]);
       $code= session('warehouse_code');
+      $product = product_information::whereRaw('LOWER(product_name) = ?', [strtolower($request->product_name)])
+         ->where('warehouse_code', '=', $code)
+         ->first();
+      if (!empty($product) || $product!=null){
+         return redirect()->back()->withErrors("Product details already exist in the warehouse/store");
+      }
       $image_path = $request->file('image')->store('image', 'public');
       $product_code = Str::random(20);
       $product = new product_information;
@@ -144,6 +188,187 @@ class productController extends Controller
 
 //      return redirect()->route('product.index');
       return redirect('/warehousing/'.$code.'/products');
+
+
+   }
+   public function StoreCommonProducts(Request $request)
+   {
+     // dd($request->all());
+      //Rule::unique('product_information', 'product_name')->ignore($request->id),'string',
+      if ($request->is_diffPrice==0) {
+         $this->validate($request, [
+            'product_name' => 'required',
+            'sku_code' => 'required|unique:product_information',
+            'buying_price' => 'required',
+            'selling_price' => 'required',
+            'distributor_price' => 'required',
+            'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
+         ]);
+      }else{
+         $this->validate($request, [
+            'product_name' => 'required',
+            'sku_code' => 'required|unique:product_information',
+            'diff_buying_price' => 'required',
+            'diff_selling_price' => 'required',
+            'diff_distributor_price' => 'required',
+            'image' => 'required|mimes:png,jpg,bmp,gif,jpeg|max:5048',
+         ]);
+      }
+      if (Auth::user()->account_type ==='Shop-Attendee') {
+         $product = product_information::whereRaw('LOWER(product_name) = ?', [strtolower($request->product_name)])
+            ->where('warehouse_code', '=', $request->warehouse_code1)
+            ->first();
+         if (!empty($product) || $product != null) {
+            return redirect()->back()->withErrors("Product details already exist in the warehouse/store");
+         }
+         $image_path = $request->file('image')->store('image', 'public');
+         $product_code = Str::random(20);
+         $product = new product_information;
+         $product->product_name = $request->product_name;
+         $product->sku_code = $request->sku_code ?? Str::random(20);
+         $product->url = Str::slug($request->product_name);
+         $product->brand = $request->brandID;
+         $product->supplierID = $request->supplierID;
+         $product->category = $request->category;
+         $product->warehouse_code = $request->warehouse_code1;
+         $product->image = $image_path;
+         $product->active = $request->status;
+         $product->track_inventory = 'Yes';
+         $product->business_code = Auth::user()->business_code;
+         $product->created_by = Auth::user()->user_code;
+         $product->save();
+
+         product_price::updateOrCreate(
+            [
+               'productID' => $product->id,
+            ],
+            [
+               'product_code' => $product_code,
+               'buying_price' => $request->buying_price,
+               'selling_price' => $request->selling_price,
+               'distributor_price' => $request->distributor_price,
+               'offer_price' => $request->buying_price,
+               'setup_fee' => $request->selling_price,
+               'taxID' => "1",
+               'tax_rate' => "0",
+               'default_price' => $request->selling_price,
+               'business_code' => Auth::user()->business_code,
+               'created_by' => Auth::user()->user_code,
+            ]
+         );
+
+         product_inventory::updateOrCreate(
+            [
+
+               'productID' => $product->id,
+            ],
+            [
+               'product_code' => $product_code,
+               'current_stock' => 0,
+               'reorder_point' => 0,
+               'reorder_qty' => 0,
+               'expiration_date' => "None",
+               'default_inventory' => "None",
+               'notification' => 0,
+               'created_by' => Auth::user()->user_code,
+               'updated_by' => Auth::user()->user_code,
+               'business_code' => Auth::user()->business_code,
+            ]
+
+         );
+      }else{
+         foreach ($request->warehouse_codes as $key => $warehouse_code) {
+            $product = product_information::whereRaw('LOWER(product_name) = ?', [strtolower($request->product_name)])
+               ->where('warehouse_code', '=', $warehouse_code)
+               ->first();
+            if (!empty($product) || $product != null) {
+               return redirect()->back()->withErrors("Product details already exist in the warehouse/store");
+            }
+            $image_path = $request->file('image')->store('image', 'public');
+            $product_code = Str::random(20);
+            $product = new product_information;
+            $product->product_name = $request->product_name;
+            $product->sku_code = $request->sku_code ?? Str::random(20);
+            $product->url = Str::slug($request->product_name);
+            $product->brand = $request->brandID;
+            $product->supplierID = $request->supplierID;
+            $product->category = $request->category;
+            $product->warehouse_code = $warehouse_code;
+            $product->image = $image_path;
+            $product->active = $request->status;
+            $product->track_inventory = 'Yes';
+            $product->business_code = Auth::user()->business_code;
+            $product->created_by = Auth::user()->user_code;
+            $product->save();
+
+            $priceFields = [
+               'buying_price' => $request->buying_price,
+               'selling_price' => $request->selling_price,
+               'distributor_price' => $request->distributor_price,
+            ];
+
+            if ($request->is_diffPrice == 1) {
+               $priceFields = [
+                  'buying_price' => $request->diff_buying_price[$key],
+                  'selling_price' => $request->diff_selling_price[$key],
+                  'distributor_price' => $request->diff_distributor_price[$key],
+               ];
+            }
+
+            product_price::updateOrCreate(
+               [
+                  'productID' => $product->id,
+               ],
+               [
+                  'product_code' => $product_code,
+                  'buying_price' => $priceFields['buying_price'],
+                  'selling_price' => $priceFields['selling_price'],
+                  'distributor_price' => $priceFields['distributor_price'],
+                  'offer_price' => $priceFields['buying_price'],
+                  'setup_fee' => $priceFields['selling_price'],
+                  'taxID' => "1",
+                  'tax_rate' => "0",
+                  'default_price' => $priceFields['selling_price'],
+                  'business_code' => Auth::user()->business_code,
+                  'created_by' => Auth::user()->user_code,
+               ]
+            );
+
+            product_inventory::updateOrCreate(
+               [
+
+                  'productID' => $product->id,
+               ],
+               [
+                  'product_code' => $product_code,
+                  'current_stock' => 0,
+                  'reorder_point' => 0,
+                  'reorder_qty' => 0,
+                  'expiration_date' => "None",
+                  'default_inventory' => "None",
+                  'notification' => 0,
+                  'created_by' => Auth::user()->user_code,
+                  'updated_by' => Auth::user()->user_code,
+                  'business_code' => Auth::user()->business_code,
+               ]
+
+            );
+         }
+      }
+      session()->flash('success', 'Product successfully added.');
+         $random=rand(0,9999);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Creating Product';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'web';
+      $activityLog->action = 'Product '.$product->product_name .'added in warehouse'.$request->warehouse_code1 ?? '';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $random;
+      $activityLog->ip_address ="";
+      $activityLog->save();
+
+//      return redirect()->route('product.index');
+      return redirect('/warehousing/');
 
 
    }
