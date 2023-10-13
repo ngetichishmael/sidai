@@ -1,5 +1,6 @@
+<div class="row">
 <div class="col-md-3">
-   <label for="">Search by name, route, region</label>
+   <label for="">Search by distributor name, route, region</label>
    <input type="text" wire:model="search" class="form-control"
           placeholder="Enter customer name, email address or phone number">
 </div>
@@ -11,6 +12,7 @@
       <option value="50">50</option>
       <option value="100">100</option>
    </select>
+</div>
 </div>
 <div class="card card-default">
     <div class="card-body">
