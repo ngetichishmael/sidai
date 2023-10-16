@@ -43,7 +43,7 @@ class Handler extends ExceptionHandler
 
       // Handle AuthenticationException (if needed)
       if ($exception instanceof AuthenticationException) {
-//         dd($exception);
+//
          return redirect()->route('login')->WithErrors(['message' => 'Authentication failed. Please log in again.']);
       }
       return parent::render($request, $exception);

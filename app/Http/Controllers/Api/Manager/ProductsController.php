@@ -191,14 +191,14 @@ class ProductsController extends Controller
     {
         //
     }
-   public function details($id)
+   public function details($sku_code)
    {
       $warehouse=warehouse_assign::where('manager','=', Auth::user()->user_code)->first();
       if (!empty($warehouse)){
       $details = product_information::
          join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
-         ->where('product_information.id', $id)
+         ->where('product_information.sku_code', $sku_code)
          ->where('product_information.warehouse_code', $warehouse->warehouse_code)
          ->select('*', 'product_information.id as proID', 'product_information.created_by as creator')
          ->first();
@@ -214,11 +214,13 @@ class ProductsController extends Controller
             "message" => "You are not assigned a warehouse store yet!!!",
          ], 404);
    }
-   public function restock(Request $request, $id)
+   public function restock(Request $request, $sku_code)
    {
+      $skuCodes = $request->input('sku_codes');
+      $quantities = $request->input('quantities');
       $warehouse=warehouse_assign::where('manager','=', Auth::user()->user_code)->first();
       if (!empty($warehouse)){
-      $information = product_information::whereId($id)->first();
+      $information = product_information::where('sku_code',$skuCodes)->where('warehouse_code', $warehouse->warehouse_code)->first();
       $this->validate($request, [
          'sku_codes' => 'required',
          'quantities' => 'required',
@@ -226,7 +228,7 @@ class ProductsController extends Controller
       $skuCodes = $request->input('sku_codes');
       $quantities = $request->input('quantities');
 //      foreach ($skuCodes as $key => $skuCode) {
-         $productInventory = product_inventory::where('productID', $id)->first();
+         $productInventory = product_inventory::where('productID', $information->id)->first();
          if ($productInventory) {
             $restockQuantity = $quantities;
             $productInventory->current_stock += $restockQuantity;

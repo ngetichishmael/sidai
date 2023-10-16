@@ -106,8 +106,8 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/all/products', [ProductsController::class,'index']);
       Route::get('managers/products/categories', [ProductsController::class,'categories']);
       Route::post('managers/products/store', [ProductsController::class, 'store']);
-      Route::get('managers/products/{id}/edit', [ProductsController::class, 'edit']);
-      Route::post('managers/products/{id}/restock', [ProductsController::class, 'restock']);
-      Route::get('managers/products/{id}/details', [ProductsController::class, 'details']);
+      Route::get('managers/products/{sku}/edit', [ProductsController::class, 'edit']);
+      Route::post('managers/products/{sku}/restock', [ProductsController::class, 'restock']);
+      Route::get('managers/products/{sku}/details', [ProductsController::class, 'details']);
    });
 });
