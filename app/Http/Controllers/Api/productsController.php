@@ -89,6 +89,8 @@ class productsController extends Controller
             'warehouse_code'
          ) ->groupBy('product_information.product_name')
          ->get();
+         info("products");
+         info($products);
       return response()->json([
          "success" => true,
          "message" => "All Product List",
