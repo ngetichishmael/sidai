@@ -87,7 +87,7 @@ class productsController extends Controller
             'brand',
             'category',
             'warehouse_code'
-         ) ->groupBy('product_information.product_name', 'product_information.sku_code')
+         ) ->groupBy('product_information.product_name')
          ->get();
       return response()->json([
          "success" => true,
