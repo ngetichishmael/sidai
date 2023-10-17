@@ -25,8 +25,10 @@ class productsController extends Controller
    {
       $route_code = $request->user()->route_code;
       $region_id = $request->user()->region_id;
+      $warehouse=warehousing::where('region_id', $region_id)->get();
       $region = Region::whereId($region_id)->first();
-   $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+   $products = product_information::whereIn('warehouse_code', $warehouse->warehouse_code)
+       ->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
       ->join('product_price', 'product_price.productID', '=', 'product_information.id')
       ->select(
          'product_price.branch_id as region',
@@ -43,7 +45,9 @@ class productsController extends Controller
          'brand',
          'category',
          'warehouse_code'
-      )->distinct('product_information.product_name')
+      )
+//      ->distinct('product_information.product_name')
+      ->groupBy('product_information.product_name')
       ->get();
 //}
       return response()->json([
