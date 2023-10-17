@@ -65,6 +65,8 @@ class productsController extends Controller
          $query->where('id', $route_code)
             ->orWhere('id', $region_id);
       })->first();
+      info("region");
+      info($region);
       if ($region){
          $warehouses = warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
          info("region");
@@ -110,12 +112,12 @@ class productsController extends Controller
          'brand',
          'category',
          'warehouse_code'
-      )
+      ) ->groupBy('product_information.product_name', 'product_information.sku_code')
       ->get();
 }
       return response()->json([
          "success" => true,
-         "message" => "All Regional Warehouses Product List",
+         "message" => "All Product List",
          "data" => $products,
       ]);
    }
