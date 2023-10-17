@@ -65,9 +65,6 @@ class productsController extends Controller
          $query->where('id', $route_code)
             ->orWhere('id', $region_id);
       })->first();
-      info("region");
-      info($region);
-      if ($region){
          $warehouses = warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
          info("region");
          info($region);
@@ -93,28 +90,6 @@ class productsController extends Controller
          ) ->groupBy('product_information.product_name', 'product_information.sku_code')
          ->get();
    }
-   else
-{
-   $products = product_information::join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
-      ->join('product_price', 'product_price.productID', '=', 'product_information.id')
-      ->select(
-         'product_price.branch_id as region',
-         'product_information.id as productID',
-         'product_information.created_at as date',
-         'product_price.buying_price as wholesale_price',
-         'product_price.selling_price as retail_price',
-         'product_price.distributor_price as distributor_price',
-         'product_information.product_name as product_name',
-         'product_inventory.current_stock as stock',
-         'product_information.created_at as date',
-         'product_information.business_code as business_code',
-         'sku_code',
-         'brand',
-         'category',
-         'warehouse_code'
-      ) ->groupBy('product_information.product_name', 'product_information.sku_code')
-      ->get();
-}
       return response()->json([
          "success" => true,
          "message" => "All Product List",
