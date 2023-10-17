@@ -70,7 +70,8 @@ class productsController extends Controller
          info($region);
          info("warehouse");
          info($warehouses);
-         $products = product_information::whereIn('warehouse_code', [$warehouses])->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $warehouseCodes = $warehouses->pluck('warehouse_code')->toArray();
+      $products = product_information::whereIn('warehouse_code', $warehouseCodes)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',
