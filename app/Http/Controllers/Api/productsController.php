@@ -66,12 +66,9 @@ class productsController extends Controller
             ->orWhere('id', $region_id);
       })->first();
          $warehouses = warehousing::where('region_id', $region->id)->select('warehouse_code')->distinct('warehouse_code')->get();
-         info("region");
-         info($region);
-         info("warehouse");
-         info($warehouses);
       $warehouseCodes = $warehouses->pluck('warehouse_code')->toArray();
-      $products = product_information::whereIn('warehouse_code', $warehouseCodes)->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
+      $products = product_information::whereIn('warehouse_code', $warehouseCodes)
+         ->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
          ->join('product_price', 'product_price.productID', '=', 'product_information.id')
          ->select(
             'product_price.branch_id as region',
@@ -88,10 +85,9 @@ class productsController extends Controller
             'brand',
             'category',
             'warehouse_code'
-         ) ->groupBy('product_information.product_name')
+         )
+         ->groupBy('product_information.product_name')
          ->get();
-         info("products");
-         info($products);
       return response()->json([
          "success" => true,
          "message" => "All Product List",
