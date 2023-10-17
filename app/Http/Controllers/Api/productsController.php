@@ -27,7 +27,7 @@ class productsController extends Controller
       $region_id = $request->user()->region_id;
       $warehouse=warehousing::where('region_id', $region_id)->get();
       $region = Region::whereId($region_id)->first();
-   $products = product_information::whereIn('warehouse_code', $warehouse->warehouse_code)
+   $products = product_information::whereIn('warehouse_code', [$warehouse->warehouse_code])
        ->join('product_inventory', 'product_inventory.productID', '=', 'product_information.id')
       ->join('product_price', 'product_price.productID', '=', 'product_information.id')
       ->select(
