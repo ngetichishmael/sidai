@@ -11,6 +11,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use PDF;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Dashboard extends Component
@@ -25,6 +26,8 @@ class Dashboard extends Component
     public $orderAsc = false;
 
     public $user;
+   public $start = null;
+   public $end = null;
 
     public function __construct()
     {
@@ -115,10 +118,29 @@ class Dashboard extends Component
         $user = User::where('user_code', $user_code)->pluck('name')->implode('');
         return $user;
     }
-    public function export()
-    {
-        return Excel::download(new CustomersExport, 'customers.xlsx');
-    }
+   public function export()
+   {
+      return Excel::download(new CustomersExport(), 'customers.xlsx');
+   }
+
+   public function exportCSV()
+   {
+      return Excel::download(new CustomersExport(), 'customers.csv');
+   }
+
+   public function exportPDF()
+   {
+      $data = [
+         'contacts' => $this->getCustomer(),
+      ];
+
+      $pdf = PDF::loadView('Exports.customer_pdf', $data);
+
+      // Add the following response headers
+      return response()->streamDownload(function () use ($pdf) {
+         echo $pdf->output();
+      }, 'customers.pdf');
+   }
     public function deactivate($id)
     {
         customers::whereId($id)->update(

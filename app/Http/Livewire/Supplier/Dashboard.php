@@ -18,22 +18,22 @@ class Dashboard extends Component
    public ?string $search = null;
    public function render()
    {
-      $customers = customers::where('customer_group', 'Distributor')->get();
-
-      foreach ($customers as $customer) {
-         $existingSupplier = suppliers::where('customer_id', $customer->id)->where('name', $customer->customer_name)->first();
-         if (!$existingSupplier) {
-            $supplier = new suppliers();
-            $supplier->email = $customer->email;
-            $supplier->name = $customer->customer_name;
-            $supplier->phone_number = $customer->phone_number;
-            $supplier->telephone = $customer->telephone ?? $customer->phone_number;
-            $supplier->status = "Active";
-            $supplier->customer_id = $customer->id;
-            $supplier->business_code = $customer->created_by;
-            $supplier->save();
-         }
-      }
+//      $customers = customers::where('customer_group', 'Distributor')->get();
+//
+//      foreach ($customers as $customer) {
+//         $existingSupplier = suppliers::where('customer_id', $customer->id)->where('name', $customer->customer_name)->first();
+//         if (!$existingSupplier) {
+//            $supplier = new suppliers();
+//            $supplier->email = $customer->email;
+//            $supplier->name = $customer->customer_name;
+//            $supplier->phone_number = $customer->phone_number;
+//            $supplier->telephone = $customer->telephone ?? $customer->phone_number;
+//            $supplier->status = "Active";
+//            $supplier->customer_id = $customer->id;
+//            $supplier->business_code = $customer->created_by;
+//            $supplier->save();
+//         }
+//      }
       $searchTerm = '%' . $this->search . '%';
       $suppliers = suppliers::where('status', 'Active')
          ->OrderBy('suppliers.id', 'DESC')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\app\supplier;
 use App\Http\Controllers\Controller;
 use App\Models\activity_log;
 use App\Models\country;
+use App\Models\customer\customers;
 use App\Models\suppliers\category;
 use App\Models\suppliers\suppliers;
 use Illuminate\Http\Request;
@@ -95,6 +96,16 @@ class supplierController extends Controller
       $edit->telephone = $request->telephone ?? $edit->telephone;
       $edit->status = $request->status ?? $edit->status ;
       $edit->save();
+      $customer = customers::find($edit->customer_id);
+
+      if ($customer) {
+         $customer->update([
+            'customer_name' => $request->name,
+            'telephone' => $request->telephone,
+            'email' => $request->email,
+            'phone_number' => $request->phone_number,
+         ]);
+      }
 
       $random = Str::random(20);
       $activityLog = new activity_log();

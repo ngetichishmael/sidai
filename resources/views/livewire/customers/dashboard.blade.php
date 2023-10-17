@@ -24,16 +24,34 @@
             <input type="text" wire:model="search" class="form-control"
                 placeholder="Enter customer name, email address or phone number">
         </div>
-        <div class="col-md-3">
-            <label for="">Items Per page</label>
-            <select wire:model="perPage" class="form-control">`
+       <div class="col-md-3">
+             <label for="">Items Per page</label>
+             <select wire:model="perPage" class="form-control">`
                 <option value="10" selected>10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
-            </select>
-        </div>
-    </div>
+                <option value="250">250</option>
+                <option value="500">500</option>
+             </select>
+          </div>
+       <div class="col-md-3">
+          <label for="">Export:</label>
+          <div class="btn-group">
+             <button type="button" class="btn btn-icon btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" wire:loading.attr="disabled" >
+                <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="15">
+                Export
+             </button>
+             <div class="dropdown-menu dropdown-menu-left">
+                <a class="dropdown-item" wire:click="export" id="exportExcelBtn">Excel</a>
+                <a class="dropdown-item"  wire:click="exportCSV" id="exportPdfBtn"> CSV</a>
+                <a class="dropdown-item" wire:click="exportPDF" id="exportCsvBtn">PDF</a>
+             </div>
+          </div>
+       </div>
+       </div>
+
+
     <div class="card card-default">
         <div class="card-body">
             <div class="card-datatable table-responsive">
@@ -63,7 +81,7 @@
                             <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
                             {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
                             <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
-                            
+
                             <td>
                                 {!! $this->Creator($contact->id) ?? '' !!}
                             </td>
@@ -84,7 +102,7 @@
                                             <i data-feather='edit' class="mr-50"></i>
                                             <span>Edit</span>
                                         </a>
-                                        
+
                                             <a class="dropdown-item"
                                             href="{{ route('creditor.details', $contact->id) }}">
                                             <i data-feather='eye' class="mr-50"></i>

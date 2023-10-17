@@ -178,8 +178,6 @@ class customerController extends Controller
       $user->business_code = Auth::user()->business_code;
       $user->password = Hash::make("password");
       $user->save();
-
-
       $customer = new customers;
       $customer->customer_name = $request->customer_name;
       $customer->user_code = $user->user_code;
@@ -333,8 +331,6 @@ class customerController extends Controller
          'route' => $request->input('territory'),
          'route_code' => $request->input('territory'),
          'region_id' => $request->input('zone'),
-         'customer_type' => 'normal',
-         'approval' => 'approved',
          'subregion_id' => $request->input('region'),
          'zone_id' => $request->input('region'),
          'branch' => $request->input('branch', ''),
