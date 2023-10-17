@@ -56,7 +56,7 @@ Route::group(['namespace' => 'Api'], function () {
     Route::get('customers/{customerID}/new-order/', 'customersController@new_order')->middleware('auth:sanctum');
 
     //products
-    Route::get('products/{businessCode}', 'productsController@index')->middleware('auth:sanctum');
+    Route::get('products/{businessCode}', 'productsController@index3')->middleware('auth:sanctum');
     Route::get('products/warehouse/{warehouseCode}', 'productsController@index2')->middleware('auth:sanctum');
     Route::get('products/regional', 'productsController@index3')->middleware('auth:sanctum');
     //product categories
