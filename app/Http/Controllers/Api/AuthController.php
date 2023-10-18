@@ -46,7 +46,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
-        $user = User::where(function ($query) use ($request) {
+        $user = User::with('region')->where(function ($query) use ($request) {
             $query->where('email', $request->email)
                 ->orWhere('phone_number', $request->email);
         })
