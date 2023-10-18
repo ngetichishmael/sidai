@@ -16,15 +16,16 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Dashboard extends Component
 {
-    use WithPagination;
-    public $group = null;
-    protected $paginationTheme = 'bootstrap';
-    public $perPage = 25;
+
+
+   use WithPagination;
+   protected $paginationTheme = 'bootstrap';
+   public $perPage = 25;
     public $search = null;
     public $regional = null;
     public $orderBy = 'customers.id';
     public $orderAsc = false;
-
+   public $group = null;
     public $user;
    public $start = null;
    public $end = null;
@@ -50,18 +51,19 @@ class Dashboard extends Component
         }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
-        $aggregate = customers::select(
-            'customers.customer_name as customer_name',
-            'customers.phone_number as customer_number',
-            'regions.name as region_name',
-            'subregions.name as subregion_name',
-            'areas.name as area_name',
-            'customers.customer_type as customer_type',
-            'customers.id as id',
-            'customers.route_code as route',
-            'customers.created_at as created_at'
-        )
-            ->join('areas', 'customers.route_code', '=', 'areas.id')
+        $aggregate = customers::
+//        select(
+//            'customers.customer_name as customer_name',
+//            'customers.phone_number as customer_number',
+//            'regions.name as region_name',
+//            'subregions.name as subregion_name',
+//            'areas.name as area_name',
+//            'customers.customer_type as customer_type',
+//            'customers.id as id',
+//            'customers.route_code as route',
+//            'customers.created_at as created_at'
+//        )
+            join('areas', 'customers.route_code', '=', 'areas.id')
             ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
             ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
             ->where('regions.name', 'like', $regionTerm)
@@ -69,25 +71,14 @@ class Dashboard extends Component
                 $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
                     ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
             })
-            ->where('customer_type', 'normal')
-            ->where('approval', 'approved');
+            ->where('customer_type','like', 'normal')
+            ->where('approval','LIKE','Approved');
         if ($this->user->account_type === "RSM") {
             $aggregate->whereIn('regions.id', $this->filter());
         }
-        $aggregate = $aggregate->orderBy('customers.id', 'DESC')->paginate($this->perPage);
 
-        // Convert the result to a LengthAwarePaginator instance
-        $paginator = new LengthAwarePaginator(
-            $aggregate->items(),
-            $aggregate->total(),
-            $aggregate->perPage(),
-            $aggregate->currentPage(),
-            ['path' => request()->url()]
-        );
-
-        return $paginator;
+       return $aggregate->paginate($this->perPage);
     }
-
     public function filter(): array
     {
 
@@ -127,13 +118,11 @@ class Dashboard extends Component
    {
       return Excel::download(new CustomersExport(), 'customers.csv');
    }
-
    public function exportPDF()
    {
       $data = [
-         'contacts' => $this->getCustomer(),
+         'contacts' => $this->customers(),
       ];
-
       $pdf = PDF::loadView('Exports.customer_pdf', $data);
 
       // Add the following response headers

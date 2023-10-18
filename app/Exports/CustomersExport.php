@@ -24,12 +24,12 @@ class CustomersExport implements FromView, WithMapping
       ];
    }
 
-   protected $timeInterval;
-
-   public function __construct($timeInterval = null)
-   {
-      $this->timeInterval = $timeInterval;
-   }
+//   protected $timeInterval;
+//
+//   public function __construct($timeInterval = null)
+//   {
+//      $this->timeInterval = $timeInterval;
+//   }
 
    public function view(): View
    {

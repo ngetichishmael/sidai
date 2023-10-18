@@ -285,7 +285,8 @@ class CheckingSaleOrderController extends Controller
       $user_code = $request->user()->user_code;
       $request1 = $request->collect();
       $total = 0;
-//      info($request1);
+      info("request response received");
+      info($request1);
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
 //         $price_total = $value["qty"] * $value["price"];
@@ -293,12 +294,15 @@ class CheckingSaleOrderController extends Controller
 //         $price = $value["price"] ?? 0;
 //         $price_total = $qty * $price;
          $price_total=0;
+
          if (isset($value["qty"]) && isset($value["price"])) {
+            info("inside if");
          $price_total = $value["qty"] * $value["price"];
       }else{
             $qty = $value["qty"] ?? 0;
          $price = $value["price"] ?? 0;
          $price_total = $qty * $price;
+
          }
          $total += $price_total;
          $product = product_information::whereId($value["productID"])->first();

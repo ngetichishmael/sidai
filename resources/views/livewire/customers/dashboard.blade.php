@@ -40,43 +40,20 @@
 {{--          <div class="btn-group">--}}
 {{--             <button type="button" class="btn btn-icon btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" wire:loading.attr="disabled" >--}}
 
-{{--          <div class="dropdown">--}}
-{{--             <button style="background-color: #B6121B;color:white"--}}
-{{--                     class="mr-2 btn btn-md dropdown-toggle" type="button" id="dropdownMenuButton"--}}
-{{--                     data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"--}}
-{{--                     data-bs-toggle="dropdown" data-bs-auto-close="outside">--}}
-{{--                <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="15">--}}
-{{--                Export--}}
-{{--             </button>--}}
-{{--             <div class="dropdown-menu dropdown-menu-left">--}}
-{{--                <a class="dropdown-item" wire:click="export" id="exportExcelBtn">Excel</a>--}}
-{{--                <a class="dropdown-item"  wire:click="exportCSV" id="exportPdfBtn"> CSV</a>--}}
-{{--                <a class="dropdown-item" wire:click="exportPDF" id="exportCsvBtn">PDF</a>--}}
-{{--             </div>--}}
-{{--          </div>--}}
           <div class="dropdown">
-             <button
-                style="background-color: #B6121B;color:white"
-                class="mr-2 btn btn-md dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-trigger="click"
-                aria-haspopup="true"
-                aria-expanded="false"
-                data-bs-toggle="dropdown"
-                data-bs-auto-close="outside"
-                id="exportButton"  <!-- Added an ID to the button for easier access -->
-             >
-             <i id="exportIcon" class="fa fa-file-export"></i>
-             Export
+             <button style="background-color: #B6121B;color:white"
+                     class="mr-2 btn btn-md dropdown-toggle" type="button" id="dropdownMenuButton"
+                     data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"
+                     data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="15">
+                Export
              </button>
              <div class="dropdown-menu dropdown-menu-left">
                 <a class="dropdown-item" wire:click="export" id="exportExcelBtn">Excel</a>
-                <a class="dropdown-item" wire:click="exportCSV" id="exportPdfBtn">CSV</a>
+                <a class="dropdown-item"  wire:click="exportCSV" id="exportPdfBtn"> CSV</a>
                 <a class="dropdown-item" wire:click="exportPDF" id="exportCsvBtn">PDF</a>
              </div>
           </div>
-
        </div>
        </div>
     <div class="card card-default">
@@ -100,17 +77,27 @@
                             <td>
                                 {!! $contact->customer_name !!}
                             </td>
-                            <td>{!! $contact->customer_number !!}</td>
+                            <td>{!! $contact->phone_number !!}</td>
 
                             <td class="cell-fit">
-                                {!! $contact->region_name ?? ($contact->Region->name ?? '') !!}
+                                {!! $contact->regions->name ?? ($contact->Region->name ?? '') !!}
                             </td>
-                            <td class="cell-fit">{!! $contact->subregion_name ?? '' !!}</td>
+                            <td>
+                               @if ($contact->Area && $contact->Area->Subregion && $contact->Area->Subregion->Region)
+                                  {!! $contact->Area->Subregion->Region->name !!}
+                                  @if ($contact->Area->Subregion->name)
+                                     , <br><i>{!! $contact->Area->Subregion->name !!}</i>
+                                  @endif
+                               @endif
+                            </td>
+                            <td>
+                               {!! $contact->Area->name ?? '' !!}
+                            </td>
                             {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
-                            <td class="cell-fit">{!! $contact->area_name ?? '' !!}</td>
+{{--                            <td class="cell-fit">{!! $contact->areas->name ?? '' !!}</td>--}}
 
                             <td>
-                                {!! $this->Creator($contact->id) ?? '' !!}
+                               {!! $contact->Creator->name ?? '' !!}
                             </td>
                             <td>
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
