@@ -285,10 +285,11 @@ class CheckingSaleOrderController extends Controller
       $user_code = $request->user()->user_code;
       $request1 = $request->collect();
       $total = 0;
-      info("request response received");
-      info($request1);
+
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
+         info('value of request respnse .....');
+         info($value);
 //         $price_total = $value["qty"] * $value["price"];
 //         $qty = $value["qty"] ?? 0;
 //         $price = $value["price"] ?? 0;
