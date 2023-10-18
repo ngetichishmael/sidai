@@ -289,16 +289,18 @@ class CheckingSaleOrderController extends Controller
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
          info('value of request respnse .....');
+         if (isset($value)){
+$price_total=0;
+
+         if (isset($value["qty"]) && isset($value["price"])) {
+         $price_total = $value["qty"] * $value["price"];
+         }
          info($value);
 //         $price_total = $value["qty"] * $value["price"];
 //         $qty = $value["qty"] ?? 0;
 //         $price = $value["price"] ?? 0;
 //         $price_total = $qty * $price;
-         $price_total=0;
-
-         if (isset($value["qty"]) && isset($value["price"])) {
-            info("inside if");
-         $price_total = $value["qty"] * $value["price"];
+         
       }else{
             $qty = $value["qty"] ?? 0;
          $price = $value["price"] ?? 0;
@@ -306,7 +308,9 @@ class CheckingSaleOrderController extends Controller
 
          }
          $total += $price_total;
-         $product = product_information::whereId($value["productID"])->first();
+         if (isset($product['productID'])){
+         $product = product_information::whereId($value["productID"])->firstorFail();
+         info($product);
 //			info($product);
 	 Cart::updateOrCreate(
             [
@@ -362,6 +366,8 @@ class CheckingSaleOrderController extends Controller
          DB::table('orders_targets')
             ->where('user_code', $user_code)
             ->increment('AchievedOrdersTarget', $value["qty"]);
+
+      }
       }
       if ($distributor != 1 && $distributor != null) {
 //            $usersToNotify = Suppliers::findOrFail($distributor);
