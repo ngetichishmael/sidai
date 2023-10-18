@@ -289,10 +289,17 @@ class CheckingSaleOrderController extends Controller
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
 //         $price_total = $value["qty"] * $value["price"];
-         $qty = $value["qty"] ?? 0;
+//         $qty = $value["qty"] ?? 0;
+//         $price = $value["price"] ?? 0;
+//         $price_total = $qty * $price;
+         $price_total=0;
+         if (isset($value["qty"]) && isset($value["price"])) {
+         $price_total = $value["qty"] * $value["price"];
+      }else{
+            $qty = $value["qty"] ?? 0;
          $price = $value["price"] ?? 0;
          $price_total = $qty * $price;
-
+         }
          $total += $price_total;
          $product = product_information::whereId($value["productID"])->first();
 //			info($product);
