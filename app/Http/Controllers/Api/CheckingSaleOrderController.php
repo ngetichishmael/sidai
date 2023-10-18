@@ -390,6 +390,8 @@ $price_total=0;
          Notification::send($usersToNotify, new NewOrderNotification($order, $distributor, $sales, $sales_number));
          // SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid, $sales, $sales_number);
       }
+      info("order code");
+      info($order_code);
       $ativity_rand = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to order';
