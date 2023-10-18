@@ -289,6 +289,9 @@ class CheckingSaleOrderController extends Controller
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
          info('value of request respnse .....');
+         if (empty($value)) {
+            continue;
+         }
          if (isset($value)){
 $price_total=0;
 
@@ -300,7 +303,7 @@ $price_total=0;
 //         $qty = $value["qty"] ?? 0;
 //         $price = $value["price"] ?? 0;
 //         $price_total = $qty * $price;
-         
+
       }else{
             $qty = $value["qty"] ?? 0;
          $price = $value["price"] ?? 0;
