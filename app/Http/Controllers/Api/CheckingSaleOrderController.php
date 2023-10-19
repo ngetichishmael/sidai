@@ -299,7 +299,7 @@ class CheckingSaleOrderController extends Controller
          info("before inside product");
          info($value["productID"]);
          if (isset($product['productID'])){
-         $product = product_information::whereId($value["productID"])->firstorFail();
+         $product = product_information::where('id', $value["productID"])->first();
          info("product is present");
          info($product);
 	      Cart::updateOrCreate(
