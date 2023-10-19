@@ -285,7 +285,6 @@ class CheckingSaleOrderController extends Controller
       $user_code = $request->user()->user_code;
       $request1 = $request->collect();
       $total = 0;
-
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
          if (empty($value)) {
@@ -299,7 +298,7 @@ class CheckingSaleOrderController extends Controller
          info("before inside product");
          info($value["productID"]);
          if (isset($product['productID'])){
-         $product = product_information::where('id', $value["productID"])->first();
+         $product = product_information::findOrFail($value["productID"]);
          info("product is present");
          info($product);
 	      Cart::updateOrCreate(
