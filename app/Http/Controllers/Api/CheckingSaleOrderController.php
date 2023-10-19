@@ -255,9 +255,137 @@ class CheckingSaleOrderController extends Controller
    }
 
    //End of Vansales
+   public function NewSales(Request $request, $checkinCode, $random, $distributor)
+   {
+      // Get the region code
+      $region = Region::where('id', auth()->user()->region_id)->value('name');
+      $regionCode = strtoupper(substr($region, 0, 3));
+
+      // Get the latest order
+      $latestOrder = Orders::where('order_code', 'like', $regionCode . '%')
+         ->orderBy('created_at', 'desc')
+         ->first();
+
+      $orderCount = $latestOrder ? intval(substr($latestOrder->order_code, 4)) + 1 : 1;
+      $orderNumber = str_pad($orderCount, 5, '0', STR_PAD_LEFT);
+      $ordercode = $regionCode . '-' . $orderNumber;
+
+      $user_code = $request->user()->user_code;
+      $request1 = $request->json()->all();
+      $total = 0;
+
+      foreach ($request1 as $value) {
+         if (empty($value)) {
+            continue;
+         }
+
+         $qty = $value["qty"];
+         $price = $value["price"];
+         $productID = $value["productID"];
+
+         $product = product_information::find($productID);
+
+         if ($product) {
+            $price_total = $qty * $price;
+            $total += $price_total;
+
+            // Create or update the cart
+            Cart::updateOrCreate(
+               [
+                  'checkin_code' => Str::random(20),
+                  "order_code" => $ordercode,
+               ],
+               [
+                  'productID' => $productID,
+                  "product_name" => $product->product_name,
+                  "qty" => $qty,
+                  "price" => $price,
+                  "amount" => $price_total,
+                  "total_amount" => $price_total,
+                  "userID" => $user_code,
+               ]
+            );
+
+            // Create or update the order
+            Order::updateOrCreate(
+               [
+                  'order_code' => $ordercode,
+               ],
+               [
+                  'user_code' => $user_code,
+                  'customerID' => $checkinCode,
+                  'price_total' => $total,
+                  'balance' => $total,
+                  'order_status' => 'Pending Delivery',
+                  'payment_status' => 'Pending Payment',
+                  'qty' => $qty,
+                  'supplierID' => $distributor ?? 1,
+                  'discount' => $value["discount"] ?? 0,
+                  'checkin_code' => $checkinCode,
+                  'order_type' => 'Pre Order',
+                  'delivery_date' => now(),
+                  'business_code' => $user_code,
+                  'updated_at' => now(),
+               ]
+            );
+
+            // Create order items
+            Order_items::create([
+               'order_code' => $ordercode,
+               'productID' => $productID,
+               'product_name' => $product->product_name,
+               'quantity' => $qty,
+               'sub_total' => $price_total,
+               'total_amount' => $price_total,
+               'selling_price' => $price,
+               'discount' => 0,
+               'taxrate' => 0,
+               'taxvalue' => 0,
+               'created_at' => now(),
+               'updated_at' => now(),
+            ]);
+
+            // Update orders_targets
+            DB::table('orders_targets')
+               ->where('user_code', $user_code)
+               ->increment('AchievedOrdersTarget', $qty);
+         }
+      }
+
+      if ($distributor != 1 && $distributor != null) {
+         $usersToNotify = Suppliers::findOrFail($distributor);
+         $number = $usersToNotify->phone_number;
+         $order_code = $ordercode;
+         $this->sendOrder($number, $order_code);
+         $distributor = $usersToNotify->name;
+         $sales = auth()->user()->name;
+         $sales_number = auth()->user()->phone_number;
+
+         Notification::send($usersToNotify, new NewOrderNotification($order_code, $distributor, $sales, $sales_number));
+      }
+
+      // Log the activity
+      $activity_rand = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Product added to order';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'New sales order';
+      $activityLog->action = 'New sales order made by ' . Auth::user()->name . ' order code ' . $ordercode;
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $activity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
+
+      return response()->json([
+         "success" => true,
+         "message" => "Product added to order",
+         "order_code" => $ordercode,
+         "data" => null,
+      ]);
+   }
 
    // Beginning of NewSales
-   public function NewSales(Request $request, $checkinCode, $random, $distributor)
+   public function NewSales2(Request $request, $checkinCode, $random, $distributor)
    {
 
 //       $checkin = customers::whereId($checkinCode)->first();
