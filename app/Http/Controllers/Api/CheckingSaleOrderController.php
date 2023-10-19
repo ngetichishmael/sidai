@@ -288,7 +288,6 @@ class CheckingSaleOrderController extends Controller
 
 //        $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
       foreach ($request1 as $value) {
-         info('value of request respnse .....');
          if (empty($value)) {
             continue;
          }
@@ -298,12 +297,6 @@ $price_total=0;
          if (isset($value["qty"]) && isset($value["price"])) {
          $price_total = $value["qty"] * $value["price"];
          }
-         info($value);
-//         $price_total = $value["qty"] * $value["price"];
-//         $qty = $value["qty"] ?? 0;
-//         $price = $value["price"] ?? 0;
-//         $price_total = $qty * $price;
-
       }else{
             $qty = $value["qty"] ?? 0;
          $price = $value["price"] ?? 0;
@@ -313,9 +306,9 @@ $price_total=0;
          $total += $price_total;
          if (isset($product['productID'])){
          $product = product_information::whereId($value["productID"])->firstorFail();
+         info("product is present");
          info($product);
-//			info($product);
-	 Cart::updateOrCreate(
+	      Cart::updateOrCreate(
             [
                'checkin_code' => Str::random(20),
                "order_code" => $ordercode,
@@ -351,6 +344,8 @@ $price_total=0;
                'updated_at' => now(),
             ]
          );
+         info("order created");
+         info($order);
          Order_items::create([
             'order_code' => $ordercode,
             'productID' => $value["productID"],
