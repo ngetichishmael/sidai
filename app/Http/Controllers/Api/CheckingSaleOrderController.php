@@ -296,6 +296,8 @@ class CheckingSaleOrderController extends Controller
          $price_total = $value["qty"] * $value["price"];
          }
          $total += $price_total;
+         info("before inside product");
+         info($value["productID"]);
          if (isset($product['productID'])){
          $product = product_information::whereId($value["productID"])->firstorFail();
          info("product is present");
