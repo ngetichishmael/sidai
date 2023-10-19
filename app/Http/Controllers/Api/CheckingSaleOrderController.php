@@ -291,17 +291,9 @@ class CheckingSaleOrderController extends Controller
          if (empty($value)) {
             continue;
          }
-         if (isset($value)){
-$price_total=0;
-
+            $price_total=0;
          if (isset($value["qty"]) && isset($value["price"])) {
          $price_total = $value["qty"] * $value["price"];
-         }
-      }else{
-            $qty = $value["qty"] ?? 0;
-         $price = $value["price"] ?? 0;
-         $price_total = $qty * $price;
-
          }
          $total += $price_total;
          if (isset($product['productID'])){
