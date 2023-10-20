@@ -54,6 +54,10 @@ class customerController extends Controller
    {
       return view('app.customers.approve');
    }
+   public function dispproved()
+   {
+      return view('app.customers.disapproved');
+   }
    public function show()
    {
       return view('app.customers.index');
@@ -107,8 +111,24 @@ class customerController extends Controller
          return Redirect::back();
       }else{
          foreach ($selectedCustomers as $selectedCustomer) {
-            Customers::where('id', $selectedCustomer)->update(['approval' => 'approved']);
+
+            list($action, $customerId) = explode(':', $selectedCustomer);
+
+            if ($action === 'approve') {
+               Customers::where('id', $selectedCustomer)->update(['approval' => 'Approved']);
+            } elseif ($action === 'disapprove') {
+               Customers::where('id', $selectedCustomer)->update(['approval' => 'Disapproved']);
+            }
          }
+      }
+      list($action, $customerId) = explode(':', $selectedCustomer);
+
+      if ($action === 'approve') {
+         Session()->flash('success','Successfully Approved Customers');
+         return redirect('approveCustomers');
+      } elseif ($action === 'disapprove') {
+         Session()->flash('success','Successfully Disapproved Customers');
+         return redirect('approveCustomers');
       }
       Session()->flash('success','Successfully Approved Customers');
       return redirect('approveCustomers');
@@ -284,9 +304,8 @@ class customerController extends Controller
       return redirect()->route('creditor');
    }
 
-   public function edit($id)
+   public function editapprove( $id)
    {
-
       $regions = Region::all();
       $subregions = Subregion::all();
       $areas = Area::all();
@@ -305,6 +324,29 @@ class customerController extends Controller
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
+         compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
+      );
+   }
+   public function edit( $id)
+   {
+      $regions = Region::all();
+      $subregions = Subregion::all();
+      $areas = Area::all();
+      $country = country::OrderBy('id', 'DESC')->pluck('name', 'id');
+      $customer = customers::where('customers.id', $id)
+         ->select('*', 'customers.id as customerID')
+         ->first();
+         // dd($customer);
+      // $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
+      // $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
+      // $customer->update([
+      //    'subregion_id' => $subregion_id,
+      //    'region_id' => $region_id,
+      // ]);
+      $regions = Region::all();
+      $groups = groups::get();
+      $prices = PriceGroup::get();
+      return view('app.customers.editapprove',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
@@ -368,7 +410,9 @@ class customerController extends Controller
       $activityLog->activityID = $random;
       $activityLog->ip_address = "";
       $activityLog->save();
-
+if ($request->input('in')=='approve'){
+   return redirect()->route('approvecustomers');
+}
       return redirect()->route('customer');
    }
 

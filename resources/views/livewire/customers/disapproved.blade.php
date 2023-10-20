@@ -1,4 +1,4 @@
-<div style="font-weight: lighter">
+<div>
     <div class="mb-1 row">
         <div class="col-md-10">
             <label for="">Search by name, route, region</label>
@@ -20,8 +20,8 @@
             <form method="POST" action="{{ route('customer.handleApproval') }}">
                 @csrf
                @method('POST')
-            <div class="card-datatable table-responsive font-small-3">
-                <table class="table table-striped table-bordered font-small-2">
+            <div class="card-datatable table-responsive">
+                <table class="table table-striped table-bordered">
                     <thead>
                     <th width="1%">#</th>
                     <th>Name</th>
@@ -31,8 +31,7 @@
                     <th>Route</th>
                     <th>Created By</th>
                     <th>Date</th>
-                    <th width="5%">Action</th>
-                    <th width="5%">Select</th>
+                    <th width="15%">Action(Select)</th>
                     </thead>
                     <tbody>
                         @forelse($contacts as $count => $contact)
@@ -53,13 +52,10 @@
                             <td>
                                 {!! $contact->created_at->format('d/m/Y') ?? '' !!}
                             </td>
-                            <td>
-                               <a href="{{ route('customer.editapprove', $contact->customer_id,$in="approve") }}" type="button" id="approve" class="dropdown-item btn btn-sm" style="color: #6df16d;">&nbsp;Edit</a>
-                            </td>
 
-                            @if ($contact->approval === "Approved")
+                            @if ($contact->approval === "approved")
                                   <td style="color: green">Approved</td>
-                                  @elseif($contact->approval === "waiting_approval")
+                                  @elseif($contact->approval === "Disapproved")
                                   <td>
                                        <input type="checkbox" name="selected_customers[]" value="{{ $contact->customer_id }}">
                                  </td>
@@ -75,13 +71,14 @@
                         @endforelse
                     </tbody>
                 </table>
-                <button type="submit" class=" mt-1 pl-3 btn btn-primary" name="approve">Approve Selected </button>
-                <button type="submit" class=" mt-1 pl-3 btn btn-danger" name="disapprove">Disapprove Selected </button>
+                <button type="submit" class=" mt-1 pl-3 btn btn-primary btn-sm" name="approve">Update Selected to Approved List</button>
             </div>
                 </form>
+
                 <div class="mt-1">
                     {{ $contacts->links() }}
                 </div>
             </div>
         </div>
     </div>
+</div>

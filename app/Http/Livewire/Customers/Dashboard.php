@@ -51,19 +51,7 @@ class Dashboard extends Component
         }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
-        $aggregate = customers::
-//        select(
-//            'customers.customer_name as customer_name',
-//            'customers.phone_number as customer_number',
-//            'regions.name as region_name',
-//            'subregions.name as subregion_name',
-//            'areas.name as area_name',
-//            'customers.customer_type as customer_type',
-//            'customers.id as id',
-//            'customers.route_code as route',
-//            'customers.created_at as created_at'
-//        )
-            join('areas', 'customers.route_code', '=', 'areas.id')
+        $aggregate = customers::join('areas', 'customers.route_code', '=', 'areas.id')
             ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
             ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
             ->where('regions.name', 'like', $regionTerm)
@@ -111,13 +99,15 @@ class Dashboard extends Component
     }
    public function export()
    {
-      return Excel::download(new CustomersExport(), 'customers.xlsx');
+      $filteredCustomers = $this->customers();
+      return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
    }
-
    public function exportCSV()
    {
-      return Excel::download(new CustomersExport(), 'customers.csv');
+      $filteredCustomers = $this->customers();
+      return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
    }
+
    public function exportPDF()
    {
       $data = [

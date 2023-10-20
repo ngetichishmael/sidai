@@ -11,14 +11,14 @@
 @section('content')
     <!-- begin breadcrumb -->
     <div class="row mb-2">
-        <div class="col-md-8">
-            <h2 class="page-header">Customers Waiting Approval</h2>
+        <div class="col-md-10">
+            <h2 class="page-header">Disapproved Customers List</h2>
         </div>
-       <div class="col-md-3">
-          <a href="{{route('customer.disapproved')}}" class="btn btn-sm" style="color: white; background: #B6121B">Disapproved Customers</a>
+       <div class="col-md-2">
+          <a href="/approveCustomers" class="btn btn-md btn-secondary">Back</a>
        </div>
     </div>
-    @livewire('customers.approve')
+    @livewire('customers.disapproved')
 @endsection
 @section('script')
 
