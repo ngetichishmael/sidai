@@ -77,8 +77,8 @@ class Approve extends Component
       });
 
       $aggregate = $query->orderBy('customers.id', 'DESC')->paginate($this->perPage);
-      $debugQuery = $query->toSql();
-      dd($debugQuery);
+//      $debugQuery = $query->toSql();
+//      dd($debugQuery);
 
       return $aggregate;
    }
