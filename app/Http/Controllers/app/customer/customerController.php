@@ -102,7 +102,7 @@ class customerController extends Controller
    {
       $selectedAction = $request->input('action');
       $selectedCustomers = $request->input('selected_customers');
-      dd($selectedCustomers);
+      dd($selectedAction);
       if (empty($selectedCustomers)) {
          Session()->flash('error','No Customer selected');
          return Redirect::back();
