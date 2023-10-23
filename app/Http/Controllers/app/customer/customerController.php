@@ -100,26 +100,24 @@ class customerController extends Controller
 
    public function handleApproval(Request $request)
    {
-      $selectedAction = $request->input('action');
       $selectedCustomers = $request->input('selected_customers');
-      dd($request->all());
       if (empty($selectedCustomers)) {
          Session()->flash('error','No Customer selected');
          return Redirect::back();
       }else{
          foreach ($selectedCustomers as $selectedCustomer) {
-            if ($selectedAction === 'approve') {
+            if ($request->has('approve')) {
                Customers::where('id', $selectedCustomer)->update(['approval' => 'Approved']);
-            } elseif ($selectedAction === 'disapprove') {
+            } elseif ($request->has('disapprove')) {
                Customers::where('id', $selectedCustomer)->update(['approval' => 'Disapproved']);
             }
          }
       }
 
-      if ($selectedAction === 'approve'){
+      if ($request->has('approve')){
          Session()->flash('success','Successfully Approved Customers');
          return redirect('approveCustomers');
-      } elseif ($selectedAction === 'disapprove') {
+      } elseif ($request->has('disapprove')) {
          Session()->flash('success','Successfully Disapproved Customers');
          return redirect('approveCustomers');
       }

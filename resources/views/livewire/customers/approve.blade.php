@@ -75,8 +75,8 @@
                         @endforelse
                     </tbody>
                 </table>
-               <button type="submit" class="mt-1 pl-3 btn btn-primary" name="action" value="approve">Approve Selected</button>
-               <button type="submit" class="mt-1 pl-3 btn btn-danger" name="action" value="disapprove">Disapprove Selected</button>
+                <button type="submit" class=" mt-1 pl-3 btn btn-primary" name="approve" value="approve">Approve Selected </button>
+                <button type="submit" class=" mt-1 pl-3 btn btn-danger" name="disapprove" value="disapprove">Disapprove Selected </button>
             </div>
                 </form>
                 <div class="mt-1">
