@@ -100,6 +100,7 @@ class customerController extends Controller
 
    public function handleApproval(Request $request)
    {
+      dd($request);
       $selectedCustomers = $request->input('selected_customers');
       $user = $request->user();
       $warehouses='';
