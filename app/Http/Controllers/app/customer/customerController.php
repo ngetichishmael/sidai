@@ -100,7 +100,7 @@ class customerController extends Controller
 
    public function handleApproval(Request $request)
    {
-      dd($request);
+      $selectedAction = $request->input('action');
       $selectedCustomers = $request->input('selected_customers');
       $user = $request->user();
       $warehouses='';
@@ -115,9 +115,9 @@ class customerController extends Controller
 
             list($action, $customerId) = explode(':', $selectedCustomer);
 
-            if ($action === 'approve') {
+            if ($selectedAction === 'approve') {
                Customers::where('id', $selectedCustomer)->update(['approval' => 'Approved']);
-            } elseif ($action === 'disapprove') {
+            } elseif ($selectedAction === 'disapprove') {
                Customers::where('id', $selectedCustomer)->update(['approval' => 'Disapproved']);
             }
          }
