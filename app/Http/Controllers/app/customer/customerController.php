@@ -103,18 +103,11 @@ class customerController extends Controller
       $selectedAction = $request->input('action');
       $selectedCustomers = $request->input('selected_customers');
       $user = $request->user();
-      $warehouses='';
-      $user_code = $user->user_code;
-      $business_code = $user->business_code;
-      $random = Str::random(20);
       if (empty($selectedCustomers)) {
          Session()->flash('error','No Customer selected');
          return Redirect::back();
       }else{
          foreach ($selectedCustomers as $selectedCustomer) {
-
-            list($action, $customerId) = explode(':', $selectedCustomer);
-
             if ($selectedAction === 'approve') {
                Customers::where('id', $selectedCustomer)->update(['approval' => 'Approved']);
             } elseif ($selectedAction === 'disapprove') {
@@ -122,12 +115,11 @@ class customerController extends Controller
             }
          }
       }
-      list($action, $customerId) = explode(':', $selectedCustomer);
 
-      if ($action === 'approve') {
+      if ($selectedAction === 'approve'){
          Session()->flash('success','Successfully Approved Customers');
          return redirect('approveCustomers');
-      } elseif ($action === 'disapprove') {
+      } elseif ($selectedAction === 'disapprove') {
          Session()->flash('success','Successfully Disapproved Customers');
          return redirect('approveCustomers');
       }
