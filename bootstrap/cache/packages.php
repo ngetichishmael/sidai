@@ -1,207 +1,220 @@
 <?php return array (
-  'andreaselia/laravel-api-to-postman' => 
+  'andreaselia/laravel-api-to-postman' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'AndreasElia\\PostmanGenerator\\PostmanGeneratorServiceProvider',
     ),
   ),
-  'beyondcode/laravel-websockets' => 
+  'barryvdh/laravel-dompdf' =>
   array (
-    'providers' => 
+    'providers' =>
+    array (
+      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    ),
+    'aliases' =>
+    array (
+      'Pdf' => 'Barryvdh\\DomPDF\\Facade\\Pdf',
+      'PDF' => 'Barryvdh\\DomPDF\\Facade\\Pdf',
+    ),
+  ),
+
+  'beyondcode/laravel-websockets' =>
+  array (
+    'providers' =>
     array (
       0 => 'BeyondCode\\LaravelWebSockets\\WebSocketsServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'WebSocketRouter' => 'BeyondCode\\LaravelWebSockets\\Facades\\WebSocketRouter',
     ),
   ),
-  'consoletvs/charts' => 
+  'consoletvs/charts' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'ConsoleTVs\\Charts\\ChartsServiceProvider',
     ),
   ),
-  'devmarketer/easynav' => 
+  'devmarketer/easynav' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'DevMarketer\\EasyNav\\EasyNavServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Nav' => 'DevMarketer\\EasyNav\\EasyNavFacade',
     ),
   ),
-  'facade/ignition' => 
+  'facade/ignition' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Facade\\Ignition\\IgnitionServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Flare' => 'Facade\\Ignition\\Facades\\Flare',
     ),
   ),
-  'fideloper/proxy' => 
+  'fideloper/proxy' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'fruitcake/laravel-cors' => 
+  'fruitcake/laravel-cors' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
-  'intervention/image' => 
+  'intervention/image' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Intervention\\Image\\ImageServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'kalnoy/nestedset' => 
+  'kalnoy/nestedset' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Kalnoy\\Nestedset\\NestedSetServiceProvider',
     ),
   ),
-  'knuckleswtf/scribe' => 
+  'knuckleswtf/scribe' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Knuckles\\Scribe\\ScribeServiceProvider',
     ),
   ),
-  'laravel/sail' => 
+  'laravel/sail' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Laravel\\Sail\\SailServiceProvider',
     ),
   ),
-  'laravel/sanctum' => 
+  'laravel/sanctum' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     ),
   ),
-  'laravel/tinker' => 
+  'laravel/tinker' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'laravel/ui' => 
+  'laravel/ui' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
-  'laravelcollective/html' => 
+  'laravelcollective/html' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Collective\\Html\\HtmlServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Form' => 'Collective\\Html\\FormFacade',
       'Html' => 'Collective\\Html\\HtmlFacade',
     ),
   ),
-  'livewire/livewire' => 
+  'livewire/livewire' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Livewire\\LivewireServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Livewire' => 'Livewire\\Livewire',
     ),
   ),
-  'maatwebsite/excel' => 
+  'maatwebsite/excel' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
-  'munafio/chatify' => 
+  'munafio/chatify' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Chatify\\ChatifyServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Chatify' => 'Chatify\\Facades\\ChatifyMessenger',
     ),
   ),
-  'nesbot/carbon' => 
+  'nesbot/carbon' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
-  'nunomaduro/collision' => 
+  'nunomaduro/collision' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'santigarcor/laratrust' => 
+  'santigarcor/laratrust' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Laratrust\\LaratrustServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'Laratrust' => 'Laratrust\\LaratrustFacade',
     ),
   ),
-  'spatie/laravel-image-optimizer' => 
+  'spatie/laravel-image-optimizer' =>
   array (
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Spatie\\LaravelImageOptimizer\\ImageOptimizerServiceProvider',
     ),
-    'aliases' => 
+    'aliases' =>
     array (
       'ImageOptimizer' => 'Spatie\\LaravelImageOptimizer\\Facades\\ImageOptimizer',
     ),
   ),
-  'tymon/jwt-auth' => 
+  'tymon/jwt-auth' =>
   array (
-    'aliases' => 
+    'aliases' =>
     array (
       'JWTAuth' => 'Tymon\\JWTAuth\\Facades\\JWTAuth',
       'JWTFactory' => 'Tymon\\JWTAuth\\Facades\\JWTFactory',
     ),
-    'providers' => 
+    'providers' =>
     array (
       0 => 'Tymon\\JWTAuth\\Providers\\LaravelServiceProvider',
     ),

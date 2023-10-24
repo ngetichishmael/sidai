@@ -1,4 +1,4 @@
-<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow mb-5" data-scroll-to-active="true">
 
     <div class="navbar-header mb-3 mt-0 text-center">
         <ul class="nav navbar-nav flex-row ">
@@ -11,8 +11,8 @@
         </ul>
 
     </div>
-    <div class="shadow-bottom"></div>
-    <div class="main-menu-content">
+    <div class="shadow-bottom "></div>
+    <div class="main-menu-content mb-3">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item {!! Nav::isRoute('app.dashboard') !!}">
                 <a class="d-flex align-items-center" href="{!! route('app.dashboard') !!}">
@@ -332,13 +332,14 @@
               @endif
               @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
-           <li class="nav-item {!! Nav::isResource('activity')!!}">
+           <li class="nav-item {!! Nav::isResource('activity')!!} mb-5">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
 <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
 </a>
 </li>
-           @endhaspermissionto
+              @endhaspermissionto
 </ul>
 </div>
-
+   <div class="md-5">
+   </div>
 </div>
