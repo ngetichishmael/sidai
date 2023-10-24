@@ -100,7 +100,7 @@
                 <table class="table table-striped table-bordered zero-configuration table-responsive">
                     <thead>
                         <th width="1%">#</th>
-                        <th>Zone</th>
+                        <th>Region</th>
                         <th>User</th>
                         <th>Customer</th>
                         <th>Start/End Time</th>
@@ -117,15 +117,15 @@
                                 <td>{{ $visit->Customer->customer_name ?? '' }}</td>
                                 @if ($visit->stop_time === null)
                                     <td>
-                                        <div class="badge badge-pill badge-secondary">{{ \Carbon\Carbon::parse($visit->start_time)->format('h:i A') }}</div>
+                                        <div class="badge badge-pill badge-secondary" style="color: white;background-color:brown">{{ \Carbon\Carbon::parse($visit->start_time)->format('h:i A') }}</div>
                                         <b> - </b>
                                         <span class="badge badge-pill badge-light-info mr-1">Visit Active</span>
                                     </td>
                                 @else
                                     <td>
-                                        <div class="badge badge-pill badge-secondary">{{ \Carbon\Carbon::parse($visit->start_time)->format('h:i A') }}</div>
+                                        <div class="badge badge-pill badge-secondary" style="color: white;background-color:brown">{{ \Carbon\Carbon::parse($visit->start_time)->format('h:i A') }}</div>
                                         <b> - </b>
-                                        <div class="badge badge-pill badge-secondary">{{ \Carbon\Carbon::parse($visit->stop_time)->format('h:i A') }}</div>
+                                        <div class="badge badge-pill badge-secondary" style="color: white;background-color:brown">{{ \Carbon\Carbon::parse($visit->stop_time)->format('h:i A') }}</div>
                                     </td>
                                 @endif
                                 <td>
@@ -137,11 +137,11 @@
                                         @endphp
 
                                         @if ($durationInSeconds < 60)
-                                            <div class="badge badge-pill badge-dark">{{ $durationInSeconds }} secs</div>
+                                            <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ $durationInSeconds }} secs</div>
                                         @elseif ($durationInSeconds < 3600)
-                                            <div class="badge badge-pill badge-dark">{{ floor($durationInSeconds / 60) }} mins</div>
+                                            <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 60) }} mins</div>
                                         @else
-                                            <div class="badge badge-pill badge-dark">{{ floor($durationInSeconds / 3600) }} hrs</div>
+                                            <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 3600) }} hrs</div>
                                         @endif
                                     @else
                                         <span class="badge badge-pill badge-light-info mr-1">Visit Active</span>
