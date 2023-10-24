@@ -12,7 +12,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 
-class Approve extends Component
+class Disapproved extends Component
 {
    use WithPagination;
    public $region = null;
@@ -33,57 +33,13 @@ class Approve extends Component
    {
       // dd($this->approvecustomers());
 
-      return view('livewire.customers.approve', [
-         'contacts' => $this->approvecustomers(),
+      return view('livewire.customers.disapproved', [
+         'contacts' => $this->disapprovecustomers(),
          'regions' =>$this->region(),
          'groups' =>$this->groups()
       ]);
    }
-   public function approvecustomers()
-   {
-      $query = customers::select(
-         'customers.customer_name as customer_name',
-         'customers.phone_number as customer_number',
-         'customers.approval as approval',
-         'customers.id as customer_id',
-         'regions.name as region_name',
-         'subregions.name as subregion_name',
-         'areas.name as area_name',
-         'customers.customer_type as customer_type',
-         'customers.id as id',
-         'customers.route_code as route',
-         'customers.created_at as created_at'
-      )
-         ->join('areas', 'customers.route_code', '=', 'areas.id')
-         ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
-         ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
-         ->where('customer_type', 'normal')
-         ->where('approval', 'waiting_approval');
-
-      if ($this->user->account_type === "RSM") {
-         $query->whereIn('regions.id', $this->filter());
-      }
-
-      $searchTerm = '%' . $this->search . '%';
-      $regionTerm = '%' . $this->regional . '%';
-
-      $query->where(function ($innerQuery) use ($searchTerm) {
-         $innerQuery
-            ->where('regions.name', 'like', $searchTerm)
-            ->where('subregions.name', 'like', $searchTerm)
-            ->orWhere('customer_name', 'like', $searchTerm)
-            ->orWhere('phone_number', 'like', $searchTerm)
-            ->orWhere('address', 'like', $searchTerm);
-      });
-
-      $aggregate = $query->orderBy('customers.id', 'DESC')->paginate($this->perPage);
-//      $debugQuery = $query->toSql();
-//      dd($debugQuery);
-
-      return $aggregate;
-   }
-
-   public function approvecustomers2()
+   public function disapprovecustomers()
    {
       $aggregate = array();
       if ($this->user->account_type === "RSM" && empty($this->filter())) {
@@ -112,8 +68,8 @@ class Approve extends Component
             $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
                ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
          })
-         ->where('customer_type', 'normal')
-         ->where('approval','LIKE', 'waiting_approval');
+         ->where('customer_type','LIKE', 'normal')
+         ->where('approval','LIKE', 'Disapproved');
       if ($this->user->account_type === "RSM") {
          $aggregate->whereIn('regions.id', $this->filter());
       }
@@ -160,15 +116,15 @@ class Approve extends Component
    public function approveCustomer($id)
    {
       customers::whereId($id)->update(
-         ['approval' => "approved"]
+         ['approval' => "Approved"]
       );
-      Session::flash('success', 'Customer Approved!');
+      Session::flash('success', 'Customer Updated to Approved!');
       return redirect()->to('/approveCustomers');
    }
    public function dissaproveCustomer($id)
    {
       customers::whereId($id)->update(
-         ['approval' => "waiting_approval"]
+         ['approval' => "disapproved"]
       );
       return redirect()->to('/approveCustomers');
    }

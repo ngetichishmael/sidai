@@ -17,6 +17,7 @@
   'customer-group.customergroup' => 'App\\Http\\Livewire\\CustomerGroup\\Customergroup',
   'customers.approve' => 'App\\Http\\Livewire\\Customers\\Approve',
   'customers.dashboard' => 'App\\Http\\Livewire\\Customers\\Dashboard',
+  'customers.disapproved' => 'App\\Http\\Livewire\\Customers\\Disapproved',
   'customers.index' => 'App\\Http\\Livewire\\Customers\\Index',
   'customers.order' => 'App\\Http\\Livewire\\Customers\\Order',
   'customers.orderdetails' => 'App\\Http\\Livewire\\Customers\\Orderdetails',
