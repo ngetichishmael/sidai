@@ -129,7 +129,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('UsersVisits.show', ['user' => $visit->user_code]) }}" class="btn btn btn-sm" style="background-color: #1877F2; color:white" >View</a>
+                                            <a href="{{ route('UsersVisits.show', ['user' => $visit->user_code]) }}" class="btn btn btn-sm" style="background-color: brown; color:white" >View</a>
                                         </td>
                                     </tr>
                                 @endforeach
