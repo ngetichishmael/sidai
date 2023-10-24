@@ -15,7 +15,8 @@
             <h2 class="page-header">Disapproved Customers List</h2>
         </div>
        <div class="col-md-2">
-          <a href="/approveCustomers" class="btn btn-md btn-secondary">Back</a>
+          <a href="javascript:history.back()" class="btn btn-md btn-secondary">Back</a>
+{{--          {{ url()->previous() }}--}}
        </div>
     </div>
     @livewire('customers.disapproved')

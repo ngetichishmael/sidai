@@ -1,10 +1,13 @@
-<div class="row">
-<div class="col-md-3">
+<div>
+<div class="row mb-2">
+<div class="col-md-6">
    <label for="">Search by distributor name, route, region</label>
    <input type="text" wire:model="search" class="form-control"
           placeholder="Enter customer name, email address or phone number">
 </div>
-<div class="col-md-3">
+   <di class="col-md-4">
+   </di>
+<div class="col-md-2">
    <label for="">Items Per</label>
    <select wire:model="perPage" class="form-control">`
       <option value="10" selected>10</option>
@@ -59,4 +62,5 @@
 
         <div class="mt-1">{!! $suppliers->links() !!}</div>
     </div>
+</div>
 </div>

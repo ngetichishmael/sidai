@@ -2,9 +2,9 @@
     <thead>
         <tr>
             <th>#</th>
-            <th>Source</th>
-            <th>Section</th>
+            <th>Actvity</th>
             <th>User Name</th>
+           <th>Section</th>
             <th>Activity</th>
             <th>Date</th>
         </tr>
@@ -13,10 +13,10 @@
         @forelse ($activities as $key => $activity)
             <tr>
                 <td>{{ $key + 1 }}</td>
-                <td>{{ $activity->source }}</td>
+                <td>{{ $activity->activity }}</td>
+               <td>{{ $activity->user->name ?? 'NA' }}</td>
                 <td>{{ $activity->section }}</td>
-                <td>{{ $activity->user->name ?? 'NA' }}</td>
-                <td>{{ $activity->activity ?? '' }}</td>
+                <td>{{ $activity->action ?? '' }}</td>
                 <td>{{ $activity->created_at ?? now() }}</td>
             </tr>
         @empty

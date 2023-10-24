@@ -45,7 +45,8 @@ class customersController extends Controller
     public function index(Request $request, $businessCode)
     {
         $user = $request->user();
-        $query = customers::whereNotNull('latitude')
+
+        $query = customers::where('region_id', $request->user()->region_id ?? $request->user()->route_code)->whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->orderBy('id', 'DESC')
             ->get();

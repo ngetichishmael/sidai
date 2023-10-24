@@ -33,8 +33,8 @@
                      <td>{!! $warehouse->approval_count ?? 0 !!}</td>
                      <td>
                         <a href="{!! route('inventory.approval',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #52b3dc;color:white">Waiting Approvals</a>
-                        <a href="{!! route('inventory.approved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #70b467;color:white">Approved</a>
-                        <a href="{!! route('inventory.unapproved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #fc7d50;color:white">Unapproved</a>
+                        <a href="{!! route('inventory.approved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #70b467;color:white">Approvals</a>
+                        <a href="{!! route('inventory.unapproved',$warehouse->warehouse_code) !!}" class="btn btn-sm" style="background-color: #fc7d50;color:white">Disapprovals</a>
                      </td>
                   </tr>
             @endforeach
