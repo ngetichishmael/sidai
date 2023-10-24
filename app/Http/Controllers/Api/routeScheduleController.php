@@ -26,16 +26,15 @@ class routeScheduleController extends Controller
      ->where('route_sales.userID', (string)$id)
      ->join('route_customer', 'route_customer.routeID', '=', 'route_sales.routeID')
      ->join('routes', 'routes.route_code', '=', 'route_sales.routeID')
-     ->Join('customers', 'customers.id', '=', 'route_customer.customerID')
-     ->select('routes.name','route_sales.userID','routes.route_code','routes.status','routes.Type','routes.start_date','routes.end_date',
+     ->join('customers', 'customers.id', '=', 'route_customer.customerID')
+     ->select('routes.name','route_sales.userID','routes.route_code','routes.status','routes.Type', FacadesDB::raw('CURDATE() as start_date'),'routes.end_date',
      'customers.id as customer_id','customers.account','customers.customer_name','customers.address',
      'customers.email','customers.phone_number','customers.latitude','customers.longitude')
-
 
      ->get();
      return response()->json([
          "success" => true,
-         "message" => "Routes fetched successfully",
+         "message" => "Assigned Routes fetched successfully",
          "user routes" => $show_routes,
       ]);
    }
