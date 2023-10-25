@@ -29,8 +29,8 @@ class Dashboard extends Component
     public $orderAsc = false;
    public $group = null;
     public $user;
-   public $start = null;
-   public $end = null;
+   public ?string $startDate = null;
+   public ?string $endDate = null;
    public $selectedGroup = null;
 
 
@@ -80,7 +80,17 @@ class Dashboard extends Component
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
        }
-       $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
+       if ($this->startDate && $this->endDate) {
+          $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
+       }
+       $aggregate
+//          ->when($this->startDate, function ($query, $startDate) {
+//          $query->whereDate('created_at', '>=', $startDate);
+//       })
+//          ->when($this->endDate, function ($query, $endDate) {
+//             $query->whereDate('created_at', '<=', $endDate);
+//          })
+          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
 
        return $aggregate->paginate($this->perPage);
     }
@@ -117,7 +127,17 @@ class Dashboard extends Component
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
        }
-       $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
+       if ($this->startDate && $this->endDate) {
+          $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
+       }
+       $aggregate
+//          ->when($this->startDate, function ($query, $startDate) {
+//             $query->whereDate('customers.created_at', '>=', $startDate);
+//          })
+//          ->when($this->endDate, function ($query, $endDate) {
+//             $query->whereDate('created_at', '<=', $endDate);
+//          })
+          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
 
        return $aggregate->get();
     }

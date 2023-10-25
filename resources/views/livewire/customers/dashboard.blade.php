@@ -1,6 +1,15 @@
 <div>
+   <div>
    <div class="row mb-1 mt-1">
-      <div class="col-9"></div>
+      <div class="col-md-3 col-sm-4">
+         <label for="">Start Date</label>
+         <input wire:model="startDate" type="date" class="form-control">
+      </div>
+      <div class="col-md-3 col-sm-4">
+         <label for="">End Date</label>
+         <input wire:model="endDate" type="date" class="form-control">
+      </div>
+      <div class="col-3"></div>
       <div class="col-md-3 mb-2">
          <label for="">Export Reports:</label>
        <div class="dropdown">
@@ -57,6 +66,7 @@
              </select>
           </div>
        </div>
+   </div>
     <div class="card card-default">
         <div class="card-body">
             <div class="card-datatable table-responsive">
