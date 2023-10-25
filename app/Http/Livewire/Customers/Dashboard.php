@@ -153,19 +153,19 @@ class Dashboard extends Component
     }
    public function export()
    {
-      $filteredCustomers = $this->customers()->get();
+      $filteredCustomers = $this->customers();
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
    }
    public function exportCSV()
    {
-      $filteredCustomers = $this->customers()->get();
+      $filteredCustomers = $this->customers();
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
    }
 
    public function exportPDF()
    {
       $data = [
-         'contacts' => $this->customers()->get(),
+         'contacts' => $this->customers(),
       ];
       $pdf = PDF::loadView('Exports.customer_pdf', $data);
 
