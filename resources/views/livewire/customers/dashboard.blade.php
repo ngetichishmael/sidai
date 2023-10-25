@@ -78,8 +78,8 @@
                         <th>Region</th>
                         <th>Subregion</th>
                         <th>Town</th>
-                        <th>Created By</th>
-                        <th>Created Date</th>
+                        <th>Added By</th>
+                        <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
