@@ -12,18 +12,18 @@
 {{--                                 $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
 {{--                             }--}}
 {{--                         @endphp--}}
-                        @php
-                           if ($customer) {
-                               $imageUrl = Storage::url($customer->image);
-                               if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {
-                                   $imageUrl = asset('app-assets/images/sidaiweblogo.png');
-                               }
-                           } else {
-                               // Handle the case when $customer is null
-                               $imageUrl = asset('app-assets/images/sidaiweblogo.png');
-                           }
-                        @endphp
-                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
+{{--                        @php--}}
+{{--                           if ($customer) {--}}
+{{--                               $imageUrl = Storage::url($customer->image);--}}
+{{--                               if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {--}}
+{{--                                   $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
+{{--                               }--}}
+{{--                           } else {--}}
+{{--                               // Handle the case when $customer is null--}}
+{{--                               $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
+{{--                           }--}}
+{{--                        @endphp--}}
+                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ Storage::url($customer->image) ?? asset('app-assets/images/sidaiweblogo.png')}}" height="100"
                              width="100" alt="User avatar">
                          <h4 class="mb-2">{{ Str::upper($customer->customer_name ?? '') }}</h4>
 
