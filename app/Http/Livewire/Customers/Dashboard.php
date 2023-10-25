@@ -116,19 +116,26 @@ class Dashboard extends Component
     }
    public function export()
    {
-      $filteredCustomers = $this->customers()->get();
+      $this->perPage = $this->customers()->count(); // Set perPage to the total count
+      $filteredCustomers = $this->customers();
+      $this->perPage = 25;
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
    }
    public function exportCSV()
    {
-      $filteredCustomers = $this->customers()->get();
+      $this->perPage = $this->customers()->count(); // Set perPage to the total count
+      $filteredCustomers = $this->customers();
+      $this->perPage = 25;
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
    }
 
    public function exportPDF()
    {
+      $this->perPage = $this->customers()->count(); // Set perPage to the total count
+      $filteredCustomers = $this->customers();
+      $this->perPage = 25;
       $data = [
-         'contacts' => $this->customers()->get(),
+         'contacts' => $filteredCustomers,
       ];
       $pdf = PDF::loadView('Exports.customer_pdf', $data);
 
