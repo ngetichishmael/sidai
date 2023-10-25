@@ -16,6 +16,7 @@ class Index extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $user;
    use WithPagination;
    public $orderBy = 'users.id';
    public $orderAsc = true;

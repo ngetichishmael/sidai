@@ -19,7 +19,7 @@
         </div>
     </div>
     @include('partials._messages')
-    @livewire('reports.preorder')
+    @livewire('reports.delivery')
 @endsection
 {{-- page scripts --}}
 @section('script')

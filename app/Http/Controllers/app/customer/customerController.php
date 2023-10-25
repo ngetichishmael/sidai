@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\app\customer;
-use App\Models\suppliers\suppliers;
 use File;
-use Carbon\Carbon;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Region;
@@ -15,8 +13,10 @@ use Illuminate\Support\Str;
 use App\Models\activity_log;
 use Illuminate\Http\Request;
 use App\Models\customer_group;
+use Illuminate\Support\Carbon;
 use App\Models\customer\groups;
 use App\Models\customer\customers;
+use App\Models\suppliers\suppliers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

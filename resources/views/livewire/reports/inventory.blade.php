@@ -14,13 +14,13 @@
     <input type="text" wire:model="search" class="form-control"
         placeholder="Enter customer name, email address or phone number">
 </div>
-   <div class="col-md-3">
+   {{-- <div class="col-md-3">
        <button type="button" class="btn btn-icon btn-outline-success" wire:click="" wire:loading.attr="disabled"
            data-toggle="tooltip" data-placement="top" title="Export Excel">
            <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
                data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
        </button>
-   </div>
+   </div> --}}
 </div>
 <br>
 
