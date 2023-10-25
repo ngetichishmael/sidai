@@ -26,13 +26,13 @@ class Dashboard extends Component
 
    public function render()
    {
-      $activities = $this->getFilteredActivities();
+      $activities = $this->getPagenatedFilteredActivities();
       return view('livewire.activity.dashboard', [
          'activities' => $activities
       ]);
    }
 
-   public function getFilteredActivities()
+   public function getPagenatedFilteredActivities()
    {
       $searchTerm = '%' . $this->search . '%';
 
@@ -54,6 +54,29 @@ class Dashboard extends Component
          })
          ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
          ->paginate($this->perPage);
+   }
+   public function getFilteredActivities()
+   {
+      $searchTerm = '%' . $this->search . '%';
+
+      return activity_log::with('user')
+         ->where(function ($query) use ($searchTerm) {
+            $query->where('user_code', 'like', $searchTerm)
+               ->orWhere('activity', 'like', $searchTerm)
+               ->orWhere('action', 'like', $searchTerm)
+               ->orWhere('section', 'like', $searchTerm)
+               ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
+                  $userQuery->where('name', 'like', $searchTerm);
+               });
+         })
+         ->when($this->startDate, function ($query, $startDate) {
+            $query->whereDate('created_at', '>=', $startDate);
+         })
+         ->when($this->endDate, function ($query, $endDate) {
+            $query->whereDate('created_at', '<=', $endDate);
+         })
+         ->orderBy($this->sortField, $this->sortAsc ? 'desc' : 'asc')
+         ->get();
    }
 
    public function exportPDF1()

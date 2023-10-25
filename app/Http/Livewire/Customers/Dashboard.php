@@ -41,13 +41,13 @@ class Dashboard extends Component
     public function render()
     {
        return view('livewire.customers.dashboard', [
-            'contacts' => $this->customers(),
+            'contacts' => $this->getPaginatedCustomers(),
             'regions' => $this->region(),
             'groups' => $this->groups(),
             'selectedGroup' => $this->selectedGroup,
         ]);
     }
-    public function customers()
+    public function getPaginatedCustomers()
     {
        $aggregate = array();
         if ($this->user->account_type === "RSM" && empty($this->filter())) {
@@ -84,6 +84,43 @@ class Dashboard extends Component
 
        return $aggregate->paginate($this->perPage);
     }
+    public function customers()
+    {
+       $aggregate = array();
+        if ($this->user->account_type === "RSM" && empty($this->filter())) {
+            return $aggregate;
+        }
+        $searchTerm = '%' . $this->search . '%';
+        $regionTerm = '%' . $this->regional . '%';
+        $aggregate = customers::join('areas', 'customers.route_code', '=', 'areas.id')
+            ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+            ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+            ->where('regions.name', 'like', $regionTerm)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
+                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
+                   ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   })
+                   ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   })
+                   ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   });
+            })
+            ->where('customer_type','like', 'normal')
+            ->where('approval','LIKE','Approved');
+        if ($this->user->account_type === "RSM") {
+            $aggregate->whereIn('regions.id', $this->filter());
+        }
+       if ($this->selectedGroup) {
+          $aggregate->where('customer_group', $this->selectedGroup);
+       }
+       $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
+
+       return $aggregate->get();
+    }
     public function filter(): array
     {
 
@@ -116,26 +153,19 @@ class Dashboard extends Component
     }
    public function export()
    {
-      $this->perPage = $this->customers()->count(); // Set perPage to the total count
-      $filteredCustomers = $this->customers();
-      $this->perPage = 25;
+      $filteredCustomers = $this->customers()->get();
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
    }
    public function exportCSV()
    {
-      $this->perPage = $this->customers()->count(); // Set perPage to the total count
-      $filteredCustomers = $this->customers();
-      $this->perPage = 25;
+      $filteredCustomers = $this->customers()->get();
       return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
    }
 
    public function exportPDF()
    {
-      $this->perPage = $this->customers()->count(); // Set perPage to the total count
-      $filteredCustomers = $this->customers();
-      $this->perPage = 25;
       $data = [
-         'contacts' => $filteredCustomers,
+         'contacts' => $this->customers()->get(),
       ];
       $pdf = PDF::loadView('Exports.customer_pdf', $data);
 
