@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Customers;
 use App\Exports\CustomersExport;
 use App\Models\customers;
 use App\Models\customer_group;
+use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -158,7 +159,7 @@ class Dashboard extends Component
     }
     public function groups()
     {
-        $groups = customer_group::all();
+        $groups = price_group::all();
         return $groups;
     }
 }
