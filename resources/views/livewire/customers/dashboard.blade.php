@@ -39,7 +39,7 @@
           <select wire:model="selectedGroup" class="form-control">
              <option value="" selected>select</option>
              @foreach ($groups as $group)
-                <option value="{{ $group_name->name }}">{{ $group_name->name }}</option>
+                <option value="{{ $group->group_name }}">{{ $group->group_name }}</option>
              @endforeach
           </select>
        </div>
