@@ -6,13 +6,23 @@
              <div class="card-body">
                  <div class="user-avatar-section">
                      <div class=" d-flex align-items-center flex-column">
-                         @php
-                             $imageUrl = Storage::url($customer->image);
-                             if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {
-                                 $imageUrl = asset('app-assets/images/sidaiweblogo.png');
-                             }
-                         @endphp
-
+{{--                         @php--}}
+{{--                             $imageUrl = Storage::url($customer->image);--}}
+{{--                             if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {--}}
+{{--                                 $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
+{{--                             }--}}
+{{--                         @endphp--}}
+                        @php
+                           if ($customer) {
+                               $imageUrl = Storage::url($customer->image);
+                               if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {
+                                   $imageUrl = asset('app-assets/images/sidaiweblogo.png');
+                               }
+                           } else {
+                               // Handle the case when $customer is null
+                               $imageUrl = asset('app-assets/images/sidaiweblogo.png');
+                           }
+                        @endphp
                          <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
                              width="100" alt="User avatar">
                          <h4 class="mb-2">{{ Str::upper($customer->customer_name ?? '') }}</h4>
@@ -28,7 +38,7 @@
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">E Wallet:</span>
-                             <span>{{ number_format($customer->wallet?->amount ?? 0, 2) }}</span>
+                             <span>{{ number_format($customer->wallet->amount ?? 0, 2) }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Email:</span>

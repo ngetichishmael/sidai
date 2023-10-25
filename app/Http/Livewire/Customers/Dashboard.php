@@ -20,6 +20,7 @@ class Dashboard extends Component
 
    use WithPagination;
    protected $paginationTheme = 'bootstrap';
+   protected $pageName = 'page';
    public $perPage = 25;
     public $search = null;
     public $regional = null;
@@ -29,6 +30,8 @@ class Dashboard extends Component
     public $user;
    public $start = null;
    public $end = null;
+   public $selectedGroup = null;
+
 
     public function __construct()
     {
@@ -36,16 +39,16 @@ class Dashboard extends Component
     }
     public function render()
     {
-        return view('livewire.customers.dashboard', [
+       return view('livewire.customers.dashboard', [
             'contacts' => $this->customers(),
             'regions' => $this->region(),
             'groups' => $this->groups(),
+            'selectedGroup' => $this->selectedGroup,
         ]);
     }
-
     public function customers()
     {
-        $aggregate = array();
+       $aggregate = array();
         if ($this->user->account_type === "RSM" && empty($this->filter())) {
             return $aggregate;
         }
@@ -57,13 +60,26 @@ class Dashboard extends Component
             ->where('regions.name', 'like', $regionTerm)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
+                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
+                   ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   })
+                   ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   })
+                   ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                      $userQuery->where('name', 'like', $searchTerm);
+                   });
             })
             ->where('customer_type','like', 'normal')
             ->where('approval','LIKE','Approved');
         if ($this->user->account_type === "RSM") {
             $aggregate->whereIn('regions.id', $this->filter());
         }
+       if ($this->selectedGroup) {
+          $aggregate->where('customer_group', $this->selectedGroup);
+       }
+       $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
 
        return $aggregate->paginate($this->perPage);
     }
