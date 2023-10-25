@@ -25,10 +25,10 @@ class ReportsController extends Controller
       $dataAccessLevel = Auth::user()->roles()->pluck('data_access_level')->first();
       if (in_array('web', $middleware)) {
          switch ($routeName) {
-            case 'preorders.reports':
-               return view('app.Reports.preorders');
-            case 'vansales.reports':
-               return view('app.Reports.vansales');
+            // case 'preorders.reports':
+            //    return view('app.Reports.preorders');
+            // case 'vansales.reports':
+            //    return view('app.Reports.vansales');
             case 'delivery.reports':
                return view('app.Reports.delivery');
             case 'sidai.reports':
@@ -42,12 +42,12 @@ class ReportsController extends Controller
                return view('app.Reports.warehouse');
             case 'supplier.reports':
                return view('app.Reports.supplier');
-            case 'visitation.reports':
-               if (auth()->check() && in_array($dataAccessLevel, ['all', 'regional'])){
-               return view('app.Reports.visitation');
-            }  else{
-               return redirect()->route('unauthorized');
-            }
+            // case 'visitation.reports':
+            //    if (auth()->check() && in_array($dataAccessLevel, ['all', 'regional'])){
+            //    return view('app.Reports.visitation');
+            // }  else{
+            //    return redirect()->route('unauthorized');
+            // }
             case 'target.reports':
                return view('app.Reports.target');
             case 'payments.reports':

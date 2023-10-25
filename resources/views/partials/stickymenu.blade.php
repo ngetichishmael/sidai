@@ -1,12 +1,12 @@
 <div class="row">
    <div class="col-md-12">
       <ul class="nav nav-tabs" style="font-weight: bolder; font-size:12px;">
-         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
+         {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('preorders.reports') ? 'active' : '' }}" href="{{ route('preorders.reports') }}">Preorders</a>
          </li>
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('vansales.reports') ? 'active' : '' }}" href="{{ route('vansales.reports') }}">Vansales</a>
-         </li>
+         </li> --}}
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('delivery.reports') ? 'active' : '' }}" href="{{ route('delivery.reports') }}">Delivery</a>
          </li>
@@ -22,14 +22,14 @@
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('regional.reports') ? 'active' : '' }}" href="{{ route('regional.reports') }}">Regional</a>
          </li>
-         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
+         {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('visitation.reports') ? 'active' : '' }}" href="{{ route('visitation.reports') }}">Visitation</a>
-         </li>
+         </li> --}}
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('target.reports') ? 'active' : '' }}" href="{{ route('target.reports') }}">Targets</a>
          </li>
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
-            <a class="nav-link {{ request()->routeIs('sidai.reports') ? 'active' : '' }}" href="{{ route('sidai.reports') }}">Sidai Users</a>
+            <a class="nav-link {{ request()->routeIs('sidai.reports') ? 'active' : '' }}" href="{{ route('sidai.reports') }}">Users</a>
          </li>
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('clients.reports') ? 'active' : '' }}" href="{{ route('clients.reports') }}">Customers</a>

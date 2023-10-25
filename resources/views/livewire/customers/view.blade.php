@@ -13,7 +13,7 @@
                              }
                          @endphp
 
-                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl ??'' }}" height="100"
+                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
                              width="100" alt="User avatar">
                          <h4 class="mb-2">{{ Str::upper($customer->customer_name ?? '') }}</h4>
 
