@@ -91,7 +91,7 @@ class Dashboard extends Component
 //             $query->whereDate('created_at', '<=', $endDate);
 //          })
           ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
-dd($aggregate);
+dd($aggregate->get());
        return $aggregate->paginate($this->perPage);
     }
     public function customers()
