@@ -108,8 +108,7 @@
 {{--                            <td class="cell-fit">{!! $contact->areas->name ?? '' !!}</td>--}}
 
                             <td>{!! $contact->Creator->name ?? '' !!}</td>
-{{--                            <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>--}}
-                            <td>{{ $contact->created_at->toDateString() }}</td>
+                            <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>
                             <td>
                                 <div class="dropdown">
                                     <button style="background-color: #B6121B;color:white"
@@ -119,13 +118,12 @@
                                         <i data-feather="eye"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item"
+                                       <a class="dropdown-item"
                                             href="{{ route('customer.edit', $contact->id) }}">
                                             <i data-feather='edit' class="mr-50"></i>
                                             <span>Edit</span>
                                         </a>
-
-                                            <a class="dropdown-item"
+                                        <a class="dropdown-item"
                                             href="{{ route('creditor.details', $contact->id) }}">
                                             <i data-feather='eye' class="mr-50"></i>
                                             <span>View</span>

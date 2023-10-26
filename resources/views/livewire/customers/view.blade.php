@@ -27,7 +27,7 @@
                      <ul class="list-unstyled">
                          <li class="mb-2">
                              <span class="fw-semibold me-1">Name:</span>
-                             <span>{{ Str::upper($customer->customer_name) }}</span>
+                             <span>{{ Str::upper($customer->customer_name ?? '') }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">E Wallet:</span>
@@ -35,7 +35,7 @@
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Email:</span>
-                             <span>{{ $customer->email }}</span>
+                             <span>{{ $customer->email ?? ''}}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">PIN Number</span>
@@ -47,11 +47,11 @@
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Address:</span>
-                             <span>{{ $customer->address }}</span>
+                             <span>{{ $customer->address ?? '' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Customer Group:</span>
-                             <span>{{ $customer->customer_group }}</span>
+                             <span>{{ $customer->customer_group ?? ''}}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Contact:</span>

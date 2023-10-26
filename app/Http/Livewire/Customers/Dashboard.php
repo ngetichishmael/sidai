@@ -10,6 +10,7 @@ use App\Models\Region;
 use App\Models\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
 use PDF;
@@ -90,6 +91,7 @@ class Dashboard extends Component
 //          ->when($this->endDate, function ($query, $endDate) {
 //             $query->whereDate('created_at', '<=', $endDate);
 //          })
+
           ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
        return $aggregate->paginate($this->perPage);
     }
