@@ -64,8 +64,7 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th>number</th>
-                        <th>number</th>
+                        <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
                         <th>Added By</th>
                         <th>Date Created</th>
@@ -74,7 +73,6 @@
                     <tbody>
                         @forelse($contacts as $count => $contact)
                             <td>{{ $count + 1 }}</td>
-                            <td>{{ $contact->id }}</td>
                             <td>
                                 {{ $contact->customer_name }}
                             </td>
