@@ -75,7 +75,9 @@
                          </li>
 
                     <div class="my-1 col-sm-9 offset-sm-3">
+                       @if($customer->id!=null)
                         <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-success">Approve To Creditor</a>
+                       @endif
                     </div>
 
 
