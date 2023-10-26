@@ -12,7 +12,6 @@
 {{--                                 $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
 {{--                             }--}}
 {{--                         @endphp--}}
-                        @dd($customer)
                         @php
                            $imageUrl = optional($customer)->image ? Storage::url($customer->image) : asset('app-assets/images/sidaiweblogo.png');
                         @endphp
