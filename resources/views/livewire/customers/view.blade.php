@@ -6,18 +6,11 @@
              <div class="card-body">
                  <div class="user-avatar-section">
                      <div class=" d-flex align-items-center flex-column">
-{{--                         @php--}}
-{{--                             $imageUrl = Storage::url($customer->image);--}}
-{{--                             if (!$imageUrl || !filter_var($imageUrl, FILTER_VALIDATE_URL)) {--}}
-{{--                                 $imageUrl = asset('app-assets/images/sidaiweblogo.png');--}}
-{{--                             }--}}
-{{--                         @endphp--}}
-                        @dd($customer)
-                        @php
-                           $imageUrl = optional($customer)->image ? Storage::url($customer->image) : asset('app-assets/images/sidaiweblogo.png');
-                        @endphp
+                         @php
+                             $imageUrl = optional($customer)->image ? Storage::url($customer->image) : asset('app-assets/images/sidaiweblogo.png');
+                         @endphp
 
-                        <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
+                         <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
                              width="100" alt="User avatar">
                          <h4 class="mb-2">{{ Str::upper($customer->customer_name ?? '') }}</h4>
 
@@ -36,7 +29,7 @@
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Email:</span>
-                             <span>{{ $customer->email ?? ''}}</span>
+                             <span>{{ $customer->email ?? '' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">PIN Number</span>
@@ -52,34 +45,35 @@
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Customer Group:</span>
-                             <span>{{ $customer->customer_group ?? ''}}</span>
+                             <span>{{ $customer->customer_group ?? '' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Contact:</span>
-                             <span>{{ $customer->phone??'N/A' }}</span>
+                             <span>{{ $customer->phone ?? 'N/A' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Email:</span>
-                             <span>{{ $customer->email??'N/A' }}</span>
+                             <span>{{ $customer->email ?? 'N/A' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Status:</span>
-                             <span>{{ $customer->status??'N/A' }}</span>
+                             <span>{{ $customer->status ?? 'N/A' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Created At:</span>
-                             <span>{{ $customer->created_at??'N/A' }}</span>
+                             <span>{{ $customer->created_at ?? 'N/A' }}</span>
                          </li>
                          <li class="mb-2 pt-1">
                              <span class="fw-semibold me-1">Creator:</span>
-                             <span>{{ $customer->Creator->name??'' }}</span>
+                             <span>{{ $customer->Creator->name ?? '' }}</span>
                          </li>
 
-                    <div class="my-1 col-sm-9 offset-sm-3">
-                       @if($customer->id!=null)
-                        <a href="{{ route('creditor.approve', $customer->id) }}" class="btn btn-success">Approve To Creditor</a>
-                       @endif
-                    </div>
+                         <div class="my-1 col-sm-9 offset-sm-3">
+                             @if ($customer->id != null)
+                                 <a href="{{ route('creditor.approve', $customer->id) }}"
+                                     class="btn btn-success">Approve To Creditor</a>
+                             @endif
+                         </div>
 
 
 
