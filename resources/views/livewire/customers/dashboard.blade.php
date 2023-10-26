@@ -107,12 +107,9 @@
                             {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
 {{--                            <td class="cell-fit">{!! $contact->areas->name ?? '' !!}</td>--}}
 
-                            <td>
-                               {!! $contact->Creator->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->created_at->format('d/m/Y') ?? '' !!}
-                            </td>
+                            <td>{!! $contact->Creator->name ?? '' !!}</td>
+{{--                            <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>--}}
+                            <td>{{ $contact->created_at->toDateString() }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button style="background-color: #B6121B;color:white"
