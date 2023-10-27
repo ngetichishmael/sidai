@@ -36,6 +36,7 @@ class Dashboard extends Component
 //      }
       $searchTerm = '%' . $this->search . '%';
       $suppliers = suppliers::where('status', 'Active')
+         ->where('id', '!=', 1)
          ->OrderBy('suppliers.id', 'DESC')
          ->where(function ($query) use ($searchTerm) {
             $query->where('name', 'like', $searchTerm)

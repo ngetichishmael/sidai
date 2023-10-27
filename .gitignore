@@ -5,6 +5,7 @@
 /storage/*.key
 /vendor
 .env
+
 .env.backup
 .phpunit.result.cache
 docker-compose.override.yml
@@ -17,3 +18,4 @@ yarn-error.log
 git.sh
 localhost.crt
 localhost.key
+/bootstrap

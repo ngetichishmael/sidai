@@ -46,10 +46,10 @@ class index extends Component
    public function data()
    {
       $searchTerm = '%' . $this->search . '%';
-      $query = suppliers::withCount('Orders');
+      $query = suppliers::withCount('Orders')->where('id', '!=', 1);
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-            $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+            $query->whereDate('created_at', 'LIKE', "%" .$this->start . "%");
          } else {
             if (is_null($this->end)) {
                $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
