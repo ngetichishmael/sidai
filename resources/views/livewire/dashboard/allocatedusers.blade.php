@@ -46,7 +46,7 @@
                               <td>{!! Sales::user($allocation->created_by)->name !!}</td>
 {{--                              <td><span class="badge bg-secondary">{!! $allocation->status !!}</span></td>--}}
                               <td>
-                                 <a href="{!! route('inventory.allocate.items', $allocation->allocation_code) !!}" class="btn btn-sm btn-success">view Items</a>
+                                 <a href="{!! route('dashboard.allocations.items',['allocation_code' => $allocation->allocation_code]) !!}" class="btn btn-sm btn-success">view Items</a>
                               </td>
                            </tr>
                         @empty

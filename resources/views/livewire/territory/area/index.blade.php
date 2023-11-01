@@ -24,8 +24,10 @@
     </div>
     <!-- begin card -->
     <div class="row">
+       <div class="col-md-9">
         @livewire('territory.area.dashboard')
-        <div class="col-md-4">
+       </div>
+        <div class="col-md-3 mt-5 pt-5">
             <div class="card card-default">
                 <div class="card-body">
                     <div class="card-body">

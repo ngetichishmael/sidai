@@ -35,6 +35,7 @@ Route::middleware('web')->group(function () {
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
       Route::get('dashboard/allocated', ['uses' => 'app\sokoflowController@allocated', 'as' => 'dashboard.allocated']);
       Route::get('dashboard/allocated/users', ['uses' => 'app\sokoflowController@allocatedusers', 'as' => 'dashboard.allocated.users']);
+      Route::get('dashboard.allocations.items/{allocation_code}', ['uses' => 'app\sokoflowController@allocatedItems', 'as' => 'dashboard.allocations.items']);
 
 //      Route::get('/users',App\Http\Controllers\Chat\CreateChat::class)->name('users');
 //      Route::get('/chat{key?}',Main::class)->name('chat');

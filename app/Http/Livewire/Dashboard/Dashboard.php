@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Orders;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use App\Models\Delivery;
 use App\Models\customers;
@@ -85,15 +86,19 @@ class Dashboard extends Component
     public function getMpesaAmount()
     {
        $loggedUser=Auth::user()->account_type;
-       if (strcasecmp($loggedUser, "shop_attendee") === 0){
+//       dd()
+//       dd(Str::lower($loggedUser) ==="shop_attendee");
+       if (strtolower($loggedUser) == "shop_attendee"){
           $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+//          dd($assignedwarehouse);
           if (!empty($assignedwarehouse)){
              $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
              if (!empty($warehouse)) {
                 return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
-                   ->whereHas('user', function ($query) use ($warehouse) {
-                      $query->where('region_id', $warehouse->region_id);
-                   })->whereBetween('created_at', [$this->startDate, $this->endDate])->sum('amount');
+//                   ->whereHas('user', function ($query) use ($warehouse) {
+//                      $query->where('region_id', $warehouse->region_id);
+//                   })
+                   ->whereBetween('created_at', [$this->startDate, $this->endDate])->sum('amount');
              }}}elseif (strcasecmp($loggedUser, "rsm") === 0) {
           $user = Auth::user();
           return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
@@ -109,22 +114,59 @@ class Dashboard extends Component
 
     public function getChequeAmount()
     {
+       $loggedUser=Auth::user()->account_type;
+       if (strcasecmp($loggedUser, "shop_attendee") === 0){
+          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+          if (!empty($assignedwarehouse)){
+             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+             if (!empty($warehouse)) {
         return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
-            ->where(function (Builder $query) {
-                $this->whereBetweenDate($query, 'ccreated_at', $this->startDate, $this->endDate);
-            })
-            ->sum('amount');
+           ->whereHas('user', function ($query) use ($warehouse) {
+              $query->where('region_id', $warehouse->region_id);
+           })->whereBetween('created_at', [$this->startDate, $this->endDate])->sum('amount');
+    }}}elseif (strcasecmp($loggedUser, "rsm") === 0) {
+          $user = Auth::user();
+          return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
+             ->whereHas('user', function ($query) use ($user ){
+                $query->where('region_id', $user->region_id);
+             })->whereBetween('created_at', [$this->startDate, $this->endDate])->sum('amount');
+       }else
+          return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
+             ->where(function (Builder $query) {
+                $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+             })->sum('amount');
     }
 
     public function getSalesAmount()
-    {
+    {$loggedUser=Auth::user()->account_type;
+       if (strcasecmp($loggedUser, "shop_attendee") === 0){
+          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+          if (!empty($assignedwarehouse)){
+             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+             if (!empty($warehouse)) {
         return OrderPayment::where(function (Builder $query) {
             $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
         })
-            ->select('id', 'amount', 'balance', 'payment_method', 'isReconcile', 'user_id')
+//            ->select('id', 'amount', 'balance', 'payment_method', 'isReconcile', 'user_id')
+//            ->sum('balance');
+                ->whereHas('user', function ($query) use ($warehouse) {
+                   $query->where('region_id', $warehouse->region_id);
+                })
+//           ->whereBetween('created_at', [$this->startDate, $this->endDate])
+                   ->select('id', 'amount', 'balance', 'payment_method', 'isReconcile', 'user_id')
+                   ->sum('balance');
+             }}}elseif (strcasecmp($loggedUser, "rsm") === 0) {
+          $user = Auth::user();
+          return OrderPayment::whereHas('user', function ($query) use ($user ){
+                $query->where('region_id', $user->region_id);
+             })->whereBetween('created_at', [$this->startDate, $this->endDate])->select('id', 'amount', 'balance', 'payment_method', 'isReconcile', 'user_id')
+             ->sum('balance');
+       }else
+          return OrderPayment::where(function (Builder $query) {
+             $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+          })->select('id', 'amount', 'balance', 'payment_method', 'isReconcile', 'user_id')
             ->sum('balance');
     }
-
     public function getTotalAmount()
     {
         return OrderPayment::where('payment_method', 'PaymentMethods.BankTransfer')

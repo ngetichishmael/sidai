@@ -33,8 +33,8 @@ class sokoflowController extends Controller
    {
       return view('app.dashboard.user-summary');
    }
-   public function allocated(){
-      return view('app.dashboard.allocated');
+   public function allocatedItems($allocation_code){
+      return view('app.dashboard.allocated', ['allocationCode' => $allocation_code]);
    }
    public function allocatedusers(){
       return view('app.dashboard.allocatedusers');
