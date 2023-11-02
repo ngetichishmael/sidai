@@ -17,13 +17,22 @@
 
        </select>
    </div>
-   <div class="col-md-3">
-       <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
-           data-toggle="tooltip" data-placement="top" title="Export Excel">
-           <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
-               data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
-       </button>
-   </div>
+        <div class="col-md-3 mb-2">
+            <label for="">Export Reports:</label>
+            <div class="dropdown">
+                <button style="background-color: #B6121B;color:white" class="mr-2 btn btn-md dropdown-toggle"
+                    type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true"
+                    aria-expanded="false" data-bs-toggle="dropdown">
+                    <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="13">
+                    Export
+                </button>
+                <div class="dropdown-menu dropdown-menu-left">
+                    <a class="dropdown-item" wire:click="export">Excel</a>
+                    <a class="dropdown-item" wire:click="exportCSV"> CSV</a>
+                    <a class="dropdown-item" wire:click="exportPDF">PDF</a>
+                </div>
+            </div>
+        </div>
 </div>
 <br>
 <div class="row">
@@ -46,24 +55,28 @@
                  <thead>
                     <tr>
                        <th>#</th>
-                       <th>Order ID</th>
-                       <th>Customer Name</th>
-                       <th>User Name</th>
-                       <th>User Type</th>
-                       <th>Date/Time</th>
-                       <th>Action</th>
+                       <th>Name</th>
+                       <th>Role</th>
+                       <th>Visits</th>
+                       <th>Leads</th>
+                       <th>Sales</th>
+                       <th>Orders</th>
+                       <th>No of Checkins</th>
+                       <th>Conversion Rate</th>
                     </tr>
                  </thead>
                  <tbody>
-                  @foreach ($vansales as $vansale)
+                  @foreach ($employees as $count=> $employee)
                   <tr>
-                     <td>{{ $count++ }}</td>
-                     <td>{{ $vansale->order_code }}</td>
-                     <td>{{ $vansale->Customer->customer_name??'' }}</td>
-                     <td>{{ $vansale->User->name??'' }}</td>
-                     <td>{{ $vansale->User->account_type??'' }}</td>
-                     <td>{{ $vansale->created_at ?? '' }}</td>
-                     <td><a href="{{ URL('orders/vansaleitems/'.$vansale->order_code) }}" class="btn btn-sm" style="background-color: rgb(173, 37, 37);color:white">View</a></td>
+                     <td>{{ $count+1 }}</td>
+                     <td>{{ $employee->name }}</td>
+                     <td>{{ $employee->role }}</td>
+                     <td>{{ $employee->visit_count }}</td>
+                     <td>7</td>
+                     <td>12</td>
+                     <td>67</td>
+                     <td>14</td>
+                     <td>24.3%</td>
                  </tr>
                   @endforeach
                     

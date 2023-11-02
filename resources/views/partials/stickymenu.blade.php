@@ -3,10 +3,8 @@
       <ul class="nav nav-tabs" style="font-weight: bolder; font-size:12px;">
          {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('preorders.reports') ? 'active' : '' }}" href="{{ route('preorders.reports') }}">Preorders</a>
-         </li>
-         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
-            <a class="nav-link {{ request()->routeIs('vansales.reports') ? 'active' : '' }}" href="{{ route('vansales.reports') }}">Vansales</a>
          </li> --}}
+         
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('delivery.reports') ? 'active' : '' }}" href="{{ route('delivery.reports') }}">Delivery</a>
          </li>
@@ -39,6 +37,9 @@
          </li>
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('inventory.reports') ? 'active' : '' }}" href="{{ route('inventory.reports') }}">Inventory</a>
+         </li>
+         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
+            <a class="nav-link {{ request()->routeIs('employee.reports') ? 'active' : '' }}" href="{{ route('employee.reports') }}">Employees</a>
          </li>
       </ul>
    </div>

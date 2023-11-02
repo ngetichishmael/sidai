@@ -25,10 +25,8 @@ class ReportsController extends Controller
       $dataAccessLevel = Auth::user()->roles()->pluck('data_access_level')->first();
       if (in_array('web', $middleware)) {
          switch ($routeName) {
-            // case 'preorders.reports':
-            //    return view('app.Reports.preorders');
-            // case 'vansales.reports':
-            //    return view('app.Reports.vansales');
+            case 'employee.reports':
+               return view('app.Reports.employee');
             case 'delivery.reports':
                return view('app.Reports.delivery');
             case 'sidai.reports':
