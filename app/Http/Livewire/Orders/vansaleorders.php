@@ -35,7 +35,7 @@ class vansaleorders extends Component
    {
       $searchTerm = '%' . $this->search . '%';
 
-      $sidai=suppliers::where('name', 'Sidai')->first();
+      $sidai=suppliers::find(1);
       $vansaleorders = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
          ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
