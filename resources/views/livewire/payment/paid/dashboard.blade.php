@@ -64,7 +64,6 @@
                     <tr>
                         <th>#</th>
                         <th>Order Code</th>
-                        <th>Transaction ID</th>
                         <th>Date</th>
                         <th>Customer Name</th>
                         <th>Sales Agent</th>
@@ -76,7 +75,6 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $payment->order_id !!}</td>
-                            <td>{!! $payment->reference_number ?? '' !!}</td>
                             <td>{!! $payment->payment_date !!}</td>
                             <td>{!! $payment->customer_name ?? '' !!}</td>
                             <td>{!! $payment->name !!}</td>
