@@ -56,6 +56,7 @@ class Index extends Component
          ->leftJoin('orders_targets AS ot', 'u.user_code', '=', 'ot.user_code')
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
+         ->where('u.account_type', '!=', 'Customer')
          ->get();
       return $result->paginate(25);
    }
