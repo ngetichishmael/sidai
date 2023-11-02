@@ -25,6 +25,14 @@ class PaymentController extends Controller
       $paymentMethod = $request->get('paymentMethod');
       $balance = $checking_code->balance - $amount;
       $ID = $request->user()->id;
+       // Check if the transactionID already exists
+    $existingPayment = order_payments::where('reference_number', $transactionID)->first();
+    if ($existingPayment) {
+        return response()->json([
+            "success" => false,
+            "message" => "TransactionID already exists",
+        ]);
+    }
 
       order_payments::create([
          'amount' => $amount,

@@ -323,7 +323,7 @@ Route::middleware('web')->group(function () {
 //      Route::group(['middleware' => ['auth', \App\Http\Middleware\CheckUserRole::class]], function () {
          Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
          // Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
-         // Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
+         Route::get('reports/employees', 'app\ReportsController@reports')->name('employee.reports');
          Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
          Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
