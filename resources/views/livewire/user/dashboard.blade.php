@@ -13,7 +13,7 @@
                     </tr>
                  </thead>
                  <tbody>
-               @foreach ($usercount as $key=>$user)
+               @foreach ($usercount as $key => $user)
                <tr>
                   <td>{{ $key+1 }}</td>
                   <td>{{ $user->account_type }}</td>
@@ -26,8 +26,6 @@
                      <a href="{{ route('attendee.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
                      @elseif ($user->account_type ==="NSM")
                      <a href="{{ route('nsm.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
-                     @elseif ($user->account_type ==="Customer")
-                     <a href="{{ route('customer.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
                      @elseif ($user->account_type ==="Admin")
                      <a href="{{ route('admin.details') }}" class="btn btn-sm" style="background-color: brown;color:white">View</a>
                      @endif
