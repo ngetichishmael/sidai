@@ -126,7 +126,7 @@ class customerController extends Controller
    }
 
 
-   public function approvecreditor($id)
+   public function approvecreditor(Request $request,$id)
    {
       $c=Customers::whereId($id)->update(
          [
@@ -140,15 +140,15 @@ class customerController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Customer approved';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Customer successfully Approved';
+      $activityLog->section = 'Web';
       $activityLog->action = 'Customer With id'. $c.' successfully Approved';
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address =$request->ip();
       $activityLog->save();
 
       return redirect()->route('creditor');
    }
-   public function approvecustomer($id)
+   public function approvecustomer(Request $request, $id)
    {
       $c=Customers::whereId($id)->update(
          [
@@ -160,10 +160,10 @@ class customerController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Customer approved';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Customer successfully Approved';
+      $activityLog->section = 'Web';
       $activityLog->action = 'Customer With id'. $c.' successfully Approved';
       $activityLog->activityID = $random;
-      $activityLog->ip_address ="";
+      $activityLog->ip_address=$request->ip();
       $activityLog->save();
 
       return redirect()->route('customer');
@@ -227,11 +227,11 @@ class customerController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Creating customer';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Add customer';
+      $activityLog->section = 'Web';
       $activityLog->action = 'Customer ' . $customer->customer_name . ' successfully Created';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address = "";
+      $activityLog->ip_address = $request->ip();
       $activityLog->save();
 
       return redirect()->route('customer');
@@ -348,40 +348,42 @@ class customerController extends Controller
          'customer_name' => 'required'
       ]);
       $customer = customers::find($id);
-
       if (!$customer) {
-         // Handle the case where the customer does not exist.
          return redirect()->back()->with('error', 'Customer not found');
       }
+      dd($request->all());
       $customer->update([
-         'customer_name' => $request->input('customer_name'),
-         'id_number' => $request->input('id_number', ''),
-         'contact_person' => $request->input('contact_person'),
-         'telephone' => $request->input('telephone', ''),
-         'address' => $request->input('address'),
-         'price_group' => $request->input('pricing_category'),
-         'customer_secondary_group' => $request->input('customer_secondary_group', ''),
-         'route' => $request->input('territory'),
-         'route_code' => $request->input('territory'),
-         'region_id' => $request->input('zone'),
-         'subregion_id' => $request->input('region'),
-         'zone_id' => $request->input('region'),
-         'branch' => $request->input('branch', ''),
-         'email' => $request->input('email'),
-         'phone_number' => $request->input('phone_number', ''),
+         'customer_name' => $request->input('customer_name')??$customer->customer_name,
+         'id_number' => $request->input('id_number')??$customer->id_number,
+         'contact_person' => $request->input('contact_person')??$customer->contact_person,
+         'telephone' => $request->input('telephone' )??$customer->telephone,
+         'address' => $request->input('address')??$customer->address,
+         'price_group' => $request->input('pricing_category')??$customer->price_group,
+         'customer_secondary_group' => $request->input('customer_secondary_group')??$customer->customer_secondary_group,
+         'route' => $request->input('territory')??$customer->route,
+         'route_code' => $request->input('territory')??$customer->route_code,
+         'region_id' => $request->input('zone')??$customer->region_id,
+         'subregion_id' => $request->input('region')??$customer->subregion_id,
+         'zone_id' => $request->input('territory')??$customer->zone_id,
+         'branch' => $request->input('branch') ?? $customer->branch,
+         'email' => $request->input('email') ?? $customer->email,
+         'phone_number' => $request->input('phone_number')??$customer->phone_number,
       ]);
 
       // Check for Distributor
       if (($request->input('customer_group') === 'Distributor') || ($request->input('customer_group') === 'Distributors')) {
          suppliers::updateOrCreate(
-            ['name' => $request->input('customer_name')],
+            ['name' => $customer->customer_name,
+              'phone_number'=>$customer->phone_number
+            ],
             [
                'email' => $request->input('email'),
                'phone_number' => $request->input('phone_number'),
                'telephone' => $request->input('telephone'),
                'customer_id'=>$customer->id,
                'status' => 'Active',
-               'business_code' => auth()->user()->business_code,
+               'name' => $request->input('customer_name'),
+                'business_code' => auth()->user()->business_code
             ]
          );
       }
@@ -395,17 +397,20 @@ class customerController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Updating customer details';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Update customer';
+      $activityLog->section = 'Web';
       $activityLog->action = 'Customer ' . $customer->customer_name . ' successfully ';
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $random;
-      $activityLog->ip_address = "";
+      $activityLog->ip_address = $request->ip();
       $activityLog->save();
 if ($request->input('in')=='approve'){
    return redirect()->route('approvecustomers');
-}
+}elseif ($request->input('in')=='customer'){
       return redirect()->route('customer');
-   }
+   }else {
+   return redirect()->route('customer');
+}
+}
 
 
 

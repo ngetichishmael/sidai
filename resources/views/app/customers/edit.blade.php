@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
                                         <input type="text" id="email-id-column" class="form-control" name="address"
-                                            placeholder="address" value="{{ $customer->address }}" />
+                                            placeholder="address" value="{{ $customer->address }}" readonly />
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-12">
@@ -129,6 +129,7 @@
                                 </div>
 
                             </div>
+                           <input type="hidden" value="customer" name="in">
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn"
                                     style="background-color: #B6121B;color:white">Update</button>
