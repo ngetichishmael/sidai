@@ -35,11 +35,7 @@ class VisitScheduleController extends Controller
                 'visitschedule.VisitedStatus')
         ->where('visitschedule.user_code',$user)
         ->get();
-        // $result = ModelsVisitschedule::join
-        // ('customers','customers.account','=','ModelsVisitschedule.shopID')
-        // ->select('ModelsVisitschedule.user_code, customers.customer_name')
-        // ->where('user_code',$user)
-        // ->get();
+        
 
 
         return response()->json([

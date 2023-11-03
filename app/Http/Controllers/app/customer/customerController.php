@@ -314,7 +314,7 @@ class customerController extends Controller
       $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
-      return view('app.customers.edit',
+      return view('app.customers.editapprove',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
@@ -337,7 +337,7 @@ class customerController extends Controller
       $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
-      return view('app.customers.editapprove',
+      return view('app.customers.edit',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
