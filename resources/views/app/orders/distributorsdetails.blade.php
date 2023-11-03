@@ -147,14 +147,14 @@
                         <div class="col-sm-6">
                             <div>
                                 <span class="text-sm text-grey-m2 align-middle">To:</span>
-                                <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name }}</span>
+                                <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name ?? ''}}</span>
                             </div>
                             <div class="text-grey-m2">
                                 <div class="my-1">
-                                    Address, <span class="text-blue">{!! $test->address !!}</span>
+                                    Address, <span class="text-blue">{!! $test->address ?? '' !!}</span>
                                 </div>
                                 <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
-                                        class="text-600">(+254){!! $test->phone_number !!}</b></div>
+                                        class="text-600">(+254){!! $test->phone_number ?? '' !!}</b></div>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -165,14 +165,14 @@
                                 <div class="mt-1">Invoice </div>
 
                                 <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">ID:</span> #{!! $order->id !!}</div>
+                                        class="text-600 text-90">ID:</span> #{!! $order->id ?? ''!!}</div>
 
                                 <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Issue Date:</span> {!! $order->created_at !!}</div>
+                                        class="text-600 text-90">Issue Date:</span> {!! $order->created_at  ?? now()!!}</div>
 
                                 <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                                         class="text-600 text-90">Status:</span> <span
-                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span>
+                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}} @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered") {{"Order Derivered"}}@else {!! $order->order_status !!}@endif</span>
                                 </div>
                             </div>
                         </div>
@@ -198,8 +198,8 @@
                                             <td>{!! $count + 1 !!}</td>
                                             <td>{!! $item->product_name !!}</td>
                                             <td>{!! $item->allocated_quantity !!}</td>
-                                            <td class="text-95">ksh{!! $item->selling_price !!}</td>
-                                            <td class="text-secondary-d2">ksh{!! $item->selling_price * $item->quantity !!}</td>
+                                            <td class="text-95">{!! $item->selling_price !!}</td>
+                                            <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -208,7 +208,7 @@
 
                         <div class="row mt-3">
                             <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                                Extra note such as company or payment information...
+
                             </div>
 
                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
@@ -217,25 +217,26 @@
                                         SubTotal
                                     </div>
                                     <div class="col-5">
-                                        <span class="text-120 text-secondary-d1">Ksh {!! $sub->sum('sub_total') !!}</span>
+                                        <span class="text-110 text-secondary-d1">{!! number_format(floatval( $sub->sum('sub_total')),2) !!}</span>
                                     </div>
                                 </div>
 
-{{--                                <div class="row my-2">--}}
-{{--                                    <div class="col-7 text-right">--}}
-{{--                                        Tax (10%)--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-5">--}}
-{{--                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                                <div class="row my-2 mb-1">
+                                    <div class="col-7 text-right">
+                                        Tax {{$item->taxrate ?? 0}}%
+                                    </div>
+                                    <div class="col-5">
+                                        <span class="text-110 text-secondary-d1 d-flex">&nbsp; &nbsp; &nbsp; {!!number_format(floatval(($item->taxrate/100)*$total->sum('total_amount')), 2) !!}</span>
+                                    </div>
+                                </div>
 
-                                <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                <div class="row my-2 align-items-center bgc-primary-l3 p-2 mt-1">
+                                   <span class="pe-2 ml-2">&nbsp; &nbsp; &nbsp; --------------------------</span>
                                     <div class="col-7 text-right">
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                        <span class="text-150 text-success-d3 opacity-2">Ksh {!! $total->sum('total_amount') !!}</span>
+                                        <span class="text-120 text-success-d3 opacity-2">Ksh. {!!  number_format(floatval($total->sum('total_amount') + $item->taxrate), 2) !!}</span>
                                     </div>
                                 </div>
                             </div>
@@ -246,9 +247,11 @@
                 </div>
             </div>
         </div>
-       <div class="col-md-3 mt-4">
+       <div class="col-md-3 mt-2">
+     <a href="{{ route('generatePdf', [
+    'test' => $test, 'order' => json_encode($order),'distributor'=>$distributor, 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>
           <h6 class="mt-3 mb-3">Tracking Distributor Order Status</h6>
-          <span class="mt-1 mb-1">Current Status: <span id="currentStatus" style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</span></span>
+          <span class="mt-1 mb-1">Current Status: <span id="currentStatus" style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}} @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered") {{"Order Derivered"}}@else {!! $order->order_status !!}@endif</span></span>
           <center>
              <form id="statusForm" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
                 @csrf
@@ -258,8 +261,8 @@
                       <option value="Complete Delivery" id="cd">Complete Delivery</option>
                       <option value="Partially Delivered" id="pd">Partially Delivered</option>
                       <option value="Not Delivered" id="nd">Not Delivered</option>
-                   @elseif(strtolower($order->order_status) == "complete delivery")
-                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                   @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered")
+                      <option value="Complete Delivery" id="cd">Order Delivered</option>
                       <option value="Partially Delivered" id="pd">Partially Delivered</option>
                    @elseif(strtolower($order->order_status) == "partially delivered")
                       <option value="Complete Delivery" id="cd">Complete Delivery</option>

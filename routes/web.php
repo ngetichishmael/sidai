@@ -447,6 +447,7 @@ Route::middleware('web')->group(function () {
    Route::post('orders/reallocate', ['uses' => 'app\ordersController@reAllocateOrders', 'as' => 'order.create.reallocateorders']);
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
+      Route::get('/generatePdf', ['uses' => 'app\ordersController@generatePDF', 'as' => 'generatePdf']);
 
    /* ===  survey === */
    /* === category === */

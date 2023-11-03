@@ -64,7 +64,8 @@
                     <tr>
                         <th>#</th>
                         <th>Order Code</th>
-                        <th>Date</th>
+                       @if($paymentMethod != 'PaymentMethods.Cash')<th>Transaction ID</th> @endif
+                       <th>Date</th>
                         <th>Customer Name</th>
                         <th>Sales Agent</th>
                         <th>Amount</th>
@@ -75,6 +76,7 @@
                         <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $payment->order_id !!}</td>
+                           @if($paymentMethod != 'PaymentMethods.Cash')<td>{!! $payment->reference_number ?? '' !!}</td>@endif
                             <td>{!! $payment->payment_date !!}</td>
                             <td>{!! $payment->customer_name ?? '' !!}</td>
                             <td>{!! $payment->name !!}</td>
