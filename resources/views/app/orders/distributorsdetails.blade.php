@@ -139,7 +139,7 @@
         </div>
     </div>
     @include('partials._messages')
-       <div class="row">
+    <div class="row">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
@@ -193,9 +193,6 @@
                                 </thead>
 
                                 <tbody class="text-95 text-secondary-d3">
-{{--                                @php--}}
-{{--                                   $globalTotal = 0;--}}
-{{--                                @endphp--}}
                                     @foreach ($items as $count => $item)
                                         <tr>
                                             <td>{!! $count + 1 !!}</td>
@@ -205,9 +202,6 @@
                                             <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
                                         </tr>
                                     @endforeach
-{{--                                    @php--}}
-{{--                                       $grandTotal += $item->selling_price * $item->quantity; // Update the grand total within the loop--}}
-{{--                                    @endphp--}}
                                 </tbody>
                             </table>
                         </div>
@@ -242,7 +236,7 @@
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                        <span class="text-120 text-success-d3 opacity-2">Ksh. {!!  number_format(floatval($total), 2) !!}</span>
+                                        <span class="text-120 text-success-d3 opacity-2">Ksh. {!!  number_format(floatval($total->sum('total_amount') + $item->taxrate), 2) !!}</span>
                                     </div>
                                 </div>
                             </div>
