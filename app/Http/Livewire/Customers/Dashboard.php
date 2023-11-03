@@ -83,7 +83,7 @@ class Dashboard extends Component
         }
         $aggregate
             ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
-            ->select(
+            ->select('*',
                 'customers.id as id',
                 'customers.customer_name',
                 'customers.phone_number as customer_number',
@@ -91,6 +91,7 @@ class Dashboard extends Component
                 'subregions.name as subregion_name',
                 'areas.name as area_name',
                 'customers.created_by as user_code',
+                'customers.updated_at',
                 'customers.created_at',
             );
         return $aggregate->paginate($this->perPage);

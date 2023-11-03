@@ -320,7 +320,6 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-      $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
       return view('app.customers.edit',
@@ -331,13 +330,19 @@ class customerController extends Controller
    public function update(Request $request, $id)
    {
       $this->validate($request, [
-         'customer_name' => 'required'
+         'customer_name' => 'required',
+         'phone_number' => 'required',
+         'email' => 'required',
+         'pricing_category' => 'required',
+         'customer_group' => 'required',
       ]);
       $customer = customers::find($id);
       if (!$customer) {
          return redirect()->back()->with('error', 'Customer not found');
       }
-      dd($request->all());
+   $cname=$customer->customer_name;
+   $phone=$customer->phone_number;
+//   dd($request->all());
       $customer->update([
          'customer_name' => $request->input('customer_name')??$customer->customer_name,
          'id_number' => $request->input('id_number')??$customer->id_number,
@@ -345,7 +350,7 @@ class customerController extends Controller
          'telephone' => $request->input('telephone' )??$customer->telephone,
          'address' => $request->input('address')??$customer->address,
          'price_group' => $request->input('pricing_category')??$customer->price_group,
-         'customer_secondary_group' => $request->input('customer_secondary_group')??$customer->customer_secondary_group,
+         'customer_group' => $request->input('customer_group')??$customer->customer_group,
          'route' => $request->input('territory')??$customer->route,
          'route_code' => $request->input('territory')??$customer->route_code,
          'region_id' => $request->input('zone')??$customer->region_id,
@@ -354,24 +359,40 @@ class customerController extends Controller
          'branch' => $request->input('branch') ?? $customer->branch,
          'email' => $request->input('email') ?? $customer->email,
          'phone_number' => $request->input('phone_number')??$customer->phone_number,
+         'updated_at'=>now(),
+         'updated_by'=>auth()->user()->user_code,
       ]);
 
       // Check for Distributor
       if (($request->input('customer_group') === 'Distributor') || ($request->input('customer_group') === 'Distributors')) {
-         suppliers::updateOrCreate(
-            ['name' => $customer->customer_name,
-              'phone_number'=>$customer->phone_number
-            ],
-            [
+         $supplier = suppliers::where('name', $cname)
+            ->where('phone_number', $phone)
+            ->first();
+         if ($supplier) {
+            $supplier->update([
                'email' => $request->input('email'),
-               'phone_number' => $request->input('phone_number'),
-               'telephone' => $request->input('telephone'),
+               'phone_number' => $request->input('phone_number')??$phone,
+               'telephone' => $request->input('telephone')??$phone,
                'customer_id'=>$customer->id,
                'status' => 'Active',
-               'name' => $request->input('customer_name'),
-                'business_code' => auth()->user()->business_code
-            ]
-         );
+               'name' => $request->input('customer_name')??$cname,
+               'business_code' => auth()->user()->business_code,
+               'updated_at'=>now(),
+               'updated_by'=>auth()->user()->user_code,
+            ]);
+         } else {
+            suppliers::create([
+               'email' => $request->input('email'),
+               'phone_number' => $request->input('phone_number')??$phone,
+               'telephone' => $request->input('telephone')??$phone,
+               'customer_id'=>$customer->id,
+               'status' => 'Active',
+               'name' => $request->input('customer_name')??$cname,
+               'business_code' => auth()->user()->business_code,
+               'updated_at'=>now(),
+               'updated_by'=>auth()->user()->user_code,
+            ]);
+         }
       }
       $user=User::where('user_code', $customer->user_code)->first();
       if ($user != null || !empty($user)) {

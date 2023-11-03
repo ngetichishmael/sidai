@@ -5,6 +5,8 @@ namespace App\Models\customer;
 use App\Models\Area;
 use App\Models\Delivery_items;
 use App\Models\Order_items;
+use App\Models\Region;
+use App\Models\Subregion;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -23,6 +25,13 @@ class customers extends Model
    public function Area(): BelongsTo
    {
       return $this->belongsTo(Area::class, 'route_code', 'id');
+   }
+   public function subregion(): BelongsTo
+   {
+      return $this->belongsTo(Subregion::class, 'subregion_id', 'id');
+   } public function region(): BelongsTo
+   {
+      return $this->belongsTo(Region::class, 'region_id', 'id');
    }
    public function customers()
    {
