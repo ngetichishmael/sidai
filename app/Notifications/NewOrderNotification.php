@@ -4,6 +4,7 @@ namespace App\Notifications;
 
 use App\Models\customers;
 use App\Models\Order_items;
+use App\Models\Orders;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -38,7 +39,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
       $this->sales = $sales;
       $this->sales_number = $sales_number;
       $this->distributor = $distributor;
-      $this->orderitems = Order_items::where('order_code', $this->order->order_code)->get();
+      $this->orderitems = Order_items::where('order_code', $this->order)->get();
 //      Log::debug($this->order->order_code);
 //      Log::debug($this->orderitems);
    }
@@ -62,9 +63,10 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-       Log::debug('----------------------------------'. $this->orderitems);
+//       Log::debug('----------------------------------'. $this->orderitems);
       if ($this->order){
-         $customer=customers::find($this->order->customerID);
+         $o=Orders::find($this->order);
+         $customer=customers::find($o->customerID);
          if (!empty($customer)) {
            $orderitems=$this->orderitems;
          }
@@ -77,7 +79,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
             ->view('email.order_notification', [
                'customer' => $customer,
                'location' => $mapLink,
-               'ordercode'=>$this->order->order_code,
+               'ordercode'=>$this->order,
                'name'=>$this->distributor,
                'orderitems'=>$this->orderitems,
                'sales'=>$this->sales,

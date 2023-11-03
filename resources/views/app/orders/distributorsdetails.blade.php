@@ -200,6 +200,9 @@
                                             <td>{!! $item->allocated_quantity !!}</td>
                                             <td class="text-95">{!! $item->selling_price !!}</td>
                                             <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
+                                           @php
+                                              $grandTotal += $item->selling_price * $item->quantity; // Update the grand total within the loop
+                                           @endphp
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -236,7 +239,7 @@
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                        <span class="text-120 text-success-d3 opacity-2">Ksh. {!!  number_format(floatval($total->sum('total_amount') + $item->taxrate), 2) !!}</span>
+                                        <span class="text-120 text-success-d3 opacity-2">Ksh. {!!  number_format(floatval($grandTotal + $item->taxrate), 2) !!}</span>
                                     </div>
                                 </div>
                             </div>
