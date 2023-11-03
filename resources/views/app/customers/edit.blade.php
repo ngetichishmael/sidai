@@ -37,7 +37,7 @@
                             @method('PUT')
                             @csrf
                             <div class="row">
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="first-name-column">Customer Names</label>
                                         <input type="text" id="first-name-column" class="form-control"
@@ -46,7 +46,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="first-name-column">Contact Person</label>
                                         <input type="text" id="first-name-column" class="form-control"
@@ -54,14 +54,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="email-id-column">Address</label>
                                         <input type="text" id="email-id-column" class="form-control" name="address"
-                                            placeholder="address" value="{{ $customer->address }}" />
+                                            placeholder="address" value="{{ $customer->address }}" readonly />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <label>Customer Group</label>
                                     <select class="form-control" name="customer_group">
                                         <option value="">Customer Group</option>
@@ -74,27 +74,27 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <label>Pricing Category</label>
                                     <select class="form-control" name="pricing_category">
                                         <option value="">Pricing Category</option>
 
                                         @foreach ($prices as $price)
                                             <option value="{{ $price->name }}"
-                                                @if ($price->name == $price->name) selected @endif>
+                                                @if ($price->name == $customer->price_group) selected @endif>
                                                 {{ $price->name }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="last-name-column">Email</label>
                                         <input type="email" id="last-name-column" class="form-control" placeholder="Email"
                                             name="email" value="{{ $customer->email }}" />
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-6 col-12 mb-2">
                                     <div class="form-group">
                                         <label for="city-column">Phone Number</label>
                                         <input type="text" id="city-column" class="form-control"
@@ -103,8 +103,8 @@
                                     </div>
                                 </div>
                                 {{-- @livewire('customers.region') --}}
-                                <div class="col-md-6 col-12">
-                                    <label>Region</label>
+                                <div class="col-md-6 col-12 mb-2">
+                                    <label>Region :  <span style="color: #d5512d">{{$customer->region->name ?? ''}}</label>
                                     <select id="regionId" class="form-control" name="zone">
                                         <option value="">Region</option>
                                         @foreach ($regions as $region)
@@ -115,20 +115,46 @@
                                         @endforeach
                                     </select>
                                 </div>
+{{--                               @dd($customer->subregion->name)--}}
+                               <div class="col-md-6 col-12 mb-2">
+                                  <label>Sub Region :  <span style="color: #d5512d">{{$customer->subregion->name ?? ''}}</span></label>
+                                  <select id="subregionId" class="form-control" name="region">
+                                     <option value="">{{$customer->subregion->name ?? 'Subregion'}}</option>
+                                     @foreach ($subregions as $subregion)
+                                        <option value="{{ $subregion->id }}"
+                                   @if ($subregion->id == $customer->subregion_id) selected @endif>
+                                           {{ $subregion->name }}
+                                        </option>
+                                     @endforeach
+                                  </select>
+                               </div>
+                               <div class="col-md-6 col-12 mb-2">
+                                  <label>Route/Town:    <span style="color: #d5512d"> {{$customer->Area->name ?? ''}}</span></label>
+                                  <select id="areaId" class="form-control" name="territory">
+                                     <option value="">{{$customer->Area->name ?? 'Route(Town)'}}</option>
+                                     @foreach ($areas as $route)
+                                        <option value="{{ $route->id }}"
+                                  @if ($route->id == $customer->route_id) selected @endif>
+                                           {{ $route->name }}
+                                        </option>
+                                     @endforeach
+                                  </select>
+                               </div>
 
-                                <div class="col-md-6 col-12">
-                                    <label>Sub Region</label>
-                                    <select id="subregionId" class="form-control" name="region">
+{{--                                <div class="col-md-6 col-12 mb-2">--}}
+{{--                                    <label>Sub Region</label>--}}
+{{--                                    <select id="subregionId" class="form-control" name="region">--}}
 
-                                    </select>
-                                </div>
-                                <div class="col-md-6 col-12">
-                                    <label>Route</label>
-                                    <select id="areaId" class="form-control" name="territory">
-                                    </select>
-                                </div>
+{{--                                    </select>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-6 col-12 mb-2">--}}
+{{--                                    <label>Route</label>--}}
+{{--                                    <select id="areaId" class="form-control" name="territory">--}}
+{{--                                    </select>--}}
+{{--                                </div>--}}
 
                             </div>
+                           <input type="hidden" value="customer" name="in">
                             <div class="my-1 col-sm-9 offset-sm-3">
                                 <button type="submit" class="mr-1 btn"
                                     style="background-color: #B6121B;color:white">Update</button>
@@ -226,8 +252,6 @@
             populateAreas(selectedSubRegionId);
         });
     </script>
-
-
 @endsection
 {{-- page scripts --}}
 @section('scripts')

@@ -107,7 +107,7 @@
                                   <td><button class="btn btn-sm btn-outline-warning">New-Inactive</button></td>
                                @endif
                             @endif
-                            <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>
+                            <td>{!! $contact->updated_at->format('d/m/Y') ?? $contact->created_at->format('d/m/Y') !!}</td>
                             <td>
                                 <div class="dropdown">
                                     <button style="background-color: #B6121B;color:white"
