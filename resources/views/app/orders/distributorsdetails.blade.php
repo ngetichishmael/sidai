@@ -139,11 +139,7 @@
         </div>
     </div>
     @include('partials._messages')
-    @php
-       $globalTotal = 0;
-    @endphp
-
-    <div class="row">
+       <div class="row">
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
@@ -197,6 +193,9 @@
                                 </thead>
 
                                 <tbody class="text-95 text-secondary-d3">
+{{--                                @php--}}
+{{--                                   $globalTotal = 0;--}}
+{{--                                @endphp--}}
                                     @foreach ($items as $count => $item)
                                         <tr>
                                             <td>{!! $count + 1 !!}</td>
@@ -206,9 +205,9 @@
                                             <td class="text-secondary-d2">{!! $item->selling_price * $item->quantity !!}</td>
                                         </tr>
                                     @endforeach
-                                    @php
-                                       $grandTotal += $item->selling_price * $item->quantity; // Update the grand total within the loop
-                                    @endphp
+{{--                                    @php--}}
+{{--                                       $grandTotal += $item->selling_price * $item->quantity; // Update the grand total within the loop--}}
+{{--                                    @endphp--}}
                                 </tbody>
                             </table>
                         </div>
