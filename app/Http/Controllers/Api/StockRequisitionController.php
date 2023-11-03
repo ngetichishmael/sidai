@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Helpers\StockLiftHelper;
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\inventory\allocations;
 use App\Models\inventory\items;
 use App\Models\products\product_information;
@@ -57,6 +58,16 @@ class StockRequisitionController extends Controller
             'quantity' => $productData['quantity'],
          ]);
       }
+      $ativity_rand = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Stock Requisition Request';
+      $activityLog->user_code = auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action = 'Stock Requisition Requested by' . Auth::user()->name . ' requisition id  ' . $stockRequisition->id ?? '';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = "";
+      $activityLog->save();
       return response()->json("Stock requisition request successful", 201);
    }
     public function show(Request $request)

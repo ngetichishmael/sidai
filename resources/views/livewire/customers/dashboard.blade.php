@@ -66,24 +66,47 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
-                        <th>Added By</th>
+                        <th>Added By
+                        <th>Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
                         @forelse($contacts as $count => $contact)
                             <td>{{ $count + 1 }}</td>
-                            <td>
-                                {{ $contact->customer_name }}
-                            </td>
+                            <td>{{ $contact->customer_name }}</td>
                             <td>{{ $contact->customer_number }}</td>
-
                             <td class="cell-fit">
                                 {!! $contact->region_name !!},
                                 <i>{!! $contact->subregion_name !!}</i>,
                                 {!! $contact->area_name !!}
                             </td>
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
+                            @if ($this->getLastOrderDate($contact->lastOrderDate))
+                               @php
+                                  $lastOrderDate = \Carbon\Carbon::parse($this->getLastOrderDate($contact->lastOrderDate));
+                                  $now = \Carbon\Carbon::now();
+                                  $differenceInMonths = $lastOrderDate->diffInMonths($now);
+                               @endphp
+                               @if ($differenceInMonths < 1)
+                                  <td><button class="btn btn-sm btn-outline-success">Active</button></td>
+                               @elseif ($differenceInMonths >= 1 && $differenceInMonths < 2)
+                                  <td><button class="btn btn-sm btn-outline-info">Partially Inactive</button></td>
+                               @else
+                                  <td><button class="btn btn-sm btn-outline-danger">Inactive</button></td>
+                               @endif
+                            @else
+                               @php
+                                  $createdAt = \Carbon\Carbon::parse($contact->created_at);
+                                  $now = \Carbon\Carbon::now();
+                                  $differenceInMonths = $createdAt->diffInMonths($now);
+                               @endphp
+                               @if ($differenceInMonths < 1)
+                                  <td><button class="btn btn-sm btn-outline-secondary">New</button></td>
+                               @else
+                                  <td><button class="btn btn-sm btn-outline-warning">New-Inactive</button></td>
+                               @endif
+                            @endif
                             <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>
                             <td>
                                 <div class="dropdown">

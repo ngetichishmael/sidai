@@ -67,7 +67,7 @@ class AuthController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Login in Mobile Device';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Mobile Login';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'User ' . auth()->user()->name . ' Logged in in mobile appication';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;
@@ -118,7 +118,7 @@ class AuthController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Logout in Mobile Device';
         $activityLog->user_code = $request->user()->user_code;
-        $activityLog->section = 'Mobile Logout';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'User ' . $request->user()->name . ' Logged out of mobile appication';
         $activityLog->userID = $request->user()->id;
         $activityLog->activityID = $random;
@@ -189,7 +189,7 @@ class AuthController extends Controller
             $activityLog = new activity_log();
             $activityLog->activity = 'Login';
             $activityLog->user_code = auth()->user()->user_code;
-            $activityLog->section = 'Mobile Login';
+            $activityLog->section = 'Mobile';
             $activityLog->action = 'Logged in successful';
             $activityLog->userID = auth()->user()->id;
             $activityLog->activityID = $random;
@@ -216,7 +216,7 @@ class AuthController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Password  updating';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Password update';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'Password ' . $request->product_name . ' successfully updated ';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;

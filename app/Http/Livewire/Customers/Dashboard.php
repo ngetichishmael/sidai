@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Customers;
 
 use App\Exports\CustomersExport;
 use App\Models\customers;
+use App\Models\Orders;
 use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
@@ -38,7 +39,7 @@ class Dashboard extends Component
     {
         return view('livewire.customers.dashboard', [
             'contacts' => $this->getPaginatedCustomers(),
-            'customers' => $this->getCustomers(),
+//            'customers' => $this->getCustomers(),
             'regions' => $this->region(),
             'groups' => $this->groups(),
             'selectedGroup' => $this->selectedGroup,
@@ -71,7 +72,7 @@ class Dashboard extends Component
             })
             ->where('customer_type', 'like', 'normal')
             ->where('approval', 'LIKE', 'Approved');
-        if ($this->user->account_type === "RSM") {
+        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
             $aggregate->whereIn('regions.id', $this->filter());
         }
         if ($this->selectedGroup) {
@@ -90,13 +91,19 @@ class Dashboard extends Component
                 'subregions.name as subregion_name',
                 'areas.name as area_name',
                 'customers.created_by as user_code',
-                'customers.created_at')
-        ;
+                'customers.created_at',
+            );
         return $aggregate->paginate($this->perPage);
     }
     public function getCreatorName($user_code)
     {
         return User::where('user_code', $user_code)->pluck('name')->implode('');
+    }
+    public function getLastOrderDate($id)
+    {
+        return Orders::where('customerID', $id)->latest('created_at')
+           ->pluck('created_at')
+           ->first();
     }
     public function getCustomers()
     {
