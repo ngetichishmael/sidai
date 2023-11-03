@@ -47,43 +47,75 @@
                         <th>Start Time/Stop time</th>
                         <th>Duration</th>
                         <th>Date</th>
+                        <th>Order Status</th>
+                        <th>View</th>
                     </thead>
                     <tbody>
-                        @foreach ($visits as $count => $visit)
-                            <td>{!! $count + 1 !!}</td>
-                            <td>{!! $visit->name !!}</td>
-                            <td>{!! $visit->customer_name !!} </td>
-                            <td class="cell-fit">
-                                <div class="badge badge-pill badge-secondary" style="color: white; background-color:brown">{{ $visit->start_time ?? '' }}
-                                </div>
-                                <b> -</b>
-                                <div class="badge badge-pill badge-secondary" style="color: white; background-color:brown">{{ $visit->stop_time ?? '' }}</div>
-                            </td>
-                            
-                            <td>
-                                @if (isset($visit->stop_time))
-                                    @php
-                                        $start = \Carbon\Carbon::parse($visit->start_time);
-                                        $stop = \Carbon\Carbon::parse($visit->stop_time);
-                                        $durationInSeconds = $start->diffInSeconds($stop);
-                                    @endphp
-
-                                    @if ($durationInSeconds < 60)
-                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ $durationInSeconds }} secs</div>
-                                    @elseif ($durationInSeconds < 3600)
-                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 60) }} mins</div>
-                                    @else
-                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 3600) }} hrs</div>
-                                    @endif
-                                @else
-                                    <span class="badge badge-pill badge-light-info mr-1">Visit Active</span>
-                                @endif
-                            </td>
-                            <td>{{ $visit->formatted_date }}</td>
-
+                        @forelse ($visits as $count => $visit)
+                            <tr>
+                                @php
+                                    $checkingData = $this->getChecking($visit->code);
+                                @endphp
+                                <td>{!! $count + 1 !!}</td>
+                                <td>{!! $visit->name !!}</td>
+                                <td>{!! $visit->customer_name !!}</td>
+                                <td class="cell-fit">
+                                    <div class="badge" style="background-color: brown;color:white">{{ $visit->start_time ?? '' }}
+                                    </div>
+                                    <b> -</b>
+                                    <div class="badge" style="background-color: brown;color:white">{{ $visit->stop_time ?? '' }}</div>
+                                </td>
+                                <td>
+                                    <div class="badge" style="background-color: brown;color:white">
+                                        {{ $this->formatDuration($visit->duration_seconds) ?? '' }}</div>
+                                </td>
+                                <td>{{ $visit->formatted_date }}</td>
+                                <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
+                                <td class="control" style="" tabindex="0">
+                                    <span class="expand-row" data-toggle="collapse"
+                                        data-target="#details{{ $visit->code }}">
+                                        <span class="material-symbols-outlined">
+                                            visibility
+                                        </span>
+                                    </span>
+                                </td>
                             </tr>
-                        @endforeach
-                    </tbody>
+                            <tr id="details{{ $visit->code }}" class="collapse">
+                                <td colspan="8">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>Has customer made any order?</td>
+                                            <td>{{ $checkingData['customer_ordered'] ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Did outlet already have Stock ?</td>
+                                            <td>{{ $checkingData['outlet_has_stock'] ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Who is our potential competitors?</td>
+                                            <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
+                                        </tr>
+                            </tr>
+                            <tr>
+                                <td>Which products have the highest sale?</td>
+                                <td>
+                                    @if (is_array($checkingData['highest_sale_products'] ?? null))
+                                        {{ implode(', ', $checkingData['highest_sale_products']) }}
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                            </tr>
+
+                </table>
+                </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="8" style="text-align: center;">No Record found.</td>
+                </tr>
+                @endforelse
+                </tbody>
                 </table>
 
                 <div class="mt-1">
@@ -93,3 +125,4 @@
         </div>
     </div>
 </div>
+<br>

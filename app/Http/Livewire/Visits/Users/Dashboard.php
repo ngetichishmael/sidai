@@ -25,6 +25,7 @@ class Dashboard extends Component
    
    public function render()
    {
+    
       return view('livewire.visits.users.dashboard', [
          'visits' => $this->data()
       ]);
