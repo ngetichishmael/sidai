@@ -304,17 +304,10 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-         // dd($customer);
-      // $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
-      // $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
-      // $customer->update([
-      //    'subregion_id' => $subregion_id,
-      //    'region_id' => $region_id,
-      // ]);
       $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
-      return view('app.customers.edit',
+      return view('app.customers.editapprove',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
@@ -327,17 +320,10 @@ class customerController extends Controller
       $customer = customers::where('customers.id', $id)
          ->select('*', 'customers.id as customerID')
          ->first();
-         // dd($customer);
-      // $subregion_id = Area::whereId($customer->route ?? $customer->route_code)->pluck('subregion_id')->implode('');
-      // $region_id = Subregion::whereId($subregion_id)->pluck('region_id')->implode('');
-      // $customer->update([
-      //    'subregion_id' => $subregion_id,
-      //    'region_id' => $region_id,
-      // ]);
       $regions = Region::all();
       $groups = groups::get();
       $prices = PriceGroup::get();
-      return view('app.customers.editapprove',
+      return view('app.customers.edit',
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
