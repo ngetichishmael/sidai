@@ -65,7 +65,7 @@
                         <th>#</th>
                         <th>Order Code</th>
                        @if($paymentMethod != 'PaymentMethods.Cash')<th>Transaction ID</th> @endif
-                        <th>Date</th>
+                       <th>Date</th>
                         <th>Customer Name</th>
                         <th>Sales Agent</th>
                         <th>Amount</th>
