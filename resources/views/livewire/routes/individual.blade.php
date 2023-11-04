@@ -30,7 +30,7 @@
                     @foreach ($routes as $count => $route)
                         <tr>
                             <td>{!! $count + 1 !!}</td>
-                            <td>{!! $route->user->name ?? "" !!}</td>
+                            <td>{!! $route->username->name ?? "" !!}</td>
                             <td>{!! $route->name !!}</td>
                             @if (date("Y-m-d") > $route->end_date)
                                 <td>Expired</td>
