@@ -14,7 +14,7 @@ class individual extends Component
     public $search = '';
     public function render()
     {
-        $routes = Routes::with("user")->where('Type', 'Individual')
+        $routes = Routes::with("username")->where('Type', 'Individual')
         ->orderBy('created_at', 'desc')
         ->paginate($this->perPage);
         
