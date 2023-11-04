@@ -81,6 +81,10 @@ Route::group(['namespace' => 'Api'], function () {
 
     // Van Sales
     Route::post('checkin/vansales/{checkinCode}/{random}/add-to-cart', 'CheckingSaleOrderController@VanSales')->middleware('auth:sanctum');
+    /**
+ * Post Sales Reports
+ */
+    Route::post('/post/sales/report/{customer_id}/{checking_code}', ['uses' => 'SaleReportController@store'])->middleware('auth:sanctum')->name('post.store.reports');
 
     //New Sales Order
 
