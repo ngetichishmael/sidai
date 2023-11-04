@@ -33,9 +33,9 @@
                             <td>{!! $route->username->name ?? "" !!}</td>
                             <td>{!! $route->name !!}</td>
                             @if (date("Y-m-d") > $route->end_date)
-                                <td>Expired</td>
+                                <td style="color: red">Expired</td>
                                 @else
-                                <td>Active</td>
+                                <td style="color: green">Active</td>
                             @endif
                             <td>{!! $route->end_date !!}</td>
                         </tr>
