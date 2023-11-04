@@ -35,7 +35,7 @@
                             @if (date("Y-m-d") > $route->end_date)
                                 <td><button style="color: red" class="btn btn-outline-danger">Expired</button></td>
                                 @else
-                                <td style="color: green" class="btn btn-outline-success">Active</td>
+                                <td><button style="color: green" class="btn btn-outline-success">Active</button></td>
                             @endif
                             <td>{!! $route->end_date !!}</td>
                         </tr>
