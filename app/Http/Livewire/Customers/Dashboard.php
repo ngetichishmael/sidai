@@ -87,25 +87,25 @@ class Dashboard extends Component
        if (!empty($this->selectedStatus)) {
           if ($this->selectedStatus === 'new') {
              // Filter customers where last order date is null
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subMonth());
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subDays(30));
           } elseif ($this->selectedStatus === 'active') {
              // Filter customers where last order date is within the last 30 days
              $aggregate->whereBetween('last_order_date', [Carbon::now()->subDays(30), Carbon::now()]);
           } elseif ($this->selectedStatus === 'partially_inactive') {
              // Filter customers where last order date is more than one month and less than or equal to three months
-             $oneMonthAgo = Carbon::now()->subMonth();
-             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $oneMonthAgo = Carbon::now()->subDays(30);
+             $threeMonthsAgo = Carbon::now()->subDays(90);
              $aggregate->whereBetween('last_order_date', [$oneMonthAgo, $threeMonthsAgo]);
           } elseif ($this->selectedStatus === 'inactive') {
              // Filter customers where last order date is more than three months
-             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $threeMonthsAgo = Carbon::now()->subDays(90);
              $aggregate->where('last_order_date', '<', $threeMonthsAgo);
           } elseif ($this->selectedStatus === 'new_inactive') {
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subMonth());
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
        }
 
-        $aggregate
+       $aggregate
 //            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
           ->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
            ->select('*',
@@ -192,21 +192,21 @@ class Dashboard extends Component
        if (!empty($this->selectedStatus)) {
           if ($this->selectedStatus === 'new') {
              // Filter customers where last order date is null
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subMonth());
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subDays(30));
           } elseif ($this->selectedStatus === 'active') {
              // Filter customers where last order date is within the last 30 days
              $aggregate->whereBetween('last_order_date', [Carbon::now()->subDays(30), Carbon::now()]);
           } elseif ($this->selectedStatus === 'partially_inactive') {
              // Filter customers where last order date is more than one month and less than or equal to three months
-             $oneMonthAgo = Carbon::now()->subMonth();
-             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $oneMonthAgo = Carbon::now()->subDays(30);
+             $threeMonthsAgo = Carbon::now()->subDays(90);
              $aggregate->whereBetween('last_order_date', [$oneMonthAgo, $threeMonthsAgo]);
           } elseif ($this->selectedStatus === 'inactive') {
              // Filter customers where last order date is more than three months
-             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $threeMonthsAgo = Carbon::now()->subDays(90);
              $aggregate->where('last_order_date', '<', $threeMonthsAgo);
           } elseif ($this->selectedStatus === 'new_inactive') {
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subMonth());
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
        }
 
