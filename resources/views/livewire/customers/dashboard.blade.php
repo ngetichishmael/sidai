@@ -1,5 +1,6 @@
 <div>
     <div>
+       <div>
         <div class="row mb-1 mt-1">
             <div class="col-md-3 col-sm-4">
                 <label for="">Start Date</label>
@@ -9,7 +10,17 @@
                 <label for="">End Date</label>
                 <input wire:model="endDate" type="date" class="form-control">
             </div>
-            <div class="col-3"></div>
+           <div class="col-md-3">
+              <label for="">Flter By Customer Status</label>
+              <select wire:model="selectedStatus" class="form-control">
+                 <option value="all"> All </option>
+                 <option value="active"> Active </option>
+                 <option value="partially_inactive">Partially Inactive</option>
+                 <option value="inactive"> Inactive </option>
+                 <option value="new"> New </option>
+                 <option value="new_inactive"> New-Inactive </option>
+              </select>
+           </div>
             <div class="col-md-3 mb-2">
                 <label for="">Export Reports:</label>
                 <div class="dropdown">
@@ -27,6 +38,8 @@
                 </div>
             </div>
         </div>
+       </div>
+       <div>
         <div class="mb-1 row">
             <div class="col-md-6">
                 <label for="">Search by user name, route, region</label>
@@ -57,6 +70,7 @@
             </div>
         </div>
     </div>
+    </div>
     <div class="card card-default">
         <div class="card-body">
             <div class="card-datatable table-responsive">
@@ -82,30 +96,32 @@
                                 {!! $contact->area_name !!}
                             </td>
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
-                            @if ($this->getLastOrderDate($contact->lastOrderDate))
-                               @php
-                                  $lastOrderDate = \Carbon\Carbon::parse($this->getLastOrderDate($contact->lastOrderDate));
-                                  $now = \Carbon\Carbon::now();
-                                  $differenceInMonths = $lastOrderDate->diffInMonths($now);
-                               @endphp
-                               @if ($differenceInMonths < 1)
-                                  <td><button class="btn btn-sm btn-outline-success">Active</button></td>
-                               @elseif ($differenceInMonths >= 1 && $differenceInMonths < 2)
-                                  <td><button class="btn btn-sm btn-outline-info">Partially Inactive</button></td>
-                               @else
-                                  <td><button class="btn btn-sm btn-outline-danger">Inactive</button></td>
-                               @endif
+                            @php
+                               $lastOrderDate = $contact->last_order_date ? \Carbon\Carbon::parse($contact->last_order_date) : null;
+                                                  $now = \Carbon\Carbon::now();
+                                                      if ($lastOrderDate !== null) {
+                                                          $differenceInMonths = $lastOrderDate->diffInMonths($now);
+                                                      } else {
+                                                          $differenceInMonths = null;
+                                                      }
+                                                  $threeMonthsAgo = \Carbon\Carbon::now()->subMonths(3);
+                                                  $oneMonthAgo = \Carbon\Carbon::now()->subMonth();
+                                                  $createdAtDate = \Carbon\Carbon::parse($contact->created_at);
+                                                   $daysDifference = $oneMonthAgo->diffInDays($createdAtDate);
+                            @endphp
+
+                            @if ($lastOrderDate != null && $lastOrderDate->lessThanOrEqualTo($oneMonthAgo))
+                               <td><span class="badge btn-outline-success">Active</span></td>
+                            @elseif ($lastOrderDate != null && ($daysDifference >= 30 && $daysDifference <= 90))
+                               <td><span class="badge btn-outline-info">Partially Inactive</span></td>
+                            @elseif ($lastOrderDate != null && $daysDifference >= 90)
+                               <td><span class="badge btn-outline-danger">Inactive</span></td>
+                            @elseif ($lastOrderDate === null && $daysDifference <= 30)
+                               <td><span class="badge btn-outline-secondary"> New </span></td>
+                            @elseif ($lastOrderDate === null && $daysDifference > 30)
+                               <td><span class="badge btn-outline-warning"> New Inactive </span></td>
                             @else
-                               @php
-                                  $createdAt = \Carbon\Carbon::parse($contact->created_at);
-                                  $now = \Carbon\Carbon::now();
-                                  $differenceInMonths = $createdAt->diffInMonths($now);
-                               @endphp
-                               @if ($differenceInMonths < 1)
-                                  <td><button class="btn btn-sm btn-outline-secondary">New</button></td>
-                               @else
-                                  <td><button class="btn btn-sm btn-outline-warning">New-Inactive</button></td>
-                               @endif
+                               <td><span class="badge btn-outline-warning"> Inactive </span></td>
                             @endif
                             <td>{!! $contact->updated_at->format('d/m/Y') ?? $contact->created_at->format('d/m/Y') !!}</td>
                             <td>
@@ -128,14 +144,12 @@
                                         @if ($contact->approval === 'Approved')
                                             <a wire:click.prevent="deactivate({{ $contact->id }})"
                                                 onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                                type="button" class="dropdown-item btn btn-sm me-2"
-                                                style="color:  #54a149; font-weight: bold"><i
-                                                    data-feather="check"></i>&nbsp;>Approved</a>
+                                                type="button" class="dropdown-item btn btn-sm me-2">
+                                               <i data-feather="check"></i>Approved</a>
                                         @else
                                             <a wire:click.prevent="activate({{ $contact->id }})"
                                                 onclick="confirm('Are you sure you want to ACTIVATE this customer?')||event.stopImmediatePropagation()"
-                                                type="button" class="dropdown-item btn btn-sm me-2"
-                                                style="color: #e5602f;font-weight: bold"><i
+                                                type="button" class="dropdown-item btn btn-sm me-2"><i
                                                     data-feather="pause"></i>&nbsp;Pending</a>
                                         @endif
                                     </div>

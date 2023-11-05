@@ -10,7 +10,7 @@
         td {
         font-size: 10px; /* Adjust the font size as needed */
         }
-        
+
         /* Add custom styling for the table */
         table {
             width: 100%;
@@ -55,6 +55,7 @@
                 <th width="20%">Address</th>
                 <th>Zone/Region</th>
                 <th>Route</th>
+                <th>Status</th>
                 <th>Created By</th>
                 <th>Created At</th>
             </tr>
@@ -69,9 +70,7 @@
                         @endif
                     </td>
                     <td>{!! $contact->phone_number !!}</td>
-                    <td>
-                        {{ $contact->address }}
-                    </td>
+                    <td>{{ $contact->address }} </td>
                     <td>
                         @if ($contact->Area && $contact->Area->Subregion && $contact->Area->Subregion->Region)
                             {!! $contact->Area->Subregion->Region->name !!}
@@ -80,15 +79,36 @@
                             @endif
                         @endif
                     </td>
-                    <td>
-                        {!! $contact->Area->name ?? '' !!}
-                    </td>
-                    <td>
-                        {!! $contact->Creator->name ?? '' !!}
-                    </td>
-                    <td>
-                    {!! $contact->created_at ? $contact->created_at->format('Y-m-d h:i A') : '' !!}
-                    </td>
+                    <td> {!! $contact->Area->name ?? '' !!}</td>
+                   @php
+                      $lastOrderDate = $contact->last_order_date ? \Carbon\Carbon::parse($contact->last_order_date) : null;
+                                         $now = \Carbon\Carbon::now();
+                                             if ($lastOrderDate !== null) {
+                                                 $differenceInMonths = $lastOrderDate->diffInMonths($now);
+                                             } else {
+                                                 $differenceInMonths = null;
+                                             }
+                                         $threeMonthsAgo = \Carbon\Carbon::now()->subMonths(3);
+                                         $oneMonthAgo = \Carbon\Carbon::now()->subMonth();
+                                         $createdAtDate = \Carbon\Carbon::parse($contact->created_at);
+                                          $daysDifference = $oneMonthAgo->diffInDays($createdAtDate);
+                   @endphp
+
+                   @if ($lastOrderDate != null && $lastOrderDate->lessThanOrEqualTo($oneMonthAgo))
+                      <td><span class="badge btn-outline-success">Active</span></td>
+                   @elseif ($lastOrderDate != null && ($daysDifference >= 30 && $daysDifference <= 90))
+                      <td><span class="badge btn-outline-info">Partially Inactive</span></td>
+                   @elseif ($lastOrderDate != null && $daysDifference >= 90)
+                      <td><span class="badge btn-outline-danger">Inactive</span></td>
+                   @elseif ($lastOrderDate === null && $daysDifference <= 30)
+                      <td><span class="badge btn-outline-secondary"> New </span></td>
+                   @elseif ($lastOrderDate === null && $daysDifference > 30)
+                      <td><span class="badge btn-outline-warning"> New Inactive </span></td>
+                   @else
+                      <td><span class="badge btn-outline-warning"> Inactive </span></td>
+                   @endif
+                    <td>{!! $contact->Creator->name ?? '' !!} </td>
+                    <td>{!! $contact->created_at ? $contact->created_at->format('Y-m-d h:i A') : '' !!} </td>
                 </tr>
             @endforeach
         </tbody>

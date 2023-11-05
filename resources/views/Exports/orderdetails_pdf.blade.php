@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Distributor {{$distributor ?? ''}} Order Invoice</title>
+    <title>{{$distributor ?? ''}} Order Invoice</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,16 +53,13 @@
           <div class="card-body">
              <div class="row">
                 <div class="col-sm-6">
-                   <div class="logo-wrapper">
-                      <img style="height:50px;" src={{ asset('app-assets/images/sidaiweblogo.png') }} alt="sidai" />
-                   </div>
                    <div>
                       <span class="text-sm text-grey-m2 align-middle">To:</span>
                       <span class="text-600 text-110 text-blue align-middle">{{ $test['customer_name'] ?? ''}}</span>
                    </div>
                    <div>
-                      <span class="text-sm text-grey-m2 align-middle">Sales By:</span>
-                      <span class="text-600 text-110 text-blue align-middle">{{ $distributor ?? ''}}</span>
+                      <span class="text-sm text-grey-m2 align-middle">Sales Person:</span>
+                      <span class="text-600 text-110 text-blue align-middle">{{$order->User->name ?? ''}}</span>
                    </div>
                    <div class="text-grey-m2">
                       <div class="my-1">
@@ -146,7 +143,7 @@
                             <span class="text-110 text-secondary-d1 d-flex">&nbsp; &nbsp; &nbsp; {!! number_format(floatval(($item['taxrate']/100)*$total), 2) !!}</span>
                          </div>
                       </div>
-                      <hr class="my-50" />
+                      <hr class="my-50"/>
                       <div class="row my-2 align-items-center bgc-primary-l3 p-2 mt-1">
                          <div class="col-7 text-right">
                             Total Amount

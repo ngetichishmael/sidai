@@ -143,41 +143,48 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div>
-                                <span class="text-sm text-grey-m2 align-middle">To:</span>
-                                <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name ?? ''}}</span>
+                   <div class="row">
+                      <div class="col-sm-6">
+                         <div class="logo-wrapper">
+                            <img style="height:50px;" src={{ asset('app-assets/images/sidaiweblogo.png') }} alt="sidai" />
+                         </div>
+                         <div>
+                            <span class="text-sm text-grey-m2 align-middle">Customer Name:</span>
+                            <span class="text-600 text-110 text-blue align-middle">{{ $test->customer_name ??''}}</span>
+                         </div>
+                         <div class="text-grey-m2">
+                            <div class="my-1">
+                               Address, <span class="text-blue">{!! $test->address ??'' !!}</span>
                             </div>
-                            <div class="text-grey-m2">
-                                <div class="my-1">
-                                    Address, <span class="text-blue">{!! $test->address ?? '' !!}</span>
-                                </div>
-                                <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
-                                        class="text-600">(+254){!! $test->phone_number ?? '' !!}</b></div>
+                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
+                                  class="text-600">  (+254){!! $test->phone_number??'' !!}</b></div>
+                         </div>
+                         <div class="mt-1 mb-3">
+                            <span class="text-sm text-grey-m2 align-middle">Order Assigned To: </span>
+                            <span class="text-600 text-110 text-blue align-middle">  {{ $order->user->name ?? "N/A"}}</span>
+                         </div>
+                      </div>
+                      <!-- /.col -->
+
+                      <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                         <hr class="d-sm-none" />
+                         <div class="text-grey-m2">
+                            <div class="mt-1">Invoice </div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                  class="text-600 text-90">ID:</span> #{!! $order->id !!}</div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                  class="text-600 text-90">Issue Date:</span> {!! $order->created_at !!}</div>
+
+                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                  class="text-600 text-90">Status:</span> <span
+                                  class="badge badge-warning badge-pill px-25 text-black-50">{!! $order->order_status !!}</span>
                             </div>
-                        </div>
-                        <!-- /.col -->
-
-                        <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                            <hr class="d-sm-none" />
-                            <div class="text-grey-m2">
-                                <div class="mt-1">Invoice </div>
-
-                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">ID:</span> #{!! $order->id ?? ''!!}</div>
-
-                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Issue Date:</span> {!! $order->created_at  ?? now()!!}</div>
-
-                                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                                        class="text-600 text-90">Status:</span> <span
-                                        class="badge badge-warning badge-pill px-25 text-black-50">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}} @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered") {{"Order Derivered"}}@else {!! $order->order_status !!}@endif</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                    </div>
+                         </div>
+                      </div>
+                      <!-- /.col -->
+                   </div>
 
                     <div class="">
                         <div class="table-responsive">
@@ -231,7 +238,7 @@
                                 </div>
 
                                 <div class="row my-2 align-items-center bgc-primary-l3 p-2 mt-1">
-                                   <span class="pe-2 ml-2">&nbsp; &nbsp; &nbsp; --------------------------</span>
+                                   <hr class="my-50" />
                                     <div class="col-7 text-right">
                                         Total Amount
                                     </div>

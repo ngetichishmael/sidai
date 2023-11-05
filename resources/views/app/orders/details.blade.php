@@ -226,16 +226,32 @@
 {{--                                {{ $order->User->name ?? ''}}</span>--}}
                                 </p>
                              </div>
-                             <div class="order-2 col-md-6 d-flex justify-content-end col-md-2">
-                                <div class="col-6">
-                                   <div class="invoice-total-item">
-                                      <p class="invoice-total-title"><strong>Subtotal:</strong></p>
-                                      <p class="invoice-total-amount">KSH {{ number_format($sub->sum('sub_total')) ?? 0 }}</p>
+                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                                <div class="row my-2">
+                                   <div class="col-7 text-right">
+                                      SubTotal
                                    </div>
-                                   <hr class="my-50" />
-                                   <div class="invoice-total-item">
-                                      <p class="invoice-total-title"><strong>Total:</strong></p>
-                                      <p class="invoice-total-amount">KSH: {{ number_format($total->sum('total_amount')) ?? 0}}</p>
+                                   <div class="col-5">
+                                      <span class="text-110 text-secondary-d1">{!! number_format(floatval( $sub->sum('sub_total')),2) !!}</span>
+                                   </div>
+                                </div>
+                                <div class="row my-2 mb-1">
+                                   <div class="col-7 text-right">
+                                      Tax {{$item->taxrate ?? 0}}%
+                                   </div>
+                                   <div class="col-5">
+                                      <span class="text-110 text-secondary-d1 d-flex">&nbsp; &nbsp; &nbsp; {!!number_format(floatval(($item->taxrate/100)*$total->sum('total_amount')), 2) !!}</span>
+                                   </div>
+                                </div>
+
+                                <div class="row my-2 align-items-center bgc-primary-l3 p-2 font-bold">
+                                   <div class="col-7 text-right">
+                                      Total Amount
+                                   </div>
+                                   <div class="col-5">
+                                      <hr class="my-50" />
+                                      <br/>
+                                      <span class="text-150 text-success-d3 opacity-2 ">KSh.  {{ number_format($total->sum('total_amount')) ?? 0}}</span>
                                    </div>
                                 </div>
                              </div>
@@ -247,8 +263,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
-            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
+        <div class="col-md-3 mt-2">
+           <a href="{{ route('generateOrderPdf', [
+    'test' => $test, 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>
+           <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
             <center><a href="{!! route('orders.delivery.without', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order Without Stock</a></center>
 
         </div>

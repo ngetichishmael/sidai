@@ -656,4 +656,26 @@ class ordersController extends Controller
 
       return $pdf->download('distributororderdetails_pdf.pdf');
    }
+   public function generateOrderPDF(Request $request)
+   {
+      $order_status='';
+      if(strtolower($request->order_status) == "pending delivery") {
+         $order_status="Pending Order";
+      }elseif(strtolower($request->order_status) == "complete delivery" || strtolower($request->order_status) == "delivered") {
+         $order_status="Order Derivered";
+      } else { $order_status=$request->order_status; }
+      $data = [
+         'test' => $request->input('test'),
+         'order' => json_decode($request->input('order'), true),
+         'items' => json_decode($request->input('items'), true),
+         'sub' => $request->input('sub'),
+         'total' => $request->input('total'),
+         'order_status' => $order_status,
+         'distributor' => $request->distributor
+      ];
+
+      $pdf = PDF::loadView('Exports.orderdetails_pdf', $data);
+
+      return $pdf->download('orderdetails_pdf.pdf');
+   }
 }

@@ -7,6 +7,7 @@ use App\Jobs\SendNewOrderNotificationJob;
 use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
+use App\Models\customer\customers;
 use App\Models\inventory\allocations;
 use App\Models\Order_items;
 use App\Models\Orders;
@@ -16,6 +17,7 @@ use App\Models\Region;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Notifications\NewOrderNotification;
+use Carbon\Carbon;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -160,7 +162,13 @@ class CheckingSaleOrderController extends Controller
       $activityLog->activityID = $ativity_rand;
       $activityLog->ip_address = request()->ip();
       $activityLog->save();
+      $customer = customers::find($checkinCode);
 
+      if ($customer) {
+         $customer->update([
+            'last_order_date' => Carbon::now(),
+         ]);
+      }
       return response()->json([
          "success" => true,
          "message" => "Product added to order",
@@ -376,6 +384,13 @@ class CheckingSaleOrderController extends Controller
       $activityLog->ip_address = request()->ip();
       $activityLog->save();
 
+      $customer = customers::find($checkinCode);
+
+      if ($customer) {
+         $customer->update([
+            'last_order_date' => Carbon::now(),
+         ]);
+      }
       return response()->json([
          "success" => true,
          "message" => "Product added to order",

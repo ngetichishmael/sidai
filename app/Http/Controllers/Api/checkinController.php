@@ -83,7 +83,7 @@ class checkinController extends Controller
       $checkin->business_code  = $customer->business_code;
       $checkin->save();
 
-      
+
       DB::table('visits_targets')
          ->where('user_code', $request->user_code)
          ->increment('AchievedVisitsTarget');
@@ -344,7 +344,7 @@ class checkinController extends Controller
          $orderCode = Helper::generateRandomString(8);
       }
 
-      $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
+      $sidai = suppliers::find(1);
       //order
 
          $order = new Orders;
@@ -363,7 +363,13 @@ class checkinController extends Controller
          $order->delivery_date = $request->delivery_date;
          $order->reasons_partial_delivery = $request->reasons_partial_delivery;
          $order->save();
+         $customer = customers::find($checkin->customer_id);
 
+         if ($customer) {
+            $customer->update([
+               'last_order_date' => Carbon::now(),
+            ]);
+         }
          //create order items
          foreach ($cart as $item) {
             $cartItem = Cart::where('checkin_code', $checkinCode)->where('id', $item->id)->first();

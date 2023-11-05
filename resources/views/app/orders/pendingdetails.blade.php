@@ -219,31 +219,30 @@
                             </div>
 
                             <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-{{--                                <div class="row my-2">--}}
-{{--                                    <div class="col-7 text-right">--}}
-{{--                                        SubTotal--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-5">--}}
-{{--                                        <span class="text-120 text-secondary-d1">Ksh {!! $sub->sum('located_subtotal') !!}</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="row my-2">--}}
-{{--                                    <div class="col-7 text-right">--}}
-{{--                                        Tax (10%)--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-5">--}}
-{{--                                        <span class="text-110 text-secondary-d1">{!! $item->taxrate !!}%</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                               <div class="row my-2">
+                                  <div class="col-7 text-right">
+                                     SubTotal
+                                  </div>
+                                  <div class="col-5">
+                                     <span class="text-110 text-secondary-d1">{!! number_format(floatval( $sub->sum('sub_total')),2) !!}</span>
+                                  </div>
+                               </div>
+                               <div class="row my-2 mb-1">
+                                  <div class="col-7 text-right">
+                                     Tax {{$item->taxrate ?? 0}}%
+                                  </div>
+                                  <div class="col-5">
+                                     <span class="text-110 text-secondary-d1 d-flex">&nbsp; &nbsp; &nbsp; {!!number_format(floatval(($item->taxrate/100)*$total->sum('total_amount')), 2) !!}</span>
+                                  </div>
+                               </div>
 
                                 <div class="row my-2 align-items-center bgc-primary-l3 p-2 font-bold">
                                     <div class="col-7 text-right">
                                         Total Amount
                                     </div>
                                     <div class="col-5">
-                                       <span>-----------</span>
-                                       </br>
+                                       <hr class="my-50" />
+                                       <br/>
                                         <span class="text-150 text-success-d3 opacity-2 "> {!! $total->sum('allocated_totalamount') !!}</span>
                                     </div>
                                 </div>

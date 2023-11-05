@@ -8,6 +8,7 @@ use App\Models\Orders;
 use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -30,8 +31,9 @@ class Dashboard extends Component
     public $startDate = null;
     public $endDate = null;
     public $selectedGroup = null;
+   public $selectedStatus= ''; // 'all' is the default, other options might be 'active', 'partially_inactive', 'inactive', 'new', 'new_inactive'
 
-    public function __construct()
+   public function __construct()
     {
         $this->user = Auth::user();
     }
@@ -81,9 +83,32 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
+       // Apply status filter
+       if (!empty($this->selectedStatus)) {
+          if ($this->selectedStatus === 'new') {
+             // Filter customers where last order date is null
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subMonth());
+          } elseif ($this->selectedStatus === 'active') {
+             // Filter customers where last order date is within the last 30 days
+             $aggregate->whereBetween('last_order_date', [Carbon::now()->subDays(30), Carbon::now()]);
+          } elseif ($this->selectedStatus === 'partially_inactive') {
+             // Filter customers where last order date is more than one month and less than or equal to three months
+             $oneMonthAgo = Carbon::now()->subMonth();
+             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $aggregate->whereBetween('last_order_date', [$oneMonthAgo, $threeMonthsAgo]);
+          } elseif ($this->selectedStatus === 'inactive') {
+             // Filter customers where last order date is more than three months
+             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $aggregate->where('last_order_date', '<', $threeMonthsAgo);
+          } elseif ($this->selectedStatus === 'new_inactive') {
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subMonth());
+          }
+       }
+
         $aggregate
-            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
-            ->select('*',
+//            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+          ->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
+           ->select('*',
                 'customers.id as id',
                 'customers.customer_name',
                 'customers.phone_number as customer_number',
@@ -93,6 +118,7 @@ class Dashboard extends Component
                 'customers.created_by as user_code',
                 'customers.updated_at',
                 'customers.created_at',
+                'customers.last_order_date as last_order_date',
             );
         return $aggregate->paginate($this->perPage);
     }
@@ -112,16 +138,19 @@ class Dashboard extends Component
             ->join('areas', 'customers.route', '=', 'areas.id')
             ->join('subregions', 'subregions.id', '=', 'areas.subregion_id')
             ->join('regions', 'regions.id', '=', 'subregions.region_id')
-            ->select(
-                'customers.id as id',
-                'customers.customer_name',
-                'customers.phone_number',
-                'regions.name as region_name',
-                'subregions.name as subregion_name',
-                'areas.name as area_name',
-                'users.name as user_name',
-                'customers.created_at'
-            )->get();
+           ->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
+           ->select('*',
+              'customers.id as id',
+              'customers.customer_name',
+              'customers.phone_number as customer_number',
+              'regions.name as region_name',
+              'subregions.name as subregion_name',
+              'areas.name as area_name',
+              'customers.created_by as user_code',
+              'customers.updated_at',
+              'customers.created_at',
+           )
+           ->get();
     }
     public function customers()
     {
@@ -159,14 +188,47 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
-        $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
+       // Apply status filter
+       if (!empty($this->selectedStatus)) {
+          if ($this->selectedStatus === 'new') {
+             // Filter customers where last order date is null
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subMonth());
+          } elseif ($this->selectedStatus === 'active') {
+             // Filter customers where last order date is within the last 30 days
+             $aggregate->whereBetween('last_order_date', [Carbon::now()->subDays(30), Carbon::now()]);
+          } elseif ($this->selectedStatus === 'partially_inactive') {
+             // Filter customers where last order date is more than one month and less than or equal to three months
+             $oneMonthAgo = Carbon::now()->subMonth();
+             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $aggregate->whereBetween('last_order_date', [$oneMonthAgo, $threeMonthsAgo]);
+          } elseif ($this->selectedStatus === 'inactive') {
+             // Filter customers where last order date is more than three months
+             $threeMonthsAgo = Carbon::now()->subMonths(3);
+             $aggregate->where('last_order_date', '<', $threeMonthsAgo);
+          } elseif ($this->selectedStatus === 'new_inactive') {
+             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subMonth());
+          }
+       }
+
+
+       $aggregate->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
+           ->select('*',
+              'customers.id as id',
+              'customers.customer_name',
+              'customers.phone_number as customer_number',
+              'regions.name as region_name',
+              'subregions.name as subregion_name',
+              'areas.name as area_name',
+              'customers.created_by as user_code',
+              'customers.updated_at',
+              'customers.created_at',
+           );
 
         return $aggregate->get();
     }
     public function filter(): array
     {
-
-        $array = [];
+       $array = [];
         $user = Auth::user();
         $user_code = $user->region_id;
         if (!$user->account_type === 'RSM') {
