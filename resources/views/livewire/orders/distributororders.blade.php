@@ -82,52 +82,28 @@
                                <td>{{ $order->distributor()->pluck('name')->implode('') }}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">
                                     {{ Str::limit($order->Customer->customer_name ?? null, 30) }}</td>
-{{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
-{{--                                    {{ Str::limit($order->Customer->Area->Subregion->name ?? null, 20) }}</td>--}}
-{{--                                <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">--}}
-{{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
                                 <td>{{ number_format(floatval($order->price_total)) }}</td>
-{{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                @php
                                   $orderStatus = strtolower($order->order_status);
                                @endphp
 
                                @if ($orderStatus == 'pending delivery')
-                                  <td class="pending-order">Pending Order</td>
+                                  <td><button class="btn btn-outline-warning">Pending Order</button></td>
                                @elseif ($orderStatus == 'complete delivery' || $orderStatus == 'DELIVERED')
-                                  <td class="delivered-order">Delivered</td>
+                                  <td><button class="btn btn-outline-success">Delivered</button></td>
                                @elseif ($orderStatus == 'waiting acceptance')
-                                  <td class="waiting-acceptance">{{ $order->order_status }}</td>
+                                  <td><button class="btn btn-outline-info">{{ $order->order_status }}</button></td>
                                @elseif ($orderStatus == 'partially delivery')
-                                  <td class="partial-delivery">{{ $order->order_status }}</td>
+                                  <td><button class="btn btn-outline-default">{{ $order->order_status }}</button></td>
                                @elseif ($orderStatus == 'not delivered')
-                                  <td class="not-delivered">{{ $order->order_status }}</td>
+                                  <td><button class="btn btn-outline-danger">{{ $order->order_status }}</button></td>
                                @else
-                                  <td>{{ $order->order_status }}</td>
+                                  <td><button class="btn btn-outline-default">{{ $order->order_status }}</button></td>
                                @endif
 
-
-                               {{--                               @if($order->order_status == 'Pending Delivery') <td>{{'Pending Order'}}</td>--}}
-{{--                               @else--}}
-{{--                               {{ $order->order_status}}--}}
-{{--                               @endif--}}
-
-{{--                                <td>{{ $order->order_status }}</td>--}}
-{{--                                <td>--}}
-{{--                                    <a href="{!! route('orders.details', $order->order_code) !!}" class="btn btn-warning btn-sm">View</a>--}}
-{{--                                    @if ($order->order_status === 'CANCELLED')--}}
-{{--                                        <button wire:click.prevent="activate({{ $order->id }})"--}}
-{{--                                            onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?')||event.stopImmediatePropagation()"--}}
-{{--                                            type="button" class="btn btn-success btn-sm">Reinstate</button>--}}
-{{--                                    @else--}}
-{{--                                        <button wire:click.prevent="deactivate({{ $order->id }})"--}}
-{{--                                            onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?')||event.stopImmediatePropagation()"--}}
-{{--                                            type="button" class="btn btn-danger btn-sm">Cancel</button>--}}
-{{--                                    @endif--}}
-{{--                                </td>--}}
                                <td>
                                   <div class="dropdown">
                                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -135,15 +111,7 @@
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{!! route('orders.distributorsdetails', $order->order_code) !!}">View</a>
-{{--                                        @if ($order->order_status === 'CANCELLED')--}}
-{{--                                           <a wire:click.prevent="activate({{ $order->id }})"--}}
-{{--                                                   onclick="confirm('Are you sure you want to REINSTATE this Order by id {{ $order->order_code }}?') || event.stopImmediatePropagation()"--}}
-{{--                                                   type="button" class="dropdown-item btn btn-sm" style="color: lightgreen">Reinstate</a>--}}
-{{--                                        @else--}}
-{{--                                           <a wire:click.prevent="deactivate({{ $order->id }})"--}}
-{{--                                                   onclick="confirm('Are you sure you want to CANCEL this Order {{ $order->order_code }}?') || event.stopImmediatePropagation()"--}}
-{{--                                                   type="button" class="dropdown-item btn btn-sm" style="color: orangered">Cancel</a>--}}
-{{--                                        @endif--}}
+
                                      </div>
                                   </div>
                                </td>

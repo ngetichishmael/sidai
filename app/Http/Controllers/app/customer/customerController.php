@@ -311,7 +311,7 @@ class customerController extends Controller
          compact('customer', 'country', 'groups', 'prices','regions','subregions','areas')
       );
    }
-   public function edit( $id)
+   public function edit($id)
    {
       $regions = Region::all();
       $subregions = Subregion::all();

@@ -14,7 +14,9 @@ class individual extends Component
     public $search = '';
     public function render()
     {
-        $routes = Routes::with("user")->where('Type', 'Individual')->paginate($this->perPage);
+        $routes = Routes::with("username")->where('Type', 'Individual')
+        ->orderBy('created_at', 'desc')
+        ->paginate($this->perPage);
         
 
         return view('livewire.routes.individual', compact('routes'));

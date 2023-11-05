@@ -27,4 +27,8 @@ class Routes extends Model
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+   public function username(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'created_by', 'user_code');
+    }
 }

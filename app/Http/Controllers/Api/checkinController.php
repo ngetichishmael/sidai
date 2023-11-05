@@ -190,16 +190,6 @@ class checkinController extends Controller
       $checkin->save();
 
       $customer = customers::where('account', $checkin->account_number)->first();
-
-      //record activity
-      //$activities = '<b>'.Auth::user()->name.'</b> Has <b>Checked-out</b> to <i> '.$customer->customer_name.'</i> @ '.date('H:i:s');
-      //$section       = 'Customer';
-      //$action        = 'Checkin';
-      //$business_code = Auth::user()->business_code;
-      //$activityID    = $checkin->code;
-
-      //Helper::activity($section,$action,$activityID,$business_code);
-
       return response()->json([
          "success" => true,
          "message" => "You have checked out",
