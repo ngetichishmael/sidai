@@ -72,10 +72,10 @@
                      <td>{{ $employee->name }}</td>
                      <td>{{ $employee->role }}</td>
                      <td>{{ $employee->visit_count }}</td>
-                     <td>7</td>
-                     <td>12</td>
+                     <td>{{ $employee->leads_difference }}</td>
+                     <td>{{ $employee->sales_difference }}</td>
                      <td>67</td>
-                     <td>14</td>
+                     <td>{{ $employee->visit_count }}</td>
                      <td>24.3%</td>
                  </tr>
                   @endforeach
