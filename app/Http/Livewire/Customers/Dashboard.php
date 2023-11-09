@@ -101,7 +101,7 @@ class Dashboard extends Component
              $threeMonthsAgo = Carbon::now()->subDays(90);
              $aggregate->where('last_order_date', '<', $threeMonthsAgo);
           } elseif ($this->selectedStatus === 'new_inactive') {
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subDays(30));
+             $aggregate->whereNull('last_order_date')->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
        }
 
