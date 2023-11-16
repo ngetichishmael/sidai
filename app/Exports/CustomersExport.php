@@ -24,6 +24,8 @@ class CustomersExport implements FromView, WithMapping
          $customer->phone_number,
          $customer->address,
          $customer->creator->name,
+         $customer->order_status,
+         $customer->customer_group,
          optional($customer->Area->Subregion->Region)->name,
          optional($customer->Area->Subregion)->name,
          optional($customer->Area)->name,

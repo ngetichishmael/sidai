@@ -5,6 +5,8 @@
                 <th>Name</th>
                 <th>Number</th>
                 <th>Address</th>
+                <th>Order Status</th>
+               <th>Outlet</th>
                 <th>Zone/Region</th>
                 <th>Route</th>
                <th>Status</th>
@@ -18,6 +20,8 @@
                     <td>{{ $contact->customer_name }}</td>
                     <td>{{ $contact->phone_number }}</td>
                     <td>{{ $contact->address }}</td>
+                    <td>{{ $contact->order_status }}</td>
+                    <td>{{ $contact->customer_group }}</td>
                     <td>
                         @if ($contact->Area && $contact->Area->Subregion && $contact->Area->Subregion->Region)
                             {{ $contact->Area->Subregion->Region->name }}
