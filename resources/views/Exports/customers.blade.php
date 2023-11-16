@@ -5,12 +5,12 @@
                 <th>Name</th>
                 <th>Number</th>
                 <th>Address</th>
-                <th>Order Status</th>
-               <th>Outlet</th>
+                <th>Outlet</th>
                 <th>Zone/Region</th>
                 <th>Route</th>
                <th>Status</th>
                 <th>Created By</th>
+                <th>Order Status</th>
                 <th>Created At</th>
             </tr>
         </thead>
@@ -20,7 +20,6 @@
                     <td>{{ $contact->customer_name }}</td>
                     <td>{{ $contact->phone_number }}</td>
                     <td>{{ $contact->address }}</td>
-                    <td>{{ $contact->order_status }}</td>
                     <td>{{ $contact->customer_group }}</td>
                     <td>
                         @if ($contact->Area && $contact->Area->Subregion && $contact->Area->Subregion->Region)
@@ -59,6 +58,7 @@
                       <td> Inactive </td>
                    @endif
                     <td>{!! $contact->Creator->name ?? '' !!}</td>
+                    <td>{!! $contact->order_status ??'unknown' !!}</td>
                      <td>{!! $contact->created_at ? $contact->created_at->format('Y-m-d h:i A') : '' !!}</td>
                 </tr>
             @endforeach
