@@ -58,6 +58,7 @@ class Dashboard extends Component
         $aggregate = customers::with('Creator')->join('areas', 'customers.route_code', '=', 'areas.id')
             ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
             ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+            ->leftJoin('orders', 'customers.user_code', '=', 'orders.user_code')
             ->where('regions.name', 'like', $regionTerm)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
@@ -118,7 +119,9 @@ class Dashboard extends Component
                 'customers.created_by as user_code',
                 'customers.updated_at',
                 'customers.created_at',
+                'customers.customer_group',
                 'customers.last_order_date as last_order_date',
+                'orders.order_status'
             );
         return $aggregate->paginate($this->perPage);
     }

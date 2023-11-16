@@ -80,8 +80,10 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
-                        <th>Added By
+                        <th>Outlet</th>
+                        <th>Added By</th>
                         <th>Status</th>
+                        <th>Order Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
@@ -95,6 +97,8 @@
                                 <i>{!! $contact->subregion_name !!}</i>,
                                 {!! $contact->area_name !!}
                             </td>
+                            <td>{{ $contact->customer_group??'' }}</td>
+
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
                             @php
                                $lastOrderDate = $contact->last_order_date ? \Carbon\Carbon::parse($contact->last_order_date) : null;
@@ -123,6 +127,7 @@
                             @else
                                <td><span class="badge btn-outline-warning"> Inactive </span></td>
                             @endif
+                            <td style="color: green">{{ $contact->order_status ??'unknown' }}</td>
                             <td>{!! $contact->updated_at->format('d/m/Y') ?? $contact->created_at->format('d/m/Y') !!}</td>
                             <td>
                                 <div class="dropdown">

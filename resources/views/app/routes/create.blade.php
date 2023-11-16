@@ -34,8 +34,6 @@
                     {!! csrf_field() !!}
                     <div class="form-group col-md-12 mb-1">
                         @livewire('routes.customerselect')
-                        {{-- <label for="">Routes</label>
-                        {!! Form::select('name', $routes, null, ['class' => 'form-control select2']) !!} --}}
                     </div>
                     <div class="row mb-1">
                         <div class="form-group col-md-4">
