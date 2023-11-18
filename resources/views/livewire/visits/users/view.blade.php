@@ -70,7 +70,7 @@
                                         {{ $this->formatDuration($visit->duration_seconds) ?? '' }}</div>
                                 </td>
                                 <td>{{ $visit->formatted_date }}</td>
-                                <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
+                                {{-- <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
                                 <td class="control" style="" tabindex="0">
                                     <span class="expand-row" data-toggle="collapse"
                                         data-target="#details{{ $visit->code }}">
@@ -78,9 +78,32 @@
                                             visibility
                                         </span>
                                     </span>
+                                </td> --}}
+                                <td>
+                                    <a data-toggle="collapse" data-target="#details{{ $visit->code }}" class="btn btn-sm" style="background-color:  brown; color: white; font-size: 14px; padding: 5px 10px;">
+                                        <i data-feather="eye"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <tr id="details{{ $visit->code }}" class="collapse">
+                                <td colspan="8">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <td>Interested in New Order:</td>
+                                            <td>{{ $checkingData['customer_ordered'] ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Did outlet already have Stock ?</td>
+                                            <td>{{ $checkingData['outlet_has_stock'] ?? 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Who is our potential competitors?</td>
+                                            <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            {{-- <tr id="details{{ $visit->code }}" class="collapse">
                                 <td colspan="8">
                                     <table class="table table-bordered">
                                         <tr>
@@ -95,7 +118,7 @@
                                             <td>Who is our potential competitors?</td>
                                             <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
                                         </tr>
-                            </tr>
+                            </tr> --}}
                             <tr>
                                 <td>Which products have the highest sale?</td>
                                 <td>
