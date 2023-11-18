@@ -67,7 +67,7 @@ class Employee extends Component
             ->select(
                'users.name as name',
                'users.account_type as role',
-               DB::raw('COUNT(customer_checkin.id) as visit_count'),
+               DB::raw('COUNT(DISTINCT customer_checkin.id) as visit_count'),
                DB::raw('sales_targets.SalesTarget - sales_targets.AchievedSalesTarget as sales_difference'),
                DB::raw('leads_targets.LeadsTarget - leads_targets.AchievedLeadsTarget as leads_difference')
             )->get();
