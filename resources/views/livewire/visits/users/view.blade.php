@@ -120,7 +120,7 @@
                                             <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
                                         </tr>
                             </tr> --}}
-                            <tr>
+                            {{-- <tr>
                                 <td>Which products have the highest sale?</td>
                                 <td>
                                     @if (is_array($checkingData['highest_sale_products'] ?? null))
@@ -133,7 +133,7 @@
 
                 </table>
                 </td>
-                </tr>
+                </tr> --}}
             @empty
                 <tr>
                     <td colspan="8" style="text-align: center;">No Record found.</td>
