@@ -94,19 +94,20 @@
                                             <td>Who is our potential competitors?</td>
                                             <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
                                         </tr>
+                                        <tr>
+                                            <td>Which products have the highest sale?</td>
+                                            <td>
+                                                @if (is_array($checkingData['highest_sale_products'] ?? null))
+                                                    {{ implode(', ', $checkingData['highest_sale_products']) }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                        </tr>
                                     </table>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Which products have the highest sale?</td>
-                                <td>
-                                    @if (is_array($checkingData['highest_sale_products'] ?? null))
-                                        {{ implode(', ', $checkingData['highest_sale_products']) }}
-                                    @else
-                                        N/A
-                                    @endif
-                                </td>
-                            </tr>
+                            
             @empty
                 <tr>
                     <td colspan="8" style="text-align: center;">No Record found.</td>
