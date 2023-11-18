@@ -72,19 +72,19 @@
                                 <td>{{ $visit->formatted_date }}</td>
                                 <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
                                 
-                                <td class="control" style="" tabindex="0">
+                                {{-- <td class="control" style="" tabindex="0">
                                     <span class="expand-row" data-toggle="collapse"
                                         data-target="#details{{ $visit->code }}">
                                         <span class="material-symbols-outlined">
                                             visibility
                                         </span>
                                     </span>
-                                </td>
-                                {{-- <td>
+                                </td> --}}
+                                <td>
                                     <a data-toggle="collapse" data-target="#details{{ $visit->code }}" class="btn btn-sm" style="background-color:  brown; color: white; font-size: 14px; padding: 5px 10px;">
                                         <i data-feather="eye"></i>
                                     </a>
-                                </td> --}}
+                                </td>
                             </tr>
                             <tr id="details{{ $visit->code }}" class="collapse">
                                 <td colspan="8">
