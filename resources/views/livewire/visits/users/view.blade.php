@@ -70,7 +70,8 @@
                                         {{ $this->formatDuration($visit->duration_seconds) ?? '' }}</div>
                                 </td>
                                 <td>{{ $visit->formatted_date }}</td>
-                                {{-- <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
+                                <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
+                                {{-- 
                                 <td class="control" style="" tabindex="0">
                                     <span class="expand-row" data-toggle="collapse"
                                         data-target="#details{{ $visit->code }}">
