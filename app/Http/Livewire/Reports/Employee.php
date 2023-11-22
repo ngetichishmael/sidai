@@ -37,41 +37,26 @@ class Employee extends Component
          'count' =>$count
       ]);
    }
-   // public function employees()
-   // {
-   //    $query = Orders::with('User', 'Customer');
-   //    $query->whereIn('customerID', $this->filter())->where('order_type', 'Van sales');
-   //    if (!is_null($this->start)) {
-   //       if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-   //          $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
-   //       } else {
-   //          if (is_null($this->end)) {
-   //             $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
-   //          }
-   //          $query->whereBetween('created_at', [$this->start, $this->end]);
-   //       }
-   //    }
-
-   //    return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
-   //       ->paginate(25);
-   // }
-   public function getEmployees()
-    {
-      
-        return User::join('customer_checkin', function ($join) {
-         $join->on('users.user_code', '=', 'customer_checkin.user_code')
-             ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time');
-     })
-     ->leftJoin('leads_targets', 'users.user_code', '=', 'leads_targets.user_code')
-     ->leftJoin('sales_targets', 'users.user_code', '=', 'sales_targets.user_code')
-            ->select(
-               'users.name as name',
-               'users.account_type as role',
-               DB::raw('COUNT(DISTINCT customer_checkin.id) as visit_count'),
-               DB::raw('sales_targets.SalesTarget - sales_targets.AchievedSalesTarget as sales_difference'),
-               DB::raw('leads_targets.LeadsTarget - leads_targets.AchievedLeadsTarget as leads_difference')
-            )->get();
-    }
+   
+    public function getEmployees()
+        {
+            return User::join('customer_checkin', function ($join) {
+                    $join->on('users.user_code', '=', 'customer_checkin.user_code')
+                        ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time');
+                })
+                ->leftJoin('leads_targets', 'users.user_code', '=', 'leads_targets.user_code')
+                ->leftJoin('sales_targets', 'users.user_code', '=', 'sales_targets.user_code')
+                ->select(
+                    'users.name as name',
+                    'users.account_type as role',
+                    DB::raw('COUNT(DISTINCT customer_checkin.id) as visit_count'),
+                    DB::raw('sales_targets.SalesTarget as sales'),
+                    DB::raw('sales_targets.AchievedSalesTarget as achieved_sales'),
+                    DB::raw('leads_targets.LeadsTarget as leads'),
+                    DB::raw('leads_targets.AchievedLeadsTarget as achieved_leads')
+                )
+                ->get();
+        }
    
    public function export()
     {

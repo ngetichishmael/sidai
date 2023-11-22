@@ -72,11 +72,11 @@
                      <td>{{ $employee->name }}</td>
                      <td>{{ $employee->role }}</td>
                      <td>{{ $employee->visit_count }}</td>
-                     <td>{{ $employee->leads_difference }}</td>
-                     <td>{{ $employee->sales_difference }}</td>
+                     <td>{{ $employee->achieved_leads }}</td>
+                     <td>{{ $employee->achieved_sales }}</td>
                      <td>67</td>
                      <td>{{ $employee->visit_count }}</td>
-                     <td>24.3%</td>
+                     <td>{{ ($employee->achieved_leads/67) * 100 ,2}}%</td>
                  </tr>
                   @endforeach
                     
