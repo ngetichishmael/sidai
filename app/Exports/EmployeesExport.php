@@ -4,80 +4,39 @@ namespace App\Exports;
 
 use App\Models\customers;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromView;
-use Maatwebsite\Excel\Concerns\WithMapping;
 
-class EmployeesExport implements FromView, WithMapping
+class EmployeesExport implements FromView
 {
-   private $filteredCustomers;
-
-   public function __construct($filteredCustomers)
-   {
-      $this->filteredCustomers = $filteredCustomers;
-   }
-
-   public function map($customer): array
-   {
-      // You can use the filtered data here if needed
-      return [
-         $customer->customer_name,
-         $customer->phone_number,
-         $customer->address,
-         $customer->creator->name,
-         optional($customer->Area->Subregion->Region)->name,
-         optional($customer->Area->Subregion)->name,
-         optional($customer->Area)->name,
-         optional($customer->Creator)->name,
-         optional($customer)->created_at,
-      ];
-   }
 
    public function view(): View
    {
-      // Use $this->filteredCustomers instead of querying the database
-      $customers = $this->filteredCustomers;
 
       return view('Exports.employees', [
-         'contacts' => $customers,
+         'employees' => $this->getEmployees(),
       ]);
    }
+
+   public function getEmployees()
+        {
+            return User::join('customer_checkin', function ($join) {
+                    $join->on('users.user_code', '=', 'customer_checkin.user_code')
+                        ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time');
+                })
+                ->leftJoin('leads_targets', 'users.user_code', '=', 'leads_targets.user_code')
+                ->leftJoin('sales_targets', 'users.user_code', '=', 'sales_targets.user_code')
+                ->select(
+                    'users.name as name',
+                    'users.account_type as role',
+                    DB::raw('COUNT(DISTINCT customer_checkin.id) as visit_count'),
+                    DB::raw('sales_targets.SalesTarget as sales'),
+                    DB::raw('sales_targets.AchievedSalesTarget as achieved_sales'),
+                    DB::raw('leads_targets.LeadsTarget as leads'),
+                    DB::raw('leads_targets.AchievedLeadsTarget as achieved_leads')
+                )
+                ->get();
+        }
 }
 
-
-
-
-//class CustomersExport implements FromView, WithMapping
-//{
-//   public function map($customer): array
-//   {
-//      return [
-//         $customer->customer_name,
-//         $customer->phone_number,
-//         $customer->address,
-//         $customer->creator->name,
-//         optional($customer->Area->Subregion->Region)->name,
-//         optional($customer->Area->Subregion)->name,
-//         optional($customer->Area)->name,
-//         optional($customer->Creator)->name,
-//         optional($customer)->created_at,
-//      ];
-//   }
-//
-////   protected $timeInterval;
-////
-////   public function __construct($timeInterval = null)
-////   {
-////      $this->timeInterval = $timeInterval;
-////   }
-//
-//   public function view(): View
-//   {
-//      $query = customers::orderBy('id', 'DESC');
-//
-//      $customers = $query->get();
-//
-//      return view('Exports.customers', [
-//         'contacts' => $customers,
-//      ]);
-//   }
-//}

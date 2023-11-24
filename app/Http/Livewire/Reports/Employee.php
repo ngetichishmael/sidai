@@ -60,8 +60,7 @@ class Employee extends Component
    
    public function export()
     {
-        $filteredCustomers = $this->customers();
-        return Excel::download(new EmployeesExport($filteredCustomers), 'employees.xlsx');
+        return Excel::download(new EmployeesExport, 'employees.xlsx');
     }
     public function exportCSV()
     {
