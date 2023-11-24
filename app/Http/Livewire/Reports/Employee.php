@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Reports;
 
 use Carbon\Carbon;
+use PDF;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Orders;
@@ -71,9 +72,9 @@ class Employee extends Component
     public function exportPDF()
     {
         $data = [
-            'contacts' => $this->customers(),
+            'employees' => $this->getEmployees(),
         ];
-        $pdf = PDF::loadView('Exports.customer_pdf', $data);
+        $pdf = PDF::loadView('Exports.employees', $data);
 
         // Add the following response headers
         return response()->streamDownload(function () use ($pdf) {
