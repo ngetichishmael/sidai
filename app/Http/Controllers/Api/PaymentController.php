@@ -30,13 +30,12 @@ class PaymentController extends Controller
       $ID = $request->user()->id;
        // Check if the transactionID already exists
     $existingPayment = order_payments::where('reference_number', $transactionID)->first();
-    if ($existingPayment) {
-        return response()->json([
+      if ($existingPayment) {
+         return response()->json([
             "success" => false,
             "message" => "TransactionID already exists",
-        ]);
-    }
-
+         ], 404);
+      }
       order_payments::create([
          'amount' => $amount,
          'balance' => $balance,
@@ -46,7 +45,6 @@ class PaymentController extends Controller
          'order_id' => $orderID,
          'user_id' => $ID,
       ]);
-
       (string) $payment_status = $balance == 0 ? "PAID" : "PARTIAL PAID";
 
       Orders::where('order_code', '=', $orderID)
