@@ -54,7 +54,9 @@ class distributororders extends Component
                ->orWhereHas('User', function ($subQuery) use ($searchTerm) {
                   $subQuery->where('name', 'like', $searchTerm);
                })
-               ;
+            ->orWhereHas('distributor', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('name', 'like', $searchTerm);
+            });
          })
          ->when($this->statusFilter, function ($query) {
             $query->where('order_status', $this->statusFilter);

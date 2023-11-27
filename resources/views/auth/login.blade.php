@@ -27,6 +27,7 @@
                         <p class="mb-2 card-text">Please sign-in to your account</p>
                         <form class="mt-2 auth-login-form" action="{{ route('login') }}" method="POST">
                             @csrf
+                           @method('POST')
                             <div class="mb-1">
                                 <label for="login-email" class="form-label">Email</label>
                                 <input type="text" class="form-control" id="login-email" name="email"
