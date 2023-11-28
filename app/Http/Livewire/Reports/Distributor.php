@@ -43,7 +43,7 @@ class Distributor extends Component
    public function getData($fromDate = null, $toDate = null) {
       $query = suppliers::withCount('orders')
           ->withCount('OrdersDelivered')
-          ->whereNotIn('name', ['sidai', 'Sidai', 'SIDAI']);
+          ->whereNotIn('name', ['sidai', 'Sidai', 'SIDAI','Sidai Warehouse']);
   
       // Apply date filters if provided
       if ($fromDate) {
