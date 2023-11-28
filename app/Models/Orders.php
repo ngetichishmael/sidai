@@ -73,6 +73,10 @@ class Orders extends Model
    {
       return $this->belongsTo(suppliers::class, 'supplierID', 'id');
    }
+   public function distributorOrderDelivered(): BelongsTo
+   {
+      return $this->belongsTo(suppliers::class, 'supplierID', 'id')->where('order_status','Complete Delivery');
+   }
 
    public function scopeToday($query)
    {

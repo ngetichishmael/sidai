@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
-        <input wire:model="start" name="startDate" type="date" class="form-control" id="validationTooltip01"
-            placeholder="YYYY-MM-DD HH:MM" required />
+        <input type="date" id="fromDate" wire:model="fromDate"
+                     name="startDate" type="date" class="form-control" placeholder="YYYY-MM-DD HH:MM" required>
     </div>
     <div class="col-md-3">
         <label for="validationTooltip01">End Date</label>
-        <input wire:model="end" name="startDate" type="date" class="form-control" id="validationTooltip01"
-            placeholder="YYYY-MM-DD HH:MM" required />
+        <input type="date" id="toDate" wire:model="toDate" name="endDate" type="date" class="form-control"
+                     placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
@@ -40,24 +40,37 @@
                                 <th>Orders Assigned</th>
                                 <th>Orders Fulfilled</th>
                                 <th>Rejected Orders</th>
+                                <th>Fulfilment Rate</th>
                                 <th>Region</th>
-                                <th>Route</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($distributors as $key => $distributor)
+                                @forelse ($distributors as $key => $distributor)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $distributor->distributor()->pluck('name')->implode('')}}</td>
-                                    <td>{{ $distributor->customer_count ?? ''}}</td>
-                                    <td>{{ $distributor->customer_count ?? ''}}</td>
-                                    <td>{{ $distributor->customer_count ?? ''}}</td>
+                                    <td>{{ $distributor->name}}</td>
+                                    <td>{{ $distributor->orders_count}}</td>
+                                    <td>{{ $distributor->orders_delivered_count}}</td>
                                     <td></td>
+                                    <td>
+                                        @if($distributor->orders_count > 0)
+                                            {{ number_format(($distributor->orders_delivered_count / $distributor->orders_count) * 100, 2) }}%
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td></td>
+                                    
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="8">No distributors found.</td>
+                                </tr>
+                        @endforelse
+                        
                         </tbody>
                     </table>
+                    {{ $distributors->links() }}
                 </div>
             </div>
         </div>

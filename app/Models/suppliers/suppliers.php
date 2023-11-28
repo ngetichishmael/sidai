@@ -22,4 +22,9 @@ class suppliers extends Model
    {
       return $this->hasMany(Orders::class, 'SupplierID', 'id');
    }
+   public function OrdersDelivered(): HasMany
+   {
+      return $this->hasMany(Orders::class, 'SupplierID', 'id')->where('order_status','Complete Delivery');
+   }
+   
 }
