@@ -77,7 +77,6 @@
                         @foreach ($pendingorders as $count => $order)
 
                             <tr>
-                                {{-- @dd($order->id) --}}
                                 <td>{{ $count + 1 }}</td>
                                <td>{{ $order->distributor()->pluck('name')->implode('') }}</td>
                                 <td title="{{ $order->Customer->customer_name ?? null }}">

@@ -37,7 +37,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name of Distributor</th>
-                                <th>Number of Orders</th>
+                                <th>Orders Assigned</th>
+                                <th>Orders Fulfilled</th>
+                                <th>Rejected Orders</th>
                                 <th>Region</th>
                                 <th>Route</th>
                             </tr>
@@ -46,10 +48,12 @@
                             @foreach ($distributors as $key => $distributor)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $distributor->customer_name ?? ''}}</td>
-                                    <td>{{ $distributor->order_count ?? ''}}</td>
-                                    <td>{{ $distributor->region_name ?? '' }}</td>
-                                    <td>{{ $distributor->area_name ?? ''}}</td>
+                                    <td>{{ $distributor->distributor()->pluck('name')->implode('')}}</td>
+                                    <td>{{ $distributor->customer_count ?? ''}}</td>
+                                    <td>{{ $distributor->customer_count ?? ''}}</td>
+                                    <td>{{ $distributor->customer_count ?? ''}}</td>
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                             @endforeach
                         </tbody>

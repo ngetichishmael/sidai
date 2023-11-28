@@ -61,7 +61,8 @@ class Employee extends Component
    
    public function export()
     {
-        return Excel::download(new EmployeesExport, 'employees.xlsx');
+        $employees= $this->getEmployees();
+        return Excel::download(new EmployeesExport($employees), 'employees.xlsx');
     }
     public function exportCSV()
     {

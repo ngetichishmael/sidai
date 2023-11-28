@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Reports;
 
 use App\Exports\DistributorExport;
 use App\Models\Area;
+use App\Models\Orders;
+use App\Models\suppliers\suppliers;
 use App\Models\customer\customers;
 use App\Models\Subregion;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +19,13 @@ class Distributor extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $fromDate;
+   public $toDate;
+   public $orderBy = 'orders.id';
+   public $orderAsc = false;
+   public $perPage = 25;
+   public ?string $search = null;
+   public $statusFilter = '';
    use WithPagination;
    public $user;
    public function __construct()
@@ -25,20 +34,54 @@ class Distributor extends Component
    }
    public function render()
    {
-      $distributors = customers::join('orders', 'orders.customerID', '=', 'customers.id')
-         ->join('areas', 'areas.id', '=', 'customers.route_code')
-         ->join('subregions', 'subregions.id', '=', 'areas.subregion_id')
-         ->join('regions', 'regions.id', '=', 'subregions.region_id')
-         ->where('orders.supplierID', '<>', 1)
-         ->whereIn('route_code', $this->filter())
-         ->select(
-            'regions.name as region_name',
-            'customers.customer_name',
-            DB::raw('count(orders.order_code) as order_count'),
-            'areas.name as area_name'
-         )
-         ->groupBy('regions.name', 'customers.customer_name', 'areas.name')
-         ->get();
+      // $distributors = customers::join('orders', 'orders.customerID', '=', 'customers.id')
+      //    ->join('areas', 'areas.id', '=', 'customers.route_code')
+      //    ->join('subregions', 'subregions.id', '=', 'areas.subregion_id')
+      //    ->join('regions', 'regions.id', '=', 'subregions.region_id')
+      //    ->where('orders.supplierID', '<>', 1)
+      //    ->whereIn('route_code', $this->filter())
+      //    ->select(
+      //       'regions.name as region_name',
+      //       'customers.customer_name',
+      //       DB::raw('count(orders.order_code) as order_count'),
+      //       'areas.name as area_name'
+      //    )
+      //    ->groupBy('regions.name', 'customers.customer_name', 'areas.name')
+      //    ->get();
+      $searchTerm = '%' . $this->search . '%';
+      $sidai = suppliers::find(1);
+      $distributors = Orders::with('Customer', 'user', 'distributor')->withCount('Customer')
+         ->where(function ($query) use ($sidai) {
+            $query->whereNotNull('supplierID')
+               ->where('supplierID', '!=', '')
+               ->where('supplierID', '!=', 1);
+         })
+         ->where('order_type','=','Pre Order')
+         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
+            $query->whereIn('customerID', $this->filter());
+         })
+         ->where(function ($query) use ($searchTerm) {
+            $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('customer_name', 'like', $searchTerm);
+            })
+               ->orWhereHas('User', function ($subQuery) use ($searchTerm) {
+                  $subQuery->where('name', 'like', $searchTerm);
+               })
+            ->orWhereHas('distributor', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('name', 'like', $searchTerm);
+            });
+         })
+         ->when($this->statusFilter, function ($query) {
+            $query->where('order_status', $this->statusFilter);
+         })
+         ->when($this->fromDate, function ($query) {
+            $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            $query->whereDate('created_at', '<=', $this->toDate);
+         })
+         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+         ->paginate($this->perPage);
       return view('livewire.reports.distributor', [
          'distributors' => $distributors
       ]);

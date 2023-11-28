@@ -226,6 +226,7 @@ class Dashboard extends Component
               'customers.updated_at',
               'customers.created_at',
            );
+           
 
         return $aggregate->get();
     }
