@@ -20,7 +20,7 @@ class StockLiftController extends Controller
       $user_code = $user->user_code;
       $business_code = $user->business_code;
       $random = Str::random(20);
-     info("Stock Lift");
+//     info("Stock Lift");
       $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);
@@ -34,7 +34,7 @@ class StockLiftController extends Controller
       }
 
       $image_path = $request->file('image')->store('image', 'public');
-      info($image_path);
+//      info($image_path);
       $status="Waiting acceptance";
       $data = json_decode($request->products, true);
       $productIDs = array_column($data, 'productID');

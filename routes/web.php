@@ -445,6 +445,7 @@ Route::middleware('web')->group(function () {
    Route::post('orders/allocate', ['uses' => 'app\ordersController@allocateOrders', 'as' => 'order.create.allocateorders']);
    Route::post('orders/allocatewithoutstock', ['uses' => 'app\ordersController@allocateOrdersWithoutStock', 'as' => 'order.create.allocateordersnostock']);
    Route::post('orders/reallocate', ['uses' => 'app\ordersController@reAllocateOrders', 'as' => 'order.create.reallocateorders']);
+   Route::post('orders/renotify/{order}/{distributor}', ['uses' => 'app\ordersController@renotify', 'as' => 'orders.renotify']);
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
       Route::get('/generatePdf', ['uses' => 'app\ordersController@generatePDF', 'as' => 'generatePdf']);

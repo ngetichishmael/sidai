@@ -40,8 +40,9 @@ class NewOrderNotification extends Notification implements ShouldQueue
       $this->sales_number = $sales_number;
       $this->distributor = $distributor;
       $this->orderitems = Order_items::where('order_code', $this->order)->get();
-//      Log::debug($this->order->order_code);
-//      Log::debug($this->orderitems);
+//      Log::debug($this->order);
+//      info(".........", [$this->orderitems]);
+
    }
 
     /**
@@ -52,6 +53,7 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
        public function via($notifiable)
     {
+      info('Reached here!');
        return ['mail'];
     }
 
@@ -63,31 +65,35 @@ class NewOrderNotification extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-//       Log::debug('----------------------------------'. $this->orderitems);
-      if ($this->order){
-         $o=Orders::find($this->order);
-         $customer=customers::find($o->customerID);
-         if (!empty($customer)) {
-           $orderitems=$this->orderitems;
-         }
-          Log::debug('Customer---------------- '.$customer);
-        $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude ?? '0'. ',' . $customer->longitude ?? '';
-         $customer=$customer->customer_name;
+       info("her in tomail function");
+       try {
+       info('----------------------------------' . $this->orderitems);
+       if ($this->order) {
+          $o = Orders::find($this->order);
+          $customer = customers::find($o->customerID);
+          if (!empty($customer)) {
+             $orderitems = $this->orderitems;
+          }
+          Log::debug('Customer---------------- ' . $customer);
+          $mapLink = 'https://www.google.com/maps?q=' . $customer->latitude ?? '0' . ',' . $customer->longitude ?? '';
+          $customer = $customer->customer_name;
 //         dd(gettype($orderitems));
-         return (new MailMessage)
-            ->subject('New Order Notification')
-            ->view('email.order_notification', [
-               'customer' => $customer,
-               'location' => $mapLink,
-               'ordercode'=>$this->order,
-               'name'=>$this->distributor,
-               'orderitems'=>$this->orderitems,
-               'sales'=>$this->sales,
-               'sales_number'=>$this->sales_number,
-         ]);
-      }
+          return (new MailMessage)
+             ->subject('New Order Notification')
+             ->view('email.order_notification', [
+                'customer' => $customer,
+                'location' => $mapLink,
+                'ordercode' => $this->order,
+                'name' => $this->distributor,
+                'orderitems' => $this->orderitems,
+                'sales' => $this->sales,
+                'sales_number' => $this->sales_number,
+             ]);
+       }
+       } catch (\Exception $exception) {
+          Log::error('Error in toMail method: ' . $exception->getMessage());
+       }
     }
-
     /**
      * Get the array representation of the notification.
      *

@@ -112,7 +112,7 @@
                          <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{{ $item['product_name'] }}</td>
-                            <td>{{ $item['allocated_quantity'] }}</td>
+                            <td>{{ $item['allocated_quantity'] ?? $item->quantity }}</td>
                             <td class="text-95">{{ $item['selling_price'] }}</td>
                             <td class="text-secondary-d2">{{ $item['selling_price'] * $item['quantity'] }}</td>
                          </tr>

@@ -59,7 +59,6 @@ class DashboardView extends Component
       } elseif ($this->timeFrame === 'year') {
          $endDate->endOfYear();
       }
-
       // Apply the filter
       $query->whereDate('Deadline', '<=', $endDate->format('Y-m-d'));
    }
@@ -68,7 +67,6 @@ class DashboardView extends Component
       if ($target != 0) {
          return number_format(($achieved / $target) * 100, 2);
       }
-
       return 0;
    }
 }
