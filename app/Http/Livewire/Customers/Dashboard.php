@@ -39,9 +39,9 @@ class Dashboard extends Component
     }
     public function render()
     {
+       $contacts=$this->getPaginatedCustomers();
         return view('livewire.customers.dashboard', [
-            'contacts' => $this->getPaginatedCustomers(),
-//            'customers' => $this->getCustomers(),
+            'contacts' => $contacts,
             'regions' => $this->region(),
             'groups' => $this->groups(),
             'selectedGroup' => $this->selectedGroup,
@@ -55,43 +55,31 @@ class Dashboard extends Component
         }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
-//        $aggregate = customers::with('Creator')
-//           ->join('areas', 'customers.route', '=', 'areas.id')
-//            ->join('subregions', 'areas.subregion_id', '=', 'subregions.id')
-//            ->join('regions', 'subregions.region_id', '=', 'regions.id')
+        $aggregate = customers::with('Creator')
+           ->join('areas', 'customers.route', '=', 'areas.id')
+            ->join('subregions', 'areas.subregion_id', '=', 'subregions.id')
+            ->join('regions', 'subregions.region_id', '=', 'regions.id')
 //            ->where('regions.name', 'like', $regionTerm)
-//            ->where(function ($query) use ($searchTerm) {
-//                $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-//                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
-//                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
-//                        $userQuery->where('name', 'like', $searchTerm);
-//                    })
-//                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
-//                        $userQuery->where('name', 'like', $searchTerm);
-//                    })
-//                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
-//                        $userQuery->where('name', 'like', $searchTerm);
-//                    });
-//            })
-//            ->where('customer_type', 'like', 'normal')
-//            ->where('approval', 'LIKE', 'Approved');
-
-                      $aggregate='select * from `customers`
-               inner join `areas` on `customers`.`route` = `areas`.`id`
-               inner join `subregions` on `areas`.`subregion_id` = `subregions`.`id`
-               inner join `regions` on `subregions`.`region_id` = `regions`.`id`
-               where `regions`.`name` like ?
-               and (
-                      `regions`.`name` like ?
-                   or `customer_name` like ?
-                   or `phone_number` like ?
-                   or `address` like ?
-                   or exists (select * from `users` where `customers`.`created_by` = `users`.`user_code` and `name` like ?)
-                   or exists (select * from `regions` where `customers`.`subregion_id` = `regions`.`id` and `name` like ?)
-                   or exists (select * from `areas` where `customers`.`route` = `areas`.`id` and `name` like ?)
-               )
-               and `customer_type` like ?
-               and `approval` LIKE ?';
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('regions.name', 'like', $searchTerm)
+                   ->orWhere('customer_name', 'like', $searchTerm)
+                    ->orWhere('phone_number', 'like', $searchTerm)
+//                   ->orWhere('address', 'like', $searchTerm)
+                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                   ->orWhereHas('Region', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    });
+            })
+            ->where('customer_type', 'like', 'normal')
+            ->where('approval', 'LIKE', 'Approved');
 
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
             $aggregate->whereIn('regions.id', $this->filter());
@@ -102,61 +90,86 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
-
-        //status filter
-       if ($this->selectedStatus === 'active') {
-//          dd( $aggregate->where('customers.last_order_date', '>=', now()->subDays(1200))->get());
-//          dd("here", $aggregate->toSql(), $aggregate->getBindings());
-
-          // Active Customers: Last order date is within the last 30 days
-          $aggregate->whereNotNull('customers.last_order_date');
-      dd($aggregate->get());
+       $fstatus = 'Unknown';
+       if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
+          // Define conditions for each status
+          $statusConditions = [
+             'New Inactive' => [
+                ['customers.last_order_date', null],
+                ['customers.created_at', '<', Carbon::now()->subDays(30)],
+             ],
+             'New' => [
+                ['customers.last_order_date', null],
+                ['customers.created_at', '>=', Carbon::now()->subDays(30)],
+             ],
+             'Inactive' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '<', Carbon::now()->subDays(60)],
+             ],
+             'Partially Inactive' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '>=', Carbon::now()->subDays(60)],
+                ['customers.last_order_date', '<', Carbon::now()->subDays(30)],
+             ],
+             'Active' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '>=', Carbon::now()->subDays(30)],
+             ],
+          ];
+          // Check each status condition and set $fstatus
+          foreach ($statusConditions as $status => $conditions) {
+             if ($aggregate->where(function ($query) use ($conditions) {
+                   foreach ($conditions as $condition) {
+                      $query->where(...$condition);
+                   }
+                })->exists()) {
+                $fstatus = $status;
+                break;
+             }
+          }
+       } else {
+          //status filter
+          if ($this->selectedStatus === 'active') {
+             $fstatus = 'Active';
+             $aggregate->whereNotNull('customers.last_order_date')->where('customers.last_order_date', '>=', Carbon::now()->subDays(30));
+          } else if ($this->selectedStatus === 'partially_inactive') {
+             $fstatus = 'Partially Inactive';
+             $aggregate->whereNotNull('customers.last_order_date')
+                ->whereBetween('customers.last_order_date', [
+                   Carbon::now()->subDays(60)->format('Y-m-d'),
+                   Carbon::now()->subDays(30)->format('Y-m-d')
+                ]);
+          } else if ($this->selectedStatus === 'inactive') {
+             $fstatus = 'Inactive';
+             $aggregate->whereNotNull('customers.last_order_date')->where('customers.last_order_date', '<', Carbon::now()->subDays(60));
+          } else if ($this->selectedStatus === 'new') {
+             $fstatus = ' New ';
+             $aggregate->whereNull('customers.last_order_date')
+                ->whereBetween('customers.created_at', [Carbon::now()->subDays(30), Carbon::now()]);
+          } else if ($this->selectedStatus === 'new_inactive') {
+             $fstatus = 'New Inactive';
+             $aggregate->whereNull('customers.last_order_date')
+                ->where('customers.created_at', '<', Carbon::now()->subDays(30));
+          }
        }
-       if ($this->selectedStatus === 'partially_inactive') {
-          $aggregate->whereNotNull('customers.last_order_date')
-             ->whereBetween('customers.last_order_date', [
-                now()->subDays(60)->format('Y-m-d H:i:s'),
-                now()->subDays(30)->format('Y-m-d H:i:s')
-             ]);
-       }
-       if ($this->selectedStatus === 'inactive') {
-          // Inactive Customers: Last order date is more than 60 days ago
-          $aggregate->where('customers.last_order_date', '<', now()->subDays(60));
-       } if ($this->selectedStatus === 'new') {
-       // New Customers: Created_at is between now and the last 30 days, and last_order_date is null
-       $aggregate->whereNull('customers.last_order_date')
-          ->whereBetween('customers.created_at', [now()->subDays(30), now()]);
-    } if ($this->selectedStatus === 'new_inactive') {
-       // New Inactive Customers:
-       // - Last order date is null and created_at is past 30 days but less than 60
-       // - Last order date is not null and created_at is past 60 days
-       $aggregate->where(function ($query) {
-          $query->where(function ($q) {
-             $q->whereNull('customers.last_order_date')
-                ->whereBetween('customers.created_at', [now()->subDays(30), now()->subDays(60)]);
-          })
-             ->orWhere(function ($q) {
-                $q->whereNotNull('customers.last_order_date')
-                   ->where('customers.created_at', '<', now()->subDays(60));
-             });
+       $aggregate->select(
+          'customers.id as id',
+          'customers.customer_name',
+          'customers.phone_number as customer_number',
+          'regions.name as region_name',
+          'subregions.name as subregion_name',
+          'areas.name as area_name',
+          'customers.created_by as user_code',
+          'customers.updated_at',
+          'customers.created_at',
+          'customers.last_order_date as last_order_date',
+       );
+       $results = $aggregate->orderBy('customers.updated_at', 'desc')->paginate($this->perPage);
+       $results->getCollection()->transform(function ($result) use ($fstatus) {
+          $result->fstatus = $fstatus;
+          return $result;
        });
-    }
-
-       $aggregate
-          ->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
-           ->select('*',
-                'customers.id as id',
-                'customers.customer_name',
-                'customers.phone_number as customer_number',
-                'regions.name as region_name',
-                'subregions.name as subregion_name',
-                'areas.name as area_name',
-                'customers.created_by as user_code',
-                'customers.updated_at',
-                'customers.created_at',
-                'customers.last_order_date as last_order_date',
-            );
-        return $aggregate->paginate($this->perPage);
+       return $results;
     }
     public function getCreatorName($user_code)
     {
@@ -194,73 +207,124 @@ class Dashboard extends Component
         if ($this->user->account_type === "RSM" && empty($this->filter())) {
             return $aggregate;
         }
-        $searchTerm = '%' . $this->search . '%';
-        $regionTerm = '%' . $this->regional . '%';
-        $aggregate = customers::join('areas', 'customers.route_code', '=', 'areas.id')
-            ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
-            ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
-            ->where('regions.name', 'like', $regionTerm)
-            ->where(function ($query) use ($searchTerm) {
-                $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
-                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    });
-            })
-            ->where('customer_type', 'like', 'normal')
-            ->where('approval', 'LIKE', 'Approved');
-        if ($this->user->account_type === "RSM") {
-            $aggregate->whereIn('regions.id', $this->filter());
-        }
-        if ($this->selectedGroup) {
-            $aggregate->where('customer_group', $this->selectedGroup);
-        }
-        if ($this->startDate && $this->endDate) {
-            $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
-        }
-       // Apply status filter
-       if (!empty($this->selectedStatus)) {
-          if ($this->selectedStatus === 'new') {
-             // Filter customers where last order date is null
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '>=', Carbon::now()->subDays(30));
-          } elseif ($this->selectedStatus === 'active') {
-             // Filter customers where last order date is within the last 30 days
-             $aggregate->whereBetween('last_order_date', [Carbon::now()->subDays(30), Carbon::now()]);
-          } elseif ($this->selectedStatus === 'partially_inactive') {
-             // Filter customers where last order date is more than one month and less than or equal to three months
-             $oneMonthAgo = Carbon::now()->subDays(30);
-             $threeMonthsAgo = Carbon::now()->subDays(90);
-             $aggregate->whereBetween('last_order_date', [$oneMonthAgo, $threeMonthsAgo]);
-          } elseif ($this->selectedStatus === 'inactive') {
-             // Filter customers where last order date is more than three months
-             $threeMonthsAgo = Carbon::now()->subDays(90);
-             $aggregate->where('last_order_date', '<', $threeMonthsAgo);
-          } elseif ($this->selectedStatus === 'new_inactive') {
-             $aggregate->where('last_order_date', '=',null)->where('customers.created_at', '<', Carbon::now()->subDays(30));
+       $searchTerm = '%' . $this->search . '%';
+       $regionTerm = '%' . $this->regional . '%';
+       $aggregate = customers::with('Creator')
+          ->join('areas', 'customers.route', '=', 'areas.id')
+          ->join('subregions', 'areas.subregion_id', '=', 'subregions.id')
+          ->join('regions', 'subregions.region_id', '=', 'regions.id')
+//          ->where('regions.name', 'like', $regionTerm)
+          ->where(function ($query) use ($searchTerm) {
+             $query->where('regions.name', 'like', $searchTerm)
+                ->orWhere('customer_name', 'like', $searchTerm)
+                ->orWhere('phone_number', 'like', $searchTerm)
+//                ->orWhere('address', 'like', $searchTerm)
+                ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                   $userQuery->where('name', 'like', $searchTerm);
+                })
+                ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                   $userQuery->where('name', 'like', $searchTerm);
+                })
+                ->orWhereHas('Region', function ($userQuery) use ($searchTerm) {
+                   $userQuery->where('name', 'like', $searchTerm);
+                })
+                ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                   $userQuery->where('name', 'like', $searchTerm);
+                });
+          })
+          ->where('customer_type', 'like', 'normal')
+          ->where('approval', 'LIKE', 'Approved');
+
+       if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
+          $aggregate->whereIn('regions.id', $this->filter());
+       }
+       if ($this->selectedGroup) {
+          $aggregate->where('customer_group', $this->selectedGroup);
+       }
+       if ($this->startDate && $this->endDate) {
+          $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
+       }
+       $fstatus = 'Unknown';
+       if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
+          // Define conditions for each status
+          $statusConditions = [
+             'New Inactive' => [
+                ['customers.last_order_date', null],
+                ['customers.created_at', '<', Carbon::now()->subDays(30)],
+             ],
+             'New' => [
+                ['customers.last_order_date', null],
+                ['customers.created_at', '>=', Carbon::now()->subDays(30)],
+             ],
+             'Inactive' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '<', Carbon::now()->subDays(60)],
+             ],
+             'Partially Inactive' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '>=', Carbon::now()->subDays(60)],
+                ['customers.last_order_date', '<', Carbon::now()->subDays(30)],
+             ],
+             'Active' => [
+                ['customers.last_order_date', '!=', null],
+                ['customers.last_order_date', '>=', Carbon::now()->subDays(30)],
+             ],
+          ];
+          // Check each status condition and set $fstatus
+          foreach ($statusConditions as $status => $conditions) {
+             if ($aggregate->where(function ($query) use ($conditions) {
+                   foreach ($conditions as $condition) {
+                      $query->where(...$condition);
+                   }
+                })->exists()) {
+                $fstatus = $status;
+                break;
+             }
+          }
+       } else {
+          //status filter
+          if ($this->selectedStatus === 'active') {
+             $fstatus = 'Active';
+             $aggregate->whereNotNull('customers.last_order_date')->where('customers.last_order_date', '>=', Carbon::now()->subDays(30));
+          } else if ($this->selectedStatus === 'partially_inactive') {
+             $fstatus = 'Partially Inactive';
+             $aggregate->whereNotNull('customers.last_order_date')
+                ->whereBetween('customers.last_order_date', [
+                   Carbon::now()->subDays(60)->format('Y-m-d'),
+                   Carbon::now()->subDays(30)->format('Y-m-d')
+                ]);
+          } else if ($this->selectedStatus === 'inactive') {
+             $fstatus = 'Inactive';
+             $aggregate->whereNotNull('customers.last_order_date')->where('customers.last_order_date', '<', Carbon::now()->subDays(60));
+          } else if ($this->selectedStatus === 'new') {
+             $fstatus = ' New ';
+             $aggregate->whereNull('customers.last_order_date')
+                ->whereBetween('customers.created_at', [Carbon::now()->subDays(30), Carbon::now()]);
+          } else if ($this->selectedStatus === 'new_inactive') {
+             $fstatus = 'New Inactive';
+             $aggregate->whereNull('customers.last_order_date')
+                ->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
        }
-
-
-       $aggregate->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
-           ->select('*',
-              'customers.id as id',
-              'customers.customer_name',
-              'customers.phone_number as customer_number',
-              'regions.name as region_name',
-              'subregions.name as subregion_name',
-              'areas.name as area_name',
-              'customers.created_by as user_code',
-              'customers.updated_at',
-              'customers.created_at',
-           );
-
-        return $aggregate->get();
+       $aggregate->select(
+          'customers.id as id',
+          'customers.customer_name',
+          'customers.phone_number as customer_number',
+          'regions.name as region_name',
+          'subregions.name as subregion_name',
+          'areas.name as area_name',
+          'customers.created_by as user_code',
+          'customers.address',
+          'customers.updated_at',
+          'customers.created_at',
+          'customers.last_order_date as last_order_date',
+       );
+       $results = $aggregate->orderBy('customers.updated_at', 'desc')->get();
+       $results->transform(function ($result) use ($fstatus) {
+          $result->fstatus = $fstatus;
+          return $result;
+       });
+       return $results;
     }
     public function filter(): array
     {

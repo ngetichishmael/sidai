@@ -25,10 +25,11 @@ class customers extends Model
       'address',
       'Area.Subregion.name',
       'Area.Subregion.Region.name',
+      'Area.Subregion.Region.name'
    ];
-   protected $regional = [
-      'Area.Subregion.Region.name',
-   ];
+//   protected $regional = [
+//      'Area.Subregion.Region.name',
+//   ];
    // Relationship with orders
    public function orders()
    {

@@ -80,7 +80,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
-                        <th>Added By
+                        <th>Added By</th>
                         <th>Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
@@ -96,33 +96,21 @@
                                 {!! $contact->area_name !!}
                             </td>
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
-                            @php
-                               $lastOrderDate = $contact->last_order_date ? \Carbon\Carbon::parse($contact->last_order_date) : null;
-                                                  $now = \Carbon\Carbon::now();
-                                                      if ($lastOrderDate !== null) {
-                                                          $differenceInMonths = $lastOrderDate->diffInMonths($now);
-                                                      } else {
-                                                          $differenceInMonths = null;
-                                                      }
-                                                  $threeMonthsAgo = \Carbon\Carbon::now()->subMonths(3);
-                                                  $oneMonthAgo = \Carbon\Carbon::now()->subMonth();
-                                                  $createdAtDate = \Carbon\Carbon::parse($contact->created_at);
-                                                   $daysDifference = $oneMonthAgo->diffInDays($createdAtDate);
-                            @endphp
-
-                            @if ($lastOrderDate != null && $lastOrderDate->lessThanOrEqualTo($oneMonthAgo))
-                               <td><span class="badge btn-outline-success">Active</span></td>
-                            @elseif ($lastOrderDate != null && ($daysDifference >= 30 && $daysDifference <= 90))
-                               <td><span class="badge btn-outline-info">Partially Inactive</span></td>
-                            @elseif ($lastOrderDate != null && $daysDifference >= 90)
-                               <td><span class="badge btn-outline-danger">Inactive</span></td>
-                            @elseif ($lastOrderDate === null && $daysDifference <= 30)
-                               <td><span class="badge btn-outline-secondary"> New </span></td>
-                            @elseif ($lastOrderDate === null && $daysDifference > 30)
-                               <td><span class="badge btn-outline-warning"> New Inactive </span></td>
-                            @else
-                               <td><span class="badge btn-outline-warning"> Inactive </span></td>
-                            @endif
+                            <td>
+                               @if ($contact->fstatus=="Active")
+                                  <span class="badge btn-outline-success">Active</span>
+                               @elseif ($contact->fstatus=="Partially Inactive")
+                                  <span class="badge btn-outline-info">Partially Inactive</span>
+                               @elseif ($contact->fstatus=="Inactive")
+                                  <span class="badge btn-outline-danger">Inactive</span>
+                               @elseif ($contact->fstatus=="New")
+                                  <span class="badge btn-outline-secondary">New</span>
+                               @elseif ($contact->fstatus=="New Inactive")
+                                  <span class="badge btn-outline-warning">New Inactive</span>
+                               @else
+                                  <span class="badge btn-outline-warning">Inactive</span>
+                               @endif
+                            </td>
                             <td>{!! $contact->updated_at->format('d/m/Y') ?? $contact->created_at->format('d/m/Y') !!}</td>
                             <td>
                                 <div class="dropdown">
