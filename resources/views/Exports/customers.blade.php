@@ -6,6 +6,7 @@
          <th>Phone</th>
          <th width="20%">Address</th>
          <th>Route/Town</th>
+         <th>Outlet</th>
          <th>Subregion</th>
          <th>Region</th>
          <th>Status</th>
@@ -19,6 +20,7 @@
             <td>{{ $contact->customer_name }}</td>
             <td>{{ $contact->customer_number }}</td>
             <td>{{ $contact->address ??'' }}</td>
+            <td>{{ $contact->customer_group ?? $contact->price_group }}</td>
             <td> {!! $contact->area_name !!}</td>
             <td>{!! $contact->subregion_name !!}</td>
             <td>{!! $contact->region_name !!}</td>

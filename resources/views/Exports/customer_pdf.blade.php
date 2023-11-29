@@ -67,6 +67,7 @@
                 <tr>
                    <td>{{ $contact->customer_name ?? '' }}</td>
                    <td>{{ $contact->customer_number ?? ''}}</td>
+                   <td>{{ $contact->address ?? ''}}</td>
                    <td>{{ $contact->customer_group ?? $contact->price_group }}</td>
                    <td> {!! $contact->area_name !!}</td>
                    <td>{!! $contact->subregion_name !!}</td>
