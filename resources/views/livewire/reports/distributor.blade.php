@@ -41,7 +41,7 @@
                                 <th>Orders Fulfilled</th>
                                 <th>Status</th>
                                 <th>Fulfilment Rate</th>
-                                <th>Region</th>
+                                {{-- <th>Region</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -65,7 +65,7 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td></td>
+                                    {{-- <td></td> --}}
                                     
                                 </tr>
                             @empty
