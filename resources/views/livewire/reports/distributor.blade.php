@@ -51,9 +51,9 @@
                                     <td>{{ $distributor->name}}</td>
                                     <td>{{ $distributor->orders_count}}</td>
                                     <td>{{ $distributor->orders_delivered_count}}</td>
-                                    <td>@if ($distributor->orders_delivered_count > 0 )
-                                        <p style="color: lightgreen">Partial</p>
-                                        @elseif (($distributor->orders_count >0 && $distributor->orders_count - $distributor->orders_delivered_count)===0)
+                                    <td>@if ($distributor->orders_delivered_count > 0 && ($distributor->orders_count - $distributor->orders_delivered_count) !=0 )
+                                        <p style="color: lightgreen">Fulfilled Partially</p>
+                                        @elseif ($distributor->orders_count >0 && ($distributor->orders_count - $distributor->orders_delivered_count)===0)
                                         <p style="color: green">Hit</p>
                                         @elseif (($distributor->orders_count - $distributor->orders_delivered_count)===$distributor->orders_count)
                                         <p style="color: red">Missed</p>
