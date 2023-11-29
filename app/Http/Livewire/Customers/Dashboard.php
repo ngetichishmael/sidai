@@ -55,29 +55,6 @@ class Dashboard extends Component
         }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
-<<<<<<< HEAD
-        $aggregate = customers::with('Creator')->join('areas', 'customers.route_code', '=', 'areas.id')
-            ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
-            ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
-            ->leftJoin('orders', 'customers.user_code', '=', 'orders.user_code')
-            ->where('regions.name', 'like', $regionTerm)
-            ->where(function ($query) use ($searchTerm) {
-                $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
-                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    })
-                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
-                    });
-            })
-            ->where('customer_type', 'like', 'normal')
-            ->where('approval', 'LIKE', 'Approved');
-        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-=======
 //        $aggregate = customers::with('Creator')
 //           ->join('areas', 'customers.route', '=', 'areas.id')
 //            ->join('subregions', 'areas.subregion_id', '=', 'subregions.id')
@@ -117,7 +94,6 @@ class Dashboard extends Component
                and `approval` LIKE ?';
 
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
->>>>>>> 787bed87c5d1e90a35adef0e98958b984cc61ed2
             $aggregate->whereIn('regions.id', $this->filter());
         }
         if ($this->selectedGroup) {
