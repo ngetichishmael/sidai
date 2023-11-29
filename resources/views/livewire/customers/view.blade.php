@@ -12,9 +12,6 @@
                                  $imageUrl = asset('app-assets/images/sidaiweblogo.png');
                              }
                          @endphp
-{{--                        @php--}}
-{{--                           $imageUrl = optional($customer)->image ? Storage::url($customer->image) : asset('app-assets/images/sidaiweblogo.png');--}}
-                        @endphp
 
                          <img class="img-fluid rounded mb-3 pt-1 mt-4" src="{{ $imageUrl }}" height="100"
                              width="100" alt="User avatar">
