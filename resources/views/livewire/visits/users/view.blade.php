@@ -71,20 +71,19 @@
                                 </td>
                                 <td>{{ $visit->formatted_date }}</td>
                                 <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
-                                <td class="control" style="" tabindex="0">
-                                    <span class="expand-row" data-toggle="collapse"
-                                        data-target="#details{{ $visit->code }}">
-                                        <span class="material-symbols-outlined">
-                                            visibility
-                                        </span>
-                                    </span>
+                                
+                                
+                                <td>
+                                    <a data-toggle="collapse" data-target="#details{{ $visit->code }}" class="btn btn-sm" style="background-color:  brown; color: white; font-size: 14px; padding: 5px 10px;">
+                                        <i data-feather="eye"></i>
+                                    </a>
                                 </td>
                             </tr>
                             <tr id="details{{ $visit->code }}" class="collapse">
                                 <td colspan="8">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <td>Has customer made any order?</td>
+                                            <td>Interested in New Order:</td>
                                             <td>{{ $checkingData['customer_ordered'] ?? 'N/A' }}</td>
                                         </tr>
                                         <tr>
@@ -95,21 +94,20 @@
                                             <td>Who is our potential competitors?</td>
                                             <td>{{ $checkingData['competitor_supplier'] ?? 'N/A' }}</td>
                                         </tr>
-                            </tr>
-                            <tr>
-                                <td>Which products have the highest sale?</td>
-                                <td>
-                                    @if (is_array($checkingData['highest_sale_products'] ?? null))
-                                        {{ implode(', ', $checkingData['highest_sale_products']) }}
-                                    @else
-                                        N/A
-                                    @endif
+                                        <tr>
+                                            <td>Which products have the highest sale?</td>
+                                            <td>
+                                                @if (is_array($checkingData['highest_sale_products'] ?? null))
+                                                    {{ implode(', ', $checkingData['highest_sale_products']) }}
+                                                @else
+                                                    N/A
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
-
-                </table>
-                </td>
-                </tr>
+                            
             @empty
                 <tr>
                     <td colspan="8" style="text-align: center;">No Record found.</td>

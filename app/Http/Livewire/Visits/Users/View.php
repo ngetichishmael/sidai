@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Visits\Users;
 
 use App\Exports\UserVisitsExport;
+use App\Exports\CustomerViewVisitExport;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\SaleReport;
@@ -102,6 +103,41 @@ class View extends Component
     }
     public function export()
     {
-        return Excel::download(new UserVisitsExport($this->data()), $this->username . 'visits.xlsx');
+        // Fetch filtered data using the data method
+        $data = $this->data();
+
+        // Transform the $data collection to an array for export
+        $exportData = $data->map(function ($item) {
+            return [
+                'Sales Associate' => $item->name,
+                'Customer Name' => $item->customer_name,
+                'Start Time' => $item->start_time,
+                'Stop Time' => $item->stop_time,
+                'Duration' => $this->formatDuration($item->duration_seconds),
+                'Date' => $item->formatted_date,
+            ];
+        });
+
+        // Provide column headings for the Excel file
+        $headings = [
+            'Sales Associate',
+            'Customer Name',
+            'Start Time',
+            'Stop Time',
+            'Duration',
+            'Date',
+        ];
+
+        // Add the username as the first row in the exported data
+        $exportData->prepend([$this->username]);
+
+        // Create a collection with column headings and data
+        $exportData = collect([$headings])->merge($exportData);
+
+        return Excel::download(new CustomerViewVisitExport($exportData, $this->username), 'Visits_' . $this->username . '.xlsx');
     }
+    // public function export()
+    // {
+    //     return Excel::download(new UserVisitsExport($this->data()), $this->username . 'visits.xlsx');
+    // }
 }

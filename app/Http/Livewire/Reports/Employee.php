@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Reports;
 
 use Carbon\Carbon;
+use PDF;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Orders;
@@ -37,42 +38,31 @@ class Employee extends Component
          'count' =>$count
       ]);
    }
-   public function employees()
-   {
-      $query = Orders::with('User', 'Customer');
-      $query->whereIn('customerID', $this->filter())->where('order_type', 'Van sales');
-      if (!is_null($this->start)) {
-         if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-            $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
-         } else {
-            if (is_null($this->end)) {
-               $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
-            }
-            $query->whereBetween('created_at', [$this->start, $this->end]);
-         }
-      }
-
-      return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
-         ->paginate(25);
-   }
-   public function getEmployees()
-    {
-      
-        return User::join('customer_checkin', function ($join) {
-         $join->on('users.user_code', '=', 'customer_checkin.user_code')
-             ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time');
-     })
-            ->select(
-               'users.name as name',
-               'users.account_type as role',
-               DB::raw('COUNT(customer_checkin.id) as visit_count'),
-            )->get();
-    }
+   
+    public function getEmployees()
+        {
+            return User::join('customer_checkin', function ($join) {
+                    $join->on('users.user_code', '=', 'customer_checkin.user_code')
+                        ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time');
+                })
+                ->leftJoin('leads_targets', 'users.user_code', '=', 'leads_targets.user_code')
+                ->leftJoin('sales_targets', 'users.user_code', '=', 'sales_targets.user_code')
+                ->select(
+                    'users.name as name',
+                    'users.account_type as role',
+                    DB::raw('COUNT(DISTINCT customer_checkin.id) as visit_count'),
+                    DB::raw('sales_targets.SalesTarget as sales'),
+                    DB::raw('sales_targets.AchievedSalesTarget as achieved_sales'),
+                    DB::raw('leads_targets.LeadsTarget as leads'),
+                    DB::raw('leads_targets.AchievedLeadsTarget as achieved_leads')
+                )
+                ->get();
+        }
    
    public function export()
     {
-        $filteredCustomers = $this->customers();
-        return Excel::download(new EmployeesExport($filteredCustomers), 'employees.xlsx');
+        $employees= $this->getEmployees();
+        return Excel::download(new EmployeesExport($employees), 'employees.xlsx');
     }
     public function exportCSV()
     {
@@ -83,9 +73,9 @@ class Employee extends Component
     public function exportPDF()
     {
         $data = [
-            'contacts' => $this->customers(),
+            'employees' => $this->getEmployees(),
         ];
-        $pdf = PDF::loadView('Exports.customer_pdf', $data);
+        $pdf = PDF::loadView('Exports.employees', $data);
 
         // Add the following response headers
         return response()->streamDownload(function () use ($pdf) {

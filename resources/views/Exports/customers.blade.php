@@ -43,7 +43,6 @@
       @endforeach
       </tbody>
    </table>
-
     <div class="mt-4">
         <button wire:click="export" class="btn btn-primary">Export CSV</button>
     </div>

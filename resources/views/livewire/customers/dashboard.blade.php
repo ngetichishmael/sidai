@@ -80,8 +80,10 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
+                        <th>Outlet</th>
                         <th>Added By</th>
                         <th>Status</th>
+                        <th>Order Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
@@ -95,6 +97,8 @@
                                 <i>{!! $contact->subregion_name !!}</i>,
                                 {!! $contact->area_name !!}
                             </td>
+                            <td>{{ $contact->customer_group??'' }}</td>
+
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
                             <td>
                                @if ($contact->fstatus=="Active")
