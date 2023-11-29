@@ -85,7 +85,11 @@
                         
                         </tbody>
                     </table>
-                    {{ $distributors->links() }}
+                    @if (!empty($distributors))
+                    <div>
+                        {{ $distributors->links() }}
+                    </div>
+                @endif
                 </div>
             </div>
         </div>

@@ -60,13 +60,13 @@ class Distributor extends Component
 
   public function export()
   {
-      $employees= $this->getEmployees();
-      return Excel::download(new EmployeesExport($employees), 'employees.xlsx');
+      $distributors= $this->getData();
+      return Excel::download(new DistributorExport($distributors), 'distributors.xlsx');
   }
   public function exportCSV()
   {
-      $filteredCustomers = $this->customers();
-      return Excel::download(new EmployeesExport($filteredCustomers), 'employees.csv');
+    $distributors= $this->getData();
+    return Excel::download(new DistributorExport($distributors), 'distributors.csv');
   }
 
   public function exportPDF()
