@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Reports;
 
 use Carbon\Carbon;
 use PDF;
+use App\Exports\EmployeesExport;
 use App\Models\Area;
 use App\Models\User;
 use App\Models\Orders;
@@ -11,7 +12,6 @@ use Livewire\Component;
 use App\Models\Subregion;
 use Livewire\WithPagination;
 use App\Exports\VansaleExport;
-use App\Exports\EmployeesExport;
 use App\Models\customer\customers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
