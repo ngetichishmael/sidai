@@ -14,12 +14,21 @@
         <input type="text" wire:model="search" class="form-control"
             placeholder="Enter customer name, email address or phone number">
     </div>
-    <div class="col-md-3">
-        <button type="button" class="btn btn-icon btn-outline-success" wire:click="export" wire:loading.attr="disabled"
-            data-toggle="tooltip" data-placement="top" title="Export Excel">
-            <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
-                data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
-        </button>
+    <div class="col-md-3 mb-2">
+        <label for="">Export Reports:</label>
+        <div class="dropdown">
+            <button style="background-color: #B6121B;color:white" class="mr-2 btn btn-md dropdown-toggle"
+                type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true"
+                aria-expanded="false" data-bs-toggle="dropdown">
+                <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="13">
+                Export
+            </button>
+            <div class="dropdown-menu dropdown-menu-left">
+                <a class="dropdown-item" wire:click="export">Excel</a>
+                <a class="dropdown-item" wire:click="exportCSV"> CSV</a>
+                <a class="dropdown-item" wire:click="exportPDF">PDF</a>
+            </div>
+        </div>
     </div>
 </div>
 <br>
