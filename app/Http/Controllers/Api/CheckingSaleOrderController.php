@@ -27,7 +27,6 @@ use Illuminate\Support\Str;
 
 class CheckingSaleOrderController extends Controller
 {
-
    public function amount(Request $request, $checkinCode)
    {
       $checkin = checkin::where('code', $checkinCode)->first();
@@ -73,12 +72,12 @@ class CheckingSaleOrderController extends Controller
       //info("all infomation sent ".$request->all());
       if (isset($request[0]['cartItem']) && is_array($request[0]['cartItem'])) {
          foreach ($request[0]['cartItem'] as $value) {
-		 info($value["productID"]);
+//		 info($value["productID"]);
             $quantity = $value['qty'] ?? 1;
             $price_total = $quantity * $value["price"];
             $total += $price_total;
             $product = product_information::with('ProductPrice')->where('id', $value["productID"])->first();
-	    info($product);
+//	    info($product);
 	    Cart::updateOrCreate(
                [
                   'checkin_code' => $checkinCode,

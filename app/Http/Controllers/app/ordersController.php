@@ -18,9 +18,12 @@ use App\Models\products\product_price;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use App\Models\warehousing;
+use App\Notifications\NewOrderNotification;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -482,7 +485,7 @@ class ordersController extends Controller
                 "created_by" => Auth::user()->user_code,
             ]
         );
-       info("delivery ".$delivery);
+//       info("delivery ".$delivery);
         $user_code = $request->user()->user_code;
         $random = $order_code;
         $sidai = suppliers::whereIn('name', ['Sidai', 'SIDAI', 'sidai'])->first();
@@ -634,6 +637,19 @@ class ordersController extends Controller
         return redirect()->route('delivery.index');
     }
 
+    public function renotify($order, $distributor){
+       $usersToNotify = Suppliers::findOrFail($distributor);
+       $number = $usersToNotify->phone_number;
+       $order_code = $order;
+       $this->sendOrder($number, $order_code);
+       $distributor = $usersToNotify->name;
+       $sales = auth()->user()->name;
+       $sales_number = auth()->user()->phone_number;
+
+       Notification::send($usersToNotify, new NewOrderNotification($order_code, $distributor, $sales, $sales_number));
+   return redirect()->route('orders.distributororders')->with('success', 'Distributor Notification sent successful');
+    }
+
    public function generatePDF(Request $request)
    {
       $order_status='';
@@ -677,5 +693,64 @@ class ordersController extends Controller
       $pdf = PDF::loadView('Exports.orderdetails_pdf', $data);
 
       return $pdf->download('orderdetails_pdf.pdf');
+   }
+
+   public function sendOrder($number, $order_code)
+   {
+      if ($number != null) {
+         try {
+            $curl = curl_init();
+
+            $url = 'https://accounts.jambopay.com/auth/token';
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+                  'Content-Type: application/x-www-form-urlencoded',
+               )
+            );
+
+            curl_setopt($curl, CURLOPT_POSTFIELDS,
+               http_build_query(array('grant_type' => 'client_credentials', 'client_id' => config('services.jambopay.sms_client_id'), 'client_secret' => config('services.jambopay.sms_client_secret'))));
+
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+            $curl_response = curl_exec($curl);
+
+            $token = json_decode($curl_response);
+            curl_close($curl);
+
+            $curl = curl_init();
+
+            $message = 'You have a new Sidai order ' . $order_code . '. Order details sent to your email';
+            curl_setopt_array($curl, array(
+               CURLOPT_URL => 'https://swift.jambopay.co.ke/api/public/send',
+               CURLOPT_RETURNTRANSFER => true,
+               CURLOPT_ENCODING => '',
+               CURLOPT_MAXREDIRS => 10,
+               CURLOPT_TIMEOUT => 0,
+               CURLOPT_FOLLOWLOCATION => true,
+               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+               CURLOPT_CUSTOMREQUEST => 'POST',
+               CURLOPT_POSTFIELDS => json_encode(
+                  array(
+                     "sender_name" => "SOKOFLOW",
+                     "contact" => $number,
+                     "message" => $message,
+                     "callback" => "https://pasanda.com/sms/callback",
+                  )
+               ),
+               CURLOPT_HTTPHEADER => array(
+                  'Content-Type: application/json',
+                  'Authorization: Bearer ' . $token->access_token,
+               ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            return $response;
+         } catch (ExceptionHandler $e) {
+            return response()->json(['message' => 'Error occurred while trying to send OTP code']);
+         }
+      } else {
+         return response()->json(['message' => 'User is not registered!']);
+      }
    }
 }

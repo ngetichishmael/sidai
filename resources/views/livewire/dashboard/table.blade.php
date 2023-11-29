@@ -201,25 +201,46 @@
             <table class="table">
                <thead class="thead-light">
                <tr>
-                  <th>ID</th>
+                  <th width="1%">#</th>
                   <th>Distributor</th>
-                  <th>Order Code</th>
                   <th>Customer</th>
-                  <th>Balance </th>
-                  <th>Payment Status</th>
+                  <th>Sales Person</th>
+                  <th>Amount (Ksh.)</th>
+                  <th>Order Code</th>
                   <th>Date</th>
+                  <th>Status</th>
                </tr>
                </thead>
                <tbody>
                @forelse ($orderfullmentbydistributorspage as $key=>$sale)
                   <tr>
+                     {{-- @dd($order->id) --}}
                      <td>{{ $key + 1 }}</td>
                      <td>{{ $sale->distributor()->pluck('name')->implode('') }}</td>
-                     <td>{{ $sale->order_code }}</td>
-                     <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
-                     <td>{{ $sale->balance }}</td>
-                     <td>{{ $sale->payment_status }}</td>
-                     <td>{{ $sale->updated_at }}</td>
+                     <td title="{{ $sale->Customer->customer_name ?? null }}">
+                        {{ Str::limit($sale->Customer->customer_name ?? null, 30) }}</td>
+                     <td title="{{ $sale->User->name ?? null }}">
+                        {{ Str::limit($sale->User->name ?? null, 20) }}</td>
+                     <td>{{ number_format(floatval($sale->price_total)) }}</td>
+                     <td>{{$sale->order_code}}</td>
+                     <td>{{$sale->created_at}}</td>
+                     @php
+                        $orderStatus = strtolower($sale->order_status);
+                     @endphp
+
+                     @if ($orderStatus == 'pending delivery')
+                        <td><button class="btn btn-outline-warning">Pending Order</button></td>
+                     @elseif ($orderStatus == 'complete delivery' || $orderStatus == 'DELIVERED')
+                        <td><button class="btn btn-outline-success">Delivered</button></td>
+                     @elseif ($orderStatus == 'waiting acceptance')
+                        <td><button class="btn btn-outline-info">{{ $order->order_status }}</button></td>
+                     @elseif ($orderStatus == 'partially delivery')
+                        <td><button class="btn btn-outline-default">{{ $order->order_status }}</button></td>
+                     @elseif ($orderStatus == 'not delivered')
+                        <td><button class="btn btn-outline-danger">{{ $order->order_status }}</button></td>
+                     @else
+                        <td><button class="btn btn-outline-default">{{ $order->order_status }}</button></td>
+                     @endif
                   </tr>
                @empty
                   <x-emptyrow>

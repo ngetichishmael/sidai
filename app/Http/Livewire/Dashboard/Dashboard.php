@@ -239,7 +239,9 @@ class Dashboard extends Component
             ->where('order_type', 'Pre Order')
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-            })->orderBy('id', 'desc')
+            })
+           ->groupBy('order_code')
+           ->orderBy('id', 'desc')
            ->paginate($this->perPreorder);
     }
 

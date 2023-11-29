@@ -110,7 +110,10 @@
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="{!! route('orders.distributorsdetails', $order->order_code) !!}">View</a>
-
+                                        <form method="POST" action="{!! route('orders.renotify', [$order->order_code, $order->distributor()->pluck('id')->implode('')]) !!}">
+                                           @csrf
+                                           <button type="submit" class="dropdown-item">Renotify</button>
+                                        </form>
                                      </div>
                                   </div>
                                </td>
