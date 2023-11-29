@@ -39,7 +39,7 @@
                                 <th>Name of Distributor</th>
                                 <th>Orders Assigned</th>
                                 <th>Orders Fulfilled</th>
-                                <th>Rejected Orders</th>
+                                <th>Status</th>
                                 <th>Fulfilment Rate</th>
                                 <th>Region</th>
                             </tr>
@@ -51,7 +51,13 @@
                                     <td>{{ $distributor->name}}</td>
                                     <td>{{ $distributor->orders_count}}</td>
                                     <td>{{ $distributor->orders_delivered_count}}</td>
-                                    <td></td>
+                                    <td>@if ($distributor->orders_delivered_count > 0 )
+                                        <p style="color: lightgreen">Partial</p>
+                                        @elseif (($distributor->orders_count >0 && $distributor->orders_count - $distributor->orders_delivered_count)===0)
+                                        <p style="color: green">Hit</p>
+                                        @elseif (($distributor->orders_count - $distributor->orders_delivered_count)===$distributor->orders_count)
+                                        <p style="color: red">Missed</p>
+                                    @endif</td>
                                     <td>
                                         @if($distributor->orders_count > 0)
                                             {{ number_format(($distributor->orders_delivered_count / $distributor->orders_count) * 100, 2) }}%
