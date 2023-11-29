@@ -91,7 +91,7 @@ class Dashboard extends Component
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
        $fstatus = 'Unknown';
-       if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
+       if ($this->selectedStatus === null || $this->selectedStatus ==='all' || empty($this->selectedStatus)) {
           // Define conditions for each status
           $statusConditions = [
              'New Inactive' => [
@@ -143,7 +143,7 @@ class Dashboard extends Component
              $fstatus = 'Inactive';
              $aggregate->whereNotNull('customers.last_order_date')->where('customers.last_order_date', '<', Carbon::now()->subDays(60));
           } else if ($this->selectedStatus === 'new') {
-             $fstatus = ' New ';
+             $fstatus = 'New';
              $aggregate->whereNull('customers.last_order_date')
                 ->whereBetween('customers.created_at', [Carbon::now()->subDays(30), Carbon::now()]);
           } else if ($this->selectedStatus === 'new_inactive') {
@@ -161,6 +161,8 @@ class Dashboard extends Component
           'areas.name as area_name',
           'customers.created_by as user_code',
           'customers.updated_at',
+          'customers.customer_group',
+          'customers.price_group',
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
@@ -317,6 +319,8 @@ class Dashboard extends Component
           'customers.created_by as user_code',
           'customers.address',
           'customers.updated_at',
+          'customers.customer_group',
+          'customers.price_group',
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
