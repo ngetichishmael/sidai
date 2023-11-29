@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Reports;
 
 use App\Exports\DistributorExport;
 use App\Models\Area;
+use PDF;
 use App\Models\Orders;
 use App\Models\suppliers\suppliers;
 use App\Models\customer\customers;
@@ -17,8 +18,6 @@ use Maatwebsite\Excel\Facades\Excel;
 class Distributor extends Component
 {
    protected $paginationTheme = 'bootstrap';
-   public $start;
-   public $end;
    public $fromDate;
    public $toDate;
    public $orderBy = 'orders.id';
@@ -59,13 +58,28 @@ class Distributor extends Component
       return $data;
   }
 
-   // public function getData(){
-   //    $data = suppliers::withCount('orders')
-   //    ->withCount('OrdersDelivered')
-   //    ->whereNotIn('name',['sidai','Sidai','SIDAI'])
-   //    ->paginate($this->perPage);
-   //    return $data;
+  public function export()
+  {
+      $employees= $this->getEmployees();
+      return Excel::download(new EmployeesExport($employees), 'employees.xlsx');
+  }
+  public function exportCSV()
+  {
+      $filteredCustomers = $this->customers();
+      return Excel::download(new EmployeesExport($filteredCustomers), 'employees.csv');
+  }
 
-   // }
+  public function exportPDF()
+  {
+      $data = [
+          'distributors' => $this->getData(),
+      ];
+      $pdf = PDF::loadView('Exports.distributors', $data);
+
+      // Add the following response headers
+      return response()->streamDownload(function () use ($pdf) {
+          echo $pdf->output();
+      }, 'distributors.pdf');
+  }
 
 }
