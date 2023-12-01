@@ -22,7 +22,7 @@ class Distributor extends Component
    public $toDate;
    public $orderBy = 'orders.id';
    public $orderAsc = false;
-   public $perPage = 25;
+   public $perPage = 100;
    public ?string $search = null;
    public $statusFilter = '';
    use WithPagination;
