@@ -1,3 +1,4 @@
+<div>
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -27,7 +28,7 @@
 </div>
 <br>
 <div class="row">
-    
+
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"
@@ -75,4 +76,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

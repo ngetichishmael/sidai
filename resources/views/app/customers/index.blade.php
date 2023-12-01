@@ -27,7 +27,6 @@
         </div>
     </div>
     <!-- end breadcrumb -->
-
     @livewire('customers.dashboard')
     {{-- @livewire('customers.index') --}}
 @endsection

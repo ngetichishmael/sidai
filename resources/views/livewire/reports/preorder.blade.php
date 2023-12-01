@@ -1,3 +1,4 @@
+<div>
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -29,7 +30,7 @@
 </div>
 <br>
 <div class="row">
-    
+
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="status" class="form-control"
@@ -59,7 +60,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        
+
                             @forelse ($preorders as $preorder)
                                 <tr>
                                     <td>{{ $count++ }}</td>
@@ -89,4 +90,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>
