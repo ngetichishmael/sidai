@@ -1,3 +1,4 @@
+<div>
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -75,14 +76,14 @@
                                         @endif
                                     </td>
                                     {{-- <td></td> --}}
-                                    
+
                                 </tr>
                             @empty
                                 <tr>
                                     <td colspan="8">No distributors found.</td>
                                 </tr>
                         @endforelse
-                        
+
                         </tbody>
                     </table>
                     @if (!empty($distributors))
@@ -94,4 +95,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

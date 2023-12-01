@@ -1,3 +1,4 @@
+<div>
 <style>
    .custom-tooltip {
       --bs-tooltip-bg: rgba(248, 72, 72, 0.7);
@@ -173,4 +174,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

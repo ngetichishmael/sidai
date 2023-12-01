@@ -1,3 +1,4 @@
+<div>
 <div class="row">
    <div class="col-md-3">
        <label for="validationTooltip01">Start Date</label>
@@ -48,7 +49,7 @@
                      <td><a href="{{ route('allproducts.reports',$warehouse->warehouse_code) }}" class="btn btn-sm" style="background-color: brown;color:white">inventory history</a></td>
                  </tr>
                   @endforeach
-                    
+
                  </tbody>
               </table>
             </div>
@@ -56,3 +57,4 @@
         </div>
      </div>
    </div>
+</div>
