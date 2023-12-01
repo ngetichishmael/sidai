@@ -1,3 +1,9 @@
+<style>
+   .custom-tooltip {
+      --bs-tooltip-bg: rgba(248, 72, 72, 0.7);
+      --bs-tooltip-color: var(--bs-white);
+   }
+</style>
 <div>
     <div>
        <div>
@@ -90,7 +96,7 @@
                     <tbody>
                         @forelse($contacts as $count => $contact)
                             <td>{{ $count + 1 }}</td>
-                            <td>{{ $contact->customer_name }}</td>
+                            <td><a href="{{ route('creditor.details', $contact->id) }}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="right" data-bs-title="Click to view customer's details" >{{ $contact->customer_name }}</a></td>
                             <td>{{ $contact->customer_number }}</td>
                             <td class="cell-fit">
                                 {!! $contact->region_name !!},
