@@ -70,10 +70,9 @@
                    </div>
                 </div>
                 <!-- /.col -->
-
                 <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                    <hr class="d-sm-none" />
-                   <div class="text-grey-m2">
+                   <div class="text-grey-m2 ml-auto text-right"> <!-- Added ml-auto and text-right classes -->
                       <div class="mt-1">Invoice </div>
                       <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                             class="text-600 text-90">Issue Date:</span> {{now()}}</div>
@@ -82,17 +81,14 @@
                             class="text-600 text-90">ID:</span> #{!! $order['id'] ?? ''!!}</div>
                       <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                             class="text-600 text-90">Order Code:</span> #{!! $order['order_code'] ?? ''!!}</div>
-                     <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                             class="text-600 text-90">Order Date:</span> {!! $order['created_at']  ?? now()!!}</div>
-
                       <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                             class="text-600 text-90">Status:</span> <span
                             class="badge badge-warning badge-pill px-25 text-black-50">{{$order_status}}</span>
                       </div>
                    </div>
                 </div>
-                <!-- /.col -->
-             </div>
 
              <div class="">
                 <div class="table-responsive">
@@ -112,7 +108,7 @@
                          <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{{ $item['product_name'] }}</td>
-                            <td>{{ $item['allocated_quantity'] ?? $item->quantity }}</td>
+                            <td>{{ $item['allocated_quantity'] ?? $item['quantity'] }}</td>
                             <td class="text-95">{{ $item['selling_price'] }}</td>
                             <td class="text-secondary-d2">{{ $item['selling_price'] * $item['quantity'] }}</td>
                          </tr>
@@ -126,6 +122,7 @@
 
                    </div>
 
+                   <right>
                    <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                       <div class="row my-2">
                          <div class="col-7 text-right">
@@ -153,7 +150,7 @@
                          </div>
                       </div>
                    </div>
-                </div>
+                   </right></div>
 
                 <hr />
              </div>
