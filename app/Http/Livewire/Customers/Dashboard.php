@@ -57,16 +57,16 @@ class Dashboard extends Component
         $regionTerm = '%' . $this->regional . '%';
         $aggregate = customers::with('Creator')
            ->join('areas', 'customers.route', '=', 'areas.id')
-            ->join('subregions', 'areas.subregion_id', '=', 'subregions.id')
-            ->join('regions', 'subregions.region_id', '=', 'regions.id')
+            ->LeftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+            ->LeftJoin('regions', 'subregions.region_id', '=', 'regions.id')
 //            ->where('regions.name', 'like', $regionTerm)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('regions.name', 'like', $searchTerm)
                    ->orWhere('customer_name', 'like', $searchTerm)
-                    ->orWhere('phone_number', 'like', $searchTerm)
+                    ->orWhere('customers.phone_number', 'like', $searchTerm)
 //                   ->orWhere('address', 'like', $searchTerm)
                     ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
-                        $userQuery->where('name', 'like', $searchTerm);
+                        $userQuery->where('users.name', 'like', $searchTerm);
                     })
                     ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
                         $userQuery->where('name', 'like', $searchTerm);
@@ -91,7 +91,7 @@ class Dashboard extends Component
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
        $fstatus = 'Unknown';
-       if ($this->selectedStatus === null || $this->selectedStatus ==='all' || empty($this->selectedStatus)) {
+       if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
           // Define conditions for each status
           $statusConditions = [
              'New Inactive' => [
@@ -162,7 +162,6 @@ class Dashboard extends Component
           'customers.created_by as user_code',
           'customers.updated_at',
           'customers.customer_group',
-          'customers.price_group',
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
@@ -191,7 +190,7 @@ class Dashboard extends Component
             ->join('subregions', 'subregions.id', '=', 'areas.subregion_id')
             ->join('regions', 'regions.id', '=', 'subregions.region_id')
            ->orderBy('customers.updated_at', 'desc')->orderBy('customers.created_at', 'desc')
-           ->select('*',
+           ->select(
               'customers.id as id',
               'customers.customer_name',
               'customers.phone_number as customer_number',
@@ -220,10 +219,10 @@ class Dashboard extends Component
           ->where(function ($query) use ($searchTerm) {
              $query->where('regions.name', 'like', $searchTerm)
                 ->orWhere('customer_name', 'like', $searchTerm)
-                ->orWhere('phone_number', 'like', $searchTerm)
+                ->orWhere('customers.phone_number', 'like', $searchTerm)
 //                ->orWhere('address', 'like', $searchTerm)
                 ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
-                   $userQuery->where('name', 'like', $searchTerm);
+                   $userQuery->where('users.name', 'like', $searchTerm);
                 })
                 ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
                    $userQuery->where('name', 'like', $searchTerm);
@@ -310,6 +309,7 @@ class Dashboard extends Component
           }
        }
        $aggregate->select(
+          "*",
           'customers.id as id',
           'customers.customer_name',
           'customers.phone_number as customer_number',
