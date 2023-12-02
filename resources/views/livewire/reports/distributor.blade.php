@@ -65,6 +65,8 @@
                                         <p style="color: lightgreen">Fulfilled Partially</p>
                                         @elseif ($distributor->orders_count >0 && ($distributor->orders_count - $distributor->orders_delivered_count)===0)
                                         <p style="color: green">Hit</p>
+                                        @elseif ($distributor->orders_count === 0)
+                                        <p style="color: gray">No Orders</p>
                                         @elseif (($distributor->orders_count - $distributor->orders_delivered_count)===$distributor->orders_count)
                                         <p style="color: red">Missed</p>
                                     @endif</td>
