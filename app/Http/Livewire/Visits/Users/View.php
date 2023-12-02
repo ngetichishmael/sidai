@@ -52,13 +52,13 @@ class View extends Component
     public function data()
 {
     $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
-    $this->start =  Carbon::now()->startOfMonth()->format('Y-m-d') ?? $this->start; 
-    $this->end = Carbon::now()->endOfMonth()->format('Y-m-d') ?? $this->end;
+    $this->start = $this->start ?? Carbon::now()->startOfMonth()->format('Y-m-d'); 
+    $this->end = $this->end ?? Carbon::now()->endOfMonth()->format('Y-m-d');
 
     $visits = DB::table('users')
         ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
         ->join('customers', 'customer_checkin.customer_id', '=', 'customers.id')
-        ->whereBetween('customer_checkin.updated_at', [Carbon::now()->startOfMonth()->format('Y-m-d'), $this->end])
+        ->whereBetween('customer_checkin.updated_at', [$this->start, $this->end])
         ->where('users.user_code', $this->user_code)
         ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
         ->select(
