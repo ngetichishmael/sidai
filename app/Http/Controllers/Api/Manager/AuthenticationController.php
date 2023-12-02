@@ -44,10 +44,9 @@ class AuthenticationController extends Controller
          $query->where('email', $request->phone_number)
             ->orWhere('phone_number', $request->phone_number);
       })
-//         ->whereIn('account_type', ['RSM','NSM','shop-attendee'])
          ->where(function ($query) {
-            $query->whereIn(DB::raw('LOWER(account_type)'), ['rsm', 'nsm', 'shop-attendee'])
-               ->orWhereIn(DB::raw('UPPER(account_type)'), ['RSM', 'NSM', 'SHOP-ATTENDEE']);
+            $query->whereIn(DB::raw('LOWER(account_type)'), ['admin', 'nsm', ])
+               ->orWhereIn(DB::raw('UPPER(account_type)'), ['ADMIN', 'NSM', ]);
          })
          ->first();
       if ($user == null) {
