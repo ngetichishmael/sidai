@@ -61,7 +61,7 @@ class View extends Component
     $visits = DB::table('users')
         ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
         ->join('customers', 'customer_checkin.customer_id', '=', 'customers.id')
-        ->where('customer_checkin.updated_at', [$this->start, $this->end])
+        ->whereBetween('customer_checkin.updated_at', [now()->startOfMonth()->toDateString(), $this->end])
         ->where('users.user_code', $this->user_code)
         ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
         ->select(
