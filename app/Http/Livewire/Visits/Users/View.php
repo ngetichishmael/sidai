@@ -49,11 +49,14 @@ class View extends Component
             'visits' => $this->data()
         ]);
     }
+    public function mount()
+    {
+        $this->start = now()->startOfMonth()->format('Y-m-d');
+        $this->end = now()->endOfMonth()->format('Y-m-d');
+    }
     public function data()
 {
     $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
-    $this->start = $this->start ?? Carbon::now()->startOfMonth()->format('Y-m-d');
-    $this->end = $this->end ?? Carbon::now()->endOfMonth()->format('Y-m-d');
 
     $visits = DB::table('users')
         ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
