@@ -26,7 +26,7 @@ class ReconciledProductsController extends Controller
        $randomWarehouse = Warehousing::where('warehouse_code', $warehouse_code ?? 1)->first();
        if ($distributor == 1 || $distributor == null) {
 
-          foreach ($request as $data) {
+          foreach ($request['cart'] as $data) {
              $reconciliation_code=  Str::random(20);
              $reconciled_products = new ReconciledProducts();
              $reconciled_products->productID = $data['productID'];
@@ -58,13 +58,16 @@ class ReconciledProductsController extends Controller
              DB::table('order_payments')
                 ->where('user_id', $id)
                 ->update(['isReconcile' => 'true']);
-
+             $cash = $request['cash'];
+             $mpesa = $request['mpesa'];
+             $cheque = $request['cheque'];
+             $bank = $request['bank'];
              Reconciliation::create([
                   'reconciliation_code'=>$reconciliation_code,
-                  'cash'=>$data['cash'],
-                  'bank'=>$data['bank'],
-                  'mpesa'=>$data['mpesa'],
-                  'cheque'=>$data['cheque'],
+                  'cash'=>$cash,
+                  'bank'=>$bank,
+                  'mpesa'=>$mpesa,
+                  'cheque'=>$cheque,
                   'total'=>$data['amount'],
                   'status'=>'waiting_approval',
                   'warehouse_code'=>$warehouse_code ?? $randomWarehouse,
@@ -79,7 +82,7 @@ class ReconciledProductsController extends Controller
              "Result" => "Successful"
           ], 200);
        }else{
-          foreach ($request as $data) {
+          foreach ($request['cart']  as $data) {
              $reconciliation_code=  Str::random(20);
              $reconciled_products = new ReconciledProducts();
              $reconciled_products->productID = $data['productID'];
@@ -105,12 +108,16 @@ class ReconciledProductsController extends Controller
                 ->where('user_id', $id)
                 ->update(['isReconcile' => 'true']);
           }
+          $cash = $request['cash'];
+          $mpesa = $request['mpesa'];
+          $cheque = $request['cheque'];
+          $bank = $request['bank'];
           Reconciliation::create([
              'reconciliation_code'=>$reconciliation_code,
-             'cash'=>$data['cash'],
-             'bank'=>$data['bank'],
-             'mpesa'=>$data['mpesa'],
-             'cheque'=>$data['cheque'],
+             'cash'=>$cash,
+             'bank'=>$bank,
+             'mpesa'=>$mpesa,
+             'cheque'=>$cheque,
              'total'=>$data['amount'],
              'status'=>'waiting_approval',
              'warehouse_code'=>$warehouse_code ?? $randomWarehouse,
