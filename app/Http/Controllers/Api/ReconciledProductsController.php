@@ -84,6 +84,12 @@ class ReconciledProductsController extends Controller
                 "message" => "All products were successfully reconciled",
                 "Result" => "Successful"
              ], 200);
+          }{
+             return response()->json([
+                "success" => false,
+                "message" => "'cart' key is missing or not an array",
+                "Result" => "Failed"
+             ], 400);
           }
        } else {
           if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
@@ -134,6 +140,13 @@ class ReconciledProductsController extends Controller
                 "message" => "All products were successfully reconciled",
                 "Result" => "Successful"
              ], 200);
+          }
+          else{
+             return response()->json([
+                "success" => false,
+                "message" => "'cart' key is missing or not an array",
+                "Result" => "Failed"
+             ], 400);
           }
        }
     }
