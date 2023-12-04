@@ -30,7 +30,25 @@ class ReconciledProductsController extends Controller
 
       if ($distributor == 1 || $distributor == null) {
          if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
-            $totals=0.00;
+            $cash = $requestArray['cash'];
+            $mpesa = $requestArray['mpesa'];
+            $cheque = $requestArray['cheque'];
+            $bank = $requestArray['bank'];
+            $totals=$cash+$mpesa+$cheque+$bank;
+            $reconciliation_code = Str::random(20);
+            Reconciliation::create([
+               'reconciliation_code' => $reconciliation_code,
+               'cash' => $cash,
+               'bank' => $bank,
+               'mpesa' => $mpesa,
+               'cheque' => $cheque,
+               'total' => $totals,
+               'supplierID' =>$distributor,
+               'status' => 'approved',
+               'warehouse_code' => $warehouse_code ?? $randomWarehouse,
+               'reconciled_to' => $distributor,
+               'sales_person' => $usercode
+            ]);
             foreach ($requestArray['cart'] as $data) {
                $reconciliation_code = Str::random(20);
                $reconciled_products = new ReconciledProducts();
@@ -63,25 +81,6 @@ class ReconciledProductsController extends Controller
 //               DB::table('order_payments')
 //                  ->where('user_id', $id)
 //                  ->update(['isReconcile' => 'true']);
-
-               $cash = $requestArray['cash'];
-               $mpesa = $requestArray['mpesa'];
-               $cheque = $requestArray['cheque'];
-               $bank = $requestArray['bank'];
-               $totals=$cash+$mpesa+$cheque+$bank;
-               Reconciliation::create([
-                  'reconciliation_code' => $reconciliation_code,
-                  'cash' => $cash,
-                  'bank' => $bank,
-                  'mpesa' => $mpesa,
-                  'cheque' => $cheque,
-                  'total' => $totals,
-                  'supplierID' =>$distributor,
-                  'status' => 'waiting_approval',
-                  'warehouse_code' => $warehouse_code ?? $randomWarehouse,
-                  'reconciled_to' => $data['supplierID'],
-                  'sales_person' => $usercode
-               ]);
             }
 
             return response()->json([
@@ -98,9 +97,26 @@ class ReconciledProductsController extends Controller
          }
       } else {
          if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
-            $totals=0.00;
+            $cash = $requestArray['cash'];
+            $mpesa = $requestArray['mpesa'];
+            $cheque = $requestArray['cheque'];
+            $bank = $requestArray['bank'];
+            $totals=$cash+$mpesa+$cheque+$bank;
+            $reconciliation_code = Str::random(20);
+            Reconciliation::create([
+               'reconciliation_code' => $reconciliation_code,
+               'cash' => $cash,
+               'bank' => $bank,
+               'mpesa' => $mpesa,
+               'cheque' => $cheque,
+               'total' => $totals,
+               'supplierID' =>$distributor,
+               'status' => 'approved',
+               'warehouse_code' => $warehouse_code ?? $randomWarehouse,
+               'reconciled_to' => $distributor,
+               'sales_person' => $usercode
+            ]);
             foreach ($requestArray['cart'] as $data) {
-               $reconciliation_code = Str::random(20);
                $reconciled_products = new ReconciledProducts();
                $reconciled_products->productID = $data['productID'];
                $reconciled_products->amount = $data['amount'];
@@ -125,27 +141,7 @@ class ReconciledProductsController extends Controller
 //                  ->where('user_id', $id)
 //                  ->update(['isReconcile' => 'true']);
             }
-
-            $cash = $requestArray['cash'];
-            $mpesa = $requestArray['mpesa'];
-            $cheque = $requestArray['cheque'];
-            $bank = $requestArray['bank'];
-          $totals=$cash+$mpesa+$cheque+$bank;
-            Reconciliation::create([
-               'reconciliation_code' => $reconciliation_code,
-               'cash' => $cash,
-               'bank' => $bank,
-               'mpesa' => $mpesa,
-               'cheque' => $cheque,
-               'total' => $totals,
-               'supplierID' =>$distributor,
-               'status' => 'approved',
-               'warehouse_code' => $warehouse_code ?? $randomWarehouse,
-               'reconciled_to' => $data['supplierID'],
-               'sales_person' => $usercode
-            ]);
-
-            return response()->json([
+             return response()->json([
                "success" => true,
                "message" => "All products were successfully reconciled",
                "Result" => "Successful"
