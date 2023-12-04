@@ -31,18 +31,21 @@ class ReconciledProductsController extends Controller
       if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
          if ($distributor == 1 || $distributor == null) {
             $reconciliation_code = Str::random(20);
-            foreach ($requestArray['cart'] as $data) {
-               $reconciliation_code = Str::random(20);
-               $reconciled_products = new ReconciledProducts();
-               $reconciled_products->productID = $data['productID'];
-               $reconciled_products->amount = $data['amount'];
-               $reconciled_products->reconciliation_code = $reconciliation_code;
-               $reconciled_products->supplierID = $data['supplierID'];
-               $reconciled_products->userCode = $usercode;
-               $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
-               $reconciled_products->save();
 
-//               $is = DB::table('inventory_allocated_items')
+            info( " request array is ", $requestArray['cart']);
+            foreach ($requestArray['cart'] as $data) {
+               info(" data     ", $data);
+               $reconciliation_code = Str::random(20);
+              ReconciledProducts::create([
+              'productID' => $data['productID'],
+              'amount' => $data['amount'],
+              'reconciliation_code' => $reconciliation_code,
+              'supplierID' => $data['supplierID'],
+              'userCode' => $usercode,
+              'warehouse_code' => $warehouse_code ?? $randomWarehouse,
+              ]);
+
+//               DB::table('inventory_allocated_items')
 //                  ->where('created_by', $usercode)
 //                  ->where('product_code', $data['productID'])
 //                  ->decrement('allocated_qty', $data['amount'], [
