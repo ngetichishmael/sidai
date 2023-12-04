@@ -5,12 +5,14 @@ use App\Models\Branches;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
+use App\Models\warehouse_assign;
 use App\Models\warehousing;
 use Hr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class inventoryController extends Controller{
 
@@ -53,7 +55,10 @@ class inventoryController extends Controller{
    }
 
    public function stockrecon(){
+      if (Str::lower(Auth::user()->account_type) == "shop-attendee1") {
+               $warehouse_code=warehouse_assign::where('manager', Auth::user()->user_code)->first();
 
+                }
       return view('app.stocks.reconciliation');
    }
    public function salesperson($warehouse_code)
