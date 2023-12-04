@@ -24,7 +24,7 @@ class ReconciledProducts extends Model
        'reconciliation_code'
     ];
    public function productInformation() {
-      return $this->belongsTo(product_information::class, 'productID', 'id');
+      return $this->hasMany(product_information::class, 'productID', 'id');
    }
    public function supplier()
    {
