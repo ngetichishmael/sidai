@@ -8,6 +8,7 @@ use App\Models\Orders;
 use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
+use App\Models\warehouse_assign;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -338,14 +339,22 @@ class Dashboard extends Component
        $array = [];
         $user = Auth::user();
         $user_code = $user->region_id;
-        if (!$user->account_type === 'RSM') {
+        if (!$user->account_type === 'RSM' || $user->account_type ==="Shop-Attendee") {
             return $array;
         }
-        $regions = Region::where('id', $user_code)->pluck('id');
-        if ($regions->isEmpty()) {
-            return $array;
-        }
-        $customers = customers::whereIn('region_id', $regions)->pluck('region_id');
+       if ($user->account_type ==="Shop-Attendee"){
+          $region=warehouse_assign::where('manager', $user->user_code)->first();
+          if ($region->isEmpty()) {
+             return $array;
+          }
+          $customers = customers::whereIn('region_id', $region)->pluck('id');
+       }else {
+          $regions = Region::where('id', $user_code)->pluck('id');
+          if ($regions->isEmpty()) {
+             return $array;
+          }
+          $customers = customers::whereIn('region_id', $regions)->pluck('id');
+       }
         if ($customers->isEmpty()) {
             return $array;
         }
