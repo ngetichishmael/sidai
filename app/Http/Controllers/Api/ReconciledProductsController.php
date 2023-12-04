@@ -44,7 +44,7 @@ class ReconciledProductsController extends Controller
                'cheque' => $cheque,
                'total' => $totals,
                'supplierID' =>$distributor,
-               'status' => 'approved',
+               'status' => 'waiting_approval',
                'warehouse_code' => $warehouse_code ?? $randomWarehouse,
                'reconciled_to' => $distributor,
                'sales_person' => $usercode
