@@ -85,7 +85,7 @@ class Dashboard extends Component
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
             $aggregate->whereIn('regions.id', $this->filter());
         }
-       info($this->selectedGroup);
+//       info($this->selectedGroup);
         if ($this->selectedGroup) {
             $aggregate->where('customer_group', $this->selectedGroup);
         }

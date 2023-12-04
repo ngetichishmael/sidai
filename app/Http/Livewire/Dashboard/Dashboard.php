@@ -39,21 +39,27 @@ class Dashboard extends Component
     public $perActiveUsers = 10;
     public $perVisitTotal = 10;
     // Individual functions for data retrieval
-   public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
+
+   public function whereBetweenDate(Builder $query, string $column = null): Builder
    {
-      if (is_null($start) && is_null($end)) {
-         return $query;
+      if (is_null($this->startDate) && is_null($this->endDate)) {
+         // If both start and end dates are not selected, default to beginning and end of the month
+         $start = Carbon::now()->startOfMonth()->startOfDay();
+         $end = Carbon::now()->endOfMonth()->endOfDay();
+         return $query->whereBetween($column, [$start, $end]);
       }
-      if (is_null($start)) {
+      if (is_null($this->startDate)) {
          // If start date is not selected, only filter by end date
-         $end = Carbon::parse($end)->endOfDay();
+         $end = Carbon::parse($this->endDate)->endOfDay();
          return $query->where($column, '<=', $end);
       }
-      $start = Carbon::parse($start)->startOfDay();
-      $end = $end == null ? Carbon::now()->endOfDay() : Carbon::parse($end)->endOfDay();
+      $start = Carbon::parse($this->startDate)->startOfDay();
+      $end = is_null($this->endDate) ? Carbon::now()->endOfDay() : Carbon::parse($this->endDate)->endOfDay();
+
       return $query->where($column, '>=', $start)->where($column, '<=', $end);
    }
-    public function whereBetweenDate2(Builder $query, string $column = null, string $start = null, string $end = null): Builder
+
+   public function whereBetweenDate2(Builder $query, string $column = null, string $start = null, string $end = null): Builder
     {
         if (is_null($start) && is_null($end)) {
             return $query;
@@ -72,7 +78,7 @@ class Dashboard extends Component
           $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
           if ($assignedwarehouse){
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
-                ->where('warehouse_code',$assignedwarehouse)
+                ->where('warehouse_code','6urihK1X6jYUtFAPotxF')
                 ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->select('cash')
                 ->sum('cash');
