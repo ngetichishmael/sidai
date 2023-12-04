@@ -26,7 +26,7 @@ class ReconciledProducts extends Model
    public function productInformation() {
       return $this->belongsTo(product_information::class, 'productID', 'id');
    }
-   public function supplier(): BelongsTo
+   public function supplier()
    {
       return $this->belongsTo(suppliers::class, 'supplierID', 'id');
    }
