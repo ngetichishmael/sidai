@@ -24,29 +24,32 @@ class Dashboard extends Component
 
     public function render()
     {
-        $payments = order_payments::join('orders', 'orders.order_code', '=', 'order_payments.order_id')
-            ->join('customers', 'customers.id', '=', 'orders.customerID')
-            ->join('users', 'customers.created_by', '=', 'users.user_code')
-            ->where('payment_method', $this->paymentMethod)
-            ->when($this->search, function ($query, $search) {
-        return $query->where(function ($subquery) use ($search) {
-            $subquery->where('order_payments.reference_number', 'LIKE', '%' . $search . '%')
-                     ->orWhere('users.name', 'LIKE', '%' . $search . '%')
-                     ->orWhere('customers.customer_name', 'LIKE', '%' . $search . '%');
-                    });
-                })
-                ->when($this->fromDate, function ($query) {
-                    return $query->whereDate('order_payments.created_at', '>=', $this->fromDate);
-                })
-                ->when($this->toDate, function ($query) {
-                    return $query->whereDate('order_payments.created_at', '<=', $this->toDate);
-                })
-                ->orderBy('order_payments.id', 'desc')
-                ->groupBy('amount')
+//       if (auth()::user()->account_type ==="Shop-Attendee"){
+//          $payments=
+//       }else {
+          $payments = order_payments::join('orders', 'orders.order_code', '=', 'order_payments.order_id')
+             ->join('customers', 'customers.id', '=', 'orders.customerID')
+             ->join('users', 'customers.created_by', '=', 'users.user_code')
+             ->where('payment_method', $this->paymentMethod)
+             ->when($this->search, function ($query, $search) {
+                return $query->where(function ($subquery) use ($search) {
+                   $subquery->where('order_payments.reference_number', 'LIKE', '%' . $search . '%')
+                      ->orWhere('users.name', 'LIKE', '%' . $search . '%')
+                      ->orWhere('customers.customer_name', 'LIKE', '%' . $search . '%');
+                });
+             })
+             ->when($this->fromDate, function ($query) {
+                return $query->whereDate('order_payments.created_at', '>=', $this->fromDate);
+             })
+             ->when($this->toDate, function ($query) {
+                return $query->whereDate('order_payments.created_at', '<=', $this->toDate);
+             })
+             ->orderBy('order_payments.id', 'desc')
+             ->groupBy('amount')
 //                  ->groupBy('order_payments.id')
-                ->get();
-
-info($payments);
+             ->get();
+//       }
+//
        return view('livewire.payment.paid.dashboard', [
          'payments' => $payments
       ]);
