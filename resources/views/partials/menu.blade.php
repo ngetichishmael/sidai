@@ -257,8 +257,7 @@
 
 <li class="nav-item {!! Nav::isResource('routes') !!}">
 <a class="d-flex align-items-center" href="">
-<i data-feather='compass'></i><span class="menu-title text-truncate" data-i18n="Todo"> Route
-   Scheduling</span>
+<i data-feather='compass'></i><span class="menu-title text-truncate" data-i18n="Todo">Schedules</span>
 </a>
     <ul class="menu-content">
     <li style="padding-left: 50px"><a class="d-flex align-items-center" href=" {!! route('routes.index') !!}">
