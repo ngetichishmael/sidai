@@ -83,18 +83,18 @@ class pendingorders extends Component
       }
       if ($user->account_type ==="Shop-Attendee"){
          $region=warehouse_assign::where('manager', $user->user_code)->first();
-         if ($region->isEmpty()) {
+         if (empty($region)) {
             return $array;
          }
          $customers = customers::whereIn('region_id', $region)->pluck('id');
       }else {
          $regions = Region::where('id', $user_code)->pluck('id');
-         if ($regions->isEmpty()) {
+         if (empty($regions)) {
             return $array;
          }
          $customers = customers::whereIn('region_id', $regions)->pluck('id');
       }
-      if ($customers->isEmpty()) {
+      if (empty($customers)) {
          return $array;
       }
       return $customers->toArray();
