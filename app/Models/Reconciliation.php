@@ -14,7 +14,11 @@ class Reconciliation extends Model
 
    public function user(): BelongsTo
    {
-      return $this->belongsTo(User::class, 'id', 'approved_by');
+      return $this->belongsTo(User::class, 'approved_by', 'id');
+   }
+   public function warehouse(): BelongsTo
+   {
+      return $this->belongsTo(warehousing::class, 'warehouse_code', 'warehouse_code');
    }
    public function reconciliationProducts(): hasMany
    {
