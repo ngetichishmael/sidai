@@ -29,9 +29,10 @@ class ReconciledProductsController extends Controller
 
       $randomWarehouse = Warehousing::where('warehouse_code', $warehouse_code ?? 1)->first();
       if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
-         info('Distributor Information', ['distributor' => $distributor]);
+         info('  ', ['distributor' => $distributor]);
+         info("  here  ");
          if ($distributor == 1 || $distributor == null || empty($distributor)) {
-            info('inside distributor');
+            info(' inside distributor ');
             $reconciliation_code = Str::random(20);
 
             info( "   request array is    ", $requestArray['cart']);
