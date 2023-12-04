@@ -14,6 +14,10 @@ class ReconciledProductsController extends Controller
 {
    public function index2(Request $request, $warehouse_code, $distributor)
    {
+      info("reconcile products                      ........... ");
+      info($request->all());
+      info("                      ........... ");
+      info([$warehouse_code, $distributor]);
       $usercode = $request->user()->user_code;
       $id = $request->user()->id;
       $jsonData = $request->collect();
@@ -136,7 +140,7 @@ class ReconciledProductsController extends Controller
                'mpesa' => $mpesa,
                'cheque' => $cheque,
                'total' => $data['amount'],
-               'status' => 'waiting_approval',
+               'status' => 'approved',
                'warehouse_code' => $warehouse_code ?? $randomWarehouse,
                'reconciled_to' => $data['supplierID'],
                'sales_person' => $usercode

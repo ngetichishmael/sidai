@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\suppliers\suppliers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +20,10 @@ class Reconciliation extends Model
    public function warehouse(): BelongsTo
    {
       return $this->belongsTo(warehousing::class, 'warehouse_code', 'warehouse_code');
+   }
+   public function supplier(): BelongsTo
+   {
+      return $this->belongsTo(suppliers::class, 'supplierID', 'id');
    }
    public function reconciliationProducts(): hasMany
    {
