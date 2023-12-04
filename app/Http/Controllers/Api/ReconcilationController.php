@@ -49,7 +49,10 @@ class ReconcilationController extends Controller
 //         ->with('reconciliationProducts.productInformation:product_name')
          ->with(['reconciliationProducts.productInformation' => function ($query) {
             $query->select( 'id','product_name');
-         }], 'warehouse')
+         }])
+         ->with(['warehouse' => function ($query) {
+            $query->select( 'id','name');
+         }])
          ->get();
       return response()->json([
          "success" => true,
