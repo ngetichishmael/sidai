@@ -79,10 +79,9 @@ class Dashboard extends Component
           if ($assignedwarehouse){
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
                 ->where('warehouse_code','6urihK1X6jYUtFAPotxF')
-                ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->select('cash')
                 ->sum('cash');
-                return  $amount;
+                return  $amount-> $this->whereBetween('created_at', [$this->startDate, $this->endDate]);
           }
        } elseif (Str::lower($loggedUser) ==="rsm"){
           $user=Auth::user();
