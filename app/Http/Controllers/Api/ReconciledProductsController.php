@@ -26,19 +26,11 @@ class ReconciledProductsController extends Controller
             "Result" => "Failed"
          ], 400);
       }
-
       $randomWarehouse = Warehousing::where('warehouse_code', $warehouse_code ?? 1)->first();
       if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
-         info('  ', ['distributor' => $distributor]);
-         info("  here  ");
          if ($distributor == 1 || $distributor == null || empty($distributor)) {
-            info(' inside distributor ');
             $reconciliation_code = Str::random(20);
-
-            info( "   request array is    ", $requestArray['cart']);
             foreach ($requestArray['cart'] as $data) {
-               info(" data     ", $data);
-               $reconciliation_code = Str::random(20);
               ReconciledProducts::create([
               'productID' => $data['productID'],
               'amount' => $data['amount'],
@@ -93,7 +85,7 @@ class ReconciledProductsController extends Controller
                "message" => "All products were successfully reconciled",
                "Result" => "Successful"
             ], 200);
-         } else {
+         } else if ($distributor != null || !empty($distributor)){
             $reconciliation_code = Str::random(20);
          foreach ($requestArray['cart'] as $data) {
             $reconciled_products = new ReconciledProducts();
