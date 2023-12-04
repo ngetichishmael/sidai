@@ -42,27 +42,27 @@ class ReconciledProductsController extends Controller
                $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
                $reconciled_products->save();
 
-               $is = DB::table('inventory_allocated_items')
-                  ->where('created_by', $usercode)
-                  ->where('product_code', $data['productID'])
-                  ->decrement('allocated_qty', $data['amount'], [
-                     'updated_at' => now(),
-                  ]);
-
-               DB::table('inventory_allocated_items')
-                  ->where('allocated_qty', '<', 1)
-                  ->delete();
-
-               DB::table('product_inventory')
-                  ->where('created_by', $usercode)
-                  ->increment('current_stock', $data['amount'], [
-                     'updated_at' => now(),
-                     'updated_by' => $id,
-                  ]);
-
-               DB::table('order_payments')
-                  ->where('user_id', $id)
-                  ->update(['isReconcile' => 'true']);
+//               $is = DB::table('inventory_allocated_items')
+//                  ->where('created_by', $usercode)
+//                  ->where('product_code', $data['productID'])
+//                  ->decrement('allocated_qty', $data['amount'], [
+//                     'updated_at' => now(),
+//                  ]);
+//
+//               DB::table('inventory_allocated_items')
+//                  ->where('allocated_qty', '<', 1)
+//                  ->delete();
+//
+//               DB::table('product_inventory')
+//                  ->where('created_by', $usercode)
+//                  ->increment('current_stock', $data['amount'], [
+//                     'updated_at' => now(),
+//                     'updated_by' => $id,
+//                  ]);
+//
+//               DB::table('order_payments')
+//                  ->where('user_id', $id)
+//                  ->update(['isReconcile' => 'true']);
 
                $cash = $requestArray['cash'];
                $mpesa = $requestArray['mpesa'];
@@ -110,20 +110,20 @@ class ReconciledProductsController extends Controller
                $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
                $reconciled_products->save();
 
-               $is = DB::table('inventory_allocated_items')
-                  ->where('created_by', $usercode)
-                  ->where('product_code', $data['productID'])
-                  ->decrement('allocated_qty', $data['amount'], [
-                     'updated_at' => now(),
-                  ]);
-
-               DB::table('inventory_allocated_items')
-                  ->where('allocated_qty', '<', 1)
-                  ->delete();
-
-               DB::table('order_payments')
-                  ->where('user_id', $id)
-                  ->update(['isReconcile' => 'true']);
+//               $is = DB::table('inventory_allocated_items')
+//                  ->where('created_by', $usercode)
+//                  ->where('product_code', $data['productID'])
+//                  ->decrement('allocated_qty', $data['amount'], [
+//                     'updated_at' => now(),
+//                  ]);
+//
+//               DB::table('inventory_allocated_items')
+//                  ->where('allocated_qty', '<', 1)
+//                  ->delete();
+//
+//               DB::table('order_payments')
+//                  ->where('user_id', $id)
+//                  ->update(['isReconcile' => 'true']);
             }
 
             $cash = $requestArray['cash'];
