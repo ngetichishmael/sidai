@@ -21,7 +21,7 @@ class Reconciliation extends Model
    {
       return $this->belongsTo(warehousing::class, 'warehouse_code', 'warehouse_code');
    }
-   public function supplier(): BelongsTo
+   public function distributor(): BelongsTo
    {
       return $this->belongsTo(suppliers::class, 'supplierID', 'id');
    }
