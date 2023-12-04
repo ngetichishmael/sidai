@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\products\product_information;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +20,8 @@ class ReconciledProducts extends Model
         'userCode',
         'supplierID',
        'reconciliation_code'
-
     ];
-
+   public function productInformation() {
+      return $this->belongsTo(product_information::class, 'productID', 'id');
+   }
 }
