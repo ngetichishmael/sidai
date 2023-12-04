@@ -47,7 +47,7 @@ class ReconcilationController extends Controller
       $userCode=$request->user()->user_code;
       $reconciliations=Reconciliation::where('sales_person', $userCode)
 //         ->with('reconciliationProducts.productInformation:product_name')
-         ->with(['warehouse','reconciliationProducts.productInformation' => function ($query) {
+         ->with(['warehouse:id,warehouse_name','reconciliationProducts.productInformation' => function ($query) {
             $query->select( 'id','product_name');
          }])
          ->get();
