@@ -135,4 +135,25 @@ class routesController extends Controller
       return view('app.routes.edit', compact('route', 'customers', 'salespeople', 'account_types', 'selectedAccounttype', 'selectedSalespeople'));
 
    }
+   public function update(Request $request, $id){
+    
+    $this->validate($request, [
+        'name' => 'required',
+        'start_date' => 'required',
+        'end_date' => 'required',
+        'status' => 'required'
+        ]);
+        $route = Routes::find($id);
+
+        $route->update([
+            'name' => $request->input('name'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'status' => $request->input('status')
+        ]);
+        Session()->flash('success', 'Route successfully Updated');
+
+        return redirect()->route('routes.index');
+
+   }
 }

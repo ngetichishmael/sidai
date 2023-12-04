@@ -50,34 +50,34 @@ class View extends Component
         ]);
     }
     public function data()
-    {
-        $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
-        $start_date = Carbon::now()->startOfMonth()->format('Y-m-d');
-        $end_date = Carbon::now()->endOfMonth()->format('Y-m-d');
-        $this->start = $this->start == null ? $start_date : $this->start;
-        $this->end = $this->end == null ? $end_date : $this->end;
-        $visits = DB::table('users')
-            ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
-            ->join('customers', 'customer_checkin.customer_id', '=', 'customers.id')
-            ->whereBetween('customer_checkin.updated_at', [$this->start, $this->end])
-            ->where('users.user_code', $this->user_code)
-            ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
-            ->select(
-                'users.name as name',
-                'customer_checkin.code as code',
-                'customers.customer_name AS customer_name',
-                'customer_checkin.start_time AS start_time',
-                'customer_checkin.stop_time AS stop_time',
-                DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date"),
-                DB::raw('TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time) AS duration'),
-                DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
-                DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date")
-            )
-            ->orderBy('formatted_date', 'DESC')
-            ->paginate($this->perPage);
+{
+    $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
+    $this->start = $this->start ?? Carbon::now()->startOfMonth()->format('Y-m-d'); 
+    $this->end = $this->end ?? Carbon::now()->endOfMonth()->format('Y-m-d');
 
-        return $visits;
-    }
+    $visits = DB::table('users')
+        ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
+        ->join('customers', 'customer_checkin.customer_id', '=', 'customers.id')
+        ->whereBetween('customer_checkin.updated_at', [$this->start, $this->end])
+        ->where('users.user_code', $this->user_code)
+        ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
+        ->select(
+            'users.name as name',
+            'customer_checkin.code as code',
+            'customers.customer_name AS customer_name',
+            'customer_checkin.start_time AS start_time',
+            'customer_checkin.stop_time AS stop_time',
+            DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date"),
+            DB::raw('TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time) AS duration'),
+            DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
+            DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date")
+        )
+        ->orderBy('formatted_date', 'DESC')
+        ->paginate($this->perPage);
+
+    return $visits;
+}
+
     public function getChecking($checking_code)
     {
         $result = SaleReport::where('checking_code', $checking_code)->first();

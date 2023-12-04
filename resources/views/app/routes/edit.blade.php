@@ -29,7 +29,7 @@
                    'route' => ['routes.update', $route->id],
                    'class' => 'row',
                    'enctype' => 'multipart/form-data',
-                   'method' => 'post',
+                   'method' => 'get',
                ]) !!}
                {!! csrf_field() !!}
                <div class="form-group col-md-12 mb-1">
@@ -40,25 +40,21 @@
                <div class="row mb-1">
                   <div class="form-group col-md-4">
                      <label for="start_date">Start Date</label>
-                     {!! Form::date('start_date', null, ['class' => 'form-control', 'required' => '']) !!}
+                     {!! Form::date('start_date', null, ['class' => 'form-control', 'id' => 'start_date','required' => '']) !!}
                   </div>
                   <div class="form-group col-md-4">
                      <label for="end_date">End Date</label>
-                     {!! Form::date('end_date', null, ['class' => 'form-control', 'id' => 'start_date','required' => '']) !!}
+                     {!! Form::date('end_date', null, ['class' => 'form-control', 'id' => 'end_date','required' => '']) !!}
                      <span id="end-date-error" class="text-danger"></span>
                   </div>
                   <div class="form-group col-md-4">
                      <label for="">Status</label>
                      {!! Form::select('status', ['' => 'Choose status', 'Active' => 'Active', 'Close' => 'Close'], null, [
-                         'class' => 'form-control','id' => 'end_date',
+                         'class' => 'form-control','id' => 'status',
                          'required' => '',
                      ]) !!}
                   </div>
                </div>
-               {{-- <div class="form-group col-md-12 mb-1">
-                   <label for="">Add Customer to Route</label>
-                   {!! Form::select('customers[]', $customers, null, ['class' => 'form-control select2', 'multiple' => '']) !!}
-               </div> --}}
                <div class="form-group col-md-6 mb-1">
                   <label for="">Account Type</label>
                   <select name="account_type" class="form-control select" id="account_type" required>
@@ -68,12 +64,6 @@
                      @endforeach
                   </select>
                </div>
-{{--               <div class="form-group col-md-6 mb-1">--}}
-{{--                  <label for="">Add sales people to Route</label>--}}
-{{--                  <select name="user[]" class="form-control select2" id="user" multiple>--}}
-{{--                     <selected>{{$selectedSalespeople}}</selected>--}}
-{{--                  </select>--}}
-{{--               </div>--}}
                <div class="form-group col-md-6 mb-1">
                   <label for="">Add sales people to Route</label>
                   {!! Form::select('user[]', $selectedSalespeople, ['class' => 'form-control select2','id'=>'user', 'multiple' => '']) !!}
