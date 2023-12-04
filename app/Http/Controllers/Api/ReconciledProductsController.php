@@ -13,12 +13,7 @@ use Illuminate\Support\Str;
 class ReconciledProductsController extends Controller
 {
    public function index2(Request $request, $warehouse_code, $distributor)
-   {
-      info("reconcile products                      ........... ");
-      info($request->all());
-      info("                      ........... ");
-      info([$warehouse_code, $distributor]);
-      $usercode = $request->user()->user_code;
+   {   $usercode = $request->user()->user_code;
       $id = $request->user()->id;
       $jsonData = $request->collect();
       $requestArray = json_decode($jsonData, true);
@@ -35,6 +30,7 @@ class ReconciledProductsController extends Controller
 
       if ($distributor == 1 || $distributor == null) {
          if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
+            $totals=0.00;
             foreach ($requestArray['cart'] as $data) {
                $reconciliation_code = Str::random(20);
                $reconciled_products = new ReconciledProducts();
@@ -72,14 +68,14 @@ class ReconciledProductsController extends Controller
                $mpesa = $requestArray['mpesa'];
                $cheque = $requestArray['cheque'];
                $bank = $requestArray['bank'];
-
+               $totals=$cash+$mpesa+$cheque+$bank;
                Reconciliation::create([
                   'reconciliation_code' => $reconciliation_code,
                   'cash' => $cash,
                   'bank' => $bank,
                   'mpesa' => $mpesa,
                   'cheque' => $cheque,
-                  'total' => $data['amount'],
+                  'total' => $totals,
                   'status' => 'waiting_approval',
                   'warehouse_code' => $warehouse_code ?? $randomWarehouse,
                   'reconciled_to' => $data['supplierID'],
@@ -101,6 +97,7 @@ class ReconciledProductsController extends Controller
          }
       } else {
          if (isset($requestArray['cart']) && is_array($requestArray['cart'])) {
+            $totals=0.00;
             foreach ($requestArray['cart'] as $data) {
                $reconciliation_code = Str::random(20);
                $reconciled_products = new ReconciledProducts();
@@ -132,14 +129,14 @@ class ReconciledProductsController extends Controller
             $mpesa = $requestArray['mpesa'];
             $cheque = $requestArray['cheque'];
             $bank = $requestArray['bank'];
-
+          $totals=$cash+$mpesa+$cheque+$bank;
             Reconciliation::create([
                'reconciliation_code' => $reconciliation_code,
                'cash' => $cash,
                'bank' => $bank,
                'mpesa' => $mpesa,
                'cheque' => $cheque,
-               'total' => $data['amount'],
+               'total' => $totals,
                'status' => 'approved',
                'warehouse_code' => $warehouse_code ?? $randomWarehouse,
                'reconciled_to' => $data['supplierID'],
