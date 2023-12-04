@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\CustomerCommentController;
+use App\Http\Controllers\Api\FormResponseController;
 use App\Http\Controllers\Api\Manager\AuthenticationController;
 use App\Http\Controllers\Api\Manager\CustomerController;
 use App\Http\Controllers\Api\Manager\DashboardAppController;
@@ -57,6 +58,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/full/delivery/{delivery_code}', [DeliveryController::class, 'fullDelivery']);
       Route::post('/edit/delivery/{delivery_code}', [DeliveryController::class, 'editDelivery']);
       Route::post('/cancel/delivery/{delivery_code}', [DeliveryController::class, 'cancel']);
+
+      //forms
+      Route::post('/form/responses/{customer_id}/{checking_code}', [FormResponseController::class, 'store'])->middleware('auth:sanctum');
 
       /**
        * Comments section
