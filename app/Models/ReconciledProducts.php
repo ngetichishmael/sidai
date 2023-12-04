@@ -8,13 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ReconciledProducts extends Model
 {
     use HasFactory;
+
+    /**
+     * @var mixed
+     */
     protected $table = 'reconciled_products';
     protected $fillable = [
         'productID',
         'amount',
         'userCode',
-        'supplierID'
+        'supplierID',
+       'reconciliation_code'
 
     ];
-    
+
 }

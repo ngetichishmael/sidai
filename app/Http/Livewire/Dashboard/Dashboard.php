@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Reconciliation;
 use App\Models\warehouse_assign;
 use App\Models\warehousing;
 use Carbon\Carbon;
@@ -38,7 +39,27 @@ class Dashboard extends Component
     public $perActiveUsers = 10;
     public $perVisitTotal = 10;
     // Individual functions for data retrieval
-    public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
+
+   public function whereBetweenDate(Builder $query, string $column = null): Builder
+   {
+      if (is_null($this->startDate) && is_null($this->endDate)) {
+         // If both start and end dates are not selected, default to beginning and end of the month
+         $start = Carbon::now()->startOfMonth()->startOfDay();
+         $end = Carbon::now()->endOfMonth()->endOfDay();
+         return $query->whereBetween($column, [$start, $end]);
+      }
+      if (is_null($this->startDate)) {
+         // If start date is not selected, only filter by end date
+         $end = Carbon::parse($this->endDate)->endOfDay();
+         return $query->where($column, '<=', $end);
+      }
+      $start = Carbon::parse($this->startDate)->startOfDay();
+      $end = is_null($this->endDate) ? Carbon::now()->endOfDay() : Carbon::parse($this->endDate)->endOfDay();
+
+      return $query->where($column, '>=', $start)->where($column, '<=', $end);
+   }
+
+   public function whereBetweenDate2(Builder $query, string $column = null, string $start = null, string $end = null): Builder
     {
         if (is_null($start) && is_null($end)) {
             return $query;
@@ -56,19 +77,16 @@ class Dashboard extends Component
        if (Str::lower($loggedUser) ==="shop-attendee"){
           $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
           if ($assignedwarehouse){
-             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
-             if ($warehouse) {
-                return OrderPayment::where('payment_method', 'PaymentMethods.Cash')
-//                   ->whereHas('user', function ($query) use ($warehouse) {
-//                      $query->where('region_id', $warehouse->region_id);
-//                   })
-                   ->whereBetween('created_at', [$this->startDate, $this->endDate])
-                   ->sum('amount');
-             }
+             $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
+                ->where('warehouse_code','6urihK1X6jYUtFAPotxF')
+                ->whereBetween('created_at', [$this->startDate, $this->endDate])
+                ->select('cash')
+                ->sum('cash');
+                return  $amount;
           }
        } elseif (Str::lower($loggedUser) ==="rsm"){
           $user=Auth::user();
-          return OrderPayment::where('payment_method', 'PaymentMethods.Cash')
+          return OrderPayment::where('payment_method', 'PaymentMethods.Cash')->where('isReconcile', true)
              ->whereHas('user', function ($query) use ($user ){
                 $query->where('region_id', $user->region_id);
              })

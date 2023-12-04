@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\ReconciledProducts as ReconciledProducts;
+use App\Models\Reconciliation;
 use App\Models\warehousing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ReconciledProductsController extends Controller
 {
@@ -25,9 +27,11 @@ class ReconciledProductsController extends Controller
        if ($distributor == 1 || $distributor == null) {
 
           foreach ($request as $data) {
+             $reconciliation_code=  Str::random(20);
              $reconciled_products = new ReconciledProducts();
              $reconciled_products->productID = $data['productID'];
              $reconciled_products->amount = $data['amount'];
+             $reconciled_products->reconciliation_code = $reconciliation_code;
              $reconciled_products->supplierID = $data['supplierID'];
              $reconciled_products->userCode = $usercode;
              $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
@@ -40,7 +44,7 @@ class ReconciledProductsController extends Controller
                    'updated_at' => now(),
                 ]);
 
-             info("amount is " . $data['amount']);
+//             info("amount is " . $data['amount']);
              DB::table('inventory_allocated_items')
                 ->where('allocated_qty', '<', 1)
                 ->delete();
@@ -54,18 +58,33 @@ class ReconciledProductsController extends Controller
              DB::table('order_payments')
                 ->where('user_id', $id)
                 ->update(['isReconcile' => 'true']);
+
+             Reconciliation::create([
+                  'reconciliation_code'=>$reconciliation_code,
+                  'cash'=>$data['cash'],
+                  'bank'=>$data['bank'],
+                  'mpesa'=>$data['mpesa'],
+                  'cheque'=>$data['cheque'],
+                  'total'=>$data['amount'],
+                  'status'=>'waiting_approval',
+                  'warehouse_code'=>$warehouse_code ?? $randomWarehouse,
+                  'reconciled_to'=>$data['supplierID'],
+                  'sales_person'=>$usercode
+             ]);
           }
 
           return response()->json([
              "success" => true,
              "message" => "All products were successfully reconciled",
              "Result" => "Successful"
-          ]);
+          ], 200);
        }else{
           foreach ($request as $data) {
+             $reconciliation_code=  Str::random(20);
              $reconciled_products = new ReconciledProducts();
              $reconciled_products->productID = $data['productID'];
              $reconciled_products->amount = $data['amount'];
+             $reconciled_products->reconciliation_code = $reconciliation_code;
              $reconciled_products->supplierID = $data['supplierID'];
              $reconciled_products->userCode = $usercode;
              $reconciled_products->warehouse_code = $warehouse_code ?? $randomWarehouse;
@@ -78,7 +97,7 @@ class ReconciledProductsController extends Controller
                    'updated_at' => now(),
                 ]);
 
-             info("amount is " . $data['amount']);
+//             info("amount is " . $data['amount']);
              DB::table('inventory_allocated_items')
                 ->where('allocated_qty', '<', 1)
                 ->delete();
@@ -86,12 +105,23 @@ class ReconciledProductsController extends Controller
                 ->where('user_id', $id)
                 ->update(['isReconcile' => 'true']);
           }
+          Reconciliation::create([
+             'reconciliation_code'=>$reconciliation_code,
+             'cash'=>$data['cash'],
+             'bank'=>$data['bank'],
+             'mpesa'=>$data['mpesa'],
+             'cheque'=>$data['cheque'],
+             'total'=>$data['amount'],
+             'status'=>'waiting_approval',
+             'warehouse_code'=>$warehouse_code ?? $randomWarehouse,
+             'reconciled_to'=>$data['supplierID'],
+             'sales_person'=>$usercode
+          ]);
           return response()->json([
              "success" => true,
              "message" => "All products were successfully reconciled",
              "Result" => "Successful"
-          ]);
+          ], 200);
        }
     }
-
 }

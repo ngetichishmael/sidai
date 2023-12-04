@@ -32,7 +32,7 @@ class Allocatedusers extends Component
           ->groupBy('inventory_allocations.sales_person');
 
        $dataAccessLevel = auth()->user()->account_type;
-       if (auth()->check() && $dataAccessLevel !== 'Admin') {
+       if (auth()->check() && $dataAccessLevel !== ['Admin', 'NSM']) {
           $allocationsQuery->where('users.route_code', auth()->user()->route_code);
        }
 
