@@ -106,7 +106,7 @@ class productController extends Controller
       //Rule::unique('product_information', 'product_name')->ignore($request->id),'string',
       $this->validate($request, [
          'product_name' =>'required',
-         'sku_code' => 'required|unique:product_information',
+         'sku_code' => 'required',
          'buying_price' => 'required',
          'selling_price' => 'required',
          'distributor_price' => 'required',
@@ -157,7 +157,6 @@ class productController extends Controller
 
       product_inventory::updateOrCreate(
          [
-
             'productID' => $product->id,
          ],
          [
