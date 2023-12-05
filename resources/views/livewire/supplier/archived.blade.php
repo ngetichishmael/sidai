@@ -9,7 +9,9 @@
             <th>Email</th>
             <th>Phone number</th>
             <th>Date addded</th>
-            <th width="18%">Action</th>
+            @if(!$type=="Shop-Attendee")
+               <th width="18%">Action</th>
+            @endif
          </tr>
          </thead>
          <tbody>
@@ -20,6 +22,7 @@
                <td>{!! $supplier->email !!}</td>
                <td>{!! $supplier->phone_number !!}</td>
                <td>{!! date('d F, Y', strtotime($supplier->created_at)) !!}</td>
+               @if(!$type=="Shop-Attendee")
                <td>
                   <div class="d-flex" style="gap: 20px">
                      <a href="{!! route('supplier.activate', $supplier->id) !!}" class="btn btn-sm btn-primary">
@@ -27,6 +30,7 @@
                      </a>
                   </div>
                </td>
+               @endif
             </tr>
          @endforeach
          @if(empty($supplier))

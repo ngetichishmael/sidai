@@ -14,10 +14,11 @@ protected $paginationTheme = 'bootstrap';
    public $search = '';
 public function render()
 {
+   $type=auth()->user()->account_type;
    $suppliers = suppliers::where('status', 'Inactive')
       ->where('id', '!=', 1)
       ->OrderBy('suppliers.id','DESC')
       ->paginate(15);
-   return view('livewire.supplier.archived',compact('suppliers'));
+   return view('livewire.supplier.archived',compact('suppliers' ,'type'));
 }
 }
