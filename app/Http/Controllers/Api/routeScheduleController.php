@@ -28,7 +28,7 @@ class routeScheduleController extends Controller
      ->join('route_customer', 'route_customer.routeID', '=', 'route_sales.routeID')
      ->join('routes', 'routes.route_code', '=', 'route_sales.routeID')
      ->join('customers', 'customers.id', '=', 'route_customer.customerID')
-      ->where('routes.end_date', '=<', Carbon::now())
+      ->where('routes.end_date', '>=', Carbon::now())
      ->select('routes.name','route_sales.userID','routes.route_code','routes.status','routes.Type', FacadesDB::raw('CURDATE() as start_date'),'routes.end_date',
      'customers.id as customer_id','customers.account','customers.customer_name','customers.address',
      'customers.email','customers.phone_number','customers.latitude','customers.longitude')
