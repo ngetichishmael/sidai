@@ -12,25 +12,24 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class Dashboard extends Component
 {
-   use WithPagination;
-   public $start;
-   public $end;
-   protected $paginationTheme = 'bootstrap';
-   public $perPage = 10;
-   public ?string $search = null;
-   public $isLoading = false;
-   public $selectedDate;
-   public $selectedMonth;
+    use WithPagination;
+    public $start;
+    public $end;
+    protected $paginationTheme = 'bootstrap';
+    public $perPage = 10;
+    public $search = null;
+    public $isLoading = false;
+    public $selectedDate;
+    public $selectedMonth;
 
-   
-   public function render()
-   {
-    
-      return view('livewire.visits.users.dashboard', [
-         'visits' => $this->data()
-      ]);
-   }
-   public function data()
+    public function render()
+    {
+
+        return view('livewire.visits.users.dashboard', [
+            'visits' => $this->data(),
+        ]);
+    }
+    public function data()
     {
         $this->isLoading = true;
 
@@ -67,7 +66,10 @@ class Dashboard extends Component
             } elseif ($this->end != null) { // Only end date is selected
                 $query->where('customer_checkin.created_at', '<=', $this->end);
             } else { // No date filters, use the selected date
-                $query->whereDate('customer_checkin.updated_at', '=', $this->selectedDate);
+                $query->whereBetween('customer_checkin.updated_at',
+                    [Carbon::now()->startOfMonth()->format('Y-m-d')
+                        , Carbon::now()->endOfMonth()->format('Y-m-d'),
+                    ]);
             }
         }
 
@@ -78,37 +80,15 @@ class Dashboard extends Component
 
         // Set the last_visit_time for each user based on the first record's created_at
         foreach ($visits as $visit) {
-            $visit->last_visit_time = \Carbon\Carbon::parse($visit->last_visit_date)->format('Y-m-d H:i:s');
+            $visit->last_visit_time = Carbon::parse($visit->last_visit_date)->format('Y-m-d H:i:s');
         }
 
         $this->isLoading = false;
 
         return $visits;
     }
-   // public function data()
-   // {
-   //    $start_date = Carbon::now()->startOfMonth()->format('Y-m-d');
-   //    $end_date = Carbon::now()->endOfMonth()->format('Y-m-d');
-   //    $this->start = $this->start == null ? $start_date : $this->start;
-   //    $this->end = $this->end == null ? $end_date : $this->end;
-   //    $searchTerm = '%' . $this->search . '%';
-   //    $visits = User::join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
-   //       ->whereBetween('customer_checkin.updated_at', [$this->start, $this->end])
-   //       ->select(
-   //          'users.name as name',
-   //          'users.user_code as user_code',
-   //          DB::raw('COUNT(customer_checkin.id) as visit_count'),
-   //          DB::raw('SEC_TO_TIME(AVG(TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)))) as average_time'),
-   //          DB::raw('SEC_TO_TIME(SUM(TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)))) as total_time_spent'),
-   //          DB::raw('TIMEDIFF(MAX(customer_checkin.stop_time), MIN(customer_checkin.start_time)) as total_trading_time')
-   //       )
-   //       ->where('users.name', 'like', $searchTerm)
-   //       ->groupBy('users.name')
-   //       ->paginate($this->perPage);
-   //    return $visits;
-   // }
-   
-   public function export()
+
+    public function export()
     {
         $data = $this->data();
 
@@ -126,7 +106,7 @@ class Dashboard extends Component
             'Sales Associate',
             'Visit Count',
             'Last Visit',
-          
+
         ];
 
         // Create a collection with column headings and data
@@ -134,5 +114,5 @@ class Dashboard extends Component
 
         return Excel::download(new UsersVisitsExport($exportData), 'SA Visits Summary.xlsx');
     }
-   
+
 }
