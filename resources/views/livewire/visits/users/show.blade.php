@@ -22,7 +22,7 @@
     </div>
     @include('partials._messages')
     @livewire('visits.users.view', [
-        'user_code' => $user_code,
+        'user_code' => $user_code
     ])
 @endsection
 {{-- page scripts --}}
