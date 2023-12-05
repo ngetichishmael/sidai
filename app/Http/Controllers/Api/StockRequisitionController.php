@@ -124,8 +124,8 @@ class StockRequisitionController extends Controller
     }
     public function accept(Request $request)
     {
-       info("accepting requisitions");
-       info($request->all());
+//       info("accepting requisitions");
+//       info($request->all());
         $selectedProducts = $request->products;
         $user = $request->user();
         $user_code = $user->user_code;
@@ -142,7 +142,7 @@ class StockRequisitionController extends Controller
         foreach ($selectedProducts as $productId) {
             $product = RequisitionProduct::where('requisition_id', $request->requistion_id)->where('product_id', $productId)->first();
             $distributor=1;
-            info($product);
+//            info($product);
             if ($product) {
                 $value = [
                     'productID' => $product->product_id,

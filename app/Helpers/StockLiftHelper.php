@@ -30,8 +30,9 @@ class StockLiftHelper
    ) {
       $currentQty = $stocked ? $stocked['current_stock'] : 0;
       $allocatedQty = $value['qty'];
-      info("requested quantity       ". $allocatedQty);
-      info(" current qty   ". $allocatedQty);
+      info("............... status ", $status);
+//      info("requested quantity       ". $allocatedQty);
+//      info(" current qty   ". $allocatedQty);
       items::updateOrCreate(
          [
             'product_code' => $value['productID'],
