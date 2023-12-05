@@ -73,7 +73,7 @@
                    </div>
                 </div>
                 <!-- /.col -->
-
+                <right>
                 <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                    <hr class="d-sm-none" />
                    <div class="text-grey-m2">
@@ -95,8 +95,8 @@
                    </div>
                 </div>
                 <!-- /.col -->
-             </div>
 
+             </right>
              <div class="">
                 <div class="table-responsive">
                    <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
@@ -115,7 +115,7 @@
                          <tr>
                             <td>{!! $count + 1 !!}</td>
                             <td>{{ $item['product_name'] }}</td>
-                            <td>{{ $item['allocated_quantity'] ??$item->quantity }}</td>
+                            <td>{{ $item['allocated_quantity'] ??$item['quantity'] }}</td>
                             <td class="text-95">{{ $item['selling_price'] }}</td>
                             <td class="text-secondary-d2">{{ $item['selling_price'] * $item['quantity'] }}</td>
                          </tr>
@@ -128,7 +128,7 @@
                    <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
 
                    </div>
-
+               <right>
                    <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
                       <div class="row my-2">
                          <div class="col-7 text-right">
@@ -156,8 +156,8 @@
                          </div>
                       </div>
                    </div>
-                </div>
 
+                </right>
                 <hr />
              </div>
           </div>

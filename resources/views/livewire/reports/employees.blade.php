@@ -1,3 +1,4 @@
+<div>
 <div class="row">
    <div class="col-md-3">
        <label for="validationTooltip01">Start Date</label>
@@ -36,7 +37,7 @@
 </div>
 <br>
 <div class="row">
-    
+
     <div class="col-md-3">
         <label for="">Search by name, route, region</label>
         <input type="text" wire:model="search" class="form-control"
@@ -79,7 +80,7 @@
                      <td>{{ ($employee->achieved_leads/67) * 100 ,2}}%</td>
                  </tr>
                   @endforeach
-                    
+
                  </tbody>
               </table>
             </div>
@@ -87,3 +88,5 @@
         </div>
      </div>
    </div>
+
+</div>

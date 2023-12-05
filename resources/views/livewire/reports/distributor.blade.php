@@ -1,3 +1,4 @@
+<div>
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -64,6 +65,8 @@
                                         <p style="color: lightgreen">Fulfilled Partially</p>
                                         @elseif ($distributor->orders_count >0 && ($distributor->orders_count - $distributor->orders_delivered_count)===0)
                                         <p style="color: green">Hit</p>
+                                        @elseif ($distributor->orders_count === 0)
+                                        <p style="color: gray">No Orders</p>
                                         @elseif (($distributor->orders_count - $distributor->orders_delivered_count)===$distributor->orders_count)
                                         <p style="color: red">Missed</p>
                                     @endif</td>
@@ -75,14 +78,14 @@
                                         @endif
                                     </td>
                                     {{-- <td></td> --}}
-                                    
+
                                 </tr>
                             @empty
                                 <tr>
                                     <td colspan="8">No distributors found.</td>
                                 </tr>
                         @endforelse
-                        
+
                         </tbody>
                     </table>
                     @if (!empty($distributors))
@@ -94,4 +97,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

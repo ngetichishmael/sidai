@@ -27,7 +27,9 @@
                     <th>Email</th>
                     <th>Phone number</th>
                     <th>Date addded</th>
+                   @if(!$type=="Shop-Attendee")
                     <th>Action</th>
+                   @endif
                 </tr>
             </thead>
             <tbody>
@@ -38,6 +40,7 @@
                        <td>{!! \Illuminate\Support\Str::limit($supplier->email, 25) !!}</td>
                        <td>{!! $supplier->phone_number !!}</td>
                         <td>{!! date('d F, Y', strtotime($supplier->created_at)) !!}</td>
+                       @if(!$type=="Shop-Attendee")
                         <td>
                             <div class="d-flex" style="gap: 20px">
                                 <a href="{{ route('supplier.edit', $supplier->id) }}" class="btn btn-sm" style="background-color: #B6121B;color:white">
@@ -48,6 +51,7 @@
                                 </a>
                             </div>
                         </td>
+                       @endif
                     </tr>
                 @endforeach
                 @if(empty($suppliers))

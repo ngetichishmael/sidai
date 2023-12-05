@@ -22,8 +22,8 @@ class Distributor extends Component
    public $toDate;
    public $orderBy = 'orders.id';
    public $orderAsc = false;
-   public $perPage = 100;
-   public ?string $search = null;
+   public $perPage = 25;
+   public $search = null;
    public $statusFilter = '';
    use WithPagination;
    public $user;
@@ -40,23 +40,31 @@ class Distributor extends Component
       ]);
    }
    public function getData($fromDate = null, $toDate = null) {
-      $query = suppliers::withCount('orders')
-          ->withCount('OrdersDelivered')
-          ->whereNotIn('name', ['sidai', 'Sidai', 'SIDAI','Sidai Warehouse']);
-  
-      // Apply date filters if provided
-      if ($fromDate) {
-          $query->whereDate('created_at', '>=', $fromDate);
-      }
-  
-      if ($toDate) {
-          $query->whereDate('created_at', '<=', $toDate);
-      }
-  
-      $data = $query->paginate($this->perPage);
-  
-      return $data;
-  }
+    $searchTerm = '%' . $this->search . '%';
+    $query = suppliers::withCount('orders')
+        ->withCount('OrdersDelivered')
+        ->whereNotIn('name', ['sidai', 'Sidai', 'SIDAI','Sidai Warehouse']);
+        
+    if ($searchTerm) {
+        $query->where(function ($q) use ($searchTerm) {
+            $q->where('name', 'like', '%' . $searchTerm . '%');
+        });
+    }
+    // Apply date filters if provided
+    if ($fromDate) {
+        $query->whereDate('created_at', '>=', $fromDate);
+    }
+
+    if ($toDate) {
+        $query->whereDate('created_at', '<=', $toDate);
+    }
+
+
+    $data = $query->paginate($this->perPage);
+
+    return $data;
+}
+
 
   public function export()
   {

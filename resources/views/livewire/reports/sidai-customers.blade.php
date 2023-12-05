@@ -1,3 +1,4 @@
+<div>
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
@@ -23,8 +24,8 @@
     </div>
  </div>
  <br>
- 
-     
+
+
  <br>
  @include('partials.stickymenu')
  <br>
@@ -44,7 +45,7 @@
                       </tr>
                    </thead>
                    <tbody>
-                    
+
                      @foreach ($users as $key => $user )
                      <tr>
                         <td>{{ $key+1 }}</td>
@@ -52,11 +53,11 @@
                         <td>{{ $user->orders_count }}</td>
                         <td>{{ $user->Region->name??'N/A' }}</td>
                         <td>{{ $user->Subregion->name??'N/A' }}</td>
-                        
-                    </tr>  
+
+                    </tr>
                      @endforeach
-                    
-                      
+
+
                    </tbody>
                 </table>
                 </div>
@@ -64,3 +65,4 @@
           </div>
        </div>
      </div>
+</div>

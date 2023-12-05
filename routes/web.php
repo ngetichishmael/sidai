@@ -283,6 +283,7 @@ Route::middleware('web')->group(function () {
    Route::get('stock-Reconciliations', ['uses' => 'app\products\inventoryController@stockrecon', 'as' => 'stock.recon']);
    Route::get('salesperson/reconciled/{warehouse_code}', ['uses' => 'app\products\inventoryController@salesperson', 'as' => 'stock.salesperson']);
    Route::get('products/reconciled/{warehouse_code}', ['uses' => 'app\products\inventoryController@reconciled', 'as' => 'stock.reconciled']);
+   Route::post('reconciliations/handleApprovals/{reconciliations}', ['uses' => 'app\products\inventoryController@handleApprovals', 'as' => 'reconciliations.handleApprovals']);
 
    /* === product category === */
    Route::get('warehousing/products/category', ['uses' => 'app\products\categoryController@index', 'as' => 'product.category']);

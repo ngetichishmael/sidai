@@ -7,6 +7,7 @@ use App\Models\customers;
 use App\Models\Orders;
 use App\Models\Region;
 use App\Models\suppliers\suppliers;
+use App\Models\warehouse_assign;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -80,12 +81,20 @@ class vansaleorders extends Component
       if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
          return $array;
       }
-      $regions = Region::where('id', $user_code)->pluck('id');
-      if ($regions->isEmpty()) {
-         return $array;
+      if ($user->account_type ==="Shop-Attendee"){
+         $region=warehouse_assign::where('manager', $user->user_code)->first();
+         if (empty($region)) {
+            return $array;
+         }
+         $customers = customers::whereIn('region_id', $region)->pluck('id');
+      }else {
+         $regions = Region::where('id', $user_code)->pluck('id');
+         if (empty($regions)) {
+            return $array;
+         }
+         $customers = customers::whereIn('region_id', $regions)->pluck('id');
       }
-      $customers = customers::whereIn('region_id', $regions)->pluck('id');
-      if ($customers->isEmpty()) {
+      if (empty($customers)) {
          return $array;
       }
       return $customers->toArray();

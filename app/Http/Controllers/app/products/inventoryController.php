@@ -5,12 +5,17 @@ use App\Models\Branches;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
+use App\Models\ReconciledProducts;
+use App\Models\Reconciliation;
+use App\Models\warehouse_assign;
 use App\Models\warehousing;
+use Carbon\Carbon;
 use Hr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class inventoryController extends Controller{
 
@@ -53,40 +58,91 @@ class inventoryController extends Controller{
    }
 
    public function stockrecon(){
-
+     $type= Str::lower(Auth::user()->account_type);
+      if ($type == "shop-attendee") {
+         $warehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+         $sales=Reconciliation::where('sales_person', Auth::user()->user_code)
+            ->with(['salesPerson','distributor:id,name','warehouse:warehouse_code,name','reconciliationProducts.productInformation:id,product_name'])
+            ->get();
+         $status = 'waiting_approval';
+         $warehouse_name=warehousing::where('warehouse_code',$warehouse->warehouse_code)->first();
+         return view('app.items.salespersons', ['type'=>$type,'status' => $status,'sales' => $sales, 'warehouse'=>$warehouse, 'warehouse_name'=>$warehouse_name->name]);
+      }
       return view('app.stocks.reconciliation');
    }
    public function salesperson($warehouse_code)
    {
+      $warehouse=$warehouse_code;
+      $type= Str::lower(Auth::user()->account_type);
 //      $sales = DB::table('reconciled_products')
-//      ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
-//      ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
-//      ->where('reconciled_products.warehouse_code', $warehouse_code)
-//      ->select('product_information.product_name as name',
-//          'reconciled_products.amount as amount','users.name as user','reconciled_products.updated_at as date')
-//      ->get();
-      $sales = DB::table('reconciled_products')
-         ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
-         ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
-         ->where('reconciled_products.warehouse_code', $warehouse_code)
-         ->select('users.name as user','reconciled_products.id as id','reconciled_products.created_at as date', DB::raw('SUM(reconciled_products.amount) as total_amount', ))
-         ->groupBy('users.name')
+//         ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
+//         ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
+//         ->where('reconciled_products.warehouse_code', $warehouse)
+//         ->select('users.name as user','reconciled_products.id as id','reconciled_products.created_at as date', DB::raw('SUM(reconciled_products.amount) as total_amount', ))
+//         ->groupBy('users.name')
+//         ->get();
+//      $warehouse_name=warehousing::where('warehouse_code',$warehouse)->first();
+//      return view('app.items.salespersons', ['sales' => $sales, 'warehouse'=>$warehouse, 'warehouse_name'=>$warehouse_name->name]);
+      $sales=Reconciliation::with(['salesPerson','distributor:id,name','warehouse:warehouse_code,name','reconciliationProducts.productInformation:id,product_name'])
          ->get();
-      $warehouse_name=warehousing::find($warehouse_code);
-      return view('app.items.salespersons', ['sales' => $sales, 'warehouse'=>$warehouse_code, 'warehouse_name'=>$warehouse_name]);
+      $status = 'waiting_approval';
+      $warehouse_name=warehousing::where('warehouse_code',$warehouse)->first();
+      return view('app.items.salespersons', ['type'=>$type,'status' => $status,'sales' => $sales, 'warehouse'=>$warehouse, 'warehouse_name'=>$warehouse_name->name]);
+
    }
    public function reconciled($reconciliation_id)
    {
+      $amounts=Reconciliation::where('reconciliation_code', $reconciliation_id)->first();
       $reconciled = DB::table('reconciled_products')
+       ->where('reconciliation_code', $reconciliation_id)
       ->join('product_information', 'reconciled_products.productID', '=', 'product_information.id')
       ->join('users', 'reconciled_products.userCode', '=', 'users.user_code')
-      ->where('reconciled_products.id', $reconciliation_id)
       ->select('product_information.product_name as name',
-          'reconciled_products.amount as amount','users.name as user','reconciled_products.updated_at as date')
+          'reconciled_products.amount as amount','users.name as user',
+         'reconciled_products.updated_at as date')
       ->get();
-
-      return view('app.items.reconciledproducts', ['reconciled' => $reconciled]);
+      return view('app.items.reconciledproducts', ['reconciled' => $reconciled, 'amounts'=>$amounts]);
    }
+   public function handleApprovals(Request $request, $reconciliation_id)
+   {
+      $reconciliation = Reconciliation::where('reconciliation_code',$reconciliation_id)->first();
+      if (!$reconciliation) {
+         return redirect()->back()->with("error", "Reconciliation not found");
+      }        $id = $request->user()->id;
+               $reconciled_products=ReconciledProducts::where('reconciliation_code',$reconciliation_id)->get();
+      foreach ($reconciled_products as $data) {
+
+         $id=DB::table('inventory_allocated_items')
+            ->where('created_by', $data['userCode'])
+            ->where('product_code', $data['productID'])
+            ->decrement('allocated_qty', $data['amount'], [
+               'updated_at' => now(),
+            ]);
+
+         DB::table('inventory_allocated_items')
+            ->where('allocated_qty', '<', 1)
+            ->delete();
+
+         DB::table('product_inventory')
+            ->where('created_by',$data['userCode'])
+            ->increment('current_stock', $data['amount'], [
+               'updated_at' => now(),
+               'updated_by' => $id,
+            ]);
+
+         DB::table('order_payments')
+            ->where('user_id', $data['userCode'])
+            ->update(['isReconcile' => 'true']);
+      }
+      $reconciliation->update([
+         'status' => $request->action,
+         'note' => $request->note ?? $reconciliation->note,
+         'approved_by'=>$request->user()->user_code,
+         'approved_on'=>Carbon::now()
+      ]);
+      return redirect()->back()->with("success", "Reconciliation request".$request->action . " successful!");
+   }
+
 
    /**
    * update product inventory

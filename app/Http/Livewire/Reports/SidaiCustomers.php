@@ -21,6 +21,7 @@ class SidaiCustomers extends Component
    public $orderBy = 'id';
    public $orderAsc = true;
    public $user;
+   public $search = null;
 
    public function __construct()
    {
@@ -36,6 +37,12 @@ class SidaiCustomers extends Component
    {
       $query = customers::has('orders')->withCount('orders');
       $query->whereIn('id', $this->filter())->get();
+
+      if (!empty($this->search)) {
+         $query->where(function ($q) {
+             $q->where('name', 'like', '%' . $this->search . '%');
+         });
+     }
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
