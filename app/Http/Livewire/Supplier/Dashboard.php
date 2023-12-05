@@ -34,6 +34,7 @@ class Dashboard extends Component
 //            $supplier->save();
 //         }
 //      }
+      $type=auth()->user()->account_type;
       $searchTerm = '%' . $this->search . '%';
       $suppliers = suppliers::where('status', 'Active')
          ->where('id', '!=', 1)
@@ -44,6 +45,6 @@ class Dashboard extends Component
                ->orWhere('phone_number', 'like', $searchTerm);
          })
          ->paginate(15);
-      return view('livewire.supplier.dashboard', compact('suppliers'));
+      return view('livewire.supplier.dashboard', compact('suppliers', 'type'));
    }
 }

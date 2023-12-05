@@ -109,34 +109,45 @@
                     <a class="d-flex align-items-center {!! Nav::isRoute('warehousing.*') !!}" href="#"><i data-feather='archive'></i><span
                             class="menu-title text-truncate" data-i18n="Invoice"> Warehousing Management</span></a>
                     <ul class="menu-content">
-                       @haspermissionto(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard' ])
-                            <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('warehousing.index') !!}"
-                                    href="{!! route('warehousing.index') !!}">
+                       @endhaspermissionto
+                       @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('warehousing.index') !!}"
+                                                         href="{!! route('warehousing.index') !!}">
                                     <span class="menu-item text-truncate">
                                         Warehouses</span></a></li>
+                       @endhaspermissionto
+                       @haspermissionto(['shop_attendee_dashboard'])
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('warehousing.index') !!}"
+                                                         href="{!! route('warehousing.index') !!}">
+                                    <span class="menu-item text-truncate">
+                                        Products</span></a></li>
+
+                       @haspermissionto(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard' ])
+
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center"
+                                                         href="{!! route('inventory.warehouses') !!}"><span class="menu-item text-truncate">Approve
+                                    Stock</span></a></li>
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center"
+                                                         href="{!! route('supplier') !!}">
+                             <span class="menu-item text-truncate">Distributors</span></a>
+                       </li>
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
+                                                         href="{{ route('pricing') }}"><span class="menu-item text-truncate">Pricing</span></a>
+                       </li>
                        @endhaspermissionto
                         {{--               <li><a class="d-flex align-items-center" href="{!! route('product.index') !!}"><i --}}
                         {{--                                data-feather="package"></i><span class="menu-item text-truncate">Inventory</span></a></li> --}}
 
-                        <li style="padding-left: 50px"><a class="d-flex align-items-center"
-                                href="{!! route('inventory.warehouses') !!}"><span class="menu-item text-truncate">Approve
-                                    Stock</span></a></li>
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center"
+                                                         href="{!! route('product.category') !!}">
+                             <span class="menu-item text-truncate">Categories</span></a>
+                       </li>
+                       <li style="padding-left: 50px"><a class="d-flex align-items-center"
+                                                         href="{!! route('product.brand') !!}">
+                             <span class="menu-item text-truncate">Brands</span></a>
+                       </li>
                        @haspermissionto(['manager_dashboard', 'admin_dashboard'])
-                        <li style="padding-left: 50px"><a class="d-flex align-items-center"
-                                href="{!! route('supplier') !!}">
-                                <span class="menu-item text-truncate">Distributors</span></a>
-                        </li>
-                        <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
-                                href="{{ route('pricing') }}"><span class="menu-item text-truncate">Pricing</span></a>
-                        </li>
-                        <li style="padding-left: 50px"><a class="d-flex align-items-center"
-                                href="{!! route('product.category') !!}">
-                                <span class="menu-item text-truncate">Categories</span></a>
-                        </li>
-                        <li style="padding-left: 50px"><a class="d-flex align-items-center"
-                                href="{!! route('product.brand') !!}">
-                                <span class="menu-item text-truncate">Brands</span></a>
-                        </li>
+
                        @endhaspermissionto
                     </ul>
                 </li>
