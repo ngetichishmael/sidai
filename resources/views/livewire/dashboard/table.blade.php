@@ -94,8 +94,8 @@
                   <tr>
                      <td>{{ $key + 1 }}</td>
                      <td>{{ $sale->order_code }}</td>
-                     <td>{{ $sale->user()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->customer()->pluck('customer_name')->implode('') }}</td>
+                     <td>{{ $sale->user()->pluck('name')->implode('') }}</td>
                      <td>{{ $sale->balance }}</td>
                      <td>{{ $sale->payment_status }}</td>
                      <td>{{ $sale->updated_at }}</td>
