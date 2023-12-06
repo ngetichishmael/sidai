@@ -82,10 +82,9 @@ class Dashboard extends Component
                     });
             })
             ->where('customer_type', 'like', 'normal')
-            ->where('approval', 'LIKE', 'Approved');
-
+           ->where('approval', 'LIKE', ['Approved','approved']);
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-            $aggregate->whereIn('regions.id', $this->filter());
+            $aggregate->whereIn('region_id', $this->filter());
         }
 //       info($this->selectedGroup);
         if ($this->selectedGroup) {
@@ -240,9 +239,8 @@ class Dashboard extends Component
           })
           ->where('customer_type', 'LIKE', 'normal')
           ->where('approval', 'LIKE', ['Approved','approved']);
-dd($aggregate->where('customer_name', 'laikipia pharmacy'));
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-          $aggregate->whereIn('regions.id', $this->filter());
+          $aggregate->whereIn('regions_id', $this->filter());
        }
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
