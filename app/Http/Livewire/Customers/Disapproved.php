@@ -6,6 +6,8 @@ use App\Models\customer_group;
 use App\Models\customers;
 use App\Models\Region;
 use App\Models\User;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -83,15 +85,21 @@ class Disapproved extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM') {
-         return $array;
+      if ($user->account_type ==="Shop-Attendee"){
+         $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
+         if (empty($warehouse)) {
+            return $array;
+         }
+         $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+         $customers = customers::whereIn('region_id', $region)->pluck('id');
+      }else {
+         $regions = Region::where('id', $user_code)->pluck('id');
+         if (empty($regions)) {
+            return $array;
+         }
+         $customers = customers::whereIn('region_id', $regions)->pluck('id');
       }
-      $regions = Region::where('id', $user_code)->pluck('id');
-      if ($regions->isEmpty()) {
-         return $array;
-      }
-      $customers = customers::whereIn('region_id', $regions)->pluck('region_id');
-      if ($customers->isEmpty()) {
+      if (empty($customers)) {
          return $array;
       }
       return $customers->toArray();
