@@ -76,7 +76,6 @@ class distributororders extends Component
    }
    public function filter(): array
    {
-
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
