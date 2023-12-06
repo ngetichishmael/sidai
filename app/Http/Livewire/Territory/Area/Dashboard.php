@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Territory\Area;
 
 use App\Models\Area;
 use App\Models\customers;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,6 +20,7 @@ class Dashboard extends Component
    public $searchTerm = null;
    public function render()
    {
+      $user = Auth::user();
          $areas = Area::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->when($this->searchTerm, function ($query, $searchTerm) {
                return $query->where(function ($query) use ($searchTerm) {
@@ -25,7 +29,15 @@ class Dashboard extends Component
                         $subquery->where('name', 'like', '%' . $searchTerm . '%');
                      });
                });
-            })->paginate($this->perPage);
+            });
+      if ($user->account_type ==="Shop-Attendee") {
+         $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
+         $warehouse_c=warehousing::where('warehouse_code', $warehouse->wareehouse_code)->first();
+         $areas->where('subregion_id',$warehouse_c->subregion_id);
+      }
+
+           $areas ->paginate($this->perPage);
+
 
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.area.dashboard', [
