@@ -251,7 +251,8 @@ class Dashboard extends Component
           ->where('customer_type', 'LIKE', 'normal')
           ->where('approval', 'LIKE', ['Approved','approved']);
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-          $aggregate->whereIn('customers.regions_id', $this->filter());
+          $aggregate->whereIn('customers.id', $this->filter());
+          dd($aggregate);
        }
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
@@ -359,7 +360,6 @@ class Dashboard extends Component
           }
           $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
           $customers = customers::whereIn('region_id', $region)->pluck('id');
-          dd($customers);
           return $customers->toArray();
        }else {
           $regions = Region::where('id', $user_code)->pluck('id');
