@@ -185,8 +185,7 @@
 {{--                    </ul>--}}
 
                 </li>
-                @haspermissionto(['manager_dashboard', 'admin_dashboard'])
-           @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
+                @haspermissionto(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard'])
            <li class="nav-item {!! Nav::isResource('visits') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='truck'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Visits</span></a>
@@ -200,7 +199,6 @@
                 </li>
             </ul>
         </li>
-        @endif
         @endhaspermissionto
                 <li class="nav-item {!! Nav::isResource('target') !!}">
                     <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
