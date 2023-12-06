@@ -30,7 +30,7 @@ class Dashboard extends Component
             }
          }
       }
-
+dd([$subregions]);
       $customer_counts =customers::whereIn('subregion_id',[$subregions->id])->get();
       $subregions = $subregions->paginate($this->perPage);
       return view('livewire.territory.sub-region.dashboard', [
