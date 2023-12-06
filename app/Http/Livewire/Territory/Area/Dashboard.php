@@ -30,17 +30,18 @@ class Dashboard extends Component
                      });
                });
             });
-      if ($user->account_type ==="Shop-Attendee") {
+      if ($user->account_type === "Shop-Attendee") {
          $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
-         if ($warehouse){
-            $warehouse_c=warehousing::where('warehouse_code', $warehouse->warehouse_code)->first();
-         }
-         if ($warehouse_c){
 
-            $areas->where('subregion_id',$warehouse_c->subregion_id);
+         if ($warehouse) {
+            $warehouse_c = warehousing::where('warehouse_code', $warehouse->warehouse_code)->first();
+         }
+
+         if ($warehouse_c) {
+            $areas->where('subregion_id', $warehouse_c->subregion_id);
          }
       }
-           $areas ->paginate($this->perPage);
+      $areas = $areas->paginate($this->perPage);
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.area.dashboard', [
          'areas' => $areas,
