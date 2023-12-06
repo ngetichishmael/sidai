@@ -68,7 +68,7 @@ Route::middleware('web')->group(function () {
       'destroy' => 'areas.destroy',
       'create' => 'areas.create',
       'store' => 'areas.store',
-   ])->middleware('checkDataAccessLevel:all,area');
+   ])->middleware('checkDataAccessLevel:all,route');
    Route::resource('subareas', SubareaController::class)->names([
       'index' => 'subareas',
       'show' => 'subareas.show',
