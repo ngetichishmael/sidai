@@ -64,7 +64,7 @@ class inventoryController extends Controller{
          $sales=Reconciliation::where('warehouse_code',$warehouse->warehouse_code)
             ->with(['salesPerson','distributor:id,name','warehouse:warehouse_code,name','reconciliationProducts.productInformation:id,product_name'])
             ->get();
-         info(" sales items-- ", $sales);
+         info(" sales items-- ", [$sales]);
          $status = 'waiting_approval';
          $warehouse_name=warehousing::where('warehouse_code',$warehouse->warehouse_code)->first();
          return view('app.items.salespersons', ['type'=>$type,'status' => $status,'sales' => $sales, 'warehouse'=>$warehouse, 'warehouse_name'=>$warehouse_name->name]);
