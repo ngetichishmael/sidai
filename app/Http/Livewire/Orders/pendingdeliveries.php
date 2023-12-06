@@ -49,7 +49,7 @@ class pendingdeliveries extends Component
             });
          })
          ->with('Customer', 'User', 'Order', 'DeliveryItems')
-         ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
+         ->when($this->user->account_type === "RSM"|| $this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customer', $this->filter());
          })
          ->where(function ($query) use ($searchTerm) {
@@ -76,11 +76,10 @@ class pendingdeliveries extends Component
    }
    public function filter(): array
    {
-
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM'||!$user->account_type ==="Shop-Attendee") {
+      if (!$user->account_type === 'RSM' || !$user->account_type ==="Shop-Attendee") {
          return $array;
       }
       if ($user->account_type ==="Shop-Attendee"){
@@ -90,12 +89,14 @@ class pendingdeliveries extends Component
          }
          $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
          $customers = customers::whereIn('region_id', $region)->pluck('id');
+         return $customers->toArray();
       }else {
          $regions = Region::where('id', $user_code)->pluck('id');
          if (empty($regions)) {
             return $array;
          }
          $customers = customers::whereIn('region_id', $regions)->pluck('id');
+         return $customers->toArray();
       }
       if (empty($customers)) {
          return $array;
