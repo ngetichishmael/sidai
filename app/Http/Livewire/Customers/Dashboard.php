@@ -93,7 +93,7 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
-       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
+
        $fstatus = 'Unknown';
        if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
           // Define conditions for each status
@@ -169,6 +169,7 @@ class Dashboard extends Component
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
+       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        $results = $aggregate->orderBy('customers.updated_at', 'desc')->paginate($this->perPage);
        $results->getCollection()->transform(function ($result) use ($fstatus) {
           $result->fstatus = $fstatus;
