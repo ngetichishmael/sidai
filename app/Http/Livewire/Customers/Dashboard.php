@@ -140,7 +140,6 @@ class Dashboard extends Component
 //                break;
 //             }
 //          }
-          dd("in all",$aggregate->where('customer_name', 'laikipia pharmacy')->first());
        } else {
           //status filter
           if ($this->selectedStatus === 'active') {
