@@ -359,6 +359,7 @@ class Dashboard extends Component
           }
           $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
           $customers = customers::whereIn('region_id', $region)->pluck('id');
+          dd($customers);
           return $customers->toArray();
        }else {
           $regions = Region::where('id', $user_code)->pluck('id');
@@ -366,7 +367,6 @@ class Dashboard extends Component
              return $array;
           }
           $customers = customers::whereIn('region_id', $regions)->pluck('id');
-          dd($customers);
           return $customers->toArray();
        }
        if (empty($customers)) {
