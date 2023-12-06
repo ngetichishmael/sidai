@@ -121,16 +121,25 @@ class Dashboard extends Component
              ],
           ];
           // Check each status condition and set $fstatus
-          foreach ($statusConditions as $status => $conditions) {
-             if ($aggregate->where(function ($query) use ($conditions) {
+          $aggregate->where(function ($query) use ($statusConditions) {
+             foreach ($statusConditions as $fstatus => $conditions) {
+                $query->orWhere(function ($subQuery) use ($conditions) {
                    foreach ($conditions as $condition) {
-                      $query->where(...$condition);
+                      $subQuery->where(...$condition);
                    }
-                })->exists()) {
-                $fstatus = $status;
-                break;
+                });
              }
-          }
+          });
+//          foreach ($statusConditions as $status => $conditions) {
+//             if ($aggregate->where(function ($query) use ($conditions) {
+//                   foreach ($conditions as $condition) {
+//                      $query->where(...$condition);
+//                   }
+//                })->exists()) {
+//                $fstatus = $status;
+//                break;
+//             }
+//          }
           dd("in all",$aggregate->where('customer_name', 'laikipia pharmacy')->first());
        } else {
           //status filter
