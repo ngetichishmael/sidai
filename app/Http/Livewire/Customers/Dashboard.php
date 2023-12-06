@@ -366,6 +366,7 @@ class Dashboard extends Component
              return $array;
           }
           $customers = customers::whereIn('region_id', $regions)->pluck('id');
+          dd($customers);
           return $customers->toArray();
        }
        if (empty($customers)) {
