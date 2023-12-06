@@ -48,7 +48,8 @@ class productsController extends Controller
          'warehouse_code'
       )
 //      ->distinct('product_information.product_name')
-      ->groupBy('product_information.product_name', 'product_information.sku_code')
+      ->groupBy('product_information.product_name')
+      ->distinct('product_information.product_name')
       ->get();
 //}
       return response()->json([
@@ -87,7 +88,7 @@ class productsController extends Controller
             'warehouse_code'
          )
          ->groupBy('product_information.product_name')
-         ->dinstict('product_information.product_name')
+         ->distinct('product_information.product_name')
          ->get();
       return response()->json([
          "success" => true,
