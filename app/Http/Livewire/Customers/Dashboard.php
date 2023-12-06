@@ -53,9 +53,9 @@ class Dashboard extends Component
     {
 
         $aggregate = array();
-        if ($this->user->account_type === "RSM" && empty($this->filter())) {
-            return $aggregate;
-        }
+//        if ($this->user->account_type === "RSM" && empty($this->filter())) {
+//            return $aggregate;
+//        }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
         $aggregate = customers::with('Creator')
@@ -83,7 +83,6 @@ class Dashboard extends Component
             })
             ->where('customer_type', 'like', 'normal')
            ->where('approval', 'LIKE', ['Approved','approved']);
-        dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
             $aggregate->whereIn('region_id', $this->filter());
         }
@@ -94,6 +93,7 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
+       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        $fstatus = 'Unknown';
        if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
           // Define conditions for each status
