@@ -21,7 +21,7 @@
                 </a>
             </li>
 {{--           @dd(\Illuminate\Support\Facades\Auth::user())--}}
-           @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+           @haspermissionto(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard'])
                 <li class="nav-item {!! Nav::isRoute('customer') !!}">
                     <a class="d-flex align-items-center" href="#">
                         <i data-feather="users"></i><span class="menu-title text-truncate" data-i18n="Todo">
@@ -36,15 +36,17 @@
                                 href="{{ route('creditor') }}">
                                 <span class="menu-item text-truncate">Creditors</span></a>
                         </li>
+
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                                 href="{{ route('approvecustomers') }}">
                                 <span class="menu-item text-truncate">Approve Customers</span></a>
                         </li>
+                       @haspermissionto(['manager_dashboard', 'admin_dashboard'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                                 href="{{ route('approveCreditors') }}">
                                 <span class="menu-item text-truncate">Approve Creditors</span></a>
                         </li>
-
+                       @endhaspermissionto
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isRoute('customer.*') !!}"
                                 href="{{ route('groupings') }}">
                                 <span class="menu-item text-truncate">Customer Groups</span></a>
@@ -185,7 +187,7 @@
 {{--                    </ul>--}}
 
                 </li>
-                @haspermissionto(['manager_dashboard', 'admin_dashboard', 'shop_attendee_dashboard'])
+                @haspermissionto(['manager_dashboard', 'admin_dashboard'])
            <li class="nav-item {!! Nav::isResource('visits') !!}">
             <a class="d-flex align-items-center" href="#"><i data-feather='truck'></i><span
                     class="menu-title text-truncate" data-i18n="Invoice">Visits</span></a>

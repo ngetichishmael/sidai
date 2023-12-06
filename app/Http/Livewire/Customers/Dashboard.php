@@ -9,6 +9,7 @@ use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
 use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -343,22 +344,23 @@ class Dashboard extends Component
             return $array;
         }
        if ($user->account_type ==="Shop-Attendee"){
-          $region=warehouse_assign::where('manager', $user->user_code)->first();
-          if ($region->isEmpty()) {
+          $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
+          if (empty($warehouse)) {
              return $array;
           }
+          $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
           $customers = customers::whereIn('region_id', $region)->pluck('id');
        }else {
           $regions = Region::where('id', $user_code)->pluck('id');
-          if ($regions->isEmpty()) {
+          if (empty($regions)) {
              return $array;
           }
           $customers = customers::whereIn('region_id', $regions)->pluck('id');
        }
-        if ($customers->isEmpty()) {
-            return $array;
-        }
-        return $customers->toArray();
+       if (empty($customers)) {
+          return $array;
+       }
+       return $customers->toArray();
     }
     public function updatedRegional()
     {

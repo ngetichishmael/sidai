@@ -90,7 +90,6 @@
                         <th>Outlet</th>
                         <th>Added By</th>
                         <th>Status</th>
-                        <th>Order Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
