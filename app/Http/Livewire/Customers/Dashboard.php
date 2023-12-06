@@ -83,6 +83,7 @@ class Dashboard extends Component
             })
             ->where('customer_type', 'like', 'normal')
            ->where('approval', 'LIKE', ['Approved','approved']);
+        dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
             $aggregate->whereIn('region_id', $this->filter());
         }
