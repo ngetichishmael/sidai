@@ -84,7 +84,7 @@ class Dashboard extends Component
             ->where('customer_type', 'like', 'normal')
            ->where('approval', 'LIKE', ['Approved','approved']);
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-            $aggregate->whereIn('region_id', $this->filter());
+            $aggregate->whereIn('customers.region_id', $this->filter());
         }
 //       info($this->selectedGroup);
         if ($this->selectedGroup) {
@@ -251,7 +251,7 @@ class Dashboard extends Component
           ->where('customer_type', 'LIKE', 'normal')
           ->where('approval', 'LIKE', ['Approved','approved']);
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-          $aggregate->whereIn('regions_id', $this->filter());
+          $aggregate->whereIn('customers.regions_id', $this->filter());
        }
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
