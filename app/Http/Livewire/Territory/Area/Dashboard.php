@@ -32,6 +32,7 @@ class Dashboard extends Component
             });
       if ($user->account_type ==="Shop-Attendee") {
          $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
+         dd($warehouse);
          $warehouse_c=warehousing::where('warehouse_code', $warehouse->wareehouse_code)->first();
          $areas->where('subregion_id',$warehouse_c->subregion_id);
       }

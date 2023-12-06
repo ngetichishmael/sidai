@@ -68,7 +68,7 @@ Route::middleware('web')->group(function () {
       'destroy' => 'areas.destroy',
       'create' => 'areas.create',
       'store' => 'areas.store',
-   ])->middleware('checkDataAccessLevel:all,route');
+   ])->middleware('checkDataAccessLevel:all,subregional,route');
    Route::resource('subareas', SubareaController::class)->names([
       'index' => 'subareas',
       'show' => 'subareas.show',
@@ -86,7 +86,7 @@ Route::middleware('web')->group(function () {
       'destroy' => 'zones.destroy',
       'create' => 'zones.create',
       'store' => 'zones.store',
-   ])->middleware('checkDataAccessLevel:all,area');
+   ])->middleware('checkDataAccessLevel:all,subregional,route');
    Route::resource('units', UnitController::class)->names([
       'index' => 'units',
       'show' => 'units.show',
