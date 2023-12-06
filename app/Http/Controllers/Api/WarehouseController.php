@@ -18,11 +18,11 @@ class WarehouseController extends Controller
       $region_id=$request->user()->region_id;
       if ($request->user()->account_type === 'NSM'){
          $warehouse = warehousing::where("status", "Active")
-            ->orderBy('name', 'ASC')
+            ->orderBy('id', 'ASC')
             ->get();
       }else
          $warehouse = warehousing::where("status", "Active")->where('region_id', $region_id)
-            ->orderBy('name', 'ASC')
+            ->orderBy('id', 'ASC')
             ->get();
 
       return response()->json([
