@@ -358,14 +358,15 @@ class Dashboard extends Component
              return $array;
           }
           $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
-          dd($region);
           $customers = customers::whereIn('region_id', $region)->pluck('id');
+          return $customers->toArray();
        }else {
           $regions = Region::where('id', $user_code)->pluck('id');
           if (empty($regions)) {
              return $array;
           }
           $customers = customers::whereIn('region_id', $regions)->pluck('id');
+          return $customers->toArray();
        }
        if (empty($customers)) {
           return $array;
