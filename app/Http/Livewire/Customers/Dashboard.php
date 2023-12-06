@@ -120,6 +120,9 @@ class Dashboard extends Component
                 ['customers.last_order_date', '>=', Carbon::now()->subDays(30)],
              ],
           ];
+
+          dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
+
           // Check each status condition and set $fstatus
           foreach ($statusConditions as $status => $conditions) {
              if ($aggregate->where(function ($query) use ($conditions) {
@@ -155,8 +158,8 @@ class Dashboard extends Component
              $aggregate->whereNull('customers.last_order_date')
                 ->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
+          dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        }
-       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        $aggregate->select(
           'customers.id as id',
           'customers.customer_name',
