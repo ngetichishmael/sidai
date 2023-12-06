@@ -156,6 +156,7 @@ class Dashboard extends Component
                 ->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
        }
+       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        $aggregate->select(
           'customers.id as id',
           'customers.customer_name',
@@ -169,7 +170,6 @@ class Dashboard extends Component
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
-       dd($aggregate->where('customer_name', 'laikipia pharmacy')->first());
        $results = $aggregate->orderBy('customers.updated_at', 'desc')->paginate($this->perPage);
        $results->getCollection()->transform(function ($result) use ($fstatus) {
           $result->fstatus = $fstatus;
