@@ -238,8 +238,8 @@ class Dashboard extends Component
                    $userQuery->where('name', 'like', $searchTerm);
                 });
           })
-          ->where('customer_type', 'like', 'normal')
-          ->where('approval', 'like', ['Approved','approved']);
+          ->where('customer_type', 'LIKE', 'normal')
+          ->where('approval', 'LIKE', ['Approved','approved']);
 
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
           $aggregate->whereIn('regions.id', $this->filter());
@@ -340,7 +340,7 @@ class Dashboard extends Component
        $array = [];
         $user = Auth::user();
         $user_code = $user->region_id;
-        if (!$user->account_type === 'RSM' || $user->account_type ==="Shop-Attendee") {
+        if (!$user->account_type === 'RSM' || !$user->account_type ==="Shop-Attendee") {
             return $array;
         }
        if ($user->account_type ==="Shop-Attendee"){

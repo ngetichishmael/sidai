@@ -85,6 +85,9 @@ class Disapproved extends Component
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
+      if (!$user->account_type ==="Shop-Attendee" || !$user->account_type ==="RSM"){
+         return $array;
+      }
       if ($user->account_type ==="Shop-Attendee"){
          $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
          if (empty($warehouse)) {
