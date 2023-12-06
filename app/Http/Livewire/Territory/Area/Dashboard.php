@@ -41,8 +41,6 @@ class Dashboard extends Component
          }
       }
            $areas ->paginate($this->perPage);
-
-dd($areas);
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.area.dashboard', [
          'areas' => $areas,
