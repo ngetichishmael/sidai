@@ -62,7 +62,8 @@ class inventoryController extends Controller{
       if ($type == "shop-attendee") {
          $warehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
          $sales=Reconciliation::where('warehouse_code',$warehouse->warehouse_code)
-            ->with('salesPerson')->get();
+            ->with('salesPerson:user_code,name')->get();
+         info("warehouse code  ", $warehouse->warehouse_code);
          info(" sales items-- ", [$sales]);
          $status = 'waiting_approval';
          $warehouse_name=warehousing::where('warehouse_code',$warehouse->warehouse_code)->first();
