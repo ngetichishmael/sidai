@@ -238,17 +238,13 @@
                         </li>
                        @endif
                        @endhasdataaccessto
-                       @hasdataaccessto(['all','subregional'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center {!! Nav::isResource('subregions') !!}"
                                 href="{{ route('subregions') }}"><span class="menu-item text-truncate">Sub Regions</span></a>
                         </li>
-                       @endhasdataaccessto
-                       @hasdataaccessto(['all','routes'])
                         <li style="padding-left: 50px"><a class="d-flex align-items-center{!! Nav::isResource('areas') !!}"
                                 href="{{ route('areas') }}">
                                 <span class="menu-item text-truncate">Routes</span></a>
                         </li>
-                       @endhasdataaccessto
                     </ul>
                 </li>
                 <li class="nav-item {!! Nav::isResource('maps') !!}">

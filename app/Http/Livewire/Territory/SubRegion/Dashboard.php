@@ -4,6 +4,9 @@ namespace App\Http\Livewire\Territory\SubRegion;
 
 use App\Models\customers;
 use App\Models\Subregion;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,8 +19,14 @@ class Dashboard extends Component
    public $sortAsc = true;
    public function render()
    {
-      $subregions = Subregion::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-         ->paginate($this->perPage);
+      $user = Auth::user();
+      $subregions = Subregion::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
+      if ($user->account_type ==="Shop-Attendee") {
+         $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
+         $warehouse_c=warehousing::where('warehouse_code', $warehouse->wareehouse_code)->first();
+         $subregions->where('region_id',$warehouse_c->region_id);
+      }
+      $subregions->paginate($this->perPage);
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.sub-region.dashboard', [
          'subregions' => $subregions,
