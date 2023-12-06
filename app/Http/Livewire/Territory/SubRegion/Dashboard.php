@@ -21,15 +21,16 @@ class Dashboard extends Component
    {
       $user = Auth::user();
       $subregions = Subregion::orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc');
-      if ($user->account_type ==="Shop-Attendee") {
+      if ($user->account_type === "Shop-Attendee") {
          $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
-         if ($warehouse){
-            $warehouse_c=warehousing::where('warehouse_code', $warehouse->warehouse_code)->first();
-         }if ($warehouse_c){
-            $subregions->where('region_id',$warehouse_c->region_id);
+         if ($warehouse) {
+            $warehouse_c = warehousing::where('warehouse_code', $warehouse->warehouse_code)->first();
+            if ($warehouse_c) {
+               $subregions->where('region_id', $warehouse_c->region_id);
+            }
          }
       }
-      $subregions->paginate($this->perPage);
+      $subregions = $subregions->paginate($this->perPage);
       $customer_counts =customers::where('status','=','Active')->get();
       return view('livewire.territory.sub-region.dashboard', [
          'subregions' => $subregions,
