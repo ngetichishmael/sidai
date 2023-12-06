@@ -251,6 +251,7 @@ class Dashboard extends Component
           ->where('customer_type', 'LIKE', 'normal')
           ->where('approval', 'LIKE', ['Approved','approved']);
        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
+          dd($aggregate->get());
           $aggregate->whereIn('customers.regions_id', $this->filter());
        }
        if ($this->selectedGroup) {
