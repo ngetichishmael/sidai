@@ -26,7 +26,7 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      if (strcasecmp($this->user->account_type, 'shop-Attendee') == 0) {
+      if (strcasecmp(strtolower($this->user->account_type), 'shop-attendee') == 0) {
          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->get();
          $warehouses = warehousing::whereIn('warehouse_code', $check)->with('manager', 'region', 'subregion')->withCount('productInformation')
             ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->paginate($this->perPage);

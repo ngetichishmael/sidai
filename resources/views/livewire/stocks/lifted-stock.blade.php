@@ -41,9 +41,9 @@
    </div>
    <div>
       <ul class="nav nav-tabs">
-         <li class="nav-item">
-            <a class="nav-link {{ $source == 'Sidai' ? 'active' : '' }}" wire:click="$set('source', 'Sidai')">Sidai Warehouse</a>
-         </li>
+{{--         <li class="nav-item">--}}
+{{--            <a class="nav-link {{ $source == 'Sidai' ? 'active' : '' }}" wire:click="$set('source', 'Sidai')">Sidai Warehouse</a>--}}
+{{--         </li>--}}
          <li class="nav-item">
             <a class="nav-link {{ $source == 'Distributor' ? 'active' : '' }}" wire:click="$set('source', 'Distributor')">Distributors</a>
          </li>
