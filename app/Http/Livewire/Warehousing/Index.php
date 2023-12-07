@@ -27,10 +27,9 @@ class Index extends Component
    {
       $searchTerm = '%' . $this->search . '%';
       if (strcasecmp(strtolower($this->user->account_type), 'shop-attendee') == 0) {
-         $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->get();
-         dd($check);
-         $warehouses = warehousing::whereIn('warehouse_code', $check)->with('manager', 'region', 'subregion')->withCount('productInformation')
-            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->paginate($this->perPage);
+         $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+         $warehouses = warehousing::where('warehouse_code', $check)->with('manager', 'region', 'subregion')->withCount('productInformation')
+            ->paginate($this->perPage);
       } else{
          $warehouses = warehousing::with('manager', 'region', 'subregion')->withCount('productInformation')
             ->when($this->user->account_type === "RSM", function ($query) {
