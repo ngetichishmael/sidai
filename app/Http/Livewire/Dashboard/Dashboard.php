@@ -80,11 +80,11 @@ class Dashboard extends Component
     {
        $loggedUser=Auth::user()->account_type;
        if (Str::lower($loggedUser) ==="shop-attendee"){
-          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-
-          if ($assignedwarehouse){
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
-                ->where('warehouse_code','=',$assignedwarehouse->warehouse_code)
+                ->where('warehouse_code','=',$warehouseCode)
                 ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->select('cash')
                 ->sum('cash');
@@ -111,10 +111,11 @@ class Dashboard extends Component
     {
        $loggedUser=Auth::user()->account_type;
        if (Str::lower($loggedUser) ==="shop-attendee"){
-          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-          if ($assignedwarehouse){
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
-                ->where('warehouse_code',$assignedwarehouse->warehouse_code)
+                ->where('warehouse_code',$warehouseCode)
                 ->whereBetween('created_at', [$this->startDate, $this->endDate])
                 ->select('mpesa')
                 ->sum('mpesa');
@@ -142,10 +143,10 @@ class Dashboard extends Component
        $loggedUser=Auth::user()->account_type;
 
        if (Str::lower($loggedUser) ==="shop-attendee"){
-          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-//          dd($assignedwarehouse);
-          if (!empty($assignedwarehouse)){
-             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
+             $warehouse=warehousing::where('warehouse_code', $warehouseCode)->first();
              if (!empty($warehouse)) {
                 return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
                    ->whereHas('user', function ($query) use ($warehouse) {
@@ -168,10 +169,11 @@ class Dashboard extends Component
    {
       $loggedUser=Auth::user()->account_type;
       if (Str::lower($loggedUser) ==="shop-attendee"){
-         $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-         if ($assignedwarehouse){
+         $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+         if ($check) {
+            $warehouseCode = $check->warehouse_code;
             $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
-               ->where('warehouse_code',$assignedwarehouse->warehouse_code)
+               ->where('warehouse_code',$warehouseCode)
                ->whereBetween('created_at', [$this->startDate, $this->endDate])
                ->select('cheque')
                ->sum('cheque');
@@ -196,9 +198,10 @@ class Dashboard extends Component
     {
        $loggedUser=Auth::user()->account_type;
        if (Str::lower($loggedUser) ==="shop-attendee"){
-          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-          if (!empty($assignedwarehouse)){
-             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
+             $warehouse=warehousing::where('warehouse_code', $warehouseCode)->first();
              if (!empty($warehouse)) {
         return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
            ->whereHas('user', function ($query) use ($warehouse) {
@@ -221,9 +224,10 @@ class Dashboard extends Component
     {
        $loggedUser=Auth::user()->account_type;
        if (Str::lower($loggedUser) ==="shop-attendee"){
-          $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-          if (!empty($assignedwarehouse)){
-             $warehouse=warehousing::where('warehouse_code', $assignedwarehouse->warehouse_code)->first();
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
+             $warehouse=warehousing::where('warehouse_code', $warehouseCode)->first();
              if (!empty($warehouse)) {
         return OrderPayment::where(function (Builder $query) {
             $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
@@ -253,10 +257,11 @@ class Dashboard extends Component
    {
       $loggedUser=Auth::user()->account_type;
       if (Str::lower($loggedUser) ==="shop-attendee"){
-         $assignedwarehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
-         if ($assignedwarehouse){
+         $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+         if ($check) {
+            $warehouseCode = $check->warehouse_code;
             $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
-               ->where('warehouse_code',$assignedwarehouse->warehouse_code)
+               ->where('warehouse_code',$warehouseCode)
                ->whereBetween('created_at', [$this->startDate, $this->endDate])
                ->sum('total');
             return  $amount;
@@ -422,9 +427,10 @@ class Dashboard extends Component
     public function getCustomersCount()
     {
        if (strtolower(Auth::user()->account_type) ==="shop-attendee") {
-          $warehouse = warehouse_assign::where('manager', Auth::user()->user_code)->first();
-          if ($warehouse) {
-             $subregion = warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('subregion_id')->first();
+          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
+          if ($check) {
+             $warehouseCode = $check->warehouse_code;
+             $subregion = warehousing::where('warehouse_code', $warehouseCode)->pluck('subregion_id')->first();
              return customers::where('subregion_id',$subregion)->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
              })->count();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Warehousing;
 
+use App\Models\products\product_information;
 use App\Models\Region;
 use App\Models\warehouse_assign;
 use App\Models\warehousing;
@@ -26,23 +27,37 @@ class Index extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
+
       if (strcasecmp(strtolower($this->user->account_type), 'shop-attendee') == 0) {
          $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
-         $warehouses = warehousing::where('warehouse_code', $check)->with('manager', 'region', 'subregion')->withCount('productInformation')
-            ->paginate($this->perPage);
-      } else{
-         $warehouses = warehousing::with('manager', 'region', 'subregion')->withCount('productInformation')
+         if ($check) {
+            $warehouseCode = $check->warehouse_code;
+            $query = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')
+               ->where('warehouse_code', $warehouseCode);
+
+            if ($this->search) {
+               $query->where('product_name', 'like', '%' . $this->search . '%');
+            }
+
+            $products = $query->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+               ->paginate($this->perPage);
+            return view('livewire.warehousing.products', ['products'=>$products]);
+         }
+      } else {
+         $warehouses = warehousing::with('manager', 'region', 'subregion')
+            ->withCount('productInformation')
             ->when($this->user->account_type === "RSM", function ($query) {
                $query->whereIn('region_id', $this->filter());
             })
-            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')->paginate($this->perPage);
-   }
-      info($warehouses);
+            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+            ->paginate($this->perPage);
+      }
       return view('livewire.warehousing.index', [
          'warehouses' => $warehouses,
-         'searchTerm' => $searchTerm
+         'searchTerm' => $searchTerm,
       ]);
    }
+
    public function filter(): array
    {
 
