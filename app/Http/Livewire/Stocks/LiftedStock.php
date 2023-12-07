@@ -20,7 +20,7 @@ class LiftedStock extends Component
    public $fromDate;
    public $toDate;
    public $search;
-   public $source ='Sidai';
+   public $source ='Distributor';
     public function render()
     {
 //        $lifted = DB::table('inventory_allocations')
