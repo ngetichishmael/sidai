@@ -30,7 +30,8 @@
              </thead>
              <tbody>
                 @foreach($warehouses as $count=>$warehouse)
-                   @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || strtolower(Auth::user()->account_type) == 'shop-attendee')
+                   @dd($warehouses)
+                   @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || strtolower(Auth::user()->account_type) === 'shop-attendee')
                   <tr>
                       <td>{!! $count+1 !!}</td>
                       <td>{{ $warehouse->name ?? ''}}</td>
