@@ -29,7 +29,6 @@
                 <th>Action</th>
              </thead>
              <tbody>
-             @dd($warehouses)
                 @foreach($warehouses as $count=>$warehouse)
                    @if((Auth::user()->account_type == 'RSM' && $warehouse->region_id == Auth::user()->region_id) || strtolower(Auth::user()->account_type) === 'shop-attendee')
                   <tr>
