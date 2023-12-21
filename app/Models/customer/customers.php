@@ -64,7 +64,7 @@ class customers extends Model
    }
    public function scopeCurrentMonth($query)
    {
-      $query->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+      $query->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
    }
    public function scopeLastMonth($query)
    {
