@@ -69,7 +69,6 @@ class Dashboard extends Component
         if (is_null($start) && is_null($end)) {
             return $query;
         }
-
         if (!is_null($start) && Carbon::parse($start)->isSameDay(Carbon::parse($end))) {
             return $query->where($column, '=', $start);
         }
