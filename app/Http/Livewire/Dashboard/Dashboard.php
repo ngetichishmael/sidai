@@ -296,7 +296,7 @@ class Dashboard extends Component
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
             })
             ->whereIn('supplierID', [1, '', null])
-            ->where('order_status', 'DELIVERED')
+//            ->where('order_status', 'DELIVERED')
            ->orderBy('id', 'desc')
             ->sum('price_total');
     }
@@ -305,15 +305,16 @@ class Dashboard extends Component
     {
         $sidai = suppliers::find(1);
         return Orders::where('order_type', 'Pre Order')
-            ->where(function ($query) use ($sidai) {
-                $query->whereNull('supplierID')
-                    ->orWhere('supplierID', '')
-                    ->orWhere(function ($subquery) use ($sidai) {
-                        if ($sidai !== null) {
-                            $subquery->where('supplierID', 1);
-                        }
-                    });
-            })
+//            ->where(function ($query) use ($sidai) {
+//                $query->whereNull('supplierID')
+//                    ->orWhere('supplierID', '')
+//                    ->orWhere(function ($subquery) use ($sidai) {
+//                        if ($sidai !== null) {
+//                            $subquery->where('supplierID', 1);
+//                        }
+//                    });
+//            })
+           ->whereIn('supplierID', [1, '', null])
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
             })
