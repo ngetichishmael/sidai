@@ -80,38 +80,38 @@ class Orders extends Model
 
    public function scopeToday($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
+      $query->whereBetween('created_at', [Carbon::now()->startOfDay(), Carbon::now()->endOfDay()]);
    }
    public function scopeYesterday($query)
    {
-      $query->whereBetween('updated_at', [Carbon::yesterday()->startOfDay(), Carbon::yesterday()->endOfDay()]);
+      $query->whereBetween('created_at', [Carbon::yesterday()->startOfDay(), Carbon::yesterday()->endOfDay()]);
    }
    public function scopeCurrentWeek($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+      $query->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
    }
    public function scopeLastWeek($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->subWeek(1), Carbon::now()->startOfWeek()]);
+      $query->whereBetween('created_at', [Carbon::now()->subWeek(1), Carbon::now()->startOfWeek()]);
    }
    public function scopeCurrentMonth($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
+      $query->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
    }
    public function scopeLastMonth($query)
    {
-      $query->whereBetween('updated_at', [Carbon::now()->subMonth(1), Carbon::now()->startOfMonth()]);
+      $query->whereBetween('created_at', [Carbon::now()->subMonth(1), Carbon::now()->startOfMonth()]);
    }
    public function scopePeriod($query, $start = null, $end = null)
    {
       if ($start === $end && $start !== null) {
-         $query->whereLike(['updated_at'], (string)$start);
+         $query->whereLike(['created_at'], (string)$start);
       } else {
          $monthStart = Carbon::now()->startOfMonth()->format('Y-m-d');
          $monthEnd = Carbon::now()->endOfMonth()->format('Y-m-d');
          $from = $start == null ? $monthStart : $start;
          $to = $end == null ? $monthEnd : $end;
-         $query->whereBetween('updated_at', [$from, $to]);
+         $query->whereBetween('created_at', [$from, $to]);
       }
    }
 }
