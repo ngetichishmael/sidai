@@ -117,7 +117,7 @@ class DashboardAppController extends Controller
          'new_customers_added' =>  customers::period($start_date, $end_date)->count(),
          'pre_sales_value' => Orders::where('order_type', 'Pre Order')->period($start_date, $end_date)->count(),
          'van_sales_value' => Orders::where('order_type', 'Van sales')->period($start_date, $end_date)->count(),
-         'ditributor_orders' => Orders::where('supplierID', '!=', 1)->period($start_date, $end_date)->count(),
+         'distributor_orders' => Orders::where('supplierID', '!=', 1)->period($start_date, $end_date)->count(),
          'existing_customer_visit' => customers::period($start_date, $end_date)->count(),
          'pending_approval' => allocations::where('status', 'Waiting acceptance')->period($start_date, $end_date)->count(),
          'completed_forms' => survey::where('status', 'Completed')->period($start_date, $end_date)->count(),
