@@ -80,10 +80,12 @@ class UserResource extends JsonResource
       $array = array();
 
       foreach ($value as $keys) {
-         $array["id"] = $keys["id"];
-         $array["OrderTarget"] = $keys["OrdersTarget"];
-         $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
-         $array["Deadline"] = $keys["Deadline"];
+         if (is_array($keys)) {
+            $array["id"] = $keys["id"];
+            $array["OrderTarget"] = $keys["OrdersTarget"];
+            $array["AchievedOrderTarget"] = $keys["AchievedOrdersTarget"];
+            $array["Deadline"] = $keys["Deadline"];
+         }
       }
       if (empty($array)) {
          $array["id"] = 0;

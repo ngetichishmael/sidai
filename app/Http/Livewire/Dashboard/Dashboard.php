@@ -45,25 +45,25 @@ class Dashboard extends Component
     */
    private $assignedwarehouse;
 
-   public function whereBetweenDate2(Builder $query, string $column = null): Builder
+   public function mount()
    {
-      if (is_null($this->startDate) && is_null($this->endDate)) {
-         // If both start and end dates are not selected, default to beginning and end of the month
-         $start = Carbon::now()->startOfMonth()->startOfDay();
-         $end = Carbon::now()->endOfMonth()->endOfDay();
-         return $query->whereBetween($column, [$start, $end]);
-      }
-      if (is_null($this->startDate)) {
-         // If start date is not selected, only filter by end date
-         $end = Carbon::parse($this->endDate)->endOfDay();
-         return $query->where($column, '<=', $end);
-      }
-      $start = Carbon::parse($this->startDate)->startOfDay();
-      $end = is_null($this->endDate) ? Carbon::now()->endOfDay() : Carbon::parse($this->endDate)->endOfDay();
+      $today = Carbon::today();
+      $week = Carbon::now()->subWeeks(1);
 
-      return $query->where($column, '>=', $start)->where($column, '<=', $end);
+      $this->daily = DB::table('order_payments')
+         ->whereDate('created_at', $today)
+         ->sum('amount');
+      $this->weekly = DB::table('order_payments')
+         ->whereBetween('created_at', [$week, $today])
+         ->sum('amount');
+      $this->monthly = DB::table('order_payments')
+         ->whereBetween('created_at', [$week, $today])
+         ->sum('amount');
+      $this->sumAll = DB::table('order_payments')
+         ->sum('amount');
+      $this->startDate = Carbon::now()->startOfMonth()->format('Y-m-d');
+      $this->endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
    }
-
    public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
     {
         if (is_null($start) && is_null($end)) {
@@ -603,24 +603,6 @@ class Dashboard extends Component
         ];
 
         return view('livewire.dashboard.dashboard', $data);
-    }
-
-    public function mount()
-    {
-        $today = Carbon::today();
-        $week = Carbon::now()->subWeeks(1);
-
-        $this->daily = DB::table('order_payments')
-            ->whereDate('created_at', $today)
-            ->sum('amount');
-        $this->weekly = DB::table('order_payments')
-            ->whereBetween('created_at', [$week, $today])
-            ->sum('amount');
-        $this->monthly = DB::table('order_payments')
-            ->whereBetween('created_at', [$week, $today])
-            ->sum('amount');
-        $this->sumAll = DB::table('order_payments')
-            ->sum('amount');
     }
     public function updatedStart()
     {
