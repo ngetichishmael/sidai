@@ -92,12 +92,36 @@ class DashboardAppController extends Controller
             'last_month' => Orders::where('order_type', 'Van Sales')->whereIn('supplierID', [1, '', null])->lastMonth()->count(),
          ],
          'distributor_orders' => [
-            'today' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->today()->count(),
-            'yesterday' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->yesterday()->count(),
-            'this_week' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->currentWeek()->count(),
-            'last_week' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->lastWeek()->count(),
-            'month' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->currentMonth()->count(),
-            'last_month' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->lastMonth()->count(),
+            'today' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->today()->count(),
+            'yesterday' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->yesterday()->count(),
+            'this_week' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->currentWeek()->count(),
+            'last_week' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->lastWeek()->count(),
+            'month' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->currentMonth()->count(),
+            'last_month' => Orders::where(function ($query) {
+               $query->where('supplierID', '!=', 1)
+                  ->orWhereNotNull('supplierID')
+                  ->orWhereNot('supplierID', '');
+            })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->lastMonth()->count(),
          ],
          'existing_customer_visit' => [
             'today' => customers::today()->count(),
@@ -133,7 +157,11 @@ class DashboardAppController extends Controller
          'new_customers_added' =>  customers::period($start_date, $end_date)->count(),
          'pre_sales_value' => Orders::where('order_type', 'Pre Order')->whereIn('supplierID', [1, '', null])->period($start_date, $end_date)->count(),
          'van_sales_value' => Orders::where('order_type', 'Van sales')->whereIn('supplierID', [1, '', null])->period($start_date, $end_date)->count(),
-         'distributor_orders' => Orders::whereNotIn('supplierID', [1, '', null])->where('order_type', 'Pre Order')->period($start_date, $end_date)->count(),
+         'distributor_orders' => Orders::where(function ($query) {
+            $query->where('supplierID', '!=', 1)
+               ->orWhereNotNull('supplierID')
+               ->orWhereNot('supplierID', '');
+         })->where('order_type', 'Pre Order')->period($start_date, $end_date)->count(),
          'existing_customer_visit' => customers::period($start_date, $end_date)->count(),
          'pending_approval' => allocations::where('status', 'Waiting acceptance')->period($start_date, $end_date)->count(),
          'completed_forms' => survey::where('status', 'Completed')->period($start_date, $end_date)->count(),
