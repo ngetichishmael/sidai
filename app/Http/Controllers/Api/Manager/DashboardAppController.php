@@ -113,7 +113,7 @@ class DashboardAppController extends Controller
 //         'status' => 200,
 //         'success' => true,
          'active_users' => $today,
-         'new_customers_visits' => checkin::select('customer_id', 'updated_at')->period($start_date, $end_date)->groupBy('customer_id')->count(),
+         'new_customers_visits' => checkin::select('customer_id', 'created_at')->period($start_date, $end_date)->groupBy('customer_id')->count(),
          'new_customers_added' =>  customers::period($start_date, $end_date)->count(),
          'pre_sales_value' => Orders::where('order_type', 'Pre Order')->period($start_date, $end_date)->count(),
          'existing_customer_visit' => customers::period($start_date, $end_date)->count(),
