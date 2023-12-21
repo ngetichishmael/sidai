@@ -62,10 +62,12 @@ class UserResource extends JsonResource
       $array = [];
 
       foreach ($value as $keys) {
-         $array["id"] = $keys["id"];
-         $array["SalesTarget"] = $keys["SalesTarget"];
-         $array["AchievedSalesTarget"] = $keys["AchievedSalesTarget"];
-         $array["Deadline"] = $keys["Deadline"];
+         if (is_array($keys)) {
+            $array["id"] = $keys["id"];
+            $array["SalesTarget"] = $keys["SalesTarget"];
+            $array["AchievedSalesTarget"] = $keys["AchievedSalesTarget"];
+            $array["Deadline"] = $keys["Deadline"];
+         }
       }
       if (empty($array)) {
          $array["id"] = 0;
@@ -100,10 +102,12 @@ class UserResource extends JsonResource
       $array = array();
 
       foreach ($value as $keys) {
-         $array["id"] = $keys["id"];
-         $array["LeadTarget"] = $keys["LeadsTarget"];
-         $array["AchievedLeadTarget"] = $keys["AchievedLeadsTarget"];
-         $array["Deadline"] = $keys["Deadline"];
+         if (is_array($keys)) {
+            $array["id"] = $keys["id"];
+            $array["LeadTarget"] = $keys["LeadsTarget"];
+            $array["AchievedLeadTarget"] = $keys["AchievedLeadsTarget"];
+            $array["Deadline"] = $keys["Deadline"];
+         }
       }
       if (empty($array)) {
          $array["id"] = 0;
@@ -118,10 +122,12 @@ class UserResource extends JsonResource
       $array = array();
 
       foreach ($value as $keys) {
-         $array["id"] = $keys["id"];
-         $array["VisitTarget"] = $keys["VisitsTarget"];
-         $array["AchievedVisitTarget"] = $keys["AchievedVisitsTarget"];
-         $array["Deadline"] = $keys["Deadline"];
+         if (is_array($keys)) {
+            $array["id"] = $keys["id"];
+            $array["VisitTarget"] = $keys["VisitsTarget"];
+            $array["AchievedVisitTarget"] = $keys["AchievedVisitsTarget"];
+            $array["Deadline"] = $keys["Deadline"];
+         }
       }
       if (empty($array)) {
          $array["id"] = 0;
