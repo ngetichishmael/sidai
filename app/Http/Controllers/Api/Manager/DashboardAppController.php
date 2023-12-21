@@ -83,6 +83,22 @@ class DashboardAppController extends Controller
             'month' => Orders::where('order_type', 'Pre Order')->currentMonth()->count(),
             'last_month' => Orders::where('order_type', 'Pre Order')->lastMonth()->count(),
          ],
+         'van_sales_value' => [
+            'today' => Orders::where('order_type', 'Van Sales')->today()->count(),
+            'yesterday' => Orders::where('order_type', 'Van Sales')->yesterday()->count(),
+            'this_week' => Orders::where('order_type', 'Van Sales')->currentWeek()->count(),
+            'last_week' => Orders::where('order_type', 'Van Sales')->lastWeek()->count(),
+            'month' => Orders::where('order_type', 'Van Sales')->currentMonth()->count(),
+            'last_month' => Orders::where('order_type', 'Van Sales')->lastMonth()->count(),
+         ],
+         'distributor_orders' => [
+            'today' => Orders::where('supplierID', '!=', 1)->today()->count(),
+            'yesterday' => Orders::where('supplierID', '!=', 1)->yesterday()->count(),
+            'this_week' => Orders::where('supplierID', '!=', 1)->currentWeek()->count(),
+            'last_week' => Orders::where('supplierID', '!=', 1)->lastWeek()->count(),
+            'month' => Orders::where('supplierID', '!=', 1)->currentMonth()->count(),
+            'last_month' => Orders::where('supplierID', '!=', 1)->lastMonth()->count(),
+         ],
          'existing_customer_visit' => [
             'today' => customers::today()->count(),
             'yesterday' => customers::yesterday()->count(),
