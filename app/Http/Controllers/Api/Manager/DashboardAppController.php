@@ -95,32 +95,32 @@ class DashboardAppController extends Controller
             'today' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                   ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->today()->count(),
             'yesterday' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                   ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->yesterday()->count(),
             'this_week' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                   ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->currentWeek()->count(),
             'last_week' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                   ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->lastWeek()->count(),
             'month' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                  ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->currentMonth()->count(),
             'last_month' => Orders::where(function ($query) {
                $query->where('supplierID', '!=', 1)
                   ->orWhereNotNull('supplierID')
-                  ->orWhereNot('supplierID', '');
+                  ->orWhere('supplierID', '!=','');
             })->where('order_type', 'Pre Order')->whereIn('order_status', ['Pending Delivery', 'Pending delivery'])->lastMonth()->count(),
          ],
          'existing_customer_visit' => [
@@ -160,7 +160,7 @@ class DashboardAppController extends Controller
          'distributor_orders' => Orders::where(function ($query) {
             $query->where('supplierID', '!=', 1)
                ->orWhereNotNull('supplierID')
-               ->orWhereNot('supplierID', '');
+                ->orWhere('supplierID', '!=','');
          })->where('order_type', 'Pre Order')->period($start_date, $end_date)->count(),
          'existing_customer_visit' => customers::period($start_date, $end_date)->count(),
          'pending_approval' => allocations::where('status', 'Waiting acceptance')->period($start_date, $end_date)->count(),
