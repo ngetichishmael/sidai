@@ -25,7 +25,7 @@ class Index extends Component
 
    public function closeModal()
    {
-      dd("here");
+//      dd("here");
       $this->showModal = false;
    }
    public function mount($role)
@@ -105,7 +105,7 @@ class Index extends Component
          "dNCXRn5ISZCH3LxStsbv6N:APA91bF9PQYSUYcBxFl3MhYRieB-8XnnojhU0t3QL89rLFydStIQPeMlNorWoGulScjpmZuhzes7ovE5w0pL7jhVq4MF5Km0rVIQGDi6eLtrk_gCFhxe2j_5MibRXER-eN7HkVMDSz03",
       ];
       $tokenzined = [  $fcm_token ];
-      info($tokenzined);
+//      info($tokenzined);
       $token = $fcm_token == null ? $token_default : $tokenzined;
       $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
 
