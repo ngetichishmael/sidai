@@ -16,8 +16,11 @@ use App\Models\Orders;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
 use App\Models\products\product_price;
+use App\Models\Region;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
+use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,7 +43,109 @@ class OrdersController extends Controller
                 ->get(),
         ]);
     }
+    public function pendingOrders(Request $request)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })
+       ->where('order_type','=','Pre Order')
+          ->orderBy('orders.id' ? 'asc' : 'desc');
 
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
+    public function pendingDeriveries(Request $request)
+    {
+       $sidai=suppliers::find(1);
+       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
+          ->where(function ($query) use ($sidai) {
+             $query->whereHas('Order', function ($subQuery) use ($sidai) {
+                $subQuery->whereNull('supplierID')
+                   ->orWhere('supplierID', '')
+                   ->orWhere('supplierID', 1);
+             })->whereHas('Order', function ($subQuery) {
+                $subQuery->where('order_type', 'Pre Order');
+             });
+          })
+          ->with('Customer', 'User', 'Order', 'DeliveryItems')
+          ->when($this->user->account_type === "RSM"|| $this->user->account_type === "Shop-Attendee",function($query){
+             $query->whereIn('customer', $this->rolefilter());
+          })->orderBy('delivery.id' ? 'asc' : 'desc');
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Deliveries with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+
+          ]);
+    }
+    public function pendingDistributorOrders(Request $request)
+    {
+       $sidai = suppliers::find(1);
+       $pendingorders = Orders::with('Customer', 'user', 'distributor')
+          ->where(function ($query) use ($sidai) {
+             $query->whereNotNull('supplierID')
+                ->where('supplierID', '!=', '')
+                ->where('supplierID', '!=', 1);
+          })
+          ->where('order_type','=','Pre Order')
+          ->when($this->user->account_type === "RSM"|| strtolower($this->user->account_type) === "shop-attendee",function($query){
+             $query->whereIn('customerID', $this->rolefilter());
+          })->orderBy('orders.id', 'desc');
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Distributor Orders List',
+             'data' => $pendingorders
+
+          ]);
+    }
+   public function rolefilter(): array
+   {
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if (!$user->account_type === 'RSM' || !$user->account_type ==="Shop-Attendee") {
+         return $array;
+      }
+      if ($user->account_type ==="Shop-Attendee"){
+         $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
+         if (empty($warehouse)) {
+            return $array;
+         }
+         $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+         $customers = customers::whereIn('region_id', $region)->pluck('id');
+         return $customers->toArray();
+      }else {
+         $regions = Region::where('id', $user_code)->pluck('id');
+         if (empty($regions)) {
+            return $array;
+         }
+         $customers = customers::whereIn('region_id', $regions)->pluck('id');
+         return $customers->toArray();
+      }
+      if (empty($customers)) {
+         return $array;
+      }
+      return $customers->toArray();
+   }
     public function filter($region_id): array
     {
 
