@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api\Manager;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\activity_log;
+use App\Models\customer\checkin;
 use App\Models\suppliers\suppliers;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -61,6 +62,34 @@ class UsersController extends Controller
               "success" => true,
               "status" => 200,
               "data" => $users,
+           ]);
+        }
+
+    }
+    public function visits(Request $request)
+    {
+        if ($request->user()->account_type == "RSM") {
+         $visits=checkin::with(['user' => function ($query) {
+            $query->select('user_name', 'user_code');
+         }], ['customer' => function ($query) {
+            $query->select('customer_name')->where('region_id', auth()->user()->region_id);
+         }])->get();
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
+           ]);
+        } else {
+           $visits=checkin::with(['user' => function ($query) {
+              $query->select('user_name', 'user_code');
+           }], ['customer' => function ($query) {
+              $query->select('customer_name');
+           }])->get();
+
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
            ]);
         }
 

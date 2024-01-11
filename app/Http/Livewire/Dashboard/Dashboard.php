@@ -65,17 +65,20 @@ class Dashboard extends Component
       $this->endDate = Carbon::now()->endOfMonth()->format('Y-m-d');
    }
    public function whereBetweenDate(Builder $query, string $column = null, string $start = null, string $end = null): Builder
-    {
-        if (is_null($start) && is_null($end)) {
-            return $query;
-        }
-        if (!is_null($start) && Carbon::parse($start)->isSameDay(Carbon::parse($end))) {
-            return $query->where($column, '=', $start);
-        }
-        $end = $end == null ? Carbon::now()->endOfMonth()->format('Y-m-d') : $end;
-        return $query->whereBetween($column, [$start, $end]);
-    }
-    public function getCashAmount()
+   {
+      if (is_null($start) && is_null($end)) {
+         return $query;
+      }
+
+      if (!is_null($start) && Carbon::parse($start)->eq(Carbon::parse($end))) {
+         return $query->whereDate($column, '=', $start);
+      }
+
+      $end = $end == null ? Carbon::now()->endOfMonth()->format('Y-m-d H:i:s') : $end;
+
+      return $query->whereBetween($column, [$start, $end]);
+   }
+   public function getCashAmount()
     {
        $loggedUser=Auth::user()->account_type;
        if (Str::lower($loggedUser) ==="shop-attendee"){

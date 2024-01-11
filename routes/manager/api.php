@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Manager\RequisitionController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
+use App\Http\Controllers\Api\Manager\UserActivityController;
 use App\Http\Controllers\Api\Manager\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,9 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
+      Route::get('/manager/pending/orders', [OrdersController::class, 'pendingOrders']);
+      Route::get('/manager/pending/deliveries', [OrdersController::class, 'pendingDeriveries']);
+      Route::get('/manager/pending/distributor/orders', [OrdersController::class, 'pendingDistributorOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
 
       Route::post('/manager/suspend/user', [UsersController::class, 'suspendUser']);
@@ -109,5 +113,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/products/{sku}/edit', [ProductsController::class, 'edit']);
       Route::post('managers/products/{sku}/restock', [ProductsController::class, 'restock']);
       Route::get('managers/products/{sku}/details', [ProductsController::class, 'details']);
+     //activities
+      Route::get('managers/monthly/activites', [UserActivityController::class, 'index']);
+
+      Route::get('managers/all/customer/visits', [UsersController::class, 'visits']);
    });
 });
