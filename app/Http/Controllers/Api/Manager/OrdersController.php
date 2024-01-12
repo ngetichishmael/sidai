@@ -48,7 +48,7 @@ class OrdersController extends Controller
        $sidai=suppliers::find(1);
        $orders=Orders::with('Customer', 'user', 'distributor')
        ->where('order_status','=', 'Pending Delivery')
-       ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
           $query->whereIn('customerID', $this->rolefilter());
        })
        ->where(function ($query) use ($sidai) {
