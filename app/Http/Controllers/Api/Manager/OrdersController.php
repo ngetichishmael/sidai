@@ -67,7 +67,7 @@ class OrdersController extends Controller
              'status' => 200,
              'success' => true,
              'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
-             'data' => $orders
+             'data' => [$orders]
           ]);
 
     }
@@ -91,8 +91,8 @@ class OrdersController extends Controller
           return response()->json([
              'status' => 200,
              'success' => true,
-             'message' => 'Pending Deliveries with the Order items, the Sales associate, and the customer',
-             'data' => $orders
+             'message' => 'Pending Deliveries',
+             'data' => [$orders]
 
           ]);
     }
@@ -113,7 +113,7 @@ class OrdersController extends Controller
              'status' => 200,
              'success' => true,
              'message' => 'Distributor Orders List',
-             'data' => $pendingorders
+             'data' => [$pendingorders]
 
           ]);
     }
