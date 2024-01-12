@@ -70,7 +70,7 @@ class UsersController extends Controller
     {
         if ($request->user()->account_type == "RSM") {
          $visits=checkin::with(['user' => function ($query) {
-            $query->select('user_name', 'user_code');
+            $query->select('name', 'user_code');
          }], ['customer' => function ($query) {
             $query->select('customer_name')->where('region_id', auth()->user()->region_id);
          }])->get();
@@ -98,7 +98,7 @@ class UsersController extends Controller
     {
         if ($request->user()->account_type == "RSM") {
          $visits=checkin::where('customer_id', $customer_id)->with(['user' => function ($query) {
-            $query->select('user_name', 'user_code');
+            $query->select('name', 'user_code');
          }], ['customer' => function ($query) {
             $query->select('customer_name')->where('region_id', auth()->user()->region_id);
          }])->get();
