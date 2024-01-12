@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
 use App\Http\Controllers\Api\Manager\ProductsController;
 use App\Http\Controllers\Api\Manager\RequisitionController;
+use App\Http\Controllers\Api\Manager\RouteSchedulesController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
@@ -115,6 +116,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/products/{sku}/details', [ProductsController::class, 'details']);
      //activities
       Route::get('managers/monthly/activites', [UserActivityController::class, 'index']);
+
+      //schedules
+      Route::get('managers/all/route/schedules', [RouteSchedulesController::class,'index']);
 
       Route::get('managers/all/customer/visits', [UsersController::class, 'visits']);
    });
