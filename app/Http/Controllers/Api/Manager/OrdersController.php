@@ -85,7 +85,7 @@ class OrdersController extends Controller
              });
           })
           ->with('Customer', 'User', 'Order', 'DeliveryItems')
-          ->when($this->user->account_type === "RSM"|| $this->user->account_type === "Shop-Attendee",function($query){
+          ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
              $query->whereIn('customer', $this->rolefilter());
           })->orderBy('delivery.id' ? 'asc' : 'desc');
           return response()->json([
@@ -106,7 +106,7 @@ class OrdersController extends Controller
                 ->where('supplierID', '!=', 1);
           })
           ->where('order_type','=','Pre Order')
-          ->when($this->user->account_type === "RSM"|| strtolower($this->user->account_type) === "shop-attendee",function($query){
+          ->when(Auth::user()->account_type === "RSM"|| strtolower(Auth::user()->account_type) === "shop-attendee",function($query){
              $query->whereIn('customerID', $this->rolefilter());
           })->orderBy('orders.id', 'desc');
           return response()->json([
