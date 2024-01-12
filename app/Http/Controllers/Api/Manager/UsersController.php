@@ -71,20 +71,26 @@ class UsersController extends Controller
         if ($request->user()->account_type == "RSM") {
          $visits=checkin::with(['user' => function ($query) {
             $query->select('name', 'user_code');
-         }], ['Customer' => function ($query) {
-            $query->select('customer_name','customer_id')->where('region_id', auth()->user()->region_id);
-         }])->get();
+         }],'Customer'
+//            ['Customer' => function ($query) {
+//            $query->select('customer_name','customer_id')->where('region_id', auth()->user()->region_id);
+//         }]
+         )
+            ->get();
            return response()->json([
               "success" => true,
               "status" => 200,
               "data" => $visits,
            ]);
         } else {
-           $visits=checkin::with(['user' => function ($query) {
+           $visits=checkin::with(
+              ['user' => function ($query) {
               $query->select('name', 'user_code');
-           }], ['Customer' => function ($query) {
-              $query->select('customer_name','customer_id');
-           }])->get();
+           }],'Customer'
+//              ['Customer' => function ($query) {
+//              $query->select('customer_name','customer_id');
+//           }]
+           )->get();
 
            return response()->json([
               "success" => true,
