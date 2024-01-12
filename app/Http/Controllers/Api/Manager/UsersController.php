@@ -69,10 +69,10 @@ class UsersController extends Controller
     public function visits(Request $request)
     {
         if ($request->user()->account_type == "RSM") {
-         $visits=checkin::with(['user' => function ($query) {
+         $visits=checkin::with(['sales_person' => function ($query) {
             $query->select('name', 'user_code');
          }], ['customer' => function ($query) {
-            $query->select('customer_name')->where('region_id', auth()->user()->region_id);
+            $query->select('customer_name','customer_id')->where('region_id', auth()->user()->region_id);
          }])->get();
            return response()->json([
               "success" => true,
@@ -80,10 +80,10 @@ class UsersController extends Controller
               "data" => $visits,
            ]);
         } else {
-           $visits=checkin::with(['user' => function ($query) {
+           $visits=checkin::with(['sales_person' => function ($query) {
               $query->select('name', 'user_code');
            }], ['customer' => function ($query) {
-              $query->select('customer_name');
+              $query->select('customer_name','customer_id');
            }])->get();
 
            return response()->json([
