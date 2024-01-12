@@ -94,6 +94,34 @@ class UsersController extends Controller
         }
 
     }
+    public function customerVisits(Request $request, $customer_id)
+    {
+        if ($request->user()->account_type == "RSM") {
+         $visits=checkin::where('customer_id', $customer_id)->with(['user' => function ($query) {
+            $query->select('user_name', 'user_code');
+         }], ['customer' => function ($query) {
+            $query->select('customer_name')->where('region_id', auth()->user()->region_id);
+         }])->get();
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
+           ]);
+        } else {
+           $visits=checkin::with(['user' => function ($query) {
+              $query->select('user_name', 'user_code');
+           }], ['customer' => function ($query) {
+              $query->select('customer_name');
+           }])->get();
+
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
+           ]);
+        }
+
+    }
     public function usersList(Request $request)
     {
         $accountType = $request->input('account_type');

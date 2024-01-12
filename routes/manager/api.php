@@ -121,5 +121,6 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/all/route/schedules', [RouteSchedulesController::class,'index']);
 
       Route::get('managers/all/customer/visits', [UsersController::class, 'visits']);
+      Route::get('managers/customer/visits/{customer_id}', [UsersController::class, 'customerVisits']);
    });
 });
