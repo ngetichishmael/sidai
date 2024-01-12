@@ -61,13 +61,12 @@ class OrdersController extends Controller
              });
        })
        ->where('order_type','=','Pre Order')
-          ->orderBy('orders.id' ? 'asc' : 'desc');
-
+          ->get();
           return response()->json([
              'status' => 200,
              'success' => true,
              'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
-             'data' => [$orders]
+             'data' => $orders
           ]);
 
     }
@@ -87,13 +86,12 @@ class OrdersController extends Controller
           ->with('Customer', 'User', 'Order', 'DeliveryItems')
           ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
              $query->whereIn('customer', $this->rolefilter());
-          })->orderBy('delivery.id' ? 'asc' : 'desc');
+          })->get();
           return response()->json([
              'status' => 200,
              'success' => true,
              'message' => 'Pending Deliveries',
-             'data' => [$orders]
-
+             'data' => $orders
           ]);
     }
     public function pendingDistributorOrders(Request $request)
@@ -108,13 +106,12 @@ class OrdersController extends Controller
           ->where('order_type','=','Pre Order')
           ->when(Auth::user()->account_type === "RSM"|| strtolower(Auth::user()->account_type) === "shop-attendee",function($query){
              $query->whereIn('customerID', $this->rolefilter());
-          })->orderBy('orders.id', 'desc');
+          })->get();
           return response()->json([
              'status' => 200,
              'success' => true,
              'message' => 'Distributor Orders List',
-             'data' => [$pendingorders]
-
+             'data' => $pendingorders
           ]);
     }
    public function rolefilter(): array
