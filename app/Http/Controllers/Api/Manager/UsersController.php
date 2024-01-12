@@ -81,7 +81,7 @@ class UsersController extends Controller
            ]);
         } else {
            $visits=checkin::with(['user' => function ($query) {
-              $query->select('user_name', 'user_code');
+              $query->select('name', 'user_code');
            }], ['customer' => function ($query) {
               $query->select('customer_name');
            }])->get();
@@ -109,7 +109,7 @@ class UsersController extends Controller
            ]);
         } else {
            $visits=checkin::with(['user' => function ($query) {
-              $query->select('user_name', 'user_code');
+              $query->select('name', 'user_code');
            }], ['customer' => function ($query) {
               $query->select('customer_name');
            }])->get();
