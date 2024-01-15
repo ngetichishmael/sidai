@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
 use App\Http\Controllers\Api\Manager\UserActivityController;
 use App\Http\Controllers\Api\Manager\UsersController;
+use App\Http\Controllers\Api\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,7 +48,9 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
       Route::get('/manager/pending/orders', [OrdersController::class, 'pendingOrders']);
+      Route::get('/manager/customer/orders/{customer_id}', [OrdersController::class, 'customerOrders']);
       Route::get('/manager/pending/deliveries', [OrdersController::class, 'pendingDeriveries']);
+      Route::get('/manager/customer/deliveries/{customer_id}', [OrdersController::class, 'customerDeriveries']);
       Route::get('/manager/pending/distributor/orders', [OrdersController::class, 'pendingDistributorOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
 
@@ -56,8 +59,6 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource'])->name('manager.orders');
       Route::get('/manager/customers/orders', [OrdersController::class, 'allOrderForCustomers']);
-      Route::get('/manager/customer/orders/{customer_id}', [OrdersController::class, 'allOrderForCustomer']);
-      Route::get('/manager/customer/deliveries/{customer_id}', [OrdersController::class, 'allDeliveriesForCustomer']);
       Route::get('/manager/allocation/data', [OrdersController::class, 'allocationItems']);
       Route::post('/manager/order/approval', [OrdersController::class, 'orderApproval']);
       Route::post('/manager/order/disapproval', [OrdersController::class, 'orderDisapproval']);
@@ -72,16 +73,16 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/routes/data', [RoutesController::class, 'getRoutes']);
 
-      Route::get('/manager/reports/data', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'reports']);
+      Route::get('/manager/reports/data', [ReportsController::class, 'reports']);
 
 
-      Route::get('/manager/vansales/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesToday']);
-      Route::get('/manager/vansales/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesWeek']);
-      Route::get('/manager/vansales/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesMonth']);
+      Route::get('/manager/vansales/today', [ReportsController::class, 'vanSalesToday']);
+      Route::get('/manager/vansales/last-week', [ReportsController::class, 'vanSalesWeek']);
+      Route::get('/manager/vansales/last-month', [ReportsController::class, 'vanSalesMonth']);
 
-      Route::get('/manager/preorder/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderToday']);
-      Route::get('/manager/preorder/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderWeek']);
-      Route::get('/manager/preorder/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderMonth']);
+      Route::get('/manager/preorder/today', [ReportsController::class, 'preOrderToday']);
+      Route::get('/manager/preorder/last-week', [ReportsController::class, 'preOrderWeek']);
+      Route::get('/manager/preorder/last-month', [ReportsController::class, 'preOrderMonth']);
 
       Route::get('/manager/order-fulfillment/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentToday']);
       Route::get('/manager/order-fulfillment/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentWeek']);
