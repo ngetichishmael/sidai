@@ -70,6 +70,22 @@ class OrdersController extends Controller
           ]);
 
     }
+    public function customerOrders(Request $request, $customer)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with( 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->where('customerID', $customer)
+       ->where('order_type','=','Pre Order')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'customer Orders with the Order items, the Sales associate',
+             'data' => $orders
+          ]);
+
+    }
     public function pendingDeriveries(Request $request)
     {
        $sidai=suppliers::find(1);
@@ -91,6 +107,29 @@ class OrdersController extends Controller
              'status' => 200,
              'success' => true,
              'message' => 'Pending Deliveries',
+             'data' => $orders
+          ]);
+    }
+    public function customerDeriveries(Request $request, $customer)
+    {
+       $sidai=suppliers::find(1);
+       $orders =  Delivery::where(function ($query) use ($sidai) {
+             $query->whereHas('Order', function ($subQuery) use ($sidai) {
+                $subQuery->whereNull('supplierID')
+                   ->orWhere('supplierID', '')
+                   ->orWhere('supplierID', 1);
+             })->whereHas('Order', function ($subQuery) {
+                $subQuery->where('order_type', 'Pre Order');
+             });
+          })->where('customer', $customer)
+          ->with('User', 'Order', 'DeliveryItems')
+          ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+             $query->whereIn('customer', $this->rolefilter());
+          })->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Customer Deliveries',
              'data' => $orders
           ]);
     }

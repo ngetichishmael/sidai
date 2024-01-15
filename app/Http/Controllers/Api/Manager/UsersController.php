@@ -114,7 +114,7 @@ class UsersController extends Controller
               "data" => $visits,
            ]);
         } else {
-           $visits=checkin::with(['user' => function ($query) {
+           $visits=checkin::where('customer_id', $customer_id)->with(['user' => function ($query) {
               $query->select('name', 'user_code');
            }], ['customer' => function ($query) {
               $query->select('customer_name');
