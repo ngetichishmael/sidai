@@ -56,6 +56,8 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource'])->name('manager.orders');
       Route::get('/manager/customers/orders', [OrdersController::class, 'allOrderForCustomers']);
+      Route::get('/manager/customer/orders/{customer_id}', [OrdersController::class, 'allOrderForCustomer']);
+      Route::get('/manager/customer/deliveries/{customer_id}', [OrdersController::class, 'allDeliveriesForCustomer']);
       Route::get('/manager/allocation/data', [OrdersController::class, 'allocationItems']);
       Route::post('/manager/order/approval', [OrdersController::class, 'orderApproval']);
       Route::post('/manager/order/disapproval', [OrdersController::class, 'orderDisapproval']);

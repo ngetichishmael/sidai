@@ -195,6 +195,30 @@ class OrdersController extends Controller
             ),
         ]);
     }
+   public function allOrderForCustomer($customer_id)
+   {
+      return response()->json([
+         'status' => 200,
+         'success' => true,
+         "message" => "Customer orders and order items",
+         'Data' => CustomerResource::collection(
+            customers::where('id', $customer_id)
+               ->withCount(['Checkings'])
+               ->with('Orders.OrderItem')
+               ->get()
+         ),
+      ]);
+   }
+   public function allDeliveriesForCustomer($customer_id)
+   {
+      $deliveries=Delivery::where('customer',$customer_id)->with('OrderItems','User')->get();
+      return response()->json([
+         'status' => 200,
+         'success' => true,
+         "message" => "Customer orders and order items",
+         'Data' =>$deliveries
+      ]);
+   }
 
     public function allocateOrders2(Request $request)
     {
