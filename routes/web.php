@@ -207,7 +207,11 @@ Route::middleware('web')->group(function () {
    Route::get('warehousing/products/{id}/edit', ['uses' => 'app\products\productController@edit', 'as' => 'products.edit']);
    Route::get('warehousing/products/{id}/restock', ['uses' => 'app\products\productController@restock', 'as' => 'products.restock']);
    Route::get('warehousing/products/{id}/view', ['uses' => 'app\products\productController@singleview', 'as' => 'products.view']);
-   Route::post('warehousing/products/{id}/updateprices', ['uses' => 'app\products\productController@updatesingle', 'as' => 'products.updatesingle']);
+  //bulk prices updates
+      Route::get('/products/bulk-update/{warehouse}', 'app\products\productController@showBulkUpdateForm')->name('products.bulkUpdateForm');
+      Route::post('/products/bulk-update/{warehouse}', 'app\products\productController@updateBulk')->name('products.bulkUpdate');
+
+      Route::post('warehousing/products/{id}/updateprices', ['uses' => 'app\products\productController@updatesingle', 'as' => 'products.updatesingle']);
    Route::post('warehousing/products/{id}/update', ['uses' => 'app\products\productController@update', 'as' => 'products.update']);
    Route::post('warehousing/products/{id}/updatestock', ['uses' => 'app\products\productController@updatestock', 'as' => 'products.updatestock']);
    Route::get('warehousing/products/{id}/details', ['uses' => 'app\products\productController@details', 'as' => 'products.details']);

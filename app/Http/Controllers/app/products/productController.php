@@ -588,7 +588,7 @@ class productController extends Controller
       $prices = product_price::where('id',$id)->first();
       $prices->buying_price = $request->buying_price;
       $prices->distributor_price = $request->distributor_price;
-      $prices->selling_price = $request->selling_price;
+      $prices->selling_price = $request->selling_price ?? $prices->selling_price;
       $prices->business_code = Auth::user()->business_code;
       $prices->save();
 
@@ -607,6 +607,62 @@ class productController extends Controller
 
 
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
+   }
+
+// ... other use statements ...
+
+   public function updateBulk(Request $request)
+   {
+      $this->validate($request, [
+         'excel_file' => 'required|file|mimes:xls,xlsx',
+         'warehouse_code' => 'required|string', // Assuming warehouse_code is provided in the request
+      ]);
+
+      $path = $request->file('excel_file')->getRealPath();
+      $data = Excel::toArray([], $path)[0];
+
+      $userCode = Auth::user()->user_code;
+      $businessCode = Auth::user()->business_code;
+
+      foreach ($data as $row) {
+         $productName = $row['product_name']; // Adjust column name based on your Excel file
+         $buyingPrice = $row['buying_price']; // Adjust column name based on your Excel file
+         $distributorPrice = $row['distributor_price']; // Adjust column name based on your Excel file
+
+         // Fetch product information based on product name and warehouse code
+         $information = product_information::where('product_name', $productName)
+            ->where('warehouse_code', $request->warehouse_code)
+            ->first();
+
+         if ($information) {
+            // Update or create product price record
+            $prices = product_price::updateOrCreate(
+               ['id' => $information->id],
+               [
+                  'buying_price' => $buyingPrice,
+                  'distributor_price' => $distributorPrice,
+                  'selling_price' => $row['selling_price'] ?? null,
+                  'business_code' => $businessCode,
+               ]
+            );
+
+            // Log activity for each product
+            $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Price Updating';
+            $activityLog->user_code = $userCode;
+            $activityLog->section = 'web';
+            $activityLog->action = 'Product ' . $productName . ' successfully updated ';
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = $request->ip();
+            $activityLog->save();
+         }
+      }
+
+      session()->flash('success', 'Prices successfully Updated!');
+
+      return redirect('/warehousing/products');
    }
 
    /**

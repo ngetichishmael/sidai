@@ -31,7 +31,7 @@
             <div class="col-md-6">
                <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm ml-1"><i data-feather="plus"></i> Add New Products</a>
                <a href="{!! route('products.import') !!}" class="btn btn-secondary btn-sm mr-1"><i data-feather="arrow-up-circle"></i> Import Products</a>
-               <a href="" class="btn btn-primary btn-sm"><i data-feather="refresh-cw"></i> Bulk Prices Updates</a>
+               <a href="{{ route('products.bulkUpdateForm', ['warehouse'=>$warehouse->warehouse_code]) }}" class="btn btn-primary btn-sm"><i data-feather="refresh-cw"></i> Bulk Prices Updates</a>
             </div>
       @endif
    </div>
