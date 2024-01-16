@@ -52,7 +52,7 @@ class Stockist extends Component
 
       $query = DB::table('users')
          ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
-         ->where('users.customer_name', 'LIKE', '%' . $this->search . '%')
+         ->where('users.name', 'LIKE', '%' . $this->search . '%')
          ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
          ->leftJoin('customers', 'customer_checkin.customer_id', '=', 'customers.id')
          ->leftJoin('orders', function ($join) {
@@ -62,7 +62,6 @@ class Stockist extends Component
          ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time') // Condition to ensure start_time <= stop_time
          ->select(
             'customer_checkin.id as id',
-            'customer_checkin.code as code',
             'customer_checkin.code as code',
             'users.name as name',
             'customers.customer_name AS customer_name',
