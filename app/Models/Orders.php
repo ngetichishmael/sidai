@@ -100,7 +100,10 @@ class Orders extends Model
    }
    public function scopeLastMonth($query)
    {
-      $query->whereBetween('created_at', [Carbon::now()->subMonth(1), Carbon::now()->startOfMonth()]);
+      $query->whereBetween('created_at', [
+         Carbon::now()->subMonth(1)->startOfMonth(),
+         Carbon::now()->subMonth(1)->endOfMonth(),
+      ]);
    }
    public function scopePeriod($query, $start = null, $end = null)
    {

@@ -97,6 +97,60 @@ class OrdersController extends Controller
           ]);
 
     }
+    public function userVansales(Request $request, $user_code)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })->where('user_code',$user_code)
+       ->where('order_type','=','Van Sales')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
+    public function userOrders(Request $request, $user_code)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })->where('user_code',$user_code)
+       ->where('order_type','=','Pre Order')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
     public function customerOrders(Request $request, $customer)
     {
        $sidai=suppliers::find(1);

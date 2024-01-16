@@ -578,6 +578,12 @@ class productController extends Controller
          'code'=>$code,
       ]);
    }
+
+   public function showBulkUpdateForm($warehouse){
+      return view('app.products.productBulkPricesUpdateForm', [
+         'warehouse'=>$warehouse
+      ]);
+   }
    public function updatesingle(Request $request, $id)
    {
       $information = product_information::whereId($id)->first();
@@ -588,7 +594,7 @@ class productController extends Controller
       $prices = product_price::where('id',$id)->first();
       $prices->buying_price = $request->buying_price;
       $prices->distributor_price = $request->distributor_price;
-      $prices->selling_price = $request->selling_price;
+      $prices->selling_price = $request->selling_price ?? $prices->selling_price;
       $prices->business_code = Auth::user()->business_code;
       $prices->save();
 
@@ -607,6 +613,59 @@ class productController extends Controller
 
 
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
+   }
+
+   public function updateBulk(Request $request, $warehouse)
+   {
+      $this->validate($request, [
+         'excel_file' => 'required|file|mimes:xls,xlsx']);
+
+      $path = $request->file('excel_file')->getRealPath();
+      $data = Excel::toArray([], $path)[0];
+
+      $userCode = Auth::user()->user_code;
+      $businessCode = Auth::user()->business_code;
+
+      foreach ($data as $row) {
+         $productName = $row['product'];
+         $buyingPrice = $row['wholesale'];
+         $distributorPrice = $row['distributor'];
+         $sellingPrice = $row['retail'];
+
+         // Fetch product information based on product name and warehouse code
+         $information = product_information::where('product_name', $productName)
+            ->where('warehouse_code', $warehouse)
+            ->first();
+
+         if ($information) {
+            // Update or create product price record
+            $prices = product_price::updateOrCreate(
+               ['id' => $information->id],
+               [
+                  'buying_price' => $buyingPrice,
+                  'distributor_price' => $distributorPrice,
+                  'selling_price' => $row['selling_price'] ?? null,
+                  'business_code' => $businessCode,
+               ]
+            );
+
+            // Log activity for each product
+            $random = Str::random(20);
+            $activityLog = new activity_log();
+            $activityLog->activity = 'Price Updating';
+            $activityLog->user_code = $userCode;
+            $activityLog->section = 'web';
+            $activityLog->action = 'Product ' . $productName . ' successfully updated ';
+            $activityLog->userID = auth()->user()->id;
+            $activityLog->activityID = $random;
+            $activityLog->ip_address = $request->ip();
+            $activityLog->save();
+         }
+      }
+
+      session()->flash('success', 'Prices successfully Updated!');
+
+      return redirect('/warehousing/products');
    }
 
    /**
