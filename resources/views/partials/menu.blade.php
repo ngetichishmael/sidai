@@ -340,7 +340,7 @@
           </li>
             {{-- TODO : adding daily reports--}}
           <li style="padding-left: 50px">
-          <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
+          <a class="d-flex align-items-center" href="{!! route('users.dailyreports') !!}"><i
                 data-feather='repeat'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                 Daily Reports</span></a>
           </li>

@@ -33,6 +33,7 @@
                <a href="{!! route('products.import') !!}" class="btn btn-secondary btn-sm mr-1"><i data-feather="arrow-up-circle"></i> Import Products</a>
                <a href="{{ route('products.bulkUpdateForm', ['warehouse'=>$warehouse->warehouse_code]) }}" class="btn btn-primary btn-sm"><i data-feather="refresh-cw"></i> Bulk Prices Updates</a>
                <a href="" class="btn btn-primary btn-sm"><i data-feather="upload"></i> Exports</a>
+            {{--TODO :Export products--}}
             </div>
       @endif
    </div>

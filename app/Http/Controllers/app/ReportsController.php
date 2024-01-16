@@ -18,6 +18,21 @@ use Illuminate\Support\Facades\DB;
 class ReportsController extends Controller
 {
    public $perPage = 50;
+   public function dailyReports(Request $request)
+   {
+      $routeName = $request->route()->getName();
+      $middleware = $request->route()->middleware();
+      $dataAccessLevel = Auth::user()->roles()->pluck('data_access_level')->first();
+      if (in_array('web', $middleware)) {
+         switch ($routeName) {
+            case 'stockist.reports':
+               return view('app.DailyReports.stockist');
+            default:
+               return view('app.DailyReport.stockist');
+         }
+      }
+
+   }
    public function reports(Request $request)
    {
       $routeName = $request->route()->getName();

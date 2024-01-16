@@ -25,6 +25,7 @@
   'customers.region' => 'App\\Http\\Livewire\\Customers\\Region',
   'customers.view' => 'App\\Http\\Livewire\\Customers\\View',
   'customers.visit' => 'App\\Http\\Livewire\\Customers\\Visit',
+  'daily-reports.stockist' => 'App\\Http\\Livewire\\DailyReports\\Stockist',
   'dashboard.allocatedusers' => 'App\\Http\\Livewire\\Dashboard\\Allocatedusers',
   'dashboard.allocations' => 'App\\Http\\Livewire\\Dashboard\\Allocations',
   'dashboard.brand-chart' => 'App\\Http\\Livewire\\Dashboard\\BrandChart',
