@@ -67,7 +67,7 @@ class Stockist extends Component
             'customers.customer_name AS customer_name',
             'customers.phone_number',
             'customers.address',
-            'orders.prive_total AS amount',
+            'orders.price_total AS amount',
             DB::raw("DATE_FORMAT(customer_checkin.start_time, '%h:%i %p') AS start_time"),
             DB::raw("DATE_FORMAT(customer_checkin.stop_time, '%h:%i %p') AS stop_time"),
             DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
