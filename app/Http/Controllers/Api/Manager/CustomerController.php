@@ -41,9 +41,6 @@ class CustomerController extends Controller
          $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
             ->where('region_id', Auth::user()->region_id)
             ->get();
-         $action="Getting customers";
-         $activity="Getting customers using managers app";
-         $this->activitylogs($action, $activity);
          return response()->json([
             "success" => true,
             "status" => 200,
@@ -52,9 +49,27 @@ class CustomerController extends Controller
       }else
       $customers = customers::withCount('number_visited')->with(['orders.orderItems'])
          ->get();
-      $action="Getting customers";
-      $activity="Getting customers using managers app";
-      $this->activitylogs($action, $activity);
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $customers,
+      ]);
+   }
+   public function userLeads(Request $request, $user_code)
+   {
+
+      if ($request->user()->account_type ==='RSM') {
+         $customers = customers::where('created_by',$user_code)
+            ->where('region_id', Auth::user()->region_id)
+            ->get();
+         return response()->json([
+            "success" => true,
+            "status" => 200,
+            "data" => $customers,
+         ]);
+      }else
+      $customers = customers::where('created_by',$user_code)
+         ->get();
       return response()->json([
          "success" => true,
          "status" => 200,

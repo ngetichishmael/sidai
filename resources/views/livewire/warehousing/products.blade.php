@@ -22,6 +22,7 @@
                <tr>
                   <th width="1%">#</th>
                   <th>Name</th>
+                  <th>SKU Code</th>
                   <th>Wholesale Price</th>
                   <th>Distributor Price</th>
                   <th>Retail Price</th>
@@ -40,6 +41,7 @@
                      <tr>
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $product->product_name !!}</td>
+                        <td>{!! $product->sku_code !!}</td>
 
                         @if ($product->ProductPrice->buying_price ==  0 || 00)
                            <td>{{'Price Not set' }}</td>

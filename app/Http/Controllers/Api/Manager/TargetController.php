@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TargetResource;
 use App\Models\activity_log;
 use App\Models\LeadsTargets;
 use App\Models\OrdersTarget;
@@ -182,6 +183,16 @@ class TargetController extends Controller
          "status" => 200,
          "message" => "Target assigned for the following users",
          "data" => $users,
+      ]);
+   }
+   public function getSalespersonTarget(Request $request, $user_code)
+   {
+      $target = User::with('TargetSale', 'TargetLead', 'TargetOrder', 'TargetVisit')
+         ->where('user_code', $user_code)->first();
+      return response()->json([
+         "success" => true,
+         "message" => "Target Set",
+         "Targets" => new TargetResource($target),
       ]);
    }
    public function activitylogs($activity,$action): void
