@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Visits\Users;
 
 use App\Exports\UserVisitsExport;
 use App\Exports\CustomerViewVisitExport;
+use App\Models\FormResponse;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Models\SaleReport;
@@ -49,95 +50,99 @@ class View extends Component
             'visits' => $this->data()
         ]);
     }
-    public function data()
-        {
-            $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
-            $this->start = $this->start ?? Carbon::now()->startOfMonth()->format('Y-m-d'); 
-            $this->end = $this->end ?? Carbon::now()->endOfMonth()->format('Y-m-d');
+   public function data()
+   {
+      $this->username = User::where('user_code', $this->user_code)->pluck('name')->implode('');
 
-            $visits = DB::table('users')
-                ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
-                ->join('customers', 'customer_checkin.customer_id', '=', 'customers.id')
-                ->whereBetween('customer_checkin.updated_at', [$this->start, $this->end])
-                ->where('users.user_code', $this->user_code)
-                ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
-                ->select(
-                    'users.name as name',
-                    'customer_checkin.code as code',
-                    'customers.customer_name AS customer_name',
-                    'customer_checkin.start_time AS start_time',
-                    'customer_checkin.stop_time AS stop_time',
-                    DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date"),
-                    DB::raw('TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time) AS duration'),
-                    DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
-                    DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date")
-                )
-                ->orderBy('formatted_date', 'DESC')
-                ->paginate($this->perPage);
+      $query = DB::table('users')
+         ->where('users.user_code', $this->user_code)
+         ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
+         ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
+         ->leftJoin('customers', 'customer_checkin.customer_id', '=', 'customers.id')
+         ->whereRaw('customer_checkin.start_time <= customer_checkin.stop_time') // Condition to ensure start_time <= stop_time
+         ->select(
+            'customer_checkin.id as id',
+            'customer_checkin.code as code',
+            'users.name as name',
+            'customers.customer_name AS customer_name',
+            DB::raw("DATE_FORMAT(customer_checkin.start_time, '%h:%i %p') AS start_time"),
+            DB::raw("DATE_FORMAT(customer_checkin.stop_time, '%h:%i %p') AS stop_time"),
+            DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
+            DB::raw("DATE_FORMAT(customer_checkin.updated_at, '%d/%m/%Y') as formatted_date")
+         )
+         ->orderBy('customer_checkin.created_at', 'DESC');
+      if ($this->start != null) {
+         // If end date is null, set it to the end of the current month
+         $this->end = $this->end ?? Carbon::now()->endOfMonth()->format('Y-m-d');
 
-            return $visits;
-        }
+         if (Carbon::parse($this->start)->isSameDay(Carbon::parse($this->end))) {
+            $query->where('customer_checkin.updated_at', 'LIKE', "%" . $this->start . "%");
+         } else {
+            $query->whereBetween('customer_checkin.updated_at', [$this->start, $this->end]);
+         }
+      }
 
-    public function getChecking($checking_code)
-    {
-        $result = SaleReport::where('checking_code', $checking_code)->first();
+      $visits = $query->paginate($this->perPage);
+      return $visits;
+   }
+   public function getChecking($checking_code)
+   {
+      $result = FormResponse::where('checking_code', $checking_code)->first();
 
-        if ($result) {
-            return [
-                "customer_ordered" => $result->customer_ordered,
-                "outlet_has_stock" => $result->outlet_has_stock,
-                "competitor_supplier" => $result->competitor_supplier,
-                "likely_ordered_products" => $result->likely_ordered_products,
-                "highest_sale_products" => $result->highest_sale_products,
-            ];
-        } else {
-            // Handle the case when no matching record is found
-            return [
-                "customer_ordered" => null,
-                "outlet_has_stock" => null,
-                "competitor_supplier" => null,
-                "likely_ordered_products" => null,
-                "highest_sale_products" => null,
-            ];
-        }
-    }
-    public function export()
-    {
-        // Fetch filtered data using the data method
-        $data = $this->data();
+      if ($result) {
+         return [
+            "interested_in_new_order" => $result->interested_in_new_order,
+            "pricing_accuracy" => $result->pricing_accuracy,
+            "progress_status" => $result->progress_status,
+            "product_visible" => $result->product_visible,
+            "image" => $result->image,
 
-        // Transform the $data collection to an array for export
-        $exportData = $data->map(function ($item) {
-            return [
-                'Sales Associate' => $item->name,
-                'Customer Name' => $item->customer_name,
-                'Start Time' => $item->start_time,
-                'Stop Time' => $item->stop_time,
-                'Duration' => $this->formatDuration($item->duration_seconds),
-                'Date' => $item->formatted_date,
-            ];
-        });
+         ];
+      } else {
+         // Handle the case when no matching record is found
+         return [
+            "interested_in_new_order" => null,
+            "pricing_accuracy" => null,
+            "progress_status" => null,
+            "product_visible" => null,
+            "image" => null,
+         ];
+      }
+   }
 
-        // Provide column headings for the Excel file
-        $headings = [
-            'Sales Associate',
-            'Customer Name',
-            'Start Time',
-            'Stop Time',
-            'Duration',
-            'Date',
-        ];
+   public function export()
+   {
+      // Fetch filtered data using the data method
+      $data = $this->data();
 
-        // Add the username as the first row in the exported data
-        $exportData->prepend([$this->username]);
+      // Transform the $data collection to an array for export
+      $exportData = $data->map(function ($item) {
+         return [
+            'Sales Associate' => $item->name,
+            'Customer Name' => $item->customer_name,
+            'Start Time' => $item->start_time,
+            'Stop Time' => $item->stop_time,
+            'Duration' => $this->formatDuration($item->duration_seconds),
+            'Date' => $item->formatted_date,
+         ];
+      });
 
-        // Create a collection with column headings and data
-        $exportData = collect([$headings])->merge($exportData);
+      // Provide column headings for the Excel file
+      $headings = [
+         'Sales Associate',
+         'Customer Name',
+         'Start Time',
+         'Stop Time',
+         'Duration',
+         'Date',
+      ];
 
-        return Excel::download(new CustomerViewVisitExport($exportData, $this->username), 'Visits_' . $this->username . '.xlsx');
-    }
-    // public function export()
-    // {
-    //     return Excel::download(new UserVisitsExport($this->data()), $this->username . 'visits.xlsx');
-    // }
+      // Add the username as the first row in the exported data
+      $exportData->prepend([$this->username]);
+
+      // Create a collection with column headings and data
+      $exportData = collect([$headings])->merge($exportData);
+
+      return Excel::download(new CustomerViewVisitExport($exportData, $this->username), 'Visits_' . $this->username . '.xlsx');
+   }
 }

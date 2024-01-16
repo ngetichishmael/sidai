@@ -13,6 +13,18 @@ use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
+   public function activeUsers(){
+      $checking = checkin::select('user_code')
+         ->groupBy('user_code');
+      $all = User::joinSub($checking, 'customer_checkin', function ($join) {
+         $join->on('users.user_code', '=', 'customer_checkin.user_code');
+      })->get();
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $all,
+      ]);
+   }
 //   public function getUsers(Request $request)
 //   {
 //      if ($request->account_type == 'RSM') {
@@ -121,8 +133,7 @@ class UsersController extends Controller
            }],'Customer')
               ->whereHas('user', function ($query) use ($user_code) {
                  $query->where('user_code', $user_code);
-              })
-              ->get();
+              })->get();
 
            return response()->json([
               "success" => true,

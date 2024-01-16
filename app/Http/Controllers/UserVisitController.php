@@ -28,12 +28,11 @@ class UserVisitController extends Controller
    public function show($user_code): Response | View
    {
       $name = DB::table('users')->where('users.user_code', $user_code)->pluck('name')->implode('');
-
       return view('livewire.visits.users.show', [
          'name' => $name,
          'user_code' => $user_code
       ]);
    }
 
-   
+
 }

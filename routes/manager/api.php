@@ -130,6 +130,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/all/user/leads/{user_code}', [CustomerController::class, 'userLeads']);
 
       Route::get('managers/all/user/visits/{user_code}', [UsersController::class, 'userVisits']);
+      Route::get('managers/all/active/users', [UsersController::class, 'activeUsers']);
       Route::get('managers/customer/visits/{customer_id}', [UsersController::class, 'customerVisits']);
       Route::get('managers/get/targets/{user_code}', [TargetController::class, 'getSalespersonTarget']);
    });
