@@ -30,11 +30,10 @@
                   <th width="1%">#</th>
                   <th>Sales Associate</th>
                   <th>Customer Name</th>
-                  <th>Start Time/Stop time</th>
-                  <th>Duration</th>
-                  <th>Date</th>
-                  <th>Order Status</th>
-                  <th>View</th>
+                  <th>Location</th>
+                  <th>Phone Contact</th>
+                  <th>Sales Generated(Amount)</th>
+                  <th>General Coments</th>
                   </thead>
                   <tbody>
                   @forelse ($visits as $count => $visit)
@@ -45,25 +44,9 @@
                         <td>{!! $count + 1 !!}</td>
                         <td>{!! $visit->name !!}</td>
                         <td>{!! $visit->customer_name !!}</td>
-                        <td class="cell-fit">
-                           <div class="badge" style="background-color: brown;color:white">{{ $visit->start_time ?? '' }}
-                           </div>
-                           <b> -</b>
-                           <div class="badge" style="background-color: brown;color:white">{{ $visit->stop_time ?? '' }}</div>
-                        </td>
-                        <td>
-                           <div class="badge" style="background-color: brown;color:white">
-                              {{ $this->formatDuration($visit->duration_seconds) ?? '' }}</div>
-                        </td>
-                        <td>{{ $visit->formatted_date }}</td>
-                        <td>{{ $checkingData['customer_ordered'] ?? 'No' }}</td>
-
-
-                        <td>
-                           <a data-toggle="collapse" data-target="#details{{ $visit->code }}" class="btn btn-sm" style="background-color:  brown; color: white; font-size: 14px; padding: 5px 10px;">
-                              <i data-feather="eye"></i>
-                           </a>
-                        </td>
+                        <td>{!! $visit->address !!}</td>
+                        <td>{!! $visit->phone_number !!}</td>
+                        <td>{!! $visit->amount ?? 0.00 !!}</td>
                      </tr>
                      <tr id="details{{ $visit->code }}" class="collapse">
                         <td colspan="8">

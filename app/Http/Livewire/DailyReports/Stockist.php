@@ -52,6 +52,7 @@ class Stockist extends Component
 
       $query = DB::table('users')
          ->where('customers.customer_name', 'LIKE', '%' . $this->search . '%')
+         ->where('users.customer_name', 'LIKE', '%' . $this->search . '%')
          ->join('customer_checkin', 'users.user_code', '=', 'customer_checkin.user_code')
          ->leftJoin('customers', 'customer_checkin.customer_id', '=', 'customers.id')
          ->leftJoin('orders', function ($join) {
@@ -67,7 +68,7 @@ class Stockist extends Component
             'customers.customer_name AS customer_name',
             'customers.phone_number',
             'customers.address',
-            'orders.',
+            'orders.prive_total AS amount',
             DB::raw("DATE_FORMAT(customer_checkin.start_time, '%h:%i %p') AS start_time"),
             DB::raw("DATE_FORMAT(customer_checkin.stop_time, '%h:%i %p') AS stop_time"),
             DB::raw("TIME_TO_SEC(TIMEDIFF(customer_checkin.stop_time, customer_checkin.start_time)) AS duration_seconds"),
