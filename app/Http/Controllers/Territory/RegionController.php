@@ -41,7 +41,7 @@ class RegionController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'name' => 'required',
+         'name' => 'required|unique:regions'
       ]);
       $region = Region::create([
          'name' => $request->name,
