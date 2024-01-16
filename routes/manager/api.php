@@ -48,6 +48,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
       Route::get('/manager/pending/orders', [OrdersController::class, 'pendingOrders']);
+      Route::get('/manager/all/vansales', [OrdersController::class, 'allVansales']);
       Route::get('/manager/customer/orders/{customer_id}', [OrdersController::class, 'customerOrders']);
       Route::get('/manager/pending/deliveries', [OrdersController::class, 'pendingDeriveries']);
       Route::get('/manager/customer/deliveries/{customer_id}', [OrdersController::class, 'customerDeriveries']);

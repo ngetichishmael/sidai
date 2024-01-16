@@ -70,6 +70,33 @@ class OrdersController extends Controller
           ]);
 
     }
+    public function allVansales(Request $request)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })
+       ->where('order_type','=','Van Sales')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
     public function customerOrders(Request $request, $customer)
     {
        $sidai=suppliers::find(1);
