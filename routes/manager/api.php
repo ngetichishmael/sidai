@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
 use App\Http\Controllers\Api\Manager\UserActivityController;
 use App\Http\Controllers\Api\Manager\UsersController;
-use App\Http\Controllers\Api\ReportsController;
+use App\Http\Controllers\Api\Manager\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -82,7 +82,7 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/preorder/today', [ReportsController::class, 'preOrderToday']);
       Route::get('/manager/preorder/last-week', [ReportsController::class, 'preOrderWeek']);
-      Route::get('/manager/preorder/last-month', [ReportsController::class, 'preOrderMonth']);
+      Route::get('/manager/preorder/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderMonth']);
 
       Route::get('/manager/order-fulfillment/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentToday']);
       Route::get('/manager/order-fulfillment/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentWeek']);
