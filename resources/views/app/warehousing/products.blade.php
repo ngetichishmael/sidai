@@ -23,17 +23,16 @@
       </div>
    </div>
       <div class="row mb-2">
-      <div class="col-md-8">
+      <div class="col-md-6">
 {{--         <h2 class="page-header"><i data-feather="list"></i> Inventory for Warehouse {!! $warehouse->name !!} </h2>--}}
       </div>
       @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
-         <div class="col-md-4">
-            <center>
-               <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm"><i class="fas fa-plus"></i> Add New Products</a>
-               <a href="{!! route('products.import') !!}" class="btn btn-success btn-sm"><i class="fas fa-sync-alt"></i> Import Products</a>
 
-            </center>
-         </div>
+            <div class="col-md-6">
+               <a href="{!! route('products.create') !!}" class="btn btn-success btn-sm ml-1"><i data-feather="plus"></i> Add New Products</a>
+               <a href="{!! route('products.import') !!}" class="btn btn-secondary btn-sm mr-1"><i data-feather="arrow-up-circle"></i> Import Products</a>
+               <a href="{{ route('products.bulkUpdateForm', ['warehouse'=>$warehouse->warehouse_code]) }}" class="btn btn-primary btn-sm"><i data-feather="refresh-cw"></i> Bulk Prices Updates</a>
+            </div>
       @endif
    </div>
    <!-- end breadcrumb -->

@@ -7,10 +7,13 @@ use App\Http\Controllers\Api\Manager\DashboardAppController;
 use App\Http\Controllers\Api\Manager\OrdersController;
 use App\Http\Controllers\Api\Manager\ProductsController;
 use App\Http\Controllers\Api\Manager\RequisitionController;
+use App\Http\Controllers\Api\Manager\RouteSchedulesController;
 use App\Http\Controllers\Api\Manager\RoutesController;
 use App\Http\Controllers\Api\Manager\SendNotificationController;
 use App\Http\Controllers\Api\Manager\TerritoryInformationsController;
+use App\Http\Controllers\Api\Manager\UserActivityController;
 use App\Http\Controllers\Api\Manager\UsersController;
+use App\Http\Controllers\Api\Manager\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +47,12 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/all/regions', [TerritoryInformationsController::class, 'getAllTerritories']);
       Route::get('/manager/all/orders', [OrdersController::class, 'allOrders']);
+      Route::get('/manager/pending/orders', [OrdersController::class, 'pendingOrders']);
+      Route::get('/manager/all/vansales', [OrdersController::class, 'allVansales']);
+      Route::get('/manager/customer/orders/{customer_id}', [OrdersController::class, 'customerOrders']);
+      Route::get('/manager/pending/deliveries', [OrdersController::class, 'pendingDeriveries']);
+      Route::get('/manager/customer/deliveries/{customer_id}', [OrdersController::class, 'customerDeriveries']);
+      Route::get('/manager/pending/distributor/orders', [OrdersController::class, 'pendingDistributorOrders']);
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
 
       Route::post('/manager/suspend/user', [UsersController::class, 'suspendUser']);
@@ -65,15 +74,15 @@ Route::group(['namespace' => 'Api'], function () {
 
       Route::get('/manager/routes/data', [RoutesController::class, 'getRoutes']);
 
-      Route::get('/manager/reports/data', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'reports']);
+      Route::get('/manager/reports/data', [ReportsController::class, 'reports']);
 
 
-      Route::get('/manager/vansales/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesToday']);
-      Route::get('/manager/vansales/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesWeek']);
-      Route::get('/manager/vansales/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'vanSalesMonth']);
+      Route::get('/manager/vansales/today', [ReportsController::class, 'vanSalesToday']);
+      Route::get('/manager/vansales/last-week', [ReportsController::class, 'vanSalesWeek']);
+      Route::get('/manager/vansales/last-month', [ReportsController::class, 'vanSalesMonth']);
 
-      Route::get('/manager/preorder/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderToday']);
-      Route::get('/manager/preorder/last-week', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderWeek']);
+      Route::get('/manager/preorder/today', [ReportsController::class, 'preOrderToday']);
+      Route::get('/manager/preorder/last-week', [ReportsController::class, 'preOrderWeek']);
       Route::get('/manager/preorder/last-month', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'preOrderMonth']);
 
       Route::get('/manager/order-fulfillment/today', [\App\Http\Controllers\Api\Manager\ReportsController::class, 'orderFulfillmentToday']);
@@ -109,5 +118,13 @@ Route::group(['namespace' => 'Api'], function () {
       Route::get('managers/products/{sku}/edit', [ProductsController::class, 'edit']);
       Route::post('managers/products/{sku}/restock', [ProductsController::class, 'restock']);
       Route::get('managers/products/{sku}/details', [ProductsController::class, 'details']);
+     //activities
+      Route::get('managers/monthly/activites', [UserActivityController::class, 'index']);
+
+      //schedules
+      Route::get('managers/all/route/schedules', [RouteSchedulesController::class,'index']);
+
+      Route::get('managers/all/customer/visits', [UsersController::class, 'visits']);
+      Route::get('managers/customer/visits/{customer_id}', [UsersController::class, 'customerVisits']);
    });
 });

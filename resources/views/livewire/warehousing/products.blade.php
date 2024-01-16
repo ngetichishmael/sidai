@@ -62,9 +62,9 @@
                               </button>
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                  <a href="{{ route('products.restock', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #6df16d;font-weight: bold"><i data-feather="plus"></i> &nbsp;Restock</a>
-                                 @if (Auth::user()->account_type == "Admin" || Auth::user()->account_type ==="NSM")
+{{--                                 @if (Auth::user()->account_type == "Admin" || Auth::user()->account_type ==="NSM")--}}
                                     <a href="{{ route('products.view', $product->id) }}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="plus"></i>&nbsp; Update Price</a>
-                                 @endif
+{{--                                 @endif--}}
                                     <a href="{{ route('product.restock.history', [$product->id, $product->warehouse_code]) }}" type="button" class="dropdown-item btn btn-sm" style="color: #7cc7e0; font-weight: bold"><i data-feather="plus"></i>&nbsp;Restock History</a>
                               </div>
                            </div>

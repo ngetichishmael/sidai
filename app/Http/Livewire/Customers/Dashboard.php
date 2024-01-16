@@ -9,6 +9,7 @@ use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
 use App\Models\warehouse_assign;
+use App\Models\warehousing;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -52,9 +53,9 @@ class Dashboard extends Component
     {
 
         $aggregate = array();
-        if ($this->user->account_type === "RSM" && empty($this->filter())) {
-            return $aggregate;
-        }
+//        if ($this->user->account_type === "RSM" && empty($this->filter())) {
+//            return $aggregate;
+//        }
         $searchTerm = '%' . $this->search . '%';
         $regionTerm = '%' . $this->regional . '%';
         $aggregate = customers::with('Creator')
@@ -81,10 +82,9 @@ class Dashboard extends Component
                     });
             })
             ->where('customer_type', 'like', 'normal')
-            ->where('approval', 'LIKE', 'Approved');
-
-       if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-            $aggregate->whereIn('regions.id', $this->filter());
+           ->where('approval', 'LIKE', ['Approved','approved']);
+       if ($this->user->account_type === "RSM" || strtolower($this->user->account_type) === "shop-attendee") {
+            $aggregate->whereIn('customers.id', $this->filter());
         }
 //       info($this->selectedGroup);
         if ($this->selectedGroup) {
@@ -93,6 +93,7 @@ class Dashboard extends Component
         if ($this->startDate && $this->endDate) {
             $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
         }
+
        $fstatus = 'Unknown';
        if ($this->selectedStatus === null || $this->selectedStatus ==='All' || empty($this->selectedStatus)) {
           // Define conditions for each status
@@ -120,16 +121,25 @@ class Dashboard extends Component
              ],
           ];
           // Check each status condition and set $fstatus
-          foreach ($statusConditions as $status => $conditions) {
-             if ($aggregate->where(function ($query) use ($conditions) {
+          $aggregate->where(function ($query) use ($statusConditions) {
+             foreach ($statusConditions as $fstatus => $conditions) {
+                $query->orWhere(function ($subQuery) use ($conditions) {
                    foreach ($conditions as $condition) {
-                      $query->where(...$condition);
+                      $subQuery->where(...$condition);
                    }
-                })->exists()) {
-                $fstatus = $status;
-                break;
+                });
              }
-          }
+          });
+//          foreach ($statusConditions as $status => $conditions) {
+//             if ($aggregate->where(function ($query) use ($conditions) {
+//                   foreach ($conditions as $condition) {
+//                      $query->where(...$condition);
+//                   }
+//                })->exists()) {
+//                $fstatus = $status;
+//                break;
+//             }
+//          }
        } else {
           //status filter
           if ($this->selectedStatus === 'active') {
@@ -154,6 +164,7 @@ class Dashboard extends Component
              $aggregate->whereNull('customers.last_order_date')
                 ->where('customers.created_at', '<', Carbon::now()->subDays(30));
           }
+//          dd("selected status  ",$aggregate->where('customer_name', 'laikipia pharmacy')->first());
        }
        $aggregate->select(
           'customers.id as id',
@@ -237,11 +248,10 @@ class Dashboard extends Component
                    $userQuery->where('name', 'like', $searchTerm);
                 });
           })
-          ->where('customer_type', 'like', 'normal')
-          ->where('approval', 'LIKE', 'Approved');
-
-       if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
-          $aggregate->whereIn('regions.id', $this->filter());
+          ->where('customer_type', 'LIKE', 'normal')
+          ->where('approval', 'LIKE', ['Approved','approved']);
+       if ($this->user->account_type === "RSM" || strtolower($this->user->account_type) === "shop-attendee") {
+          $aggregate->whereIn('customers.id', $this->filter());
        }
        if ($this->selectedGroup) {
           $aggregate->where('customer_group', $this->selectedGroup);
@@ -339,26 +349,29 @@ class Dashboard extends Component
        $array = [];
         $user = Auth::user();
         $user_code = $user->region_id;
-        if (!$user->account_type === 'RSM' || $user->account_type ==="Shop-Attendee") {
+        if (!$user->account_type === 'RSM' || !$user->account_type ==="Shop-Attendee") {
             return $array;
         }
        if ($user->account_type ==="Shop-Attendee"){
-          $region=warehouse_assign::where('manager', $user->user_code)->first();
-          if ($region->isEmpty()) {
+          $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
+          if (empty($warehouse)) {
              return $array;
           }
+          $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
           $customers = customers::whereIn('region_id', $region)->pluck('id');
+          return $customers->toArray();
        }else {
           $regions = Region::where('id', $user_code)->pluck('id');
-          if ($regions->isEmpty()) {
+          if (empty($regions)) {
              return $array;
           }
           $customers = customers::whereIn('region_id', $regions)->pluck('id');
+          return $customers->toArray();
        }
-        if ($customers->isEmpty()) {
-            return $array;
-        }
-        return $customers->toArray();
+       if (empty($customers)) {
+          return $array;
+       }
+       return $customers->toArray();
     }
     public function updatedRegional()
     {

@@ -28,14 +28,26 @@ class allocations extends Model
    }
    public function scopePeriod($query, $start = null, $end = null)
    {
+      if ($start !== null && $start === $end) {
+         $query->whereDate('created_at', '=', $start);
+      } else {
+         $monthStart = Carbon::now()->startOfMonth();
+         $monthEnd = Carbon::now()->endOfMonth();
+         $from = $start ?? $monthStart;
+         $to = $end ?? $monthEnd;
+         $query->whereBetween('created_at', [$from, $to]);
+      }
+   }
+   public function scopePeriod1($query, $start = null, $end = null)
+   {
       if ($start === $end && $start !== null) {
-         $query->whereLike(['updated_at'], (string)$start);
+         $query->whereLike(['created_at'], (string)$start);
       } else {
          $monthStart = Carbon::now()->startOfMonth()->format('Y-m-d');
          $monthEnd = Carbon::now()->endOfMonth()->format('Y-m-d');
          $from = $start == null ? $monthStart : $start;
          $to = $end == null ? $monthEnd : $end;
-         $query->whereBetween('updated_at', [$from, $to]);
+         $query->whereBetween('created_at', [$from, $to]);
       }
    }
 }

@@ -90,14 +90,13 @@
                         <th>Outlet</th>
                         <th>Added By</th>
                         <th>Status</th>
-                        <th>Order Status</th>
                         <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
                         @forelse($contacts as $count => $contact)
                             <td>{{ $count + 1 }}</td>
-                            <td><a href="{{ route('creditor.details', $contact->id) }}" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" data-bs-placement="right" data-bs-title="Click to view customer's details" >{{ $contact->customer_name }}</a></td>
+                            <td style="color: #0a6aa1"><a href="{{ route('creditor.details', $contact->id) }}" data-bs-toggle="tooltip" style="color: #0a6aa1" data-bs-custom-class="custom-tooltip" data-bs-placement="right" data-bs-title="Click to view customer's details" >{{ $contact->customer_name }}</a></td>
                             <td>{{ $contact->customer_number }}</td>
                             <td class="cell-fit">
                                 {!! $contact->region_name !!},
