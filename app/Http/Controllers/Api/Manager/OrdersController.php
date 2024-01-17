@@ -735,7 +735,7 @@ class OrdersController extends Controller
         return $arrayData;
     }
     public function payments(Request $request){
-       $payments = order_payments::with(['user'=> function($query){$query->select('name','id','phone_number','user_code')->get();},'orders' => function ($query) {
+       $payments = order_payments::with(['user'=> function($query){$query->select('name','id','phone_number','user_code')->get();},'order' => function ($query) {
           $query->with(['Customer'=> function ($query){$query->select('customer_name','id')->get();}])->select('order_code', 'order_id');
        }])->get();
        return response()->json([
