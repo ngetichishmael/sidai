@@ -61,7 +61,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/suspend/user', [UsersController::class, 'suspendUser']);
       Route::post('/manager/activate/user', [UsersController::class, 'activateUser']);
 
-      Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource'])->name('manager.orders');
+      Route::get('/manager/simplified/orders', [OrdersController::class, 'allOrdersUsingAPIResource']);
       Route::get('/manager/customers/orders', [OrdersController::class, 'allOrderForCustomers']);
       Route::get('/manager/allocation/data', [OrdersController::class, 'allocationItems']);
       Route::post('/manager/order/approval', [OrdersController::class, 'orderApproval']);
@@ -69,7 +69,7 @@ Route::group(['namespace' => 'Api'], function () {
       Route::post('/manager/allocation/allocate', [OrdersController::class, 'allocateOrders']);
       Route::post('/manager/orders/allocation', [OrdersController::class, 'allocateOrders2']);
 
-      Route::get('/manager/orders/transaction', [OrdersController::class, 'transaction'])->name('manager.transaction');
+      Route::get('/manager/orders/transaction', [OrdersController::class, 'payments']);
       Route::post('/manager/orders/custom/transaction', [OrdersController::class, 'customTransaction']);
 
       Route::get('/manager/dashboard/data', [DashboardAppController::class, 'dashboard']);
