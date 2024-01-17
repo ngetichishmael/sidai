@@ -59,19 +59,23 @@
                       </center>
                    </div>
                    <div>
+                      @php
+                         $test = json_decode($test, true);
+                     @endphp
                       <span class="text-sm text-grey-m2 align-middle"><strong>To: </strong></span>
-                      <span class="text-600 text-110 text-blue align-middle">{{ $test['customer_name'] ?? ''}} {{$test}}</span>
-                   </div>
-                   <div>
-                      <span class="text-sm text-grey-m2 align-middle"><strong>Sales Person: </strong></span>
-                      <span class="text-600 text-110 text-blue align-middle">{{$order->User->name ?? ''}}</span>
+                      <span class="text-600 text-110 text-blue align-middle">{{ $test['customer_name'] ?? '' }}</span>
                    </div>
                    <div class="text-grey-m2">
                       <div class="my-1">
-                         <strong> Address, <span class="text-blue">{!! $test['address'] ?? '' !!}</span></strong>
+                         <strong> Address: <span class="text-blue">{!! $test['address'] ?? '' !!}</span></strong>
                       </div>
-                      <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
+                      <div class="my-1"> <strong>Phone: </strong> <i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b
                             class="text-600">(+254){!! $test['phone_number'] ?? '' !!}</b></div>
+                   </div>
+                   <br/>
+                   <div>
+                      <span class="text-sm text-grey-m2 align-middle"><strong>Sales Person: </strong></span>
+                      <span class="text-600 text-110 text-blue align-middle">{{$order['user']['name'] ?? ''}}</span>
                    </div>
                 </div>
                 <div class="col-lg-4 col-sm-5 ml-auto">
@@ -84,10 +88,11 @@
                 <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                       class="text-600 text-90"><strong>Order Code:</strong></span> #{!! $order['order_code'] ?? ''!!}</div>
                 <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                      class="text-600 text-90"><strong>Order Date:</strong></span> {!! $order['created_at']  ?? now()!!}</div>
+                      class="text-600 text-90"><strong>Order Date:</strong></span> {!! \Carbon\Carbon::parse($order['created_at'])->format('d/m/y H:i') ?? now() !!}
+                </div>
                 <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
                       class="text-600 text-90"><strong>Status:</strong></span> <span
-                      class="badge badge-warning badge-pill px-25 text-black-50">{{$order_status}}</span>
+                      class="badge badge-warning badge-pill px-25 text-black-50">{{$order_status ?? 'Pending Delivery'}}</span>
                 </div>
              </div>
           </div>
