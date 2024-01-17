@@ -132,6 +132,7 @@ class Warehouse extends Component
    {
       return Excel::download(new WarehouseExport, 'warehouses.xlsx');
    }
+   
    public function allocated($warehouse_code)
    {
       $product_informations = product_information::where('warehouse_code', $warehouse_code)->select('id')->get();
@@ -140,8 +141,10 @@ class Warehouse extends Component
       if ($this->user->account_type === 'RSM') {
          $query->whereIn('order_code', $this->filter());
       }
-      $query->whereIn('productID', $product_informations)->sum('quantity');
-      return $order_items ?? 0;
+
+      $totalAllocated = $query->whereIn('productID', $product_informations)->sum('quantity');
+
+      return $totalAllocated;
    }
    public function filter(): array
    {

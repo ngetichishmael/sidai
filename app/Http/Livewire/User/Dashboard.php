@@ -13,6 +13,7 @@ class Dashboard extends Component
    {
       $usercount = User::whereNotNull('user_code')
          ->where('route_code', '=', Auth::user()->route_code)
+         ->where('account_type', '!=', 'Customer')
          ->select('account_type', DB::raw('COUNT(*) as count'))
          ->groupBy('account_type')
          ->get();

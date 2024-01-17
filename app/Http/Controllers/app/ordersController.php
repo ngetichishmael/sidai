@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use PDF;
 
 class ordersController extends Controller
 {
@@ -90,12 +91,13 @@ class ordersController extends Controller
         $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
         $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
         $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
-        $id = $Customer_id->customerID;
-        $test = customers::where('id', $id)->first();
+        $test = customers::where('id', $Customer_id->customerID)->first();
         // dd($test->id);
         $payment = order_payments::where('order_id', $order->order_code)->first();
         // dd($payment);
-        return view('app.orders.distributorsdetails', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+       $di=suppliers::find($order->supplierID);
+       $distributor=$di->name;
+        return view('app.orders.distributorsdetails', compact('order', 'distributor', 'items', 'test', 'payment', 'sub', 'total'));
     }
     public function pendingdetails($code)
     {
@@ -631,4 +633,27 @@ class ordersController extends Controller
 
         return redirect()->route('delivery.index');
     }
+
+   public function generatePDF(Request $request)
+   {
+      $order_status='';
+      if(strtolower($request->order_status) == "pending delivery") {
+         $order_status="Pending Order";
+      }elseif(strtolower($request->order_status) == "complete delivery" || strtolower($request->order_status) == "delivered") {
+         $order_status="Order Derivered";
+      } else { $order_status=$request->order_status; }
+      $data = [
+         'test' => $request->input('test'),
+         'order' => json_decode($request->input('order'), true),
+         'items' => json_decode($request->input('items'), true),
+         'sub' => $request->input('sub'),
+         'total' => $request->input('total'),
+         'order_status' => $order_status,
+         'distributor' => $request->distributor
+      ];
+
+      $pdf = PDF::loadView('Exports.distributororderdetails_pdf', $data);
+
+      return $pdf->download('distributororderdetails_pdf.pdf');
+   }
 }

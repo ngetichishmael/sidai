@@ -35,6 +35,7 @@ Route::middleware('web')->group(function () {
    Route::get('dashboard/users-summary', 'app\sokoflowController@user_summary')->name('app.dashboard.user.summary');
       Route::get('dashboard/allocated', ['uses' => 'app\sokoflowController@allocated', 'as' => 'dashboard.allocated']);
       Route::get('dashboard/allocated/users', ['uses' => 'app\sokoflowController@allocatedusers', 'as' => 'dashboard.allocated.users']);
+      Route::get('dashboard.allocations.items/{allocation_code}', ['uses' => 'app\sokoflowController@allocatedItems', 'as' => 'dashboard.allocations.items']);
 
 //      Route::get('/users',App\Http\Controllers\Chat\CreateChat::class)->name('users');
 //      Route::get('/chat{key?}',Main::class)->name('chat');
@@ -321,13 +322,13 @@ Route::middleware('web')->group(function () {
 
 //      Route::group(['middleware' => ['auth', \App\Http\Middleware\CheckUserRole::class]], function () {
          Route::get('reports', 'app\ReportsController@reports')->name('users.reports');
-         Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
-         Route::get('reports/Van-sales', 'app\ReportsController@reports')->name('vansales.reports');
+         // Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
+         Route::get('reports/employees', 'app\ReportsController@reports')->name('employee.reports');
          Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
          Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
          Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
-         Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
+         // Route::get('reports/visitation-report', 'app\ReportsController@reports')->name('visitation.reports');
          Route::get('reports/targets-report', 'app\ReportsController@reports')->name('target.reports');
          Route::get('reports/payments-report', 'app\ReportsController@reports')->name('payments.reports');
          Route::get('reports/distributors', 'app\ReportsController@reports')->name('distributor.reports');
@@ -446,6 +447,7 @@ Route::middleware('web')->group(function () {
    Route::post('orders/reallocate', ['uses' => 'app\ordersController@reAllocateOrders', 'as' => 'order.create.reallocateorders']);
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
+      Route::get('/generatePdf', ['uses' => 'app\ordersController@generatePDF', 'as' => 'generatePdf']);
 
    /* ===  survey === */
    /* === category === */

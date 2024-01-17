@@ -87,13 +87,12 @@ class SidaiCustomers extends Component
       else{
          return $array;
       }
-//      if (!$user->account_type === 'RSM') {
-//         return $array;
-//      }
+
    }
-    public function export()
+   public function export()
    {
-      return Excel::download(new CustomersExport, 'Customers.xlsx');
+      $customers = $this->data(); // Retrieve the data you want to export
+      return Excel::download(new CustomersExport($customers), 'Customers.xlsx');
    }
 }
 

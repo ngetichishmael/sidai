@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\activity_log;
 use App\Models\order_payments;
 use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 // use Illuminate\Support\Str;
 // use App\Models\order_payments as Payment;
@@ -25,6 +28,14 @@ class PaymentController extends Controller
       $paymentMethod = $request->get('paymentMethod');
       $balance = $checking_code->balance - $amount;
       $ID = $request->user()->id;
+       // Check if the transactionID already exists
+    $existingPayment = order_payments::where('reference_number', $transactionID)->first();
+    if ($existingPayment) {
+        return response()->json([
+            "success" => false,
+            "message" => "TransactionID already exists",
+        ]);
+    }
 
       order_payments::create([
          'amount' => $amount,
@@ -47,6 +58,16 @@ class PaymentController extends Controller
       DB::table('sales_targets')
          ->where('user_code', $user_code)
          ->increment('AchievedSalesTarget', $amount);
+      $ativity_rand = Str::random(20);
+      $activityLog = new activity_log();
+      $activityLog->activity = 'Order Payment';
+      $activityLog->user_code = $user_code ?? auth()->user()->user_code;
+      $activityLog->section = 'Mobile';
+      $activityLog->action = 'Sales order Payment made by' . Auth::user()->name . ' order code  ' . $orderID.' Status '.$payment_status ?? '';
+      $activityLog->userID = auth()->user()->id;
+      $activityLog->activityID = $ativity_rand;
+      $activityLog->ip_address = request()->ip();
+      $activityLog->save();
 
       return response()->json([
          "success" => true,

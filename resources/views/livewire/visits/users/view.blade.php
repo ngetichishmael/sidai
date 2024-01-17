@@ -44,8 +44,7 @@
                         <th width="1%">#</th>
                         <th>Sales Associate</th>
                         <th>Customer Name</th>
-                        <th>Start Time</th>
-                        <th>Stop Time</th>
+                        <th>Start Time/Stop time</th>
                         <th>Duration</th>
                         <th>Date</th>
                     </thead>
@@ -54,9 +53,32 @@
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $visit->name !!}</td>
                             <td>{!! $visit->customer_name !!} </td>
-                            <td> {{ $visit->start_time }}</td>
-                            <td>{{ $visit->stop_time }}</td>
-                            <td>{{ $visit->duration }}</td>
+                            <td class="cell-fit">
+                                <div class="badge badge-pill badge-secondary" style="color: white; background-color:brown">{{ $visit->start_time ?? '' }}
+                                </div>
+                                <b> -</b>
+                                <div class="badge badge-pill badge-secondary" style="color: white; background-color:brown">{{ $visit->stop_time ?? '' }}</div>
+                            </td>
+                            
+                            <td>
+                                @if (isset($visit->stop_time))
+                                    @php
+                                        $start = \Carbon\Carbon::parse($visit->start_time);
+                                        $stop = \Carbon\Carbon::parse($visit->stop_time);
+                                        $durationInSeconds = $start->diffInSeconds($stop);
+                                    @endphp
+
+                                    @if ($durationInSeconds < 60)
+                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ $durationInSeconds }} secs</div>
+                                    @elseif ($durationInSeconds < 3600)
+                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 60) }} mins</div>
+                                    @else
+                                        <div class="badge badge-pill badge-dark" style="color: white;background-color:brown">{{ floor($durationInSeconds / 3600) }} hrs</div>
+                                    @endif
+                                @else
+                                    <span class="badge badge-pill badge-light-info mr-1">Visit Active</span>
+                                @endif
+                            </td>
                             <td>{{ $visit->formatted_date }}</td>
 
                             </tr>

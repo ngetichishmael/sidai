@@ -29,7 +29,7 @@
                <select wire:model="statusFilter" class="form-control">
                   <option value="">All Statuses</option>
                   <option value="Pending Delivery">Pending Orders</option>
-                  <option value="Complete Delivery">Complete Delivery</option>
+                  <option value="Complete Delivery">Order Delivered</option>
                   <option value="Waiting acceptance">Waiting acceptance</option>
                   <option value="Partially Delivered">Partially Delivered</option>
                </select>
@@ -88,7 +88,7 @@
 {{--                                    {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>--}}
                                 <td title="{{ $order->User->name ?? null }}">
                                     {{ Str::limit($order->User->name ?? null, 20) }}</td>
-                                <td>{{ number_format($order->price_total) }}</td>
+                                <td>{{ number_format(floatval($order->price_total)) }}</td>
 {{--                                <td>{{ number_format($order->balance) }}</td>--}}
                                <td>{{$order->created_at}}</td>
                                @php
@@ -97,8 +97,8 @@
 
                                @if ($orderStatus == 'pending delivery')
                                   <td class="pending-order">Pending Order</td>
-                               @elseif ($orderStatus == 'complete delivery')
-                                  <td class="delivered-order">{{ $order->order_status }}</td>
+                               @elseif ($orderStatus == 'complete delivery' || $orderStatus == 'DELIVERED')
+                                  <td class="delivered-order">Delivered</td>
                                @elseif ($orderStatus == 'waiting acceptance')
                                   <td class="waiting-acceptance">{{ $order->order_status }}</td>
                                @elseif ($orderStatus == 'partially delivery')

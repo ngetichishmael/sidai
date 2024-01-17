@@ -113,7 +113,7 @@
    </section>
    <section class="app-user-list" id="buyingCustomersSection">
       <div class="card">
-         <h5 class="card-header">Buying Customers</h5>
+         <h5 class="card-header">Recent Customers</h5>
          <div class="pt-0 pb-2 d-flex justify-content-between align-items-center mx-50 row">
             <div class="col-md-2">
                <div class="form-group">

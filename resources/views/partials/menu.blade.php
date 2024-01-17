@@ -1,4 +1,4 @@
-<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
+<div class="main-menu menu-fixed menu-light menu-accordion menu-shadow mb-5" data-scroll-to-active="true">
 
     <div class="navbar-header mb-3 mt-0 text-center">
         <ul class="nav navbar-nav flex-row ">
@@ -11,8 +11,8 @@
         </ul>
 
     </div>
-    <div class="shadow-bottom"></div>
-    <div class="main-menu-content">
+    <div class="shadow-bottom "></div>
+    <div class="main-menu-content mb-3">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class=" nav-item {!! Nav::isRoute('app.dashboard') !!}">
                 <a class="d-flex align-items-center" href="{!! route('app.dashboard') !!}">
@@ -175,6 +175,23 @@
 {{--                    </ul>--}}
 
                 </li>
+                @haspermissionto(['manager_dashboard', 'admin_dashboard'])
+           @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
+           <li class="nav-item {!! Nav::isResource('visits') !!}">
+            <a class="d-flex align-items-center" href="#"><i data-feather='truck'></i><span
+                    class="menu-title text-truncate" data-i18n="Invoice">Visits</span></a>
+            <ul class="menu-content">
+                <li><a class="nav-item {!! Nav::isResource('UsersVisits') !!} d-flex align-items-center"
+                        href="{!! route('UsersVisits') !!}"><i data-feather="user" style="color:#ffffff;"></i><span
+                            class="menu-item text-truncate">Users</span></a>
+                </li>
+                <li><a class="d-flex align-items-center" href="{!! route('CustomerVisits') !!}"><i data-feather="users"
+                            style="color:#ffffff;"></i><span class="menu-item text-truncate">Customers</span></a>
+                </li>
+            </ul>
+        </li>
+        @endif
+        @endhaspermissionto
                 <li class="nav-item {!! Nav::isResource('target') !!}">
                     <a class="d-flex align-items-center" href="#"><i data-feather="target"></i><span
                             class="menu-title text-truncate" data-i18n="Invoice">Target</span></a>
@@ -315,13 +332,14 @@
               @endif
               @endhaspermissionto
            @haspermissionto(['manager_dashboard', 'admin_dashboard'])
-           <li class="nav-item {!! Nav::isResource('activity')!!}">
+           <li class="nav-item {!! Nav::isResource('activity')!!} mb-5">
 <a class="d-flex align-items-center" href="{!! route('activity.index') !!}">
 <i data-feather='activity'></i><span class="menu-title text-truncate" data-i18n="Todo"> Activity Logs </span>
 </a>
 </li>
-           @endhaspermissionto
+              @endhaspermissionto
 </ul>
 </div>
-
+   <div class="md-5">
+   </div>
 </div>

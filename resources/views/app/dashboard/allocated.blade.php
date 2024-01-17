@@ -6,7 +6,7 @@
 @endsection
 @section('content')
 
-   @livewire('dashboard.allocations')
+   @livewire('dashboard.allocations', ['allocation_code' => $allocationCode])
 @endsection
 @section('scripts')
    <link rel="stylesheet" type="text/css" href="{!! asset('app-assets/vendors/js/charts/apexcharts.min.js') !!}">

@@ -45,7 +45,8 @@ class customersController extends Controller
     public function index(Request $request, $businessCode)
     {
         $user = $request->user();
-        $query = customers::whereNotNull('latitude')
+
+        $query = customers::where('region_id', $request->user()->region_id ?? $request->user()->route_code)->whereNotNull('latitude')
             ->whereNotNull('longitude')
             ->orderBy('id', 'DESC')
             ->get();
@@ -118,7 +119,7 @@ class customersController extends Controller
             $activityLog = new activity_log();
             $activityLog->activity = 'Creditor Request';
             $activityLog->user_code = auth()->user()->user_code;
-            $activityLog->section = 'Requesting Creditor Approval on mobile';
+            $activityLog->section = 'Mobile';
             $activityLog->action = 'User ' . auth()->user()->name . ' requested on behalf of  customer ' . $customer->customer_name . ' to become sidai creditor';
             $activityLog->userID = auth()->user()->id;
             $activityLog->activityID = $random;
@@ -274,8 +275,7 @@ class customersController extends Controller
                 "errors" => $validator->errors(),
             ], 403);
         }
-
-        $image_path = $request->file('image')->store('app-assets/images', 'public');
+       $image_path = $request->file('image')->store('app-assets/images', 'public');
        $customerNameWithoutSpaces = str_replace(' ', '', $request->customer_name);
        $emailData = $request->email ?? $customerNameWithoutSpaces . Str::random(3) . '@gmail.com';
        $route = Area::with('subregion.region')->find($request->route_code);
@@ -346,7 +346,7 @@ class customersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Adding customer information';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Customer information added on mobile';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'User ' . auth()->user()->name . ' added customer ' . $customer->customer_name . ' information';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;
@@ -492,7 +492,7 @@ class customersController extends Controller
         $activityLog = new activity_log();
         $activityLog->activity = 'Editing customer information';
         $activityLog->user_code = auth()->user()->user_code;
-        $activityLog->section = 'Customer information update ';
+        $activityLog->section = 'Mobile';
         $activityLog->action = 'User ' . auth()->user()->name . ' updated customer ' . $customer->customer_name . ' information';
         $activityLog->userID = auth()->user()->id;
         $activityLog->activityID = $random;

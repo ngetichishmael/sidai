@@ -46,9 +46,9 @@ class RegionalExport implements FromCollection, WithHeadings, WithMapping
         return [
             $region->id,
             $region->name,
-            $this->orders($region->id) ?? 0,
-            $this->customers($region->id) ?? 0,
-            $this->deliveries($region->id) ?? 0,
+            $this->orders($region->id) ?? '0',
+            $this->customers($region->id) ?? '0',
+            $this->deliveries($region->id) ?? '0',
         ];
     }
     public function customers($id)

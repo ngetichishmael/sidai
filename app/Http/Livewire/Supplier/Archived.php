@@ -15,6 +15,7 @@ protected $paginationTheme = 'bootstrap';
 public function render()
 {
    $suppliers = suppliers::where('status', 'Inactive')
+      ->where('id', '!=', 1)
       ->OrderBy('suppliers.id','DESC')
       ->paginate(15);
    return view('livewire.supplier.archived',compact('suppliers'));

@@ -34,6 +34,20 @@ class customers extends Model
    {
       return $this->hasMany(Orders::class, 'customerID', 'id');
    }
+   public function getLastOrderDateAttribute()
+   {
+      return $this->orders()
+         ->latest('created_at')
+         ->pluck('created_at')
+         ->first();
+   }
+   public function lastOrderDate()
+   {
+      return $this->hasMany(Orders::class, 'customerID', 'id')
+         ->latest('created_at')
+         ->pluck('created_at')
+         ->first();
+   }
 
    public function number_visited()
    {

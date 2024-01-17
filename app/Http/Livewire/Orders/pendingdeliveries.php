@@ -35,7 +35,7 @@ class pendingdeliveries extends Component
    public function render()
    {
       $searchTerm = '%' . $this->search . '%';
-      $sidai=suppliers::where('name', 'Sidai')->first();
+      $sidai=suppliers::find(1);
       $orders =  Delivery::whereNotIn('delivery_status', ['Pending Delivery', 'Partial delivery'])
          ->where(function ($query) use ($sidai) {
             $query->whereHas('Order', function ($subQuery) use ($sidai) {

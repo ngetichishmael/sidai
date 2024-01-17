@@ -1,61 +1,62 @@
 <div>
-    <div class="mb-1 row">
-        {{-- <div class="col-md-3">
-            <label for="">Filter By Region</label>
-            <select wire:model="regional" class="form-control">`
-                <option value="" selected>select</option>
-                @foreach ($regions as $region)
-                    <option value="{{ $region->name }}">{{ $region->name }}</option>
-                @endforeach
-            </select>
-        </div> --}}
-        <div class="col-md-3">
-            <label for="">Flter By Group</label>
-            <select wire:model="group" class="form-control">
-                <option value="" selected>select</option>
-                @foreach ($groups as $group)
-                    <option value="{{ $group->group_name }}">{{ $group->group_name }}</option>
-                @endforeach
-
-            </select>
+    <div>
+        <div class="row mb-1 mt-1">
+            <div class="col-md-3 col-sm-4">
+                <label for="">Start Date</label>
+                <input wire:model="startDate" type="date" class="form-control">
+            </div>
+            <div class="col-md-3 col-sm-4">
+                <label for="">End Date</label>
+                <input wire:model="endDate" type="date" class="form-control">
+            </div>
+            <div class="col-3"></div>
+            <div class="col-md-3 mb-2">
+                <label for="">Export Reports:</label>
+                <div class="dropdown">
+                    <button style="background-color: #B6121B;color:white" class="mr-2 btn btn-md dropdown-toggle"
+                        type="button" id="dropdownMenuButton" data-bs-trigger="click" aria-haspopup="true"
+                        aria-expanded="false" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="13">
+                        Export
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <a class="dropdown-item" wire:click="export">Excel</a>
+                        <a class="dropdown-item" wire:click="exportCSV"> CSV</a>
+                        <a class="dropdown-item" wire:click="exportPDF">PDF</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3">
-            <label for="">Search by name, route, region</label>
-            <input type="text" wire:model="search" class="form-control"
-                placeholder="Enter customer name, email address or phone number">
+        <div class="mb-1 row">
+            <div class="col-md-6">
+                <label for="">Search by user name, route, region</label>
+                <input type="text" wire:model="search" class="form-control"
+                    placeholder="Enter customer name, created by, subregion, town, region">
+            </div>
+            <div class="col-md-3">
+                <label for="">Flter By Group</label>
+                <select wire:model="selectedGroup" class="form-control">
+                    <option value="" selected>select</option>
+                    @foreach ($groups as $group)
+                        <option value="{{ $group->name }}">{{ $group->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="">Items Per page</label>
+                <select wire:model="perPage" class="form-control">`
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="250">250</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                </select>
+            </div>
         </div>
-       <div class="col-md-3">
-             <label for="">Items Per page</label>
-             <select wire:model="perPage" class="form-control">`
-                <option value="10" selected>10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-                <option value="250">250</option>
-                <option value="500">500</option>
-             </select>
-          </div>
-       <div class="col-md-3">
-          <label for="">Export:</label>
-{{--          <div class="btn-group">--}}
-{{--             <button type="button" class="btn btn-icon btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" wire:loading.attr="disabled" >--}}
-
-          <div class="dropdown">
-             <button style="background-color: #B6121B;color:white"
-                     class="mr-2 btn btn-md dropdown-toggle" type="button" id="dropdownMenuButton"
-                     data-bs-trigger="click" aria-haspopup="true" aria-expanded="false"
-                     data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                <img src="{{ asset('assets/img/excel.png') }}" alt="Export Excel" width="15" height="15">
-                Export
-             </button>
-             <div class="dropdown-menu dropdown-menu-left">
-                <a class="dropdown-item" wire:click="export" id="exportExcelBtn">Excel</a>
-                <a class="dropdown-item"  wire:click="exportCSV" id="exportPdfBtn"> CSV</a>
-                <a class="dropdown-item" wire:click="exportPDF" id="exportCsvBtn">PDF</a>
-             </div>
-          </div>
-       </div>
-       </div>
+    </div>
     <div class="card card-default">
         <div class="card-body">
             <div class="card-datatable table-responsive">
@@ -63,45 +64,50 @@
                     <thead>
                         <th width="1%">#</th>
                         <th>Name</th>
-                        <th>number</th>
-                        <th>Region</th>
-                        <th>Subregion</th>
-                        <th>Town</th>
-                        <th>Created By</th>
-                        <th>Created Date</th>
+                        <th>Phone Number</th>
+                        <th>Region, Subregion, Town</th>
+                        <th>Added By
+                        <th>Status</th>
+                        <th>Date Created</th>
                         <th width="15%">Action</th>
                     </thead>
                     <tbody>
                         @forelse($contacts as $count => $contact)
-                            <td>{!! $count + 1 !!}</td>
-                            <td>
-                                {!! $contact->customer_name !!}
-                            </td>
-                            <td>{!! $contact->phone_number !!}</td>
-
+                            <td>{{ $count + 1 }}</td>
+                            <td>{{ $contact->customer_name }}</td>
+                            <td>{{ $contact->customer_number }}</td>
                             <td class="cell-fit">
-                                {!! $contact->regions->name ?? ($contact->Region->name ?? '') !!}
+                                {!! $contact->region_name !!},
+                                <i>{!! $contact->subregion_name !!}</i>,
+                                {!! $contact->area_name !!}
                             </td>
-                            <td>
-                               @if ($contact->Area && $contact->Area->Subregion && $contact->Area->Subregion->Region)
-                                  {!! $contact->Area->Subregion->Region->name !!}
-                                  @if ($contact->Area->Subregion->name)
-                                     , <br><i>{!! $contact->Area->Subregion->name !!}</i>
-                                  @endif
+                            <td>{{ $this->getCreatorName($contact->user_code) }}</td>
+                            @if ($this->getLastOrderDate($contact->lastOrderDate))
+                               @php
+                                  $lastOrderDate = \Carbon\Carbon::parse($this->getLastOrderDate($contact->lastOrderDate));
+                                  $now = \Carbon\Carbon::now();
+                                  $differenceInMonths = $lastOrderDate->diffInMonths($now);
+                               @endphp
+                               @if ($differenceInMonths < 1)
+                                  <td><button class="btn btn-sm btn-outline-success">Active</button></td>
+                               @elseif ($differenceInMonths >= 1 && $differenceInMonths < 2)
+                                  <td><button class="btn btn-sm btn-outline-info">Partially Inactive</button></td>
+                               @else
+                                  <td><button class="btn btn-sm btn-outline-danger">Inactive</button></td>
                                @endif
-                            </td>
-                            <td>
-                               {!! $contact->Area->name ?? '' !!}
-                            </td>
-                            {{--                            <td class="cell-fit">{!! $contact->Area->name ?? '' !!}</td> --}}
-{{--                            <td class="cell-fit">{!! $contact->areas->name ?? '' !!}</td>--}}
-
-                            <td>
-                               {!! $contact->Creator->name ?? '' !!}
-                            </td>
-                            <td>
-                                {!! $contact->created_at->format('d/m/Y') ?? '' !!}
-                            </td>
+                            @else
+                               @php
+                                  $createdAt = \Carbon\Carbon::parse($contact->created_at);
+                                  $now = \Carbon\Carbon::now();
+                                  $differenceInMonths = $createdAt->diffInMonths($now);
+                               @endphp
+                               @if ($differenceInMonths < 1)
+                                  <td><button class="btn btn-sm btn-outline-secondary">New</button></td>
+                               @else
+                                  <td><button class="btn btn-sm btn-outline-warning">New-Inactive</button></td>
+                               @endif
+                            @endif
+                            <td>{!! $contact->created_at->format('d/m/Y') ?? '' !!}</td>
                             <td>
                                 <div class="dropdown">
                                     <button style="background-color: #B6121B;color:white"
@@ -111,19 +117,14 @@
                                         <i data-feather="eye"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item"
-                                            href="{{ route('customer.edit', $contact->id) }}">
+                                        <a class="dropdown-item" href="{{ route('customer.edit', $contact->id) }}">
                                             <i data-feather='edit' class="mr-50"></i>
                                             <span>Edit</span>
                                         </a>
-
-                                            <a class="dropdown-item"
-                                            href="{{ route('creditor.details', $contact->id) }}">
+                                        <a class="dropdown-item" href="{{ route('creditor.details', $contact->id) }}">
                                             <i data-feather='eye' class="mr-50"></i>
                                             <span>View</span>
                                         </a>
-                                        {{--                                         <a href="{{ route('order.target.destroy', $order->id) }}" type="button" class="dropdown-item btn btn-sm me-2" style="color: #e5602f; font-weight: bold"><i data-feather="delete"> </i> &nbsp; Delete</a> --}}
-
                                         @if ($contact->approval === 'Approved')
                                             <a wire:click.prevent="deactivate({{ $contact->id }})"
                                                 onclick="confirm('Are you sure you want to DEACTIVATE this customer?')||event.stopImmediatePropagation()"

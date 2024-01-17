@@ -32,7 +32,11 @@
                             <td>{!! $count + 1 !!}</td>
                             <td>{!! $route->user->name ?? "" !!}</td>
                             <td>{!! $route->name !!}</td>
-                            <td>{!! $route->status !!}</td>
+                            @if (date("Y-m-d") > $route->end_date)
+                                <td>Expired</td>
+                                @else
+                                <td>Active</td>
+                            @endif
                             <td>{!! $route->end_date !!}</td>
                         </tr>
                     @endforeach

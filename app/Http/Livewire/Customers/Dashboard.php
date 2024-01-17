@@ -4,31 +4,32 @@ namespace App\Http\Livewire\Customers;
 
 use App\Exports\CustomersExport;
 use App\Models\customers;
-use App\Models\customer_group;
+use App\Models\Orders;
+use App\Models\price_group;
 use App\Models\Region;
 use App\Models\User;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
-use PDF;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class Dashboard extends Component
 {
 
-
-   use WithPagination;
-   protected $paginationTheme = 'bootstrap';
-   public $perPage = 25;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    protected $pageName = 'page';
+    public $perPage = 25;
     public $search = null;
     public $regional = null;
     public $orderBy = 'customers.id';
     public $orderAsc = false;
-   public $group = null;
+    public $group = null;
     public $user;
-   public $start = null;
-   public $end = null;
+    public $startDate = null;
+    public $endDate = null;
+    public $selectedGroup = null;
 
     public function __construct()
     {
@@ -37,12 +38,90 @@ class Dashboard extends Component
     public function render()
     {
         return view('livewire.customers.dashboard', [
-            'contacts' => $this->customers(),
+            'contacts' => $this->getPaginatedCustomers(),
+//            'customers' => $this->getCustomers(),
             'regions' => $this->region(),
             'groups' => $this->groups(),
+            'selectedGroup' => $this->selectedGroup,
         ]);
     }
-
+    public function getPaginatedCustomers()
+    {
+        $aggregate = array();
+        if ($this->user->account_type === "RSM" && empty($this->filter())) {
+            return $aggregate;
+        }
+        $searchTerm = '%' . $this->search . '%';
+        $regionTerm = '%' . $this->regional . '%';
+        $aggregate = customers::with('Creator')->join('areas', 'customers.route_code', '=', 'areas.id')
+            ->leftJoin('subregions', 'areas.subregion_id', '=', 'subregions.id')
+            ->leftJoin('regions', 'subregions.region_id', '=', 'regions.id')
+            ->where('regions.name', 'like', $regionTerm)
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
+                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
+                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    });
+            })
+            ->where('customer_type', 'like', 'normal')
+            ->where('approval', 'LIKE', 'Approved');
+        if ($this->user->account_type === "RSM" || $this->user->account_type === "Shop-Attendee") {
+            $aggregate->whereIn('regions.id', $this->filter());
+        }
+        if ($this->selectedGroup) {
+            $aggregate->where('customer_group', $this->selectedGroup);
+        }
+        if ($this->startDate && $this->endDate) {
+            $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
+        }
+        $aggregate
+            ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+            ->select(
+                'customers.id as id',
+                'customers.customer_name',
+                'customers.phone_number as customer_number',
+                'regions.name as region_name',
+                'subregions.name as subregion_name',
+                'areas.name as area_name',
+                'customers.created_by as user_code',
+                'customers.created_at',
+            );
+        return $aggregate->paginate($this->perPage);
+    }
+    public function getCreatorName($user_code)
+    {
+        return User::where('user_code', $user_code)->pluck('name')->implode('');
+    }
+    public function getLastOrderDate($id)
+    {
+        return Orders::where('customerID', $id)->latest('created_at')
+           ->pluck('created_at')
+           ->first();
+    }
+    public function getCustomers()
+    {
+        return customers::join('users', 'users.user_code', '=', 'customers.created_by')
+            ->join('areas', 'customers.route', '=', 'areas.id')
+            ->join('subregions', 'subregions.id', '=', 'areas.subregion_id')
+            ->join('regions', 'regions.id', '=', 'subregions.region_id')
+            ->select(
+                'customers.id as id',
+                'customers.customer_name',
+                'customers.phone_number',
+                'regions.name as region_name',
+                'subregions.name as subregion_name',
+                'areas.name as area_name',
+                'users.name as user_name',
+                'customers.created_at'
+            )->get();
+    }
     public function customers()
     {
         $aggregate = array();
@@ -57,15 +136,31 @@ class Dashboard extends Component
             ->where('regions.name', 'like', $regionTerm)
             ->where(function ($query) use ($searchTerm) {
                 $query->where('regions.name', 'like', $searchTerm)->orWhere('customer_name', 'like', $searchTerm)
-                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm);
+                    ->orWhere('phone_number', 'like', $searchTerm)->orWhere('address', 'like', $searchTerm)
+                    ->orWhereHas('Creator', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Subregion', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    })
+                    ->orWhereHas('Area', function ($userQuery) use ($searchTerm) {
+                        $userQuery->where('name', 'like', $searchTerm);
+                    });
             })
-            ->where('customer_type','like', 'normal')
-            ->where('approval','LIKE','Approved');
+            ->where('customer_type', 'like', 'normal')
+            ->where('approval', 'LIKE', 'Approved');
         if ($this->user->account_type === "RSM") {
             $aggregate->whereIn('regions.id', $this->filter());
         }
+        if ($this->selectedGroup) {
+            $aggregate->where('customer_group', $this->selectedGroup);
+        }
+        if ($this->startDate && $this->endDate) {
+            $aggregate->whereBetween('customers.created_at', [$this->startDate, $this->endDate]);
+        }
+        $aggregate->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc');
 
-       return $aggregate->paginate($this->perPage);
+        return $aggregate->get();
     }
     public function filter(): array
     {
@@ -97,29 +192,29 @@ class Dashboard extends Component
         $user = User::where('user_code', $user_code)->pluck('name')->implode('');
         return $user;
     }
-   public function export()
-   {
-      $filteredCustomers = $this->customers();
-      return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
-   }
-   public function exportCSV()
-   {
-      $filteredCustomers = $this->customers();
-      return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
-   }
+    public function export()
+    {
+        $filteredCustomers = $this->customers();
+        return Excel::download(new CustomersExport($filteredCustomers), 'customers.xlsx');
+    }
+    public function exportCSV()
+    {
+        $filteredCustomers = $this->customers();
+        return Excel::download(new CustomersExport($filteredCustomers), 'customers.csv');
+    }
 
-   public function exportPDF()
-   {
-      $data = [
-         'contacts' => $this->customers(),
-      ];
-      $pdf = PDF::loadView('Exports.customer_pdf', $data);
+    public function exportPDF()
+    {
+        $data = [
+            'contacts' => $this->customers(),
+        ];
+        $pdf = PDF::loadView('Exports.customer_pdf', $data);
 
-      // Add the following response headers
-      return response()->streamDownload(function () use ($pdf) {
-         echo $pdf->output();
-      }, 'customers.pdf');
-   }
+        // Add the following response headers
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, 'customers.pdf');
+    }
     public function deactivate($id)
     {
         customers::whereId($id)->update(
@@ -142,7 +237,7 @@ class Dashboard extends Component
     }
     public function groups()
     {
-        $groups = customer_group::all();
+        $groups = price_group::all();
         return $groups;
     }
 }

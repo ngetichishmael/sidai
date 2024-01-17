@@ -19,7 +19,7 @@ class UsersVisitsExport implements FromView
      */
     public function view(): View
     {
-        return view('exports.usersvisits', [
+        return view('exports.uservisits', [
             'visits' => $this->array
         ]);
     }

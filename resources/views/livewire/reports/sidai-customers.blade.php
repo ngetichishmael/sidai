@@ -50,8 +50,8 @@
                         <td>{{ $key+1 }}</td>
                         <td>{{ $user->customer_name }}</td>
                         <td>{{ $user->orders_count }}</td>
-                        <td>{{ $user->Region->name??'' }}</td>
-                        <td>{{ $user->Subregion->name??'' }}</td>
+                        <td>{{ $user->Region->name??'N/A' }}</td>
+                        <td>{{ $user->Subregion->name??'N/A' }}</td>
                         
                     </tr>  
                      @endforeach

@@ -154,11 +154,11 @@ class CheckingSaleOrderController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to vansale order';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'Vansale order';
+      $activityLog->section = 'Mobile';
       $activityLog->action = 'Vansale order made by' . auth()->user()->name . ' order code  ' . $ordercode;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $ativity_rand;
-      $activityLog->ip_address = "";
+      $activityLog->ip_address = request()->ip();
       $activityLog->save();
 
       return response()->json([
@@ -369,11 +369,11 @@ class CheckingSaleOrderController extends Controller
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to order';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'New sales order';
+      $activityLog->section = 'Mobile';
       $activityLog->action = 'New sales order made by ' . Auth::user()->name . ' order code ' . $ordercode;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $activity_rand;
-      $activityLog->ip_address = "";
+      $activityLog->ip_address = request()->ip();
       $activityLog->save();
 
       return response()->json([
@@ -506,17 +506,16 @@ class CheckingSaleOrderController extends Controller
          Notification::send($usersToNotify, new NewOrderNotification($order, $distributor, $sales, $sales_number));
          // SendNewOrderNotificationJob::dispatchAfterResponse($order, $distributor, $distributorid, $sales, $sales_number);
       }
-      info("order code");
-      info($ordercode);
+
       $ativity_rand = Str::random(20);
       $activityLog = new activity_log();
       $activityLog->activity = 'Product added to order';
       $activityLog->user_code = auth()->user()->user_code;
-      $activityLog->section = 'New sales order';
+      $activityLog->section = 'Mobile';
       $activityLog->action = 'Newsales order made by' . Auth::user()->name . ' order code  ' . $ordercode;
       $activityLog->userID = auth()->user()->id;
       $activityLog->activityID = $ativity_rand;
-      $activityLog->ip_address = "";
+      $activityLog->ip_address = request()->ip();
       $activityLog->save();
       return response()->json([
          "success" => true,

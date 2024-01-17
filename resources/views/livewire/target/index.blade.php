@@ -61,14 +61,14 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $target->user_name }}</td>
                                     <td>{{ $target->user_type }}</td>
-                                    <td>{{ $target->leads_target }}</td>
-                                    <td>{{ $target->leads_achieved }}</td>
-                                    <td>{{ $target->sales_target }}</td>
-                                    <td>{{ $target->sales_achieved }}</td>
-                                    <td>{{ $target->visits_target }}</td>
-                                    <td>{{ $target->visits_achieved }}</td>
-                                    <td>{{ $target->orders_target }}</td>
-                                    <td>{{ $target->orders_achieved }}</td>
+                                    <td>{{ $target->leads_target ?? "N/A"}}</td>
+                                    <td>{{ $target->leads_achieved ?? "N/A"}}</td>
+                                    <td>{{ $target->sales_target ?? "N/A"}}</td>
+                                    <td>{{ $target->sales_achieved ?? "N/A"}}</td>
+                                    <td>{{ $target->visits_target ?? "N/A"}}</td>
+                                    <td>{{ $target->visits_achieved ?? "N/A"}}</td>
+                                    <td>{{ $target->orders_target ?? "N/A"}}</td>
+                                    <td>{{ $target->orders_achieved ?? "N/A"}}</td>
                                     <td><a href="" class="btn btn-sm"
                                             style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                                 </tr>

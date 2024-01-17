@@ -1,9 +1,9 @@
 <table>
    <thead>
    <tr>
-       <th>Sales Agent</th>
+       <th>Distributor</th>
        <th>Customer</th>
-       <th>Price </th>
+       <th>Amount</th>
        <th>Delivery Status</th>
        <th>Payment Status</th>
        <th>Order Type</th>
