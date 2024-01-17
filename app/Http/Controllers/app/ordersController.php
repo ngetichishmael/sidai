@@ -675,6 +675,7 @@ class ordersController extends Controller
    public function generateOrderPDF(Request $request)
    {
       $order_status='';
+      $order_code=json_decode($request->input('order'), true);
       if(strtolower($request->order_status) == "pending delivery") {
          $order_status="Pending Order";
       }elseif(strtolower($request->order_status) == "complete delivery" || strtolower($request->order_status) == "delivered") {
@@ -689,10 +690,11 @@ class ordersController extends Controller
          'order_status' => $order_status,
          'distributor' => $request->distributor
       ];
+      dd($data);
 
       $pdf = PDF::loadView('Exports.orderdetails_pdf', $data);
 
-      return $pdf->download('orderdetails_pdf.pdf');
+      return $pdf->download('order'.$order_code->order_code.'pdf');
    }
 
    public function sendOrder($number, $order_code)

@@ -41,55 +41,63 @@
           color: rgba(248, 72, 72, 0.7) !important;
        }
     </style>
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
 </head>
 <body>
 
     <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
        <div class="card">
           <div class="card-header p-4">
-             <div class="header">
-                <center>
-                   <div class="logo">
-                      <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('app-assets/images/logo.png'))) }}" alt="Logo" width="150" height="80">
-                   </div>
-                   <b>  <p>Order Invoice</p> </b>
-                </center>
-             </div>
-             <div class="mt-1">Invoice </div>
-             <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                   class="text-600 text-90">Issue Date:</span> {{now()}}</div>
-             <br/>
-             <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                   class="text-600 text-90">ID:</span> #{!! $order['id'] ?? ''!!}</div>
-             <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                   class="text-600 text-90">Order Code:</span> #{!! $order['order_code'] ?? ''!!}</div>
-             <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                   class="text-600 text-90">Order Date:</span> {!! $order['created_at']  ?? now()!!}</div>
-             <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
-                   class="text-600 text-90">Status:</span> <span
-                   class="badge badge-warning badge-pill px-25 text-black-50">{{$order_status}}</span>
-             </div>
-          </div>
-          <div class="card-body">
-             <div class="row mb-4">
-                <div class="col-sm-6 ">
-                   <div>
-                      <span class="text-sm text-grey-m2 align-middle">To:</span>
-                      <span class="text-600 text-110 text-blue align-middle">{{ $test['customer_name'] ?? ''}}</span>
+             <div class="row">
+                <div class="col-lg-4 col-sm-5 mb-3">
+                   <div class="header">
+                      <center>
+                         <div class="logo">
+                            <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('app-assets/images/logo.png'))) }}" alt="Logo" width="150" height="80">
+                         </div>
+                         <b>  <p>Order Invoice</p> </b>
+                      </center>
                    </div>
                    <div>
-                      <span class="text-sm text-grey-m2 align-middle">Sales Person:</span>
+                      <span class="text-sm text-grey-m2 align-middle"><strong>To: </strong></span>
+                      <span class="text-600 text-110 text-blue align-middle">{{ $test['customer_name'] ?? ''}} {{$test}}</span>
+                   </div>
+                   <div>
+                      <span class="text-sm text-grey-m2 align-middle"><strong>Sales Person: </strong></span>
                       <span class="text-600 text-110 text-blue align-middle">{{$order->User->name ?? ''}}</span>
                    </div>
                    <div class="text-grey-m2">
                       <div class="my-1">
-                         Address, <span class="text-blue">{!! $test['address'] ?? '' !!}</span>
+                         <strong> Address, <span class="text-blue">{!! $test['address'] ?? '' !!}</span></strong>
                       </div>
                       <div class="my-1"><i data-feather="phone" class=" fa-flip-horizontal text-secondary"></i> <b
                             class="text-600">(+254){!! $test['phone_number'] ?? '' !!}</b></div>
                    </div>
                 </div>
+                <div class="col-lg-4 col-sm-5 ml-auto">
+{{--                <div class="mt-1">Invoice </div>--}}
+                <div class="my-2"><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90"><strong>Issue Date:</strong></span> {{now()}}</div>
+                <br/>
+                <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90"><strong>ID:</strong></span> #{!! $order['id'] ?? ''!!}</div>
+                <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90"><strong>Order Code:</strong></span> #{!! $order['order_code'] ?? ''!!}</div>
+                <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90"><strong>Order Date:</strong></span> {!! $order['created_at']  ?? now()!!}</div>
+                <div ><i data-feather="circle" class="text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90"><strong>Status:</strong></span> <span
+                      class="badge badge-warning badge-pill px-25 text-black-50">{{$order_status}}</span>
+                </div>
              </div>
+          </div>
+          <div class="card-body">
+{{--             <div class="row mb-4">--}}
+{{--                --}}
+{{--                <div class="col-sm-6 ">--}}
+{{--                  --}}
+{{--                </div>--}}
+{{--             </div>--}}
              <div class="table-responsive-sm">
                 <table class="table table-striped table-borderless border-0 border-b-2 brc-default-l1">
                    <thead>
@@ -151,8 +159,8 @@
           </div>
        </div>
     </div>
-    <script url="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-   <script url="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" charset="utf-8"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js" charset="utf-8"></script>
 
 </body>
 </html>

@@ -16,13 +16,13 @@ class UsersController extends Controller
    public function activeUsers(){
       $checking = checkin::select('user_code')
          ->groupBy('user_code');
-      $all = User::joinSub($checking, 'customer_checkin', function ($join) {
+      $today = User::joinSub($checking, 'customer_checkin', function ($join) {
          $join->on('users.user_code', '=', 'customer_checkin.user_code');
-      })->get();
+      })->count();
       return response()->json([
          "success" => true,
          "status" => 200,
-         "data" => $all,
+         "data" => $today,
       ]);
    }
 //   public function getUsers(Request $request)
