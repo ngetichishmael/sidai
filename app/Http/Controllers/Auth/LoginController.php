@@ -29,22 +29,20 @@ class LoginController extends Controller
 
    protected function authenticated(Request $request, $user)
    {
-//      $requiredPermissions = ['admin_dashboard', 'manager_dashboard', 'shop_attendee_dashboard'];
-//      info($user);
-//      foreach ($requiredPermissions as $permission) {
-//         info($user->hasPermission($permission));
-//         if ($user->hasPermission($permission)) {
-//            return redirect()->intended($this->redirectTo);
-//         }
-//      }
-      info($user->account_type);
-
-      if (strcasecmp($user->account_type, 'Admin') == 0 ||
-         strcasecmp($user->account_type, 'RSM') == 0 ||
-         strcasecmp($user->account_type, 'NSM') == 0 ||
-         strcasecmp($user->account_type, 'shop-attendee') == 0) {
-         return redirect()->intended($this->redirectTo);
+      $requiredPermissions = ['admin_dashboard', 'manager_dashboard', 'shop_attendee_dashboard'];
+      foreach ($requiredPermissions as $permission) {
+         if ($user->hasPermission($permission)) {
+            return redirect()->intended($this->redirectTo);
+         }
       }
+//      info($user->account_type);
+
+//      if (strcasecmp($user->account_type, 'Admin') == 0 ||
+//         strcasecmp($user->account_type, 'RSM') == 0 ||
+//         strcasecmp($user->account_type, 'NSM') == 0 ||
+//         strcasecmp($user->account_type, 'shop-attendee') == 0) {
+//         return redirect()->intended($this->redirectTo);
+//      }
       // User didn't have any of the required permissions, so log them out.
       Auth::logout();
      // return redirect()->route('login')->withErrors(['permissions' => 'Unauthorized']);
