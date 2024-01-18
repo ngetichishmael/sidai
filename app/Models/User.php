@@ -237,7 +237,7 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->belongsToMany(Permission::class);
    }
 
-   public function hasPermission($permission)
+   public function hasPermission1($permission)
    {
 //      info($permission);
       return $this->permissions->contains('name', $permission);
@@ -247,5 +247,17 @@ class User extends Authenticatable implements MustVerifyEmail
       DB::enableQueryLog();
       return $this->permissions->whereIn('name', $permissions)->count() > 0;
    }
+   public function hasPermission($permission)
+   {
+      return $this->hasAnyRoleThatHasPermission($permission);
+   }
+
+   public function hasAnyRoleThatHasPermission($permission)
+   {
+      return $this->roles->filter(function ($role) use ($permission) {
+         return $role->permissions->contains('name', $permission);
+      })->isNotEmpty();
+   }
+
 
 }

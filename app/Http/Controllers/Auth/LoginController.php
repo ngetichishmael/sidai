@@ -26,12 +26,11 @@ class LoginController extends Controller
 //      authenticated as protected traitAuthenticated;
 //   }
 
-
    protected function authenticated(Request $request, $user)
    {
       $requiredPermissions = ['admin_dashboard', 'manager_dashboard', 'shop_attendee_dashboard'];
       foreach ($requiredPermissions as $permission) {
-         if ($user->hasPermission($permission)) {
+         if ($user->haspermissionto($permission)) {
             return redirect()->intended($this->redirectTo);
          }
       }
