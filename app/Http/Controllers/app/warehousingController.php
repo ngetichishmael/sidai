@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers\app;
 
-use App\Helpers\Helper;
-use App\Http\Controllers\Controller;
-use App\Imports\WarehouseImport;
-use App\Models\activity_log;
-use App\Models\country;
-use App\Models\products\product_information;
-use App\Models\Region;
-use App\Models\Subregion;
 use App\Models\User;
-use App\Models\warehouse_assign;
+use App\Models\Region;
+use App\Helpers\Helper;
+use App\Models\country;
+use App\Models\Order_items;
+use App\Models\Subregion;
 use App\Models\warehousing;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
+use App\Models\activity_log;
+use Illuminate\Http\Request;
 use Livewire\WithPagination;
+use App\Models\inventory\items;
+use Illuminate\Validation\Rule;
+use App\Imports\WarehouseImport;
+use App\Models\warehouse_assign;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\products\product_information;
 
 class warehousingController extends Controller
 {
@@ -59,6 +61,23 @@ class warehousingController extends Controller
 
       return redirect()->route('warehousing.index');
    }
+
+   public function allocations($warehouse_code){
+      $product_informations = product_information::where('warehouse_code', $warehouse_code)->select('id')->get();
+      $query = Order_items::query();
+
+      if (Auth::user()->account_type === 'RSM') {
+         $query->whereIn('order_code', $this->filter());
+      }
+
+      $allocated = $query->whereIn('productID', $product_informations)->get();
+
+      return view('products.more',['allocated'=>$allocated]);
+
+   }
+
+
+
    /**
     * Show the form for creating a new resource.
     *
