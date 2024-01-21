@@ -89,7 +89,7 @@
                                         <i data-feather='settings'></i>
                                      </button>
                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="{!! route('orders.details', $order->order_code) !!}">View</a>
+                                        <a class="dropdown-item" href="{!! route('details.order', $order->order_code) !!}">View</a>
                                      </div>
                                   </div>
                                </td>

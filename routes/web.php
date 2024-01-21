@@ -317,6 +317,8 @@ Route::middleware('web')->group(function () {
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
 
+   Route::get('reports/{code}/details', ['uses' => 'app\ReportsController@order_details', 'as' => 'details.order']);
+
 
    //one view and interface for all users
       // web.php

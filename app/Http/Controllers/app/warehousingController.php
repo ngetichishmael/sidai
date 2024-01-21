@@ -70,7 +70,7 @@ class warehousingController extends Controller
          $query->whereIn('order_code', $this->filter());
       }
 
-      $allocated = $query->whereIn('productID', $product_informations)->get();
+      $allocated = $query->whereIn('productID', $product_informations)->paginate(50);
 
       return view('products.more',['allocated'=>$allocated]);
 
