@@ -42,7 +42,7 @@ class ZoneController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'name' => 'required',
+         'name' => 'required|unique:zones',
          'subarea' => 'required',
       ]);
       zone::create([
@@ -61,7 +61,7 @@ class ZoneController extends Controller
       Relationship::where('name', $subarea->name)->update([
          'has_children' => true,
       ]);
-      Session()->flash('success', "Sub region successfully added");
+      Session()->flash('success', "Zone added successfully");
       return redirect()->back();
    }
 

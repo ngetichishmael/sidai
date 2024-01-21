@@ -42,7 +42,7 @@ class AreaController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'name' => 'required',
+         'name' => 'required|unique:areas',
          'subregion' => 'required',
       ]);
       Area::create([
