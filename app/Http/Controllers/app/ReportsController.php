@@ -109,6 +109,8 @@ class ReportsController extends Controller
             ->select(
                 'order_items.id',
                 'order_items.product_name as name',
+                'order_items.quantity as quantity',
+                'order_items.created_at as date',
                 'product_information.sku_code as code'
             )
             ->groupBy('order_items.id')

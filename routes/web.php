@@ -330,7 +330,7 @@ Route::middleware('web')->group(function () {
          Route::get('reports/daily', 'app\ReportsController@dailyReports')->name('users.dailyreports');
          // Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
          Route::get('reports/employees', 'app\ReportsController@reports')->name('employee.reports');
-         Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
+         Route::get('reports/orders', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
          Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
          Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');

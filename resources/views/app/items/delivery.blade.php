@@ -29,6 +29,8 @@
                        <th>#</th>
                        <th>Product Name</th>
                        <th>SKU code</th>
+                       <th>Quantity</th>
+                       <th>Date</th>
                     </tr>
                  </thead>
                  <tbody>
@@ -37,6 +39,8 @@
                      <td>{{ $key+1 }}</td>
                      <td>{{ $item->name }}</td>
                      <td>{{ $item->code }}</td>
+                     <td>{{ $item->quantity }}</td>
+                     <td>{{ $item->date }}</td>
                  </tr>
                   @endforeach
                    

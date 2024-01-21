@@ -2,15 +2,16 @@
 
 namespace App\Http\Livewire\Reports;
 
-use App\Exports\DeliveryExport;
-use App\Models\Area;
-use App\Models\customers;
-use App\Models\Orders;
-use App\Models\Subregion;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Area;
+use App\Models\Orders;
 use Livewire\Component;
+use App\Models\customers;
+use App\Models\Subregion;
 use Livewire\WithPagination;
+use App\Exports\DeliveryExport;
+use App\Models\suppliers\suppliers;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
 class Delivery extends Component
@@ -19,33 +20,79 @@ class Delivery extends Component
    protected $paginationTheme = 'bootstrap';
    public $start;
    public $end;
+   public $perPage = 25;
+   public ?string $search = null;
    public $orderBy = 'id';
    public $orderAsc = true;
+   public $fromDate;
+   public $toDate;
+
+   public $user;
+
+   public function __construct()
+   {
+      $this->user = Auth::user();
+   }
 
    public function render()
    {
       $count = 1;
+      $searchTerm = '%' . $this->search . '%';
+
+      $sidai=suppliers::find(1);
+      $deliveries = Orders::with('Customer', 'user', 'distributor')
+         ->where('order_status','=', 'Pending Delivery')
+         // ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
+         //    $query->whereIn('customerID', $this->filter());
+         // })
+         ->where(function ($query) use ($sidai) {
+               $query->whereNull('supplierID')
+                  ->orWhere('supplierID', '')
+                  ->orWhere(function ($subquery) use ($sidai) {
+                     if ($sidai !== null) {
+                        $subquery->where('supplierID', 1);
+                     }
+                  });
+         })
+         ->where('order_type','=','Pre Order')
+         ->where(function ($query) use ($searchTerm) {
+            $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('customer_name', 'like', $searchTerm);
+            })
+               ->orWhereHas('User', function ($subQuery) use ($searchTerm) {
+                  $subQuery->where('name', 'like', $searchTerm);
+               });
+         })
+         ->when($this->fromDate, function ($query) {
+            $query->whereDate('created_at', '>=', $this->fromDate);
+         })
+         ->when($this->toDate, function ($query) {
+            $query->whereDate('created_at', '<=', $this->toDate);
+         })
+         ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
+         ->paginate($this->perPage);
       return view('livewire.reports.delivery', [
-         'deliveries' => $this->data(),
+         'deliveries' => $deliveries,
          'count' => $count
       ]);
    }
    public function data()
    {
-      $query = Orders::with('User', 'Customer')->whereIn('customerID', $this->filter())->where('order_status', "LIKE", '%Deliver%');
-      if (!is_null($this->start)) {
-         if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
-            $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
-         } else {
-            if (is_null($this->end)) {
-               $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
-            }
-            $query->whereBetween('created_at', [$this->start, $this->end]);
-         }
-      }
+      
+      // $query = Orders::with('User', 'Customer')->whereIn('customerID', $this->filter())->where('order_status', "LIKE", '%Deliver%');
+      // if (!is_null($this->start)) {
+      //    if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
+      //       $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
+      //    } else {
+      //       if (is_null($this->end)) {
+      //          $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
+      //       }
+      //       $query->whereBetween('created_at', [$this->start, $this->end]);
+      //    }
+      // }
 
-      return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
-         ->paginate(25);
+      // return $query->orderBy($this->orderBy, $this->orderAsc ? 'desc' : 'asc')
+      //    ->paginate(25);
    }
    public function filter2(): array
    {
