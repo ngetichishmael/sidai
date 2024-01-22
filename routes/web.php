@@ -319,6 +319,9 @@ Route::middleware('web')->group(function () {
 
    Route::get('reports/{code}/details', ['uses' => 'app\ReportsController@order_details', 'as' => 'details.order']);
 
+   //regional order details
+   Route::get('regional/{id}/details', ['uses' => 'app\ReportsController@regional_order', 'as' => 'regional.order']);
+
 
    //one view and interface for all users
       // web.php

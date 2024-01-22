@@ -106,6 +106,15 @@ class ReportsController extends Controller
         // dd($payment);
         return view('app.orders.report_order_details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
     }
+    public function regional_order($id){
+      $subregions = Subregion::where('region_id', $id)->pluck('id');
+        $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
+        $customers = customers::whereIn('route_code', $areas)->pluck('id');
+        $orders = Orders::whereIn('customerID', $customers)->get();
+        
+      //   return $orders ?? 0;
+      return view('products.regional_order_details',['orders'=>$orders]);
+    }
    public function vansaleitems($order_code)
    {
       $items = Order_items::join('product_information', 'product_information.id', '=', 'order_items.productID')
