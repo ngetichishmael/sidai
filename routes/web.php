@@ -432,7 +432,7 @@ Route::middleware('web')->group(function () {
    Route::get('settings/account', ['uses' => 'app\settingsController@account', 'as' => 'settings.account']);
    Route::post('settings/account/{id}/update', ['uses' => 'app\settingsController@update_account', 'as' => 'settings.account.update']);
 
-   Route::get('allocations/{warehouse_code}', ['uses' => 'app\WarehousingController@allocations', 'as' => 'details.allocation']);
+   Route::get('allocations/{warehouse_code}', ['uses' => 'app\warehousingController@allocations', 'as' => 'details.allocation']);
 
    //activity lo
    Route::get('settings/activity-log', ['uses' => 'app\settingsController@activity_log', 'as' => 'settings.activity.log']);
