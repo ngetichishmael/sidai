@@ -9,7 +9,7 @@
 <body>
     <div class="dashboard-landing">
         <div class="left-side">
-            <img src="{{ asset('app-assets/images/bglogo.png') }}" alt="" class="img-fluid">
+            <img src="{{ asset('app-assets/images/loginpage.svg') }}" alt="" class="img-fluid">
         </div>
         <div class="right-side">
             <div class="login-fields">
@@ -18,7 +18,7 @@
 
                     <div class="card-body">
                         <div style="display: flex; justify-content:center">
-                            <img src={{ asset('app-assets/images/bglogo.png') }} class="logo" alt="Sidai" width="100px" height="80px" style="" />
+                            <img src={{ asset('app-assets/images/bglogo.png') }} class="logo" alt="Sokoflow Test" width="100px" height="80px" style="" />
                           </div>
 
                             <br><br><br><br>
