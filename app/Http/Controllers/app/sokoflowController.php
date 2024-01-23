@@ -36,8 +36,6 @@ class sokoflowController extends Controller
    }
    public function dashboard()
    {
-
-
       return view('app.dashboard.dashboard');
 
    }
