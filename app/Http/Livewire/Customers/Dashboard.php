@@ -175,7 +175,7 @@ class Dashboard extends Component
           'areas.name as area_name',
           'customers.created_by as user_code',
           'customers.updated_at',
-          'customers.customer_group',
+          'customers.price_group',
           'customers.created_at',
           'customers.last_order_date as last_order_date',
        );
@@ -212,6 +212,7 @@ class Dashboard extends Component
               'subregions.name as subregion_name',
               'areas.name as area_name',
               'customers.created_by as user_code',
+              'customers.price_group',
               'customers.updated_at',
               'customers.created_at',
            )

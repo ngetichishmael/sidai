@@ -103,7 +103,7 @@
                                 <i>{!! $contact->subregion_name !!}</i>,
                                 {!! $contact->area_name !!}
                             </td>
-                            <td>{{ $contact->price_group ??'' }}</td>
+                            <td>{{ $contact->price_group ?? '' }}</td>
 
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
                             <td>
