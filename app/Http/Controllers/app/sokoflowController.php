@@ -34,4 +34,12 @@ class sokoflowController extends Controller
    public function allocatedusers(){
       return view('app.dashboard.allocatedusers');
    }
+   public function dashboard()
+   {
+
+
+      return view('app.dashboard.dashboard');
+
+   }
+
 }
