@@ -689,10 +689,11 @@ class ordersController extends Controller
          'order_status' => $order_status,
          'distributor' => $request->distributor
       ];
+      $order_code = $data['order']['order_code'] ?? null;
 
       $pdf = PDF::loadView('Exports.orderdetails_pdf', $data);
 
-      return $pdf->download('orderdetails_pdf.pdf');
+      return $pdf->download('order '.$order_code.'.pdf');
    }
 
    public function sendOrder($number, $order_code)

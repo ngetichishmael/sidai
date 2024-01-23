@@ -265,7 +265,7 @@
         </div>
         <div class="col-md-3 mt-2">
            <a href="{{ route('generateOrderPdf', [
-    'test' => $test, 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>
+    'test' => json_encode($test), 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>
            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
             <center><a href="{!! route('orders.delivery.without', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order Without Stock</a></center>
 

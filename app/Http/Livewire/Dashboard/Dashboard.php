@@ -69,6 +69,18 @@ class Dashboard extends Component
       if (is_null($start) && is_null($end)) {
          return $query;
       }
+      $start = $start ?? Carbon::now()->startOfDay()->format('Y-m-d H:i:s');
+      $end = $end ?? Carbon::now()->endOfDay()->format('Y-m-d H:i:s');
+      if (Carbon::parse($start)->eq(Carbon::parse($end))) {
+         return $query->whereDate($column, '=', $start);
+      }
+      return $query->whereBetween($column, [$start, $end]);
+   }
+   public function whereBetweenDate2(Builder $query, string $column = null, string $start = null, string $end = null): Builder
+   {
+      if (is_null($start) && is_null($end)) {
+         return $query;
+      }
 
       if (!is_null($start) && Carbon::parse($start)->eq(Carbon::parse($end))) {
          return $query->whereDate($column, '=', $start);
@@ -87,7 +99,9 @@ class Dashboard extends Component
              $warehouseCode = $check->warehouse_code;
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
                 ->where('warehouse_code','=',$warehouseCode)
-                ->whereBetween('created_at', [$this->startDate, $this->endDate])
+                ->where(function (Builder $query) {
+                   $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+                })
                 ->select('cash')
                 ->sum('cash');
 //             dd($assignedwarehouse);
@@ -99,14 +113,17 @@ class Dashboard extends Component
              ->whereHas('user', function ($query) use ($user ){
                 $query->where('region_id', $user->region_id);
              })
-             ->whereBetween('created_at', [$this->startDate, $this->endDate])
-             ->where('isReconcile', true)
+             ->where(function (Builder $query) {
+                $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+             })
+//             ->where('isReconcile', true)
              ->sum('amount');
        }else
         return OrderPayment::where('payment_method', 'PaymentMethods.Cash')
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-            })->where('isReconcile', true)
+            })
+//           ->where('isReconcile', true)
             ->sum('amount');
     }
     public function getMpesaAmount()
@@ -118,7 +135,9 @@ class Dashboard extends Component
              $warehouseCode = $check->warehouse_code;
              $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
                 ->where('warehouse_code',$warehouseCode)
-                ->whereBetween('created_at', [$this->startDate, $this->endDate])
+                ->where(function (Builder $query) {
+                   $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+                })
                 ->select('mpesa')
                 ->sum('mpesa');
                 return  $amount;
@@ -130,13 +149,14 @@ class Dashboard extends Component
                 $query->where('region_id', $user->region_id);
              })
              ->whereBetween('created_at', [$this->startDate, $this->endDate])
-             ->where('isReconcile', true)
+//             ->where('isReconcile', true)
              ->sum('amount');
        }else
         return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-            })->where('isReconcile', true)
+            })
+//           ->where('isReconcile', true)
             ->sum('amount');
     }
 
@@ -160,12 +180,16 @@ class Dashboard extends Component
           return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
              ->whereHas('user', function ($query) use ($user ){
                 $query->where('region_id', $user->region_id);
-             })->whereBetween('created_at', [$this->startDate, $this->endDate])->where('isReconcile', true)->sum('amount');
+             })->whereBetween('created_at', [$this->startDate, $this->endDate])
+//             ->where('isReconcile', true)
+             ->sum('amount');
        }else
           return OrderPayment::where('payment_method', 'PaymentMethods.Mpesa')
              ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-             })->where('isReconcile', true)->sum('amount');
+             })
+//             ->where('isReconcile', true)
+             ->sum('amount');
     }
    public function getChequeAmount()
    {
@@ -176,7 +200,9 @@ class Dashboard extends Component
             $warehouseCode = $check->warehouse_code;
             $amount=Reconciliation::where('sales_person',Auth::user()->user_code)
                ->where('warehouse_code',$warehouseCode)
-               ->whereBetween('created_at', [$this->startDate, $this->endDate])
+               ->where(function (Builder $query) {
+                  $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+               })
                ->select('cheque')
                ->sum('cheque');
             return  $amount;
@@ -187,13 +213,17 @@ class Dashboard extends Component
             ->whereHas('user', function ($query) use ($user ){
                $query->where('region_id', $user->region_id);
             })
-            ->whereBetween('created_at', [$this->startDate, $this->endDate])->where('isReconcile', true)
+            ->where(function (Builder $query) {
+               $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
+            })
+//            ->where('isReconcile', true)
             ->sum('amount');
       }else
          return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
             ->where(function (Builder $query) {
                $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-            })->where('isReconcile', true)
+            })
+//            ->where('isReconcile', true)
             ->sum('amount');
    }
     public function getChequeAmount1()
@@ -219,7 +249,9 @@ class Dashboard extends Component
           return OrderPayment::where('payment_method', 'PaymentMethods.Cheque')
              ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
-             })->where('isReconcile', true)->sum('amount');
+             })
+//             ->where('isReconcile', true)
+             ->sum('amount');
     }
 
     public function getSalesAmount()
@@ -321,7 +353,7 @@ class Dashboard extends Component
             ->where(function (Builder $query) {
                 $this->whereBetweenDate($query, 'created_at', $this->startDate, $this->endDate);
             })
-            ->count();
+           ->sum('price_total');
     }
     public function getOrderFullmentByDistributorsCount()
     {

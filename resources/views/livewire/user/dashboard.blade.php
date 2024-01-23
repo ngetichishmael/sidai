@@ -1,4 +1,5 @@
-<div class="row">
+<div>
+   <div class="row">
     @include('partials.stickymenu')
     <div class="col-md-8">
         <div class="card card-inverse">
@@ -32,10 +33,11 @@
                      </td>
               </tr>
                @endforeach
-                    
+
                  </tbody>
               </table>
            </div>
         </div>
      </div>
    </div>
+</div>

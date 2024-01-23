@@ -627,29 +627,26 @@ class productController extends Controller
       $businessCode = Auth::user()->business_code;
 
       foreach ($data as $row) {
-         $productName = $row['product'];
+         $productsku = $row['sku'];
          $buyingPrice = $row['wholesale'];
          $distributorPrice = $row['distributor'];
          $sellingPrice = $row['retail'];
 
          // Fetch product information based on product name and warehouse code
-         $information = product_information::where('product_name', $productName)
+         $information = product_information::where('sku_code', $productsku)
             ->where('warehouse_code', $warehouse)
             ->first();
 
          if ($information) {
-            // Update or create product price record
             $prices = product_price::updateOrCreate(
                ['id' => $information->id],
                [
-                  'buying_price' => $buyingPrice,
-                  'distributor_price' => $distributorPrice,
-                  'selling_price' => $row['selling_price'] ?? null,
+                  'buying_price' => $buyingPrice ?? $prices->buying_price,
+                  'distributor_price' => $distributorPrice ?? $prices->distributor_price,
+                  'selling_price' => $sellingPrice ?? $prices->selling_price,
                   'business_code' => $businessCode,
                ]
             );
-
-            // Log activity for each product
             $random = Str::random(20);
             $activityLog = new activity_log();
             $activityLog->activity = 'Price Updating';

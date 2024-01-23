@@ -20,7 +20,7 @@
                      <div class="alert alert-info" role="alert">
                         <strong>Instructions:</strong>
                         <ul>
-                           <li>Prepare an Excel file with the following columns: <strong>product</strong>,<strong>distributor</strong>, <strong>wholesale</strong>, <strong>retail</strong>.</li>
+                           <li>Prepare an Excel file with the following columns: <strong>product sku</strong>,<strong>distributor</strong>, <strong>wholesale</strong>, <strong>retail</strong>.</li>
                            <li>Ensure the file format is either <strong>.xls</strong> or <strong>.xlsx</strong>.</li>
                            <li>Fill in the values for each product accordingly.</li>
                            <li>Upload</li>

@@ -12,6 +12,7 @@ use App\Models\Delivery;
 use App\Models\Delivery_items;
 use App\Models\inventory\items;
 use App\Models\Order_items;
+use App\Models\order_payments;
 use App\Models\Orders;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
@@ -732,6 +733,17 @@ class OrdersController extends Controller
             $arrayData["date"] = $data["updated_at"];
         }
         return $arrayData;
+    }
+    public function payments(Request $request){
+       $payments = order_payments::with(['user'=> function($query){$query->select('name','id','phone_number','user_code')->get();},'order' => function ($query) {
+          $query->with(['Customer'=> function ($query){$query->select('customer_name','id')->get();}])->select('order_code', 'id', 'customerID');
+       }])->get();
+       return response()->json([
+          'status' => 200,
+          'success' => true,
+          "message" => "Payment information with order details",
+          "data" =>$payments
+          ]);
     }
     public function transaction(Request $request)
     {
