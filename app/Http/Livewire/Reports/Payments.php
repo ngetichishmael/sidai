@@ -44,10 +44,10 @@ class Payments extends Component
          'orders.created_at',
          DB::raw('COALESCE(SUM(order_payments.amount), 0) AS total_payment')
       )
-         ->whereIn('orders.customerID', $this->filter())
+         // ->whereIn('orders.customerID', $this->filter())
          ->join('customers', 'orders.customerID', '=', 'customers.id')
-         ->leftJoin('order_payments', 'orders.order_code', '=', 'order_payments.order_id')
-         ->get();
+         ->leftJoin('order_payments', 'orders.order_code', '=', 'order_payments.order_id');
+        
       if (!is_null($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
@@ -59,7 +59,7 @@ class Payments extends Component
          }
       }
 
-      return $query;
+      return $query->get();
    }
    public function filter(): array
    {

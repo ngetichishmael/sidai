@@ -77,7 +77,7 @@
                      <td>{{ $employee->achieved_sales }}</td>
                      <td>14</td>
                      <td>{{ $employee->visit_count }}</td>
-                     <td>{{ ($employee->achieved_leads/67) * 100 ,2}}%</td>
+                     <td>{{ number_format(($employee->achieved_leads / 67) * 100, 2) }}%</td>
                  </tr>
                   @endforeach
 

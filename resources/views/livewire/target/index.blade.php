@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
-        <input wire:model="start" name="start" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="startDate" name="start" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
         <label for="validationTooltip01">End Date</label>
-        <input wire:model="end" name="startDate" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="endDate" name="startDate" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">
@@ -52,7 +52,6 @@
                                 <th>Visit Achieved</th>
                                 <th>Order Target</th>
                                 <th>Order Achieved</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,8 +68,6 @@
                                     <td>{{ $target->visits_achieved ?? "N/A"}}</td>
                                     <td>{{ $target->orders_target ?? "N/A"}}</td>
                                     <td>{{ $target->orders_achieved ?? "N/A"}}</td>
-                                    <td><a href="" class="btn btn-sm"
-                                            style="background-color: rgb(173, 37, 37);color:white">View</a></td>
                                 </tr>
                             @endforeach
 

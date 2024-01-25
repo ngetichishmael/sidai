@@ -42,6 +42,7 @@
                                 <th>Region</th>
                                 <th>Quantity</th>
                                 <th>No of Allocations</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,6 +57,7 @@
                                     </td>
                                     <td>{{ $warehouse->products_count }}</td>
                                     <td>{{ $this->allocated($warehouse->warehouse_code) }}</td>
+                                    <td><a href="{{ route('details.allocation',['warehouse_code'=>$warehouse->warehouse_code]) }}" class="btn btn-outline-success">View</a></td>
                                 </tr>
                             @endforeach
 
