@@ -136,21 +136,24 @@
                      <td class="left">
                         <strong class="text-dark">Subtotal</strong>
                      </td>
-                     <td class="right">{!! number_format(floatval(($sub)), 2) !!}</td>
+                     <td class="right">
+                        <strong class="text-dark">{!! number_format(floatval(($sub)), 2) !!}</strong></td>
                   </tr>
 
                   <tr>
                      <td class="left">
                         <strong class="text-dark">Tax {{$item['taxrate'] ?? 0}}%</strong>
                      </td>
-                     <td class="right">{!! number_format(floatval(($item['taxrate']/100)*$total), 2) !!}</td>
+                     <td class="right">
+                        <strong class="text-dark">{!! number_format(floatval(($item['taxrate']/100)*$total), 2) !!}</strong>
+                     </td>
                   </tr>
                   <tr>
                      <td class="left">
-                        <strong class="text-dark">Total Amount</strong>
+                        <h6 class="text-dark">Total Amount</h6>
                      </td>
                      <td class="right">
-                        <strong class="text-dark">Ksh. {!! number_format(floatval(($total + $item['taxrate'])), 2)!!}</strong>
+                        <h6 class="text-dark">Ksh. {!! number_format(floatval(($total + $item['taxrate'])), 2)!!}</h6>
                      </td>
                   </tr>
                   </tbody>
