@@ -37,6 +37,7 @@
                             <th>No of Orders</th>
                             <th>No of Customers</th>
                             <th>No of Deliveries</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,6 +48,7 @@
                                 <td>{{ $this->orders($region->id) }}</td>
                                 <td>{{ $this->customers($region->id) }}</td>
                                 <td>{{ $this->deliveries($region->id) }}</td>
+                                <td><a href="{{ route('regional.order',['id'=>$region->id]) }}" class="btn btn-outline-success">View</a></td>
                             </tr>
                         @endforeach
 
