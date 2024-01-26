@@ -43,6 +43,9 @@
       table {
          font-size: 10px;
       }
+      .header {
+         text-align: center;
+      }
    </style>
    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
 </head>
@@ -51,17 +54,15 @@
 <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12 padding">
    <div class="card">
       <div class="card-header p-4">
-         <div class="row">
-            <div class="col-lg-4 col-sm-5 mb-3">
-               <div class="header">
-                  <center>
-                     <div class="logo">
-                        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('app-assets/images/logo.png'))) }}" alt="Logo" width="120" height="60">
-                     </div>
-                     <b>  <p style="font-size: 14px;">Order Invoice</p> </b>
-                  </center>
+         <div class="header mt-0 mb-0">
+            <center>
+               <div class="logo">
+                  <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('app-assets/images/logo.png'))) }}" alt="Logo" width="120" height="60">
                </div>
-               <div>
+               <b>  <p style="font-size: 14px;">Order Invoice</p> </b>
+            </center>
+         </div>
+         <div class="row">
                   @php
                      $test = json_decode($test, true);
                   @endphp
