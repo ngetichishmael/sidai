@@ -13,20 +13,15 @@ class sokoflowController extends Controller
     */
    public function __construct()
    {
-      // $this->middleware('auth');
+       $this->middleware('auth');
    }
 
 
    /**
     * dashboard controller instance.
     */
-   public function dashboard()
-   {
 
 
-      return view('app.dashboard.dashboard');
-
-   }
 
    //user summary
    public function user_summary()
@@ -39,4 +34,12 @@ class sokoflowController extends Controller
    public function allocatedusers(){
       return view('app.dashboard.allocatedusers');
    }
+   public function dashboard()
+   {
+
+
+      return view('app.dashboard.dashboard');
+
+   }
+
 }

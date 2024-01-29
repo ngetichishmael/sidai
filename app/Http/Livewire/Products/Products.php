@@ -31,6 +31,7 @@ class Products extends Component
             "same_price",
             "short_description",
             "notification_email",
+            "sku_code"
          ],
          $searchTerm
       )

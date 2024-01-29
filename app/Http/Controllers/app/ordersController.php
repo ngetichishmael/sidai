@@ -63,7 +63,11 @@ class ordersController extends Controller
     public function details($code)
     {
         $order = Orders::where('order_code', $code)->with('User')->first();
-        $items = Order_items::where('order_code', $order->order_code)->get();
+        $items = Order_items::where('order_code', $order->order_code)
+           ->with(['productInformation' => function ($query) {
+              $query->select('id', 'product_name', 'sku_code');
+           }])
+           ->get();
         $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
         $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
         $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
@@ -106,7 +110,11 @@ class ordersController extends Controller
     {
         $order = Orders::where('order_code', $code)->first();
         // dd($code);
-        $items = Order_items::where('order_code', $order->order_code)->get();
+        $items = Order_items::where('order_code', $order->order_code)
+           ->with(['productInformation' => function ($query) {
+              $query->select('id', 'product_name', 'sku_code');
+           }])
+           ->get();
         //dd($items);
         $sub = Order_items::select('allocated_subtotal')->where('order_code', $order->order_code)->get();
         $total = Order_items::select('allocated_totalamount')->where('order_code', $order->order_code)->get();
@@ -690,10 +698,9 @@ class ordersController extends Controller
          'distributor' => $request->distributor
       ];
       $order_code = $data['order']['order_code'] ?? null;
-
       $pdf = PDF::loadView('Exports.orderdetails_pdf', $data);
-
-      return $pdf->download('order '.$order_code.'.pdf');
+      return $pdf->download('order ' . $order_code . '.pdf', ['Content-Disposition' => 'attachment']);
+//      return $pdf->download('order '.$order_code.'.pdf');
    }
 
    public function sendOrder($number, $order_code)

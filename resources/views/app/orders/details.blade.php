@@ -264,13 +264,69 @@
             </div>
         </div>
         <div class="col-md-3 mt-2">
-           <a href="{{ route('generateOrderPdf', [
-    'test' => json_encode($test), 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>
+{{--           <a href="{{ route('generateOrderPdf', [--}}
+{{--    'test' => json_encode($test), 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>--}}
+{{--           --}}
+           <form action="{{ route('generateOrderPdf') }}" method="POST" id="pdfForm">
+              @csrf
+              @method('POST')
+              <input type="hidden" name="test" value="{{ json_encode($test) }}">
+              <input type="hidden" name="order" value="{{ json_encode($order) }}">
+              <input type="hidden" name="distributor" value="Sidai">
+              <input type="hidden" name="items" value="{{ json_encode($items) }}">
+              <input type="hidden" name="sub" value="{{ $sub->sum('sub_total') }}">
+              <input type="hidden" name="total" value="{{ $total->sum('total_amount') }}">
+              <input type="hidden" name="order_status" value="{{ $order->order_status }}">
+
+              <button type="button" class="btn btn-secondary mb-2" id="downloadBtn" onclick="generatePDF()">Download Invoice</button>
+           </form>
            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
             <center><a href="{!! route('orders.delivery.without', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order Without Stock</a></center>
 
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+       function generatePDF() {
+          // Disable the button to prevent multiple clicks
+          $('#downloadBtn').prop('disabled', true);
+
+          // Show a loading indicator on the button
+          $('#downloadBtn').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...');
+
+          // Submit the form asynchronously using fetch
+          fetch($('#pdfForm').attr('action'), {
+             method: 'POST',
+             body: new FormData(document.getElementById('pdfForm')),
+          })
+             .then(response => response.blob())
+             .then(blob => {
+                // Create a Blob from the response
+                const url = window.URL.createObjectURL(blob);
+
+                // Create a temporary link to initiate the download
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'order.pdf';
+
+                // Append the link to the document and trigger a click event
+                document.body.appendChild(a);
+                a.click();
+
+                // Remove the temporary link and enable the button
+                document.body.removeChild(a);
+                $('#downloadBtn').prop('disabled', false);
+                $('#downloadBtn').html('Download Invoice');
+             })
+             .catch(error => {
+                console.error('Error during PDF generation:', error);
+
+                // Handle errors, re-enable the button, and update the UI
+                $('#downloadBtn').prop('disabled', false);
+                $('#downloadBtn').html('Download Invoice');
+             });
+       }
+    </script>
 @endsection
 {{-- page scripts --}}
 @section('script')

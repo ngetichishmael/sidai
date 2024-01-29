@@ -69,6 +69,18 @@ class Dashboard extends Component
       if (is_null($start) && is_null($end)) {
          return $query;
       }
+      $start = $start ?? Carbon::now()->startOfDay()->format('Y-m-d H:i:s');
+      $end = $end ?? Carbon::now()->endOfDay()->format('Y-m-d H:i:s');
+      if (Carbon::parse($start)->eq(Carbon::parse($end))) {
+         return $query->whereDate($column, '=', $start);
+      }
+      return $query->whereBetween($column, [$start, $end]);
+   }
+   public function whereBetweenDate2(Builder $query, string $column = null, string $start = null, string $end = null): Builder
+   {
+      if (is_null($start) && is_null($end)) {
+         return $query;
+      }
 
       if (!is_null($start) && Carbon::parse($start)->eq(Carbon::parse($end))) {
          return $query->whereDate($column, '=', $start);

@@ -618,51 +618,64 @@ class productController extends Controller
    public function updateBulk(Request $request, $warehouse)
    {
       $this->validate($request, [
-         'excel_file' => 'required|file|mimes:xls,xlsx']);
-
+         'excel_file' => 'required|file|mimes:xls,xlsx'
+      ]);
       $path = $request->file('excel_file')->getRealPath();
-      $data = Excel::toArray([], $path)[0];
+      $data = Excel::toArray((object)[], $path)[0];
 
       $userCode = Auth::user()->user_code;
       $businessCode = Auth::user()->business_code;
 
-      foreach ($data as $row) {
-         $productsku = $row['sku'];
-         $buyingPrice = $row['wholesale'];
-         $distributorPrice = $row['distributor'];
-         $sellingPrice = $row['retail'];
-
-         // Fetch product information based on product name and warehouse code
-         $information = product_information::where('sku_code', $productsku)
-            ->where('warehouse_code', $warehouse)
-            ->first();
-
-         if ($information) {
-            $prices = product_price::updateOrCreate(
-               ['id' => $information->id],
-               [
-                  'buying_price' => $buyingPrice ?? $prices->buying_price,
-                  'distributor_price' => $distributorPrice ?? $prices->distributor_price,
-                  'selling_price' => $sellingPrice ?? $prices->selling_price,
-                  'business_code' => $businessCode,
-               ]
-            );
-            $random = Str::random(20);
-            $activityLog = new activity_log();
-            $activityLog->activity = 'Price Updating';
-            $activityLog->user_code = $userCode;
-            $activityLog->section = 'web';
-            $activityLog->action = 'Product ' . $productName . ' successfully updated ';
-            $activityLog->userID = auth()->user()->id;
-            $activityLog->activityID = $random;
-            $activityLog->ip_address = $request->ip();
-            $activityLog->save();
+      $notFoundSkus = [];
+      foreach ($data as $index => $row) {
+         // Skip the first row (header)
+         if ($index === 0) {
+            continue;
          }
+         if (count($row) >= 4) {
+            $productsku = $row[0];
+            $buyingPrice = $row[2];
+            $distributorPrice = $row[1];
+            $sellingPrice = $row[3];
+            $information = product_information::where('sku_code', $productsku)
+               ->where('warehouse_code', $warehouse)
+               ->first();
+            if ($information) {
+               $prices = product_price::updateOrCreate(
+                  ['id' => $information->id],
+                  [
+                     'buying_price' => $buyingPrice ?? $prices->buying_price,
+                     'distributor_price' => $distributorPrice ?? $prices->distributor_price,
+                     'selling_price' => $sellingPrice ?? $prices->selling_price,
+                     'business_code' => $businessCode,
+                  ]
+               );
+               $random = Str::random(20);
+               $activityLog = new activity_log();
+               $activityLog->activity = 'Price Updating';
+               $activityLog->user_code = $userCode;
+               $activityLog->section = 'web';
+               $activityLog->action = 'Product successfully updated ';
+               $activityLog->userID = auth()->user()->id;
+               $activityLog->activityID = $random;
+               $activityLog->ip_address = $request->ip();
+               $activityLog->save();
+               info("success");
+            } else {
+               $notFoundSkus[] = $productsku;
+            }
+         }
+         if (!empty($notFoundSkus)) {
+            return response()->json(['not_found_skus' => $notFoundSkus], 404);
+         }
+
       }
+      $successMessages="Prices successfully Updated";
+      return response()->json(['success_messages' => $successMessages, 'redirect' => '/warehousing/'.$warehouse.'/products']);
 
-      session()->flash('success', 'Prices successfully Updated!');
-
-      return redirect('/warehousing/products');
+//      session()->flash('success', 'Prices successfully Updated!');
+//
+//      return redirect('/warehousing/'.$warehouse.'/products');
    }
 
    /**

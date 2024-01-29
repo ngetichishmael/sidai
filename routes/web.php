@@ -462,7 +462,7 @@ Route::middleware('web')->group(function () {
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
       Route::get('/generatePdf', ['uses' => 'app\ordersController@generatePDF', 'as' => 'generatePdf']);
-      Route::get('/generateOrderPdf', ['uses' => 'app\ordersController@generateOrderPDF', 'as' => 'generateOrderPdf']);
+      Route::post('/generateOrderPdf', ['uses' => 'app\ordersController@generateOrderPDF', 'as' => 'generateOrderPdf']);
 
    /* ===  survey === */
    /* === category === */
