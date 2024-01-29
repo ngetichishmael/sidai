@@ -2,12 +2,14 @@
 
     <div class="navbar-header mb-3 mt-0 text-center">
         <ul class="nav navbar-nav flex-row ">
-            <li class="nav-item me-auto">
-                <a class="" href="#">
-                    <center><img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" width="75%" height="50%">
-                    </center>
-                </a>
-            </li>
+           <li class="nav-item me-auto">
+              <a class="" href="#">
+                 <center>
+                    <img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" style="border-radius: 75%;" width="75%" height="50%">
+                 </center>
+              </a>
+           </li>
+
         </ul>
 
     </div>
