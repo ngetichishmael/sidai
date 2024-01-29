@@ -4,7 +4,7 @@
         <ul class="nav navbar-nav flex-row ">
             <li class="nav-item me-auto">
                 <a class="" href="#">
-                    <center><img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" width="75%">
+                    <center><img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" width="75%" height="50%">
                     </center>
                 </a>
             </li>
