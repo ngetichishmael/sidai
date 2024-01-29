@@ -317,6 +317,11 @@ Route::middleware('web')->group(function () {
 
    Route::get('users-Roles', ['uses' => 'app\usersController@list', 'as' => 'users.list']);
 
+   Route::get('reports/{code}/details', ['uses' => 'app\ReportsController@order_details', 'as' => 'details.order']);
+
+   //regional order details
+   Route::get('regional/{id}/details', ['uses' => 'app\ReportsController@regional_order', 'as' => 'regional.order']);
+
 
    //one view and interface for all users
       // web.php
@@ -330,7 +335,7 @@ Route::middleware('web')->group(function () {
          Route::get('reports/daily', 'app\ReportsController@dailyReports')->name('users.dailyreports');
          // Route::get('reports/pre-oders', 'app\ReportsController@reports')->name('preorders.reports');
          Route::get('reports/employees', 'app\ReportsController@reports')->name('employee.reports');
-         Route::get('reports/delivery', 'app\ReportsController@reports')->name('delivery.reports');
+         Route::get('reports/orders', 'app\ReportsController@reports')->name('delivery.reports');
          Route::get('reports/sidai-users', 'app\ReportsController@reports')->name('sidai.reports');
          Route::get('reports/warehouse-Report', 'app\ReportsController@reports')->name('warehouse.reports');
          Route::get('reports/supplier-report', 'app\ReportsController@reports')->name('supplier.reports');
@@ -427,6 +432,8 @@ Route::middleware('web')->group(function () {
    Route::get('settings/account', ['uses' => 'app\settingsController@account', 'as' => 'settings.account']);
    Route::post('settings/account/{id}/update', ['uses' => 'app\settingsController@update_account', 'as' => 'settings.account.update']);
 
+   Route::get('allocations/{warehouse_code}', ['uses' => 'app\warehousingController@allocations', 'as' => 'details.allocation']);
+
    //activity lo
    Route::get('settings/activity-log', ['uses' => 'app\settingsController@activity_log', 'as' => 'settings.activity.log']);
 
@@ -455,7 +462,7 @@ Route::middleware('web')->group(function () {
    //distributor orders
    Route::get('distributororders', ['uses' => 'app\ordersController@distributororders', 'as' => 'orders.distributororders']);
       Route::get('/generatePdf', ['uses' => 'app\ordersController@generatePDF', 'as' => 'generatePdf']);
-      Route::get('/generateOrderPdf', ['uses' => 'app\ordersController@generateOrderPDF', 'as' => 'generateOrderPdf']);
+      Route::post('/generateOrderPdf', ['uses' => 'app\ordersController@generateOrderPDF', 'as' => 'generateOrderPdf']);
 
    /* ===  survey === */
    /* === category === */

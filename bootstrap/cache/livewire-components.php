@@ -78,6 +78,7 @@
   'reports.payments' => 'App\\Http\\Livewire\\Reports\\Payments',
   'reports.preorder' => 'App\\Http\\Livewire\\Reports\\Preorder',
   'reports.products' => 'App\\Http\\Livewire\\Reports\\Products',
+  'reports.products-sales' => 'App\\Http\\Livewire\\Reports\\ProductsSales',
   'reports.sidai-customers' => 'App\\Http\\Livewire\\Reports\\SidaiCustomers',
   'reports.warehouse' => 'App\\Http\\Livewire\\Reports\\Warehouse',
   'role.index' => 'App\\Http\\Livewire\\Role\\Index',

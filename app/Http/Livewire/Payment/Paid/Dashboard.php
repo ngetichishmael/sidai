@@ -54,6 +54,9 @@ class Dashboard extends Component
          'payments' => $payments
       ]);
    }
+   public function total_payment($customer_id){
+
+   }
    // public function approve($id)
    // {
    //    Delivery::whereId($id)->update([

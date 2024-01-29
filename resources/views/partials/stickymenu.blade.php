@@ -6,7 +6,7 @@
          </li> --}}
          
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
-            <a class="nav-link {{ request()->routeIs('delivery.reports') ? 'active' : '' }}" href="{{ route('delivery.reports') }}">Delivery</a>
+            <a class="nav-link {{ request()->routeIs('delivery.reports') ? 'active' : '' }}" href="{{ route('delivery.reports') }}">Orders</a>
          </li>
          {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
              <a class="nav-link {{ request()->routeIs('supplier.reports') ? 'active' : '' }}" href="{{ route('supplier.reports') }}">Suppliers</a>

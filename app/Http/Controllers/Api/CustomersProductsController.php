@@ -31,7 +31,9 @@ class CustomersProductsController extends Controller
             $query->whereHas('Warehouse', function ($query) use ($userRegionId) {
                $query->where('region_id', $userRegionId);
             });
-         }])->get();      return response()->json([
+         }])->get();  
+             
+         return response()->json([
          "success" => true,
          "message" => "Product information",
          "products" => $productInfo
