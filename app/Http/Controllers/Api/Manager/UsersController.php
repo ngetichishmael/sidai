@@ -13,6 +13,19 @@ use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
+   public function activeUsers(){
+      $checking = checkin::select('user_code')
+         ->today()
+         ->groupBy('user_code');
+      $today = User::joinSub($checking, 'customer_checkin', function ($join) {
+         $join->on('users.user_code', '=', 'customer_checkin.user_code');
+      })->get();
+      return response()->json([
+         "success" => true,
+         "status" => 200,
+         "data" => $today,
+      ]);
+   }
 //   public function getUsers(Request $request)
 //   {
 //      if ($request->account_type == 'RSM') {
@@ -91,6 +104,37 @@ class UsersController extends Controller
 //              $query->select('customer_name','customer_id');
 //           }]
            )->get();
+
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
+           ]);
+        }
+
+    }
+    public function userVisits(Request $request, $user_code)
+    {
+        if ($request->user()->account_type == "RSM") {
+         $visits=checkin::with(['user' => function ($query) use ($user_code) {
+            $query->select('name', 'user_code', 'region_id')
+               ->where('user_code', $user_code);
+         }, 'Customer'])
+            ->whereHas('user', function ($query) {
+               $query->where('region_id', auth()->user()->region_id);
+            })->get();
+           return response()->json([
+              "success" => true,
+              "status" => 200,
+              "data" => $visits,
+           ]);
+        } else {
+           $visits=checkin::with(['user' => function ($query) {
+              $query->select('name', 'user_code');
+           }],'Customer')
+              ->whereHas('user', function ($query) use ($user_code) {
+                 $query->where('user_code', $user_code);
+              })->get();
 
            return response()->json([
               "success" => true,

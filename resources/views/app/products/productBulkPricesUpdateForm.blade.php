@@ -17,15 +17,22 @@
                         {{ session('success') }}
                      </div>
                   @endif
-
-                  <form method="post" action="{{ route('products.bulkUpdate', ['warehouse'=>$warehouse->warehouse_code]) }}" enctype="multipart/form-data">
+                     <div class="alert alert-info" role="alert">
+                        <strong>Instructions:</strong>
+                        <ul>
+                           <li>Prepare an Excel file with the following columns: <strong>product sku</strong>,<strong>distributor</strong>, <strong>wholesale</strong>, <strong>retail</strong>.</li>
+                           <li>Ensure the file format is either <strong>.xls</strong> or <strong>.xlsx</strong>.</li>
+                           <li>Fill in the values for each product accordingly.</li>
+                           <li>Upload</li>
+                        </ul>
+                     </div>
+                  <form method="post" action="{{ route('products.bulkUpdate', ['warehouse'=>$warehouse]) }}" enctype="multipart/form-data">
                      @csrf
-
                      <div class="form-group">
                         <label for="excel_file">Excel File:</label>
                         <input type="file" name="excel_file" class="form-control-file" accept=".xls, .xlsx" required>
                      </div>
-
+                  <br/>
                      <button type="submit" class="btn btn-primary">Update Prices</button>
                   </form>
                </div>

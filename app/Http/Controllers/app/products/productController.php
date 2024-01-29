@@ -578,6 +578,12 @@ class productController extends Controller
          'code'=>$code,
       ]);
    }
+
+   public function showBulkUpdateForm($warehouse){
+      return view('app.products.productBulkPricesUpdateForm', [
+         'warehouse'=>$warehouse
+      ]);
+   }
    public function updatesingle(Request $request, $id)
    {
       $information = product_information::whereId($id)->first();
@@ -609,14 +615,10 @@ class productController extends Controller
       return redirect('/warehousing/'.$information->warehouse_code.'/products');
    }
 
-// ... other use statements ...
-
-   public function updateBulk(Request $request)
+   public function updateBulk(Request $request, $warehouse)
    {
       $this->validate($request, [
-         'excel_file' => 'required|file|mimes:xls,xlsx',
-         'warehouse_code' => 'required|string', // Assuming warehouse_code is provided in the request
-      ]);
+         'excel_file' => 'required|file|mimes:xls,xlsx']);
 
       $path = $request->file('excel_file')->getRealPath();
       $data = Excel::toArray([], $path)[0];
@@ -625,28 +627,26 @@ class productController extends Controller
       $businessCode = Auth::user()->business_code;
 
       foreach ($data as $row) {
-         $productName = $row['product_name']; // Adjust column name based on your Excel file
-         $buyingPrice = $row['buying_price']; // Adjust column name based on your Excel file
-         $distributorPrice = $row['distributor_price']; // Adjust column name based on your Excel file
+         $productsku = $row['sku'];
+         $buyingPrice = $row['wholesale'];
+         $distributorPrice = $row['distributor'];
+         $sellingPrice = $row['retail'];
 
          // Fetch product information based on product name and warehouse code
-         $information = product_information::where('product_name', $productName)
-            ->where('warehouse_code', $request->warehouse_code)
+         $information = product_information::where('sku_code', $productsku)
+            ->where('warehouse_code', $warehouse)
             ->first();
 
          if ($information) {
-            // Update or create product price record
             $prices = product_price::updateOrCreate(
                ['id' => $information->id],
                [
-                  'buying_price' => $buyingPrice,
-                  'distributor_price' => $distributorPrice,
-                  'selling_price' => $row['selling_price'] ?? null,
+                  'buying_price' => $buyingPrice ?? $prices->buying_price,
+                  'distributor_price' => $distributorPrice ?? $prices->distributor_price,
+                  'selling_price' => $sellingPrice ?? $prices->selling_price,
                   'business_code' => $businessCode,
                ]
             );
-
-            // Log activity for each product
             $random = Str::random(20);
             $activityLog = new activity_log();
             $activityLog->activity = 'Price Updating';

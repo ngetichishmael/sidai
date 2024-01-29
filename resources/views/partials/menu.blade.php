@@ -277,7 +277,7 @@
 
 <li class="nav-item {!! Nav::isResource('stocklift') !!}">
     <a class="d-flex align-items-center" href="{!! route('stock.lifts') !!}">
-       <i data-feather="layers"></i>
+       <i data-feather="tag"></i>
        <span class="menu-title text-truncate" data-i18n="Invo">Stock Lifts</span>
     </a>
  </li>
@@ -319,7 +319,6 @@
 </li>
 <li style="padding-left: 50px">
    <a class="d-flex align-items-center {!! Nav::isResource('survey') !!}" href="{!! route('SurveryResponses') !!}">
-
       <span class="menu-item text-truncate">Responses</span>
    </a>
 </li>
@@ -330,9 +329,22 @@
            @haspermissionto(['manager_dashboard', 'admin_dashboard','shop_attendee_dashboard'])
               @if(Auth::user()->account_type=='Admin' || Auth::user()->account_type=='NSM')
     <li class="nav-item {!! Nav::isResource('reports') !!}">
+       <a class="d-flex align-items-center" href="#">
+          <i data-feather="layers"></i><span class="menu-title text-truncate">Reports</span>
+       </a>
+       <ul class="menu-content">
+          <li style="padding-left: 50px">
         <a class="d-flex align-items-center" href="{!! route('users.reports') !!}"><i
                 data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="Invoice">
                 All Reports</span></a>
+          </li>
+            {{-- TODO : adding daily reports--}}
+          <li style="padding-left: 50px">
+          <a class="d-flex align-items-center" href="{!! route('users.dailyreports') !!}"><i
+                data-feather='repeat'></i><span class="menu-title text-truncate" data-i18n="Invoice">
+                Daily Reports</span></a>
+          </li>
+       </ul>
     </li>
               @endif
               @endhaspermissionto

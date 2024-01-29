@@ -87,7 +87,7 @@
                         <th>Name</th>
                         <th>Phone Number</th>
                         <th>Region, Subregion, Town</th>
-                        <th>Outlet</th>
+                        <th>Pricing</th>
                         <th>Added By</th>
                         <th>Status</th>
                         <th>Date Created</th>
@@ -103,7 +103,7 @@
                                 <i>{!! $contact->subregion_name !!}</i>,
                                 {!! $contact->area_name !!}
                             </td>
-                            <td>{{ $contact->customer_group??'' }}</td>
+                            <td>{{ $contact->price_group ??'' }}</td>
 
                             <td>{{ $this->getCreatorName($contact->user_code) }}</td>
                             <td>

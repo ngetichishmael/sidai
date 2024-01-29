@@ -18,7 +18,7 @@
                <td>{{ $visit->visit_count }}</td>
                <td>{{ $visit->last_visit_date }}</td>
                <td>
-                  <a href="#" class="btn btn-primary">View</a>
+                  <a href="{{ route('UsersVisits.show', ['user' => $visit->user_code]) }}" class="btn btn btn-sm" style="background-color: #1877F2; color:white" >View</a>
                </td>
             </tr>
             @empty

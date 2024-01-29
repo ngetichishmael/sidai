@@ -12,6 +12,7 @@ use App\Models\Delivery;
 use App\Models\Delivery_items;
 use App\Models\inventory\items;
 use App\Models\Order_items;
+use App\Models\order_payments;
 use App\Models\Orders;
 use App\Models\products\product_information;
 use App\Models\products\product_inventory;
@@ -88,6 +89,60 @@ class OrdersController extends Controller
              });
        })
        ->where('order_type','=','Van Sales')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
+    public function userVansales(Request $request, $user_code)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })->where('user_code',$user_code)
+       ->where('order_type','=','Van Sales')
+          ->get();
+          return response()->json([
+             'status' => 200,
+             'success' => true,
+             'message' => 'Pending Orders with the Order items, the Sales associate, and the customer',
+             'data' => $orders
+          ]);
+
+    }
+    public function userOrders(Request $request, $user_code)
+    {
+       $sidai=suppliers::find(1);
+       $orders=Orders::with('Customer', 'user', 'distributor')
+       ->where('order_status','=', 'Pending Delivery')
+       ->when(Auth::user()->account_type === "RSM"|| Auth::user()->account_type === "Shop-Attendee",function($query){
+          $query->whereIn('customerID', $this->rolefilter());
+       })
+       ->where(function ($query) use ($sidai) {
+          $query->whereNull('supplierID')
+             ->orWhere('supplierID', '')
+             ->orWhere(function ($subquery) use ($sidai) {
+                if ($sidai !== null) {
+                   $subquery->where('supplierID', 1);
+                }
+             });
+       })->where('user_code',$user_code)
+       ->where('order_type','=','Pre Order')
           ->get();
           return response()->json([
              'status' => 200,
@@ -678,6 +733,17 @@ class OrdersController extends Controller
             $arrayData["date"] = $data["updated_at"];
         }
         return $arrayData;
+    }
+    public function payments(Request $request){
+       $payments = order_payments::with(['user'=> function($query){$query->select('name','id','phone_number','user_code')->get();},'order' => function ($query) {
+          $query->with(['Customer'=> function ($query){$query->select('customer_name','id')->get();}])->select('order_code', 'id', 'customerID');
+       }])->get();
+       return response()->json([
+          'status' => 200,
+          'success' => true,
+          "message" => "Payment information with order details",
+          "data" =>$payments
+          ]);
     }
     public function transaction(Request $request)
     {

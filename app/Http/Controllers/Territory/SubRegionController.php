@@ -42,7 +42,7 @@ class SubRegionController extends Controller
    public function store(Request $request)
    {
       $this->validate($request, [
-         'name' => 'required',
+         'name' => 'required|unique:subregions',
          'region' => 'required',
       ]);
       $subregion = Subregion::create([

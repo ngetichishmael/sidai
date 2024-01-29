@@ -142,7 +142,7 @@ class Warehouse extends Component
          $query->whereIn('order_code', $this->filter());
       }
 
-      $totalAllocated = $query->whereIn('productID', $product_informations)->sum('quantity');
+      $totalAllocated = $query->whereIn('productID', $product_informations)->count('quantity');
 
       return $totalAllocated;
    }
