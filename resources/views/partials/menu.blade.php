@@ -5,7 +5,7 @@
            <li class="nav-item me-auto">
               <a class="" href="#">
                  <center>
-                    <img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" style="border-radius: 98%;" width="70%" height="40%">
+                    <img src="{!! asset('app-assets/images/ssealogo.jpg') !!}" alt="Sokoflow" class="img" style="border-radius: 98%;" width="68%" height="40%">
                  </center>
               </a>
            </li>
