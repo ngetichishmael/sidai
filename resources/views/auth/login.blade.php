@@ -18,12 +18,12 @@
 
                     <div class="card-body">
                         <div style="display: flex; justify-content:center">
-                            <img src={{ asset('app-assets/images/bglogo.png') }} class="logo" alt="Sokoflow Test" width="100px" height="80px" style="" />
+                            <img src={{ asset('app-assets/images/ssealogo.jpg') }} class="logo" alt="Sokoflow Test" width="100px" height="80px" style="" />
                           </div>
 
                             <br><br><br><br>
 
-                        <h4 class="mb-1 card-title">Welcome to Sokoflow System ! 👋</h4>
+                        <h4 class="mb-1 card-title">Welcome to Skifoc Solution East Africa 👋</h4>
                         <p class="mb-2 card-text">Please sign-in to your account</p>
                         <form class="mt-2 auth-login-form" action="{{ route('login') }}" method="POST">
                             @csrf

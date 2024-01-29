@@ -7,10 +7,10 @@
    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="Devint">
 {{--    <title>@yield('title') - Sidai Africa Limited</title>--}}
-    <title>Sokoflow Test</title>
+    <title>SSEA</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
-   <link rel="icon" type="image/png" href="{!! asset('app-assets/images/favicon.png') !!}">
+   <link rel="icon" type="image/png" href="{!! asset('app-assets/images/ssealogo.jpg') !!}">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="{!! asset('app-assets/vendors/css/vendors.min.css') !!}">
     <!-- END: Vendor CSS-->
