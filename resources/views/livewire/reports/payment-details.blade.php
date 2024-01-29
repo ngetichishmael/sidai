@@ -159,6 +159,8 @@
                                     <div class="col-5">
                                         <span class="text-100 text-success-d3 opacity-2">
                                             {{ $order_details[0]->amount }}</span>
+                                        {{-- <span class="text-100 text-success-d3 opacity-2">
+                                            {{ $order_details[0]->total_amount }}</span> --}}
                                     </div>
                                 </div>
                             </div>

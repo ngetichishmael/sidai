@@ -41,6 +41,7 @@ class Index extends Component
          $result = DB::table('users AS u')->where('region_id', $this->user->region_id);
       }
       $result->select(
+            'u.id AS id',
             'u.name AS user_name',
             'u.account_type AS user_type',
             'lt.LeadsTarget AS leads_target',

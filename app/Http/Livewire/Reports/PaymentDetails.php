@@ -24,6 +24,8 @@ class PaymentDetails extends Component
             'oi.requested_quantity',
             'oi.delivery_quantity'
          )
+         ->groupBy('oi.product_name', 'o.order_code', 'op.payment_method', 'oi.requested_quantity', 'oi.delivery_quantity')
+         ->distinct()
          ->get();
 
       return view('livewire.reports.payment-details', [

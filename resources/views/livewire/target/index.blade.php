@@ -52,6 +52,7 @@
                                 <th>Visit Achieved</th>
                                 <th>Order Target</th>
                                 <th>Order Achieved</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,6 +69,7 @@
                                     <td>{{ $target->visits_achieved ?? "N/A"}}</td>
                                     <td>{{ $target->orders_target ?? "N/A"}}</td>
                                     <td>{{ $target->orders_achieved ?? "N/A"}}</td>
+                                    <td><a href="{{ route('targets.details',['id'=>$target->id]) }}" class="btn btn-outline-success">View</a></td>
                                 </tr>
                             @endforeach
 
