@@ -33,6 +33,7 @@
                     <th>Sales</th>
                     <th>Visit</th>
                     <th>Orders</th>
+                    <th>Month</th>
 
                     
                 </thead>
@@ -69,7 +70,14 @@
                                 {{ "Not Set" }}
                             @endif
                         </td>
-                        {{-- <td>{{ $result->created_at->format('F j, Y') }}</td> --}}
+                        <td>
+                            @if ($result->created_at)
+                                {{ \Carbon\Carbon::parse($result->created_at)->format('F, Y') }}
+                            @else
+                                {{-- Handle the case where created_at is null or empty --}}
+                                {{ "null" }}
+                            @endif
+                        </td>
                         </tr>
                     @empty
                         <div>

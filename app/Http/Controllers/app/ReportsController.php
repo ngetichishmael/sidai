@@ -212,6 +212,7 @@ class ReportsController extends Controller
         'ot.OrdersTarget AS orders_target',
         'ot.AchievedOrdersTarget AS orders_achieved',
         'st.SalesTarget AS sales_target',
+        'st.created_at AS created_at',
         'st.AchievedSalesTarget AS sales_achieved',
         'vt.VisitsTarget AS visits_target',
         'vt.AchievedVisitsTarget AS visits_achieved'
