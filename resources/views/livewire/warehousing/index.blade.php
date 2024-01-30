@@ -65,18 +65,21 @@
                      @if(Auth::check() && Auth::user()->account_type == "Admin" || Auth::check() && Auth::user()->account_type == "NSM" || Auth::check() && Auth::user()->account_type == "RSM")
                   <a href="{!! route('warehousing.assign',['warehouse_code'=> $warehouse->warehouse_code]) !!}" type="button" class="dropdown-item btn btn-sm" style="color: #dc2059; font-weight: bold"><i data-feather="plus"></i>&nbsp; Assign Shop Attendees</a>
                @endif
-</div>
-</div>
-</td>
-</tr>
-@endif
-@endforeach
-</tbody>
-</table>
-{!! $warehouses->links() !!}
-</div>
-</div>
-</div>
-@section('scripts')
+                  </div>
+                  </div>
+                  </td>
+                  </tr>
+                  @endif
+                  @endforeach
+                  </tbody>
+                  </table>
+          @if ($warehouses instanceof \Illuminate\Pagination\AbstractPaginator)
+             {!! $warehouses->links() !!}
+          @endif
+
+       </div>
+                  </div>
+                  </div>
+                  @section('scripts')
 
 @endsection
