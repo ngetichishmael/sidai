@@ -136,8 +136,11 @@ class Approve extends Component
          if (empty($warehouse)) {
             return $array;
          }
-         $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
-         $customers = customers::whereIn('region_id', $region)->pluck('id');
+         $region = warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+         $customers = customers::where(function ($query) use ($region, $user) {
+            $query->whereIn('region_id', $region)
+               ->orWhere('created_by', $user->user_code);
+         })->pluck('id');
          return $customers->toArray();
       }else {
          $regions = Region::where('id', $user_code)->pluck('id');
