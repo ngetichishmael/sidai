@@ -136,8 +136,8 @@ class Approve extends Component
          if (empty($warehouse)) {
             return $array;
          }
-         dd($warehouse);
          $region = warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+         dd($region);
          $customers = customers::where(function ($query) use ($region, $user) {
             $query->whereIn('region_id', $region)
                ->orWhere('created_by', $user->user_code);
