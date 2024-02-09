@@ -25,7 +25,9 @@ class Order extends Component
    public function render()
    {
 
-      $targetsQuery = User::with('TargetsOrder')->where('account_type', '<>', 'Admin');
+      $targetsQuery = User::with(['TargetsOrder' => function ($query) {
+         $query->orderBy('updated_at', 'asc');
+      }])->where('account_type', '<>', 'Admin');
       $today = Carbon::now();
       // $targetsQuery = SalesTarget::query();
       // Apply search filter
@@ -35,7 +37,7 @@ class Order extends Component
       // Apply time frame filter
       $this->applyTimeFrameFilter($targetsQuery);
       // Fetch targets
-      $targets = $targetsQuery->orderBy('TargetsOrder.updated_at')->get();
+      $targets = $targetsQuery->get();
       return view('livewire.target.order', [
          'targets' => $targets,
          'today' => $today,

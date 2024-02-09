@@ -22,7 +22,9 @@ class Visit extends Component
     //      'today'=>$today
     //     ]);
     // }
-    $targetsQuery = User::with('TargetsVisit')->where('account_type', '<>', 'Admin');
+    $targetsQuery = User::with(['TargetsVisit' => function ($query) {
+       $query->orderBy('updated_at', 'asc');
+    }])->where('account_type', '<>', 'Admin');
       $today = Carbon::now();
       // $targetsQuery = SalesTarget::query();
       // Apply search filter
@@ -32,7 +34,7 @@ class Visit extends Component
       // Apply time frame filter
       $this->applyTimeFrameFilter($targetsQuery);
       // Fetch targets
-      $targets = $targetsQuery->orderBy('TargetsVisit.updated_at')->get();
+      $targets = $targetsQuery->get();
       return view('livewire.target.visit', [
          'targets' => $targets,
          'today' => $today,
