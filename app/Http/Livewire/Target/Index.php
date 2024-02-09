@@ -57,7 +57,7 @@ class Index extends Component
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->where('u.account_type', '!=', 'Customer')
-         ->whereMonth('u.created_at', '=', now()->month)->orderBy('updated_at')
+         ->whereMonth('u.created_at', '=', now()->month)
          ->get();
       return $result->paginate(25);
    }

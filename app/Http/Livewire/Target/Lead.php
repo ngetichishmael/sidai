@@ -21,10 +21,10 @@ class Lead extends Component
     public $perPage = 10;
     public $search = '';
     public $timeFrame = 'quarter';
- 
+
     public function render()
     {
- 
+
        $targetsQuery = User::with('TargetLead')->where('account_type', '<>', 'Admin');
        $today = Carbon::now();
        // $targetsQuery = SalesTarget::query();
@@ -35,17 +35,17 @@ class Lead extends Component
        // Apply time frame filter
        $this->applyTimeFrameFilter($targetsQuery);
        // Fetch targets
-       $targets = $targetsQuery->get();
+       $targets = $targetsQuery->orderBy('TargetLead.updated_at')->get();
        return view('livewire.target.lead', [
           'targets' => $targets,
           'today' => $today,
        ]);
     }
- 
+
     private function applyTimeFrameFilter($query)
     {
        $endDate = Carbon::now();
- 
+
        // Set end date based on selected time frame
        if ($this->timeFrame === 'quarter') {
           $endDate->endOfQuarter();
@@ -55,7 +55,7 @@ class Lead extends Component
        } elseif ($this->timeFrame === 'year') {
           $endDate->endOfYear();
        }
- 
+
        // Apply the filter
        $query->whereHas('TargetLead', function ($targetSaleQuery) use ($endDate) {
           $targetSaleQuery->whereDate('Deadline', '<=', $endDate->format('Y-m-d'));
@@ -66,7 +66,7 @@ class Lead extends Component
        if ($target != 0) {
           return number_format(($achieved / $target) * 100, 2);
        }
- 
+
        return 0;
     }
 }

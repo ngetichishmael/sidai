@@ -9,7 +9,7 @@ use App\Models\SalesTarget;
 
 class Sales extends Component
 {
-  
+
   public $perPage = 10;
   public $search = '';
   public $timeFrame = 'quarter';
@@ -25,7 +25,7 @@ class Sales extends Component
      // Apply time frame filter
      $this->applyTimeFrameFilter($targetsQuery);
      // Fetch targets
-     $targets = $targetsQuery->get();
+     $targets = $targetsQuery->orderBy('TargetSale.updated_at')->get();
      return view('livewire.target.sales', [
         'targets' => $targets,
         'today' => $today,

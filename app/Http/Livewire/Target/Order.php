@@ -35,7 +35,7 @@ class Order extends Component
       // Apply time frame filter
       $this->applyTimeFrameFilter($targetsQuery);
       // Fetch targets
-      $targets = $targetsQuery->get();
+      $targets = $targetsQuery->orderBy('TargetsOrder.updated_at')->get();
       return view('livewire.target.order', [
          'targets' => $targets,
          'today' => $today,

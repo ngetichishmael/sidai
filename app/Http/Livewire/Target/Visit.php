@@ -32,7 +32,7 @@ class Visit extends Component
       // Apply time frame filter
       $this->applyTimeFrameFilter($targetsQuery);
       // Fetch targets
-      $targets = $targetsQuery->get();
+      $targets = $targetsQuery->orderBy('TargetsVisit.updated_at')->get();
       return view('livewire.target.visit', [
          'targets' => $targets,
          'today' => $today,
