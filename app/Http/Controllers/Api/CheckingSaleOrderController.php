@@ -141,7 +141,8 @@ class CheckingSaleOrderController extends Controller
 
             DB::table('sales_targets')
                ->where('user_code', $user_code)
-               ->increment('AchievedSalesTarget', $value["qty"]);
+               ->increment('AchievedSalesTarget', $value["qty"],  ['updated_at' => Carbon::now()]);
+
          }
       } else {
          return response()->json([

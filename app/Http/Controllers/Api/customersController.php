@@ -329,8 +329,8 @@ class customersController extends Controller
 
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
-            ->increment('AchievedLeadsTarget');
-        DB::table('customers as c')
+           ->increment('AchievedLeadsTarget', 1, ['updated_at' => Carbon::now()]);
+       DB::table('customers as c')
             ->join('areas as a', 'c.route_code', '=', 'a.id')
             ->join('subregions as s', 'a.subregion_id', '=', 's.id')
             ->join('regions as r', 's.region_id', '=', 'r.id')
@@ -443,9 +443,9 @@ class customersController extends Controller
 
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
-            ->increment('AchievedLeadsTarget');
+           ->increment('AchievedLeadsTarget', 1, ['updated_at' => Carbon::now()]);
 
-        return response()->json([
+       return response()->json([
             "success" => true,
             "status" => 200,
             "message" => "Customer added successfully",
