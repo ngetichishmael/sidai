@@ -123,21 +123,59 @@ class Approve extends Component
 
       return $aggregate;
    }
+
    public function filter(): array
    {
       $array = [];
       $user = Auth::user();
       $user_code = $user->region_id;
-      if (!$user->account_type === 'RSM' || !$user->account_type ==="Shop-Attendee") {
+
+      if ($user->account_type !== 'RSM' && strtolower($user->account_type) !== "shop-attendee") {
          return $array;
       }
-      if ($user->account_type ==="Shop-Attendee"){
+
+      if (strtolower($user->account_type) === "shop-attendee") {
+         $warehouse = warehouse_assign::where('manager', $user->user_code)->first();
+
+         if (empty($warehouse)) {
+            return $array;
+         }
+
+         $region = warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+      } else {
+         $regions = Region::where('id', $user_code)->pluck('id');
+
+         if (empty($regions)) {
+            return $array;
+         }
+
+         $region = $regions;
+      }
+
+      if (empty($region)) {
+         return $array;
+      }
+
+      return $region->toArray();
+   }
+   public function filter1(): array
+   {
+      $array = [];
+      $user = Auth::user();
+      $user_code = $user->region_id;
+      if ($user->account_type !== 'RSM' && strtolower($user->account_type) !== "shop-attendee") {
+         return $array;
+      }
+      if (strtolower($user->account_type) ==="shop-attendee"){
          $warehouse=warehouse_assign::where('manager', $user->user_code)->first();
          if (empty($warehouse)) {
             return $array;
          }
-         $region=warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
-         $customers = customers::whereIn('region_id', $region)->pluck('id');
+         $region = warehousing::where('warehouse_code', $warehouse->warehouse_code)->pluck('region_id');
+         $customers = customers::where(function ($query) use ($region, $user) {
+            $query->whereIn('region_id', $region)
+               ->orWhere('created_by', $user->user_code);
+         })->pluck('id');
          return $customers->toArray();
       }else {
          $regions = Region::where('id', $user_code)->pluck('id');

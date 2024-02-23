@@ -1,3 +1,4 @@
+<div>
 <!-- Customer Check-in Timeline -->
 <div class="card mb-4">
     <h5 class="card-header">Last Check-in Activity</h5>
@@ -26,3 +27,4 @@
     </div>
 </div>
 <!-- /Customer Check-in Timeline -->
+</div>

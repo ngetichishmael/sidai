@@ -1,4 +1,4 @@
-   <!-- Project table -->
+<div>   <!-- Project table -->
    <div class="card mb-4">
        <h5 class="card-header">Customer Payments</h5>
        <div class="table-responsive mb-3">
@@ -30,3 +30,4 @@
        </div>
    </div>
    <!-- /Project table -->
+</div>

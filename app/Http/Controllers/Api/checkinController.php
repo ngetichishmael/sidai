@@ -86,7 +86,8 @@ class checkinController extends Controller
 
       DB::table('visits_targets')
          ->where('user_code', $request->user_code)
-         ->increment('AchievedVisitsTarget');
+         ->increment('AchievedVisitsTarget',1,['updated_at' => Carbon::now()]);
+
       return response()->json([
          "success" => true,
          "message" => "Checking Session Created Successfully",

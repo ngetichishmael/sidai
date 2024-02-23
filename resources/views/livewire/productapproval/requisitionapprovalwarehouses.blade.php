@@ -40,7 +40,9 @@
             @endforeach
             </tbody>
          </table>
-         {!! $warehouses->links() !!}
+         @if ($warehouses instanceof \Illuminate\Pagination\AbstractPaginator)
+            {!! $warehouses->links() !!}
+         @endif
       </div>
    </div>
 </div>

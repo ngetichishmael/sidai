@@ -1,3 +1,4 @@
+<div>
 <div class="col-md-6 col-12">
     <label>Region</label>
     <select wire:model='region' class="form-control" name="region">
@@ -28,4 +29,5 @@
             <option value="1">Route</option>
         @endforelse
     </select>
+</div>
 </div>

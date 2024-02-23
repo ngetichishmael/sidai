@@ -1,3 +1,4 @@
+<div>
  <div class="row">
      <!-- User Sidebar -->
      <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
@@ -136,3 +137,4 @@
 
      <!--/ User Content -->
  </div>
+</div>
