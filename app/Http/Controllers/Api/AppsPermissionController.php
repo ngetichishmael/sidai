@@ -10,7 +10,6 @@ class AppsPermissionController extends Controller
 {
     public function getAllPermission(Request $request)
     {
-
       $permissions=AppPermission::where('user_code',$request->user()->user_code)->get();
       return response()->json([
          "success" => true,

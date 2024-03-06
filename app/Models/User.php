@@ -55,12 +55,12 @@ class User extends Authenticatable implements MustVerifyEmail
    public function TargetLead(): HasOne
    {
       return $this->hasOne(LeadsTargets::class, 'user_code', 'user_code')
-         ->latest('created_at');
+         ->latest('updated_at');
    }
    public function TargetSale(): HasOne
    {
       return $this->hasOne(SalesTarget::class, 'user_code', 'user_code')
-         ->latest('created_at');
+         ->latest('updated_at');
    }
 
    /**
@@ -135,7 +135,7 @@ class User extends Authenticatable implements MustVerifyEmail
    public function TargetsOrder(): HasOne
     {
         return $this->hasOne(OrdersTarget::class, 'user_code', 'user_code')
-            ->latest('created_at');
+            ->latest('updated_at');
     }
    /**
     * Get all of the TargetsVisit for the User
@@ -149,7 +149,7 @@ class User extends Authenticatable implements MustVerifyEmail
    public function TargetsVisit(): HasOne
     {
         return $this->hasOne(VisitsTarget::class, 'user_code', 'user_code')
-            ->latest('created_at');
+            ->latest('updated_at');
     }
    /**
     * Get the Region that owns the User

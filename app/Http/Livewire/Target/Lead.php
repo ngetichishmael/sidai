@@ -21,11 +21,13 @@ class Lead extends Component
     public $perPage = 10;
     public $search = '';
     public $timeFrame = 'quarter';
- 
+
     public function render()
     {
- 
-       $targetsQuery = User::with('TargetLead')->where('account_type', '<>', 'Admin');
+
+       $targetsQuery = User::with(['TargetLead' => function ($query) {
+          $query->orderBy('updated_at', 'asc');
+       }])->where('account_type', '<>', 'Admin');
        $today = Carbon::now();
        // $targetsQuery = SalesTarget::query();
        // Apply search filter
@@ -41,11 +43,11 @@ class Lead extends Component
           'today' => $today,
        ]);
     }
- 
+
     private function applyTimeFrameFilter($query)
     {
        $endDate = Carbon::now();
- 
+
        // Set end date based on selected time frame
        if ($this->timeFrame === 'quarter') {
           $endDate->endOfQuarter();
@@ -55,7 +57,7 @@ class Lead extends Component
        } elseif ($this->timeFrame === 'year') {
           $endDate->endOfYear();
        }
- 
+
        // Apply the filter
        $query->whereHas('TargetLead', function ($targetSaleQuery) use ($endDate) {
           $targetSaleQuery->whereDate('Deadline', '<=', $endDate->format('Y-m-d'));
@@ -66,7 +68,7 @@ class Lead extends Component
        if ($target != 0) {
           return number_format(($achieved / $target) * 100, 2);
        }
- 
+
        return 0;
     }
 }

@@ -23,6 +23,7 @@ class Requisitionapprovalwarehouses extends Component
    }
     public function render()
     {
+       $warehouses = [];
        if (strcasecmp(strtolower($this->user->account_type), 'shop-attendee') == 0) {
           $check = warehouse_assign::where('manager', Auth::user()->user_code)->select('warehouse_code')->first();
           if($check)

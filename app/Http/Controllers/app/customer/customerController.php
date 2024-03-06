@@ -211,7 +211,7 @@ class customerController extends Controller
       $customer->created_by = FacadesAuth::user()->user_code;
       $customer->save();
 
-      if (($request->customer_group!=null) && (($request->customer_group ==='Distributor')|| ($request->customer_group ==='Distributors'))) {
+      if (($request->customer_group!=null) && (($request->customer_group ==='Distributor') || ($request->customer_group ==='Distributors'))) {
          $primary = new suppliers;
          $primary->email = $request->email;
          $primary->name = $request->customer_name;
@@ -342,7 +342,6 @@ class customerController extends Controller
       }
    $cname=$customer->customer_name;
    $phone=$customer->phone_number;
-//   dd($request->all());
       $customer->update([
          'customer_name' => $request->input('customer_name')??$customer->customer_name,
          'id_number' => $request->input('id_number')??$customer->id_number,
@@ -362,7 +361,9 @@ class customerController extends Controller
          'updated_at'=>now(),
          'updated_by'=>auth()->user()->user_code,
       ]);
-
+      if(strtolower($customer->customer_group)==="distributor" && ($request->input('customer_group') != 'Distributor')){
+         suppliers::where('customer_id', $customer->id)->delete();
+      }
       // Check for Distributor
       if (($request->input('customer_group') === 'Distributor') || ($request->input('customer_group') === 'Distributors')) {
          $supplier = suppliers::where('name', $cname)

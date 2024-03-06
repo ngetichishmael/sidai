@@ -22,7 +22,9 @@ class Visit extends Component
     //      'today'=>$today
     //     ]);
     // }
-    $targetsQuery = User::with('TargetsVisit')->where('account_type', '<>', 'Admin');
+    $targetsQuery = User::with(['TargetsVisit' => function ($query) {
+       $query->orderBy('updated_at', 'asc');
+    }])->where('account_type', '<>', 'Admin');
       $today = Carbon::now();
       // $targetsQuery = SalesTarget::query();
       // Apply search filter

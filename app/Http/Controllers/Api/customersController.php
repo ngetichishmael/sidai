@@ -329,8 +329,8 @@ class customersController extends Controller
 
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
-            ->increment('AchievedLeadsTarget');
-        DB::table('customers as c')
+           ->increment('AchievedLeadsTarget', 1, ['updated_at' => Carbon::now()]);
+       DB::table('customers as c')
             ->join('areas as a', 'c.route_code', '=', 'a.id')
             ->join('subregions as s', 'a.subregion_id', '=', 's.id')
             ->join('regions as r', 's.region_id', '=', 'r.id')
@@ -443,9 +443,9 @@ class customersController extends Controller
 
         DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
-            ->increment('AchievedLeadsTarget');
+           ->increment('AchievedLeadsTarget', 1, ['updated_at' => Carbon::now()]);
 
-        return response()->json([
+       return response()->json([
             "success" => true,
             "status" => 200,
             "message" => "Customer added successfully",
@@ -484,10 +484,49 @@ class customersController extends Controller
                 "email" => $request->email ?? $customer->email,
                 "phone_number" => $request->phone_number ?? $customer->phone_number,
                 "business_code" => $request->user()->business_code ?? $customer->business_code,
-                "created_by" => $request->user()->id ?? $customer->id,
+                "updated_by" => $request->user()->user_code ?? $customer->update_by ?? "",
             ]
         );
-
+       $cname=$customer->customer_name;
+       $phone=$customer->phone_number;
+       if (strtolower($customer->customer_group)==="distributor" && ($request->input('customer_group') != 'Distributor')){
+          suppliers::where('customer_id', $customer->id)->delete();
+       }
+       if (($request->input('customer_group') === 'Distributor') || ($request->input('customer_group') === 'Distributors')) {
+          $supplier = suppliers::where('name', $cname)
+             ->where('phone_number', $phone)
+             ->first();
+          if ($supplier) {
+             $supplier->update([
+                'email' => $request->email ?? $customer->email,
+                'phone_number' => $request->phone_number ?? $customer->phone_number,
+                'telephone' => $request->telephone ?? $customer->telephone,
+                'customer_id'=>$customer->id,
+                'status' => 'Active',
+                'name' => $request->input('customer_name') ?? $cname,
+                'business_code' => auth()->user()->business_code,
+                'updated_at'=>now(),
+                'updated_by'=>auth()->user()->user_code,
+             ]);
+          } else {
+             suppliers::create([
+                'email' => $request->email ?? $customer->email,
+                'phone_number' => $request->phone_number ?? $customer->phone_number,
+                'telephone' => $request->telephone ?? $customer->telephone,
+                'customer_id'=>$customer->id,
+                'status' => 'Active',
+                'name' => $request->input('customer_name') ?? $cname,
+                'business_code' => auth()->user()->business_code,
+                'updated_at'=>now(),
+                'created_by'=>auth()->user()->user_code,
+             ]);
+          }
+       }
+       $user=User::where('user_code', $customer->user_code)->first();
+       if ($user != null || !empty($user)) {
+          $user->region_id = $request->region ?? Auth::user()->region_id ?? null;
+          $user->save();
+       }
         $random = Str::random(20);
         $activityLog = new activity_log();
         $activityLog->activity = 'Editing customer information';

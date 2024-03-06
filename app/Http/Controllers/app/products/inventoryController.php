@@ -61,10 +61,13 @@ class inventoryController extends Controller{
      $type= Str::lower(Auth::user()->account_type);
       if ($type == "shop-attendee") {
          $warehouse=warehouse_assign::where('manager', Auth::user()->user_code)->first();
+         if (!$warehouse){
+            return view('app.stocks.reconciliation');
+         }
          $sales=Reconciliation::where('warehouse_code',$warehouse->warehouse_code)
             ->with('salesPerson:user_code,name')->get();
-         info("warehouse code  ", [$warehouse->warehouse_code]);
-         info(" sales items-- ", [$sales]);
+//         info("warehouse code  ", [$warehouse->warehouse_code]);
+//         info(" sales items-- ", [$sales]);
          $status = 'waiting_approval';
          $warehouse_name=warehousing::where('warehouse_code',$warehouse->warehouse_code)->first();
          return view('app.items.salespersons', ['type'=>$type,'status' => $status,'sales' => $sales, 'warehouse'=>$warehouse, 'warehouse_name'=>$warehouse_name->name]);

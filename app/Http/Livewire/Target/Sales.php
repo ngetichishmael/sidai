@@ -9,7 +9,7 @@ use App\Models\SalesTarget;
 
 class Sales extends Component
 {
-  
+
   public $perPage = 10;
   public $search = '';
   public $timeFrame = 'quarter';
@@ -17,7 +17,9 @@ class Sales extends Component
   public function render()
   {
 
-     $targetsQuery = User::with('TargetSale')->where('account_type', '<>', 'Admin');
+     $targetsQuery = User::with(['TargetSale' => function ($query) {
+        $query->orderBy('updated_at', 'asc');
+     }])->where('account_type', '<>', 'Admin');
      $today = Carbon::now();
      if (!empty($this->search)) {
         $targetsQuery->where('name', 'LIKE', '%' . $this->search . '%');
