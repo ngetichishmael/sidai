@@ -433,6 +433,7 @@ Route::middleware('web')->group(function () {
    Route::post('settings/account/{id}/update', ['uses' => 'app\settingsController@update_account', 'as' => 'settings.account.update']);
 
    Route::get('allocations/{warehouse_code}', ['uses' => 'app\warehousingController@allocations', 'as' => 'details.allocation']);
+   Route::get('distributor/{id}/details', ['uses' => 'app\warehousingController@dis_details', 'as' => 'distributor.details']);
 
    //activity lo
    Route::get('settings/activity-log', ['uses' => 'app\settingsController@activity_log', 'as' => 'settings.activity.log']);

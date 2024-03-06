@@ -21,6 +21,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\products\product_information;
+use App\Models\Orders;
 
 class warehousingController extends Controller
 {
@@ -73,6 +74,20 @@ class warehousingController extends Controller
       $allocated = $query->whereIn('productID', $product_informations)->paginate(50);
 
       return view('products.more',['allocated'=>$allocated]);
+
+   }
+
+   public function dis_details($id){
+      $orders = Orders::where('supplierID', $id)->select('order_code')->get();
+      $query = Order_items::query();
+
+      if (Auth::user()->account_type === 'RSM') {
+         $query->whereIn('order_code', $this->filter());
+      }
+
+      $allocated = $query->whereIn('order_code', $orders)->paginate(30);
+
+      return view('products.dis_details',['allocated'=>$allocated]);
 
    }
 
