@@ -51,7 +51,7 @@
                                 <th>Orders Fulfilled</th>
                                 <th>Status</th>
                                 <th>Fulfilment Rate</th>
-                                {{-- <th>Region</th> --}}
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,7 +77,7 @@
                                             N/A
                                         @endif
                                     </td>
-                                    {{-- <td></td> --}}
+                                    <td><a href="{{ route('distributor.details',['id'=>$distributor->id]) }}" class="btn btn-primary">View</a></td>
 
                                 </tr>
                             @empty
