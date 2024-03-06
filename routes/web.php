@@ -435,6 +435,7 @@ Route::middleware('web')->group(function () {
    Route::get('allocations/{warehouse_code}', ['uses' => 'app\warehousingController@allocations', 'as' => 'details.allocation']);
    Route::get('user/targets/{id}', ['uses' => 'app\ReportsController@target_details', 'as' => 'targets.details']);
    Route::get('distributor/{id}/details', ['uses' => 'app\warehousingController@dis_details', 'as' => 'distributor.details']);
+   Route::get('customer/{id}/details', ['uses' => 'app\warehousingController@customer_details', 'as' => 'customer.orders']);
 
    //activity lo
    Route::get('settings/activity-log', ['uses' => 'app\settingsController@activity_log', 'as' => 'settings.activity.log']);

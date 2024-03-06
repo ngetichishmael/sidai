@@ -9,7 +9,7 @@
       <div class="content-header-left col-md-12 col-12 mb-2">
          <div class="row breadcrumbs-top">
             <div class="col-8">
-               <h2 class="content-header-title float-start mb-0">Regional | Orders</h2>
+               <h2 class="content-header-title float-start mb-0">Ordered items</h2>
                <div class="breadcrumb-wrapper">
                   <ol class="breadcrumb">
                      {{-- <li class="breadcrumb-item"><a href="#">Home</a></li> --}}
@@ -27,23 +27,17 @@
             <table class="table table-striped table-bordered">
                 <thead>
                     <th width="1%">#</th>
-                    <th>Order Code</th>
-                    <th>Order Status</th>
-                    <th>Payment Status</th>
-                    <th>Order Status</th>
+                    <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Created On</th>
+                    <th>Allocated on</th>
                     
                 </thead>
                 <tbody>
-                    @forelse($orders as $count => $order)
+                    @forelse($allocated as $count => $allocate)
                         <td>{{ $count + 1 }}</td>
-                        <td>{{ $order->order_code }}</td>
-                        <td>{{ $order->order_status }}</td>
-                        <td>{{ $order->payment_status }}</td>
-                        <td>{{ $order->order_status }}</td>
-                        <td>{{ $order->qty }}</td>
-                        <td>{{ $order->created_at->format('F j, Y') }}</td>
+                        <td>{{ $allocate->product_name }}</td>
+                        <td>{{ $allocate->quantity }}</td>
+                        <td>{{ $allocate->created_at->format('F j, Y') }}</td>
                         </tr>
                     @empty
                         <div>
@@ -54,11 +48,11 @@
                     @endforelse
                 </tbody>
             </table>
-            {{-- @if (!empty($orders))
+            @if (!empty($allocated))
                 <div>
-                    {{ $orders->links() }}
+                    {{ $allocated->links() }}
                 </div>
-            @endif --}}
+            @endif
 
         </div>
     </div>

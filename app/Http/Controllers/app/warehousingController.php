@@ -90,6 +90,15 @@ class warehousingController extends Controller
       return view('products.dis_details',['allocated'=>$allocated]);
 
    }
+   public function customer_details($id){
+      $orders = Orders::where('customerID', $id)->select('order_code')->get();
+      $query = Order_items::query();
+
+      $allocated = $query->whereIn('order_code', $orders)->paginate(30);
+
+      return view('products.customer_orders',['allocated'=>$allocated]);
+
+   }
 
 
 

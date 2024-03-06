@@ -42,6 +42,8 @@
                          <th>Orders</th>
                          <th>Region</th>
                          <th>Subregion</th>
+                         <th>Action</th>
+
                       </tr>
                    </thead>
                    <tbody>
@@ -53,6 +55,7 @@
                         <td>{{ $user->orders_count }}</td>
                         <td>{{ $user->Region->name??'N/A' }}</td>
                         <td>{{ $user->Subregion->name??'N/A' }}</td>
+                        <td><a href="{{ route('customer.orders',['id'=>$user->id]) }}" class="btn btn-primary">View</a></td>
 
                     </tr>
                      @endforeach
