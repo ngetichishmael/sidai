@@ -26,9 +26,9 @@
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('target.reports') ? 'active' : '' }}" href="{{ route('target.reports') }}">Targets</a>
          </li>
-         <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
+         {{-- <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('sidai.reports') ? 'active' : '' }}" href="{{ route('sidai.reports') }}">Users</a>
-         </li>
+         </li> --}}
          <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Click to View Reports">
             <a class="nav-link {{ request()->routeIs('clients.reports') ? 'active' : '' }}" href="{{ route('clients.reports') }}">Customers</a>
          </li>
