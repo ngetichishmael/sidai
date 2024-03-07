@@ -178,8 +178,8 @@ class ordersController extends Controller
          Orders::where('order_code', $code)->update([
             'order_status' => $orderStatus,
             'rejection_reasons' => $disapprovalReason,
+            'approved_by'=>$request->user()->id
             ]);
-
          Delivery::where('order_code', $code)->update([
             'delivery_status' => $orderStatus,
          ]);
