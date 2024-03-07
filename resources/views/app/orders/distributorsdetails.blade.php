@@ -260,28 +260,56 @@
           <h6 class="mt-3 mb-3">Tracking Distributor Order Status</h6>
           <span class="mt-1 mb-1">Current Status: <span id="currentStatus" style="color: orangered">@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}} @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered") {{"Order Derivered"}}@else {!! $order->order_status !!}@endif</span></span>
           <center>
-             <form id="statusForm" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
-                @csrf
-                <select id="orderStatus" name="order_status" class="form-control mb-2 mt-2" required>
-                   <option value={{$order->order_status}}>@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</option>
-                   @if(strtolower($order->order_status) == "pending delivery")
-                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
-                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
-                      <option value="Not Delivered" id="nd">Not Delivered</option>
-                   @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered")
-                      <option value="Complete Delivery" id="cd">Order Delivered</option>
-                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
-                   @elseif(strtolower($order->order_status) == "partially delivered")
-                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
-                      <option value="Partially Delivered" id="pd">Partially Delivered</option>
-                   @elseif(strtolower($order->order_status) == "not delivered")
-                      <option value="Complete Delivery" id="cd">Complete Delivery</option>
-                      <option value="Not Delivered" id="nd">Not Delivered</option>
-                   @endif
-                </select>
-                <button type="submit" class="btn btn-block btn-warning">Change Order Status</button>
-             </form>
+                @if(strtolower($order->order_status) =='waiting approval')
+                <form id="statusForm1" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
+                   @csrf
+                   <select id="orderStatus1" name="order_status1" class="form-control mb-2 mt-2" required>
+                      <option value="" selected>Order Approval</option>
+                      <option value="Approved" id="approved" style="color: #51d751">Approved Order</option>
+                      <option value="Disapproved" id="disapproved" style="color: orangered">Disapprove Order</option>
+                   </select>
+
+                   <div id="reasonInput" style="display: none;">
+                      <label for="disapprovalReason">Reason for Disapproval:</label>
+                      <input type="text" id="disapprovalReason" name="disapproval_reason" class="form-control mb-2 mt-2">
+                   </div>
+                   <button type="submit" class="btn btn-block btn-warning">Approve/Disapprove</button>
+                </form>
+                @else
+                <form id="statusForm" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
+                   @csrf
+                   <select id="orderStatus" name="order_status" class="form-control mb-2 mt-2" required>
+                      <option value={{$order->order_status}}>@if(strtolower($order->order_status) == "pending delivery") {{"Pending Order"}}@else {!! $order->order_status !!}@endif</option>
+                      @if(strtolower($order->order_status) == "pending delivery")
+                         <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                         <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                         <option value="Not Delivered" id="nd">Not Delivered</option>
+                      @elseif(strtolower($order->order_status) == "complete delivery" || strtolower($order->order_status) == "delivered")
+                         <option value="Complete Delivery" id="cd">Order Delivered</option>
+                         <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                      @elseif(strtolower($order->order_status) == "partially delivered")
+                         <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                         <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                      @elseif(strtolower($order->order_status) == "not delivered")
+                         <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                         <option value="Not Delivered" id="nd">Not Delivered</option>
+                      @elseif(strtolower($order->order_status) == "approved")
+                         <option value="Complete Delivery" id="cd">Complete Delivery</option>
+                         <option value="Partially Delivered" id="pd">Partially Delivered</option>
+                         <option value="Not Delivered" id="nd">Not Delivered</option>
+                         @elseif(strtolower($order->order_status) =="disapproved")
+                         <option value="Approved" id="ap">Approve</option>
+                      @endif
+                   </select>
+                   <button type="submit" class="btn btn-block btn-warning">Change Order Status</button>
+                </form>
+                @endif
           </center>
+          @if(strtolower($order->order_status) =="disapproved")
+             <textarea class="form-control mb-2 mt-2" readonly>
+                {{$order->rejection_reasons ?? 'No reasons added on disapproval'}}
+             </textarea>
+          @endif
        </div>
 
        <div class="row">
@@ -289,6 +317,24 @@
              <a href="{{ url()->previous() }}" class="btn btn-info mb-2" style="align-content: center" >&nbsp; Back &nbsp; </a>
        </div>
     </div>
+
+       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+       <script>
+          $(document).ready(function () {
+             function toggleReasonInput() {
+                var selectedOption = $("#orderStatus1").val();
+                if (selectedOption === "Disapproved") {
+                   $("#reasonInput").show();
+                } else {
+                   $("#reasonInput").hide();
+                }
+             }
+             toggleReasonInput();
+             $("#orderStatus1").on("change", function () {
+                toggleReasonInput();
+             });
+          });
+       </script>
 
 @endsection
 {{-- page scripts --}}

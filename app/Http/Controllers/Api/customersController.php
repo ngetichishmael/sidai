@@ -327,7 +327,7 @@ class customersController extends Controller
           $primary->save();
        }
 
-        DB::table('leads_targets')
+      DB::table('leads_targets')
             ->where('user_code', $request->user()->user_code)
            ->increment('AchievedLeadsTarget', 1, ['updated_at' => Carbon::now()]);
        DB::table('customers as c')

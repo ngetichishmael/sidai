@@ -286,6 +286,12 @@ class CheckingSaleOrderController extends Controller
          if (empty($value)) {
             continue;
          }
+         if ($request->distributor == 1 || $request->distributor == null) {
+            $status = "Pending Delivery";
+         }else
+         {
+            $status = "Waiting Approval";
+         }
 
          $qty = $value["qty"];
          $price = $value["price"];
@@ -324,7 +330,7 @@ class CheckingSaleOrderController extends Controller
                   'customerID' => $checkinCode,
                   'price_total' => $total,
                   'balance' => $total,
-                  'order_status' => 'Pending Delivery',
+                  'order_status' => $status,
                   'payment_status' => 'Pending Payment',
                   'qty' => $qty,
                   'supplierID' => $distributor ?? 1,
