@@ -24,7 +24,7 @@ class StockLiftController extends Controller
       $validator = Validator::make($request->all(), [
          "image" => "required"
       ]);
-      $message='';
+      $message = '';
       if ($validator->fails()) {
          return response()->json([
             "status" => 401,
@@ -35,7 +35,12 @@ class StockLiftController extends Controller
 
       $image_path = $request->file('image')->store('image', 'public');
 //      info($image_path);
-      $status="Waiting acceptance";
+//      if ($request->distributor == 1 || $request->distributor == null) {
+//         $status = "Waiting acceptance";
+//         }else
+//            {
+//               $status = "Waiting Approval";
+//            }
       $data = json_decode($request->products, true);
       $productIDs = array_column($data, 'productID');
       $stockedProducts = product_inventory::whereIn('productID', $productIDs)->get()->keyBy('productID');

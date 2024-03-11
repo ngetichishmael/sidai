@@ -141,9 +141,12 @@ class ordersController extends Controller
             ->orWhereNull('status')
             ->orWhere('status', '')
             ->orderby('name', 'desc')->get();
+       $warehouseCodes = $items->pluck('productInformation.warehouse_code')->toArray();
+
+       $warehouse = warehousing::whereIn('warehouse_code', $warehouseCodes)->first();
         $account_types = User::whereNotIn('account_type', ['Customer', 'Admin'])->groupBy('account_type')->get();
 
-        return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouses', 'distributors', 'account_types'));
+        return view('app.orders.allocation', compact('order', 'items', 'users', 'warehouse', 'distributors', 'account_types'));
     }
     public function allocationwithoutstock($code)
     {
@@ -159,18 +162,37 @@ class ordersController extends Controller
 
         return view('app.orders.allocationwithoutstock', compact('order', 'items', 'users', 'warehouses', 'distributors', 'account_types'));
     }
-    public function distributorschangeStatus(Request $request, $code)
+    public function distributorschangeStatus2(Request $request, $code)
     {
         $orderStatus = $request->input('order_status');
-
         Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
         Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
-
         Session::flash('success', 'Order Status Updated Successfully');
         return redirect()->back();
     }
+   public function distributorschangeStatus(Request $request, $code)
+   {
+      $orderStatus = $request->input('order_status') ?? $request->input('order_status1');
+      if ($orderStatus == 'Disapproved') {
+         $disapprovalReason = $request->input('disapproval_reason');
+         Orders::where('order_code', $code)->update([
+            'order_status' => $orderStatus,
+            'rejection_reasons' => $disapprovalReason,
+            'approved_by'=>$request->user()->id
+            ]);
+         Delivery::where('order_code', $code)->update([
+            'delivery_status' => $orderStatus,
+         ]);
+      } else {
+         Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
+         Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
+      }
+      Session::flash('success', 'Order Status Updated Successfully');
+      return redirect()->back();
+   }
 
-    //create delivery
+
+   //create delivery
     public function allocateOrders(Request $request)
     {
         $this->validate($request, [
@@ -427,7 +449,7 @@ class ordersController extends Controller
         ]);
         $supplierID = null;
         $order_code = Str::random(20);
-        info("order code generated ".$order_code);
+//        info("order code generated ".$order_code);
         $totalSum = 0;
        $business_code = $request->user()->business_code;
 //       dd($request->all());
