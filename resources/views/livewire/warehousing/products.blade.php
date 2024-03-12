@@ -1,6 +1,7 @@
 <div>
       <div class="row mb-1">
-         <div class="col-md-9">
+         
+         <div class="col-md-6">
             <label for=""></label>
             <input wire:model.debounce.300ms="search" type="text" class="form-control" placeholder="Search Product">
          </div>
@@ -13,6 +14,13 @@
                   <option value="50">50</option>
                   <option value="100">100</option>
                </select>
+            </div>
+            <div class="col-md-3">
+               <button type="button" class="btn btn-icon btn-outline-success" wire:click="export"
+                wire:loading.attr="disabled" data-toggle="tooltip" data-placement="top" title="Export Excel">
+                <img src="{{ asset('assets/img/excel.png') }}"alt="Export Excel" width="20" height="20"
+                    data-toggle="tooltip" data-placement="top" title="Export Excel">Export to Excel
+            </button>
             </div>
       </div>
       <div class="card card-default">

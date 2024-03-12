@@ -6,6 +6,8 @@ use App\Models\products\product_information;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\InventoryExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Products extends Component
 {
@@ -35,5 +37,16 @@ class Products extends Component
        $products = $query->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
           ->paginate($this->perPage);
         return view('livewire.warehousing.products', ['products'=>$products]);
+    }
+    public function export()
+    {
+      $alldata = product_information::with('Inventory', 'ProductPrice', 'ProductSKU')
+      ->where('warehouse_code', $this->warehouse);
+
+   if ($this->search) {
+      $query->where('product_name', 'like', '%' . $this->search . '%');
+   }
+   $data = $alldata->get();
+       return Excel::download(new InventoryExport($data), 'products.xlsx');
     }
 }

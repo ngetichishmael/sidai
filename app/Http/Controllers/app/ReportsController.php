@@ -111,7 +111,6 @@ class ReportsController extends Controller
         $areas = Area::whereIn('subregion_id', $subregions)->pluck('id');
         $customers = customers::whereIn('route_code', $areas)->pluck('id');
         $orders = Orders::whereIn('customerID', $customers)->get();
-        
       //   return $orders ?? 0;
       return view('products.regional_order_details',['orders'=>$orders]);
     }

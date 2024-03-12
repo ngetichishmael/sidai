@@ -103,9 +103,47 @@ class distributororders extends Component
       }
       return $customers->toArray();
    }
+   public function getFilteredOrders()
+   {
+      $searchTerm = '%' . $this->search . '%';
+      $sidai = suppliers::find(1);
+
+      return Orders::with('Customer', 'user', 'distributor')
+      ->where(function ($query) use ($sidai) {
+         $query->whereNotNull('supplierID')
+            ->where('supplierID', '!=', '')
+            ->where('supplierID', '!=', 1);
+      })
+      ->where('order_type','=','Pre Order')
+      ->when($this->user->account_type === "RSM"|| strtolower($this->user->account_type) === "shop-attendee",function($query){
+         $query->whereIn('customerID', $this->filter());
+      })
+      ->where(function ($query) use ($searchTerm) {
+         $query->whereHas('Customer', function ($subQuery) use ($searchTerm) {
+            $subQuery->where('customer_name', 'like', $searchTerm);
+         })
+            ->orWhereHas('User', function ($subQuery) use ($searchTerm) {
+               $subQuery->where('name', 'like', $searchTerm);
+            })
+         ->orWhereHas('distributor', function ($subQuery) use ($searchTerm) {
+            $subQuery->where('name', 'like', $searchTerm);
+         });
+      })
+      ->when($this->statusFilter, function ($query) {
+         $query->where('order_status', $this->statusFilter);
+      })
+      ->when($this->fromDate, function ($query) {
+         $query->whereDate('created_at', '>=', $this->fromDate);
+      })
+      ->when($this->toDate, function ($query) {
+         $query->whereDate('created_at', '<=', $this->toDate);
+      });
+      
+   }
    public function export()
    {
-      return Excel::download(new OrdersExport, 'orders.xlsx');
+      $filters = $this->getFilteredOrders()->get();
+      return Excel::download(new OrdersExport($filters), 'orders.xlsx');
    }
 
    public function deactivate($id)

@@ -15,6 +15,7 @@ class Index extends Component
 {
    protected $paginationTheme = 'bootstrap';
    public $start;
+   public $startMonth;
    public $end;
    public $user;
    use WithPagination;
@@ -51,19 +52,29 @@ class Index extends Component
             'st.SalesTarget AS sales_target',
             'st.AchievedSalesTarget AS sales_achieved',
             'vt.VisitsTarget AS visits_target',
-            'vt.AchievedVisitsTarget AS visits_achieved'
+            'vt.AchievedVisitsTarget AS visits_achieved',
+            'vt.created_at AS date_created'
          )
          ->leftJoin('leads_targets AS lt', 'u.user_code', '=', 'lt.user_code')
          ->leftJoin('orders_targets AS ot', 'u.user_code', '=', 'ot.user_code')
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->where('u.account_type', '!=', 'Customer')
-         ->whereMonth('u.created_at', '=', now()->month)
+         ->whereMonth('st.created_at', '=', now()->month)
          ->get();
-      return $result->paginate(25);
+
+         if ($this->start) {
+            $result->whereDate('u.created_at', '>=', $this->start);
+        }
+    
+        if ($this->end) {
+            $result->whereDate('u.created_at', '<=', $this->end);
+        }
+      return $result->paginate(100);
    }
    public function export()
    {
-      return Excel::download(new TargetExport, 'Targets.xlsx');
+      $export = new TargetExport($this->start, $this->end);
+      return Excel::download($export, 'targets.xlsx');
    }
 }

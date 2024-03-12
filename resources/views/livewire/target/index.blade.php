@@ -1,12 +1,21 @@
 <div class="row">
     <div class="col-md-3">
         <label for="validationTooltip01">Start Date</label>
-        <input wire:model="startDate" name="start" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="start" name="start" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
+    {{-- <div class="col-md-3">
+        <label for="validationTooltip01">Start Date</label>
+        <select wire:model="startMonth" name="startMonth" class="form-control" id="validationTooltip01" required>
+            <option value="" disabled>Select Month</option>
+            @foreach(range(1, 12) as $month)
+                <option value="{{ $month }}">{{ date('F', mktime(0, 0, 0, $month, 1)) }}</option>
+            @endforeach
+        </select>
+    </div> --}}
     <div class="col-md-3">
         <label for="validationTooltip01">End Date</label>
-        <input wire:model="endDate" name="startDate" type="date" class="form-control" id="validationTooltip01"
+        <input wire:model="end" name="end" type="date" class="form-control" id="validationTooltip01"
             placeholder="YYYY-MM-DD HH:MM" required />
     </div>
     <div class="col-md-3">

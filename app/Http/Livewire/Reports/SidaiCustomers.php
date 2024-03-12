@@ -40,14 +40,14 @@ class SidaiCustomers extends Component
 
       if (!empty($this->search)) {
          $query->where(function ($q) {
-             $q->where('name', 'like', '%' . $this->search . '%');
+             $q->where('customer_name', 'like', '%' . $this->search . '%');
          });
      }
-      if (!is_null($this->start)) {
+      if (!empty($this->start)) {
          if (Carbon::parse($this->start)->equalTo(Carbon::parse($this->end))) {
             $query->whereDate('created_at', 'LIKE', "%" . $this->start . "%");
          } else {
-            if (is_null($this->end)) {
+            if (empty($this->end)) {
                $this->end = Carbon::now()->endOfMonth()->format('Y-m-d');
             }
             $query->whereBetween('created_at', [$this->start, $this->end]);

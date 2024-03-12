@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Concerns\FromView;
 
 class TargetExport implements FromView
 {
+   public $start;
+   public $end;
 
     /**
     * @return \Illuminate\Support\FromView
@@ -38,8 +40,15 @@ class TargetExport implements FromView
          ->leftJoin('leads_targets AS lt', 'u.user_code', '=', 'lt.user_code')
          ->leftJoin('orders_targets AS ot', 'u.user_code', '=', 'ot.user_code')
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
-         ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
-         ->get();
-      return $result;
+         ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code');
+
+         if ($this->start) {
+            $query->whereDate('u.created_at', '>=', $this->start);
+        }
+
+        if ($this->end) {
+            $query->whereDate('u.created_at', '<=', $this->end);
+        }
+      return $result->get();
    }
 }

@@ -30,11 +30,13 @@ class Index extends Component
 
        if (auth()->check() && $dataAccessLevel == 'regional') {
           $regions = Region::findOrFail($this->user->region_id);
+          
           return view('livewire.regional.index', [
              'regions' => [$regions],
           ]);
        }else if (auth()->check() && $dataAccessLevel == 'all'){
           $regions = Region::all();
+          
           return view('livewire.regional.index', [
              'regions' => $regions,
           ]);

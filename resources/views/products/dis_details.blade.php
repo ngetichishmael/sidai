@@ -29,6 +29,7 @@
                     <th width="1%">#</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
+                    <th>Value</th>
                     <th>Allocated on</th>
                     
                 </thead>
@@ -37,6 +38,7 @@
                         <td>{{ $count + 1 }}</td>
                         <td>{{ $allocate->product_name }}</td>
                         <td>{{ $allocate->quantity }}</td>
+                        <td>{{ $allocate->total_amount }}</td>
                         <td>{{ $allocate->created_at->format('F j, Y') }}</td>
                         </tr>
                     @empty

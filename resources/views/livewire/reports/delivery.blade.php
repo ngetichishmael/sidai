@@ -66,6 +66,7 @@
                         <th>Sub-Region</th>
                         <th>Route</th>
                         <th>Amount (Ksh.)</th>
+                        <th>Order Status</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </thead>
@@ -82,6 +83,12 @@
                                 <td title="{{ $order->Customer->Area->Subregion->name ?? null }}">
                                     {{ Str::limit($order->Customer->Area->name ?? null, 20) }}</td>
                                 <td>{{ number_format($order->price_total) }}</td>
+                                <td>@if($order->order_status ==="Pending Delivery")
+                                    <span class="badge btn-outline-warning">{{ $order->order_status }}</span>
+                                    @elseif($order->order_status ==="DELIVERED")
+                                    <span class="badge btn-outline-success">{{ $order->order_status }}</span>
+                                    @endif
+                            </td>
                                <td>{{$order->created_at}}</td>
                                <td>
                                   <div class="dropdown">

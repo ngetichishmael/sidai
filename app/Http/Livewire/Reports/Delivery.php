@@ -42,6 +42,7 @@ class Delivery extends Component
       $sidai=suppliers::find(1);
       $deliveries = Orders::with('Customer', 'user', 'distributor')
          ->where('order_status','=', 'Pending Delivery')
+         ->orWhere('order_status','=','DELIVERED')
          // ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
          //    $query->whereIn('customerID', $this->filter());
          // })
