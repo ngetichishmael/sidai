@@ -125,6 +125,7 @@ Route::group(['namespace' => 'Api'], function () {
     |--------------------------------------------------------------------------
      */
     Route::post('login', 'AuthController@userLogin');
+    Route::post('login/phone', 'AuthController@userLoginPhone');
     Route::post('signup', 'AuthController@userSignUp');
     // Route::get('user/{phonenumber}/details', 'AuthController@user_details');
 

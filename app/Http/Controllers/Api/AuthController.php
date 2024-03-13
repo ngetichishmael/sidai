@@ -82,6 +82,29 @@ class AuthController extends Controller
             "user" => $user,
         ]);
     }
+    public function userLoginPhone(Request $request)
+   {
+      $user = User::where('phone_number', $request['phone_number'])->first();
+      if(!$user){
+      return response()
+            ->json(['message' => 'Unauthorized'], 401);}
+
+      // Call sendOTP function after user existence check
+     $this->sendOTP($request['phone_number']);
+
+      $user = User::where('phone_number', $request['phone_number'])->firstOrFail();
+      
+
+      $token = $user->createToken('auth_token')->plainTextToken;
+
+      return response()->json([
+         "success" => true,
+         "token_type" => 'Bearer',
+         "message" => "User Logged in",
+         "access_token" => $token,
+         "user" => $user
+      ]);
+   }
 
     /**
      * User details
@@ -136,70 +159,132 @@ class AuthController extends Controller
      * @return \Response
      */
 
-    public function sendOTP($number)
-    {
+     public function sendOTP($number)
+   {
 
-        $user = User::where('phone_number', $number)->get();
+      $user = FacadesDB::table('users')->where('phone_number', $number)->first();
 
-        if ($user != null) {
-           $check=UserCode::where('user_id' ,'=',  $user[0]->id)->first();
-           $currentTimestamp = Carbon::now();
-           $thresholdTimestamp = $currentTimestamp->subSeconds(360);
+      if ($user) {
+         $code = rand(100000, 999999);
 
-           if ($check->created_at->greaterThan($thresholdTimestamp)) {
-               return response()->json(['data' => $user, 'otp' => $check->code]);
-           } else{
+         UserCode::updateOrCreate([
+            'user_id' => $user->id,
+            'code' => $code
+         ]);
 
-            try {
-                $code = rand(100000, 999999);
-                UserCode::updateOrCreate([
-                    'user_id' => $user[0]->id,
-                    'code' => $code,
-                ]);
-                $message = "Your Sidai OTP is " . $code;
-                (new SMS)($number, $message);
-                return response()->json(['data' => $user, 'otp' => $code]);
-            } catch (ExceptionHandler $e) {
-                return response()->json(['message' => 'Error occurred while trying to send OTP code']);
-            }
-        }
-        }
-        else {
-            return response()->json(['message' => 'User is not registered!']);
-        }
-    }
+         $response = $this->sendUserSMS($code, $number);
+
+         return response()->json(
+            [
+               "response" => $response,
+               'data' => $user,
+               'otp' => $code
+            ],
+            200
+         );
+      } else {
+         return response()->json(
+            [
+               'message' => 'User is not registered!'
+            ],
+            406
+         );
+      }
+   }
+    // public function sendOTP($number)
+    // {
+
+    //     $user = User::where('phone_number', $number)->get();
+
+    //     if ($user != null) {
+    //        $check=UserCode::where('user_id' ,'=',  $user[0]->id)->first();
+    //        $currentTimestamp = Carbon::now();
+    //        $thresholdTimestamp = $currentTimestamp->subSeconds(360);
+
+    //        if ($check->created_at->greaterThan($thresholdTimestamp)) {
+    //            return response()->json(['data' => $user, 'otp' => $check->code]);
+    //        } else{
+
+    //         try {
+    //             $code = rand(100000, 999999);
+    //             UserCode::updateOrCreate([
+    //                 'user_id' => $user[0]->id,
+    //                 'code' => $code,
+    //             ]);
+    //             $message = "Your Sidai OTP is " . $code;
+    //             (new SMS)($number, $message);
+    //             return response()->json(['data' => $user, 'otp' => $code]);
+    //         } catch (ExceptionHandler $e) {
+    //             return response()->json(['message' => 'Error occurred while trying to send OTP code']);
+    //         }
+    //     }
+    //     }
+    //     else {
+    //         return response()->json(['message' => 'User is not registered!']);
+    //     }
+    // }
 
     /**
      * verify otp
      *
      * @return response()
      */
-    public function verifyOTP($number, $otp)
-    {
 
-        $user = DB::table('users')->where('phone_number', $number)->get();
-        $exists = UserCode::where('user_id', $user[0]->id)
-            ->where('code', $otp)
-            ->where('updated_at', '>=', now()->subMinutes(5))
-            ->latest('updated_at')
-            ->exists();
+     public function verifyOTP($number, $otp)
+   {
+      $user = DB::table('users')->where('phone_number', $number)->get();
 
-        if ($exists) {
-            $random = Str::random(20);
-            $activityLog = new activity_log();
-            $activityLog->activity = 'Login';
-            $activityLog->user_code = auth()->user()->user_code;
-            $activityLog->section = 'Mobile';
-            $activityLog->action = 'Logged in successful';
-            $activityLog->userID = auth()->user()->id;
-            $activityLog->activityID = $random;
-            $activityLog->ip_address = "";
-            $activityLog->save();
-            return response()->json(['message' => 'Valid OTP entered']);
-        }
-        // Log::error('Invalid OTP entered');
-        return response()->json(['message' => 'Invalid OTP entered']);
-    }
+      // return $user;
+
+      $exists = UserCode::where('user_id', $user[0]->id)
+         ->where('code', $otp)
+         ->where('updated_at', '>=', now()->subMinutes(5))
+         ->latest('updated_at')
+         ->exists();
+
+         if ($exists) {
+            $user = User::where('phone_number', $number)->firstOrFail();
+   
+         $token = $user->createToken('auth_token')->plainTextToken;
+         return response()->json([
+            "success" => true,
+            "token_type" => 'Bearer',
+            "message" => "User Logged in",
+            "access_token" => $token,
+            "user" => $user
+         ]);
+   
+            // return response()->json(['message' => 'Valid OTP entered']);
+         }
+      // Log::error('Invalid OTP entered');
+      return response()->json(['message' => 'Invalid OTP entered']);
+   }
+    // public function verifyOTP($number, $otp)
+    // {
+
+    //     $user = DB::table('users')->where('phone_number', $number)->get();
+    //     $exists = UserCode::where('user_id', $user[0]->id)
+    //         ->where('code', $otp)
+    //         ->where('updated_at', '>=', now()->subMinutes(5))
+    //         ->latest('updated_at')
+    //         ->exists();
+
+    //     if ($exists) {
+    //         $random = Str::random(20);
+    //         $activityLog = new activity_log();
+    //         $activityLog->activity = 'Login';
+    //         $activityLog->user_code = auth()->user()->user_code;
+    //         $activityLog->section = 'Mobile';
+    //         $activityLog->action = 'Logged in successful';
+    //         $activityLog->userID = auth()->user()->id;
+    //         $activityLog->activityID = $random;
+    //         $activityLog->ip_address = "";
+    //         $activityLog->save();
+    //         return response()->json(['message' => 'Valid OTP entered']);
+    //     }
+    //     // Log::error('Invalid OTP entered');
+    //     return response()->json(['message' => 'Invalid OTP entered']);
+    // }
 
     public function updatePassword(Request $request)
     {

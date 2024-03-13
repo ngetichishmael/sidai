@@ -60,15 +60,15 @@ class Index extends Component
          ->leftJoin('sales_targets AS st', 'u.user_code', '=', 'st.user_code')
          ->leftJoin('visits_targets AS vt', 'u.user_code', '=', 'vt.user_code')
          ->where('u.account_type', '!=', 'Customer')
-         ->whereMonth('st.created_at', '=', now()->month)
+         ->whereMonth('ot.created_at', '=', now()->month)
          ->get();
 
          if ($this->start) {
-            $result->whereDate('u.created_at', '>=', $this->start);
+            $result->whereDate('st.created_at', '>=', $this->start);
         }
     
         if ($this->end) {
-            $result->whereDate('u.created_at', '<=', $this->end);
+            $result->whereDate('st.created_at', '<=', $this->end);
         }
       return $result->paginate(100);
    }
