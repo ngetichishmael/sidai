@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Orders;
 
 use App\Exports\OrdersExport;
 use App\Models\customers;
+use App\Models\DistributorOrderApproval;
 use App\Models\Orders;
+use App\Models\price_group;
 use App\Models\Region;
 use App\Models\suppliers\suppliers;
 use App\Models\warehouse_assign;
@@ -28,6 +30,7 @@ class pendingorders extends Component
    public $toDate;
 
    public $user;
+   public $OutletType;
 
    public function __construct()
    {
@@ -39,7 +42,7 @@ class pendingorders extends Component
 
       $sidai=suppliers::find(1);
       $pendingorders = Orders::with('Customer', 'user', 'distributor')
-         ->where('order_status','=', 'Pending Delivery')
+         ->whereIn('order_status',['Pending Delivery', 'Waiting Approval', ' ','Fully Approved'])
          ->when($this->user->account_type === "RSM"||$this->user->account_type === "Shop-Attendee",function($query){
             $query->whereIn('customerID', $this->filter());
          })
@@ -67,11 +70,15 @@ class pendingorders extends Component
          ->when($this->toDate, function ($query) {
             $query->whereDate('created_at', '<=', $this->toDate);
          })
+         ->when($this->OutletType, function ($query) {
+            $query->whereHas('Customer', function ($subQuery) {
+               $subQuery->where('price_group', $this->OutletType);
+            });
+         })
          ->orderBy($this->orderBy, $this->orderAsc ? 'asc' : 'desc')
          ->paginate($this->perPage);
-
-
-      return view('livewire.orders.pendingorders', compact('pendingorders'));
+      $outlets=price_group::all();
+      return view('livewire.orders.pendingorders', compact('pendingorders', 'outlets'));
    }
    public function filter(): array
    {

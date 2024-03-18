@@ -26,12 +26,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Api'], function () {
-
-   /*
-   |--------------------------------------------------------------------------
-   | Authentication
-   |--------------------------------------------------------------------------
-   */
    Route::post('/manager/login',  [AuthenticationController::class, 'login']);
    Route::middleware(['auth:sanctum'])->group(function () {
       Route::get('/manager/customers', [CustomerController::class, 'getCustomers']);

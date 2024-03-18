@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\customers;
 use App\Models\Delivery;
 use App\Models\Delivery_items;
+use App\Models\DistributorOrderApproval;
 use App\Models\Order_items;
 use App\Models\order_payments;
 use App\Models\Orders;
@@ -66,8 +67,7 @@ class ordersController extends Controller
         $items = Order_items::where('order_code', $order->order_code)
            ->with(['productInformation' => function ($query) {
               $query->select('id', 'product_name', 'sku_code');
-           }])
-           ->get();
+           }])->get();
         $sub = Order_items::select('sub_total')->where('order_code', $order->order_code)->get();
         $total = Order_items::select('total_amount')->where('order_code', $order->order_code)->get();
         $Customer_id = Orders::select('customerID')->where('order_code', $code)->first();
@@ -75,8 +75,9 @@ class ordersController extends Controller
         $test = customers::where('id', $id)->first();
         // dd($test->id);
         $payment = order_payments::where('order_id', $order->order_code)->first();
+       $approval=DistributorOrderApproval::with('admin', 'manager')->where('order_code',$order->order_code)->first();
         // dd($payment);
-        return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total'));
+        return view('app.orders.details', compact('order', 'items', 'test', 'payment', 'sub', 'total','approval'));
     }
     public function vansaledetails($code)
     {
@@ -165,27 +166,55 @@ class ordersController extends Controller
     public function distributorschangeStatus2(Request $request, $code)
     {
         $orderStatus = $request->input('order_status');
+
         Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
         Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
+
         Session::flash('success', 'Order Status Updated Successfully');
         return redirect()->back();
     }
    public function distributorschangeStatus(Request $request, $code)
    {
       $orderStatus = $request->input('order_status') ?? $request->input('order_status1');
-      if ($orderStatus == 'Disapproved') {
-         $disapprovalReason = $request->input('disapproval_reason');
-         Orders::where('order_code', $code)->update([
-            'order_status' => $orderStatus,
-            'rejection_reasons' => $disapprovalReason,
-            'approved_by'=>$request->user()->id
+      if ($request->distributor == 'distributor') {
+         $approvals=DistributorOrderApproval::where('order_code',$code)->first();
+         $user_type=Auth::user()->account_type;
+         $user_is='';
+         if ($user_type && $user_type=='Admin'){
+            $user_is='admin';
+         }else{
+            $user_is='manager';
+         }
+         if ($approvals != null && ($approvals->admin_id !=null && $user_is=='admin' && $approvals->manager_id !=null)){
+            DistributorOrderApproval::update(['order_code'=>$code], ['status'=>'Fully Approved','admin_id'=>Auth::user()->id,'admin_approve_at'=>now(), 'admin_status'=>$orderStatus,'reason'=>$request->input('disapproval_reason') ]);
+            Orders::where('order_code', $code)->update(['order_status' => 'Fully Approved']);
+         }elseif ($approvals != null && ($approvals->manager_id !=null && $user_is=='manager' && $approvals->admin_id !=null)){
+            DistributorOrderApproval::update(['order_code'=>$code], ['status'=>'Fully Approved','manager_id'=>Auth::user()->id,'manager_approve_at'=>now(), 'manager_status'=>$orderStatus, 'reason'=>$request->input('disapproval_reason') ]);
+            Orders::where('order_code', $code)->update(['order_status' => 'Fully Approved']);
+         }else{
+            if ($user_is='admin'){
+               DistributorOrderApproval::updateOrCreate(['order_code'=>$code], ['status'=>'Partially Approved','admin_id'=>Auth::user()->id, 'admin_status'=>$orderStatus,'admin_approve_at'=>now(), 'reason'=>$request->input('disapproval_reason') ]);
+            }else{
+               DistributorOrderApproval::updateOrCreate(['order_code'=>$code], ['status'=>'Partially Approved','manager_id'=>Auth::user()->id,'manager_status'=>$orderStatus,'manager_approve_at'=>now(), 'reason'=>$request->input('disapproval_reason') ]);
+            }
+            Orders::where('order_code', $code)->update(['order_status' => 'Partially Approved']);
+         }
+
+      }else {
+         if ($orderStatus == 'Disapproved') {
+            $disapprovalReason = $request->input('disapproval_reason');
+            Orders::where('order_code', $code)->update([
+               'order_status' => $orderStatus,
+               'rejection_reasons' => $disapprovalReason,
+               'approved_by' => $request->user()->id
             ]);
-         Delivery::where('order_code', $code)->update([
-            'delivery_status' => $orderStatus,
-         ]);
-      } else {
-         Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
-         Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
+            Delivery::where('order_code', $code)->update([
+               'delivery_status' => $orderStatus,
+            ]);
+         } else {
+            Orders::where('order_code', $code)->update(['order_status' => $orderStatus]);
+            Delivery::where('order_code', $code)->update(['delivery_status' => $orderStatus]);
+         }
       }
       Session::flash('success', 'Order Status Updated Successfully');
       return redirect()->back();

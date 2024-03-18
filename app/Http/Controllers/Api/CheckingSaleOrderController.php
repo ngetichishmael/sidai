@@ -8,6 +8,7 @@ use App\Models\activity_log;
 use App\Models\Cart;
 use App\Models\customer\checkin;
 use App\Models\customer\customers;
+use App\Models\DistributorOrderApproval;
 use App\Models\inventory\allocations;
 use App\Models\Order_items;
 use App\Models\Orders;
@@ -315,7 +316,7 @@ class CheckingSaleOrderController extends Controller
             );
 
             // Create or update the order
-            Order::updateOrCreate(
+            $order=Order::updateOrCreate(
                [
                   'order_code' => $ordercode,
                ],
@@ -359,7 +360,14 @@ class CheckingSaleOrderController extends Controller
                ->increment('AchievedOrdersTarget', $qty);
          }
       }
-
+      $customer=customers::where('id', $checkinCode)->first();
+      if ($customer && strtolower($customer->price_group) =='distributor'){
+         Order::where('id', $order->id)->update(['order_status' => 'Waiting Approval']);
+         DistributorOrderApproval::create([
+            'order_code'=>$ordercode,
+            'distributor'=>$distributor,
+            'status'=>'Waiting Approval',
+         ]);      }
       if ($distributor != 1 && $distributor != null) {
          $usersToNotify = Suppliers::findOrFail($distributor);
          $number = $usersToNotify->phone_number;
@@ -368,7 +376,6 @@ class CheckingSaleOrderController extends Controller
          $distributor = $usersToNotify->name;
          $sales = auth()->user()->name;
          $sales_number = auth()->user()->phone_number;
-
          Notification::send($usersToNotify, new NewOrderNotification($order_code, $distributor, $sales, $sales_number));
       }
 

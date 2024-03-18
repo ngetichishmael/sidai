@@ -360,6 +360,21 @@
                             </div>
                          </div>
                    </form>
+                                       @if(strtolower($order->order_status) =='waiting approval')
+                                       <form id="statusForm1" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
+                                          @csrf
+                                          <select id="orderStatus1" name="order_status1" class="form-control mb-2 mt-2" required>
+                                             <option value="" selected>Order Approval</option>
+                                             <option value="Approved" id="approved" style="color: #51d751">Approved Order</option>
+                                             <option value="Disapproved" id="disapproved" style="color: orangered">Disapprove Order</option>
+                                          </select>
+                                          <div id="reasonInput" style="display: none;">
+                                             <label for="disapprovalReason">Reason for Disapproval:</label>
+                                             <input type="text" id="disapprovalReason" name="disapproval_reason" class="form-control mb-2 mt-2">
+                                          </div>
+                                          <button type="submit" class="btn btn-block btn-warning">Approve/Disapprove</button>
+                                       </form>
+                                      @endif
                     </div>
                 </div>
             </div>

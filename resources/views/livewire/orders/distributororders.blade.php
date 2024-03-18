@@ -28,8 +28,8 @@
                <label for="">Filter By Status: </label>
                <select wire:model="statusFilter" class="form-control">
                   <option value="">All Statuses</option>
-                  <option value="Approved">Approved</option>
-                  <option value="Disapproved">Disapproved</option>
+{{--                  <option value="Approved">Approved</option>--}}
+{{--                  <option value="Disapproved">Disapproved</option>--}}
                   <option value="Pending Delivery">Pending Orders</option>
                   <option value="Complete Delivery">Order Delivered</option>
                   <option value="Waiting acceptance">Waiting acceptance</option>

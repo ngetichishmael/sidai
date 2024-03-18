@@ -264,9 +264,58 @@
             </div>
         </div>
         <div class="col-md-3 mt-2">
-{{--           <a href="{{ route('generateOrderPdf', [--}}
-{{--    'test' => json_encode($test), 'order' => json_encode($order),'distributor'=>'Sidai', 'items' => json_encode($items), 'sub' => $sub->sum('sub_total'), 'total' => $total->sum('total_amount'),'order_status'=>$order->order_status]) }}" class="btn btn-secondary mb-2">Download Invoice</a>--}}
-{{--           --}}
+           <form action="{{ route('generateOrderPdf') }}" method="POST" id="pdfForm">
+              @csrf
+              @method('POST')
+              <button type="button" class="btn btn-secondary mb-2" id="downloadBtn" onclick="generatePDF()">Download Invoice</button>
+           </form>
+        @if(strtolower($order->order_status) =='waiting approval')
+            <form id="statusForm1" action="{!! route('orders.distributorschangeStatus', $order->order_code) !!}" method="POST">
+               @csrf
+               @if(Auth::user()->account_type=='Admin')
+                  @if ($approval==null || ($approval->admin_id == null || $approval->admin_id == Auth::user()->id))
+                  <label class="font-bold">Update Order Approval Status As an Admin</label>
+                  <select id="orderStatus1" name="order_status1" class="form-control mb-2 mt-2" required>
+                     <option value=""> Select </option>
+                     <option value="Approved" id="approved" style="color: #51d751">Approve Order</option>
+                     <option value="Disapproved" id="disapproved" style="color: orangered">Disapprove Order</option>
+                  </select>
+                  <input type="hidden" name="distributor" value="distributor">
+                  <div id="reasonInput" style="display: none;">
+                     <label for="disapprovalReason">Reason for Disapproval:</label>
+                     <input type="text" id="disapprovalReason" name="disapproval_reason" class="form-control mb-2 mt-2">
+                  </div>
+                  <button type="submit" class="btn btn-block btn-warning">Update</button>
+               @else
+                  <label>Order was Approved/Disapproved by : {{$approval->admin->name ?? ''}} </label>
+               @endif
+               @elseif(Auth::user()->account_type=='NSM')
+                  @if ($approval==null || ($approval->manager_id == null || $approval->manager_id == Auth::user()->id))
+                  <label class="font-bold">Update Order Approval Status As Manager</label>
+                  <select id="orderStatus1" name="order_status1" class="form-control mb-2 mt-2" required>
+                     <option value=""> Select </option>
+                     <option value="Approved" id="approved" style="color: #51d751">Approve Order</option>
+                     <option value="Disapproved" id="disapproved" style="color: orangered">Disapprove Order</option>
+                  </select>
+                     <input type="hidden" name="distributor" value="distributor">
+                  <div id="reasonInput" style="display: none;">
+                     <label for="disapprovalReason">Reason for Disapproval:</label>
+                     <input type="text" id="disapprovalReason" name="disapproval_reason" class="form-control mb-2 mt-2">
+                  </div>
+                  <button type="submit" class="btn btn-block btn-warning">Update</button>
+                  @else
+                     <label>Order was Approved/Disapproved by : {{$approval->manager->name ?? ''}} </label>
+                  @endif
+               @endif
+
+            </form>
+              @elseif(strtolower($order->order_status) =='partially approved')
+              <label>Order was Approved/Disapproved by : {{$approval->manager->name ?? $approval->admin->name ?? ''}} </label>
+              <label><h4>Order Waiting @if($approval->manager_id==null) <b>Manager Approval</b> @else <b>Administrator Approval </b>@endif </h4></label>
+           @elseif($approval && (strtolower($approval->manager_status) =='disapproved' || strtolower($approval->admin_status) =='disapproved'))
+              <label style="color: orangered">Order was Disapproved by : {{$approval->manager->name ?? $approval->admin->name ?? ''}} </label>
+           @else
+           <div>
            <form action="{{ route('generateOrderPdf') }}" method="POST" id="pdfForm">
               @csrf
               @method('POST')
@@ -278,11 +327,12 @@
               <input type="hidden" name="total" value="{{ $total->sum('total_amount') }}">
               <input type="hidden" name="order_status" value="{{ $order->order_status }}">
 
-              <button type="button" class="btn btn-secondary mb-2" id="downloadBtn" onclick="generatePDF()">Download Invoice</button>
+{{--              <button type="button" class="btn btn-secondary mb-2" id="downloadBtn" onclick="generatePDF()">Download Invoice</button>--}}
            </form>
            <center><a href="{!! route('orders.delivery.allocation', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order With Stock</a></center>
             <center><a href="{!! route('orders.delivery.without', $order->order_code) !!}" class="btn btn-block btn-warning mb-2">Allocate Order Without Stock</a></center>
-
+           </div>
+           @endif
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -326,6 +376,23 @@
                 $('#downloadBtn').html('Download Invoice');
              });
        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+       $(document).ready(function () {
+          function toggleReasonInput() {
+             var selectedOption = $("#orderStatus1").val();
+             if (selectedOption === "Disapproved") {
+                $("#reasonInput").show();
+             } else {
+                $("#reasonInput").hide();
+             }
+          }
+          toggleReasonInput();
+          $("#orderStatus1").on("change", function () {
+             toggleReasonInput();
+          });
+       });
     </script>
 @endsection
 {{-- page scripts --}}
