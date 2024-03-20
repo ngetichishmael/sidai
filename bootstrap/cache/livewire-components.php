@@ -122,6 +122,7 @@
   'users.shopattendee' => 'App\\Http\\Livewire\\Users\\shopattendee',
   'users.td' => 'App\\Http\\Livewire\\Users\\td',
   'users.tsr' => 'App\\Http\\Livewire\\Users\\tsr',
+  'visit-report.index' => 'App\\Http\\Livewire\\VisitReport\\Index',
   'visits.customer.dashboard' => 'App\\Http\\Livewire\\Visits\\Customer\\Dashboard',
   'visits.dashboard-view' => 'App\\Http\\Livewire\\Visits\\DashboardView',
   'visits.index' => 'App\\Http\\Livewire\\Visits\\Index',

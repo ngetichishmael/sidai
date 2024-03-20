@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\TestingController;
 use App\Http\Controllers\app\inventoryController;
 use App\Http\Controllers\Auth\CustomLoginController;
 use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\VisitsFormController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -542,5 +543,14 @@ Route::middleware('web')->group(function () {
       Route::put('/permissions/{permission}', 'PermissionsController@update')->name('permissions.update');
       Route::delete('/permissions/{permission}', 'PermissionsController@destroy')->name('permissions.destroy');
       Route::get('/unauthorized', 'PermissionsController@unauthorized')->name('unauthorized');
+
+
+// Report generation route
+      Route::get('/reports/{formType}', function ($formType, App\Services\ReportGenerator $reportGenerator) {
+         $filters = request()->all();
+         $report = $reportGenerator->generateReport($formType, $filters);
+
+         return $report;
+      });
    });
 });

@@ -322,6 +322,11 @@
       <span class="menu-item text-truncate">Responses</span>
    </a>
 </li>
+   <li style="padding-left: 50px">
+   <a class="d-flex align-items-center {!! Nav::isResource('forms') !!}" href="{!! route('forms') !!}">
+      <span class="menu-item text-truncate">Visit Forms</span>
+   </a>
+</li>
 </ul>
 </li>
               @endif

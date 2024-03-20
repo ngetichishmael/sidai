@@ -17,6 +17,8 @@ use App\Http\Controllers\Api\SurveryAnswersController;
 use App\Http\Controllers\Api\surveyController;
 use App\Http\Controllers\Api\TargetsController;
 use App\Http\Controllers\Api\TargetsUIController;
+use App\Http\Controllers\Api\VisitFormSubmissionController;
+use App\Http\Controllers\Api\VisitsFormController;
 use App\Http\Controllers\Api\WarehouseController;
 use Illuminate\Support\Facades\Route;
 
@@ -261,5 +263,12 @@ Route::group(['namespace' => 'Api'], function () {
 
     Route::get('/get/subregion/{id}', 'GetRegionsController@getSubRegions')->name('getUISubregions');
     Route::get('/get/area/{id}', 'GetRegionsController@getAreas')->name('getUIAreas');
+
+   Route::get('visit/forms', [VisitsFormController::class, 'index']);
+   Route::get('visit/forms/{id}', [VisitsFormController::class, 'show']);
+
+// Form submission routes
+   Route::post('visit/form-submissions', [VisitFormSubmissionController::class, 'store'])->middleware('auth:sanctum');
+
 
 });
