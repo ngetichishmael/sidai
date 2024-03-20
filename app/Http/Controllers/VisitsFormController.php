@@ -16,27 +16,16 @@ class VisitsFormController extends Controller
 
    public function store(Request $request)
    {
-//      $validatedData = $request->validate([
-//         'name' => 'required',
-//         'description' => 'nullable',
-//         'fields' => 'required|array',
-//         'fields.*' => 'array',
-//         'fields.*.*' => 'required_with:fields.*.*',
-//         'fields.*.type' => 'in:text,number,date', // Add more field types as needed
-//         'fields.*.required' => 'nullable|boolean',
-//      ]);
-//      $forms = VisitForm::create($validatedData);
 
       $validator = Validator::make($request->all(), [
          'name' => 'required',
          'description' => 'nullable',
-         'type' => 'required',
+         'type' => 'required|string',
          'fields' => 'required|array',
          'fields.*.name' => 'required',
          'fields.*.type' => 'required|in:text,number,date,image', // Add more field types as needed
          'fields.*.required' => 'nullable|boolean',
       ]);
-
       // Check if validation fails
       if ($validator->fails()) {
          return redirect()->back()->withErrors($validator)->withInput();
@@ -48,6 +37,7 @@ class VisitsFormController extends Controller
       // Create the VisitForm record
       $forms = VisitForm::create([
          'name' => $formData['name'],
+         'type' => $formData['type'],
          'description' => $formData['description'],
          'fields' => $formData['fields'],
       ]);
